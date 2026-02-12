@@ -189,7 +189,10 @@ export function setUpVideos({
     case "EDIT521":
       videoPlaceHolders = VideoURLs.EDIT521;
       break;
-
+    case "EDSE357":
+      videoPlaceHolders = VideoURLs.EDIT521;
+      break;
+      
     default:
   }
   //const videoList = getVideosFor();
