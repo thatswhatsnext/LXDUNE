@@ -190,7 +190,7 @@ export function setUpVideos({
       videoPlaceHolders = VideoURLs.EDIT521;
       break;
     case "EDSE357":
-      videoPlaceHolders = VideoURLs.EDIT521;
+      videoPlaceHolders = VideoURLs.EDSE357;
       break;
       
     default:
