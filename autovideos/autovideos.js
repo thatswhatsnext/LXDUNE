@@ -21,6 +21,17 @@ class VideoURLs {
     "yNSs6PKChRI", //Week 11 & 12
     "3UEbA1D7Y-0", //Week 13
   ];
+  static EDSE357 = [
+    "vOe6VqwXMk0", //Welcome
+    //"EB3Qe97fSNs", //Week 0
+    "14qnVK60YXM", //Week 1 & 2
+    "NAmeFmSnJqA", //Week 3 & 4
+    "fml5R_r4DLo", //Week 5 & 6
+    "DGIXT7ce3vQ", //Assessment & Intensive Period
+    "kffeQ3_CLqQ", //Week 9 & 10
+    "yNSs6PKChRI", //Week 11 & 12
+    "3UEbA1D7Y-0", //Week 13
+  ];
   static EDIT426 = [
     "alhCYDrtgzs", //Welcome
     //"75Z7kif2Jtc", //Week 0
