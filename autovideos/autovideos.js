@@ -35,8 +35,8 @@ class VideoURLs {
   static EDSE358 = [
     "vOe6VqwXMk0", //Welcome
     //"EB3Qe97fSNs", //Week 0
-    "14qnVK60YXM", //Week 1 & 2
-    "NAmeFmSnJqA", //Week 3 & 4
+    "twvP-4YOPWw", //Week 1 & 2
+    "mHYoYi15J1Y", //Week 3 & 4
     "fml5R_r4DLo", //Week 5 & 6
     "DGIXT7ce3vQ", //Assessment & Intensive Period
     "kffeQ3_CLqQ", //Week 9 & 10
