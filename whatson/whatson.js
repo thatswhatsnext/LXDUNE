@@ -79,7 +79,6 @@ class Events {
       },
       week0Message: [
         "Have a look around at the first few tiles below and finish up the Week 0 section — we’ll get started next week!",
-        "Remember to complete the Unit Outline Quiz in Week 0 to unlock the rest of the unit!",
       ],
     },
   };
