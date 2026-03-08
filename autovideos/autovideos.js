@@ -99,8 +99,8 @@ class VideoURLs {
     "vOe6VqwXMk0", // Week 0 (Welcome)
     "1jVXNAaZ1P8", // Week 1
     "SItTfkDrkKo", // Week 2
-    "NAmeFmSnJqA", // Week 3
-    "NAmeFmSnJqA", // Week 4
+    "MOVpOGshy9M", // Week 3
+    "brEVCv7P8Tw", // Week 4
     "fml5R_r4DLo", // Week 5
     "fml5R_r4DLo", // Week 6
     "kffeQ3_CLqQ", // Week 7
