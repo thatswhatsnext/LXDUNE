@@ -103,7 +103,7 @@ class VideoURLs {
     "brEVCv7P8Tw", // Week 4
     "T4ZrteC1S1A", // Week 5
     "NGeQF5M5fEc", // Week 6
-    "kffeQ3_CLqQ", // Week 7
+    "qHHfqvXy2iE", // Week 7
     "yNSs6PKChRI", // Week 8
     "DGIXT7ce3vQ", // Week 9  (Assessment & Intensive Period)
     "DGIXT7ce3vQ", // Week 10
