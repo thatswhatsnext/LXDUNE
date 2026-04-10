@@ -104,7 +104,7 @@ class VideoURLs {
     "T4ZrteC1S1A", // Week 5
     "NGeQF5M5fEc", // Week 6
     "qHHfqvXy2iE", // Week 7
-    "yNSs6PKChRI", // Week 8
+    "tZawrfxdeaM", // Week 8
     "DGIXT7ce3vQ", // Week 9  (Assessment & Intensive Period)
     "DGIXT7ce3vQ", // Week 10
     "DGIXT7ce3vQ", // Week 11
@@ -122,7 +122,7 @@ class VideoURLs {
     "6vPFCsOBL3A", // Week 5
     "JbvXUQJa9_g", // Week 6
     "ZMXgRNeHBEw", // Week 7
-    "yNSs6PKChRI", // Week 8
+    "0QVsntPYBrE", // Week 8
     "DGIXT7ce3vQ", // Week 9  (Assessment & Intensive Period)
     "DGIXT7ce3vQ", // Week 10
     "DGIXT7ce3vQ", // Week 11
