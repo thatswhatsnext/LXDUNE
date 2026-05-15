@@ -270,7 +270,7 @@ export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek } =
       : CHIP;
     const open  = s.url ? `<a class="lx-card ${s.cls}" href="${esc(s.url)}" target="_blank" rel="noopener">` : `<div class="lx-card ${s.cls}">`;
     const close = s.url ? `</a>` : `</div>`;
-    return `${open}<div class="lx-step">Step ${s.num}</div><h4>${esc(s.title)}</h4><div class="lx-extra">${esc(s.detail)}<div class="lx-pills">${pill}</div></div>${close}`;
+    return `${open}<div class="lx-step">Step ${s.num}</div><h4>${esc(s.title)}</h4><div class="lx-extra">${s.detail}<div class="lx-pills">${pill}</div></div>${close}`;
   }).join('');
 
   el.innerHTML = `<div class="lx-dashboard">

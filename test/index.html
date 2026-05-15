@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LXDUNE — Block Renderer Test</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f8; color: #1F2A33; }
+    .page { max-width: 980px; margin: 0 auto; padding: 32px 24px 80px; }
+    h1 { margin: 0 0 4px; color: #1f6fb2; }
+    .subtitle { margin: 0 0 36px; color: #6F7B84; font-size: .95em; }
+    .suite { margin-bottom: 56px; }
+    .suite-header { display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #dfe6ea; margin-bottom: 24px; padding-bottom: 10px; }
+    .suite-header h2 { margin: 0; font-size: 1.15em; }
+    .suite-meta { font-size: .82em; color: #6F7B84; }
+    .block-group { background: #fff; border: 1px solid #dfe6ea; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+    .block-label { font-size: .75em; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; color: #6F7B84; margin-bottom: 14px; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
+    .week-pill { display: inline-block; background: #e8f0fb; border: 1px solid #b0c8e8; color: #1f6fb2; padding: 3px 10px; border-radius: 999px; font-size: .78em; font-weight: 800; margin-left: 8px; vertical-align: middle; }
+    .notice { background: #fff8e6; border: 1px solid #f1c40f; border-left: 4px solid #f1c40f; border-radius: 8px; padding: 10px 16px; font-size: .88em; margin-bottom: 28px; color: #5a4500; }
+    .notice code { background: #fdf3cd; padding: 1px 5px; border-radius: 4px; font-family: 'Courier New', monospace; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <h1>LXDUNE — Block Renderer Test</h1>
+  <p class="subtitle">Visual test for all 6 render functions. All blocks use EDSE358, T1, 2026 with explicit <code>forWeek</code> overrides.</p>
+
+  <div class="notice">
+    Requires HTTP server. Run from repo root: <code>python3 -m http.server 8000</code> → <code>http://localhost:8000/test/</code>
+  </div>
+
+  <!-- ── SUITE 1: Week 0 (Zero week) ─────────────────────────────────────── -->
+  <div class="suite">
+    <div class="suite-header">
+      <h2>Week 0 — Zero Week <span class="week-pill">forWeek: 0</span></h2>
+      <span class="suite-meta">Announcement shows week0Message. Workflow, Lecture, Live Hub render nothing.</span>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderAnnouncementBlock</div>
+      <div id="ann-w0"></div>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderWorkflowCard (expects: empty)</div>
+      <div id="wf-w0"><em style="color:#aaa;">Should render nothing here.</em></div>
+    </div>
+  </div>
+
+  <!-- ── SUITE 2: Week 1 (Teaching — populated content) ──────────────────── -->
+  <div class="suite">
+    <div class="suite-header">
+      <h2>Week 1 — Teaching Week <span class="week-pill">forWeek: 1</span></h2>
+      <span class="suite-meta">Module 1. announcementBody populated. All links null → Coming soon chips.</span>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderAnnouncementBlock</div>
+      <div id="ann-w1"></div>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderWorkflowCard</div>
+      <div id="wf-w1"></div>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderLectureBlock</div>
+      <div id="lec-w1"></div>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderLiveSessionHub</div>
+      <div id="live-w1"></div>
+    </div>
+  </div>
+
+  <!-- ── SUITE 3: Week 4 (Teaching — null announcementBody) ──────────────── -->
+  <div class="suite">
+    <div class="suite-header">
+      <h2>Week 4 — Teaching Week (null content) <span class="week-pill">forWeek: 4</span></h2>
+      <span class="suite-meta">Module 3B. announcementBody is null. Assessment Task 1 Part A due 2026-03-22 (past).</span>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderAnnouncementBlock (no intro/focus, generic steps only)</div>
+      <div id="ann-w4"></div>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderWorkflowCard</div>
+      <div id="wf-w4"></div>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderLiveSessionHub (liveSessionFocus null → falls back to week.live)</div>
+      <div id="live-w4"></div>
+    </div>
+  </div>
+
+  <!-- ── SUITE 4: Week 9 (Professional Experience) ───────────────────────── -->
+  <div class="suite">
+    <div class="suite-header">
+      <h2>Week 9 — Professional Experience <span class="week-pill">forWeek: 9</span></h2>
+      <span class="suite-meta">Announcement shows PE message. Workflow, Lecture, Live Hub render nothing.</span>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderAnnouncementBlock</div>
+      <div id="ann-w9"></div>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderWorkflowCard (expects: empty)</div>
+      <div id="wf-w9"><em style="color:#aaa;">Should render nothing here.</em></div>
+    </div>
+  </div>
+
+  <!-- ── SUITE 5: Week 14 (Assessment period) ────────────────────────────── -->
+  <div class="suite">
+    <div class="suite-header">
+      <h2>Week 14 — Assessment Period <span class="week-pill">forWeek: 14</span></h2>
+      <span class="suite-meta">Announcement shows Assessment and Intensive Period label.</span>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderAnnouncementBlock</div>
+      <div id="ann-w14"></div>
+    </div>
+  </div>
+
+  <!-- ── SUITE 6: Static blocks (no forWeek needed) ──────────────────────── -->
+  <div class="suite">
+    <div class="suite-header">
+      <h2>Static Blocks</h2>
+      <span class="suite-meta">Assessment downloads and learning outcomes — not week-dependent.</span>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderAssessmentDownloadBlock (all links null → Coming soon chips)</div>
+      <div id="lxdune-assessment-downloads"></div>
+    </div>
+    <div class="block-group">
+      <div class="block-label">renderLearningOutcomesTable (LO1–LO6)</div>
+      <div id="lxdune-outcomes"></div>
+    </div>
+  </div>
+
+</div>
+
+<script type="module">
+import {
+  renderAnnouncementBlock,
+  renderWorkflowCard,
+  renderLectureBlock,
+  renderLiveSessionHub,
+  renderAssessmentDownloadBlock,
+  renderLearningOutcomesTable,
+} from '../moodle-blocks/blocks.js';
+
+const U = 'EDSE358', TR = 'T1', YR = '2026';
+
+// Helper: render into a non-standard id and swap into target
+async function renderInto(fn, targetId, params) {
+  const container = document.getElementById(targetId);
+  if (!container) return;
+  try {
+    // Temporarily move the container to a unique id matching what blocks.js expects,
+    // call the render fn, then leave it in place.
+    const originalId = container.id;
+    container.id = params._containerId;
+    await fn({ forUnit: U, forTri: TR, forYear: YR, ...params });
+    container.id = originalId;
+  } catch (e) {
+    container.innerHTML = `<div style="color:red;font-weight:700;">Error: ${e.message}</div>`;
+  }
+}
+
+// Week 0
+await renderInto(renderAnnouncementBlock, 'ann-w0', { forWeek: 0, _containerId: 'lxdune-announcement' });
+await renderInto(renderWorkflowCard,      'wf-w0',  { forWeek: 0, _containerId: 'lxdune-workflow' });
+
+// Week 1
+await renderInto(renderAnnouncementBlock, 'ann-w1', { forWeek: 1, _containerId: 'lxdune-announcement' });
+await renderInto(renderWorkflowCard,      'wf-w1',  { forWeek: 1, _containerId: 'lxdune-workflow' });
+await renderInto(renderLectureBlock,      'lec-w1', { forWeek: 1, _containerId: 'lxdune-lecture' });
+await renderInto(renderLiveSessionHub,    'live-w1',{ forWeek: 1, _containerId: 'lxdune-live-hub' });
+
+// Week 4
+await renderInto(renderAnnouncementBlock, 'ann-w4', { forWeek: 4, _containerId: 'lxdune-announcement' });
+await renderInto(renderWorkflowCard,      'wf-w4',  { forWeek: 4, _containerId: 'lxdune-workflow' });
+await renderInto(renderLiveSessionHub,    'live-w4',{ forWeek: 4, _containerId: 'lxdune-live-hub' });
+
+// Week 9
+await renderInto(renderAnnouncementBlock, 'ann-w9', { forWeek: 9, _containerId: 'lxdune-announcement' });
+await renderInto(renderWorkflowCard,      'wf-w9',  { forWeek: 9, _containerId: 'lxdune-workflow' });
+
+// Week 14
+await renderInto(renderAnnouncementBlock, 'ann-w14',{ forWeek: 14, _containerId: 'lxdune-announcement' });
+
+// Static blocks (use their real container IDs directly)
+await renderAssessmentDownloadBlock({ forUnit: U, forTri: TR, forYear: YR });
+await renderLearningOutcomesTable({ forUnit: U, forTri: TR, forYear: YR });
+</script>
+</body>
+</html>
