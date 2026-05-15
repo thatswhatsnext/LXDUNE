@@ -1,0 +1,50 @@
+<style>
+    .live-wrap { max-width:950px; margin:30px auto; font-family:Arial,sans-serif; color:#1F2A33; line-height:1.55; }
+    .live-pill { display:inline-block; background:#DAF0F7; border:1px solid #cbe6ee; padding:4px 10px; border-radius:999px; font-size:.8em; font-weight:800; margin-bottom:12px; }
+    .live-header { border:1px solid #dfe6ea; border-left:8px solid #f1c40f; border-radius:14px; padding:18px; background:#ffffff; margin-bottom:18px; }
+    .live-header h3 { margin:0 0 6px 0; }
+    .required-badge { display:inline-block; margin-top:8px; background:#fff8e6; border:1px solid #f1c40f; color:#6F7B84; font-size:.85em; font-weight:700; padding:6px 10px; border-radius:999px; }
+    .live-section { border:1px solid #dfe6ea; border-radius:14px; padding:18px; margin-bottom:16px; background:#ffffff; }
+    .live-section.study { border-left:6px solid #25797F; background:#f4f6f8; }
+    .live-section.task { border-left:6px solid #1f6fb2; }
+    .live-section.zoom { border-left:6px solid #f1c40f; background:#fff8e6; }
+    .live-section.forum { border-left:6px solid #6F7B84; background:#f4f6f8; }
+    .live-section h4 { margin:0 0 8px 0; }
+    .live-section ul { margin:8px 0 0 18px; }
+    .live-section li { margin:6px 0; }
+    .live-link { display:inline-block; margin-top:10px; padding:8px 14px; background:#1f6fb2; color:#ffffff; border-radius:8px; text-decoration:none; font-weight:800; }
+    .live-link:hover { background:#155a91; }
+    .external-link { color:#1f6fb2; font-weight:700; text-decoration:none; }
+    .external-link:hover { text-decoration:underline; }
+</style>
+<div class="live-wrap">
+    <div class="live-pill">EDSE357 • LIVE SESSION</div>
+    <div class="live-header">
+        <h3>Topic 8 Live Session</h3>
+        <div>Session focus and description here.</div>
+        <div class="required-badge">Required before attending</div>
+    </div>
+    <div class="live-section study">
+        <h4>Before the Session</h4>
+        <ul>
+            <li>Review the lecture and readings.</li>
+            <li>Choose one or more reflection tasks below and prepare notes.</li>
+        </ul>
+    </div>
+    <div class="live-section task">
+        <h4>Reflection Tasks / Discussion Prompts</h4>
+        <p>Content specific to the topic goes here.</p>
+    </div>
+    <div class="live-section zoom">
+        <h4>Join the Live Session</h4>
+        <div>Bring your notes and be prepared to discuss.</div>
+        <!-- {{ZOOM_URL}} injected from unit.trimesterConfig["T1-2026"].zoom.url at render time -->
+        <a class="live-link" href="{{ZOOM_URL}}" target="_blank" rel="noopener">Join Zoom Session</a>
+    </div>
+    <div class="live-section forum">
+        <h4>After the Session</h4>
+        <div>Post a short reflection in the forum.</div>
+        <!-- {{FORUM_LINK}} injected from unit.weeks[n].links.forum at render time -->
+        <a class="external-link" href="{{FORUM_LINK}}" target="_blank" rel="noopener">Go to Forum</a>
+    </div>
+</div>
