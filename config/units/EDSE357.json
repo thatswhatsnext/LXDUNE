@@ -1,0 +1,165 @@
+{
+  "code": "EDSE357",
+  "name": "Science Education 11–12: Curriculum and Pedagogy",
+  "itemLabel": "Topic",
+  "liveDay": "Wednesday",
+  "liveTime": "5:30–6:30pm",
+  "trimesters": ["T1"],
+  "assessmentPortalUrl": "https://mylearn.une.edu.au/course/section.php?id=477930",
+  "week0Message": "Have a look around at the first few tiles below — we’ll get started next week!",
+  "trimesterConfig": {
+    "T1-2026": {
+      "zoom": {
+        "meetingId": "828 6792 7955",
+        "password": "590152",
+        "url": "https://une-au.zoom.us/j/82867927955?pwd=kKabxUYQKzi2PagY99sOm5Po6ktj4I.1"
+      }
+    }
+  },
+  "weeks": {
+    "0": {
+      "video": "vOe6VqwXMk0"
+    },
+    "1": {
+      "item": "Topic 1",
+      "title": "Introduction to the Stage 6 science syllabuses",
+      "live": "🎤 Live Session",
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "1jVXNAaZ1P8"
+    },
+    "2": {
+      "item": "Topic 2",
+      "title": "Conducting Investigations",
+      "live": "🎤 Live Session: Topic 1 & 2",
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "SItTfkDrkKo"
+    },
+    "3": {
+      "item": "Topic 3",
+      "title": "Open-ended Investigations",
+      "live": "🎤 Live Session",
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "MOVpOGshy9M"
+    },
+    "4": {
+      "item": "Topic 4",
+      "title": "Research and Experimentation",
+      "live": "🎤 Live Session: Topic 3 & 4",
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "brEVCv7P8Tw"
+    },
+    "5": {
+      "item": "Topic 5",
+      "title": "Selecting and Evaluating Resources",
+      "live": "🎤 Live Session",
+      "notes": ["Census Day occurs this week."],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "T4ZrteC1S1A"
+    },
+    "6": {
+      "item": "Topic 6",
+      "title": "Current and Future Uses and Applications of Science",
+      "live": "🎤 Live Session: Topic 5 & 6",
+      "assessments": [
+        { "name": "Assessment Task 1", "due": "2026-03-29" }
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "NGeQF5M5fEc"
+    },
+    "7": {
+      "item": "Topic 7",
+      "title": "Audit your senior science content knowledge",
+      "live": "🎤 Live Session",
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "qHHfqvXy2iE"
+    },
+    "8": {
+      "item": "Topic 8",
+      "title": "Teaching with a diverse cohort",
+      "live": "🎤 Live Session: Topic 7 & 8",
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "tZawrfxdeaM"
+    },
+    "9": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "10": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "assessments": [
+        { "name": "Assessment Task 2", "due": "2026-05-03" }
+      ],
+      "video": "DGIXT7ce3vQ"
+    },
+    "11": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "12": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "13": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "14": {
+      "item": "Assessment period",
+      "title": "Assessment and Intensive Period 2",
+      "video": "DGIXT7ce3vQ"
+    }
+  }
+}

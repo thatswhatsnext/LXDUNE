@@ -1,0 +1,176 @@
+{
+  "code": "EDSE358",
+  "name": "Science Education 11–12: Plan, Assess and Report",
+  "itemLabel": "Module",
+  "liveDay": "Thursday",
+  "liveTime": "5:30–6:30pm",
+  "trimesters": ["T1", "T2"],
+  "assessmentPortalUrl": "https://mylearn.une.edu.au/course/section.php?id=477943",
+  "week0Message": "Have a look around at the first few tiles below and finish up the Week 0 section — we’ll get started next week!",
+  "trimesterConfig": {
+    "T1-2026": {
+      "zoom": {
+        "meetingId": "848 7032 4762",
+        "password": "288268",
+        "url": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1"
+      }
+    },
+    "T2-2026": {
+      "zoom": {
+        "meetingId": null,
+        "password": null,
+        "url": null
+      }
+    }
+  },
+  "weeks": {
+    "0": {
+      "video": "vOe6VqwXMk0"
+    },
+    "1": {
+      "item": "Module 1",
+      "title": "The Senior Science Syllabus",
+      "live": "LIVE SESSION 1",
+      "notes": ["Download BOTH assessment tasks 💾", "Make a plan to complete them 🗓️"],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "twvP-4YOPWw"
+    },
+    "2": {
+      "item": "Module 2",
+      "title": "The Nature of Science Teaching",
+      "live": "🎤 LIVE SESSION 2: MODULE 1&2",
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "mHYoYi15J1Y"
+    },
+    "3": {
+      "item": "Module 3A",
+      "title": "Planning and Assessing Learning Models and Constructivist Teaching",
+      "live": "🎤 LIVE SESSION 3",
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "dZiRQE7dgFA"
+    },
+    "4": {
+      "item": "Module 3B",
+      "title": "Planning and Assessing Programs and Lesson Plans",
+      "live": "🎤 LIVE SESSION 4: MODULE 3",
+      "assessments": [
+        { "name": "Assessment Task 1 — Part A (5%)", "due": "2026-03-22" }
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "HXhzDcirQ-0"
+    },
+    "5": {
+      "item": "Module 4A",
+      "title": "Assessing and Reporting — Assessment for learning",
+      "live": "🎤 LIVE SESSION 5",
+      "notes": ["Census Day occurs this week."],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "6vPFCsOBL3A"
+    },
+    "6": {
+      "item": "Module 4B",
+      "title": "Assessing and Reporting — Designing assessment instruments",
+      "live": "🎤 LIVE SESSION 6: MODULE 4A&B",
+      "assessments": [
+        { "name": "Assessment Task 1 — Parts B, C & D (55%)", "due": "2026-04-05" }
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "JbvXUQJa9_g"
+    },
+    "7": {
+      "item": "Module 4C",
+      "title": "Assessing and Reporting — Designing differentiated assessment",
+      "live": "🎤 LIVE SESSION 7",
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "ZMXgRNeHBEw"
+    },
+    "8": {
+      "item": "Module 4D",
+      "title": "Assessing and Reporting — Developing rubrics and providing feedback",
+      "live": "🎤 LIVE SESSION 8: MODULE 4C&D",
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null
+      },
+      "video": "0QVsntPYBrE"
+    },
+    "9": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "10": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "11": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "assessments": [
+        { "name": "EDSE358 Assessment 2 (40%)", "due": "2026-05-04" }
+      ],
+      "video": "DGIXT7ce3vQ"
+    },
+    "12": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "13": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "14": {
+      "item": "Assessment period",
+      "title": "Assessment and Intensive Period 2",
+      "video": "DGIXT7ce3vQ"
+    }
+  }
+}
