@@ -3,135 +3,272 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LXDUNE — Block Renderer Test</title>
+  <title>LXDUNE — Block Test</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-    body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f8; color: #1F2A33; }
-    .page { max-width: 980px; margin: 0 auto; padding: 32px 24px 80px; }
-    h1 { margin: 0 0 4px; color: #1f6fb2; }
-    .subtitle { margin: 0 0 36px; color: #6F7B84; font-size: .95em; }
-    .suite { margin-bottom: 56px; }
-    .suite-header { display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #dfe6ea; margin-bottom: 24px; padding-bottom: 10px; }
-    .suite-header h2 { margin: 0; font-size: 1.15em; }
-    .suite-meta { font-size: .82em; color: #6F7B84; }
-    .block-group { background: #fff; border: 1px solid #dfe6ea; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
-    .block-label { font-size: .75em; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; color: #6F7B84; margin-bottom: 14px; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
-    .week-pill { display: inline-block; background: #e8f0fb; border: 1px solid #b0c8e8; color: #1f6fb2; padding: 3px 10px; border-radius: 999px; font-size: .78em; font-weight: 800; margin-left: 8px; vertical-align: middle; }
-    .notice { background: #fff8e6; border: 1px solid #f1c40f; border-left: 4px solid #f1c40f; border-radius: 8px; padding: 10px 16px; font-size: .88em; margin-bottom: 28px; color: #5a4500; }
-    .notice code { background: #fdf3cd; padding: 1px 5px; border-radius: 4px; font-family: 'Courier New', monospace; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #eef1f4; color: #1F2A33; }
+
+    /* ── Controls panel (sticky) ─────────────────────────────────────────── */
+    #controls {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: #1a2530;
+      color: #fff;
+      padding: 12px 20px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,.35);
+    }
+    .ctrl-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .ctrl-top strong { font-size: 1em; color: #e0e8ee; letter-spacing: .3px; }
+    .ctrl-top a { font-size: .82em; color: #7ab8d8; text-decoration: none; }
+    .ctrl-top a:hover { text-decoration: underline; }
+    .ctrl-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      align-items: flex-end;
+      margin-bottom: 10px;
+    }
+    .ctrl-group { display: flex; flex-direction: column; gap: 3px; }
+    .ctrl-group label {
+      font-size: .68em;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      color: #6a96b4;
+    }
+    .ctrl-group select,
+    .ctrl-group input[type="date"] {
+      font-family: Arial, sans-serif;
+      font-size: .875em;
+      padding: 5px 9px;
+      border: 1px solid #2f4255;
+      border-radius: 6px;
+      background: #243345;
+      color: #e0e8ee;
+      appearance: none;
+      min-width: 130px;
+      line-height: 1.4;
+    }
+    .ctrl-group select:focus,
+    .ctrl-group input[type="date"]:focus {
+      outline: none;
+      border-color: #4fa9b5;
+      box-shadow: 0 0 0 2px rgba(79,169,181,.25);
+    }
+    .ctrl-group input[type="date"] { color-scheme: dark; min-width: 148px; }
+    .ctrl-group input[type="date"]:disabled {
+      opacity: .38;
+      cursor: not-allowed;
+    }
+    .date-hint {
+      font-size: .68em;
+      color: #4a7090;
+      margin-top: 2px;
+      height: 12px;
+      line-height: 12px;
+    }
+    .rerender-btn {
+      padding: 6px 16px;
+      background: #1f6fb2;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: .85em;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      white-space: nowrap;
+    }
+    .rerender-btn:hover { background: #155a91; }
+    .rerender-btn:active { background: #0f4470; }
+
+    /* ── Status bar ────────────────────────────────────────────────────────── */
+    #status-bar {
+      background: #111c25;
+      border-top: 1px solid #243345;
+      padding: 7px 0 8px;
+      font-size: .8em;
+      color: #6a96b4;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0 5px;
+      min-height: 32px;
+    }
+    .s-unit  { color: #4fa9b5; font-weight: 800; }
+    .s-sep   { color: #2f4255; margin: 0 1px; }
+    .s-week  { color: #e0e8ee; font-weight: 700; }
+    .s-title { color: #a0b8c8; }
+    .s-badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 1px 9px;
+      font-size: .9em;
+      font-weight: 700;
+      border: 1px solid;
+      margin-left: 4px;
+    }
+    .s-badge-auto   { border-color: #25797F; color: #4fa9b5; }
+    .s-badge-date   { border-color: #f1c40f; color: #e8c840; }
+    .s-badge-week   { border-color: #1f6fb2; color: #7ab8d8; }
+    .s-err { color: #e88; }
+
+    /* ── Block sections ────────────────────────────────────────────────────── */
+    .blocks-page {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .block-section {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    }
+    .block-section-hdr {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid #d8e0e6;
+      border-bottom: 2px solid #e8edf0;
+      padding: 8px 16px;
+    }
+    .fn-name { font-family: 'Courier New', monospace; font-size: .8em; font-weight: 800; color: #1f6fb2; }
+    .ctr-id  { font-family: 'Courier New', monospace; font-size: .75em; color: #9aacb8; }
+    .block-output {
+      background: #fff;
+      border: 1px solid #d8e0e6;
+      border-top: none;
+      min-height: 52px;
+    }
+    .block-loading {
+      padding: 16px;
+      color: #b0c0ca;
+      font-size: .85em;
+      animation: pulse 1s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:.45} 50%{opacity:1} }
+    .block-empty {
+      padding: 12px 16px;
+      color: #b0bcc4;
+      font-size: .84em;
+      font-style: italic;
+      border-left: 3px solid #dde4e8;
+      margin: 10px 16px;
+      border-radius: 2px;
+    }
+    .block-err {
+      margin: 10px;
+      padding: 10px 14px;
+      color: #c0392b;
+      font-size: .88em;
+      font-weight: 600;
+      border-left: 4px solid #c0392b;
+      background: #fff0f0;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
-<div class="page">
-  <h1>LXDUNE — Block Renderer Test</h1>
-  <p class="subtitle">Visual test for all 6 render functions. All blocks use EDSE358, T1, 2026 with explicit <code>forWeek</code> overrides.</p>
 
-  <div class="notice">
-    Requires HTTP server. Run from repo root: <code>python3 -m http.server 8000</code> → <code>http://localhost:8000/test/</code>
+<!-- ── Controls ───────────────────────────────────────────────────────────── -->
+<div id="controls">
+  <div class="ctrl-top">
+    <strong>LXDUNE — Block Test</strong>
+    <a href="../generate/" target="_blank" rel="noopener">Generator ↗</a>
   </div>
-
-  <!-- ── SUITE 1: Week 0 (Zero week) ─────────────────────────────────────── -->
-  <div class="suite">
-    <div class="suite-header">
-      <h2>Week 0 — Zero Week <span class="week-pill">forWeek: 0</span></h2>
-      <span class="suite-meta">Announcement shows week0Message. Workflow, Lecture, Live Hub render nothing.</span>
+  <div class="ctrl-row">
+    <div class="ctrl-group">
+      <label>Unit</label>
+      <select id="sel-unit">
+        <option value="EDSE357">EDSE357</option>
+        <option value="EDSE358" selected>EDSE358</option>
+      </select>
     </div>
-    <div class="block-group">
-      <div class="block-label">renderAnnouncementBlock</div>
-      <div id="ann-w0"></div>
+    <div class="ctrl-group">
+      <label>Year</label>
+      <select id="sel-year"></select>
     </div>
-    <div class="block-group">
-      <div class="block-label">renderWorkflowCard (expects: empty)</div>
-      <div id="wf-w0"><em style="color:#aaa;">Should render nothing here.</em></div>
+    <div class="ctrl-group">
+      <label>Trimester</label>
+      <select id="sel-tri"></select>
     </div>
-  </div>
-
-  <!-- ── SUITE 2: Week 1 (Teaching — populated content) ──────────────────── -->
-  <div class="suite">
-    <div class="suite-header">
-      <h2>Week 1 — Teaching Week <span class="week-pill">forWeek: 1</span></h2>
-      <span class="suite-meta">Module 1. announcementBody populated. All links null → Coming soon chips.</span>
+    <div class="ctrl-group">
+      <label>Week</label>
+      <select id="sel-week">
+        <option value="auto">Auto</option>
+      </select>
     </div>
-    <div class="block-group">
-      <div class="block-label">renderAnnouncementBlock</div>
-      <div id="ann-w1"></div>
+    <div class="ctrl-group">
+      <label>Date override</label>
+      <input type="date" id="date-override" title="Active when Week = Auto">
+      <div class="date-hint" id="date-hint"></div>
     </div>
-    <div class="block-group">
-      <div class="block-label">renderWorkflowCard</div>
-      <div id="wf-w1"></div>
-    </div>
-    <div class="block-group">
-      <div class="block-label">renderLectureBlock</div>
-      <div id="lec-w1"></div>
-    </div>
-    <div class="block-group">
-      <div class="block-label">renderLiveSessionHub</div>
-      <div id="live-w1"></div>
+    <div class="ctrl-group" style="justify-content:flex-end;">
+      <button class="rerender-btn" id="rerender-btn">Re-render</button>
     </div>
   </div>
+  <div id="status-bar">Initialising…</div>
+</div>
 
-  <!-- ── SUITE 3: Week 4 (Teaching — null announcementBody) ──────────────── -->
-  <div class="suite">
-    <div class="suite-header">
-      <h2>Week 4 — Teaching Week (null content) <span class="week-pill">forWeek: 4</span></h2>
-      <span class="suite-meta">Module 3B. announcementBody is null. Assessment Task 1 Part A due 2026-03-22 (past).</span>
+<!-- ── Block sections ─────────────────────────────────────────────────────── -->
+<div class="blocks-page">
+
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderAnnouncementBlock</span>
+      <span class="ctr-id">#lxdune-announcement</span>
     </div>
-    <div class="block-group">
-      <div class="block-label">renderAnnouncementBlock (no intro/focus, generic steps only)</div>
-      <div id="ann-w4"></div>
-    </div>
-    <div class="block-group">
-      <div class="block-label">renderWorkflowCard</div>
-      <div id="wf-w4"></div>
-    </div>
-    <div class="block-group">
-      <div class="block-label">renderLiveSessionHub (liveSessionFocus null → falls back to week.live)</div>
-      <div id="live-w4"></div>
-    </div>
+    <div class="block-output" id="lxdune-announcement"></div>
   </div>
 
-  <!-- ── SUITE 4: Week 9 (Professional Experience) ───────────────────────── -->
-  <div class="suite">
-    <div class="suite-header">
-      <h2>Week 9 — Professional Experience <span class="week-pill">forWeek: 9</span></h2>
-      <span class="suite-meta">Announcement shows PE message. Workflow, Lecture, Live Hub render nothing.</span>
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderWorkflowCard</span>
+      <span class="ctr-id">#lxdune-workflow</span>
     </div>
-    <div class="block-group">
-      <div class="block-label">renderAnnouncementBlock</div>
-      <div id="ann-w9"></div>
-    </div>
-    <div class="block-group">
-      <div class="block-label">renderWorkflowCard (expects: empty)</div>
-      <div id="wf-w9"><em style="color:#aaa;">Should render nothing here.</em></div>
-    </div>
+    <div class="block-output" id="lxdune-workflow"></div>
   </div>
 
-  <!-- ── SUITE 5: Week 14 (Assessment period) ────────────────────────────── -->
-  <div class="suite">
-    <div class="suite-header">
-      <h2>Week 14 — Assessment Period <span class="week-pill">forWeek: 14</span></h2>
-      <span class="suite-meta">Announcement shows Assessment and Intensive Period label.</span>
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderLectureBlock</span>
+      <span class="ctr-id">#lxdune-lecture</span>
     </div>
-    <div class="block-group">
-      <div class="block-label">renderAnnouncementBlock</div>
-      <div id="ann-w14"></div>
-    </div>
+    <div class="block-output" id="lxdune-lecture"></div>
   </div>
 
-  <!-- ── SUITE 6: Static blocks (no forWeek needed) ──────────────────────── -->
-  <div class="suite">
-    <div class="suite-header">
-      <h2>Static Blocks</h2>
-      <span class="suite-meta">Assessment downloads and learning outcomes — not week-dependent.</span>
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderLiveSessionHub</span>
+      <span class="ctr-id">#lxdune-live-hub</span>
     </div>
-    <div class="block-group">
-      <div class="block-label">renderAssessmentDownloadBlock (all links null → Coming soon chips)</div>
-      <div id="lxdune-assessment-downloads"></div>
+    <div class="block-output" id="lxdune-live-hub"></div>
+  </div>
+
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderAssessmentDownloadBlock</span>
+      <span class="ctr-id">#lxdune-assessment-downloads</span>
     </div>
-    <div class="block-group">
-      <div class="block-label">renderLearningOutcomesTable (LO1–LO6)</div>
-      <div id="lxdune-outcomes"></div>
+    <div class="block-output" id="lxdune-assessment-downloads"></div>
+  </div>
+
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderLearningOutcomesTable</span>
+      <span class="ctr-id">#lxdune-outcomes</span>
     </div>
+    <div class="block-output" id="lxdune-outcomes"></div>
   </div>
 
 </div>
@@ -146,49 +283,261 @@ import {
   renderLearningOutcomesTable,
 } from '../moodle-blocks/blocks.js';
 
-const U = 'EDSE358', TR = 'T1', YR = '2026';
+// ── State ─────────────────────────────────────────────────────────────────────
 
-// Helper: render into a non-standard id and swap into target
-async function renderInto(fn, targetId, params) {
-  const container = document.getElementById(targetId);
-  if (!container) return;
+let triConfig  = null;
+let unitConfig = null;
+let renderTimer = null;
+let renderGen   = 0;
+
+const CONTAINER_IDS = [
+  'lxdune-announcement',
+  'lxdune-workflow',
+  'lxdune-lecture',
+  'lxdune-live-hub',
+  'lxdune-assessment-downloads',
+  'lxdune-outcomes',
+];
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+async function loadJson(path) {
+  const res = await fetch(path);
+  if (!res.ok) throw new Error(`${res.status} — ${path}`);
+  return res.json();
+}
+
+function setStatus(html) {
+  document.getElementById('status-bar').innerHTML = html;
+}
+
+// ── Date-to-week (mirrors blocks.js resolve logic) ────────────────────────────
+
+function buildDateList(startDateStr, tri) {
+  const week0 = new Date(startDateStr);
+  week0.setDate(week0.getDate() - 7);
+  week0.setHours(0, 0, 0, 0);
+  const list = [{ week: 0, date: new Date(week0) }, { week: 1, date: new Date(startDateStr) }];
+  for (let w = 2; w <= 14; w++) {
+    const d = new Date(week0);
+    d.setDate(week0.getDate() + w * 7);
+    if (tri === 'T3' && w >= 9) d.setDate(d.getDate() + 14);
+    list.push({ week: w, date: d });
+  }
+  return list;
+}
+
+function calcCurrentWeek(today, dateList) {
+  if (today < dateList[0].date) return 0;
+  for (let i = 0; i < dateList.length; i++) {
+    const next = dateList[i + 1];
+    if (!next || today < next.date) return dateList[i].week;
+  }
+  return dateList[dateList.length - 1].week;
+}
+
+function calcEffectiveWeek(forYear, forTri, weekVal, dateVal) {
+  if (weekVal !== 'auto') return Number(weekVal);
+  const startDate = triConfig?.[forYear]?.[forTri]?.start;
+  if (!startDate) return null;
+  const ref = dateVal ? new Date(dateVal) : new Date();
+  ref.setHours(0, 0, 0, 0);
+  return calcCurrentWeek(ref, buildDateList(startDate, forTri));
+}
+
+// ── Dropdown setup ────────────────────────────────────────────────────────────
+
+function populateYearTri() {
+  const yearSel = document.getElementById('sel-year');
+  const triSel  = document.getElementById('sel-tri');
+  Object.keys(triConfig)
+    .sort((a, b) => Number(b) - Number(a))
+    .forEach(y => {
+      const opt = new Option(y, y);
+      if (y === '2026') opt.selected = true;
+      yearSel.appendChild(opt);
+    });
+  function populateTri() {
+    triSel.innerHTML = '';
+    Object.keys(triConfig[yearSel.value] ?? {}).forEach(t => {
+      const opt = new Option(t, t);
+      if (t === 'T1') opt.selected = true;
+      triSel.appendChild(opt);
+    });
+  }
+  yearSel.addEventListener('change', () => { populateTri(); scheduleRender(); });
+  triSel.addEventListener('change', scheduleRender);
+  populateTri();
+}
+
+async function refreshUnitConfig() {
+  const unit = document.getElementById('sel-unit').value;
   try {
-    // Temporarily move the container to a unique id matching what blocks.js expects,
-    // call the render fn, then leave it in place.
-    const originalId = container.id;
-    container.id = params._containerId;
-    await fn({ forUnit: U, forTri: TR, forYear: YR, ...params });
-    container.id = originalId;
-  } catch (e) {
-    container.innerHTML = `<div style="color:red;font-weight:700;">Error: ${e.message}</div>`;
+    unitConfig = await loadJson(`../config/units/${unit}.json`);
+  } catch {
+    unitConfig = null;
+  }
+  populateWeekDropdown();
+}
+
+function populateWeekDropdown() {
+  const sel  = document.getElementById('sel-week');
+  const prev = sel.value;
+  const weeks = unitConfig?.weeks ?? {};
+  sel.innerHTML = '<option value="auto">Auto (today / date override)</option>';
+  for (let w = 0; w <= 14; w++) {
+    const wk = weeks[String(w)];
+    let label;
+    if (!wk)                       label = w === 0 ? 'Zero Week' : `Week ${w}`;
+    else if (wk.item && wk.title)  label = `${wk.item} — ${wk.title}`;
+    else if (wk.item)              label = wk.item;
+    else                           label = `Week ${w}`;
+    const opt = new Option(`Week ${w} — ${label}`, String(w));
+    sel.appendChild(opt);
+  }
+  if ([...sel.options].some(o => o.value === prev)) sel.value = prev;
+}
+
+// ── Date override state ───────────────────────────────────────────────────────
+
+function syncDateOverrideState() {
+  const weekVal   = document.getElementById('sel-week').value;
+  const dateInput = document.getElementById('date-override');
+  const hint      = document.getElementById('date-hint');
+  const isAuto    = weekVal === 'auto';
+  dateInput.disabled = !isAuto;
+  hint.textContent   = isAuto ? '' : 'Set Week to Auto to use';
+}
+
+// ── Status bar ────────────────────────────────────────────────────────────────
+
+function renderStatus(forUnit, forTri, forYear, weekVal, dateVal, effectiveWeek) {
+  if (effectiveWeek === null) {
+    setStatus(
+      `<span class="s-unit">${forUnit}</span>` +
+      `<span class="s-sep">•</span>` +
+      `<span>${forTri} ${forYear}</span>` +
+      `<span class="s-sep">•</span>` +
+      `<span class="s-err">No start date configured for ${forTri}-${forYear}</span>`
+    );
+    return;
+  }
+
+  const wk = unitConfig?.weeks?.[String(effectiveWeek)];
+  const weekTitle = wk?.item
+    ? (wk.title ? `${wk.item} — ${wk.title}` : wk.item)
+    : effectiveWeek === 0 ? 'Zero Week' : `Week ${effectiveWeek}`;
+
+  let badge;
+  if (weekVal !== 'auto') {
+    badge = `<span class="s-badge s-badge-week">week explicit</span>`;
+  } else if (dateVal) {
+    badge = `<span class="s-badge s-badge-date">date: ${dateVal}</span>`;
+  } else {
+    badge = `<span class="s-badge s-badge-auto">auto: today</span>`;
+  }
+
+  setStatus(
+    `<span class="s-unit">${forUnit}</span>` +
+    `<span class="s-sep">•</span>` +
+    `<span>${forTri} ${forYear}</span>` +
+    `<span class="s-sep">•</span>` +
+    `<span>Week <span class="s-week">${effectiveWeek}</span></span>` +
+    `<span class="s-sep">•</span>` +
+    `<span class="s-title">${weekTitle}</span>` +
+    badge
+  );
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+
+function setLoading() {
+  CONTAINER_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = '<div class="block-loading">Rendering…</div>';
+  });
+}
+
+function markEmptyIfBlank(id) {
+  const el = document.getElementById(id);
+  if (el && !el.innerHTML.trim()) {
+    el.innerHTML = '<div class="block-empty">Block renders nothing for this week.</div>';
   }
 }
 
-// Week 0
-await renderInto(renderAnnouncementBlock, 'ann-w0', { forWeek: 0, _containerId: 'lxdune-announcement' });
-await renderInto(renderWorkflowCard,      'wf-w0',  { forWeek: 0, _containerId: 'lxdune-workflow' });
+function showErr(id, e) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = `<div class="block-err">Error: ${e.message}</div>`;
+}
 
-// Week 1
-await renderInto(renderAnnouncementBlock, 'ann-w1', { forWeek: 1, _containerId: 'lxdune-announcement' });
-await renderInto(renderWorkflowCard,      'wf-w1',  { forWeek: 1, _containerId: 'lxdune-workflow' });
-await renderInto(renderLectureBlock,      'lec-w1', { forWeek: 1, _containerId: 'lxdune-lecture' });
-await renderInto(renderLiveSessionHub,    'live-w1',{ forWeek: 1, _containerId: 'lxdune-live-hub' });
+async function renderAll() {
+  const gen = ++renderGen;
 
-// Week 4
-await renderInto(renderAnnouncementBlock, 'ann-w4', { forWeek: 4, _containerId: 'lxdune-announcement' });
-await renderInto(renderWorkflowCard,      'wf-w4',  { forWeek: 4, _containerId: 'lxdune-workflow' });
-await renderInto(renderLiveSessionHub,    'live-w4',{ forWeek: 4, _containerId: 'lxdune-live-hub' });
+  const forUnit = document.getElementById('sel-unit').value;
+  const forYear = document.getElementById('sel-year').value;
+  const forTri  = document.getElementById('sel-tri').value;
+  const weekVal = document.getElementById('sel-week').value;
+  const dateVal = document.getElementById('date-override').value;
 
-// Week 9
-await renderInto(renderAnnouncementBlock, 'ann-w9', { forWeek: 9, _containerId: 'lxdune-announcement' });
-await renderInto(renderWorkflowCard,      'wf-w9',  { forWeek: 9, _containerId: 'lxdune-workflow' });
+  const effectiveWeek = calcEffectiveWeek(forYear, forTri, weekVal, dateVal);
+  syncDateOverrideState();
+  renderStatus(forUnit, forTri, forYear, weekVal, dateVal, effectiveWeek);
+  setLoading();
 
-// Week 14
-await renderInto(renderAnnouncementBlock, 'ann-w14',{ forWeek: 14, _containerId: 'lxdune-announcement' });
+  // Build params object — pass exactly what the live shells would pass,
+  // plus forWeek or forDate when explicitly set.
+  const base = { forUnit, forTri, forYear };
+  const params = weekVal !== 'auto' ? { ...base, forWeek: Number(weekVal) }
+    : dateVal                       ? { ...base, forDate: dateVal }
+    :                                  base;
 
-// Static blocks (use their real container IDs directly)
-await renderAssessmentDownloadBlock({ forUnit: U, forTri: TR, forYear: YR });
-await renderLearningOutcomesTable({ forUnit: U, forTri: TR, forYear: YR });
+  await Promise.all([
+    renderAnnouncementBlock(params).catch(e => showErr('lxdune-announcement', e)),
+    renderWorkflowCard(params).catch(e => showErr('lxdune-workflow', e)),
+    renderLectureBlock(params).catch(e => showErr('lxdune-lecture', e)),
+    renderLiveSessionHub(params).catch(e => showErr('lxdune-live-hub', e)),
+    renderAssessmentDownloadBlock(params).catch(e => showErr('lxdune-assessment-downloads', e)),
+    renderLearningOutcomesTable(params).catch(e => showErr('lxdune-outcomes', e)),
+  ]);
+
+  if (gen !== renderGen) return; // a newer render already ran
+
+  ['lxdune-workflow', 'lxdune-lecture', 'lxdune-live-hub'].forEach(markEmptyIfBlank);
+}
+
+function scheduleRender(delay = 150) {
+  clearTimeout(renderTimer);
+  renderTimer = setTimeout(renderAll, delay);
+}
+
+// ── Event wiring ──────────────────────────────────────────────────────────────
+
+document.getElementById('sel-unit').addEventListener('change', async () => {
+  await refreshUnitConfig();
+  scheduleRender();
+});
+document.getElementById('sel-week').addEventListener('change', () => {
+  syncDateOverrideState();
+  scheduleRender();
+});
+document.getElementById('date-override').addEventListener('change', scheduleRender);
+document.getElementById('rerender-btn').addEventListener('click', () => scheduleRender(0));
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+
+async function init() {
+  try {
+    triConfig = await loadJson('../config/trimester-config.json');
+  } catch (e) {
+    setStatus(`<span class="s-err">Could not load trimester config: ${e.message}</span>`);
+    return;
+  }
+  populateYearTri();
+  await refreshUnitConfig();
+  scheduleRender(0);
+}
+
+init().catch(e => setStatus(`<span class="s-err">Init error: ${e.message}</span>`));
 </script>
 </body>
 </html>

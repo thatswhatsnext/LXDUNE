@@ -77,7 +77,7 @@ function calcCurrentWeek(today, dateList) {
 
 // ── Shared config resolver ────────────────────────────────────────────────────
 
-async function resolve({ forUnit, forTri, forYear, forWeek }) {
+async function resolve({ forUnit, forTri, forYear, forWeek, forDate }) {
   const [triCfg, unitCfg] = await Promise.all([
     fetchJson(`${BASE}config/trimester-config.json`),
     fetchJson(`${BASE}config/units/${forUnit}.json`),
@@ -91,7 +91,7 @@ async function resolve({ forUnit, forTri, forYear, forWeek }) {
 
   let weekNum = forWeek != null ? Number(forWeek) : null;
   if (weekNum == null) {
-    const today = new Date();
+    const today = forDate ? new Date(forDate) : new Date();
     today.setHours(0, 0, 0, 0);
     weekNum = calcCurrentWeek(today, buildDateList(new Date(startDate), forTri));
   }
@@ -139,11 +139,11 @@ function buildAssessmentReminders(unitCfg, portalUrl) {
 // Container: <div id="lxdune-announcement"></div>
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWeek } = {}) {
+export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
   const el = getEl('lxdune-announcement');
   if (!el) return;
   let ctx;
-  try { ctx = await resolve({ forUnit, forTri, forYear, forWeek }); }
+  try { ctx = await resolve({ forUnit, forTri, forYear, forWeek, forDate }); }
   catch (e) { setError(el, `Could not load content: ${e.message}`); return; }
 
   const { unitCfg, week, weekNum } = ctx;
@@ -239,11 +239,11 @@ const WORKFLOW_CSS = `
 .lx-pill-link.sec{background:#f4f6f8;color:#25797F}
 .lx-pill-link.warn{background:#fff8e6;color:#6F7B84}`;
 
-export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek } = {}) {
+export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
   const el = getEl('lxdune-workflow');
   if (!el) return;
   let ctx;
-  try { ctx = await resolve({ forUnit, forTri, forYear, forWeek }); }
+  try { ctx = await resolve({ forUnit, forTri, forYear, forWeek, forDate }); }
   catch (e) { setError(el, `Could not load content: ${e.message}`); return; }
 
   const { unitCfg, week, weekNum, zoom } = ctx;
@@ -300,11 +300,11 @@ const LECTURE_CSS = `
 .lx-video{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;margin-top:12px;border:1px solid #dfe6ea;background:#fff}
 .lx-video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}`;
 
-export async function renderLectureBlock({ forUnit, forTri, forYear, forWeek } = {}) {
+export async function renderLectureBlock({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
   const el = getEl('lxdune-lecture');
   if (!el) return;
   let ctx;
-  try { ctx = await resolve({ forUnit, forTri, forYear, forWeek }); }
+  try { ctx = await resolve({ forUnit, forTri, forYear, forWeek, forDate }); }
   catch (e) { setError(el, `Could not load content: ${e.message}`); return; }
 
   const { unitCfg, week, weekNum } = ctx;
@@ -360,11 +360,11 @@ export async function renderLectureBlock({ forUnit, forTri, forYear, forWeek } =
 // Container: <div id="lxdune-live-hub"></div>
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek } = {}) {
+export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
   const el = getEl('lxdune-live-hub');
   if (!el) return;
   let ctx;
-  try { ctx = await resolve({ forUnit, forTri, forYear, forWeek }); }
+  try { ctx = await resolve({ forUnit, forTri, forYear, forWeek, forDate }); }
   catch (e) { setError(el, `Could not load content: ${e.message}`); return; }
 
   const { unitCfg, week, weekNum, zoom } = ctx;
