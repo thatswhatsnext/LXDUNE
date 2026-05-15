@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LXDUNE — Shell Generator</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f8; color: #1F2A33; line-height: 1.55; }
+    .page { max-width: 900px; margin: 0 auto; padding: 36px 24px 60px; }
+    h1 { margin: 0 0 4px; color: #1f6fb2; font-size: 1.6em; }
+    .subtitle { margin: 0 0 28px; color: #6F7B84; font-size: .95em; }
+    .notice { background:#fff8e6; border:1px solid #f1c40f; border-left:4px solid #f1c40f; border-radius:8px; padding:10px 16px; font-size:.88em; margin-bottom:28px; color:#5a4500; }
+    .notice code { background:#fdf3cd; padding:1px 5px; border-radius:4px; font-family:'Courier New',monospace; }
+    .notice a { color:#1f6fb2; }
+    .card { background:#fff; border:1px solid #dfe6ea; border-radius:12px; padding:24px; margin-bottom:24px; }
+    .form-row { margin-bottom:18px; }
+    .form-row:last-of-type { margin-bottom:24px; }
+    label { display:block; font-weight:700; font-size:.82em; text-transform:uppercase; letter-spacing:.6px; color:#6F7B84; margin-bottom:6px; }
+    select { width:100%; padding:10px 36px 10px 12px; border:1px solid #dfe6ea; border-radius:8px; font-size:.97em; font-family:Arial,sans-serif; color:#1F2A33; background:#fff; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236F7B84' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 13px center; }
+    select:focus { outline:none; border-color:#1f6fb2; box-shadow:0 0 0 3px rgba(31,111,178,.15); }
+    .btn { display:inline-block; padding:11px 24px; background:#1f6fb2; color:#fff; border:none; border-radius:8px; font-size:.97em; font-weight:700; font-family:Arial,sans-serif; cursor:pointer; transition:background .15s; }
+    .btn:hover { background:#155a91; }
+    .btn:disabled { background:#a8c0d6; cursor:not-allowed; }
+    #error-box { display:none; background:#fff0f0; border:1px solid #e8b4b8; border-left:4px solid #c0392b; border-radius:8px; padding:12px 16px; margin-bottom:20px; color:#c0392b; font-size:.92em; font-weight:600; }
+    #output { display:none; }
+    .result-banner { background:#e8f4e8; border:1px solid #b5d8b5; border-radius:8px; padding:11px 16px; margin-bottom:20px; font-size:.9em; }
+    .snippet-card { background:#fff; border:1px solid #dfe6ea; border-radius:12px; margin-bottom:18px; overflow:hidden; }
+    .snippet-header { display:flex; align-items:center; justify-content:space-between; padding:12px 18px; border-bottom:1px solid #dfe6ea; background:#f4f6f8; }
+    .snippet-title { font-weight:800; font-size:.95em; display:flex; align-items:center; gap:8px; }
+    .badge { display:inline-block; font-size:.72em; font-weight:700; padding:2px 9px; border-radius:999px; white-space:nowrap; }
+    .badge-live   { background:#e0f2f0; color:#25797F; border:1px solid #a8d8d4; }
+    .badge-ready  { background:#e8f0fb; color:#1f6fb2; border:1px solid #b0c8e8; }
+    .copy-btn { padding:6px 14px; background:#fff; border:1px solid #dfe6ea; border-radius:6px; font-size:.83em; font-weight:700; cursor:pointer; color:#1f6fb2; font-family:Arial,sans-serif; transition:all .15s; white-space:nowrap; }
+    .copy-btn:hover { background:#eef5fb; border-color:#1f6fb2; }
+    .copy-btn.copied { color:#25797F; border-color:#25797F; background:#e0f2f0; }
+    .snippet-body { padding:16px 18px; }
+    .snippet-body textarea { width:100%; font-family:'Courier New',monospace; font-size:.8em; line-height:1.55; border:1px solid #dfe6ea; border-radius:8px; padding:12px; resize:vertical; color:#1F2A33; background:#fafbfc; cursor:text; }
+    .snippet-body textarea:focus { outline:none; border-color:#1f6fb2; }
+    .snippet-note { font-size:.83em; color:#6F7B84; margin-top:8px; line-height:1.5; }
+    .snippet-note code { font-family:'Courier New',monospace; background:#f4f6f8; padding:1px 4px; border-radius:3px; font-size:.95em; }
+    .snippet-note strong { color:#1F2A33; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <h1>LXDUNE — Shell Generator</h1>
+  <p class="subtitle">Generate ready-to-paste Moodle shell snippets. Paste once per page — the repo drives all content from that point.</p>
+
+  <div class="notice">
+    <strong>Admin tool — not student-facing.</strong> Requires HTTP to load config files.
+    Run locally: <code>python3 -m http.server</code> from repo root, then open <code>http://localhost:8000/generate/</code>.
+    Or use the <a href="https://thatswhatsnext.github.io/LXDUNE/generate/" target="_blank" rel="noopener">GitHub Pages URL</a>.
+    Opening as <code>file://</code> will not work.
+  </div>
+
+  <div class="card">
+    <div class="form-row">
+      <label for="sel-unit">Unit</label>
+      <select id="sel-unit">
+        <option value="EDSE357">EDSE357 — Science Education 11–12: Curriculum and Pedagogy</option>
+        <option value="EDSE358">EDSE358 — Science Education 11–12: Plan, Assess and Report</option>
+        <option value="EDSE362">EDSE362 — Science Education 11–12: Curriculum, Pedagogy and Inclusive Practice</option>
+        <option value="EDIT426">EDIT426 — Digital Education (TBC)</option>
+        <option value="EDIT521">EDIT521 — Digital Education (TBC)</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label for="sel-year">Year</label>
+      <select id="sel-year"></select>
+    </div>
+    <div class="form-row">
+      <label for="sel-tri">Trimester</label>
+      <select id="sel-tri"></select>
+    </div>
+    <div class="form-row">
+      <label for="sel-type">Page type</label>
+      <select id="sel-type">
+        <option value="all">All shells</option>
+        <option value="whatson">What's On widget</option>
+        <option value="video">Auto video switcher</option>
+        <option value="announcement">Announcement post</option>
+        <option value="workflow">Workflow card</option>
+        <option value="lecture">Lecture embed block</option>
+        <option value="live-hub">Live session hub</option>
+        <option value="assessment-downloads">Assessment download block</option>
+        <option value="outcomes">Learning outcomes table</option>
+      </select>
+    </div>
+    <button class="btn" id="gen-btn">Generate shell</button>
+  </div>
+
+  <div id="error-box"></div>
+  <div id="output"></div>
+
+</div>
+
+<script type="module">
+  const PAGES_BASE = 'https://thatswhatsnext.github.io/LXDUNE';
+
+  // ── Config loading ────────────────────────────────────────────────────────
+  async function loadJson(path) {
+    const res = await fetch(path);
+    if (!res.ok) throw new Error(`HTTP ${res.status} — ${path}`);
+    return res.json();
+  }
+
+  // ── Year / trimester dropdowns ────────────────────────────────────────────
+  let triConfig = null;
+
+  async function initForm() {
+    try {
+      triConfig = await loadJson('../config/trimester-config.json');
+    } catch (e) {
+      showError('Could not load trimester config. Make sure you are running via a local server or GitHub Pages. (' + e.message + ')');
+      document.getElementById('gen-btn').disabled = true;
+      return;
+    }
+    const yearSel = document.getElementById('sel-year');
+    const triSel  = document.getElementById('sel-tri');
+    yearSel.innerHTML = Object.keys(triConfig).sort((a, b) => Number(b) - Number(a)).map(y => `<option value="${y}">${y}</option>`).join('');
+    function populateTri() {
+      triSel.innerHTML = Object.keys(triConfig[yearSel.value] ?? {}).map(t => `<option value="${t}">${t}</option>`).join('');
+    }
+    yearSel.addEventListener('change', populateTri);
+    populateTri();
+  }
+
+  // ── Shell builders ────────────────────────────────────────────────────────
+  // Note: <\/script> prevents the HTML parser closing this outer script tag.
+  // JavaScript evaluates \/ as /, so the generated text is correct.
+
+  function shellWhatson(unit, startDate, tri) {
+    return (
+      `<script type="module">\n` +
+      `  import { displayWhatsOn }\n` +
+      `  from "${PAGES_BASE}/whatson/whatson.js";\n` +
+      `  displayWhatsOn({\n` +
+      `    forUnit: "${unit}",\n` +
+      `    forStartDate: "${startDate}",\n` +
+      `    forTri: "${tri}",\n` +
+      `  });\n` +
+      `<\/script>\n` +
+      `<div class="alert alert-info">\n` +
+      `  <h3 id="heading">What's on this week</h3>\n` +
+      `  <p id="details">Loading...</p>\n` +
+      `</div>`
+    );
+  }
+
+  function shellVideo(unit, startDate, tri) {
+    return (
+      `<script type="module">\n` +
+      `  import { setUpVideos }\n` +
+      `  from "${PAGES_BASE}/autovideos/autovideos.js";\n` +
+      `  setUpVideos({\n` +
+      `    forUnit: "${unit}",\n` +
+      `    startDate: "${startDate}",\n` +
+      `    andTri: "${tri}",\n` +
+      `  });\n` +
+      `<\/script>\n` +
+      `<div class="embed-container">LOADING VIDEO...</div>`
+    );
+  }
+
+  function shellBlocks(fnName, containerId, unit, tri, year, extraParams = '') {
+    return (
+      `<script type="module">\n` +
+      `  import { ${fnName} }\n` +
+      `  from "${PAGES_BASE}/moodle-blocks/blocks.js";\n` +
+      `  ${fnName}({\n` +
+      `    forUnit: "${unit}",\n` +
+      `    forTri: "${tri}",\n` +
+      `    forYear: "${year}",${extraParams}\n` +
+      `  });\n` +
+      `<\/script>\n` +
+      `<div id="${containerId}"></div>`
+    );
+  }
+
+  // ── Snippet card builder ──────────────────────────────────────────────────
+  function snippetCard({ title, badge, badgeClass, code, note, rows = 10 }) {
+    const id = 'snip-' + Math.random().toString(36).slice(2, 9);
+    const escaped = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    return `<div class="snippet-card">
+      <div class="snippet-header">
+        <span class="snippet-title">${title}<span class="badge ${badgeClass}">${badge}</span></span>
+        <button class="copy-btn" data-target="${id}">Copy</button>
+      </div>
+      <div class="snippet-body">
+        <textarea id="${id}" readonly rows="${rows}" spellcheck="false">${escaped}</textarea>
+        ${note ? `<div class="snippet-note">${note}</div>` : ''}
+      </div>
+    </div>`;
+  }
+
+  // ── Copy buttons ──────────────────────────────────────────────────────────
+  function bindCopyButtons() {
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ta = document.getElementById(btn.dataset.target);
+        ta.select();
+        navigator.clipboard.writeText(ta.value).then(() => {
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        });
+      });
+    });
+  }
+
+  // ── Error / output helpers ────────────────────────────────────────────────
+  function showError(msg) { const b = document.getElementById('error-box'); b.textContent = msg; b.style.display = 'block'; }
+  function clearError()   { const b = document.getElementById('error-box'); b.textContent = '';  b.style.display = 'none'; }
+
+  // ── Generate ──────────────────────────────────────────────────────────────
+  document.getElementById('gen-btn').addEventListener('click', async () => {
+    clearError();
+    const unit     = document.getElementById('sel-unit').value;
+    const year     = document.getElementById('sel-year').value;
+    const tri      = document.getElementById('sel-tri').value;
+    const pageType = document.getElementById('sel-type').value;
+    const btn      = document.getElementById('gen-btn');
+
+    btn.disabled = true;
+    btn.textContent = 'Loading…';
+
+    let unitCfg;
+    try {
+      unitCfg = await loadJson(`../config/units/${unit}.json`);
+    } catch {
+      showError(`No config file found for ${unit}. Create config/units/${unit}.json first.`);
+      btn.disabled = false;
+      btn.textContent = 'Generate shell';
+      return;
+    }
+
+    const startDate = triConfig[year]?.[tri]?.start;
+    if (!startDate) {
+      showError(`No start date configured for ${tri} ${year}.`);
+      btn.disabled = false;
+      btn.textContent = 'Generate shell';
+      return;
+    }
+
+    const triKey = `${tri}-${year}`;
+    const zoom = unitCfg.trimesterConfig?.[triKey]?.zoom;
+    const zoomNote = zoom?.url
+      ? `Zoom URL for ${triKey} is configured.`
+      : `<strong>Note:</strong> No Zoom URL for ${triKey} yet — add it to <code>config/units/${unit}.json</code> before pasting the live session shell.`;
+
+    const liveNote = `Date-aware: renders the correct content for the current week automatically. Paste once — no edits needed when weeks change.`;
+
+    const allShells = [
+      {
+        key: 'whatson',
+        title: "What's On widget",
+        badge: 'Live now', badgeClass: 'badge-live',
+        code: shellWhatson(unit, startDate, tri),
+        note: `Start date: <strong>${startDate}</strong>. ${liveNote}`,
+        rows: 10,
+      },
+      {
+        key: 'video',
+        title: 'Auto video switcher',
+        badge: 'Live now', badgeClass: 'badge-live',
+        code: shellVideo(unit, startDate, tri),
+        note: `Start date: <strong>${startDate}</strong>. ${liveNote}`,
+        rows: 9,
+      },
+      {
+        key: 'announcement',
+        title: 'Announcement post',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellBlocks('renderAnnouncementBlock', 'lxdune-announcement', unit, tri, year),
+        note: `${liveNote} Populates from <code>weeks[n].announcementBody</code>, assessments, and forum link.`,
+        rows: 9,
+      },
+      {
+        key: 'workflow',
+        title: 'Workflow card',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellBlocks('renderWorkflowCard', 'lxdune-workflow', unit, tri, year),
+        note: `${liveNote} 5-step card with links from <code>weeks[n].links</code> and Zoom from trimesterConfig.`,
+        rows: 9,
+      },
+      {
+        key: 'lecture',
+        title: 'Lecture embed block',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellBlocks('renderLectureBlock', 'lxdune-lecture', unit, tri, year),
+        note: `${liveNote} Embeds from <code>weeks[n].links.lecture</code> and <code>links.slides</code>. <code>null</code> → Coming soon chip.`,
+        rows: 9,
+      },
+      {
+        key: 'live-hub',
+        title: 'Live session hub',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellBlocks('renderLiveSessionHub', 'lxdune-live-hub', unit, tri, year),
+        note: `${liveNote} Uses <code>liveSessionFocus</code>, <code>liveSessionTasks</code>, Zoom URL, and forum link. ${zoomNote}`,
+        rows: 9,
+      },
+      {
+        key: 'assessment-downloads',
+        title: 'Assessment download block',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellBlocks('renderAssessmentDownloadBlock', 'lxdune-assessment-downloads', unit, tri, year),
+        note: `Static block — paste once. Reads discipline file URLs from <code>trimesterConfig.${triKey}.assessmentFiles</code>.`,
+        rows: 9,
+      },
+      {
+        key: 'outcomes',
+        title: 'Learning outcomes table',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellBlocks('renderLearningOutcomesTable', 'lxdune-outcomes', unit, tri, year),
+        note: `Static block — paste once. Reads from <code>learningOutcomes</code> in the unit JSON.`,
+        rows: 9,
+      },
+    ];
+
+    const toShow = pageType === 'all' ? allShells : allShells.filter(s => s.key === pageType);
+    const cards = toShow.map(s => snippetCard(s)).join('');
+
+    const output = document.getElementById('output');
+    output.innerHTML =
+      `<div class="result-banner">` +
+        `Shells for <strong>${unit}</strong> — <strong>${tri} ${year}</strong> (start: <strong>${startDate}</strong>)` +
+      `</div>` + cards;
+    output.style.display = 'block';
+    bindCopyButtons();
+
+    btn.disabled = false;
+    btn.textContent = 'Generate shell';
+    output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  initForm();
+</script>
+</body>
+</html>

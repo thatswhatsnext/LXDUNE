@@ -6,13 +6,77 @@
   "liveTime": "5:30–6:30pm",
   "trimesters": ["T1"],
   "assessmentPortalUrl": "https://mylearn.une.edu.au/course/section.php?id=477930",
-  "week0Message": "Have a look around at the first few tiles below — we’ll get started next week!",
+  "week0Message": "Have a look around at the first few tiles below — we'll get started next week!",
+  "learningOutcomes": [
+    {
+      "id": "LO1",
+      "color": "#25797F",
+      "title": "Curriculum Knowledge",
+      "description": "Demonstrate knowledge and understanding of the structure, content, and outcomes of the Stage 6 science syllabuses including Biology, Chemistry, Physics, Investigating Science, Earth & Environmental Science, and Science Extension.",
+      "gtsd": "2.1.1"
+    },
+    {
+      "id": "LO2",
+      "color": "#3F88C5",
+      "title": "Working Scientifically",
+      "description": "Demonstrate understanding of the Working Scientifically strand and design teaching strategies that develop students' skills in conducting, evaluating, and communicating scientific investigations.",
+      "gtsd": "2.2.1, 3.3.1"
+    },
+    {
+      "id": "LO3",
+      "color": "#7C5DB6",
+      "title": "Pedagogical Content Knowledge",
+      "description": "Apply a range of teaching strategies appropriate to the content and contexts of senior science, including constructivist and inquiry-based approaches that promote deep conceptual understanding.",
+      "gtsd": "3.1.1, 3.2.1, 3.3.1"
+    },
+    {
+      "id": "LO4",
+      "color": "#4FA9B5",
+      "title": "Resources and ICT",
+      "description": "Critically evaluate and select digital and non-digital resources for teaching senior science, and implement strategies that use ICT to expand learning opportunities aligned with syllabus outcomes.",
+      "gtsd": "2.6.1, 3.4.1"
+    },
+    {
+      "id": "LO5",
+      "color": "#8FB77A",
+      "title": "Science in Context",
+      "description": "Connect curriculum content to contemporary and emerging applications of science, and design learning experiences that engage students with the relevance of science to society, environment, and future careers.",
+      "gtsd": "2.4.1, 2.5.1"
+    },
+    {
+      "id": "LO6",
+      "color": "#D98C5F",
+      "title": "Inclusive Practice",
+      "description": "Design differentiated learning experiences that support the full participation of students with diverse learning needs, cultural backgrounds, and achievement levels in senior science classrooms.",
+      "gtsd": "1.5.1, 1.6.1"
+    }
+  ],
   "trimesterConfig": {
     "T1-2026": {
       "zoom": {
         "meetingId": "828 6792 7955",
         "password": "590152",
         "url": "https://une-au.zoom.us/j/82867927955?pwd=kKabxUYQKzi2PagY99sOm5Po6ktj4I.1"
+      },
+      "assessmentFiles": {
+        "AT1": {
+          "rubricUrl": null,
+          "disciplines": {
+            "biology":   { "task": null, "marking": null },
+            "chemistry": { "task": null, "marking": null },
+            "ees":       { "task": null, "marking": null },
+            "physics":   { "task": null, "marking": null }
+          }
+        },
+        "AT2": {
+          "rubricUrl": null,
+          "disciplines": {
+            "biology":   { "task": null, "marking": null },
+            "chemistry": { "task": null, "marking": null },
+            "ees":       { "task": null, "marking": null },
+            "physics":   { "task": null, "marking": null }
+          }
+        }
       }
     }
   },
@@ -22,14 +86,26 @@
     },
     "1": {
       "item": "Topic 1",
-      "title": "Introduction to the Stage 6 science syllabuses",
+      "title": "Introduction to the Stage 6 Science Syllabuses",
       "live": "🎤 Live Session",
+      "announcementBody": {
+        "intro": "Welcome to EDSE357. This week we begin with Topic 1 — an introduction to the suite of Stage 6 science syllabuses that will govern your teaching across Biology, Chemistry, Physics, Investigating Science, Earth & Environmental Science, and Science Extension.",
+        "focus": "Topic 1 establishes the Stage 6 syllabus suite as the authoritative documents shaping your practice as a science teacher. You will examine the structure and architecture of the syllabuses for your primary teaching area — outcomes, content, and assessment requirements — and begin to understand how they connect to your role in the classroom."
+      },
+      "liveSessionFocus": "In our first live session, we introduce the unit, clarify expectations, and begin mapping the Stage 6 science syllabuses. You will share your initial observations about the syllabus structure and start to think about what it means to teach from these documents.",
+      "liveSessionTasks": [
+        "Download and review the Stage 6 syllabus for your primary teaching area before the session — note the key components: outcomes, content, and assessment requirements.",
+        "Identify one structural feature of the syllabus that you found interesting or unfamiliar.",
+        "Come ready to share one question you have about interpreting or applying the syllabus in your teaching."
+      ],
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "1jVXNAaZ1P8"
     },
@@ -37,12 +113,24 @@
       "item": "Topic 2",
       "title": "Conducting Investigations",
       "live": "🎤 Live Session: Topic 1 & 2",
+      "announcementBody": {
+        "intro": "This week we explore the Working Scientifically strand and what it means to conduct investigations in a senior secondary science classroom. Topic 2 asks you to think carefully about how syllabus requirements shape the kinds of practical work you design for students.",
+        "focus": "Topic 2 focuses on the Working Scientifically outcomes that frame scientific investigations in Stage 6. You will examine types of investigations — first-hand and secondary-source — and develop your understanding of how to scaffold student inquiry so that it is both intellectually engaging and practically manageable."
+      },
+      "liveSessionFocus": "Session 2 covers Topics 1 and 2 together. We will examine the syllabuses as professional documents and explore how Working Scientifically shapes your planning for practical work, using examples drawn from your own teaching areas.",
+      "liveSessionTasks": [
+        "Review the Working Scientifically outcomes in your Stage 6 syllabus area and identify which skills are most prominent in the content you will teach.",
+        "Identify one type of investigation commonly used in senior science and think about how you would scaffold it for students encountering it for the first time.",
+        "Come prepared to share an example — real or hypothetical — of a student investigation activity that develops Working Scientifically skills."
+      ],
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "SItTfkDrkKo"
     },
@@ -50,12 +138,24 @@
       "item": "Topic 3",
       "title": "Open-ended Investigations",
       "live": "🎤 Live Session",
+      "announcementBody": {
+        "intro": "Building on Topic 2, this week we focus on open-ended and student-designed investigations — one of the most challenging and rewarding aspects of teaching senior science, particularly in depth studies and Science Extension.",
+        "focus": "Topic 3 examines the design of open-ended investigations, including how to support students in formulating questions, selecting methods, and managing risk. You will consider what teacher scaffolding looks like at different stages of the inquiry process, and how to balance student autonomy with your duty of care."
+      },
+      "liveSessionFocus": "Session 3 examines student-designed investigations in senior science, focusing on how to manage the tension between open inquiry and the safety and syllabus requirements that govern practical work.",
+      "liveSessionTasks": [
+        "Review the depth study or student investigation requirements in your Stage 6 syllabus area and identify what freedom students have in designing their own investigations.",
+        "Identify two challenges students typically face when designing open-ended investigations, and think about how you might scaffold around them.",
+        "Consider: what does teacher guidance look like at each stage of a student-designed investigation without undermining student ownership of the inquiry?"
+      ],
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "MOVpOGshy9M"
     },
@@ -63,12 +163,24 @@
       "item": "Topic 4",
       "title": "Research and Experimentation",
       "live": "🎤 Live Session: Topic 3 & 4",
+      "announcementBody": {
+        "intro": "This week we deepen our examination of the investigative strand by focusing on research skills and experimental design — competencies that underpin both student performance in assessments and your own practice as a teacher of science.",
+        "focus": "Topic 4 examines how research skills and experimental design connect to the mandatory practical components and assessment requirements of the Stage 6 science syllabuses. You will explore how to design learning experiences that build students' capacity to plan controlled experiments, collect reliable data, and critically evaluate their methodology."
+      },
+      "liveSessionFocus": "Session 4 covers Topics 3 and 4 together. We will examine open-ended investigations and experimental design and consider how to sequence these activities within a coherent teaching program for senior science.",
+      "liveSessionTasks": [
+        "Review the assessment requirements for student investigations in your Stage 6 syllabus — note how experimental design is assessed and what standards students are expected to meet.",
+        "Identify one common experimental design challenge in your teaching area and think through how you would address it with a class.",
+        "Come prepared to describe a hands-on investigation activity suitable for senior science students that teaches both content and experimental skills."
+      ],
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "brEVCv7P8Tw"
     },
@@ -77,12 +189,24 @@
       "title": "Selecting and Evaluating Resources",
       "live": "🎤 Live Session",
       "notes": ["Census Day occurs this week."],
+      "announcementBody": {
+        "intro": "This week we examine how science teachers critically evaluate the range of resources available for teaching — including textbooks, digital tools, laboratory equipment, simulations, and online platforms — and make principled decisions about what to use and why.",
+        "focus": "Topic 5 develops your skills as a resource evaluator: assessing alignment with syllabus outcomes, judging the accuracy and currency of scientific content, and evaluating pedagogical quality. You will develop a personal framework for selecting and critiquing resources appropriate to your teaching area and the students you will teach."
+      },
+      "liveSessionFocus": "Session 5 focuses on resource evaluation frameworks and strategies for building a coherent, high-quality resource library for teaching senior science across different content areas and student cohorts.",
+      "liveSessionTasks": [
+        "Select one textbook or digital resource you would consider using in your primary teaching area and evaluate it against at least two criteria: syllabus alignment and scientific accuracy.",
+        "Identify one gap or weakness in the resource and consider what supplementary material you might use to address it.",
+        "Come prepared to share your evaluation and the criteria you applied — we will compare approaches across teaching areas in the session."
+      ],
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "T4ZrteC1S1A"
     },
@@ -93,38 +217,74 @@
       "assessments": [
         { "name": "Assessment Task 1", "due": "2026-03-29" }
       ],
+      "announcementBody": {
+        "intro": "This week we explore how contemporary and emerging applications of science connect to the senior secondary curriculum — and why teaching the relevance of science matters for student engagement and long-term learning.",
+        "focus": "Topic 6 examines how the Stage 6 science syllabuses position science within contemporary societal contexts. You will explore strategies for making science relevant and engaging for senior students by connecting curriculum content to real-world applications, emerging research, and career pathways in science-related fields."
+      },
+      "liveSessionFocus": "Session 6 covers Topics 5 and 6 together. We will examine how to integrate current science applications into your teaching program and discuss strategies for using contemporary examples to motivate student engagement and deepen understanding of syllabus content.",
+      "liveSessionTasks": [
+        "Identify a current development in science — a recent discovery, technology, or social issue — that connects to content in your Stage 6 syllabus area.",
+        "Consider how this example maps to specific syllabus outcomes or content points, and how you would introduce it in a lesson.",
+        "Think about how you would make this topic accessible and compelling for senior students, and come prepared to briefly present it in the session."
+      ],
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "NGeQF5M5fEc"
     },
     "7": {
       "item": "Topic 7",
-      "title": "Audit your senior science content knowledge",
+      "title": "Audit Your Senior Science Content Knowledge",
       "live": "🎤 Live Session",
+      "announcementBody": {
+        "intro": "This week we turn the lens on ourselves as science educators — taking stock of our own subject-matter knowledge and identifying where we need to deepen our understanding in order to teach with confidence and accuracy.",
+        "focus": "Topic 7 focuses on the content knowledge audit as a professional practice. You will systematically map your existing knowledge against the syllabus content in your primary teaching area, honestly identify gaps, and begin building a plan for ongoing content development. Strong content knowledge is the foundation of effective science teaching."
+      },
+      "liveSessionFocus": "Session 7 examines content knowledge auditing as a professional discipline and explores practical strategies for building subject-matter expertise alongside pedagogical skill throughout your career as a science teacher.",
+      "liveSessionTasks": [
+        "Before the session, select two or three content areas from your Stage 6 syllabus that you feel least confident teaching at present.",
+        "For each, identify what resources or professional learning you might access to address the gap — textbooks, online courses, professional associations, or university content.",
+        "Come prepared to discuss what 'deep content knowledge' looks like for a senior science teacher and how it differs from exam-level subject knowledge."
+      ],
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "qHHfqvXy2iE"
     },
     "8": {
       "item": "Topic 8",
-      "title": "Teaching with a diverse cohort",
+      "title": "Teaching with a Diverse Cohort",
       "live": "🎤 Live Session: Topic 7 & 8",
+      "announcementBody": {
+        "intro": "In our final teaching week, we examine one of the most important professional challenges in senior science education — designing learning experiences that genuinely meet the needs of all students in a diverse classroom.",
+        "focus": "Topic 8 examines inclusive teaching strategies for senior science, including how to support students with learning differences, students from diverse cultural and linguistic backgrounds, and students at both ends of the achievement spectrum. You will explore what differentiation looks like in a Stage 6 context and how to design for access without reducing rigour."
+      },
+      "liveSessionFocus": "Session 8 covers Topics 7 and 8 together. We will examine content knowledge and inclusive practice as interconnected professional responsibilities, and consider how both inform your approach to planning, teaching, and assessing senior science students.",
+      "liveSessionTasks": [
+        "Identify one adjustment or differentiation strategy you could apply to a senior science lesson to better support a student with diverse learning needs.",
+        "Consider how Stage 6 syllabus requirements interact with the practical reality of a diverse classroom — where do you see tension, and how might you navigate it?",
+        "Review the NESA access arrangements or any relevant equity guidelines for your teaching area and come prepared to discuss how they shape your planning."
+      ],
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "tZawrfxdeaM"
     },
