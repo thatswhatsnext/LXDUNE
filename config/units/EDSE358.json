@@ -6,13 +6,77 @@
   "liveTime": "5:30–6:30pm",
   "trimesters": ["T1", "T2"],
   "assessmentPortalUrl": "https://mylearn.une.edu.au/course/section.php?id=477943",
-  "week0Message": "Have a look around at the first few tiles below and finish up the Week 0 section — we’ll get started next week!",
+  "week0Message": "Have a look around at the first few tiles below and finish up the Week 0 section — we'll get started next week!",
+  "learningOutcomes": [
+    {
+      "id": "LO1",
+      "color": "#25797F",
+      "title": "Curriculum Knowledge",
+      "description": "Demonstrate knowledge and understanding of the concepts, substance and structure of content and teaching strategies across Biology, Chemistry, Physics, Investigating Science, Earth & Environmental Science and Science Extension syllabi.",
+      "gtsd": "2.1.1"
+    },
+    {
+      "id": "LO2",
+      "color": "#3F88C5",
+      "title": "Assessment Knowledge",
+      "description": "Demonstrate understanding of assessment strategies (diagnostic, formative, summative; informal and formal) and the importance of reporting student progress and effective home–school communication.",
+      "gtsd": "5.1.1, 5.4.1"
+    },
+    {
+      "id": "LO3",
+      "color": "#7C5DB6",
+      "title": "Investigative Skills & Safety",
+      "description": "Include and evaluate a range of teaching strategies that develop investigative skills, cognitive engagement, and safe scientific practice in senior secondary contexts.",
+      "gtsd": "3.3.1, 4.1.1, 4.2.1, 4.4.1"
+    },
+    {
+      "id": "LO4",
+      "color": "#4FA9B5",
+      "title": "ICT & Resource Evaluation",
+      "description": "Implement teaching strategies that use ICT to expand learning opportunities and critically analyse and evaluate digital and other teaching resources.",
+      "gtsd": "2.6.1"
+    },
+    {
+      "id": "LO5",
+      "color": "#8FB77A",
+      "title": "Professional Resources & Networks",
+      "description": "Demonstrate knowledge of professional resources and critically analyse textbooks and other resources to enhance learning opportunities.",
+      "gtsd": "3.4.1, 7.4.1, 3.6.1"
+    },
+    {
+      "id": "LO6",
+      "color": "#D98C5F",
+      "title": "Critical Textbook Analysis",
+      "description": "Demonstrate ability to critically analyse a textbook and provide a range of appropriate resources and activities to address identified shortcomings.",
+      "gtsd": "3.4.1, 3.6.1"
+    }
+  ],
   "trimesterConfig": {
     "T1-2026": {
       "zoom": {
         "meetingId": "848 7032 4762",
         "password": "288268",
         "url": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1"
+      },
+      "assessmentFiles": {
+        "AT1": {
+          "rubricUrl": null,
+          "disciplines": {
+            "biology":   { "task": null, "marking": null },
+            "chemistry": { "task": null, "marking": null },
+            "ees":       { "task": null, "marking": null },
+            "physics":   { "task": null, "marking": null }
+          }
+        },
+        "AT2": {
+          "rubricUrl": null,
+          "disciplines": {
+            "biology":   { "task": null, "marking": null },
+            "chemistry": { "task": null, "marking": null },
+            "ees":       { "task": null, "marking": null },
+            "physics":   { "task": null, "marking": null }
+          }
+        }
       }
     },
     "T2-2026": {
@@ -20,7 +84,8 @@
         "meetingId": null,
         "password": null,
         "url": null
-      }
+      },
+      "assessmentFiles": {}
     }
   },
   "weeks": {
@@ -32,12 +97,24 @@
       "title": "The Senior Science Syllabus",
       "live": "LIVE SESSION 1",
       "notes": ["Download BOTH assessment tasks 💾", "Make a plan to complete them 🗓️"],
+      "announcementBody": {
+        "intro": "Welcome to EDSE358. This week we begin with Module 1 — an introduction to the senior science syllabus as the governing framework for everything you will plan, assess, and report against as a science teacher.",
+        "focus": "Module 1 establishes the senior science syllabus as the authoritative document shaping your teaching practice. You will examine the structure of the syllabus for your teaching area and begin to understand how outcomes, content, and assessment requirements connect."
+      },
+      "liveSessionFocus": "In our first live session, we set the scene for the unit, clarify expectations around assessment, and begin exploring the syllabus structures that underpin your work as a senior science teacher.",
+      "liveSessionTasks": [
+        "Download both assessment tasks from the Assessment Portal and review the requirements before the session.",
+        "Choose your primary teaching area and review its senior science syllabus — note the key components: outcomes, content, and assessment requirements.",
+        "Come ready to share one thing that surprised you about the syllabus structure and one question you would like to discuss."
+      ],
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "twvP-4YOPWw"
     },
@@ -45,12 +122,24 @@
       "item": "Module 2",
       "title": "The Nature of Science Teaching",
       "live": "🎤 LIVE SESSION 2: MODULE 1&2",
+      "announcementBody": {
+        "intro": "This week we explore the nature of science as a discipline and what it means to teach it well in a senior secondary context. Module 2 asks you to think carefully about the kind of science teacher you want to be.",
+        "focus": "Module 2 focuses on the Nature of Science (NOS) — the values, practices, and epistemological commitments that characterise science as a way of knowing. Understanding NOS shapes how you select content, design experiences, and communicate science to students."
+      },
+      "liveSessionFocus": "Session 2 covers Modules 1 and 2 together. We will examine the syllabus as a professional document and explore how an understanding of NOS can shape your approach to planning senior science lessons.",
+      "liveSessionTasks": [
+        "Review the lecture recordings and readings for both Modules 1 and 2 before the session.",
+        "Identify one aspect of the Nature of Science that you find most difficult to communicate to senior students.",
+        "Consider: how does your teaching area's syllabus reflect or constrain a NOS-informed approach to teaching?"
+      ],
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "mHYoYi15J1Y"
     },
@@ -58,12 +147,17 @@
       "item": "Module 3A",
       "title": "Planning and Assessing Learning Models and Constructivist Teaching",
       "live": "🎤 LIVE SESSION 3",
+      "announcementBody": null,
+      "liveSessionFocus": null,
+      "liveSessionTasks": null,
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "dZiRQE7dgFA"
     },
@@ -74,12 +168,17 @@
       "assessments": [
         { "name": "Assessment Task 1 — Part A (5%)", "due": "2026-03-22" }
       ],
+      "announcementBody": null,
+      "liveSessionFocus": null,
+      "liveSessionTasks": null,
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "HXhzDcirQ-0"
     },
@@ -88,12 +187,17 @@
       "title": "Assessing and Reporting — Assessment for learning",
       "live": "🎤 LIVE SESSION 5",
       "notes": ["Census Day occurs this week."],
+      "announcementBody": null,
+      "liveSessionFocus": null,
+      "liveSessionTasks": null,
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "6vPFCsOBL3A"
     },
@@ -104,12 +208,17 @@
       "assessments": [
         { "name": "Assessment Task 1 — Parts B, C & D (55%)", "due": "2026-04-05" }
       ],
+      "announcementBody": null,
+      "liveSessionFocus": null,
+      "liveSessionTasks": null,
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "JbvXUQJa9_g"
     },
@@ -117,12 +226,17 @@
       "item": "Module 4C",
       "title": "Assessing and Reporting — Designing differentiated assessment",
       "live": "🎤 LIVE SESSION 7",
+      "announcementBody": null,
+      "liveSessionFocus": null,
+      "liveSessionTasks": null,
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "ZMXgRNeHBEw"
     },
@@ -130,12 +244,17 @@
       "item": "Module 4D",
       "title": "Assessing and Reporting — Developing rubrics and providing feedback",
       "live": "🎤 LIVE SESSION 8: MODULE 4C&D",
+      "announcementBody": null,
+      "liveSessionFocus": null,
+      "liveSessionTasks": null,
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "video": "0QVsntPYBrE"
     },
