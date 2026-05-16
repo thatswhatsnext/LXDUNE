@@ -29,5 +29,5 @@ Numbered list of what comes next.
 ## Session notes
 Any decisions made or patterns established in this session that should be preserved.
 
-Commit the updated briefing to the current branch with message "chore: checkpoint briefing update".
+Commit the updated briefing to the current branch with message "chore: briefing update".
 Confirm the commit hash when done.
