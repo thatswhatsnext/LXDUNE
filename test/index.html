@@ -272,6 +272,14 @@
     <div class="block-output" id="lxdune-outcomes"></div>
   </div>
 
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderResourceDirectory</span>
+      <span class="ctr-id">#lxdune-resource-directory</span>
+    </div>
+    <div class="block-output" id="lxdune-resource-directory"></div>
+  </div>
+
 </div>
 
 <script type="module">
@@ -282,6 +290,7 @@ import {
   renderLiveSessionHub,
   renderAssessmentDownloadBlock,
   renderLearningOutcomesTable,
+  renderResourceDirectory,
 } from '../moodle-blocks/blocks.js';
 
 // ── State ─────────────────────────────────────────────────────────────────────
@@ -298,6 +307,7 @@ const CONTAINER_IDS = [
   'lxdune-live-hub',
   'lxdune-assessment-downloads',
   'lxdune-outcomes',
+  'lxdune-resource-directory',
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -499,11 +509,12 @@ async function renderAll() {
     renderLiveSessionHub(params).catch(e => showErr('lxdune-live-hub', e)),
     renderAssessmentDownloadBlock(params).catch(e => showErr('lxdune-assessment-downloads', e)),
     renderLearningOutcomesTable(params).catch(e => showErr('lxdune-outcomes', e)),
+    renderResourceDirectory(params).catch(e => showErr('lxdune-resource-directory', e)),
   ]);
 
   if (gen !== renderGen) return; // a newer render already ran
 
-  ['lxdune-workflow', 'lxdune-lecture', 'lxdune-live-hub'].forEach(markEmptyIfBlank);
+  ['lxdune-workflow', 'lxdune-lecture', 'lxdune-live-hub', 'lxdune-resource-directory'].forEach(markEmptyIfBlank);
 }
 
 function scheduleRender(delay = 150) {

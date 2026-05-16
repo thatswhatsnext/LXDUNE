@@ -7,6 +7,12 @@
   "trimesters": ["T1"],
   "assessmentPortalUrl": "https://mylearn.une.edu.au/course/section.php?id=477930",
   "week0Message": "Have a look around at the first few tiles below — we'll get started next week!",
+  "theme": {
+    "primary": "#1f6fb2",
+    "accent": "#25797F",
+    "pill": "#DAF0F7",
+    "pillBorder": "#cbe6ee"
+  },
   "learningOutcomes": [
     {
       "id": "LO1",

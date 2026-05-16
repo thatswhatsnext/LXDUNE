@@ -48,6 +48,67 @@ function injectStyles(id, css) {
   }
 }
 
+// Writes/replaces the :root theme variables so switching units in the test
+// harness immediately updates all var(--lx-*) references across every block.
+function applyTheme(unitCfg) {
+  const t = unitCfg.theme ?? {};
+  const primary    = t.primary    ?? '#1f6fb2';
+  const accent     = t.accent     ?? '#25797F';
+  const pill       = t.pill       ?? '#DAF0F7';
+  const pillBorder = t.pillBorder ?? '#cbe6ee';
+  let s = document.getElementById('lx-theme-vars');
+  if (!s) { s = document.createElement('style'); s.id = 'lx-theme-vars'; document.head.appendChild(s); }
+  s.textContent = `:root{--lx-primary:${primary};--lx-accent:${accent};--lx-pill:${pill};--lx-pill-border:${pillBorder};}`;
+}
+
+// ── CSS constants ─────────────────────────────────────────────────────────────
+
+const WORKFLOW_CSS = `
+.lx-dashboard{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33}
+.lx-pill{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:#1F2A33;padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px}
+.lx-dashboard h2{margin:0 0 14px;color:#1F2A33}
+.lx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.lx-card{padding:22px;border-radius:16px;text-decoration:none;color:#1F2A33;border:1px solid #dfe6ea;transition:transform .2s,box-shadow .2s;background:#fff;display:block;position:relative}
+.lx-card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(0,0,0,.08)}
+.lx-step{font-size:.75em;font-weight:900;text-transform:uppercase;margin-bottom:6px;opacity:.82;letter-spacing:.5px}
+.lx-card h4{margin:0}
+.lx-extra{margin-top:12px;border-radius:12px;padding:0 12px;border:1px solid #dfe6ea;opacity:0;max-height:0;overflow:hidden;transform:translateY(-4px);transition:max-height .28s,opacity .22s,transform .22s,padding .28s;font-size:.92em;color:#444;line-height:1.55}
+.lx-card:hover .lx-extra{opacity:1;max-height:260px;transform:translateY(0);padding:12px}
+@media(hover:none){.lx-extra{opacity:1;max-height:none;padding:12px;transform:none}}
+.lx-study{border-left:6px solid var(--lx-accent,#25797F);background:#f4f6f8}
+.lx-lecture{border-left:6px solid var(--lx-primary,#1f6fb2);background:#fff}
+.lx-live{border-left:6px solid #f1c40f;background:#fff}
+.lx-forum{border-left:6px solid var(--lx-accent,#25797F);background:#f4f6f8}
+.lx-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.lx-pill-link{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:var(--lx-primary,#1f6fb2);padding:6px 10px;border-radius:999px;font-weight:800;font-size:.88em;text-decoration:none;line-height:1.2}
+.lx-pill-link:hover{text-decoration:underline}
+.lx-pill-link.sec{background:#f4f6f8;color:var(--lx-accent,#25797F)}
+.lx-pill-link.warn{background:#fff8e6;color:#6F7B84}`;
+
+const LECTURE_CSS = `
+.lx-lec-wrap{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33}
+.lx-lec-wrap h2{margin:0 0 14px}
+.lx-lec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.lx-lec-card{padding:22px;border-radius:16px;text-decoration:none;color:#1F2A33;border:1px solid #dfe6ea;transition:transform .2s,box-shadow .2s;background:#fff;position:relative}
+.lx-lec-card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(0,0,0,.08)}
+.lx-lec-step{font-size:.75em;font-weight:800;text-transform:uppercase;margin-bottom:6px;opacity:.8;letter-spacing:.5px}
+.lx-lec-card h4{margin:0 0 8px}
+.lx-lec-extra{font-size:.9em;color:#444;margin-top:8px;line-height:1.5}
+.lx-lec-lecture{border-left:6px solid var(--lx-primary,#1f6fb2);background:#fff}
+.lx-lec-slides{border-left:6px solid var(--lx-accent,#25797F);background:#f4f6f8}
+.lx-lec-pill{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);border-radius:999px;padding:4px 10px;font-weight:800;font-size:.8em;margin-bottom:12px}
+.lx-video{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;margin-top:12px;border:1px solid #dfe6ea;background:#fff}
+.lx-video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}`;
+
+const RDIR_CSS = `
+.lx-rdir{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33}
+.lx-rdir-pill{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:#1F2A33;padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px}
+.lx-rdir h2{margin:0 0 18px;color:#1F2A33}
+.lx-rdir-cat{font-size:.72em;font-weight:900;text-transform:uppercase;letter-spacing:.9px;color:var(--lx-primary,#1f6fb2);margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid var(--lx-pill-border,#cbe6ee)}
+.lx-rdir-links{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.lx-rdir-link{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:var(--lx-primary,#1f6fb2);padding:6px 14px;border-radius:999px;font-weight:700;font-size:.88em;text-decoration:none;line-height:1.3}
+.lx-rdir-link:hover{text-decoration:underline}`;
+
 // ── Date calculation (mirrors whatson.js logic) ───────────────────────────────
 
 function buildDateList(startDate, trimester) {
@@ -120,7 +181,7 @@ function buildAssessmentReminders(unitCfg, portalUrl) {
       const due = new Date(a.due);
       due.setHours(0, 0, 0, 0);
       const dd = Math.round((due - today) / 86400000);
-      const portal = portalUrl ? ` (see <a href="${esc(portalUrl)}" target="_blank" style="color:#1f6fb2;font-weight:600;">Assessment Portal</a>)` : '';
+      const portal = portalUrl ? ` (see <a href="${esc(portalUrl)}" target="_blank" style="color:var(--lx-primary,#1f6fb2);font-weight:600;">Assessment Portal</a>)` : '';
       if (dd === 0) lines.push(`⚠️ <strong>${esc(a.name)}</strong> is due <strong>today</strong>${portal}.`);
       else if (dd > 0 && dd <= 7) lines.push(`⚠️ <strong>${esc(a.name)}</strong> is due in <strong>${dd} day${dd === 1 ? '' : 's'}</strong>${portal}.`);
       else if (dd > 7 && dd <= 14) lines.push(`⏳ ${esc(a.name)} is approaching — due ${esc(formatDateAU(a.due))}.`);
@@ -147,13 +208,14 @@ export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWee
   catch (e) { setError(el, `Could not load content: ${e.message}`); return; }
 
   const { unitCfg, week, weekNum } = ctx;
+  applyTheme(unitCfg);
   const itemLabel = unitCfg.itemLabel ?? 'Module';
 
   let html = '';
 
   if (weekNum === 0) {
     html = `<div style="font-family:Arial,sans-serif;color:#1F2A33;line-height:1.5;max-width:800px;margin:0 auto;">
-      <div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid #1f6fb2;border-radius:8px;background:#f4f6f8;">
+      <div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid var(--lx-primary,#1f6fb2);border-radius:8px;background:#f4f6f8;">
         <h3 style="margin:0 0 8px 0;">Welcome — Zero Week</h3>
         <p style="margin:0;">${esc(unitCfg.week0Message ?? 'Welcome! We\'ll get started next week.')}</p>
       </div>
@@ -164,20 +226,20 @@ export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWee
       <div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid #6F7B84;border-radius:8px;background:#f4f6f8;">
         <h3 style="margin:0 0 8px 0;">${esc(pe)}</h3>
         <p style="margin:0;">There is no teaching this week. Use this time for Professional Experience and to stay on top of assessment requirements.</p>
-        ${unitCfg.assessmentPortalUrl ? `<p style="margin:8px 0 0;"><a href="${esc(unitCfg.assessmentPortalUrl)}" target="_blank" style="color:#1f6fb2;font-weight:600;">Assessment Portal</a></p>` : ''}
+        ${unitCfg.assessmentPortalUrl ? `<p style="margin:8px 0 0;"><a href="${esc(unitCfg.assessmentPortalUrl)}" target="_blank" style="color:var(--lx-primary,#1f6fb2);font-weight:600;">Assessment Portal</a></p>` : ''}
       </div>
     </div>`;
   } else {
     const ab = week.announcementBody ?? {};
     const sections = [];
 
-    sections.push(`<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid #1f6fb2;border-radius:8px;background:#f4f6f8;">
+    sections.push(`<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid var(--lx-primary,#1f6fb2);border-radius:8px;background:#f4f6f8;">
       <h3 style="margin:0 0 8px 0;">${esc(week.item)} — ${esc(week.title)}</h3>
       ${ab.intro ? `<p style="margin:0;">${esc(ab.intro)}</p>` : ''}
     </div>`);
 
     if (ab.focus) {
-      sections.push(`<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid #25797F;border-radius:8px;">
+      sections.push(`<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid var(--lx-accent,#25797F);border-radius:8px;">
         <h4 style="margin:0 0 8px 0;">This Week's Focus</h4>
         <p style="margin:0;">${esc(ab.focus)}</p>
       </div>`);
@@ -198,10 +260,10 @@ export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWee
     if (reminders) sections.push(reminders);
 
     if (week.links?.forum) {
-      sections.push(`<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid #25797F;border-radius:8px;background:#f4f6f8;">
+      sections.push(`<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid var(--lx-accent,#25797F);border-radius:8px;background:#f4f6f8;">
         <h4 style="margin:0 0 6px 0;">Forum Discussion</h4>
         <p style="margin:0;">After engaging with the materials, post a short reflection to the ${esc(week.item)} forum.</p>
-        <p style="margin:8px 0 0;"><a href="${esc(week.links.forum)}" target="_blank" style="color:#1f6fb2;font-weight:600;">Go to Forum</a></p>
+        <p style="margin:8px 0 0;"><a href="${esc(week.links.forum)}" target="_blank" style="color:var(--lx-primary,#1f6fb2);font-weight:600;">Go to Forum</a></p>
       </div>`);
     }
 
@@ -217,28 +279,6 @@ export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWee
 // Container: <div id="lxdune-workflow"></div>
 // ─────────────────────────────────────────────────────────────────────────────
 
-const WORKFLOW_CSS = `
-.lx-dashboard{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33}
-.lx-pill{display:inline-block;background:#DAF0F7;border:1px solid #cbe6ee;color:#1F2A33;padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px}
-.lx-dashboard h2{margin:0 0 14px;color:#1F2A33}
-.lx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.lx-card{padding:22px;border-radius:16px;text-decoration:none;color:#1F2A33;border:1px solid #dfe6ea;transition:transform .2s,box-shadow .2s;background:#fff;display:block;position:relative}
-.lx-card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(0,0,0,.08)}
-.lx-step{font-size:.75em;font-weight:900;text-transform:uppercase;margin-bottom:6px;opacity:.82;letter-spacing:.5px}
-.lx-card h4{margin:0}
-.lx-extra{margin-top:12px;border-radius:12px;padding:0 12px;border:1px solid #dfe6ea;opacity:0;max-height:0;overflow:hidden;transform:translateY(-4px);transition:max-height .28s,opacity .22s,transform .22s,padding .28s;font-size:.92em;color:#444;line-height:1.55}
-.lx-card:hover .lx-extra{opacity:1;max-height:260px;transform:translateY(0);padding:12px}
-@media(hover:none){.lx-extra{opacity:1;max-height:none;padding:12px;transform:none}}
-.lx-study{border-left:6px solid #25797F;background:#f4f6f8}
-.lx-lecture{border-left:6px solid #1f6fb2;background:#fff}
-.lx-live{border-left:6px solid #f1c40f;background:#fff}
-.lx-forum{border-left:6px solid #25797F;background:#f4f6f8}
-.lx-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.lx-pill-link{display:inline-block;background:#eef5fb;border:1px solid #dfe6ea;color:#1f6fb2;padding:6px 10px;border-radius:999px;font-weight:800;font-size:.88em;text-decoration:none;line-height:1.2}
-.lx-pill-link:hover{text-decoration:underline}
-.lx-pill-link.sec{background:#f4f6f8;color:#25797F}
-.lx-pill-link.warn{background:#fff8e6;color:#6F7B84}`;
-
 export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
   const el = getEl('lxdune-workflow');
   if (!el) return;
@@ -247,6 +287,7 @@ export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek, fo
   catch (e) { setError(el, `Could not load content: ${e.message}`); return; }
 
   const { unitCfg, week, weekNum, zoom } = ctx;
+  applyTheme(unitCfg);
   const label = unitCfg.itemLabel ?? 'Module';
 
   if (!week || NO_TEACHING.has(weekNum) || weekNum === 0) {
@@ -285,21 +326,6 @@ export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek, fo
 // Container: <div id="lxdune-lecture"></div>
 // ─────────────────────────────────────────────────────────────────────────────
 
-const LECTURE_CSS = `
-.lx-lec-wrap{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33}
-.lx-lec-wrap h2{margin:0 0 14px}
-.lx-lec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.lx-lec-card{padding:22px;border-radius:16px;text-decoration:none;color:#1F2A33;border:1px solid #dfe6ea;transition:transform .2s,box-shadow .2s;background:#fff;position:relative}
-.lx-lec-card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(0,0,0,.08)}
-.lx-lec-step{font-size:.75em;font-weight:800;text-transform:uppercase;margin-bottom:6px;opacity:.8;letter-spacing:.5px}
-.lx-lec-card h4{margin:0 0 8px}
-.lx-lec-extra{font-size:.9em;color:#444;margin-top:8px;line-height:1.5}
-.lx-lec-lecture{border-left:6px solid #1f6fb2;background:#fff}
-.lx-lec-slides{border-left:6px solid #25797F;background:#f4f6f8}
-.lx-lec-pill{display:inline-block;background:#eef5fb;border:1px solid #dfe6ea;border-radius:999px;padding:4px 10px;font-weight:800;font-size:.8em;margin-bottom:12px}
-.lx-video{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;margin-top:12px;border:1px solid #dfe6ea;background:#fff}
-.lx-video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}`;
-
 export async function renderLectureBlock({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
   const el = getEl('lxdune-lecture');
   if (!el) return;
@@ -308,6 +334,7 @@ export async function renderLectureBlock({ forUnit, forTri, forYear, forWeek, fo
   catch (e) { setError(el, `Could not load content: ${e.message}`); return; }
 
   const { unitCfg, week, weekNum } = ctx;
+  applyTheme(unitCfg);
 
   if (!week || NO_TEACHING.has(weekNum) || weekNum === 0) {
     el.innerHTML = '';
@@ -368,6 +395,7 @@ export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, 
   catch (e) { setError(el, `Could not load content: ${e.message}`); return; }
 
   const { unitCfg, week, weekNum, zoom } = ctx;
+  applyTheme(unitCfg);
 
   if (!week || NO_TEACHING.has(weekNum) || weekNum === 0) {
     el.innerHTML = '';
@@ -378,11 +406,11 @@ export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, 
   const tasks = week.liveSessionTasks ?? [];
 
   const zoomBtn = zoom?.url
-    ? `<a style="display:inline-block;margin-top:10px;padding:8px 14px;background:#1f6fb2;color:#fff;border-radius:8px;text-decoration:none;font-weight:800;" href="${esc(zoom.url)}" target="_blank" rel="noopener">Join Zoom Session</a>`
+    ? `<a style="display:inline-block;margin-top:10px;padding:8px 14px;background:var(--lx-primary,#1f6fb2);color:#fff;border-radius:8px;text-decoration:none;font-weight:800;" href="${esc(zoom.url)}" target="_blank" rel="noopener">Join Zoom Session</a>`
     : `<div style="margin-top:10px;">${CHIP}</div>`;
 
   const forumLink = week.links?.forum
-    ? `<a style="color:#1f6fb2;font-weight:700;text-decoration:none;" href="${esc(week.links.forum)}" target="_blank" rel="noopener">Go to Forum</a>`
+    ? `<a style="color:var(--lx-primary,#1f6fb2);font-weight:700;text-decoration:none;" href="${esc(week.links.forum)}" target="_blank" rel="noopener">Go to Forum</a>`
     : CHIP;
 
   const taskItems = tasks.length
@@ -392,13 +420,13 @@ export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, 
   const s = 'border:1px solid #dfe6ea;border-radius:14px;padding:18px;margin-bottom:16px;background:#fff;';
 
   el.innerHTML = `<div style="max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33;line-height:1.55;">
-    <div style="display:inline-block;background:#DAF0F7;border:1px solid #cbe6ee;padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px;">${esc(unitCfg.code)} • LIVE SESSION</div>
+    <div style="display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px;">${esc(unitCfg.code)} • LIVE SESSION</div>
     <div style="${s}border-left:8px solid #f1c40f;">
       <h3 style="margin:0 0 6px;">${esc(week.item)} Live Session</h3>
       <div>${esc(focus)}</div>
       <div style="display:inline-block;margin-top:8px;background:#fff8e6;border:1px solid #f1c40f;color:#6F7B84;font-size:.85em;font-weight:700;padding:6px 10px;border-radius:999px;">Required before attending</div>
     </div>
-    <div style="${s}border-left:6px solid #25797F;background:#f4f6f8;">
+    <div style="${s}border-left:6px solid var(--lx-accent,#25797F);background:#f4f6f8;">
       <h4 style="margin:0 0 8px;">Before the Session</h4>
       <ul style="margin:8px 0 0 18px;">${taskItems}</ul>
     </div>
@@ -429,6 +457,7 @@ export async function renderAssessmentDownloadBlock({ forUnit, forTri, forYear }
   catch (e) { setError(el, `Could not load content: ${e.message}`); return; }
 
   const { unitCfg, triKey } = ctx;
+  applyTheme(unitCfg);
   const files = unitCfg.trimesterConfig?.[triKey]?.assessmentFiles ?? {};
 
   if (!Object.keys(files).length) {
@@ -451,18 +480,18 @@ export async function renderAssessmentDownloadBlock({ forUnit, forTri, forYear }
     const discCards = DISCIPLINES.map(d => {
       const disc = taskData.disciplines?.[d.key] ?? {};
       const taskBtn = disc.task
-        ? `<a href="${esc(disc.task)}" style="display:block;background:#25797F;color:white;text-decoration:none;padding:10px 14px;border-radius:6px;margin-bottom:8px;font-weight:bold;" target="_blank" rel="noopener">Download ${esc(d.label)} Task</a>`
+        ? `<a href="${esc(disc.task)}" style="display:block;background:var(--lx-accent,#25797F);color:white;text-decoration:none;padding:10px 14px;border-radius:6px;margin-bottom:8px;font-weight:bold;" target="_blank" rel="noopener">Download ${esc(d.label)} Task</a>`
         : `<div style="margin-bottom:8px;">${CHIP}</div>`;
       const markBtn = disc.marking
-        ? `<a href="${esc(disc.marking)}" style="display:block;background:#DAF0F7;color:#1F2A33;text-decoration:none;padding:10px 14px;border-radius:6px;font-weight:bold;" target="_blank" rel="noopener">Download ${esc(d.label)} Marking</a>`
+        ? `<a href="${esc(disc.marking)}" style="display:block;background:var(--lx-pill,#DAF0F7);color:#1F2A33;text-decoration:none;padding:10px 14px;border-radius:6px;font-weight:bold;" target="_blank" rel="noopener">Download ${esc(d.label)} Marking</a>`
         : CHIP;
       return `<div style="flex:1 1 250px;background:#fff;padding:16px;border:1px solid #dfe6ea;border-radius:10px;">
-        <h4 style="margin-top:0;color:#25797F;">${esc(d.label)}</h4>
+        <h4 style="margin-top:0;color:var(--lx-accent,#25797F);">${esc(d.label)}</h4>
         ${taskBtn}${markBtn}
       </div>`;
     }).join('');
 
-    return `<div style="background:#fff;padding:16px;border:1px solid #dfe6ea;border-left:8px solid #25797F;border-radius:10px;margin:14px 0;">
+    return `<div style="background:#fff;padding:16px;border:1px solid #dfe6ea;border-left:8px solid var(--lx-accent,#25797F);border-radius:10px;margin:14px 0;">
       <h3 style="margin:0;color:#1F2A33;">${esc(taskId)} — Download Your Subject Files</h3>
       <p style="margin:8px 0 0;color:#1F2A33;">Select your discipline and download <strong>both</strong> the Task and the Marking document.</p>
       <div style="margin-top:14px;">${rubricBtn}</div>
@@ -487,6 +516,7 @@ export async function renderLearningOutcomesTable({ forUnit, forTri, forYear } =
   catch (e) { setError(el, `Could not load content: ${e.message}`); return; }
 
   const { unitCfg } = ctx;
+  applyTheme(unitCfg);
   const los = unitCfg.learningOutcomes;
 
   if (!los?.length) {
@@ -510,5 +540,58 @@ export async function renderLearningOutcomesTable({ forUnit, forTri, forYear } =
     <table style="width:100%;border-collapse:collapse;font-size:14px;line-height:1.5;">
       <tbody>${rows}</tbody>
     </table>
+  </div>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. renderResourceDirectory
+// Container: <div id="lxdune-resource-directory"></div>
+// Reads from week.resources — each item: { category, label, url }
+// Groups items by category and renders pill-links under category headings.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export async function renderResourceDirectory({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
+  const el = getEl('lxdune-resource-directory');
+  if (!el) return;
+  let ctx;
+  try { ctx = await resolve({ forUnit, forTri, forYear, forWeek, forDate }); }
+  catch (e) { setError(el, `Could not load content: ${e.message}`); return; }
+
+  const { unitCfg, week, weekNum } = ctx;
+  applyTheme(unitCfg);
+
+  if (!week || NO_TEACHING.has(weekNum) || weekNum === 0) {
+    el.innerHTML = '';
+    return;
+  }
+
+  const resources = week.resources ?? [];
+  if (!resources.length) {
+    el.innerHTML = '';
+    return;
+  }
+
+  injectStyles('lx-rdir-styles', RDIR_CSS);
+
+  const groups = new Map();
+  for (const r of resources) {
+    const cat = r.category ?? 'Resources';
+    if (!groups.has(cat)) groups.set(cat, []);
+    groups.get(cat).push(r);
+  }
+
+  const groupHtml = [...groups.entries()].map(([cat, items]) => {
+    const links = items.map(r =>
+      r.url
+        ? `<a href="${esc(r.url)}" class="lx-rdir-link" target="_blank" rel="noopener">${esc(r.label)}</a>`
+        : CHIP
+    ).join('');
+    return `<div class="lx-rdir-cat">${esc(cat)}</div><div class="lx-rdir-links">${links}</div>`;
+  }).join('');
+
+  el.innerHTML = `<div class="lx-rdir">
+    <div class="lx-rdir-pill">${esc(unitCfg.code)} • ${esc(week.item)}</div>
+    <h2>Resource Directory: ${esc(week.title)}</h2>
+    ${groupHtml}
   </div>`;
 }

@@ -7,6 +7,12 @@
   "trimesters": ["T2"],
   "assessmentPortalUrl": null,
   "week0Message": "Have a look around at the first few tiles below — we'll get started next week!",
+  "theme": {
+    "primary": "#2D7A48",
+    "accent": "#C4872D",
+    "pill": "#E6F3E9",
+    "pillBorder": "#B8D9BD"
+  },
   "learningOutcomes": [
     {
       "id": "LO1",
