@@ -85,7 +85,16 @@
         <option value="lecture">Lecture embed block</option>
         <option value="live-hub">Live session hub</option>
         <option value="assessment-downloads">Assessment download block</option>
+        <option value="resource-directory">Resource directory</option>
         <option value="outcomes">Learning outcomes table</option>
+        <option value="assessment-page">Assessment page</option>
+      </select>
+    </div>
+    <div class="form-row" id="task-row" style="display:none;">
+      <label for="sel-task">Assessment task</label>
+      <select id="sel-task">
+        <option value="AT1">AT1</option>
+        <option value="AT2">AT2</option>
       </select>
     </div>
     <button class="btn" id="gen-btn">Generate shell</button>
@@ -125,6 +134,15 @@
     }
     yearSel.addEventListener('change', populateTri);
     populateTri();
+
+    // Show/hide task selector based on page type
+    const typeSel = document.getElementById('sel-type');
+    const taskRow = document.getElementById('task-row');
+    function syncTaskRow() {
+      taskRow.style.display = typeSel.value === 'assessment-page' ? '' : 'none';
+    }
+    typeSel.addEventListener('change', syncTaskRow);
+    syncTaskRow();
   }
 
   // ── Shell builders ────────────────────────────────────────────────────────
@@ -176,6 +194,20 @@
       `  });\n` +
       `<\/script>\n` +
       `<div id="${containerId}"></div>`
+    );
+  }
+
+  function shellAssessment(unit, taskId) {
+    return (
+      `<script type="module">\n` +
+      `  import { renderAssessmentPage }\n` +
+      `  from "${PAGES_BASE}/moodle-blocks/blocks.js";\n` +
+      `  renderAssessmentPage({\n` +
+      `    forUnit: "${unit}",\n` +
+      `    forTask: "${taskId}",\n` +
+      `  });\n` +
+      `<\/script>\n` +
+      `<div id="lxdune-assessment-page"></div>`
     );
   }
 
@@ -244,6 +276,13 @@
       return;
     }
 
+    // Populate task dropdown from unit JSON
+    const taskSel = document.getElementById('sel-task');
+    const atTasks = unitCfg.assessmentTasks ?? [];
+    if (atTasks.length) {
+      taskSel.innerHTML = atTasks.map(t => `<option value="${t.id}">${t.id} — ${t.title}</option>`).join('');
+    }
+
     const triKey = `${tri}-${year}`;
     const zoom = unitCfg.trimesterConfig?.[triKey]?.zoom;
     const zoomNote = zoom?.url
@@ -310,6 +349,14 @@
         rows: 9,
       },
       {
+        key: 'resource-directory',
+        title: 'Resource directory',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellBlocks('renderResourceDirectory', 'lxdune-resource-directory', unit, tri, year),
+        note: `Date-aware. Reads from <code>weeks[n].resources[]</code>. Renders nothing if no resources for the current week.`,
+        rows: 9,
+      },
+      {
         key: 'outcomes',
         title: 'Learning outcomes table',
         badge: 'blocks.js', badgeClass: 'badge-ready',
@@ -318,6 +365,28 @@
         rows: 9,
       },
     ];
+
+    const taskId = document.getElementById('sel-task').value;
+
+    // Assessment page is generated separately (no tri/year, task-scoped)
+    if (pageType === 'assessment-page') {
+      const code = shellAssessment(unit, taskId);
+      const cards = snippetCard({
+        title: `Assessment page — ${taskId}`,
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code,
+        note: `Static block — paste once per assessment task page. Reads from <code>assessmentTasks</code> in the unit JSON.`,
+        rows: 9,
+      });
+      const output = document.getElementById('output');
+      output.innerHTML = `<div class="result-banner">Shell for <strong>${unit}</strong> — <strong>${taskId}</strong></div>${cards}`;
+      output.style.display = 'block';
+      bindCopyButtons();
+      btn.disabled = false;
+      btn.textContent = 'Generate shell';
+      output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
 
     const toShow = pageType === 'all' ? allShells : allShells.filter(s => s.key === pageType);
     const cards = toShow.map(s => snippetCard(s)).join('');

@@ -57,6 +57,205 @@
       "gtsd": "1.5.1, 1.6.1"
     }
   ],
+  "assessmentTasks": [
+    {
+      "id": "AT1",
+      "title": "Practical Investigation and Depth Study Design",
+      "weighting": 50,
+      "length": "2,000 words (equivalent) +/- 10%",
+      "due": "2026-03-29",
+      "flexiblePortal": {
+        "label": "Flexible portal to 5 April 2026",
+        "url": "https://mylearn.une.edu.au/mod/choice/view.php?id=3509333",
+        "opensDate": "2026-03-27",
+        "closesDate": "2026-04-05"
+      },
+      "learningOutcomes": ["LO1", "LO2", "LO3", "LO4", "LO5"],
+      "aitslStandards": ["2.1.1", "2.6.1", "3.3.1", "4.1.1", "4.2.1", "4.4.1", "5.1.1", "5.4.1", "7.4.1"],
+      "rationale": "Senior secondary school science teachers need to be aware of the demands of conducting practical investigations for science disciplines, as well as the safety requirements for these, and, in NSW, know how to incorporate Depth Studies into class work.",
+      "aim": "The aims of this assessment task are for you to demonstrate your knowledge of how to prepare students to undertake a practical investigation and Depth Study in one science discipline; and to show how you would integrate safety as a matter of course in the context of a practical lesson in Years 11–12 sciences.",
+      "links": {
+        "rubric": "https://mylearn.une.edu.au/pluginfile.php/5142970/mod_folder/content/0/AT1%20EDSE357%20Marking%20rubric%202026.pdf?forcedownload=1",
+        "taskFiles": "https://mylearn.une.edu.au/mod/folder/view.php?id=3381548",
+        "submit": "https://mylearn.une.edu.au/mod/assign/view.php?id=3381549",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381550",
+        "video": null
+      },
+      "parts": [
+        {
+          "id": "A",
+          "title": "Critique of a Digital Resource",
+          "marks": 20,
+          "wordCount": 300,
+          "description": "Choose ONE practical investigation from ONE Stage 6 science discipline (Years 11–12). See the discipline options below.",
+          "requirements": [
+            "Locate digital resources that would assist you in preparing Year 11–12 students to undertake this practical investigation.",
+            "Record the URL of ONE selected digital resource.",
+            "Critique the resource and justify why it would be useful / not useful for your classroom context."
+          ],
+          "critique": [
+            "Pedagogical principles of scientific inquiry in Years 11–12 (unit readings + further wide reading).",
+            "The Working Scientifically outcomes that would be addressed.",
+            "Other relevant syllabus elements where helpful."
+          ],
+          "loLinks": ["LO2", "LO4"],
+          "bespoke": "discipline-tab-switcher"
+        },
+        {
+          "id": "B",
+          "title": "Risk Assessment, Equipment List & Method",
+          "marks": 20,
+          "wordCount": 500,
+          "description": "Generate a risk assessment using RiskAssess for the practical investigation selected in Part A.",
+          "requirements": [
+            "An equipment list",
+            "A full method written so that students could work independently with confidence",
+            "Appropriate risk controls and safety considerations"
+          ],
+          "loLinks": ["LO2", "LO3"],
+          "bespoke": "riskassess-callout"
+        },
+        {
+          "id": "C",
+          "title": "Depth Study Design",
+          "marks": 50,
+          "wordCount": 1000,
+          "description": "Using the provided NESA program as inspiration, choose ONE Stage 6 science discipline and develop a Depth Study (5 hours) for collaborative in-class work that leads into an open-ended investigation (OEI) to be completed at a later date.",
+          "note": "The Depth Study is not an assessment task. It is regular class work for individuals / small groups.",
+          "requirements": [
+            "The aim of the Depth Study",
+            "The syllabus outcomes and content addressed (syllabus extracts do not contribute to word count)",
+            "Instructions for student development of an open-ended investigation (OEI) that conforms to syllabus requirements (to be studied in further class hours)",
+            "What students are required to produce across the five hours to demonstrate engagement and meet task requirements",
+            "Formative assessment opportunities (check-in points) where you would provide feedback on OEI planning"
+          ],
+          "resources": [
+            {
+              "label": "Teaching advice (additional): Depth study guide",
+              "url": "https://curriculum.nsw.edu.au/file/3d78a40c-8cb0-4419-b1da-c16193d5ecfa/science-11-12-2025-teaching-advice-additional-depth-study-guide.docx"
+            }
+          ],
+          "loLinks": ["LO1", "LO2", "LO3"]
+        },
+        {
+          "id": "D",
+          "title": "Reflective Self-Assessment",
+          "marks": 10,
+          "wordCount": 200,
+          "description": "Write a reflective statement on your learning journey for this task.",
+          "requirements": [
+            "What did you already know how to do? (optional guiding question)",
+            "What was new learning for you? (optional guiding question)",
+            "How will the learning journey you undertook impact beyond this unit of study? (optional guiding question)"
+          ],
+          "loLinks": ["LO3", "LO5"]
+        }
+      ],
+      "criteria": [
+        {
+          "label": "Part A",
+          "weighting": null,
+          "accent": "#1f6fb2",
+          "background": "#eef5fb",
+          "description": "Critique of digital resource (inquiry + Working Scientifically alignment).",
+          "bullets": null,
+          "focus": "Inquiry-based resource evaluation for Working Scientifically outcomes",
+          "loLinks": ["LO2", "LO4"]
+        },
+        {
+          "label": "Part B1",
+          "weighting": null,
+          "accent": "#f1c40f",
+          "background": "#fff8e6",
+          "description": "Risk assessment, equipment list and method.",
+          "bullets": null,
+          "focus": "Risk assessment, equipment list, and method writing",
+          "loLinks": ["LO2", "LO3"]
+        },
+        {
+          "label": "Part B2",
+          "weighting": null,
+          "accent": "#f1c40f",
+          "background": "#fff8e6",
+          "description": "Safety procedures embedded within practical preparation and conduct.",
+          "bullets": null,
+          "focus": "Safety integration in practical preparation and conduct",
+          "loLinks": ["LO3"]
+        },
+        {
+          "label": "Part C1",
+          "weighting": null,
+          "accent": "#25797F",
+          "background": "#eef6f6",
+          "description": "Depth Study: aim, syllabus outcomes, and content.",
+          "bullets": null,
+          "focus": "Depth Study aim, outcomes, and syllabus alignment",
+          "loLinks": ["LO1", "LO2"]
+        },
+        {
+          "label": "Part C2",
+          "weighting": null,
+          "accent": "#25797F",
+          "background": "#eef6f6",
+          "description": "Depth Study: instructions for collaborative student development of an OEI.",
+          "bullets": null,
+          "focus": "Open-ended investigation design and student scaffolding",
+          "loLinks": ["LO2", "LO3"]
+        },
+        {
+          "label": "Part C3",
+          "weighting": null,
+          "accent": "#25797F",
+          "background": "#eef6f6",
+          "description": "Depth Study: check-in points for feedback and student products.",
+          "bullets": null,
+          "focus": "Formative assessment and check-in point design",
+          "loLinks": ["LO2", "LO3"]
+        },
+        {
+          "label": "Part D",
+          "weighting": null,
+          "accent": "#6F7B84",
+          "background": "#f4f6f8",
+          "description": "Reflection with evidence of learning growth.",
+          "bullets": null,
+          "focus": "Reflective practice and evidence of learning growth",
+          "loLinks": ["LO3", "LO5"]
+        }
+      ],
+      "hdCallout": null,
+      "submissionInstructions": [
+        "Submit one document that contains all parts.",
+        "Combine Parts A, C and D with the RiskAssess file (Part B) to make ONE file.",
+        "Name your file: LastNameFirstInitial_A1EDSE357",
+        "Syllabus extracts do not contribute to word count.",
+        "Reference list and risk assessment do not contribute to word count."
+      ]
+    },
+    {
+      "id": "AT2",
+      "title": "Assessment Development",
+      "weighting": 50,
+      "length": null,
+      "due": "2026-05-03",
+      "flexiblePortal": null,
+      "learningOutcomes": [],
+      "aitslStandards": [],
+      "rationale": null,
+      "aim": null,
+      "links": {
+        "rubric": null,
+        "taskFiles": null,
+        "submit": null,
+        "forum": null,
+        "video": null
+      },
+      "parts": [],
+      "criteria": [],
+      "hdCallout": null,
+      "submissionInstructions": []
+    }
+  ],
   "trimesterConfig": {
     "T1-2026": {
       "zoom": {

@@ -176,6 +176,51 @@
       background: #fff0f0;
       border-radius: 6px;
     }
+
+    /* ── Tab navigation ───────────────────────────────────────────────────────── */
+    .tab-bar {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid #243345;
+      padding: 0 20px;
+      margin-top: 2px;
+    }
+    .tab-btn {
+      padding: 7px 18px;
+      background: none;
+      border: none;
+      color: #4a7090;
+      font-size: .84em;
+      font-weight: 700;
+      font-family: Arial, sans-serif;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color .15s, border-color .15s;
+    }
+    .tab-btn:hover { color: #7ab8d8; }
+    .tab-btn.active { color: #4fa9b5; border-bottom-color: #4fa9b5; }
+
+    /* ── Assessment tab ───────────────────────────────────────────────────────── */
+    .assess-page {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+    }
+    .assess-ctrl-bar {
+      display: flex;
+      align-items: flex-end;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .assess-output {
+      background: #fff;
+      border: 1px solid #d8e0e6;
+      border-radius: 10px;
+      min-height: 100px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    }
   </style>
 </head>
 <body>
@@ -219,6 +264,10 @@
     </div>
   </div>
   <div id="status-bar">Initialising…</div>
+  <div class="tab-bar">
+    <button class="tab-btn active" id="tab-blocks" type="button">Week Blocks</button>
+    <button class="tab-btn" id="tab-assess" type="button">Assessment Page</button>
+  </div>
 </div>
 
 <!-- ── Block sections ─────────────────────────────────────────────────────── -->
@@ -282,6 +331,21 @@
 
 </div>
 
+<!-- ── Assessment tab ─────────────────────────────────────────────────────── -->
+<div class="assess-page" id="assess-page" style="display:none;">
+  <div class="assess-ctrl-bar">
+    <div class="ctrl-group">
+      <label>Task</label>
+      <select id="sel-task" style="font-family:Arial,sans-serif;font-size:.875em;padding:5px 9px;border:1px solid #dfe6ea;border-radius:6px;min-width:180px;">
+        <option value="AT1">AT1</option>
+        <option value="AT2">AT2</option>
+      </select>
+    </div>
+    <button class="rerender-btn" id="rerender-assess-btn">Re-render</button>
+  </div>
+  <div class="assess-output" id="lxdune-assessment-page"></div>
+</div>
+
 <script type="module">
 import {
   renderAnnouncementBlock,
@@ -291,6 +355,7 @@ import {
   renderAssessmentDownloadBlock,
   renderLearningOutcomesTable,
   renderResourceDirectory,
+  renderAssessmentPage,
 } from '../moodle-blocks/blocks.js';
 
 // ── State ─────────────────────────────────────────────────────────────────────
@@ -548,6 +613,67 @@ async function init() {
   await refreshUnitConfig();
   scheduleRender(0);
 }
+
+// ── Tab switching ─────────────────────────────────────────────────────────────
+
+let activeTab = 'blocks';
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.getElementById('tab-blocks').classList.toggle('active', tab === 'blocks');
+  document.getElementById('tab-assess').classList.toggle('active', tab === 'assess');
+  document.querySelector('.blocks-page').style.display = tab === 'blocks' ? '' : 'none';
+  document.getElementById('assess-page').style.display = tab === 'assess' ? '' : 'none';
+  if (tab === 'assess') scheduleAssessRender(0);
+}
+
+document.getElementById('tab-blocks').addEventListener('click', () => switchTab('blocks'));
+document.getElementById('tab-assess').addEventListener('click', () => switchTab('assess'));
+
+// ── Assessment render ─────────────────────────────────────────────────────────
+
+let assessTimer = null;
+
+async function renderAssess() {
+  const forUnit = document.getElementById('sel-unit').value;
+  const forTask = document.getElementById('sel-task').value;
+  const el = document.getElementById('lxdune-assessment-page');
+  el.innerHTML = '<div class="block-loading">Rendering…</div>';
+  try {
+    await renderAssessmentPage({ forUnit, forTask });
+    if (!el.innerHTML.trim()) {
+      el.innerHTML = '<div class="block-empty">No assessmentTasks data found for this unit/task.</div>';
+    }
+  } catch (e) {
+    el.innerHTML = `<div class="block-err">Error: ${e.message}</div>`;
+  }
+}
+
+function scheduleAssessRender(delay = 150) {
+  clearTimeout(assessTimer);
+  assessTimer = setTimeout(renderAssess, delay);
+}
+
+document.getElementById('sel-task').addEventListener('change', () => scheduleAssessRender());
+document.getElementById('rerender-assess-btn').addEventListener('click', () => scheduleAssessRender(0));
+
+// Also refresh task dropdown when unit changes (repopulate from unit JSON)
+const origUnitChange = document.getElementById('sel-unit').onchange;
+document.getElementById('sel-unit').addEventListener('change', async () => {
+  if (activeTab === 'assess') {
+    // Reload unit config and repopulate task selector
+    const unit = document.getElementById('sel-unit').value;
+    try {
+      const cfg = await loadJson(`../config/units/${unit}.json`);
+      const tasks = cfg.assessmentTasks ?? [];
+      const taskSel = document.getElementById('sel-task');
+      if (tasks.length) {
+        taskSel.innerHTML = tasks.map(t => `<option value="${t.id}">${t.id} — ${t.title}</option>`).join('');
+      }
+    } catch { /* keep existing options */ }
+    scheduleAssessRender();
+  }
+});
 
 init().catch(e => setStatus(`<span class="s-err">Init error: ${e.message}</span>`));
 </script>

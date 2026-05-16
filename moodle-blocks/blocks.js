@@ -109,6 +109,47 @@ const RDIR_CSS = `
 .lx-rdir-link{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:var(--lx-primary,#1f6fb2);padding:6px 14px;border-radius:999px;font-weight:700;font-size:.88em;text-decoration:none;line-height:1.3}
 .lx-rdir-link:hover{text-decoration:underline}`;
 
+const ASSESSMENT_CSS = `
+.lx-ap{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33;line-height:1.55}
+.lx-ap-meta{background:#f4f6f8;border:1px solid #dfe6ea;border-radius:12px;padding:14px 16px;margin-bottom:18px;display:grid;gap:6px 24px;grid-template-columns:auto 1fr;font-size:.93em;align-items:baseline}
+.lx-ap-actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.lx-ap-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:800;border:1px solid #dfe6ea;background:#f4f6f8;color:#1F2A33;border-left:6px solid #6F7B84;min-height:44px;transition:transform .15s,box-shadow .15s;cursor:default}
+.lx-ap-btn[href]{cursor:pointer}
+.lx-ap-btn[href]:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(0,0,0,.08)}
+.lx-ap-btn.primary{background:var(--lx-pill,#DAF0F7);border-left-color:var(--lx-primary,#1f6fb2)}
+.lx-ap-btn.submit{background:#e8f5e9;border-left-color:#27ae60}
+.lx-ap-btn.disabled{opacity:.52;pointer-events:none}
+.lx-ap-callout{margin:14px 0;padding:14px;border-radius:12px;border:1px solid #dfe6ea;border-left:6px solid #6F7B84;background:#f4f6f8}
+.lx-ap-callout.blue{background:var(--lx-pill,#DAF0F7);border-left-color:var(--lx-primary,#1f6fb2)}
+.lx-ap-callout.yellow{background:#fff8e6;border-left-color:#f1c40f}
+.lx-ap-callout h3{margin:0 0 8px;font-size:1.05rem}
+.lx-ap-parts{margin-bottom:18px}
+.lx-ap-details{margin:10px 0;border:1px solid #dfe6ea;border-radius:12px;overflow:hidden}
+.lx-ap-details>summary{cursor:pointer;list-style:none;padding:12px 14px;font-weight:900;background:#f4f6f8}
+.lx-ap-details[open]>summary{border-bottom:1px solid #dfe6ea}
+.lx-ap-part-body{padding:14px}
+.lx-ap-criteria{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:12px 0}
+.lx-ap-crit{padding:14px;border-radius:12px;border:1px solid #dfe6ea}
+.lx-ap-crit h4{margin:0 0 6px;font-size:.97rem}
+.lx-ap-subm{background:#f4f6f8;border-left:6px solid #2c3e50;border-radius:12px;padding:14px;margin:12px 0}
+.lx-ap-subm ul{margin:0 0 0 18px;padding:0}
+.lx-ap-subm li{margin:5px 0}
+.lx-ap-hd{background:#fff8e6;border:1px solid #f1c40f;border-left:8px solid #f1c40f;border-radius:12px;padding:14px;margin:14px 0}
+.lx-ap-sect-label{font-size:.82em;font-weight:900;text-transform:uppercase;letter-spacing:.6px;color:#6F7B84;margin:20px 0 6px}
+.lx-ap-risk{background:#fff8e6;border:1px solid #f1c40f;border-left:8px solid #f1c40f;border-radius:12px;padding:12px 14px;margin:10px 0}
+.lx-ap-risk-link{font-weight:900;color:var(--lx-primary,#1f6fb2);text-decoration:none}
+.lx-ap-risk-link:hover{text-decoration:underline}
+.lx-ap-risk-creds{margin-top:12px;background:#fff;border:1px solid #e7edf1;border-radius:8px;padding:10px 12px}
+.lx-ap-risk-grid{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:8px;align-items:center}
+.lx-ap-risk-code{background:#f4f6f8;border:1px solid #dfe6ea;border-radius:999px;padding:4px 10px;font-weight:800}
+.lx-tab-bar{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+.lx-tab-btn{border:1px solid #dfe6ea;background:#f4f6f8;color:#1F2A33;font-weight:900;padding:8px 12px;border-radius:999px;cursor:pointer;border-left:6px solid #6F7B84;line-height:1.15;font-family:Arial,sans-serif;font-size:.9em}
+.lx-tab-btn[aria-selected="true"]{background:var(--lx-pill,#DAF0F7);border-left-color:var(--lx-primary,#1f6fb2);box-shadow:0 4px 10px rgba(0,0,0,.06)}
+.lx-tab-panel{border:1px solid #dfe6ea;border-radius:12px;background:#fff;padding:12px 14px}
+.lx-tab-panel ul{margin:8px 0 0 18px}
+.lx-tab-panel li{margin:6px 0}
+.lx-pi-tag{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;border:1px solid #dfe6ea;background:#f4f6f8;font-weight:900;font-size:.82em;vertical-align:middle}`;
+
 // ── Date calculation (mirrors whatson.js logic) ───────────────────────────────
 
 function buildDateList(startDate, trimester) {
@@ -594,4 +635,199 @@ export async function renderResourceDirectory({ forUnit, forTri, forYear, forWee
     <h2>Resource Directory: ${esc(week.title)}</h2>
     ${groupHtml}
   </div>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. renderAssessmentPage
+// Container: <div id="lxdune-assessment-page"></div>
+// Reads from unitCfg.assessmentTasks — finds task by id, renders full page.
+// Bespoke HTML fragments fetched from moodle-blocks/bespoke/{name}.html.
+// ─────────────────────────────────────────────────────────────────────────────
+
+function initTabSwitchers(container) {
+  container.querySelectorAll('.lx-tab-bar').forEach(bar => {
+    const btns = [...bar.querySelectorAll('.lx-tab-btn')];
+    const panels = btns.map(b => {
+      const id = b.dataset.panel;
+      return id ? container.querySelector(`#${id}`) : null;
+    }).filter(Boolean);
+
+    function activate(idx) {
+      btns.forEach((b, i) => b.setAttribute('aria-selected', i === idx ? 'true' : 'false'));
+      panels.forEach((p, i) => { p.hidden = i !== idx; });
+    }
+
+    btns.forEach((b, i) => b.addEventListener('click', () => activate(i)));
+    const active = btns.findIndex(b => b.getAttribute('aria-selected') === 'true');
+    activate(active >= 0 ? active : 0);
+  });
+}
+
+export async function renderAssessmentPage({ forUnit, forTask } = {}) {
+  const el = getEl('lxdune-assessment-page');
+  if (!el) return;
+
+  let unitCfg;
+  try {
+    unitCfg = await fetchJson(`${BASE}config/units/${forUnit}.json`);
+  } catch (e) {
+    setError(el, `Could not load content: ${e.message}`);
+    return;
+  }
+
+  applyTheme(unitCfg);
+  injectStyles('lx-ap-styles', ASSESSMENT_CSS);
+
+  const tasks = unitCfg.assessmentTasks ?? [];
+  const task = tasks.find(t => t.id === forTask);
+  if (!task) { el.innerHTML = ''; return; }
+
+  // Prefetch all bespoke components needed by this task's parts
+  const bespokeCache = {};
+  for (const part of task.parts ?? []) {
+    if (part.bespoke && !bespokeCache[part.bespoke]) {
+      try {
+        const res = await fetch(`${BASE}moodle-blocks/bespoke/${part.bespoke}.html`);
+        bespokeCache[part.bespoke] = res.ok ? await res.text() : null;
+      } catch {
+        bespokeCache[part.bespoke] = null;
+      }
+    }
+  }
+
+  const sections = [];
+
+  // Header pill + title
+  sections.push(
+    `<div style="display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px;">${esc(unitCfg.code)} • ${esc(task.id)}</div>` +
+    `<h2 style="margin:0 0 16px;">${esc(task.title)}</h2>`
+  );
+
+  // 1. Metadata block
+  const fp = task.flexiblePortal ?? null;
+  const flexNote = fp ? ` <em style="color:#6F7B84;">(${esc(fp.label)})</em>` : '';
+  const loStr    = (task.learningOutcomes ?? []).join(', ');
+  const aitslStr = (task.aitslStandards  ?? []).join(', ');
+  const metaCells = [
+    `<span style="font-weight:700;color:#6F7B84;">Weighting</span><span>${esc(String(task.weighting))}%</span>`,
+    task.length    ? `<span style="font-weight:700;color:#6F7B84;">Length</span><span>${esc(task.length)}</span>` : null,
+    task.due       ? `<span style="font-weight:700;color:#6F7B84;">Due date</span><span>${esc(formatDateAU(task.due))}${flexNote}</span>` : null,
+    loStr          ? `<span style="font-weight:700;color:#6F7B84;">Learning Outcomes</span><span>${esc(loStr)}</span>` : null,
+    aitslStr       ? `<span style="font-weight:700;color:#6F7B84;">AITSL Standards</span><span>${esc(aitslStr)}</span>` : null,
+  ].filter(Boolean).join('');
+  sections.push(`<div class="lx-ap-meta">${metaCells}</div>`);
+
+  // 2. Action button row
+  const lnk = task.links ?? {};
+  const btnDefs = [
+    { key: 'rubric',    label: '📝 Marking rubric',      cls: 'primary', url: lnk.rubric,    always: true  },
+    { key: 'taskFiles', label: '⬇ Download task files',  cls: 'primary', url: lnk.taskFiles, always: true  },
+    { key: 'submit',    label: '✅ Submit',               cls: 'submit',  url: lnk.submit,    always: true  },
+    { key: 'forum',     label: '💬 Assessment Q&A forum', cls: '',        url: lnk.forum,     always: false },
+    { key: 'video',     label: '🎥 Unpacking video',      cls: '',        url: lnk.video,     always: false },
+  ];
+  const btnsHtml = btnDefs.map(b => {
+    if (b.url) {
+      return `<a class="lx-ap-btn ${b.cls}" href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.label)}</a>`;
+    }
+    if (b.always) {
+      return `<span class="lx-ap-btn disabled">${esc(b.label)}</span>`;
+    }
+    return ''; // optional — omit if no URL
+  }).join('');
+  sections.push(`<div class="lx-ap-actions">${btnsHtml}</div>`);
+
+  // 3. Rationale
+  if (task.rationale) {
+    sections.push(`<div class="lx-ap-callout"><h3>Rationale</h3><p style="margin:0;">${esc(task.rationale)}</p></div>`);
+  }
+
+  // 4. Aim
+  if (task.aim) {
+    sections.push(`<div class="lx-ap-callout blue"><h3>Aim</h3><p style="margin:0;">${esc(task.aim)}</p></div>`);
+  }
+
+  // 5. Task structure overview
+  const parts = task.parts ?? [];
+  if (parts.length) {
+    const rows = parts.map(p =>
+      `<li><strong>Part ${esc(p.id)}</strong> — ${esc(p.title)} (<strong>${p.marks} marks</strong>)${p.wordCount ? ` | ~${p.wordCount} words` : ''}</li>`
+    ).join('');
+    sections.push(`<div class="lx-ap-callout yellow"><strong>Task structure (${parts.length} part${parts.length !== 1 ? 's' : ''}):</strong><ul style="margin:8px 0 0 18px;">${rows}</ul></div>`);
+  }
+
+  // 6. Part-by-part collapsible sections
+  if (parts.length) {
+    const partsHtml = parts.map(p => {
+      const noteHtml = p.note
+        ? `<div style="background:#f4f6f8;border-left:4px solid #2c3e50;border-radius:8px;padding:10px 12px;margin:10px 0;"><strong>Important:</strong> ${esc(p.note)}</div>`
+        : '';
+      const reqHtml = (p.requirements ?? []).length
+        ? `<div style="background:#f4f6f8;border-left:4px solid #2c3e50;border-radius:8px;padding:10px 12px;margin:10px 0;"><strong>You must:</strong><ul style="margin:8px 0 0 18px;">${p.requirements.map(r => `<li>${esc(r)}</li>`).join('')}</ul></div>`
+        : '';
+      const critiqueHtml = (p.critique ?? []).length
+        ? `<div style="background:var(--lx-pill,#DAF0F7);border-left:4px solid var(--lx-primary,#1f6fb2);border-radius:8px;padding:10px 12px;margin:10px 0;"><strong>Your critique should refer to:</strong><ul style="margin:8px 0 0 18px;">${p.critique.map(c => `<li>${esc(c)}</li>`).join('')}</ul></div>`
+        : '';
+      const resHtml = (p.resources ?? []).length
+        ? `<div style="background:#fff8e6;border-left:4px solid #f1c40f;border-radius:8px;padding:10px 12px;margin:10px 0;"><strong>Helpful resources:</strong><ul style="margin:8px 0 0 18px;">${p.resources.map(r => `<li>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener" style="color:var(--lx-primary,#1f6fb2);">${esc(r.label)}</a>` : esc(r.label)}</li>`).join('')}</ul></div>`
+        : '';
+      const bespokeHtml = p.bespoke && bespokeCache[p.bespoke]
+        ? `<div class="lx-ap-bespoke">${bespokeCache[p.bespoke]}</div>`
+        : '';
+      const wordNote = p.wordCount ? ` <span style="font-weight:400;">| ~${p.wordCount} word equivalent</span>` : '';
+      return `<details class="lx-ap-details">
+        <summary>Part ${esc(p.id)} — ${esc(p.title)} (${p.marks} marks)${wordNote}</summary>
+        <div class="lx-ap-part-body">
+          ${p.description ? `<p style="margin-top:0;">${esc(p.description)}</p>` : ''}
+          ${bespokeHtml}${noteHtml}${reqHtml}${critiqueHtml}${resHtml}
+        </div>
+      </details>`;
+    }).join('');
+    sections.push(`<div class="lx-ap-sect-label">Part-by-Part Requirements (click to expand)</div><div class="lx-ap-parts">${partsHtml}</div>`);
+  }
+
+  // 7. How you will be assessed (criteria cards)
+  const criteria = task.criteria ?? [];
+  if (criteria.length) {
+    const cards = criteria.map(c => {
+      const bg     = c.background ?? '#f4f6f8';
+      const accent = c.accent     ?? 'var(--lx-primary,#1f6fb2)';
+      const focus  = c.focus ? `<div style="font-size:.85em;color:#6F7B84;margin-top:6px;font-style:italic;">${esc(c.focus)}</div>` : '';
+      return `<div class="lx-ap-crit" style="background:${bg};border-left:6px solid ${accent};">
+        <h4>${esc(c.label)}</h4>
+        <div style="font-size:.92em;">${esc(c.description)}</div>${focus}
+      </div>`;
+    }).join('');
+    sections.push(
+      `<div class="lx-ap-sect-label">How you will be assessed</div>` +
+      `<div class="lx-ap-criteria">${cards}</div>` +
+      `<p><strong>To make sure you cover all assessable aspects, please consult the marking rubric when responding to the task.</strong></p>`
+    );
+  }
+
+  // 8. Submission instructions
+  const subm = task.submissionInstructions ?? [];
+  if (subm.length) {
+    sections.push(
+      `<div class="lx-ap-sect-label">Submission Instructions</div>` +
+      `<div class="lx-ap-subm"><ul>${subm.map(s => `<li>${esc(s)}</li>`).join('')}</ul></div>`
+    );
+  }
+
+  // 9. HD callout
+  if (task.hdCallout) {
+    sections.push(`<div class="lx-ap-hd"><strong>High Distinction</strong><p style="margin:8px 0 0;">${esc(task.hdCallout)}</p></div>`);
+  }
+
+  // 10. Extensions / flexible portal
+  if (fp?.url) {
+    sections.push(`<div class="lx-ap-callout" style="background:#f4f6f8;border-left-color:#6F7B84;">
+      <h3>🔓 Flexible Submission Portal</h3>
+      ${fp.opensDate ? `<p style="margin:0 0 8px;"><strong>Opens ${esc(fp.opensDate)}</strong></p>` : ''}
+      <a class="lx-ap-btn primary" href="${esc(fp.url)}" target="_blank" rel="noopener">${esc(fp.label ?? 'Unlock Flexible Portal')}</a>
+    </div>`);
+  }
+
+  el.innerHTML = `<div class="lx-ap">${sections.join('\n')}</div>`;
+  initTabSwitchers(el);
 }
