@@ -223,6 +223,36 @@
           "loLinks": ["LO3", "LO5"]
         }
       ],
+      "rubric": [
+        {
+          "part": "A", "criterion": "Critique of digital resource", "marks": 20, "loLinks": ["LO2", "LO4"],
+          "bands": { "HD": { "range": "20–18", "descriptor": "" }, "D": { "range": "17–15", "descriptor": "" }, "C": { "range": "14–12", "descriptor": "" }, "P": { "range": "11–10", "descriptor": "" }, "N": { "range": "9–0", "descriptor": "" } }
+        },
+        {
+          "part": "B1", "criterion": "Risk assessment, equipment list and method", "marks": 10, "loLinks": ["LO2", "LO3"],
+          "bands": { "HD": { "range": "10–9", "descriptor": "" }, "D": { "range": "8", "descriptor": "" }, "C": { "range": "7–6", "descriptor": "" }, "P": { "range": "5", "descriptor": "" }, "N": { "range": "4–0", "descriptor": "" } }
+        },
+        {
+          "part": "B2", "criterion": "Safety integration in practical preparation and conduct", "marks": 10, "loLinks": ["LO3"],
+          "bands": { "HD": { "range": "10–9", "descriptor": "" }, "D": { "range": "8", "descriptor": "" }, "C": { "range": "7–6", "descriptor": "" }, "P": { "range": "5", "descriptor": "" }, "N": { "range": "4–0", "descriptor": "" } }
+        },
+        {
+          "part": "C1", "criterion": "Depth Study: aim, syllabus outcomes, and content", "marks": 15, "loLinks": ["LO1", "LO2"],
+          "bands": { "HD": { "range": "15–13", "descriptor": "" }, "D": { "range": "12–11", "descriptor": "" }, "C": { "range": "10–9", "descriptor": "" }, "P": { "range": "8–7", "descriptor": "" }, "N": { "range": "6–0", "descriptor": "" } }
+        },
+        {
+          "part": "C2", "criterion": "Depth Study: instructions for OEI development and student scaffolding", "marks": 20, "loLinks": ["LO2", "LO3"],
+          "bands": { "HD": { "range": "20–18", "descriptor": "" }, "D": { "range": "17–15", "descriptor": "" }, "C": { "range": "14–12", "descriptor": "" }, "P": { "range": "11–10", "descriptor": "" }, "N": { "range": "9–0", "descriptor": "" } }
+        },
+        {
+          "part": "C3", "criterion": "Depth Study: check-in points and student products", "marks": 15, "loLinks": ["LO2", "LO3"],
+          "bands": { "HD": { "range": "15–13", "descriptor": "" }, "D": { "range": "12–11", "descriptor": "" }, "C": { "range": "10–9", "descriptor": "" }, "P": { "range": "8–7", "descriptor": "" }, "N": { "range": "6–0", "descriptor": "" } }
+        },
+        {
+          "part": "D", "criterion": "Reflection with evidence of learning growth", "marks": 10, "loLinks": ["LO3", "LO5"],
+          "bands": { "HD": { "range": "10–9", "descriptor": "" }, "D": { "range": "8", "descriptor": "" }, "C": { "range": "7–6", "descriptor": "" }, "P": { "range": "5", "descriptor": "" }, "N": { "range": "4–0", "descriptor": "" } }
+        }
+      ],
       "hdCallout": null,
       "submissionInstructions": [
         "Submit one document that contains all parts.",
@@ -234,26 +264,93 @@
     },
     {
       "id": "AT2",
-      "title": "Assessment Development",
+      "title": "Curating & Critically Evaluating Senior Science Resources",
       "weighting": 50,
-      "length": null,
+      "length": "2,000 words +/- 10%",
       "due": "2026-05-03",
-      "flexiblePortal": null,
-      "learningOutcomes": [],
-      "aitslStandards": [],
-      "rationale": null,
-      "aim": null,
+      "flexiblePortal": {
+        "label": "Flexible portal to 10 May 2026",
+        "url": null,
+        "closesDate": "2026-05-10"
+      },
+      "learningOutcomes": ["LO1", "LO2", "LO4", "LO5", "LO6"],
+      "aitslStandards": ["2.1.1", "2.6.1", "3.4.1", "3.6.1", "5.1.1", "5.4.1", "7.4.1"],
+      "rationale": "There is a plethora of resources available to use in Year 11–12 science classes. Some resources are excellent, whilst others are not. It is a core teacher skill to be able to critically examine resources for use in the classroom to suit the learning needs of the cohort.",
+      "aim": "Compile eight (8) teaching resources for Year 11–12 in ONE science discipline. Document each resource in a structured summary table. Write a 250-word critical analysis for each resource. You are making professional decisions about whether and how these resources should be used in senior science classrooms.",
       "links": {
         "rubric": null,
-        "taskFiles": null,
-        "submit": null,
+        "taskFiles": "https://mylearn.une.edu.au/mod/folder/view.php?id=3381554",
+        "submit": "https://mylearn.une.edu.au/mod/assign/view.php?id=3381555",
         "forum": null,
-        "video": null
+        "video": "https://echo360.net.au/media/3d58f180-ecf9-491e-bdc7-7944b3149e6b/public"
       },
       "parts": [],
-      "criteria": [],
-      "hdCallout": null,
-      "submissionInstructions": []
+      "criteria": [
+        {
+          "label": "Professional Judgement & Critical Evaluation",
+          "weighting": 35,
+          "accent": "#25797F",
+          "background": "#DAF0F7",
+          "description": "Can you evaluate resources critically and decide whether you would use them — and why?",
+          "bullets": ["Analyse strengths and limitations", "Consider learning impact", "Where relevant, evaluate assessment purpose (formative/summative)", "Justify your professional decision (use / adapt / reject)"],
+          "focus": "Critical judgement + decision",
+          "loLinks": ["LO1", "LO5"]
+        },
+        {
+          "label": "Diversity & Intentional Curation",
+          "weighting": 15,
+          "accent": "#B67AD6",
+          "background": "#F3E8FB",
+          "description": "Have you curated a balanced professional collection — intentional, not just compliant?",
+          "bullets": ["Digital resource", "First-hand investigation", "Second-hand data investigation", "External expert", "Assessment item (formative or summative)"],
+          "focus": "Breadth + purposeful selection",
+          "loLinks": ["LO1", "LO4"]
+        },
+        {
+          "label": "Curriculum Literacy & Assessment Alignment",
+          "weighting": 30,
+          "accent": "#9FB9E6",
+          "background": "#EAF1FF",
+          "description": "Do you demonstrate understanding of syllabus structure and how learning is assessed?",
+          "bullets": ["Accurate outcome and content alignment", "Clear links to investigative skills", "Evidence of understanding cognitive demand", "Explicit connection to how learning would be assessed"],
+          "focus": "Syllabus accuracy + assessment thinking",
+          "loLinks": ["LO1", "LO2", "LO4"]
+        },
+        {
+          "label": "Scholarly Grounding & Pedagogical Insight",
+          "weighting": 20,
+          "accent": "#E3B089",
+          "background": "#FFF1E5",
+          "description": "Are your critiques informed by research, and linked to classroom application?",
+          "bullets": ["Reference learning theory", "Draw on peer-reviewed literature", "Link theory to practical teaching decisions"],
+          "focus": "Evidence-informed reasoning",
+          "loLinks": ["LO1", "LO5", "LO6"]
+        }
+      ],
+      "rubric": [
+        {
+          "part": null, "criterion": "Professional Judgement & Critical Evaluation", "marks": 35, "loLinks": ["LO1", "LO5"],
+          "bands": { "HD": { "range": "30–35", "descriptor": "" }, "D": { "range": "26–29", "descriptor": "" }, "C": { "range": "23–25", "descriptor": "" }, "P": { "range": "18–22", "descriptor": "" }, "N": { "range": "0–17", "descriptor": "" } }
+        },
+        {
+          "part": null, "criterion": "Diversity & Intentional Curation", "marks": 15, "loLinks": ["LO1", "LO4"],
+          "bands": { "HD": { "range": "13–15", "descriptor": "" }, "D": { "range": "11–12", "descriptor": "" }, "C": { "range": "9–10", "descriptor": "" }, "P": { "range": "7–8", "descriptor": "" }, "N": { "range": "0–6", "descriptor": "" } }
+        },
+        {
+          "part": null, "criterion": "Curriculum Literacy & Assessment Alignment", "marks": 30, "loLinks": ["LO1", "LO2", "LO4"],
+          "bands": { "HD": { "range": "26–30", "descriptor": "" }, "D": { "range": "23–25", "descriptor": "" }, "C": { "range": "20–22", "descriptor": "" }, "P": { "range": "15–19", "descriptor": "" }, "N": { "range": "0–14", "descriptor": "" } }
+        },
+        {
+          "part": null, "criterion": "Scholarly Grounding & Pedagogical Insight", "marks": 20, "loLinks": ["LO1", "LO5", "LO6"],
+          "bands": { "HD": { "range": "17–20", "descriptor": "" }, "D": { "range": "15–16", "descriptor": "" }, "C": { "range": "13–14", "descriptor": "" }, "P": { "range": "10–12", "descriptor": "" }, "N": { "range": "0–9", "descriptor": "" } }
+        }
+      ],
+      "hdCallout": "HD work reads like the thinking of a capable early-career science teacher who understands curriculum deeply, evaluates resources professionally, uses literature strategically (not as decoration), and makes sound, future-oriented decisions.",
+      "submissionInstructions": [
+        "Submit one document.",
+        "Include a cover page and academic integrity statement.",
+        "Use APA 7th referencing."
+      ]
     }
   ],
   "trimesterConfig": {

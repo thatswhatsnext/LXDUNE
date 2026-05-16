@@ -148,7 +148,16 @@ const ASSESSMENT_CSS = `
 .lx-tab-panel{border:1px solid #dfe6ea;border-radius:12px;background:#fff;padding:12px 14px}
 .lx-tab-panel ul{margin:8px 0 0 18px}
 .lx-tab-panel li{margin:6px 0}
-.lx-pi-tag{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;border:1px solid #dfe6ea;background:#f4f6f8;font-weight:900;font-size:.82em;vertical-align:middle}`;
+.lx-pi-tag{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;border:1px solid #dfe6ea;background:#f4f6f8;font-weight:900;font-size:.82em;vertical-align:middle}
+.lx-ap-glance{background:#f4f6f8;border:1px solid #dfe6ea;border-radius:12px;padding:16px;margin-bottom:18px}
+.lx-ap-meta-pill{display:inline-block;background:#fff;border:1px solid #dfe6ea;padding:5px 12px;border-radius:999px;font-size:.85em;font-weight:600}
+.lx-ap-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.lx-ap-lo-row{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 12px}
+.lx-ap-lo-pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.8em;font-weight:700;color:#fff}
+.lx-rubric-table{width:100%;border-collapse:collapse;margin-top:10px;table-layout:fixed}
+.lx-rubric-table th,.lx-rubric-table td{border:1px solid #dfe6ea;padding:8px 10px;vertical-align:top;font-size:.88em}
+.lx-rubric-table thead th{background:#f4f6f8;font-weight:700;text-align:center}
+.lx-rubric-table tbody td{background:#fff}`;
 
 // ── Date calculation (mirrors whatson.js logic) ───────────────────────────────
 
@@ -682,19 +691,25 @@ export async function renderAssessmentPage({ forUnit, forTask } = {}) {
   const task = tasks.find(t => t.id === forTask);
   if (!task) { el.innerHTML = ''; return; }
 
-  // Prefetch all bespoke components needed by this task's parts
+  // Prefetch bespoke components; return a placeholder on failure
   const bespokeCache = {};
   for (const part of task.parts ?? []) {
     if (part.bespoke && !bespokeCache[part.bespoke]) {
       try {
         const res = await fetch(`${BASE}moodle-blocks/bespoke/${part.bespoke}.html`);
-        bespokeCache[part.bespoke] = res.ok ? await res.text() : null;
+        bespokeCache[part.bespoke] = res.ok
+          ? await res.text()
+          : `<p style="color:#6F7B84;font-style:italic;">Custom component: ${esc(part.bespoke)}</p>`;
       } catch {
-        bespokeCache[part.bespoke] = null;
+        bespokeCache[part.bespoke] = `<p style="color:#6F7B84;font-style:italic;">Custom component: ${esc(part.bespoke)}</p>`;
       }
     }
   }
 
+  const loMap   = Object.fromEntries((unitCfg.learningOutcomes ?? []).map(lo => [lo.id, lo]));
+  const lnk     = task.links ?? {};
+  const fp      = task.flexiblePortal ?? null;
+  const parts   = task.parts ?? [];
   const sections = [];
 
   // Header pill + title
@@ -703,67 +718,73 @@ export async function renderAssessmentPage({ forUnit, forTask } = {}) {
     `<h2 style="margin:0 0 16px;">${esc(task.title)}</h2>`
   );
 
-  // 1. Metadata block
-  const fp = task.flexiblePortal ?? null;
-  const flexNote = fp ? ` <em style="color:#6F7B84;">(${esc(fp.label)})</em>` : '';
-  const loStr    = (task.learningOutcomes ?? []).join(', ');
-  const aitslStr = (task.aitslStandards  ?? []).join(', ');
-  const metaCells = [
-    `<span style="font-weight:700;color:#6F7B84;">Weighting</span><span>${esc(String(task.weighting))}%</span>`,
-    task.length    ? `<span style="font-weight:700;color:#6F7B84;">Length</span><span>${esc(task.length)}</span>` : null,
-    task.due       ? `<span style="font-weight:700;color:#6F7B84;">Due date</span><span>${esc(formatDateAU(task.due))}${flexNote}</span>` : null,
-    loStr          ? `<span style="font-weight:700;color:#6F7B84;">Learning Outcomes</span><span>${esc(loStr)}</span>` : null,
-    aitslStr       ? `<span style="font-weight:700;color:#6F7B84;">AITSL Standards</span><span>${esc(aitslStr)}</span>` : null,
-  ].filter(Boolean).join('');
-  sections.push(`<div class="lx-ap-meta">${metaCells}</div>`);
+  // ── Section 1: At a glance ─────────────────────────────────────────────────
+  const flexLabel = fp ? (fp.label ?? `Flexible portal: ${fp.closesDate}`) : null;
+  const metaPills = [
+    task.due       ? `Due: ${esc(formatDateAU(task.due))}` : null,
+    task.weighting ? `Weighting: ${task.weighting}%` : null,
+    task.length    ? `Length: ${esc(task.length)}` : null,
+    flexLabel      ? esc(flexLabel) : null,
+    (task.aitslStandards ?? []).length ? `AITSL: ${esc((task.aitslStandards).join(', '))}` : null,
+  ].filter(Boolean).map(t => `<span class="lx-ap-meta-pill">${t}</span>`).join('');
 
-  // 2. Action button row
-  const lnk = task.links ?? {};
-  const btnDefs = [
-    { key: 'rubric',    label: '📝 Marking rubric',      cls: 'primary', url: lnk.rubric,    always: true  },
-    { key: 'taskFiles', label: '⬇ Download task files',  cls: 'primary', url: lnk.taskFiles, always: true  },
-    { key: 'submit',    label: '✅ Submit',               cls: 'submit',  url: lnk.submit,    always: true  },
-    { key: 'forum',     label: '💬 Assessment Q&A forum', cls: '',        url: lnk.forum,     always: false },
-    { key: 'video',     label: '🎥 Unpacking video',      cls: '',        url: lnk.video,     always: false },
-  ];
-  const btnsHtml = btnDefs.map(b => {
-    if (b.url) {
-      return `<a class="lx-ap-btn ${b.cls}" href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.label)}</a>`;
-    }
-    if (b.always) {
-      return `<span class="lx-ap-btn disabled">${esc(b.label)}</span>`;
-    }
-    return ''; // optional — omit if no URL
+  const loPillsHtml = (task.learningOutcomes ?? []).map(id => {
+    const lo    = loMap[id];
+    const color = lo?.color ?? 'var(--lx-primary,#1f6fb2)';
+    return `<span class="lx-ap-lo-pill" style="background:${color};">${esc(id)}</span>`;
   }).join('');
-  sections.push(`<div class="lx-ap-actions">${btnsHtml}</div>`);
 
-  // 3. Rationale
-  if (task.rationale) {
-    sections.push(`<div class="lx-ap-callout"><h3>Rationale</h3><p style="margin:0;">${esc(task.rationale)}</p></div>`);
-  }
+  const btnDefs = [
+    { label: '📝 Marking rubric',  cls: 'primary', url: lnk.rubric    },
+    { label: '⬇ Task files',       cls: 'primary', url: lnk.taskFiles },
+    { label: '✅ Submit',           cls: 'submit',  url: lnk.submit    },
+    { label: '💬 Q&A forum',       cls: '',        url: lnk.forum     },
+    { label: '🎥 Unpacking video',  cls: '',        url: lnk.video     },
+  ];
+  const btnsHtml = btnDefs.map(b =>
+    b.url
+      ? `<a class="lx-ap-btn ${b.cls}" href="${esc(b.url)}" target="_blank" rel="noopener">${b.label}</a>`
+      : `<span class="lx-ap-btn disabled">${b.label}</span>`
+  ).join('');
 
-  // 4. Aim
-  if (task.aim) {
-    sections.push(`<div class="lx-ap-callout blue"><h3>Aim</h3><p style="margin:0;">${esc(task.aim)}</p></div>`);
-  }
+  sections.push(
+    `<div class="lx-ap-glance">` +
+    (metaPills    ? `<div class="lx-ap-pills">${metaPills}</div>` : '') +
+    (loPillsHtml  ? `<div class="lx-ap-lo-row">${loPillsHtml}</div>` : '') +
+    `<div class="lx-ap-actions" style="margin:12px 0 0;">${btnsHtml}</div>` +
+    `</div>`
+  );
 
-  // 5. Task structure overview
-  const parts = task.parts ?? [];
-  if (parts.length) {
-    const rows = parts.map(p =>
-      `<li><strong>Part ${esc(p.id)}</strong> — ${esc(p.title)} (<strong>${p.marks} marks</strong>)${p.wordCount ? ` | ~${p.wordCount} words` : ''}</li>`
-    ).join('');
-    sections.push(`<div class="lx-ap-callout yellow"><strong>Task structure (${parts.length} part${parts.length !== 1 ? 's' : ''}):</strong><ul style="margin:8px 0 0 18px;">${rows}</ul></div>`);
-  }
+  // ── Section 2: What is this task? ─────────────────────────────────────────
+  const rationaleBlock = task.rationale
+    ? `<details class="lx-ap-details" style="margin:0 0 10px;"><summary>Why this task matters</summary><div class="lx-ap-part-body"><p style="margin:0;">${esc(task.rationale)}</p></div></details>`
+    : '';
+  const aimBlock = task.aim
+    ? `<div class="lx-ap-callout blue"><h3>The task</h3><p style="margin:0;">${esc(task.aim)}</p></div>`
+    : '';
+  const structureBlock = parts.length
+    ? `<div class="lx-ap-callout yellow"><strong>Task structure (${parts.length} part${parts.length !== 1 ? 's' : ''}):</strong><ul style="margin:8px 0 0 18px;">${
+        parts.map(p => {
+          const m = p.marks != null ? ` (${p.marks} marks)` : '';
+          const w = p.wordCount ? ` — ~${p.wordCount} words` : '';
+          return `<li><strong>Part ${esc(p.id)}</strong> — ${esc(p.title)}${m}${w}</li>`;
+        }).join('')
+      }</ul></div>`
+    : '';
 
-  // 6. Part-by-part collapsible sections
+  sections.push(
+    `<div class="lx-ap-sect-label">What is this task?</div>` +
+    rationaleBlock + aimBlock + structureBlock
+  );
+
+  // ── Section 3: What do I need to do? ──────────────────────────────────────
   if (parts.length) {
     const partsHtml = parts.map(p => {
       const noteHtml = p.note
         ? `<div style="background:#f4f6f8;border-left:4px solid #2c3e50;border-radius:8px;padding:10px 12px;margin:10px 0;"><strong>Important:</strong> ${esc(p.note)}</div>`
         : '';
       const reqHtml = (p.requirements ?? []).length
-        ? `<div style="background:#f4f6f8;border-left:4px solid #2c3e50;border-radius:8px;padding:10px 12px;margin:10px 0;"><strong>You must:</strong><ul style="margin:8px 0 0 18px;">${p.requirements.map(r => `<li>${esc(r)}</li>`).join('')}</ul></div>`
+        ? `<div style="background:#f4f6f8;border-left:4px solid #2c3e50;border-radius:8px;padding:10px 12px;margin:10px 0;"><strong>You must include:</strong><ul style="margin:8px 0 0 18px;">${p.requirements.map(r => `<li>${esc(r)}</li>`).join('')}</ul></div>`
         : '';
       const critiqueHtml = (p.critique ?? []).length
         ? `<div style="background:var(--lx-pill,#DAF0F7);border-left:4px solid var(--lx-primary,#1f6fb2);border-radius:8px;padding:10px 12px;margin:10px 0;"><strong>Your critique should refer to:</strong><ul style="margin:8px 0 0 18px;">${p.critique.map(c => `<li>${esc(c)}</li>`).join('')}</ul></div>`
@@ -774,58 +795,84 @@ export async function renderAssessmentPage({ forUnit, forTask } = {}) {
       const bespokeHtml = p.bespoke && bespokeCache[p.bespoke]
         ? `<div class="lx-ap-bespoke">${bespokeCache[p.bespoke]}</div>`
         : '';
-      const wordNote = p.wordCount ? ` <span style="font-weight:400;">| ~${p.wordCount} word equivalent</span>` : '';
+      const marksNote = p.marks != null ? ` (${p.marks} marks)` : '';
+      const wordNote  = p.wordCount ? ` <span style="font-weight:400;">| ~${p.wordCount} words</span>` : '';
       return `<details class="lx-ap-details">
-        <summary>Part ${esc(p.id)} — ${esc(p.title)} (${p.marks} marks)${wordNote}</summary>
+        <summary>Part ${esc(p.id)} — ${esc(p.title)}${marksNote}${wordNote}</summary>
         <div class="lx-ap-part-body">
           ${p.description ? `<p style="margin-top:0;">${esc(p.description)}</p>` : ''}
           ${bespokeHtml}${noteHtml}${reqHtml}${critiqueHtml}${resHtml}
         </div>
       </details>`;
     }).join('');
-    sections.push(`<div class="lx-ap-sect-label">Part-by-Part Requirements (click to expand)</div><div class="lx-ap-parts">${partsHtml}</div>`);
+    sections.push(`<div class="lx-ap-sect-label">What do I need to do?</div><div class="lx-ap-parts">${partsHtml}</div>`);
   }
 
-  // 7. How you will be assessed (criteria cards)
-  const criteria = task.criteria ?? [];
-  if (criteria.length) {
-    const cards = criteria.map(c => {
-      const bg     = c.background ?? '#f4f6f8';
-      const accent = c.accent     ?? 'var(--lx-primary,#1f6fb2)';
-      const focus  = c.focus ? `<div style="font-size:.85em;color:#6F7B84;margin-top:6px;font-style:italic;">${esc(c.focus)}</div>` : '';
-      return `<div class="lx-ap-crit" style="background:${bg};border-left:6px solid ${accent};">
-        <h4>${esc(c.label)}</h4>
-        <div style="font-size:.92em;">${esc(c.description)}</div>${focus}
-      </div>`;
+  // ── Section 4: How will I be marked? (rubric) ─────────────────────────────
+  const rubric = task.rubric ?? [];
+  if (rubric.length) {
+    const BANDS = ['HD', 'D', 'C', 'P', 'N'];
+    const rubricRows = rubric.map(row => {
+      const loTagsHtml = (row.loLinks ?? []).map(id => {
+        const lo    = loMap[id];
+        const color = lo?.color ?? '#6F7B84';
+        return `<span class="lx-pi-tag" style="background:${color};color:#fff;border-color:${color};">${esc(id)}</span>`;
+      }).join('');
+      const partLabel  = row.part ? `Part ${esc(row.part)} — ` : '';
+      const headerCols = BANDS.map(k => {
+        const range = row.bands?.[k]?.range ?? '';
+        return `<th><strong>${k}</strong><br><small style="font-weight:400;">${esc(range)}</small></th>`;
+      }).join('');
+      const descCols = BANDS.map(k => {
+        const desc = row.bands?.[k]?.descriptor ?? '';
+        return `<td>${desc ? esc(desc) : '<span style="color:#bbb;">—</span>'}</td>`;
+      }).join('');
+      return `<details class="lx-ap-details">
+        <summary><strong>${partLabel}${esc(row.criterion)}</strong> <span style="font-weight:400;color:#6F7B84;">(${row.marks} marks)</span>${loTagsHtml}</summary>
+        <div class="lx-ap-part-body" style="padding:10px 14px;overflow-x:auto;">
+          <table class="lx-rubric-table"><thead><tr>${headerCols}</tr></thead><tbody><tr>${descCols}</tr></tbody></table>
+        </div>
+      </details>`;
     }).join('');
     sections.push(
-      `<div class="lx-ap-sect-label">How you will be assessed</div>` +
-      `<div class="lx-ap-criteria">${cards}</div>` +
-      `<p><strong>To make sure you cover all assessable aspects, please consult the marking rubric when responding to the task.</strong></p>`
+      `<div class="lx-ap-sect-label">How will I be marked?</div>` +
+      `<div class="lx-ap-parts">${rubricRows}</div>` +
+      `<p style="font-size:.9em;margin:0 0 12px;"><strong>Download the marking rubric above for full band descriptors.</strong></p>`
     );
   }
 
-  // 8. Submission instructions
+  // ── Section 5: Submission ──────────────────────────────────────────────────
   const subm = task.submissionInstructions ?? [];
-  if (subm.length) {
+  if (subm.length || lnk.submit) {
+    const submList = subm.length
+      ? `<div class="lx-ap-subm"><ul>${subm.map(s => `<li>${esc(s)}</li>`).join('')}</ul></div>`
+      : '';
+    const submitBtn = lnk.submit
+      ? `<a class="lx-ap-btn submit" href="${esc(lnk.submit)}" target="_blank" rel="noopener" style="font-size:1.05em;padding:12px 18px;">✅ Submit your assessment</a>`
+      : `<span class="lx-ap-btn disabled" style="font-size:1.05em;padding:12px 18px;">✅ Submit (link coming soon)</span>`;
     sections.push(
-      `<div class="lx-ap-sect-label">Submission Instructions</div>` +
-      `<div class="lx-ap-subm"><ul>${subm.map(s => `<li>${esc(s)}</li>`).join('')}</ul></div>`
+      `<div class="lx-ap-sect-label">Submission</div>` +
+      submList +
+      `<div style="margin-top:10px;">${submitBtn}</div>`
     );
   }
 
-  // 9. HD callout
+  // ── Section 6: Support ─────────────────────────────────────────────────────
+  const supportParts = [];
   if (task.hdCallout) {
-    sections.push(`<div class="lx-ap-hd"><strong>High Distinction</strong><p style="margin:8px 0 0;">${esc(task.hdCallout)}</p></div>`);
+    supportParts.push(`<div class="lx-ap-hd"><strong>Aiming for HD?</strong><p style="margin:8px 0 0;">${esc(task.hdCallout)}</p></div>`);
   }
-
-  // 10. Extensions / flexible portal
   if (fp?.url) {
-    sections.push(`<div class="lx-ap-callout" style="background:#f4f6f8;border-left-color:#6F7B84;">
-      <h3>🔓 Flexible Submission Portal</h3>
-      ${fp.opensDate ? `<p style="margin:0 0 8px;"><strong>Opens ${esc(fp.opensDate)}</strong></p>` : ''}
-      <a class="lx-ap-btn primary" href="${esc(fp.url)}" target="_blank" rel="noopener">${esc(fp.label ?? 'Unlock Flexible Portal')}</a>
-    </div>`);
+    const opensNote = fp.opensDate ? ` — opens ${esc(formatDateAU(fp.opensDate))}` : '';
+    supportParts.push(
+      `<div class="lx-ap-callout" style="background:#f4f6f8;border-left-color:#6F7B84;">` +
+      `<h3>🔓 Flexible Submission Portal${opensNote}</h3>` +
+      `<a class="lx-ap-btn primary" href="${esc(fp.url)}" target="_blank" rel="noopener">${esc(fp.label ?? 'Open flexible portal')}</a>` +
+      `</div>`
+    );
+  }
+  if (supportParts.length) {
+    sections.push(`<div class="lx-ap-sect-label">Support</div>${supportParts.join('\n')}`);
   }
 
   el.innerHTML = `<div class="lx-ap">${sections.join('\n')}</div>`;
