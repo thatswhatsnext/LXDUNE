@@ -109,6 +109,25 @@ const RDIR_CSS = `
 .lx-rdir-link{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:var(--lx-primary,#1f6fb2);padding:6px 14px;border-radius:999px;font-weight:700;font-size:.88em;text-decoration:none;line-height:1.3}
 .lx-rdir-link:hover{text-decoration:underline}`;
 
+const HUB_CSS = `
+.lx-hub{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33;line-height:1.55}
+.lx-hub-pill{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:#1F2A33;padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px}
+.lx-hub h2{margin:0 0 16px;color:#1F2A33}
+.lx-hub-week{border:1px solid #dfe6ea;border-radius:10px;margin-bottom:10px;overflow:hidden;background:#fff}
+.lx-hub-week-summary{cursor:pointer;list-style:none;padding:12px 14px;font-weight:700;display:flex;align-items:center;gap:10px;background:#f4f6f8;border-radius:10px}
+.lx-hub-week[open]>.lx-hub-week-summary{border-bottom:1px solid #dfe6ea;border-radius:10px 10px 0 0}
+.lx-hub-week-summary::-webkit-details-marker{display:none}
+.lx-hub-week-summary::marker{display:none}
+.lx-hub-chip{display:inline-block;background:var(--lx-primary,#1f6fb2);color:#fff;padding:3px 10px;border-radius:999px;font-size:.78em;font-weight:800;white-space:nowrap;flex-shrink:0}
+.lx-hub-week-num{font-size:.8em;font-weight:800;color:#6F7B84;white-space:nowrap;flex-shrink:0}
+.lx-hub-week-title{font-weight:700;color:#1F2A33;flex:1}
+.lx-hub-body{padding:14px 16px}
+.lx-hub-focus{margin-bottom:10px;padding:10px 12px;border-radius:8px;border-left:4px solid var(--lx-accent,#25797F);background:#f4f6f8;font-size:.93em}
+.lx-hub-announce{margin-bottom:10px;padding:10px 12px;border-radius:8px;border-left:4px solid var(--lx-primary,#1f6fb2);background:#f4f6f8;font-size:.93em}
+.lx-hub-tasks{margin:8px 0 0 0;padding-left:18px;font-size:.93em}
+.lx-hub-tasks li{margin:5px 0}
+.lx-hub-coming{font-size:.88em;color:#6F7B84;font-style:italic}`;
+
 const ASSESSMENT_CSS = `
 .lx-ap{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33;line-height:1.55}
 .lx-ap-meta{background:#f4f6f8;border:1px solid #dfe6ea;border-radius:12px;padding:14px 16px;margin-bottom:18px;display:grid;gap:6px 24px;grid-template-columns:auto 1fr;font-size:.93em;align-items:baseline}
@@ -877,4 +896,76 @@ export async function renderAssessmentPage({ forUnit, forTask } = {}) {
 
   el.innerHTML = `<div class="lx-ap">${sections.join('\n')}</div>`;
   initTabSwitchers(el);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. renderCourseHub
+// Container: <div data-lx-block="course-hub"></div>
+// Renders all weeks as CSS-only collapsible <details>/<summary> rows.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export async function renderCourseHub({ forUnit, forTri, forYear } = {}) {
+  const el = document.querySelector('div[data-lx-block="course-hub"]');
+  if (!el) return;
+
+  let unitCfg;
+  try {
+    unitCfg = await fetchJson(`${BASE}config/units/${forUnit}.json`);
+  } catch (e) {
+    setError(el, `Could not load content: ${e.message}`);
+    return;
+  }
+
+  applyTheme(unitCfg);
+  injectStyles('lx-hub', HUB_CSS);
+
+  const weeks = unitCfg.weeks ?? {};
+  const weekNums = Object.keys(weeks)
+    .map(Number)
+    .filter(n => n >= 1 && !NO_TEACHING.has(n))
+    .sort((a, b) => a - b);
+
+  const rows = weekNums.map(n => {
+    const week = weeks[String(n)];
+    const itemLabel = week.item ? esc(week.item) : `Week ${n}`;
+    const title     = week.title ? esc(week.title) : '';
+
+    // Body parts
+    const bodyParts = [];
+
+    const ab = week.announcementBody ?? null;
+    const intro = typeof ab === 'object' && ab !== null ? (ab.intro ?? null) : (typeof ab === 'string' ? ab : null);
+    if (intro) {
+      bodyParts.push(`<div class="lx-hub-announce">${esc(intro)}</div>`);
+    }
+
+    if (week.liveSessionFocus) {
+      bodyParts.push(`<div class="lx-hub-focus">${esc(week.liveSessionFocus)}</div>`);
+    }
+
+    const tasks = Array.isArray(week.liveSessionTasks) ? week.liveSessionTasks : [];
+    if (tasks.length) {
+      const items = tasks.map(t => `<li>${esc(t)}</li>`).join('');
+      bodyParts.push(`<ul class="lx-hub-tasks">${items}</ul>`);
+    }
+
+    const body = bodyParts.length
+      ? bodyParts.join('\n')
+      : `<p class="lx-hub-coming">Content coming soon.</p>`;
+
+    return `<details class="lx-hub-week">
+      <summary class="lx-hub-week-summary">
+        <span class="lx-hub-chip">${itemLabel}</span>
+        <span class="lx-hub-week-num">Week ${n}</span>
+        ${title ? `<span class="lx-hub-week-title">${title}</span>` : ''}
+      </summary>
+      <div class="lx-hub-body">${body}</div>
+    </details>`;
+  }).join('\n');
+
+  el.innerHTML = `<div class="lx-hub">
+    <div class="lx-hub-pill">${esc(unitCfg.code)} • Course Hub</div>
+    <h2>Course Hub — All Weeks</h2>
+    ${rows || '<p style="color:#6F7B84;">No weekly content configured yet.</p>'}
+  </div>`;
 }

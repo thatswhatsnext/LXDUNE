@@ -88,6 +88,7 @@
         <option value="resource-directory">Resource directory</option>
         <option value="outcomes">Learning outcomes table</option>
         <option value="assessment-page">Assessment page</option>
+        <option value="course-hub">Course hub</option>
       </select>
     </div>
     <div class="form-row" id="task-row" style="display:none;">
@@ -194,6 +195,21 @@
       `  });\n` +
       `<\/script>\n` +
       `<div id="${containerId}"></div>`
+    );
+  }
+
+  function shellCourseHub(unit, tri, year) {
+    return (
+      `<script type="module">\n` +
+      `  import { renderCourseHub }\n` +
+      `  from "${PAGES_BASE}/moodle-blocks/blocks.js";\n` +
+      `  renderCourseHub({\n` +
+      `    forUnit: "${unit}",\n` +
+      `    forTri: "${tri}",\n` +
+      `    forYear: "${year}",\n` +
+      `  });\n` +
+      `<\/script>\n` +
+      `<div data-lx-block="course-hub"></div>`
     );
   }
 
@@ -363,6 +379,14 @@
         code: shellBlocks('renderLearningOutcomesTable', 'lxdune-outcomes', unit, tri, year),
         note: `Static block — paste once. Reads from <code>learningOutcomes</code> in the unit JSON.`,
         rows: 9,
+      },
+      {
+        key: 'course-hub',
+        title: 'Course hub',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellCourseHub(unit, tri, year),
+        note: `Static block — paste once. Lists all weeks as CSS-only collapsible rows. Uses <code>data-lx-block="course-hub"</code> container.`,
+        rows: 10,
       },
     ];
 
