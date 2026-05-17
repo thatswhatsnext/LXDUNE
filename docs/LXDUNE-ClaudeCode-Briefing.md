@@ -1,6 +1,6 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-05-17 (briefing checkpoint — production stable)  
+**Last updated:** 2026-05-18 (briefing checkpoint — rubric descriptors complete, shell files generated)  
 **Repo:** `https://github.com/thatswhatsnext/LXDUNE`  
 **GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`  
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
@@ -41,6 +41,8 @@ templates/
 docs/
   STAFF-README.md             ← plain-language guide for non-technical coordinators
   LXDUNE-ClaudeCode-Briefing.md ← this file
+  EDSE357-T1-2026-shells.html ← git-ignored; open in browser to copy shells
+  EDSE358-T1-2026-shells.html ← git-ignored; open in browser to copy shells
 
 .claude/
   commands/
@@ -83,7 +85,13 @@ Pasted once into Moodle, never edited again. The script fetches config on every 
 
 ## Current branch status
 
-`dev` is **1 commit ahead of `main`** — the post-deployment briefing commit (`0b60de8`) is on dev only. No code changes; `main` is current for all production purposes.
+`dev` is **3 commits ahead of `main`** with real content changes (not briefing-only). These commits should be merged to main after sandpit verification.
+
+| Commit | Message |
+|---|---|
+| `9537d93` | content: populate EDSE358 AT1 and AT2 rubric descriptors |
+| `b168bd0` | fix: populate Chemistry marking and EES task URLs in EDSE358 assessmentFiles |
+| `8592d5e` | content: populate EDSE358 week 8 Module 4D |
 
 ### `main` (GitHub Pages source — production ✅)
 All phases complete and live. Verified 2026-05-17:
@@ -91,8 +99,8 @@ All phases complete and live. Verified 2026-05-17:
 - `https://thatswhatsnext.github.io/LXDUNE/autovideos/autovideos.js` → 200
 - `https://thatswhatsnext.github.io/LXDUNE/moodle-blocks/blocks.js` → 200
 
-### `dev` (1 commit ahead — briefing only)
-No divergence in code. The 1-commit delta is the briefing update; it will be absorbed into the next dev→main merge. All future work follows `feature/* → dev → sandpit → main`.
+### `dev` (3 commits ahead — content changes)
+Config-only changes (no JS). Safe to merge to main after confirming JSON renders correctly in test harness.
 
 ---
 
@@ -138,7 +146,7 @@ No divergence in code. The 1-commit delta is the briefing update; it will be abs
 - `applyTheme` writes/replaces its style element on every render — safe for unit switching in the test harness
 - After adding new exports to `blocks.js`, hard-refresh (Cmd+Shift+R) to clear the browser module cache
 
-### Phase 3B — Assessment Content System ✅ COMPLETE (EDSE357); stubs added for EDSE358 and EDSE362
+### Phase 3B — Assessment Content System ✅ COMPLETE (EDSE357 and EDSE358); stubs added for EDSE362
 
 `renderAssessmentPage({ forUnit, forTask })` — 8th render function. Assembles a complete assessment page in 6 sections:
 
@@ -194,11 +202,11 @@ No divergence in code. The 1-commit delta is the briefing update; it will be abs
 
 **EDSE357 assessmentTasks — current state:**
 - AT1: fully populated — rationale, aim, 4 parts (A/B/C/D), 7 criteria, 7-row rubric (A, B1, B2, C1, C2, C3, D) with all 35 descriptors, submission instructions; links: rubric ✅, taskFiles ✅, submit ✅, forum ✅, video null
-- AT2: fully populated — rationale, aim, parts:[] (holistic), 4 criteria with bullets/colors, 4-row rubric with all 20 descriptors, HD callout, submission instructions; links: rubric null, taskFiles ✅, submit ✅, forum null, video ✅
+- AT2: fully populated — rationale, aim, parts:[] (holistic), 4 criteria with bullets/colors, 4-row rubric with all 20 band descriptors, HD callout, submission instructions; links: rubric null, taskFiles ✅, submit ✅, forum null, video ✅
 
-**EDSE358 assessmentTasks — current state (stubs):**
-- AT1 "Teaching, Learning and Assessment Design" (60%): title/due/duePartA/LOs/AITSL ✅; rationale null, aim null; parts A/B/C/D have marks but null descriptions; criteria empty; rubric 4 rows — structure correct, all descriptors "To be confirmed"; links all null; submission instructions empty
-- AT2 "Resource Curation and Critical Analysis" (40%): title/due/LOs/AITSL ✅; rationale null, aim null; parts [] (holistic); criteria empty; rubric 3 rows — structure correct, all descriptors "To be confirmed"; links all null; submission instructions empty
+**EDSE358 assessmentTasks — current state:**
+- AT1 "Teaching, Learning and Assessment Design" (60%): title/due/duePartA/LOs/AITSL ✅; **8-row rubric fully populated** (A, B1, B2, B3, B4, C1, C2, D — 100 marks, 40 band descriptors) ✅; rationale null, aim null; parts A/B/C/D have marks but null descriptions; criteria empty; links all null; submission instructions empty
+- AT2 "Resource Curation and Critical Analysis" (40%): title/due/LOs/AITSL ✅; **6-row rubric fully populated** (A1, A2, A3, B1, B2, C — 100 marks, 30 band descriptors) ✅; rationale null, aim null; parts [] (holistic); criteria empty; links all null; submission instructions empty
 
 **EDSE362 assessmentTasks — current state (empty stubs):**
 - AT1 and AT2: schema present but title null, due null, rationale null, aim null, all links null, rubric empty — not live until T2 2027
@@ -242,15 +250,6 @@ Both live scripts refactored to read from `config/units/*.json` instead of embed
 - `videoInterval: 1` added to EDSE357 and EDSE358 (weekly rotation)
 - `videoInterval: 2` added to EDSE362 (fortnightly, default)
 
-**Test results (29/29 passed):**
-- T1: EDSE357 week 5 — topic, live session, census note, no undefined ✅
-- T2: EDSE358 week 7 — module, live session, no undefined ✅
-- T3: EDSE362 week 3 — renders without errors, no assessment reminders, no null artefacts ✅
-- T4: EDSE357 week 0 — Zero Week heading, week0Message correct, no undefined paragraph ✅
-- T5: EDSE358 week 9 — no teaching message, no live session, Professional Experience item ✅
-- T6: EDSE358 AT1 Part A on 2026-03-22 — "due today" reminder ✅
-- T7: Fetch failure — explicit error heading, no silent fallback ✅
-
 ---
 
 ## Sandpit test — 2026-05-17 ✅ PASSED
@@ -259,6 +258,19 @@ Both live scripts refactored to read from `config/units/*.json` instead of embed
 - GitHub Pages switched to serve from `dev` branch (was `main`)
 - EDSE358 T1 2026 week 7 used as reference dataset (most complete week)
 - Verified: CSP compatibility, `import.meta.url` resolution, Coming soon chips for null links, purple/cyan theme rendering
+
+---
+
+## Shell snippet files
+
+Pre-generated copyable Moodle shell snippets. Open in a browser — each shell has a Copy button. Git-ignored (pattern `/docs/*-shells.html`); local use only.
+
+| File | Shells | Generated |
+|---|---|---|
+| `docs/EDSE358-T1-2026-shells.html` | 38 | 2026-05-18 |
+| `docs/EDSE357-T1-2026-shells.html` | 37 | 2026-05-18 |
+
+EDSE358 includes a Resource directory shell for week 7 (Module 4C). EDSE357 does not (no resource directory configured).
 
 ---
 
@@ -284,8 +296,7 @@ Both live scripts refactored to read from `config/units/*.json` instead of embed
 - **Trimesters configured:** T1, T2
 - **Zoom (T1-2026):** configured ✅
 - **Theme:** purple/cyan — `primary: #7C5DB6`, `accent: #4FA9B5`, `pill: #EDE8FB`, `pillBorder: #c9bef5`
-- **Teaching weeks 1–7:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅
-- **Week 8 (Module 4D):** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — **null, not yet written** ⚠️
+- **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅
 - **Weeks 9–14 and week 0:** minimal (non-teaching); videos set to `DGIXT7ce3vQ`
 - **Links by week:**
 
@@ -298,12 +309,12 @@ Both live scripts refactored to read from `config/units/*.json` instead of embed
 | 5 (Module 4A) | lecture, zoom, forum, materials, liveHub | slides, recording |
 | 6 (Module 4B) | zoom, forum, materials + 2 additionalLectures ✅ | lecture, slides, liveHub, recording |
 | 7 (Module 4C) | zoom, forum, materials + 2 additionalLectures ✅ | lecture, slides, liveHub, recording |
-| 8 (Module 4D) | — | all |
+| 8 (Module 4D) | lecture, zoom, forum, materials ✅ | slides, recording, liveHub |
 
 - **assessmentFiles (T1-2026):**
   - AT1: all URLs `null`
-  - AT2: rubric ✅, biology ✅, physics ✅, chemistry task ✅ / **marking null** ⚠️, EES **task null** ⚠️ / marking ✅
-- **assessmentTasks:** stubs — structure, marks, LOs, AITSL correct; rationale/aim/part descriptions/rubric descriptors/all links null; pending full population
+  - AT2: rubric ✅, biology ✅, chemistry task ✅, chemistry marking ✅, EES task ✅, EES marking ✅, physics ✅ — **all discipline files now resolved** ✅
+- **assessmentTasks:** rubric structures fully populated ✅; rationale/aim/part descriptions/links still null — pending before assessment pages go live
 - **T1 2026 status:** AT1 Part A (due 2026-03-22) and AT1 Parts B/C/D (due 2026-04-05) past due. AT2 (due 2026-05-04) past due. Unit is in PE/assessment period.
 
 ### EDSE362 — Science Education 11–12: Curriculum, Pedagogy and Inclusive Practice
@@ -377,6 +388,8 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
 
 `generate/index.html` — run locally or via GitHub Pages URL. Select unit, year, trimester, page type, click Generate. Produces copyable shell snippets for all 9 page types including Resource directory, Assessment page (with task selector), and Course Hub. Requires HTTP (not `file://`).
 
+Pre-generated shell files are in `docs/` (git-ignored). See Shell snippet files section above.
+
 ---
 
 ## Trimester start dates
@@ -392,39 +405,72 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
 
 ## Known issues
 
-1. **EDSE358 AT2 — Chemistry marking URL:** currently `null`. Confirm correct URL with Steve before go-live.
-2. **EDSE358 AT2 — EES task URL:** currently `null`. Confirm correct URL before go-live.
-3. **EDSE358 weeks 1–2, 6–7 — missing lecture/slides/liveHub/recording links:** to be populated as content is published each week.
-4. **EDSE357 — all week links null:** unit is live but content links haven't been added yet; all render as Coming soon chips.
-5. **EDSE358 week 8 (Module 4D):** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` not yet written.
-6. **EDSE362 — all links null, zoom null, videos null:** not live until T2 2027; links to be added closer to go-live.
-7. **2027 T2/T3 start dates:** placeholders — must be confirmed against UNE academic calendar before EDSE362 goes live.
-8. **`announcementBody.keyIdea`:** stored in some EDSE358 weeks but not yet rendered by any block function. Future enhancement.
-9. **EDSE357 AT2 rubric link null:** add URL when rubric is published to Moodle.
-10. ~~**GitHub Pages serving from `dev`**~~ — **RESOLVED 2026-05-17.** Merged dev→main and switched Pages to `main`. Live URL is safe to share.
-11. **EDSE358 assessmentTasks — rubric descriptors TBC:** all band descriptors read "To be confirmed — check official rubric document". Populate from official marking rubrics before assessment pages go live.
-12. **EDSE358 assessmentTasks — rationale, aim, part descriptions, links all null:** stub structure is in place; full population needed before rendering.
-13. **EDSE362 assessmentTasks — completely empty:** AT1 and AT2 are schema-only stubs. Populate closer to T2 2027 go-live.
-14. **EDSE362 — video IDs all null:** no YouTube videos configured for any week.
-15. **`DGIXT7ce3vQ` — third-party placeholder video:** used for PE weeks (9–14) in all unit configs and all EDIT* legacy arrays. Currently live (confirmed 2026-05-17) but not owned — can be removed or made private by the channel owner without notice. Replace with a university-owned video when available.
+1. **EDSE357 — all week links null:** unit is live but content links haven't been added yet; all render as Coming soon chips.
+2. **EDSE362 — all links null, zoom null, videos null:** not live until T2 2027; links to be added closer to go-live.
+3. **2027 T2/T3 start dates:** placeholders — must be confirmed against UNE academic calendar before EDSE362 goes live.
+4. **`announcementBody.keyIdea`:** stored in some EDSE358 weeks but not yet rendered by any block function. Future enhancement.
+5. **EDSE357 AT2 rubric link null:** add URL when rubric is published to Moodle.
+6. **EDSE358 assessmentTasks — rationale, aim, part descriptions, links all null:** rubric is now fully populated; remaining content (rationale, aim, part descriptions, links) pending before assessment pages go live.
+7. **EDSE362 assessmentTasks — completely empty:** AT1 and AT2 are schema-only stubs. Populate closer to T2 2027 go-live.
+8. **EDSE362 — video IDs all null:** no YouTube videos configured for any week.
+9. **`DGIXT7ce3vQ` — third-party placeholder video:** used for PE weeks (9–14) in all unit configs and all EDIT* legacy arrays. Currently live (confirmed 2026-05-17) but not owned — can be removed or made private by the channel owner without notice. Replace with a university-owned video when available.
 
 ---
 
 ## Next tasks in priority order
 
-1. **Replace `DGIXT7ce3vQ` placeholder** — this third-party YouTube video (tropical beach ambience, channel: Relaxing Soundzzz) is used as the PE-weeks placeholder for all units and the EDIT* legacy arrays. Replace with a university-owned or stable video to eliminate the risk of unannounced removal. One config change across weeks 9–14 in each unit JSON plus the seven EDIT* arrays in `autovideos.js`.
-2. **EDSE358 week 8** — write `announcementBody`, `liveSessionFocus`, `liveSessionTasks` for Module 4D (Developing rubrics and providing feedback).
-3. **EDSE358 AT1 — populate fully** — add rationale, aim, part descriptions, requirements, all rubric descriptors from official document, and all links (taskFiles, submit, forum, rubric) once published.
-4. **EDSE358 AT2 — populate fully** — same: rationale, aim, rubric descriptors, links.
-5. **Resolve EDSE358 AT2 known issues** — get correct Chemistry marking URL and EES task URL.
-6. **Add EDSE357 week links** — all weeks, all link types, as content is published.
-7. **Add EDSE358 lecture/slides/liveHub/recording links** — weeks 1–2, 3, 6, 7 as content is published.
-8. **Add EDSE357 AT2 rubric link** — once the marking rubric PDF is published on Moodle.
-9. **Add assessmentFiles URLs** — EDSE358 AT1, EDSE357 AT1/AT2 — as task and marking files are uploaded.
+1. **Replace `DGIXT7ce3vQ` placeholder** — this third-party YouTube video (tropical beach ambience, channel: Relaxing Soundzzz) is used as the PE-weeks placeholder for all units and the EDIT* legacy arrays. Replace with a university-owned or stable video to eliminate the risk of unannounced removal.
+2. **EDSE358 AT1 — populate rationale, aim, part descriptions, links** — rubric is done; remaining content needed before assessment page goes live.
+3. **EDSE358 AT2 — populate rationale, aim, links** — rubric is done; remaining content needed before assessment page goes live.
+4. **Add EDSE357 week links** — all weeks, all link types, as content is published.
+5. **Add EDSE358 lecture/slides/liveHub/recording links** — weeks 1–2, 3, 6, 7 as content is published.
+6. **Add EDSE357 AT2 rubric link** — once the marking rubric PDF is published on Moodle.
+7. **Add assessmentFiles URLs** — EDSE358 AT1, EDSE357 AT1/AT2 — as task and marking files are uploaded.
+8. **Merge dev → main** — 3 content commits on dev (week 8 population, assessmentFiles fixes, rubric descriptors). Merge when ready to deploy updated configs to students.
 
 ---
 
 ## Session notes
+
+### 2026-05-18 — Rubric descriptors complete; shell files generated
+
+**Tasks completed this session:**
+
+**1. EDSE358 assessmentFiles broken links fixed (commit `b168bd0`):**
+- Chemistry marking URL: `null` → `https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/Chemistry%20task%20marking.pdf?forcedownload=1`
+- EES task URL: `null` → `https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/EES%20task%20.pdf?forcedownload=1`
+- `markingNote` and `taskNote` warning fields removed; all EDSE358 AT2 discipline files now resolved
+
+**2. EDSE358 AT1 and AT2 rubric structures replaced (commit `9537d93`):**
+- AT1: 4 placeholder rows → 8 official rows (A, B1, B2, B3, B4, C1, C2, D), 100 marks, 40 descriptors
+  - Part A (5 marks): Task outline
+  - Part B1 (20 marks): Unit structure, constructivist pedagogy, differentiation, NSW syllabus alignment
+  - Part B2 (10 marks): Resources and student ICT use
+  - Part B3 (10 marks): Learning activities aligned to syllabus outcomes
+  - Part B4 (10 marks): Formative assessment and feedback
+  - Part C1 (20 marks): Justification of pedagogical decisions
+  - Part C2 (15 marks): Justification of resources
+  - Part D (10 marks): Reflection
+- AT2: 3 placeholder rows → 6 official rows (A1, A2, A3, B1, B2, C), 100 marks, 30 descriptors
+  - Part A1 (25 marks): Evaluation of Assessment Design
+  - Part A2 (20 marks): Syllabus & Working Scientifically Alignment
+  - Part A3 (15 marks): Use of Assessment Theory and Literature
+  - Part B1 (20 marks): Coherence, Alignment, ICT & Feedback
+  - Part B2 (10 marks): Differentiation & Cohort Responsiveness
+  - Part C (10 marks): Reflection
+- All 70 descriptors populated verbatim from official document
+
+**3. Shell snippet files generated (git-ignored, local use only):**
+- `docs/EDSE358-T1-2026-shells.html` — 38 shells (5 course-level + 32 per-week + 1 week-7 resource directory)
+- `docs/EDSE357-T1-2026-shells.html` — 37 shells (5 course-level + 32 per-week)
+- `.gitignore` updated: `/docs/*-shells.html` pattern added to prevent accidental commits
+
+**Also completed (prior session carry-over on dev):**
+- EDSE358 week 8 (Module 4D) populated (commit `8592d5e`): announcementBody, liveSessionFocus, liveSessionTasks, workflow, lecture/zoom/forum/materials links
+
+**Decisions made:**
+- AT1 Part C1 mark allocation corrected to 20 marks (not 15 as written in rubric header); band ranges set to match Part B1 (same mark value): HD 20–18, D 17–15, C 14–12, P 11–9, N 8–0
+- EES task filename confirmed as `EES%20task%20.pdf` (trailing space in filename is intentional — matches actual file)
 
 ### 2026-05-17 — Briefing checkpoint (routine /briefing-update after production deployment)
 
@@ -460,92 +506,6 @@ Branch delta corrected: dev is 1 commit ahead of main (briefing-only commit `0b6
 - JSON week keys are strings ("1", "2"...) — requires `unitCfg.weeks[String(thisWeek)]` not integer lookup.
 - `videoInterval` field added to all three unit JSONs: EDSE357=1, EDSE358=1, EDSE362=2.
 - Test suite: 29 assertions across 7 scenarios, all passing before merge.
-
-**Behaviour difference (autovideos):**
-- EDSE357/EDSE358: sequence now built dynamically from config JSON — video IDs and count verified entry-for-entry identical to old hardcoded arrays.
-- EDSE362: all video fields are null → defaults to `DGIXT7ce3vQ` for every week; functionally identical to old behaviour.
-- EDIT* units: old behaviour relied on switch(unit) in synchronous code; new behaviour fetches config, fails, falls back to legacy class with console.warn — net result same video, slightly delayed (one fetch round-trip before fallback).
-
-**Sandpit testing (2026-05-17):** All 5 shells passed — EDSE357/EDSE358 whatson, EDSE357/EDSE358 autovideos (config path), EDIT426 legacy fallback. Merged to main same session.
-
-### 2026-05-17 — dev → main merge; GitHub Pages switched to main
-
-**Merge (commit `dc8ecbd` on main):**
-- Pre-merge checks passed: clean working tree, `whatson.js`/`autovideos.js` unchanged, test harness verified, Pages confirmed on `dev`
-- `origin/dev` pushed first (10 local-only commits synced)
-- `git merge dev --no-ff` — 22 commits, 5,871 insertions, 22 new files
-- `git push origin main` — live immediately
-- GitHub Pages source switched from `dev` → `main` in repo settings; Pages rebuild confirmed
-- `dev` and `main` are now fully in sync (0 commits delta)
-- Phase 4 (`whatson.js`/`autovideos.js` refactor) is now unblocked — Phases 1–3 are stable on `main`
-
-### 2026-05-17 — SA3 + SA4 verified; Course Hub complete
-
-**SA3 (commit `6405774`) — verified:**
-- Single targeted change: `border-left:6px solid #E3B089` → `var(--lx-accent,#E3B089)` in `buildAssessmentReminders`
-- EDSE358 theme corrected: `pill: #EDE8FB`, `pillBorder: #c9bef5` (was wrong values)
-- EDSE362 theme corrected: `primary: #2E7D52`, `accent: #E3B089` (was `#2D7A48` / `#C4872D`)
-- All other brand colours throughout `blocks.js` already correctly use CSS custom properties
-
-**SA4 (commit `9b930ef`) — `renderCourseHub` (9th export):**
-- Found uncommitted at session start; committed after test harness verification
-- Renders all teaching weeks 1–8 as CSS-only `<details>/<summary>` collapsible rows
-- Container: `div[data-lx-block="course-hub"]` (attribute selector, not `#lxdune-*` ID)
-- Theme vars used throughout HUB_CSS — switches correctly with unit dropdown
-- Course Hub tab added to test harness; `course-hub` shell type added to generator
-- Verified in test harness for EDSE357 and EDSE358
-
-**`assessmentTasks` stubs added to EDSE358 and EDSE362 (commit `5e78f93`):**
-- EDSE358: AT1 "Teaching, Learning and Assessment Design" (60%) and AT2 "Resource Curation and Critical Analysis" (40%) — structure, marks, LOs, AITSL correct; all rubric descriptors "To be confirmed"; rationale/aim/links null
-- EDSE362: AT1 and AT2 completely empty stubs — title null, all content null; not needed until T2 2027
-
-**Test harness verification — all passing:**
-- Theme switching: EDSE357 (blue/teal) / EDSE358 (purple/cyan) / EDSE362 (green/gold) repaint correctly
-- Course Hub: both EDSE357 and EDSE358 render all weeks with correct content
-- Assessment tab: EDSE357 AT1 and AT2 render all 6 sections correctly
-
-### 2026-05-17 — Assessment Content System complete for EDSE357
-
-**Assessment Content System — completed this session:**
-- Schema designed (rubric-first): `assessmentTasks` array with `rubric[]` field per task, each row has `part`, `criterion`, `marks`, `loLinks`, and `bands` (HD/D/C/P/N with range + descriptor)
-- `renderAssessmentPage()` redesigned — 6 sections, rubric rows as CSS-only `<details>`, all 5 action buttons always shown (null → disabled, not hidden)
-- AT1 fully populated: 4 parts (A/B/C/D with bespoke injection), 7 rubric rows, 35 band descriptors from marking rubric
-- AT2 fully populated: no parts (holistic), 4 criteria with bullets/colors, 4 rubric rows, 20 band descriptors
-- Bespoke components complete: `discipline-tab-switcher.html`, `riskassess-callout.html`
-- Generator and test harness updated: Assessment page shell + task selector in both
-
-**Rubric descriptor approach:**
-- Stored in JSON alongside mark ranges; renderer shows them in a 5-column table inside each `<details>` row
-- Empty descriptor renders as `—` (graceful fallback)
-- No JS required for expand/collapse — pure HTML `<details>`/`<summary>`
-
-**AT2 schema decision:**
-- AT2 has `"parts": []` (empty array) because it's holistically assessed with no sub-parts
-- The "What do I need to do?" section is automatically omitted when `parts.length === 0`
-- The task requirements are captured in the `aim` field
-
-**Design patterns established:**
-- Null links: all 5 action buttons are always rendered; null → `<span class="lx-ap-btn disabled">` (greyed, pointer-events:none)
-- LO pills use the LO's `color` property from `unitCfg.learningOutcomes` for consistent branding
-- Bespoke injection: async fetch with styled placeholder on failure (never crashes)
-
-### 2026-05-17 — Sandpit test + earlier work
-
-**Sandpit test (completed):**
-- All 7 week-blocks verified in Moodle sandpit with EDSE358 T1 2026 week 7 as dataset
-- GitHub Pages source switched from `main` to `dev` on 2026-05-17
-
-**Uncommitted carry-over from 2026-05-16:**
-- The theme system and `renderResourceDirectory` changes were written to disk in the previous session but not committed — caught and committed as `b0407aa`. Always verify `git status` is clean before ending a session.
-
-### 2026-05-16 — Phase 3 additions + EDSE358 content population
-
-**`renderResourceDirectory` (7th render function):**
-- Container: `#lxdune-resource-directory`; week-aware; reads `week.resources[]`
-- Groups by `r.category` using a Map; renders category headings (uppercase, themed underline) with pill-links
-
-**Theme system:**
-- `applyTheme(unitCfg)` writes/replaces `<style id="lx-theme-vars">` — replacing rather than guarding means unit switching works correctly in test harness
 
 ---
 
