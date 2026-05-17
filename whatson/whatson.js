@@ -1,90 +1,7 @@
-class Events {
-  // Unit-specific configuration + schedule data
-  static units = {
-    EDSE357: {
-      itemLabel: "Topic",
-      liveDay: "Wednesday",
-      liveTime: "5:30–6:30pm",
-      assessmentPortalUrl: "https://mylearn.une.edu.au/course/section.php?id=477930",
-      // week -> info
-      weeks: {
-        1: { item: "Topic 1", title: "Introduction to the Stage 6 science syllabuses", live: "🎤 Live Session" },
-        2: { item: "Topic 2", title: "Conducting Investigations", live: "🎤 Live Session: Topic 1 & 2" },
-        3: { item: "Topic 3", title: "Open-ended Investigations", live: "🎤 Live Session" },
-        4: { item: "Topic 4", title: "Research and Experimentation", live: "🎤 Live Session: Topic 3 & 4" },
-        5: { item: "Topic 5", title: "Selecting and Evaluating Resources", live: "🎤 Live Session", notes: ["Census Day occurs this week."] },
-        6: {
-          item: "Topic 6",
-          title: "Current and Future Uses and Applications of Science",
-          live: "🎤 Live Session: Topic 5 & 6",
-          assessments: [{ name: "Assessment Task 1", due: "2026-03-29" }],
-        },
-        7: { item: "Topic 7", title: "Audit your senior science content knowledge", live: "🎤 Live Session" },
-        8: { item: "Topic 8", title: "Teaching with a diverse cohort", live: "🎤 Live Session: Topic 7 & 8" },
-        9: { item: "Professional Experience", title: "Flexible Window for Professional Experience (School of Education Only)" },
-        10: {
-          item: "Professional Experience",
-          title: "Flexible Window for Professional Experience (School of Education Only)",
-          assessments: [{ name: "Assessment Task 2", due: "2026-05-03" }],
-        },
-        11: { item: "Professional Experience", title: "Flexible Window for Professional Experience (School of Education Only)" },
-        12: { item: "Professional Experience", title: "Flexible Window for Professional Experience (School of Education Only)" },
-        13: { item: "Professional Experience", title: "Flexible Window for Professional Experience (School of Education Only)" },
-        14: { item: "Assessment period", title: "Assessment and Intensive Period 2" },
-      },
-      week0Message: [
-        "Have a look around at the first few tiles below — we’ll get started next week!",
-      ],
-    },
+// whatson.js
 
-    EDSE358: {
-      itemLabel: "Module",
-      liveDay: "Thursday",
-      liveTime: "5:30–6:30pm",
-      assessmentPortalUrl: "https://mylearn.une.edu.au/course/section.php?id=477943",
-      weeks: {
-        1: {
-          item: "Module 1",
-          title: "The Senior Science Syllabus",
-          live: "LIVE SESSION 1",
-          notes: ["Download BOTH assessment tasks 💾", "Make a plan to complete them 🗓️"],
-        },
-        2: { item: "Module 2", title: "The Nature of Science Teaching", live: "🎤 LIVE SESSION 2: MODULE 1&2" },
-        3: { item: "Module 3A", title: "Planning and Assessing Learning Models and Constructivist Teaching", live: "🎤 LIVE SESSION 3" },
-        4: {
-          item: "Module 3B",
-          title: "Planning and Assessing Programs and Lesson Plans",
-          live: "🎤 LIVE SESSION 4: MODULE 3",
-          assessments: [{ name: "Assessment Task 1 — Part A (5%)", due: "2026-03-22" }],
-        },
-        5: { item: "Module 4A", title: "Assessing and Reporting — Assessment for learning", live: "🎤 LIVE SESSION 5", notes: ["Census Day occurs this week."] },
-        6: {
-          item: "Module 4B",
-          title: "Assessing and Reporting — Designing assessment instruments",
-          live: "🎤 LIVE SESSION 6: MODULE 4A&B",
-          assessments: [{ name: "Assessment Task 1 — Parts B, C & D (55%)", due: "2026-04-05" }],
-        },
-        7: { item: "Module 4C", title: "Assessing and Reporting — Designing differentiated assessment", live: "🎤 LIVE SESSION 7" },
-        8: { item: "Module 4D", title: "Assessing and Reporting — Developing rubrics and providing feedback", live: "🎤 LIVE SESSION 8: MODULE 4C&D" },
-        9: { item: "Professional Experience", title: "Flexible Window for Professional Experience (School of Education Only)" },
-        10:{ item: "Professional Experience", title: "Flexible Window for Professional Experience (School of Education Only)" },
-        11:{
-          item: "Professional Experience",
-          title: "Flexible Window for Professional Experience (School of Education Only)",
-          assessments: [{ name: "EDSE358 Assessment 2 (40%)", due: "2026-05-04" }],
-        },
-        12:{ item: "Professional Experience", title: "Flexible Window for Professional Experience (School of Education Only)" },
-        13:{ item: "Professional Experience", title: "Flexible Window for Professional Experience (School of Education Only)" },
-        14:{ item: "Assessment period", title: "Assessment and Intensive Period 2" },
-      },
-      week0Message: [
-        "Have a look around at the first few tiles below and finish up the Week 0 section — we’ll get started next week!",
-      ],
-    },
-  };
-
-  static noTeachingWeeks = new Set([9, 10, 11, 12, 13, 14]);
-}
+const BASE = new URL('..', import.meta.url).href;
+const NO_TEACHING_WEEKS = new Set([9, 10, 11, 12, 13, 14]);
 
 function getDateList(startDate, trimester) {
   let dateList = [];
@@ -139,6 +56,7 @@ function escapeHtml(str) {
 }
 
 function portalLink(unitCfg) {
+  if (!unitCfg.assessmentPortalUrl) return 'the Assessment Portal';
   return `<a href="${escapeHtml(unitCfg.assessmentPortalUrl)}" target="_blank" rel="noopener noreferrer">Assessment Portal</a>`;
 }
 
@@ -208,13 +126,24 @@ function buildAssessmentReminders(unitCfg, today) {
   return `<div><strong>Assessment reminders</strong></div>${ulHtml(lines)}`;
 }
 
-export function displayWhatsOn({
+export async function displayWhatsOn({
   forUnit = "EDSE358",
   forStartDate: theStartDate,
   forTri: trimester,
 }) {
   const unitKey = String(forUnit).toUpperCase();
-  const unitCfg = Events.units[unitKey] || Events.units.EDSE358;
+
+  let unitCfg;
+  try {
+    const res = await fetch(`${BASE}config/units/${unitKey}.json`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    unitCfg = await res.json();
+  } catch (e) {
+    console.error(`whatson: could not load config for ${unitKey}:`, e);
+    document.getElementById("heading").innerHTML = "Content unavailable — please refresh the page.";
+    document.getElementById("details").innerHTML = "";
+    return;
+  }
 
   const classStartDate = new Date(theStartDate);
   classStartDate.setHours(0, 0, 0, 0);
@@ -238,8 +167,11 @@ export function displayWhatsOn({
   let parts = [];
 
   if (thisWeek === 0) {
-    parts.push(`<p>${escapeHtml(unitCfg.week0Message[0])}</p>`);
-    parts.push(`<p>${escapeHtml(unitCfg.week0Message[1])}</p>`);
+    // week0Message is a string in JSON; handle string or legacy array gracefully
+    const msgs = Array.isArray(unitCfg.week0Message)
+      ? unitCfg.week0Message.filter(Boolean)
+      : [unitCfg.week0Message].filter(Boolean);
+    msgs.forEach(m => parts.push(`<p>${escapeHtml(m)}</p>`));
     parts.push(`<div><strong>To do</strong></div>`);
     parts.push(ul(["Download BOTH assessment tasks 💾", "Make a plan to complete them 🗓️"]));
     parts.push(`<p>Quick link: ${portalLink(unitCfg)}</p>`);
@@ -247,9 +179,10 @@ export function displayWhatsOn({
     heading = `${escapeHtml(unitKey)}: Teaching has ended for this period`;
     parts.push(`Please refer to the ${portalLink(unitCfg)} and unit announcements for final submission requirements and updates.`);
   } else {
-    const info = unitCfg.weeks[thisWeek] || {
+    // JSON week keys are strings
+    const info = unitCfg.weeks[String(thisWeek)] || {
       item: `${unitCfg.itemLabel} ${thisWeek}`,
-      title: "Check the module/topic tiles below for this week’s materials.",
+      title: "Check the module/topic tiles below for this week's materials.",
     };
 
     // Module vs Topic wording will come from schedule values already (Module 1 / Topic 1)
@@ -257,7 +190,7 @@ export function displayWhatsOn({
     parts.push(`<div>${escapeHtml(info.title)}</div>`);
 
     // Teaching vs no teaching
-    if (Events.noTeachingWeeks.has(thisWeek) || info.teaching === false) {
+    if (NO_TEACHING_WEEKS.has(thisWeek) || info.teaching === false) {
       parts.push(
         `<p>There is no teaching this week, and no lecture will be posted. Please use this time for Professional Experience (where applicable) and to stay on top of assessment requirements. Check the ${portalLink(
           unitCfg
@@ -284,7 +217,7 @@ export function displayWhatsOn({
     if (reminderHtml) parts.push(reminderHtml);
 
     // Live sessions block only during teaching weeks
-    if (!(Events.noTeachingWeeks.has(thisWeek) || info.teaching === false)) {
+    if (!(NO_TEACHING_WEEKS.has(thisWeek) || info.teaching === false)) {
       parts.push(
         `<div><strong>Live session (${escapeHtml(unitCfg.liveDay)} ${escapeHtml(unitCfg.liveTime)})</strong></div>`
       );
