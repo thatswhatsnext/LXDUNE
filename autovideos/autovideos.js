@@ -1,136 +1,6 @@
 // autovideos.js
 
-class VideoURLs {
-  // =========================
-  // Existing (fortnightly) sets
-  // =========================
-  static EDIT415 = [
-    "rBWThyNIaCo", // Welcome
-    //"EB3Qe97fSNs", // Week 0
-    "62E7uN-JpVQ", // Week 1 & 2
-    "HeOTSF4_-Es", // Week 3 & 4
-    "nbPbzy1Uaws", // Week 5 & 6
-    "DGIXT7ce3vQ",
-    "hDQsbAbt2QU", // Week 9 & 10
-    "qcU_i2rTmM8", // Week 11 & 12
-    "3UEbA1D7Y-0", // Week 13
-  ];
-
-  static EDIT425 = [
-    "lYDw05HIayE", // Welcome
-    //"EB3Qe97fSNs", // Week 0
-    "14qnVK60YXM", // Week 1 & 2
-    "NAmeFmSnJqA", // Week 3 & 4
-    "fml5R_r4DLo", // Week 5 & 6
-    "DGIXT7ce3vQ", // Assessment & Intensive Period
-    "kffeQ3_CLqQ", // Week 9 & 10
-    "yNSs6PKChRI", // Week 11 & 12
-    "3UEbA1D7Y-0", // Week 13
-  ];
-
-  static EDIT426 = [
-    "alhCYDrtgzs", // Welcome
-    //"75Z7kif2Jtc", // Week 0
-    "r_fTa8QmIRQ", // Week 1 & 2
-    "Mt8UdXTMLW0", // Week 3 & 4
-    "HRbNPuBJ-F4", // Week 5 & 6
-    "kP9hgtJpW9w", // Week 7 & 8
-    "DGIXT7ce3vQ", // Assessment & Intensive Period
-    "S9jirJlhP0U", // Week 11 & 12
-    "3UEbA1D7Y-0", // Week 13
-  ];
-
-  static EDIT513 = [
-    "m1OwTkFGlgc", // Welcome (Actually Week 0 for this unit)
-    //"rUGDNUxCrn8", // Week 0
-    "ebk880UKai8", // Week 1 & 2
-    "7LUDYfhahUw", // Week 3 & 4
-    "mzFLm7Mr1u4", // Week 5 & 6
-    "DGIXT7ce3vQ", // Assessment & Intensive Period
-    "01pnXTJ6V20", // Week 9 & 10
-    "mv2RA4qrl3Y", // Week 11 & 12
-    "3UEbA1D7Y-0", // Week 13
-  ];
-
-  static EDIT517 = [
-    "BcormZe1joc", // Welcome (Actually Week 0 for this unit)
-    //"rUGDNUxCrn8", // Week 0
-    "nin_fE3wWfI", // Week 1 & 2
-    "jk3y-5ykQ2E", // Week 3 & 4
-    "J1MFBz5VDKo", // Week 5 & 6
-    "DGIXT7ce3vQ", // Assessment & Intensive Period
-    "JqvACFLwguk", // Week 9 & 10
-    "p6yJEE5Kcf8", // Week 11 & 12
-    "3UEbA1D7Y-0", // Week 13
-  ];
-
-  static EDIT518 = [
-    "iayVJ8VdHvM", // Welcome
-    //"rUGDNUxCrn8", // Week 0
-    "GmKJJ1VDoUE", // Week 1 & 2
-    "4S-dsxI1EnY", // Week 3 & 4
-    "WuFJokLqF1I", // Week 5 & 6
-    "A8X_UrMPu5Y", // Week 9 & 10
-    "DGIXT7ce3vQ", // Assessment & Intensive Period
-    "zBhnWRT8J7M", // Week 11 & 12
-    "3UEbA1D7Y-0", // Week 13
-  ];
-
-  static EDIT521 = [
-    "e5oJX_jEzD0", // Welcome
-    //"XZLSHCIqWTM", // Week 0
-    "9wAcxp55Bco", // Week 1 & 2
-    "Q5t1eaLhM18", // Week 3 & 4
-    "o7xXdjoEjlk", // Week 5 & 6
-    "5H7CMePLyVg", // Week 9 & 10
-    "DGIXT7ce3vQ", // Assessment & Intensive Period
-    "SB08-lkRmHA", // Week 11 & 12
-    "3UEbA1D7Y-0", // Week 13
-  ];
-
-  // ==========================================
-  // NEW: Weekly sets for EDSE357 and EDSE358
-  // Rule:
-  //  - Week 1–8 = weekly rotation (duplicates allowed)
-  //  - Week 9–14 (i.e., "weeks 9–15" in common unit language) = DGIXT7ce3vQ
-  // Note: dateList in this script runs Week 0..14.
-  // ==========================================
-  static EDSE357_WEEKLY = [
-    "vOe6VqwXMk0", // Week 0 (Welcome)
-    "1jVXNAaZ1P8", // Week 1
-    "SItTfkDrkKo", // Week 2
-    "MOVpOGshy9M", // Week 3
-    "brEVCv7P8Tw", // Week 4
-    "T4ZrteC1S1A", // Week 5
-    "NGeQF5M5fEc", // Week 6
-    "qHHfqvXy2iE", // Week 7
-    "tZawrfxdeaM", // Week 8
-    "DGIXT7ce3vQ", // Week 9  (Assessment & Intensive Period)
-    "DGIXT7ce3vQ", // Week 10
-    "DGIXT7ce3vQ", // Week 11
-    "DGIXT7ce3vQ", // Week 12
-    "DGIXT7ce3vQ", // Week 13
-    "DGIXT7ce3vQ", // Week 14
-  ];
-
-  static EDSE358_WEEKLY = [
-    "vOe6VqwXMk0", // Week 0 (Welcome)
-    "twvP-4YOPWw", // Week 1
-    "mHYoYi15J1Y", // Week 2
-    "dZiRQE7dgFA", // Week 3
-    "HXhzDcirQ-0", // Week 4
-    "6vPFCsOBL3A", // Week 5
-    "JbvXUQJa9_g", // Week 6
-    "ZMXgRNeHBEw", // Week 7
-    "0QVsntPYBrE", // Week 8
-    "DGIXT7ce3vQ", // Week 9  (Assessment & Intensive Period)
-    "DGIXT7ce3vQ", // Week 10
-    "DGIXT7ce3vQ", // Week 11
-    "DGIXT7ce3vQ", // Week 12
-    "DGIXT7ce3vQ", // Week 13
-    "DGIXT7ce3vQ", // Week 14
-  ];
-}
+const BASE = new URL('..', import.meta.url).href;
 
 function getDateList(startDate, weeklyInterval, trimester) {
   const dateList = [];
@@ -161,7 +31,7 @@ function getDateList(startDate, weeklyInterval, trimester) {
     thisDate.setHours(0, 0, 0, 0);
     dateList.push({ week: currentWeek, date: thisDate });
 
-    // keep your existing special-case for fortnightly Week 14
+    // keep existing special-case for fortnightly Week 14
     if (weeklyInterval === 2 && currentWeek === 13) {
       const week14 = new Date(thisDate);
       week14.setDate(thisDate.getDate() + 7);
@@ -200,74 +70,70 @@ function getCurrentVideoIndex(forToday, fromDateList) {
   return 0;
 }
 
-export function setUpVideos({ forUnit: unit, startDate: theStartDate, andTri: trimester }) {
-  const classStartDate = new Date(theStartDate); // YYYY-MM-DD
+export async function setUpVideos({ forUnit: unit, startDate: theStartDate, andTri: trimester }) {
+  const classStartDate = new Date(theStartDate);
   classStartDate.setHours(0, 0, 0, 0);
 
   const today = new Date();
 
-  // Default behaviour stays the same (fortnightly)
-  let weeklyInterval = 2;
-
-  // Only EDSE357 and EDSE358 should run weekly
-  if (unit === "EDSE357" || unit === "EDSE358") {
-    weeklyInterval = 1;
+  let unitCfg;
+  try {
+    const res = await fetch(`${BASE}config/units/${unit}.json`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    unitCfg = await res.json();
+  } catch (e) {
+    console.error(`autovideos: could not load config for ${unit}:`, e);
+    const legacy = VideoURLs[unit];
+    if (legacy) {
+      console.warn('Using legacy fallback for', unit, '— create config/units/', unit, '.json to migrate');
+      let index = getCurrentVideoIndex(today, getDateList(classStartDate, 2, trimester));
+      if (index < 0) index = 0;
+      if (index >= legacy.length) index = legacy.length - 1;
+      document.getElementsByClassName('embed-container')[0].innerHTML =
+        '<iframe src="https://www.youtube.com/embed/' +
+        legacy[index] +
+        '" title="YouTube video player" width="100%" frameborder="0" ' +
+        'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    } else {
+      document.getElementsByClassName('embed-container')[0].innerHTML =
+        '<div>Video unavailable — please refresh the page.</div>';
+    }
+    return;
   }
+
+  const weeklyInterval = unitCfg.videoInterval ?? 2;
 
   const dateList = getDateList(classStartDate, weeklyInterval, trimester);
 
-  // Pick correct video list
-  let videoPlaceHolders = [];
-  switch (unit) {
-    case "EDIT415":
-      videoPlaceHolders = VideoURLs.EDIT415;
-      break;
-    case "EDIT425":
-      videoPlaceHolders = VideoURLs.EDIT425;
-      break;
-    case "EDIT426":
-      videoPlaceHolders = VideoURLs.EDIT426;
-      break;
-    case "EDIT513":
-      videoPlaceHolders = VideoURLs.EDIT513;
-      break;
-    case "EDIT517":
-      videoPlaceHolders = VideoURLs.EDIT517;
-      break;
-    case "EDIT518":
-      videoPlaceHolders = VideoURLs.EDIT518;
-      break;
-    case "EDIT521":
-      videoPlaceHolders = VideoURLs.EDIT521;
-      break;
+  // Build video sequence from config weeks, sorted by week number
+  const videoPlaceholders = Object.keys(unitCfg.weeks)
+    .sort((a, b) => Number(a) - Number(b))
+    .map(k => unitCfg.weeks[k].video ?? 'DGIXT7ce3vQ');
 
-    // Weekly units
-    case "EDSE357":
-      videoPlaceHolders = VideoURLs.EDSE357_WEEKLY;
-      break;
-    case "EDSE358":
-      videoPlaceHolders = VideoURLs.EDSE358_WEEKLY;
-      break;
-
-    default:
-      videoPlaceHolders = [];
-  }
-
-  // Compute current index
   let index = getCurrentVideoIndex(today, dateList);
 
-  // Clamp index to available videos so we never crash
-  if (!videoPlaceHolders.length) {
-    document.getElementsByClassName("embed-container")[0].innerHTML =
-      "<div><strong>No video list configured</strong> for this unit.</div>";
+  if (!videoPlaceholders.length) {
+    document.getElementsByClassName('embed-container')[0].innerHTML =
+      '<div>Video unavailable — no videos configured for this unit.</div>';
     return;
   }
   if (index < 0) index = 0;
-  if (index >= videoPlaceHolders.length) index = videoPlaceHolders.length - 1;
+  if (index >= videoPlaceholders.length) index = videoPlaceholders.length - 1;
 
-  document.getElementsByClassName("embed-container")[0].innerHTML =
+  document.getElementsByClassName('embed-container')[0].innerHTML =
     '<iframe src="https://www.youtube.com/embed/' +
-    videoPlaceHolders[index] +
+    videoPlaceholders[index] +
     '" title="YouTube video player" width="100%" frameborder="0" ' +
     'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+}
+
+/* LEGACY FALLBACK — EDIT units only. Remove when config JSONs exist for all EDIT units. Do not add new units here. */
+class VideoURLs {
+  static EDIT415 = [ "rBWThyNIaCo", "62E7uN-JpVQ", "HeOTSF4_-Es", "nbPbzy1Uaws", "DGIXT7ce3vQ", "hDQsbAbt2QU", "qcU_i2rTmM8", "3UEbA1D7Y-0" ];
+  static EDIT425 = [ "lYDw05HIayE", "14qnVK60YXM", "NAmeFmSnJqA", "fml5R_r4DLo", "DGIXT7ce3vQ", "kffeQ3_CLqQ", "yNSs6PKChRI", "3UEbA1D7Y-0" ];
+  static EDIT426 = [ "alhCYDrtgzs", "r_fTa8QmIRQ", "Mt8UdXTMLW0", "HRbNPuBJ-F4", "kP9hgtJpW9w", "DGIXT7ce3vQ", "S9jirJlhP0U", "3UEbA1D7Y-0" ];
+  static EDIT513 = [ "m1OwTkFGlgc", "ebk880UKai8", "7LUDYfhahUw", "mzFLm7Mr1u4", "DGIXT7ce3vQ", "01pnXTJ6V20", "mv2RA4qrl3Y", "3UEbA1D7Y-0" ];
+  static EDIT517 = [ "BcormZe1joc", "nin_fE3wWfI", "jk3y-5ykQ2E", "J1MFBz5VDKo", "DGIXT7ce3vQ", "JqvACFLwguk", "p6yJEE5Kcf8", "3UEbA1D7Y-0" ];
+  static EDIT518 = [ "iayVJ8VdHvM", "GmKJJ1VDoUE", "4S-dsxI1EnY", "WuFJokLqF1I", "A8X_UrMPu5Y", "DGIXT7ce3vQ", "zBhnWRT8J7M", "3UEbA1D7Y-0" ];
+  static EDIT521 = [ "e5oJX_jEzD0", "9wAcxp55Bco", "Q5t1eaLhM18", "o7xXdjoEjlk", "5H7CMePLyVg", "DGIXT7ce3vQ", "SB08-lkRmHA", "3UEbA1D7Y-0" ];
 }
