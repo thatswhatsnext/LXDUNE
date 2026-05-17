@@ -13,8 +13,8 @@
   "theme": {
     "primary": "#7C5DB6",
     "accent": "#4FA9B5",
-    "pill": "#EDE8F7",
-    "pillBorder": "#D0C5EC"
+    "pill": "#EDE8FB",
+    "pillBorder": "#c9bef5"
   },
   "learningOutcomes": [
     {

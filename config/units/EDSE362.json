@@ -10,10 +10,10 @@
   "assessmentPortalUrl": null,
   "week0Message": "Have a look around at the first few tiles below — we'll get started next week!",
   "theme": {
-    "primary": "#2D7A48",
-    "accent": "#C4872D",
-    "pill": "#E6F3E9",
-    "pillBorder": "#B8D9BD"
+    "primary": "#2E7D52",
+    "accent": "#E3B089",
+    "pill": "#E8F5EE",
+    "pillBorder": "#b8dcc8"
   },
   "learningOutcomes": [
     {

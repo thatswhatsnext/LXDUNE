@@ -239,7 +239,7 @@ function buildAssessmentReminders(unitCfg, portalUrl) {
     }
   }
   if (!lines.length) return '';
-  return `<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid #E3B089;border-radius:8px;background:#ffffff;">
+  return `<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid var(--lx-accent,#E3B089);border-radius:8px;background:#ffffff;">
     <h4 style="margin:0 0 6px 0;">Assessment Update</h4>
     <ul style="margin:8px 0 0 18px;">${lines.map(l => `<li style="margin:6px 0;">${l}</li>`).join('')}</ul>
   </div>`;
