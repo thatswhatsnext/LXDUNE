@@ -444,12 +444,10 @@
             },
             "chemistry": {
               "task": "https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/Chemistry%20Task.pdf?forcedownload=1",
-              "marking": null,
-              "markingNote": "⚠️ KNOWN ISSUE — duplicates task link, verify correct URL before use"
+              "marking": "https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/Chemistry%20task%20marking.pdf?forcedownload=1"
             },
             "ees": {
-              "task": null,
-              "taskNote": "⚠️ KNOWN ISSUE — currently points to Physics task file, verify correct URL before use",
+              "task": "https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/EES%20task%20.pdf?forcedownload=1",
               "marking": "https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/Earth  Env task marking.pdf?forcedownload=1"
             },
             "physics": {
