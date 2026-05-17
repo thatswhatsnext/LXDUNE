@@ -894,16 +894,33 @@
       "item": "Module 4D",
       "title": "Assessing and Reporting — Developing rubrics and providing feedback",
       "live": "🎤 LIVE SESSION 8: MODULE 4C&D",
-      "announcementBody": null,
-      "liveSessionFocus": null,
-      "liveSessionTasks": null,
+      "announcementBody": {
+        "intro": "This week we bring Module 4 to a close by focusing on how teachers make quality visible through rubrics and feedback. These are central tools for supporting student learning, guiding improvement, and ensuring that assessment genuinely informs teaching.",
+        "focus": "Module 4D focuses on how teachers design and use effective rubrics and provide meaningful feedback that moves learning forward.",
+        "keyIdea": "A key idea in this module is that rubrics are not simply marking tools — they are learning tools. Similarly, feedback is most powerful when it helps students understand where they are in their learning, where they need to go next, and how to get there."
+      },
+      "liveSessionFocus": "Explore what makes a rubric useful and how feedback can be designed to improve learning.",
+      "liveSessionTasks": [
+        "Work through the Module 4D materials in Moodle.",
+        "Watch the lecture on rubrics and feedback.",
+        "Prepare for the live session and note down examples or questions.",
+        "Bring one question about what makes a rubric useful or what makes feedback likely to improve learning.",
+        "Post a short reflection to the Module 4D forum."
+      ],
+      "workflow": [
+        "Work through the Module 4D materials in Moodle",
+        "Watch the lecture on rubrics and feedback",
+        "Prepare for the live session and note down examples or questions",
+        "Join the live session and contribute your thinking",
+        "Post to the Module 4D forum"
+      ],
       "links": {
-        "lecture": null,
+        "lecture": "https://echo360.net.au/media/fb30dee2-fc9e-40dd-9a5a-00b268b4984b/public?autoplay=false&automute=false",
         "slides": null,
-        "zoom": null,
+        "zoom": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1",
         "recording": null,
-        "forum": null,
-        "materials": null,
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381734",
+        "materials": "https://mylearn.une.edu.au/course/section.php?id=477947#module-3381732",
         "liveHub": null
       },
       "extension": {
