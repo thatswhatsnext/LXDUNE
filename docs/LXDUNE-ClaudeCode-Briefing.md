@@ -1,6 +1,6 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-05-17 (all phases complete — production deployment)  
+**Last updated:** 2026-05-17 (briefing checkpoint — production stable)  
 **Repo:** `https://github.com/thatswhatsnext/LXDUNE`  
 **GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`  
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
@@ -83,16 +83,16 @@ Pasted once into Moodle, never edited again. The script fetches config on every 
 
 ## Current branch status
 
-`dev` and `main` are **fully in sync** — 0 commits delta. Merged 2026-05-17 (merge commit `449164f`).
+`dev` is **1 commit ahead of `main`** — the post-deployment briefing commit (`0b60de8`) is on dev only. No code changes; `main` is current for all production purposes.
 
 ### `main` (GitHub Pages source — production ✅)
-All phases complete and live. Verified:
+All phases complete and live. Verified 2026-05-17:
 - `https://thatswhatsnext.github.io/LXDUNE/whatson/whatson.js` → 200
 - `https://thatswhatsnext.github.io/LXDUNE/autovideos/autovideos.js` → 200
 - `https://thatswhatsnext.github.io/LXDUNE/moodle-blocks/blocks.js` → 200
 
-### `dev` (in sync with main — 0 commits ahead)
-No divergence. All future work follows the same path: `feature/* → dev → sandpit → main`.
+### `dev` (1 commit ahead — briefing only)
+No divergence in code. The 1-commit delta is the briefing update; it will be absorbed into the next dev→main merge. All future work follows `feature/* → dev → sandpit → main`.
 
 ---
 
@@ -221,7 +221,7 @@ No divergence. All future work follows the same path: `feature/* → dev → san
 
 ### Phase 4 — Refactor whatson.js and autovideos.js ✅ COMPLETE (merged to main; in production)
 
-Both live scripts refactored to read from `config/units/*.json` instead of embedded static data. Merged to `dev` 2026-05-17. Awaiting Moodle sandpit testing before final dev→main merge.
+Both live scripts refactored to read from `config/units/*.json` instead of embedded static data. Sandpit-tested and merged to `main` 2026-05-17 (merge commit `449164f`). In production.
 
 **`autovideos/autovideos.js` changes (commit `df4a601`):**
 - `setUpVideos` is now `async`; fetches `${BASE}config/units/${unit}.json`
@@ -270,11 +270,14 @@ Both live scripts refactored to read from `config/units/*.json` instead of embed
 - **Zoom (T1-2026):** configured ✅
 - **Theme:** blue/teal — `primary: #1f6fb2`, `accent: #25797F`, `pill: #DAF0F7`, `pillBorder: #cbe6ee`
 - **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅
-- **Weeks 9–14 and week 0:** null (non-teaching)
-- **Links (all weeks):** all `null` — content not yet published
+- **Weeks 9–14 and week 0:** minimal (non-teaching); videos set to `DGIXT7ce3vQ`
+- **Links (all weeks 1–8):** all `null` — content links not yet published; all render as Coming soon chips
 - **Learning outcomes:** LO1–LO6 ✅
 - **assessmentTasks:** AT1 and AT2 — fully populated including 55 rubric descriptors ✅
-- **assessmentFiles (T1-2026):** AT1, AT2 — discipline structure in place, all URLs `null`
+  - AT1 links: rubric ✅, taskFiles ✅, submit ✅, forum ✅, video null
+  - AT2 links: rubric null ⚠️, taskFiles ✅, submit ✅, forum null, video ✅; flexiblePortal.url null (past-due, T1 2026)
+- **assessmentFiles (T1-2026):** structure in place; all discipline task/marking URLs `null`
+- **T1 2026 status:** both AT1 (due 2026-03-29) and AT2 (due 2026-05-03) are past due. Unit is in PE/assessment period.
 
 ### EDSE358 — Science Education 11–12: Plan, Assess and Report
 - **Live:** T1 2026, Thursdays 5:30–6:30pm
@@ -282,8 +285,8 @@ Both live scripts refactored to read from `config/units/*.json` instead of embed
 - **Zoom (T1-2026):** configured ✅
 - **Theme:** purple/cyan — `primary: #7C5DB6`, `accent: #4FA9B5`, `pill: #EDE8FB`, `pillBorder: #c9bef5`
 - **Teaching weeks 1–7:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅
-- **Week 8 (Module 4D):** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — **null, not yet written**
-- **Weeks 9–14 and week 0:** null (non-teaching)
+- **Week 8 (Module 4D):** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — **null, not yet written** ⚠️
+- **Weeks 9–14 and week 0:** minimal (non-teaching); videos set to `DGIXT7ce3vQ`
 - **Links by week:**
 
 | Week | Live links | Null links |
@@ -299,18 +302,19 @@ Both live scripts refactored to read from `config/units/*.json` instead of embed
 
 - **assessmentFiles (T1-2026):**
   - AT1: all URLs `null`
-  - AT2: rubric ✅, biology ✅, physics ✅, chemistry task ✅ / **marking null** (known issue), EES **task null** (known issue) / marking ✅
-- **assessmentTasks:** stubs added — structure and marks correct; rationale/aim/descriptions/rubric descriptors/links pending
+  - AT2: rubric ✅, biology ✅, physics ✅, chemistry task ✅ / **marking null** ⚠️, EES **task null** ⚠️ / marking ✅
+- **assessmentTasks:** stubs — structure, marks, LOs, AITSL correct; rationale/aim/part descriptions/rubric descriptors/all links null; pending full population
+- **T1 2026 status:** AT1 Part A (due 2026-03-22) and AT1 Parts B/C/D (due 2026-04-05) past due. AT2 (due 2026-05-04) past due. Unit is in PE/assessment period.
 
 ### EDSE362 — Science Education 11–12: Curriculum, Pedagogy and Inclusive Practice
 - **Live:** T2 2027 (not yet live — future unit)
 - **Trimesters configured:** T2
 - **Zoom (T2-2027):** `null` — not yet created
 - **Theme:** green/warm gold — `primary: #2E7D52`, `accent: #E3B089`, `pill: #E8F5EE`, `pillBorder: #b8dcc8`
-- **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅
-- **Videos (all weeks):** all `null` — none configured yet
-- **Links (all weeks):** all `null`
-- **assessmentTasks:** empty stubs (AT1 and AT2 schema present, all content null — populate closer to go-live)
+- **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅; `resources: []` present on each week (empty arrays, ready to fill)
+- **Videos (weeks 1–8):** all `null` — will default to `DGIXT7ce3vQ` until real IDs are added
+- **Links (all weeks):** all `null`; `assessmentPortalUrl: null` (no portal yet)
+- **assessmentTasks:** schema-only stubs — AT1 (50%) and AT2 (50%) LOs set; title/due/rationale/aim/rubric all null
 - **T2-2027 start date:** `2027-06-21` — ⚠️ placeholder, confirm against UNE academic calendar before go-live
 
 ---
@@ -421,6 +425,15 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
 ---
 
 ## Session notes
+
+### 2026-05-17 — Briefing checkpoint (routine /briefing-update after production deployment)
+
+No code changes this session. Verified current state against all three unit JSONs:
+- EDSE357: confirmed all weeks 1–8 populated; both ATs past due; all week links still null; AT2 rubric link and flexiblePortal.url still null (past-due, low priority)
+- EDSE358: confirmed weeks 1–7 populated, week 8 still null; both ATs past due; known issues with chemistry marking URL and EES task URL unchanged
+- EDSE362: confirmed weeks 1–8 populated with content; all videos and links null as expected; assessmentTasks remain schema-only stubs
+
+Branch delta corrected: dev is 1 commit ahead of main (briefing-only commit `0b60de8`). No code divergence.
 
 ### 2026-05-17 — Production deployment: all phases complete
 
