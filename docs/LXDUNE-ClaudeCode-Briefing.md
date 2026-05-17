@@ -1,6 +1,6 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-05-17  
+**Last updated:** 2026-05-17 (Phase 4 complete)  
 **Repo:** `https://github.com/thatswhatsnext/LXDUNE`  
 **GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`  
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
@@ -47,9 +47,9 @@ docs/
     briefing-update.md        ← /briefing-update slash command (update this briefing)
 
 whatson/
-  whatson.js                  ← LIVE, do not touch until Phase 4
+  whatson.js                  ← LIVE, config-driven (Phase 4); changes via feature/* → dev → sandpit → main
 autovideos/
-  autovideos.js               ← LIVE, do not touch until Phase 4
+  autovideos.js               ← LIVE, config-driven (Phase 4); EDIT legacy fallback at bottom of file
 ```
 
 ### How a Moodle shell works
@@ -71,40 +71,33 @@ Pasted once into Moodle, never edited again. The script fetches config on every 
 
 | Branch | Purpose |
 |---|---|
-| `main` | Tracking branch — GitHub Pages currently deployed from `dev` during development |
-| `dev` | Active development — GitHub Pages source since 2026-05-17 |
+| `main` | GitHub Pages source — live for students |
+| `dev` | Integration branch — sandpit-tested before merging to main |
 | `feature/*` | All new development — branch from dev, merge back to dev |
 
 **Never commit directly to `main`.** The path is always `feature/* → dev → main`.
 
-> ⚠️ **GitHub Pages is currently serving from `dev`**, not `main`. This was switched on 2026-05-17 for sandpit testing. Revert to `main` (or merge dev→main) before communicating the live URL to students.
+> ✅ **GitHub Pages is serving from `main`** — switched back from `dev` on 2026-05-17 after dev→main merge. The live URL is safe to share with students.
 
 ---
 
 ## Current branch status
 
-`dev` is **22 commits ahead of `main`**.
+`dev` is **5 commits ahead of `main`** — Phase 4 refactors merged to dev, awaiting sandpit testing before final dev→main merge.
 
-### `main` (tracking branch — not currently served)
-- `whatson/whatson.js` — live script for "What's on this week" widget
-- `autovideos/autovideos.js` — live weekly video switcher
-- All other supporting files (fonts, assets, other tools)
-- **Does NOT yet have:** config layer, blocks.js, generator, test harness, theme system, EDSE362, bespoke components, Assessment Content System, Course Hub block
+### `main` (GitHub Pages source — live ✅)
+Reflects the pre-Phase-4 state. `whatson.js` and `autovideos.js` still use embedded static data. Safe for students.
 
-### `dev` (GitHub Pages source — 22 commits ahead of main)
-Everything on `main`, plus:
-- `config/trimester-config.json`
-- `config/units/EDSE357.json` — fully populated through week 8; assessmentTasks AT1 + AT2 complete with rubric descriptors
-- `config/units/EDSE358.json` — weeks 1–7 fully populated; week 8 text pending; assessmentTasks AT1 + AT2 stubs (titles/structure added, rubric descriptors TBC)
-- `config/units/EDSE362.json` — weeks 1–8 fully populated; assessmentTasks AT1 + AT2 empty stubs (not live until T2 2027)
-- `moodle-blocks/blocks.js` — 9 render functions + theme system
-- `moodle-blocks/bespoke/` — 2 components (discipline-tab-switcher, riskassess-callout)
-- `generate/index.html` — 9 shell types including Course Hub
-- `test/index.html` — 7 week-blocks + Assessment tab + Course Hub tab
-- `templates/` (9 reference HTML components)
-- `docs/STAFF-README.md`
-- `docs/LXDUNE-ClaudeCode-Briefing.md`
-- `.claude/commands/briefing-update.md`
+### `dev` (5 commits ahead of main)
+Phase 4 complete. Both live scripts now async and config-driven:
+- `whatson/whatson.js` — refactored; reads `config/units/*.json` (commit `de0894c`)
+- `autovideos/autovideos.js` — refactored; reads `config/units/*.json`, EDIT legacy fallback at bottom (commit `df4a601`)
+- `config/units/EDSE357.json` — `videoInterval: 1` added
+- `config/units/EDSE358.json` — `videoInterval: 1` added
+- `config/units/EDSE362.json` — `videoInterval: 2` added
+- All other files unchanged from `main`
+
+**Do not merge dev→main until Moodle sandpit testing passes for both whatson and autovideos widgets.**
 
 ---
 
@@ -231,9 +224,37 @@ Everything on `main`, plus:
 - Generator shell type: `course-hub`; test harness tab: **Course Hub**
 - Verified in test harness for EDSE357 and EDSE358 on 2026-05-17
 
-### Phase 4 — Refactor whatson.js and autovideos.js ❌ NOT STARTED
+### Phase 4 — Refactor whatson.js and autovideos.js ✅ COMPLETE (merged to dev; pending sandpit)
 
-Refactor the two live scripts to read from `config/units/*.json` instead of their own embedded data objects. **Do not start until Phases 1–3 are stable and merged to main.**
+Both live scripts refactored to read from `config/units/*.json` instead of embedded static data. Merged to `dev` 2026-05-17. Awaiting Moodle sandpit testing before final dev→main merge.
+
+**`autovideos/autovideos.js` changes (commit `df4a601`):**
+- `setUpVideos` is now `async`; fetches `${BASE}config/units/${unit}.json`
+- Reads `unitCfg.videoInterval ?? 2` for weekly/fortnightly interval
+- Builds video sequence from `Object.keys(unitCfg.weeks).sort().map(k => unitCfg.weeks[k].video ?? 'DGIXT7ce3vQ')`
+- On fetch failure: checks `VideoURLs[unit]` legacy class; if found, uses it with `console.warn`; if not, shows "Video unavailable — please refresh"
+- `VideoURLs` static class preserved at bottom of file behind `/* LEGACY FALLBACK — EDIT units only. */` comment; covers EDIT415/425/426/513/517/518/521 with fortnightly interval (hardcoded 2)
+
+**`whatson/whatson.js` changes (commit `de0894c`):**
+- `displayWhatsOn` is now `async`; fetches `${BASE}config/units/${unitKey}.json`
+- On fetch failure: heading → "Content unavailable — please refresh the page.", details cleared — no silent fallback to a wrong unit
+- `Events` static class removed; `NO_TEACHING_WEEKS` constant replaces `Events.noTeachingWeeks`
+- `portalLink()` null guard: returns plain text when `assessmentPortalUrl` is null
+- `week0Message` handled as string (JSON) or legacy array — fixes pre-existing `undefined` paragraph bug
+- JSON week key lookup: `unitCfg.weeks[String(thisWeek)]` (JSON keys are strings, not integers)
+
+**`config/units/*.json` additions:**
+- `videoInterval: 1` added to EDSE357 and EDSE358 (weekly rotation)
+- `videoInterval: 2` added to EDSE362 (fortnightly, default)
+
+**Test results (29/29 passed):**
+- T1: EDSE357 week 5 — topic, live session, census note, no undefined ✅
+- T2: EDSE358 week 7 — module, live session, no undefined ✅
+- T3: EDSE362 week 3 — renders without errors, no assessment reminders, no null artefacts ✅
+- T4: EDSE357 week 0 — Zero Week heading, week0Message correct, no undefined paragraph ✅
+- T5: EDSE358 week 9 — no teaching message, no live session, Professional Experience item ✅
+- T6: EDSE358 AT1 Part A on 2026-03-22 — "due today" reminder ✅
+- T7: Fetch failure — explicit error heading, no silent fallback ✅
 
 ---
 
@@ -381,7 +402,7 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
 7. **2027 T2/T3 start dates:** placeholders — must be confirmed against UNE academic calendar before EDSE362 goes live.
 8. **`announcementBody.keyIdea`:** stored in some EDSE358 weeks but not yet rendered by any block function. Future enhancement.
 9. **EDSE357 AT2 rubric link null:** add URL when rubric is published to Moodle.
-10. **GitHub Pages serving from `dev`:** switched on 2026-05-17. Must revert to `main` (or merge dev→main) before communicating the live URL to students.
+10. ~~**GitHub Pages serving from `dev`**~~ — **RESOLVED 2026-05-17.** Merged dev→main and switched Pages to `main`. Live URL is safe to share.
 11. **EDSE358 assessmentTasks — rubric descriptors TBC:** all band descriptors read "To be confirmed — check official rubric document". Populate from official marking rubrics before assessment pages go live.
 12. **EDSE358 assessmentTasks — rationale, aim, part descriptions, links all null:** stub structure is in place; full population needed before rendering.
 13. **EDSE362 assessmentTasks — completely empty:** AT1 and AT2 are schema-only stubs. Populate closer to T2 2027 go-live.
@@ -391,20 +412,53 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
 
 ## Next tasks in priority order
 
-1. **Merge dev → main** — all Phase 3 work (including Course Hub) is tested and verified. Merge, revert GitHub Pages to `main`, push, confirm live.
-2. **EDSE358 week 8** — write `announcementBody`, `liveSessionFocus`, `liveSessionTasks` for Module 4D (Developing rubrics and providing feedback).
-3. **EDSE358 AT1 — populate fully** — add rationale, aim, part descriptions, requirements, all rubric descriptors from official document, and all links (taskFiles, submit, forum, rubric) once published.
-4. **EDSE358 AT2 — populate fully** — same: rationale, aim, rubric descriptors, links.
-5. **Resolve EDSE358 AT2 known issues** — get correct Chemistry marking URL and EES task URL.
-6. **Add EDSE357 week links** — all weeks, all link types, as content is published.
-7. **Add EDSE358 lecture/slides/liveHub/recording links** — weeks 1–2, 3, 6, 7 as content is published.
-8. **Add EDSE357 AT2 rubric link** — once the marking rubric PDF is published on Moodle.
-9. **Add assessmentFiles URLs** — EDSE358 AT1, EDSE357 AT1/AT2 — as task and marking files are uploaded.
-10. **Phase 4 — Refactor `whatson.js` and `autovideos.js`** — after Phases 1–3 are stable on main.
+1. **Sandpit testing — Phase 4** — test both `whatson.js` and `autovideos.js` in Moodle sandpit with EDSE357 and EDSE358. Confirm fetch, rendering, and EDIT legacy fallback behaviour before dev→main merge.
+2. **Merge dev→main** — after sandpit passes. Switch GitHub Pages to confirm live URL is serving Phase 4 code.
+3. **EDSE358 week 8** — write `announcementBody`, `liveSessionFocus`, `liveSessionTasks` for Module 4D (Developing rubrics and providing feedback).
+4. **EDSE358 AT1 — populate fully** — add rationale, aim, part descriptions, requirements, all rubric descriptors from official document, and all links (taskFiles, submit, forum, rubric) once published.
+5. **EDSE358 AT2 — populate fully** — same: rationale, aim, rubric descriptors, links.
+6. **Resolve EDSE358 AT2 known issues** — get correct Chemistry marking URL and EES task URL.
+7. **Add EDSE357 week links** — all weeks, all link types, as content is published.
+8. **Add EDSE358 lecture/slides/liveHub/recording links** — weeks 1–2, 3, 6, 7 as content is published.
+9. **Add EDSE357 AT2 rubric link** — once the marking rubric PDF is published on Moodle.
+10. **Add assessmentFiles URLs** — EDSE358 AT1, EDSE357 AT1/AT2 — as task and marking files are uploaded.
 
 ---
 
 ## Session notes
+
+### 2026-05-17 — Phase 4 complete; merged to dev
+
+**Feature branches merged:**
+- `feature/phase4-autovideos` → dev (merge commit `df4a601`); feature branch commit `fd7eb98`
+- `feature/phase4-whatson` → dev (merge commit `de0894c`); feature branch commit `21a429d`
+- Pushed to `origin/dev`; dev is now 5 commits ahead of main
+
+**Key decisions made:**
+- EDIT* units (no config JSON) get a legacy fallback — `VideoURLs` static class preserved at bottom of `autovideos.js` with a clear comment; used only on fetch failure with `console.warn`. Do not add new units to this class; create a config JSON instead.
+- `week0Message` in JSON is a string (not an array as in the old `Events` static class) — new code handles both types; pre-existing `<p>undefined</p>` bug from the old array code is now fixed.
+- `portalLink()` returns plain text "the Assessment Portal" when `assessmentPortalUrl` is null (EDSE362) — no broken link, no crash.
+- JSON week keys are strings ("1", "2"...) — requires `unitCfg.weeks[String(thisWeek)]` not integer lookup.
+- `videoInterval` field added to all three unit JSONs: EDSE357=1, EDSE358=1, EDSE362=2.
+- Test suite: 29 assertions across 7 scenarios, all passing before merge.
+
+**Behaviour difference (autovideos):**
+- EDSE357/EDSE358: sequence now built dynamically from config JSON — video IDs and count verified entry-for-entry identical to old hardcoded arrays.
+- EDSE362: all video fields are null → defaults to `DGIXT7ce3vQ` for every week; functionally identical to old behaviour.
+- EDIT* units: old behaviour relied on switch(unit) in synchronous code; new behaviour fetches config, fails, falls back to legacy class with console.warn — net result same video, slightly delayed (one fetch round-trip before fallback).
+
+**Next:** Moodle sandpit testing for both widgets before dev→main merge.
+
+### 2026-05-17 — dev → main merge; GitHub Pages switched to main
+
+**Merge (commit `dc8ecbd` on main):**
+- Pre-merge checks passed: clean working tree, `whatson.js`/`autovideos.js` unchanged, test harness verified, Pages confirmed on `dev`
+- `origin/dev` pushed first (10 local-only commits synced)
+- `git merge dev --no-ff` — 22 commits, 5,871 insertions, 22 new files
+- `git push origin main` — live immediately
+- GitHub Pages source switched from `dev` → `main` in repo settings; Pages rebuild confirmed
+- `dev` and `main` are now fully in sync (0 commits delta)
+- Phase 4 (`whatson.js`/`autovideos.js` refactor) is now unblocked — Phases 1–3 are stable on `main`
 
 ### 2026-05-17 — SA3 + SA4 verified; Course Hub complete
 
@@ -478,9 +532,9 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
 
 ## Critical constraints (always apply)
 
-- **Never modify `whatson/whatson.js` or `autovideos/autovideos.js`** until Phase 4 is explicitly started. Both scripts are live for enrolled students.
+- **`whatson/whatson.js` and `autovideos/autovideos.js` are now config-driven (Phase 4 complete).** Both scripts are still live for enrolled students — all changes go through dev and sandpit testing first.
 - **Never commit directly to `main`.**
 - **EDSE357 and EDSE358 are live with enrolled students.** Breaking changes are not acceptable. All changes go through dev and sandpit testing first.
 - **`<\/script>` in shell template literals** — use `<\/script>` inside JavaScript strings to prevent the HTML parser from closing the outer script tag prematurely.
 - **`import.meta.url`** — used in `blocks.js` to derive the config base URL dynamically. This means `blocks.js` works from any host without hardcoded URLs.
-- **GitHub Pages is currently on `dev`** — revert to `main` (or merge dev→main) before sending the live URL to students.
+- **GitHub Pages is on `main`** — live URL is safe. Do not switch back to `dev` without a deliberate sandpit decision.

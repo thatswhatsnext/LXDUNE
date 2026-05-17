@@ -8,6 +8,7 @@
     "T2"
   ],
   "assessmentPortalUrl": null,
+  "videoInterval": 2,
   "week0Message": "Have a look around at the first few tiles below — we'll get started next week!",
   "theme": {
     "primary": "#2E7D52",

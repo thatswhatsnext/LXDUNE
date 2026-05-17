@@ -9,6 +9,7 @@
     "T2"
   ],
   "assessmentPortalUrl": "https://mylearn.une.edu.au/course/section.php?id=477943",
+  "videoInterval": 1,
   "week0Message": "Have a look around at the first few tiles below and finish up the Week 0 section — we'll get started next week!",
   "theme": {
     "primary": "#7C5DB6",
