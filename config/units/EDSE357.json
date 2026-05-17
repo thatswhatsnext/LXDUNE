@@ -1,0 +1,1056 @@
+{
+  "code": "EDSE357",
+  "name": "Science Education 11–12: Curriculum and Pedagogy",
+  "itemLabel": "Topic",
+  "liveDay": "Wednesday",
+  "liveTime": "5:30–6:30pm",
+  "trimesters": [
+    "T1"
+  ],
+  "assessmentPortalUrl": "https://mylearn.une.edu.au/course/section.php?id=477930",
+  "week0Message": "Have a look around at the first few tiles below — we'll get started next week!",
+  "theme": {
+    "primary": "#1f6fb2",
+    "accent": "#25797F",
+    "pill": "#DAF0F7",
+    "pillBorder": "#cbe6ee"
+  },
+  "learningOutcomes": [
+    {
+      "id": "LO1",
+      "color": "#25797F",
+      "title": "Curriculum Knowledge",
+      "description": "Demonstrate knowledge and understanding of the structure, content, and outcomes of the Stage 6 science syllabuses including Biology, Chemistry, Physics, Investigating Science, Earth & Environmental Science, and Science Extension.",
+      "gtsd": "2.1.1"
+    },
+    {
+      "id": "LO2",
+      "color": "#3F88C5",
+      "title": "Working Scientifically",
+      "description": "Demonstrate understanding of the Working Scientifically strand and design teaching strategies that develop students' skills in conducting, evaluating, and communicating scientific investigations.",
+      "gtsd": "2.2.1, 3.3.1"
+    },
+    {
+      "id": "LO3",
+      "color": "#7C5DB6",
+      "title": "Pedagogical Content Knowledge",
+      "description": "Apply a range of teaching strategies appropriate to the content and contexts of senior science, including constructivist and inquiry-based approaches that promote deep conceptual understanding.",
+      "gtsd": "3.1.1, 3.2.1, 3.3.1"
+    },
+    {
+      "id": "LO4",
+      "color": "#4FA9B5",
+      "title": "Resources and ICT",
+      "description": "Critically evaluate and select digital and non-digital resources for teaching senior science, and implement strategies that use ICT to expand learning opportunities aligned with syllabus outcomes.",
+      "gtsd": "2.6.1, 3.4.1"
+    },
+    {
+      "id": "LO5",
+      "color": "#8FB77A",
+      "title": "Science in Context",
+      "description": "Connect curriculum content to contemporary and emerging applications of science, and design learning experiences that engage students with the relevance of science to society, environment, and future careers.",
+      "gtsd": "2.4.1, 2.5.1"
+    },
+    {
+      "id": "LO6",
+      "color": "#D98C5F",
+      "title": "Inclusive Practice",
+      "description": "Design differentiated learning experiences that support the full participation of students with diverse learning needs, cultural backgrounds, and achievement levels in senior science classrooms.",
+      "gtsd": "1.5.1, 1.6.1"
+    }
+  ],
+  "assessmentTasks": [
+    {
+      "id": "AT1",
+      "title": "Practical Investigation and Depth Study Design",
+      "weighting": 50,
+      "length": "2,000 words (equivalent) +/- 10%",
+      "due": "2026-03-29",
+      "flexiblePortal": {
+        "label": "Flexible portal to 5 April 2026",
+        "url": "https://mylearn.une.edu.au/mod/choice/view.php?id=3509333",
+        "opensDate": "2026-03-27",
+        "closesDate": "2026-04-05"
+      },
+      "learningOutcomes": [
+        "LO1",
+        "LO2",
+        "LO3",
+        "LO4",
+        "LO5"
+      ],
+      "aitslStandards": [
+        "2.1.1",
+        "2.6.1",
+        "3.3.1",
+        "4.1.1",
+        "4.2.1",
+        "4.4.1",
+        "5.1.1",
+        "5.4.1",
+        "7.4.1"
+      ],
+      "rationale": "Senior secondary school science teachers need to be aware of the demands of conducting practical investigations for science disciplines, as well as the safety requirements for these, and, in NSW, know how to incorporate Depth Studies into class work.",
+      "aim": "The aims of this assessment task are for you to demonstrate your knowledge of how to prepare students to undertake a practical investigation and Depth Study in one science discipline; and to show how you would integrate safety as a matter of course in the context of a practical lesson in Years 11–12 sciences.",
+      "links": {
+        "rubric": "https://mylearn.une.edu.au/pluginfile.php/5142970/mod_folder/content/0/AT1%20EDSE357%20Marking%20rubric%202026.pdf?forcedownload=1",
+        "taskFiles": "https://mylearn.une.edu.au/mod/folder/view.php?id=3381548",
+        "submit": "https://mylearn.une.edu.au/mod/assign/view.php?id=3381549",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381550",
+        "video": null
+      },
+      "parts": [
+        {
+          "id": "A",
+          "title": "Critique of a Digital Resource",
+          "marks": 20,
+          "wordCount": 300,
+          "description": "Choose ONE practical investigation from ONE Stage 6 science discipline (Years 11–12). See the discipline options below.",
+          "requirements": [
+            "Locate digital resources that would assist you in preparing Year 11–12 students to undertake this practical investigation.",
+            "Record the URL of ONE selected digital resource.",
+            "Critique the resource and justify why it would be useful / not useful for your classroom context."
+          ],
+          "critique": [
+            "Pedagogical principles of scientific inquiry in Years 11–12 (unit readings + further wide reading).",
+            "The Working Scientifically outcomes that would be addressed.",
+            "Other relevant syllabus elements where helpful."
+          ],
+          "loLinks": [
+            "LO2",
+            "LO4"
+          ],
+          "bespoke": "discipline-tab-switcher"
+        },
+        {
+          "id": "B",
+          "title": "Risk Assessment, Equipment List & Method",
+          "marks": 20,
+          "wordCount": 500,
+          "description": "Generate a risk assessment using RiskAssess for the practical investigation selected in Part A.",
+          "requirements": [
+            "An equipment list",
+            "A full method written so that students could work independently with confidence",
+            "Appropriate risk controls and safety considerations"
+          ],
+          "loLinks": [
+            "LO2",
+            "LO3"
+          ],
+          "bespoke": "riskassess-callout"
+        },
+        {
+          "id": "C",
+          "title": "Depth Study Design",
+          "marks": 50,
+          "wordCount": 1000,
+          "description": "Using the provided NESA program as inspiration, choose ONE Stage 6 science discipline and develop a Depth Study (5 hours) for collaborative in-class work that leads into an open-ended investigation (OEI) to be completed at a later date.",
+          "note": "The Depth Study is not an assessment task. It is regular class work for individuals / small groups.",
+          "requirements": [
+            "The aim of the Depth Study",
+            "The syllabus outcomes and content addressed (syllabus extracts do not contribute to word count)",
+            "Instructions for student development of an open-ended investigation (OEI) that conforms to syllabus requirements (to be studied in further class hours)",
+            "What students are required to produce across the five hours to demonstrate engagement and meet task requirements",
+            "Formative assessment opportunities (check-in points) where you would provide feedback on OEI planning"
+          ],
+          "resources": [
+            {
+              "label": "Teaching advice (additional): Depth study guide",
+              "url": "https://curriculum.nsw.edu.au/file/3d78a40c-8cb0-4419-b1da-c16193d5ecfa/science-11-12-2025-teaching-advice-additional-depth-study-guide.docx"
+            }
+          ],
+          "loLinks": [
+            "LO1",
+            "LO2",
+            "LO3"
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Reflective Self-Assessment",
+          "marks": 10,
+          "wordCount": 200,
+          "description": "Write a reflective statement on your learning journey for this task.",
+          "requirements": [
+            "What did you already know how to do? (optional guiding question)",
+            "What was new learning for you? (optional guiding question)",
+            "How will the learning journey you undertook impact beyond this unit of study? (optional guiding question)"
+          ],
+          "loLinks": [
+            "LO3",
+            "LO5"
+          ]
+        }
+      ],
+      "criteria": [
+        {
+          "label": "Part A",
+          "weighting": null,
+          "accent": "#1f6fb2",
+          "background": "#eef5fb",
+          "description": "Critique of digital resource (inquiry + Working Scientifically alignment).",
+          "bullets": null,
+          "focus": "Inquiry-based resource evaluation for Working Scientifically outcomes",
+          "loLinks": [
+            "LO2",
+            "LO4"
+          ]
+        },
+        {
+          "label": "Part B1",
+          "weighting": null,
+          "accent": "#f1c40f",
+          "background": "#fff8e6",
+          "description": "Risk assessment, equipment list and method.",
+          "bullets": null,
+          "focus": "Risk assessment, equipment list, and method writing",
+          "loLinks": [
+            "LO2",
+            "LO3"
+          ]
+        },
+        {
+          "label": "Part B2",
+          "weighting": null,
+          "accent": "#f1c40f",
+          "background": "#fff8e6",
+          "description": "Safety procedures embedded within practical preparation and conduct.",
+          "bullets": null,
+          "focus": "Safety integration in practical preparation and conduct",
+          "loLinks": [
+            "LO3"
+          ]
+        },
+        {
+          "label": "Part C1",
+          "weighting": null,
+          "accent": "#25797F",
+          "background": "#eef6f6",
+          "description": "Depth Study: aim, syllabus outcomes, and content.",
+          "bullets": null,
+          "focus": "Depth Study aim, outcomes, and syllabus alignment",
+          "loLinks": [
+            "LO1",
+            "LO2"
+          ]
+        },
+        {
+          "label": "Part C2",
+          "weighting": null,
+          "accent": "#25797F",
+          "background": "#eef6f6",
+          "description": "Depth Study: instructions for collaborative student development of an OEI.",
+          "bullets": null,
+          "focus": "Open-ended investigation design and student scaffolding",
+          "loLinks": [
+            "LO2",
+            "LO3"
+          ]
+        },
+        {
+          "label": "Part C3",
+          "weighting": null,
+          "accent": "#25797F",
+          "background": "#eef6f6",
+          "description": "Depth Study: check-in points for feedback and student products.",
+          "bullets": null,
+          "focus": "Formative assessment and check-in point design",
+          "loLinks": [
+            "LO2",
+            "LO3"
+          ]
+        },
+        {
+          "label": "Part D",
+          "weighting": null,
+          "accent": "#6F7B84",
+          "background": "#f4f6f8",
+          "description": "Reflection with evidence of learning growth.",
+          "bullets": null,
+          "focus": "Reflective practice and evidence of learning growth",
+          "loLinks": [
+            "LO3",
+            "LO5"
+          ]
+        }
+      ],
+      "rubric": [
+        {
+          "part": "A",
+          "criterion": "Critique of digital resource",
+          "marks": 20,
+          "loLinks": [
+            "LO2",
+            "LO4"
+          ],
+          "bands": {
+            "HD": {
+              "range": "20–18",
+              "descriptor": "Logical, coherent critique with wide scholarly references, named constructivist pedagogy, deep understanding of inquiry principles, strong links to syllabus, several Working Scientifically outcomes. Focus on all syllabus elements linked in sophisticated and concise fashion."
+            },
+            "D": {
+              "range": "17–15",
+              "descriptor": "Logical, coherent critique with supplied and self-sourced references; thorough understanding; clear syllabus links. Focus on all syllabus elements linked with clarity."
+            },
+            "C": {
+              "range": "14–12",
+              "descriptor": "Adequate critique supported by supplied materials and one self-sourced source; adequate understanding; descriptive links to syllabus elements; one Working Scientifically outcome. Focus on all syllabus elements with descriptive links."
+            },
+            "P": {
+              "range": "11–10",
+              "descriptor": "Adequate critique based only on supplied materials; constructivist approach named but inquiry understanding weak; simple focus on most syllabus elements."
+            },
+            "N": {
+              "range": "9–0",
+              "descriptor": "No/inadequate scholarly references; constructivist approach missing; inquiry not understood; syllabus elements not adequately covered. Critique does not adequately focus on syllabus elements."
+            }
+          }
+        },
+        {
+          "part": "B1",
+          "criterion": "Risk assessment, equipment list and method",
+          "marks": 10,
+          "loLinks": [
+            "LO2",
+            "LO3"
+          ],
+          "bands": {
+            "HD": {
+              "range": "10–9",
+              "descriptor": "Comprehensive and accurate equipment list and hazards; method allows independent confident student work."
+            },
+            "D": {
+              "range": "8",
+              "descriptor": "Mostly accurate equipment list and hazards; method allows confident student work."
+            },
+            "C": {
+              "range": "7–6",
+              "descriptor": "Mostly complete equipment list and hazards; method allows work with some confidence."
+            },
+            "P": {
+              "range": "5",
+              "descriptor": "Mostly complete equipment list and hazards; practical may need interruption; method requires prior understanding."
+            },
+            "N": {
+              "range": "4–0",
+              "descriptor": "Incomplete/inadequate equipment list; method inaccurate or unreliable; practical would be interrupted several times."
+            }
+          }
+        },
+        {
+          "part": "B2",
+          "criterion": "Safety integration in practical preparation and conduct",
+          "marks": 10,
+          "loLinks": [
+            "LO3"
+          ],
+          "bands": {
+            "HD": {
+              "range": "10–9",
+              "descriptor": "Safety integrated seamlessly into procedural steps. PPE, handling, and emergency procedures explicit and realistic. Demonstrates proactive risk minimisation and duty-of-care awareness."
+            },
+            "D": {
+              "range": "8",
+              "descriptor": "Safety clearly stated and appropriate. Emergency procedures identified. Demonstrates awareness of professional responsibility."
+            },
+            "C": {
+              "range": "7–6",
+              "descriptor": "Safety mentioned but not fully embedded in procedure. Some omissions."
+            },
+            "P": {
+              "range": "5",
+              "descriptor": "Safety treated as checklist compliance only. Limited integration into teaching context."
+            },
+            "N": {
+              "range": "4–0",
+              "descriptor": "Safety largely absent or inappropriate."
+            }
+          }
+        },
+        {
+          "part": "C1",
+          "criterion": "Depth Study: aim, syllabus outcomes, and content",
+          "marks": 15,
+          "loLinks": [
+            "LO1",
+            "LO2"
+          ],
+          "bands": {
+            "HD": {
+              "range": "15–13",
+              "descriptor": "Clear aim, syllabus outcomes, and content listed; accurate timing for 5 hours of class work."
+            },
+            "D": {
+              "range": "12–11",
+              "descriptor": "Clear aim, syllabus outcomes, and content mostly accurate for 5 hours."
+            },
+            "C": {
+              "range": "10–9",
+              "descriptor": "Aim, syllabus outcomes, and content somewhat accurate for 5 hours."
+            },
+            "P": {
+              "range": "8–7",
+              "descriptor": "Aim, outcomes, and content present but requiring significant revision for timing."
+            },
+            "N": {
+              "range": "6–0",
+              "descriptor": "Aim, syllabus outcomes and/or content missing or inaccurate; timing very inaccurate."
+            }
+          }
+        },
+        {
+          "part": "C2",
+          "criterion": "Depth Study: instructions for OEI development and student scaffolding",
+          "marks": 20,
+          "loLinks": [
+            "LO2",
+            "LO3"
+          ],
+          "bands": {
+            "HD": {
+              "range": "20–18",
+              "descriptor": "Instructions for collaborative OEI development are clear, concise, meet syllabus; creativity encouraged."
+            },
+            "D": {
+              "range": "17–15",
+              "descriptor": "Instructions clear; creativity encouraged."
+            },
+            "C": {
+              "range": "14–12",
+              "descriptor": "Instructions mostly clear; product encourages creativity but could improve."
+            },
+            "P": {
+              "range": "11–10",
+              "descriptor": "Instructions present but product lacks strong encouragement of creativity."
+            },
+            "N": {
+              "range": "9–0",
+              "descriptor": "Instructions unclear; product does not encourage creativity."
+            }
+          }
+        },
+        {
+          "part": "C3",
+          "criterion": "Depth Study: check-in points and student products",
+          "marks": 15,
+          "loLinks": [
+            "LO2",
+            "LO3"
+          ],
+          "bands": {
+            "HD": {
+              "range": "15–13",
+              "descriptor": "Relevant check-in points; ample feedback opportunities; scholarly literature cited accurately."
+            },
+            "D": {
+              "range": "12–11",
+              "descriptor": "Relevant check-in points slightly needing refinement; feedback opportunities available; scholarly literature cited accurately."
+            },
+            "C": {
+              "range": "10–9",
+              "descriptor": "Relevant check-in points needing revision; some feedback opportunities; literature cited mostly accurately."
+            },
+            "P": {
+              "range": "8–7",
+              "descriptor": "Check-in points present but superficial; feedback opportunity limited; literature cited but barely adequate."
+            },
+            "N": {
+              "range": "6–0",
+              "descriptor": "Check-in points missing or irrelevant; feedback opportunities inadequate; scholarly literature not cited."
+            }
+          }
+        },
+        {
+          "part": "D",
+          "criterion": "Reflection with evidence of learning growth",
+          "marks": 10,
+          "loLinks": [
+            "LO3",
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "10–9",
+              "descriptor": "Reflection completed to a very high standard; clear link to future teaching and learning."
+            },
+            "D": {
+              "range": "8",
+              "descriptor": "Reflection completed to a satisfactory standard; evidence of growth mentioned but not strongly linked."
+            },
+            "C": {
+              "range": "7–6",
+              "descriptor": "Reflection attempted but not satisfactory."
+            },
+            "P": {
+              "range": "5",
+              "descriptor": "Reflection attempted but unsatisfactory."
+            },
+            "N": {
+              "range": "4–0",
+              "descriptor": "Reflection missing or inadequate."
+            }
+          }
+        }
+      ],
+      "hdCallout": null,
+      "submissionInstructions": [
+        "Submit one document that contains all parts.",
+        "Combine Parts A, C and D with the RiskAssess file (Part B) to make ONE file.",
+        "Name your file: LastNameFirstInitial_A1EDSE357",
+        "Syllabus extracts do not contribute to word count.",
+        "Reference list and risk assessment do not contribute to word count."
+      ]
+    },
+    {
+      "id": "AT2",
+      "title": "Curating & Critically Evaluating Senior Science Resources",
+      "weighting": 50,
+      "length": "2,000 words +/- 10%",
+      "due": "2026-05-03",
+      "flexiblePortal": {
+        "label": "Flexible portal to 10 May 2026",
+        "url": null,
+        "closesDate": "2026-05-10"
+      },
+      "learningOutcomes": [
+        "LO1",
+        "LO2",
+        "LO4",
+        "LO5",
+        "LO6"
+      ],
+      "aitslStandards": [
+        "2.1.1",
+        "2.6.1",
+        "3.4.1",
+        "3.6.1",
+        "5.1.1",
+        "5.4.1",
+        "7.4.1"
+      ],
+      "rationale": "There is a plethora of resources available to use in Year 11–12 science classes. Some resources are excellent, whilst others are not. It is a core teacher skill to be able to critically examine resources for use in the classroom to suit the learning needs of the cohort.",
+      "aim": "Compile eight (8) teaching resources for Year 11–12 in ONE science discipline. Document each resource in a structured summary table. Write a 250-word critical analysis for each resource. You are making professional decisions about whether and how these resources should be used in senior science classrooms.",
+      "links": {
+        "rubric": null,
+        "taskFiles": "https://mylearn.une.edu.au/mod/folder/view.php?id=3381554",
+        "submit": "https://mylearn.une.edu.au/mod/assign/view.php?id=3381555",
+        "forum": null,
+        "video": "https://echo360.net.au/media/3d58f180-ecf9-491e-bdc7-7944b3149e6b/public"
+      },
+      "parts": [],
+      "criteria": [
+        {
+          "label": "Professional Judgement & Critical Evaluation",
+          "weighting": 35,
+          "accent": "#25797F",
+          "background": "#DAF0F7",
+          "description": "Can you evaluate resources critically and decide whether you would use them — and why?",
+          "bullets": [
+            "Analyse strengths and limitations",
+            "Consider learning impact",
+            "Where relevant, evaluate assessment purpose (formative/summative)",
+            "Justify your professional decision (use / adapt / reject)"
+          ],
+          "focus": "Critical judgement + decision",
+          "loLinks": [
+            "LO1",
+            "LO5"
+          ]
+        },
+        {
+          "label": "Diversity & Intentional Curation",
+          "weighting": 15,
+          "accent": "#B67AD6",
+          "background": "#F3E8FB",
+          "description": "Have you curated a balanced professional collection — intentional, not just compliant?",
+          "bullets": [
+            "Digital resource",
+            "First-hand investigation",
+            "Second-hand data investigation",
+            "External expert",
+            "Assessment item (formative or summative)"
+          ],
+          "focus": "Breadth + purposeful selection",
+          "loLinks": [
+            "LO1",
+            "LO4"
+          ]
+        },
+        {
+          "label": "Curriculum Literacy & Assessment Alignment",
+          "weighting": 30,
+          "accent": "#9FB9E6",
+          "background": "#EAF1FF",
+          "description": "Do you demonstrate understanding of syllabus structure and how learning is assessed?",
+          "bullets": [
+            "Accurate outcome and content alignment",
+            "Clear links to investigative skills",
+            "Evidence of understanding cognitive demand",
+            "Explicit connection to how learning would be assessed"
+          ],
+          "focus": "Syllabus accuracy + assessment thinking",
+          "loLinks": [
+            "LO1",
+            "LO2",
+            "LO4"
+          ]
+        },
+        {
+          "label": "Scholarly Grounding & Pedagogical Insight",
+          "weighting": 20,
+          "accent": "#E3B089",
+          "background": "#FFF1E5",
+          "description": "Are your critiques informed by research, and linked to classroom application?",
+          "bullets": [
+            "Reference learning theory",
+            "Draw on peer-reviewed literature",
+            "Link theory to practical teaching decisions"
+          ],
+          "focus": "Evidence-informed reasoning",
+          "loLinks": [
+            "LO1",
+            "LO5",
+            "LO6"
+          ]
+        }
+      ],
+      "rubric": [
+        {
+          "part": null,
+          "criterion": "Professional Judgement & Critical Evaluation",
+          "marks": 35,
+          "loLinks": [
+            "LO1",
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "30–35",
+              "descriptor": "Sophisticated professional judgement across all 8 critiques. Evaluates learning impact, assessment validity, reliability, accessibility and diversity. Balanced and decisive judgement."
+            },
+            "D": {
+              "range": "26–29",
+              "descriptor": "Strong evaluation across most critiques. Clear professional reasoning. Assessment implications identified."
+            },
+            "C": {
+              "range": "23–25",
+              "descriptor": "Sound evaluation. Strengths and limitations identified. Assessment purpose mentioned but may lack depth."
+            },
+            "P": {
+              "range": "18–22",
+              "descriptor": "Mostly descriptive. Limited professional judgement. Minimal assessment awareness."
+            },
+            "N": {
+              "range": "0–17",
+              "descriptor": "Inadequate evaluation. Largely descriptive or unsupported claims."
+            }
+          }
+        },
+        {
+          "part": null,
+          "criterion": "Diversity & Intentional Curation",
+          "marks": 15,
+          "loLinks": [
+            "LO1",
+            "LO4"
+          ],
+          "bands": {
+            "HD": {
+              "range": "13–15",
+              "descriptor": "Purposeful and strategic selection of diverse resource types. Clear rationale for future professional use."
+            },
+            "D": {
+              "range": "11–12",
+              "descriptor": "Appropriate variety of required resource types. Clear justification."
+            },
+            "C": {
+              "range": "9–10",
+              "descriptor": "Required resource types included. Some rationale evident."
+            },
+            "P": {
+              "range": "7–8",
+              "descriptor": "Compliance-based selection. Limited professional reasoning."
+            },
+            "N": {
+              "range": "0–6",
+              "descriptor": "Missing required types or inappropriate selection."
+            }
+          }
+        },
+        {
+          "part": null,
+          "criterion": "Curriculum Literacy & Assessment Alignment",
+          "marks": 30,
+          "loLinks": [
+            "LO1",
+            "LO2",
+            "LO4"
+          ],
+          "bands": {
+            "HD": {
+              "range": "26–30",
+              "descriptor": "Precise syllabus alignment. Demonstrates deep understanding of content structure, investigative skills, cognitive demand, and assessment alignment."
+            },
+            "D": {
+              "range": "23–25",
+              "descriptor": "Clear and accurate alignment. Strong understanding of syllabus structure. Assessment links evident."
+            },
+            "C": {
+              "range": "20–22",
+              "descriptor": "Appropriate alignment. Some awareness of assessment and cognitive demand."
+            },
+            "P": {
+              "range": "15–19",
+              "descriptor": "Basic alignment. Limited understanding of outcome progression."
+            },
+            "N": {
+              "range": "0–14",
+              "descriptor": "Incorrect or missing syllabus alignment."
+            }
+          }
+        },
+        {
+          "part": null,
+          "criterion": "Scholarly Grounding & Pedagogical Insight",
+          "marks": 20,
+          "loLinks": [
+            "LO1",
+            "LO5",
+            "LO6"
+          ],
+          "bands": {
+            "HD": {
+              "range": "17–20",
+              "descriptor": "Literature integrated fluently and purposefully. Learning theory strengthens professional judgement."
+            },
+            "D": {
+              "range": "15–16",
+              "descriptor": "Relevant literature clearly supports evaluation. Sound theoretical understanding."
+            },
+            "C": {
+              "range": "13–14",
+              "descriptor": "Appropriate references. Links to theory present but may lack depth."
+            },
+            "P": {
+              "range": "10–12",
+              "descriptor": "Limited or surface-level literature use. Weak integration."
+            },
+            "N": {
+              "range": "0–9",
+              "descriptor": "Minimal or no scholarly support."
+            }
+          }
+        }
+      ],
+      "hdCallout": "HD work reads like the thinking of a capable early-career science teacher who understands curriculum deeply, evaluates resources professionally, uses literature strategically (not as decoration), and makes sound, future-oriented decisions.",
+      "submissionInstructions": [
+        "Submit one document.",
+        "Include a cover page and academic integrity statement.",
+        "Use APA 7th referencing."
+      ]
+    }
+  ],
+  "trimesterConfig": {
+    "T1-2026": {
+      "zoom": {
+        "meetingId": "828 6792 7955",
+        "password": "590152",
+        "url": "https://une-au.zoom.us/j/82867927955?pwd=kKabxUYQKzi2PagY99sOm5Po6ktj4I.1"
+      },
+      "assessmentFiles": {
+        "AT1": {
+          "rubricUrl": null,
+          "disciplines": {
+            "biology": {
+              "task": null,
+              "marking": null
+            },
+            "chemistry": {
+              "task": null,
+              "marking": null
+            },
+            "ees": {
+              "task": null,
+              "marking": null
+            },
+            "physics": {
+              "task": null,
+              "marking": null
+            }
+          }
+        },
+        "AT2": {
+          "rubricUrl": null,
+          "disciplines": {
+            "biology": {
+              "task": null,
+              "marking": null
+            },
+            "chemistry": {
+              "task": null,
+              "marking": null
+            },
+            "ees": {
+              "task": null,
+              "marking": null
+            },
+            "physics": {
+              "task": null,
+              "marking": null
+            }
+          }
+        }
+      }
+    }
+  },
+  "weeks": {
+    "0": {
+      "video": "vOe6VqwXMk0"
+    },
+    "1": {
+      "item": "Topic 1",
+      "title": "Introduction to the Stage 6 Science Syllabuses",
+      "live": "🎤 Live Session",
+      "announcementBody": {
+        "intro": "Welcome to EDSE357. This week we begin with Topic 1 — an introduction to the suite of Stage 6 science syllabuses that will govern your teaching across Biology, Chemistry, Physics, Investigating Science, Earth & Environmental Science, and Science Extension.",
+        "focus": "Topic 1 establishes the Stage 6 syllabus suite as the authoritative documents shaping your practice as a science teacher. You will examine the structure and architecture of the syllabuses for your primary teaching area — outcomes, content, and assessment requirements — and begin to understand how they connect to your role in the classroom."
+      },
+      "liveSessionFocus": "In our first live session, we introduce the unit, clarify expectations, and begin mapping the Stage 6 science syllabuses. You will share your initial observations about the syllabus structure and start to think about what it means to teach from these documents.",
+      "liveSessionTasks": [
+        "Download and review the Stage 6 syllabus for your primary teaching area before the session — note the key components: outcomes, content, and assessment requirements.",
+        "Identify one structural feature of the syllabus that you found interesting or unfamiliar.",
+        "Come ready to share one question you have about interpreting or applying the syllabus in your teaching."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "video": "1jVXNAaZ1P8"
+    },
+    "2": {
+      "item": "Topic 2",
+      "title": "Conducting Investigations",
+      "live": "🎤 Live Session: Topic 1 & 2",
+      "announcementBody": {
+        "intro": "This week we explore the Working Scientifically strand and what it means to conduct investigations in a senior secondary science classroom. Topic 2 asks you to think carefully about how syllabus requirements shape the kinds of practical work you design for students.",
+        "focus": "Topic 2 focuses on the Working Scientifically outcomes that frame scientific investigations in Stage 6. You will examine types of investigations — first-hand and secondary-source — and develop your understanding of how to scaffold student inquiry so that it is both intellectually engaging and practically manageable."
+      },
+      "liveSessionFocus": "Session 2 covers Topics 1 and 2 together. We will examine the syllabuses as professional documents and explore how Working Scientifically shapes your planning for practical work, using examples drawn from your own teaching areas.",
+      "liveSessionTasks": [
+        "Review the Working Scientifically outcomes in your Stage 6 syllabus area and identify which skills are most prominent in the content you will teach.",
+        "Identify one type of investigation commonly used in senior science and think about how you would scaffold it for students encountering it for the first time.",
+        "Come prepared to share an example — real or hypothetical — of a student investigation activity that develops Working Scientifically skills."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "video": "SItTfkDrkKo"
+    },
+    "3": {
+      "item": "Topic 3",
+      "title": "Open-ended Investigations",
+      "live": "🎤 Live Session",
+      "announcementBody": {
+        "intro": "Building on Topic 2, this week we focus on open-ended and student-designed investigations — one of the most challenging and rewarding aspects of teaching senior science, particularly in depth studies and Science Extension.",
+        "focus": "Topic 3 examines the design of open-ended investigations, including how to support students in formulating questions, selecting methods, and managing risk. You will consider what teacher scaffolding looks like at different stages of the inquiry process, and how to balance student autonomy with your duty of care."
+      },
+      "liveSessionFocus": "Session 3 examines student-designed investigations in senior science, focusing on how to manage the tension between open inquiry and the safety and syllabus requirements that govern practical work.",
+      "liveSessionTasks": [
+        "Review the depth study or student investigation requirements in your Stage 6 syllabus area and identify what freedom students have in designing their own investigations.",
+        "Identify two challenges students typically face when designing open-ended investigations, and think about how you might scaffold around them.",
+        "Consider: what does teacher guidance look like at each stage of a student-designed investigation without undermining student ownership of the inquiry?"
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "video": "MOVpOGshy9M"
+    },
+    "4": {
+      "item": "Topic 4",
+      "title": "Research and Experimentation",
+      "live": "🎤 Live Session: Topic 3 & 4",
+      "announcementBody": {
+        "intro": "This week we deepen our examination of the investigative strand by focusing on research skills and experimental design — competencies that underpin both student performance in assessments and your own practice as a teacher of science.",
+        "focus": "Topic 4 examines how research skills and experimental design connect to the mandatory practical components and assessment requirements of the Stage 6 science syllabuses. You will explore how to design learning experiences that build students' capacity to plan controlled experiments, collect reliable data, and critically evaluate their methodology."
+      },
+      "liveSessionFocus": "Session 4 covers Topics 3 and 4 together. We will examine open-ended investigations and experimental design and consider how to sequence these activities within a coherent teaching program for senior science.",
+      "liveSessionTasks": [
+        "Review the assessment requirements for student investigations in your Stage 6 syllabus — note how experimental design is assessed and what standards students are expected to meet.",
+        "Identify one common experimental design challenge in your teaching area and think through how you would address it with a class.",
+        "Come prepared to describe a hands-on investigation activity suitable for senior science students that teaches both content and experimental skills."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "video": "brEVCv7P8Tw"
+    },
+    "5": {
+      "item": "Topic 5",
+      "title": "Selecting and Evaluating Resources",
+      "live": "🎤 Live Session",
+      "notes": [
+        "Census Day occurs this week."
+      ],
+      "announcementBody": {
+        "intro": "This week we examine how science teachers critically evaluate the range of resources available for teaching — including textbooks, digital tools, laboratory equipment, simulations, and online platforms — and make principled decisions about what to use and why.",
+        "focus": "Topic 5 develops your skills as a resource evaluator: assessing alignment with syllabus outcomes, judging the accuracy and currency of scientific content, and evaluating pedagogical quality. You will develop a personal framework for selecting and critiquing resources appropriate to your teaching area and the students you will teach."
+      },
+      "liveSessionFocus": "Session 5 focuses on resource evaluation frameworks and strategies for building a coherent, high-quality resource library for teaching senior science across different content areas and student cohorts.",
+      "liveSessionTasks": [
+        "Select one textbook or digital resource you would consider using in your primary teaching area and evaluate it against at least two criteria: syllabus alignment and scientific accuracy.",
+        "Identify one gap or weakness in the resource and consider what supplementary material you might use to address it.",
+        "Come prepared to share your evaluation and the criteria you applied — we will compare approaches across teaching areas in the session."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "video": "T4ZrteC1S1A"
+    },
+    "6": {
+      "item": "Topic 6",
+      "title": "Current and Future Uses and Applications of Science",
+      "live": "🎤 Live Session: Topic 5 & 6",
+      "assessments": [
+        {
+          "name": "Assessment Task 1",
+          "due": "2026-03-29"
+        }
+      ],
+      "announcementBody": {
+        "intro": "This week we explore how contemporary and emerging applications of science connect to the senior secondary curriculum — and why teaching the relevance of science matters for student engagement and long-term learning.",
+        "focus": "Topic 6 examines how the Stage 6 science syllabuses position science within contemporary societal contexts. You will explore strategies for making science relevant and engaging for senior students by connecting curriculum content to real-world applications, emerging research, and career pathways in science-related fields."
+      },
+      "liveSessionFocus": "Session 6 covers Topics 5 and 6 together. We will examine how to integrate current science applications into your teaching program and discuss strategies for using contemporary examples to motivate student engagement and deepen understanding of syllabus content.",
+      "liveSessionTasks": [
+        "Identify a current development in science — a recent discovery, technology, or social issue — that connects to content in your Stage 6 syllabus area.",
+        "Consider how this example maps to specific syllabus outcomes or content points, and how you would introduce it in a lesson.",
+        "Think about how you would make this topic accessible and compelling for senior students, and come prepared to briefly present it in the session."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "video": "NGeQF5M5fEc"
+    },
+    "7": {
+      "item": "Topic 7",
+      "title": "Audit Your Senior Science Content Knowledge",
+      "live": "🎤 Live Session",
+      "announcementBody": {
+        "intro": "This week we turn the lens on ourselves as science educators — taking stock of our own subject-matter knowledge and identifying where we need to deepen our understanding in order to teach with confidence and accuracy.",
+        "focus": "Topic 7 focuses on the content knowledge audit as a professional practice. You will systematically map your existing knowledge against the syllabus content in your primary teaching area, honestly identify gaps, and begin building a plan for ongoing content development. Strong content knowledge is the foundation of effective science teaching."
+      },
+      "liveSessionFocus": "Session 7 examines content knowledge auditing as a professional discipline and explores practical strategies for building subject-matter expertise alongside pedagogical skill throughout your career as a science teacher.",
+      "liveSessionTasks": [
+        "Before the session, select two or three content areas from your Stage 6 syllabus that you feel least confident teaching at present.",
+        "For each, identify what resources or professional learning you might access to address the gap — textbooks, online courses, professional associations, or university content.",
+        "Come prepared to discuss what 'deep content knowledge' looks like for a senior science teacher and how it differs from exam-level subject knowledge."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "video": "qHHfqvXy2iE"
+    },
+    "8": {
+      "item": "Topic 8",
+      "title": "Teaching with a Diverse Cohort",
+      "live": "🎤 Live Session: Topic 7 & 8",
+      "announcementBody": {
+        "intro": "In our final teaching week, we examine one of the most important professional challenges in senior science education — designing learning experiences that genuinely meet the needs of all students in a diverse classroom.",
+        "focus": "Topic 8 examines inclusive teaching strategies for senior science, including how to support students with learning differences, students from diverse cultural and linguistic backgrounds, and students at both ends of the achievement spectrum. You will explore what differentiation looks like in a Stage 6 context and how to design for access without reducing rigour."
+      },
+      "liveSessionFocus": "Session 8 covers Topics 7 and 8 together. We will examine content knowledge and inclusive practice as interconnected professional responsibilities, and consider how both inform your approach to planning, teaching, and assessing senior science students.",
+      "liveSessionTasks": [
+        "Identify one adjustment or differentiation strategy you could apply to a senior science lesson to better support a student with diverse learning needs.",
+        "Consider how Stage 6 syllabus requirements interact with the practical reality of a diverse classroom — where do you see tension, and how might you navigate it?",
+        "Review the NESA access arrangements or any relevant equity guidelines for your teaching area and come prepared to discuss how they shape your planning."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "video": "tZawrfxdeaM"
+    },
+    "9": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "10": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "assessments": [
+        {
+          "name": "Assessment Task 2",
+          "due": "2026-05-03"
+        }
+      ],
+      "video": "DGIXT7ce3vQ"
+    },
+    "11": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "12": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "13": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "14": {
+      "item": "Assessment period",
+      "title": "Assessment and Intensive Period 2",
+      "video": "DGIXT7ce3vQ"
+    }
+  }
+}

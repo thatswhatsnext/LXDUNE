@@ -1,0 +1,416 @@
+{
+  "code": "EDSE362",
+  "name": "Science Education 11–12: Curriculum, Pedagogy and Inclusive Practice",
+  "itemLabel": "Topic",
+  "liveDay": "Wednesday",
+  "liveTime": "5:30–6:30pm",
+  "trimesters": [
+    "T2"
+  ],
+  "assessmentPortalUrl": null,
+  "week0Message": "Have a look around at the first few tiles below — we'll get started next week!",
+  "theme": {
+    "primary": "#2E7D52",
+    "accent": "#E3B089",
+    "pill": "#E8F5EE",
+    "pillBorder": "#b8dcc8"
+  },
+  "learningOutcomes": [
+    {
+      "id": "LO1",
+      "color": "#25797F",
+      "title": "K–12 Curriculum Continuity",
+      "description": "Demonstrate understanding of the K–10 science continuum and how it connects to the Stage 6 syllabuses, enabling you to build on students' prior learning and design coherent learning progressions across the secondary years.",
+      "gtsd": "2.1.1, 2.3.1"
+    },
+    {
+      "id": "LO2",
+      "color": "#3F88C5",
+      "title": "Nature of Science",
+      "description": "Demonstrate knowledge and understanding of the epistemological commitments that characterise science as a way of knowing, and apply this understanding to select and justify teaching approaches that develop scientific literacy in senior secondary students.",
+      "gtsd": "2.1.1, 2.2.1"
+    },
+    {
+      "id": "LO3",
+      "color": "#7C5DB6",
+      "title": "Resource Evaluation",
+      "description": "Critically evaluate a range of digital and non-digital resources for teaching Stage 6 science, applying systematic criteria for syllabus alignment, scientific accuracy, and pedagogical quality.",
+      "gtsd": "2.6.1, 3.4.1"
+    },
+    {
+      "id": "LO4",
+      "color": "#4FA9B5",
+      "title": "Differentiation and Inclusive Practice",
+      "description": "Design and evaluate differentiated learning experiences that support the full participation of students with diverse learning needs, backgrounds, and achievement levels in senior science classrooms.",
+      "gtsd": "1.5.1, 1.6.1, 3.1.1"
+    },
+    {
+      "id": "LO5",
+      "color": "#8FB77A",
+      "title": "Curriculum Planning",
+      "description": "Plan, sequence, and evaluate a unit of work for Stage 6 science that is coherent, outcomes-focused, and reflects informed choices about pedagogy, assessment, and resource use.",
+      "gtsd": "3.1.1, 3.2.1, 3.3.1"
+    },
+    {
+      "id": "LO6",
+      "color": "#D98C5F",
+      "title": "Pedagogical Strategies and Content Knowledge",
+      "description": "Implement and evaluate targeted pedagogical strategies — including the use of analogies and conceptual change approaches — and demonstrate an ongoing commitment to developing deep subject-matter knowledge across teaching areas.",
+      "gtsd": "2.1.1, 3.3.1"
+    }
+  ],
+  "assessmentTasks": [
+    {
+      "id": "AT1",
+      "title": null,
+      "weighting": 50,
+      "length": null,
+      "due": null,
+      "flexiblePortal": null,
+      "learningOutcomes": [
+        "LO1",
+        "LO2",
+        "LO3"
+      ],
+      "aitslStandards": [],
+      "rationale": null,
+      "aim": null,
+      "links": {
+        "rubric": null,
+        "taskFiles": null,
+        "submit": null,
+        "forum": null,
+        "video": null
+      },
+      "parts": [],
+      "criteria": [],
+      "rubric": [],
+      "hdCallout": null,
+      "submissionInstructions": []
+    },
+    {
+      "id": "AT2",
+      "title": null,
+      "weighting": 50,
+      "length": null,
+      "due": null,
+      "flexiblePortal": null,
+      "learningOutcomes": [
+        "LO4",
+        "LO5",
+        "LO6"
+      ],
+      "aitslStandards": [],
+      "rationale": null,
+      "aim": null,
+      "links": {
+        "rubric": null,
+        "taskFiles": null,
+        "submit": null,
+        "forum": null,
+        "video": null
+      },
+      "parts": [],
+      "criteria": [],
+      "rubric": [],
+      "hdCallout": null,
+      "submissionInstructions": []
+    }
+  ],
+  "trimesterConfig": {
+    "T2-2027": {
+      "zoom": {
+        "meetingId": null,
+        "password": null,
+        "url": null
+      },
+      "assessmentFiles": {
+        "AT1": {
+          "rubricUrl": null,
+          "disciplines": {
+            "biology": {
+              "task": null,
+              "marking": null
+            },
+            "chemistry": {
+              "task": null,
+              "marking": null
+            },
+            "ees": {
+              "task": null,
+              "marking": null
+            },
+            "physics": {
+              "task": null,
+              "marking": null
+            }
+          }
+        },
+        "AT2": {
+          "rubricUrl": null,
+          "disciplines": {
+            "biology": {
+              "task": null,
+              "marking": null
+            },
+            "chemistry": {
+              "task": null,
+              "marking": null
+            },
+            "ees": {
+              "task": null,
+              "marking": null
+            },
+            "physics": {
+              "task": null,
+              "marking": null
+            }
+          }
+        }
+      }
+    }
+  },
+  "weeks": {
+    "0": {
+      "video": "vOe6VqwXMk0"
+    },
+    "1": {
+      "item": "Topic 1",
+      "title": "The K–10 Continuum and Science Education",
+      "live": "🎤 Live Session",
+      "announcementBody": {
+        "intro": "Welcome to EDSE362. This week we begin by stepping back from Stage 6 and examining the full K–10 science continuum — the foundation of prior knowledge and experience your senior students bring with them into Stage 6.",
+        "focus": "Topic 1 examines how the NSW Science K–10 curriculum connects to the Stage 6 syllabuses. You will trace the progression of key concepts, skills, and Working Scientifically strands from primary through to early secondary science, and consider how understanding this continuum helps you plan more responsive and connected Stage 6 lessons."
+      },
+      "liveSessionFocus": "In our first live session, we introduce the unit, examine the K–10 to Stage 6 transition, and begin mapping how prior learning shapes what students bring to senior science.",
+      "liveSessionTasks": [
+        "Before the session, review the Science K–10 syllabus outcomes for Stage 5 in your primary teaching area and identify two or three concepts that directly underpin Stage 6 content.",
+        "Consider: what assumptions do Stage 6 syllabuses make about what students already know from K–10? Where might those assumptions break down?",
+        "Come prepared to share one example of a misconception or gap in prior knowledge you have observed (or anticipate) in senior science students."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "resources": [],
+      "video": null
+    },
+    "2": {
+      "item": "Topic 2",
+      "title": "The Nature of Science and Science Teaching",
+      "live": "🎤 Live Session: Topic 1 & 2",
+      "announcementBody": {
+        "intro": "This week we turn to the epistemological foundations of science itself — what science is, how it works, and what it means to teach it honestly and rigorously in a senior secondary context.",
+        "focus": "Topic 2 explores the Nature of Science (NOS) as a professional and pedagogical framework. You will examine the values, practices, and commitments that distinguish science as a way of knowing, and consider how a clear understanding of NOS shapes the way you select content, design investigations, and communicate the purpose of science to students."
+      },
+      "liveSessionFocus": "Session 2 covers Topics 1 and 2 together. We will examine the K–10 continuum and the Nature of Science as connected foundations for planning intellectually honest and engaging senior science lessons.",
+      "liveSessionTasks": [
+        "Review the Nature and Development of Science strand (or equivalent) in your Stage 6 syllabus and identify how NOS concepts are embedded in the content and outcomes.",
+        "Identify one aspect of the Nature of Science that you find genuinely challenging to communicate clearly to senior students.",
+        "Consider: how does your understanding of NOS influence the way you would design an investigation or respond to a student who says 'just give me the answer'?"
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "resources": [],
+      "video": null
+    },
+    "3": {
+      "item": "Topic 3",
+      "title": "Selecting and Critically Evaluating Resources",
+      "live": "🎤 Live Session",
+      "announcementBody": {
+        "intro": "This week we develop your skills as a critical consumer and selector of teaching resources — a practical and ongoing professional responsibility that shapes the quality of every lesson you teach.",
+        "focus": "Topic 3 examines how to evaluate resources systematically and critically across different formats: textbooks, digital tools, laboratory kits, online platforms, and teacher-created materials. You will develop a personal evaluation framework grounded in syllabus alignment, scientific accuracy, and pedagogical appropriateness, and begin building a curated resource library for your teaching area."
+      },
+      "liveSessionFocus": "Session 3 focuses on resource evaluation frameworks and strategies for building a coherent, high-quality teaching toolkit across the Stage 6 science syllabuses.",
+      "liveSessionTasks": [
+        "Select one textbook or digital resource used in your primary teaching area and evaluate it against your own criteria for quality — consider syllabus alignment, scientific accuracy, and how it supports student thinking.",
+        "Identify one specific strength and one clear weakness in the resource, and consider what you would do to address the weakness in practice.",
+        "Come prepared to share your evaluation briefly — we will compare criteria and approaches across different teaching areas in the session."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "resources": [],
+      "video": null
+    },
+    "4": {
+      "item": "Topic 4",
+      "title": "Introduction to Teaching Differentiation",
+      "live": "🎤 Live Session: Topic 3 & 4",
+      "announcementBody": {
+        "intro": "This week we introduce one of the most important — and most misunderstood — practices in teaching: differentiation. We begin with the principles and theory before we turn to application in the senior science classroom next week.",
+        "focus": "Topic 4 establishes a clear conceptual foundation for differentiated instruction: what it is, what it is not, and why it matters for student learning in a Stage 6 context. You will examine models of differentiation by content, process, product, and environment, and begin to consider how these apply to the practical realities of teaching senior science."
+      },
+      "liveSessionFocus": "Session 4 covers Topics 3 and 4 together. We will examine resource evaluation and the principles of differentiation, and connect both to your planning responsibilities as a science teacher.",
+      "liveSessionTasks": [
+        "Read the introductory topic materials on differentiation and identify one model or framework that you find most useful for thinking about your teaching.",
+        "Consider a class or cohort you have worked with (or observed) and identify two or three ways in which students' learning needs varied — what would effective differentiation have looked like?",
+        "Come prepared to discuss one misconception about differentiation that you have encountered or hold yourself, and how the topic materials addressed it."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "resources": [],
+      "video": null
+    },
+    "5": {
+      "item": "Topic 5",
+      "title": "The Inclusive Science Classroom",
+      "live": "🎤 Live Session",
+      "announcementBody": {
+        "intro": "Building on Topic 4, this week we move from the theory of differentiation into the practical challenge of creating genuinely inclusive senior science classrooms — environments where every student can access, engage with, and be challenged by the curriculum.",
+        "focus": "Topic 5 examines inclusive teaching in the senior science context, with a focus on students with disability, students from diverse cultural and linguistic backgrounds, and students at both ends of the achievement spectrum. You will explore specific adjustments, design principles, and communication strategies, and consider how to maintain academic rigour while broadening access."
+      },
+      "liveSessionFocus": "Session 5 focuses on the practical design of inclusive learning experiences for senior science, including how to adapt tasks, resources, and assessment approaches without reducing the challenge of Stage 6 content.",
+      "liveSessionTasks": [
+        "Identify one adjustment or scaffolding strategy from the topic materials that you could apply immediately to a senior science lesson you are planning or have taught.",
+        "Consider how Stage 6 syllabus requirements interact with NESA access arrangements — where do they align well, and where do tensions arise?",
+        "Come prepared to discuss a specific scenario: a student with a particular learning need in your senior science class. What would an inclusive response look like?"
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "resources": [],
+      "video": null
+    },
+    "6": {
+      "item": "Topic 6",
+      "title": "Planning and Evaluating a Unit of Work",
+      "live": "🎤 Live Session: Topic 5 & 6",
+      "announcementBody": {
+        "intro": "This week we bring together your curriculum knowledge, pedagogical understanding, and resource evaluation skills to focus on the discipline of unit planning — one of the most important and complex professional tasks you will undertake as a science teacher.",
+        "focus": "Topic 6 examines how to design, sequence, and evaluate a coherent unit of work for Stage 6 science. You will work through the key decisions involved in unit planning: establishing outcomes, selecting and sequencing content, designing assessments for and of learning, choosing resources, and building in opportunities for student reflection and feedback."
+      },
+      "liveSessionFocus": "Session 6 covers Topics 5 and 6 together. We will examine inclusive practice and unit planning as interconnected professional responsibilities, and work through the decisions that shape a coherent, accessible, and outcomes-aligned Stage 6 unit.",
+      "liveSessionTasks": [
+        "Select a topic or module from your Stage 6 syllabus and sketch a rough unit outline — identify the key outcomes, main content sequence, and at least one formative and one summative assessment task.",
+        "Evaluate your outline against the unit planning criteria in the topic materials: Is it coherent? Is it outcomes-focused? Does it build in opportunities for feedback?",
+        "Come prepared to share your outline and receive peer feedback in the session — bring a willingness to revise."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "resources": [],
+      "video": null
+    },
+    "7": {
+      "item": "Topic 7",
+      "title": "Teaching and Learning Science Using Analogies",
+      "live": "🎤 Live Session",
+      "announcementBody": {
+        "intro": "This week we examine one of the most powerful — and most frequently misused — pedagogical tools available to science teachers: the analogy. Used well, analogies make abstract science concepts concrete and accessible. Used poorly, they embed misconceptions that are hard to shift.",
+        "focus": "Topic 7 focuses on analogies as tools for conceptual change in science learning. You will examine the theory behind why analogies work, explore frameworks for selecting and presenting analogies effectively (including the Teaching-With-Analogies model), and critically evaluate common analogies used in senior science for their accuracy, accessibility, and potential to mislead."
+      },
+      "liveSessionFocus": "Session 7 examines analogies as pedagogical tools in depth — working through examples from across the senior science syllabuses and practising the skill of evaluating an analogy before using it with students.",
+      "liveSessionTasks": [
+        "Identify one analogy commonly used in your Stage 6 teaching area — write down what concept it is meant to explain, what it maps correctly, and where the mapping breaks down.",
+        "Consider how you would introduce this analogy to a class while explicitly addressing its limitations, so students build accurate conceptual understanding rather than a flawed mental model.",
+        "Come prepared to present your analogy briefly and receive feedback from peers on how they experience it as learners."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "resources": [],
+      "video": null
+    },
+    "8": {
+      "item": "Topic 8",
+      "title": "Developing Your Science Content Knowledge",
+      "live": "🎤 Live Session: Topic 7 & 8",
+      "announcementBody": {
+        "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
+        "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your Stage 6 syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
+      },
+      "liveSessionFocus": "Session 8 covers Topics 7 and 8 together. We will examine analogies and content knowledge development as complementary professional skills, and conclude the teaching program by looking ahead to the professional learning habits that will sustain your practice.",
+      "liveSessionTasks": [
+        "Complete a content knowledge audit for your primary Stage 6 teaching area: rate your confidence across the major content sections and identify your two or three priority gaps.",
+        "For each priority gap, identify at least one concrete resource or action you will take to address it — a specific book, online course, professional association, or peer with relevant expertise.",
+        "Come prepared to briefly share your audit findings and your plan — and to give and receive constructive feedback with peers."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "resources": [],
+      "video": null
+    },
+    "9": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "10": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "11": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "12": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "13": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "14": {
+      "item": "Assessment period",
+      "title": "Assessment and Intensive Period 2",
+      "video": "DGIXT7ce3vQ"
+    }
+  }
+}

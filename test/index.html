@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LXDUNE — Block Test</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #eef1f4; color: #1F2A33; }
+
+    /* ── Controls panel (sticky) ─────────────────────────────────────────── */
+    #controls {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: #1a2530;
+      color: #fff;
+      padding: 12px 20px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,.35);
+    }
+    .ctrl-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .ctrl-top strong { font-size: 1em; color: #e0e8ee; letter-spacing: .3px; }
+    .ctrl-top a { font-size: .82em; color: #7ab8d8; text-decoration: none; }
+    .ctrl-top a:hover { text-decoration: underline; }
+    .ctrl-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      align-items: flex-end;
+      margin-bottom: 10px;
+    }
+    .ctrl-group { display: flex; flex-direction: column; gap: 3px; }
+    .ctrl-group label {
+      font-size: .68em;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      color: #6a96b4;
+    }
+    .ctrl-group select,
+    .ctrl-group input[type="date"] {
+      font-family: Arial, sans-serif;
+      font-size: .875em;
+      padding: 5px 9px;
+      border: 1px solid #2f4255;
+      border-radius: 6px;
+      background: #243345;
+      color: #e0e8ee;
+      appearance: none;
+      min-width: 130px;
+      line-height: 1.4;
+    }
+    .ctrl-group select:focus,
+    .ctrl-group input[type="date"]:focus {
+      outline: none;
+      border-color: #4fa9b5;
+      box-shadow: 0 0 0 2px rgba(79,169,181,.25);
+    }
+    .ctrl-group input[type="date"] { color-scheme: dark; min-width: 148px; }
+    .ctrl-group input[type="date"]:disabled {
+      opacity: .38;
+      cursor: not-allowed;
+    }
+    .date-hint {
+      font-size: .68em;
+      color: #4a7090;
+      margin-top: 2px;
+      height: 12px;
+      line-height: 12px;
+    }
+    .rerender-btn {
+      padding: 6px 16px;
+      background: #1f6fb2;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: .85em;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      white-space: nowrap;
+    }
+    .rerender-btn:hover { background: #155a91; }
+    .rerender-btn:active { background: #0f4470; }
+
+    /* ── Status bar ────────────────────────────────────────────────────────── */
+    #status-bar {
+      background: #111c25;
+      border-top: 1px solid #243345;
+      padding: 7px 0 8px;
+      font-size: .8em;
+      color: #6a96b4;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0 5px;
+      min-height: 32px;
+    }
+    .s-unit  { color: #4fa9b5; font-weight: 800; }
+    .s-sep   { color: #2f4255; margin: 0 1px; }
+    .s-week  { color: #e0e8ee; font-weight: 700; }
+    .s-title { color: #a0b8c8; }
+    .s-badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 1px 9px;
+      font-size: .9em;
+      font-weight: 700;
+      border: 1px solid;
+      margin-left: 4px;
+    }
+    .s-badge-auto   { border-color: #25797F; color: #4fa9b5; }
+    .s-badge-date   { border-color: #f1c40f; color: #e8c840; }
+    .s-badge-week   { border-color: #1f6fb2; color: #7ab8d8; }
+    .s-err { color: #e88; }
+
+    /* ── Block sections ────────────────────────────────────────────────────── */
+    .blocks-page {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .block-section {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    }
+    .block-section-hdr {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid #d8e0e6;
+      border-bottom: 2px solid #e8edf0;
+      padding: 8px 16px;
+    }
+    .fn-name { font-family: 'Courier New', monospace; font-size: .8em; font-weight: 800; color: #1f6fb2; }
+    .ctr-id  { font-family: 'Courier New', monospace; font-size: .75em; color: #9aacb8; }
+    .block-output {
+      background: #fff;
+      border: 1px solid #d8e0e6;
+      border-top: none;
+      min-height: 52px;
+    }
+    .block-loading {
+      padding: 16px;
+      color: #b0c0ca;
+      font-size: .85em;
+      animation: pulse 1s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:.45} 50%{opacity:1} }
+    .block-empty {
+      padding: 12px 16px;
+      color: #b0bcc4;
+      font-size: .84em;
+      font-style: italic;
+      border-left: 3px solid #dde4e8;
+      margin: 10px 16px;
+      border-radius: 2px;
+    }
+    .block-err {
+      margin: 10px;
+      padding: 10px 14px;
+      color: #c0392b;
+      font-size: .88em;
+      font-weight: 600;
+      border-left: 4px solid #c0392b;
+      background: #fff0f0;
+      border-radius: 6px;
+    }
+
+    /* ── Tab navigation ───────────────────────────────────────────────────────── */
+    .tab-bar {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid #243345;
+      padding: 0 20px;
+      margin-top: 2px;
+    }
+    .tab-btn {
+      padding: 7px 18px;
+      background: none;
+      border: none;
+      color: #4a7090;
+      font-size: .84em;
+      font-weight: 700;
+      font-family: Arial, sans-serif;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color .15s, border-color .15s;
+    }
+    .tab-btn:hover { color: #7ab8d8; }
+    .tab-btn.active { color: #4fa9b5; border-bottom-color: #4fa9b5; }
+
+    /* ── Assessment tab ───────────────────────────────────────────────────────── */
+    .assess-page {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+    }
+    .assess-ctrl-bar {
+      display: flex;
+      align-items: flex-end;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .assess-output {
+      background: #fff;
+      border: 1px solid #d8e0e6;
+      border-radius: 10px;
+      min-height: 100px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Controls ───────────────────────────────────────────────────────────── -->
+<div id="controls">
+  <div class="ctrl-top">
+    <strong>LXDUNE — Block Test</strong>
+    <a href="../generate/" target="_blank" rel="noopener">Generator ↗</a>
+  </div>
+  <div class="ctrl-row">
+    <div class="ctrl-group">
+      <label>Unit</label>
+      <select id="sel-unit">
+        <option value="EDSE357">EDSE357</option>
+        <option value="EDSE358" selected>EDSE358</option>
+        <option value="EDSE362">EDSE362</option>
+      </select>
+    </div>
+    <div class="ctrl-group">
+      <label>Year</label>
+      <select id="sel-year"></select>
+    </div>
+    <div class="ctrl-group">
+      <label>Trimester</label>
+      <select id="sel-tri"></select>
+    </div>
+    <div class="ctrl-group">
+      <label>Week</label>
+      <select id="sel-week">
+        <option value="auto">Auto</option>
+      </select>
+    </div>
+    <div class="ctrl-group">
+      <label>Date override</label>
+      <input type="date" id="date-override" title="Active when Week = Auto">
+      <div class="date-hint" id="date-hint"></div>
+    </div>
+    <div class="ctrl-group" style="justify-content:flex-end;">
+      <button class="rerender-btn" id="rerender-btn">Re-render</button>
+    </div>
+  </div>
+  <div id="status-bar">Initialising…</div>
+  <div class="tab-bar">
+    <button class="tab-btn active" id="tab-blocks" type="button">Week Blocks</button>
+    <button class="tab-btn" id="tab-assess" type="button">Assessment Page</button>
+    <button class="tab-btn" id="tab-hub" type="button">Course Hub</button>
+  </div>
+</div>
+
+<!-- ── Block sections ─────────────────────────────────────────────────────── -->
+<div class="blocks-page">
+
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderAnnouncementBlock</span>
+      <span class="ctr-id">#lxdune-announcement</span>
+    </div>
+    <div class="block-output" id="lxdune-announcement"></div>
+  </div>
+
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderWorkflowCard</span>
+      <span class="ctr-id">#lxdune-workflow</span>
+    </div>
+    <div class="block-output" id="lxdune-workflow"></div>
+  </div>
+
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderLectureBlock</span>
+      <span class="ctr-id">#lxdune-lecture</span>
+    </div>
+    <div class="block-output" id="lxdune-lecture"></div>
+  </div>
+
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderLiveSessionHub</span>
+      <span class="ctr-id">#lxdune-live-hub</span>
+    </div>
+    <div class="block-output" id="lxdune-live-hub"></div>
+  </div>
+
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderAssessmentDownloadBlock</span>
+      <span class="ctr-id">#lxdune-assessment-downloads</span>
+    </div>
+    <div class="block-output" id="lxdune-assessment-downloads"></div>
+  </div>
+
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderLearningOutcomesTable</span>
+      <span class="ctr-id">#lxdune-outcomes</span>
+    </div>
+    <div class="block-output" id="lxdune-outcomes"></div>
+  </div>
+
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderResourceDirectory</span>
+      <span class="ctr-id">#lxdune-resource-directory</span>
+    </div>
+    <div class="block-output" id="lxdune-resource-directory"></div>
+  </div>
+
+</div>
+
+<!-- ── Course hub tab ─────────────────────────────────────────────────────── -->
+<div class="assess-page" id="hub-page" style="display:none;">
+  <div class="assess-output">
+    <div data-lx-block="course-hub"></div>
+  </div>
+</div>
+
+<!-- ── Assessment tab ─────────────────────────────────────────────────────── -->
+<div class="assess-page" id="assess-page" style="display:none;">
+  <div class="assess-ctrl-bar">
+    <div class="ctrl-group">
+      <label>Task</label>
+      <select id="sel-task" style="font-family:Arial,sans-serif;font-size:.875em;padding:5px 9px;border:1px solid #dfe6ea;border-radius:6px;min-width:180px;">
+        <option value="AT1">AT1</option>
+        <option value="AT2">AT2</option>
+      </select>
+    </div>
+    <button class="rerender-btn" id="rerender-assess-btn">Re-render</button>
+  </div>
+  <div class="assess-output" id="lxdune-assessment-page"></div>
+</div>
+
+<script type="module">
+import {
+  renderAnnouncementBlock,
+  renderWorkflowCard,
+  renderLectureBlock,
+  renderLiveSessionHub,
+  renderAssessmentDownloadBlock,
+  renderLearningOutcomesTable,
+  renderResourceDirectory,
+  renderAssessmentPage,
+  renderCourseHub,
+} from '../moodle-blocks/blocks.js';
+
+// ── State ─────────────────────────────────────────────────────────────────────
+
+let triConfig  = null;
+let unitConfig = null;
+let renderTimer = null;
+let renderGen   = 0;
+
+const CONTAINER_IDS = [
+  'lxdune-announcement',
+  'lxdune-workflow',
+  'lxdune-lecture',
+  'lxdune-live-hub',
+  'lxdune-assessment-downloads',
+  'lxdune-outcomes',
+  'lxdune-resource-directory',
+];
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+async function loadJson(path) {
+  const res = await fetch(path);
+  if (!res.ok) throw new Error(`${res.status} — ${path}`);
+  return res.json();
+}
+
+function setStatus(html) {
+  document.getElementById('status-bar').innerHTML = html;
+}
+
+// ── Date-to-week (mirrors blocks.js resolve logic) ────────────────────────────
+
+function buildDateList(startDateStr, tri) {
+  const week0 = new Date(startDateStr);
+  week0.setDate(week0.getDate() - 7);
+  week0.setHours(0, 0, 0, 0);
+  const list = [{ week: 0, date: new Date(week0) }, { week: 1, date: new Date(startDateStr) }];
+  for (let w = 2; w <= 14; w++) {
+    const d = new Date(week0);
+    d.setDate(week0.getDate() + w * 7);
+    if (tri === 'T3' && w >= 9) d.setDate(d.getDate() + 14);
+    list.push({ week: w, date: d });
+  }
+  return list;
+}
+
+function calcCurrentWeek(today, dateList) {
+  if (today < dateList[0].date) return 0;
+  for (let i = 0; i < dateList.length; i++) {
+    const next = dateList[i + 1];
+    if (!next || today < next.date) return dateList[i].week;
+  }
+  return dateList[dateList.length - 1].week;
+}
+
+function calcEffectiveWeek(forYear, forTri, weekVal, dateVal) {
+  if (weekVal !== 'auto') return Number(weekVal);
+  const startDate = triConfig?.[forYear]?.[forTri]?.start;
+  if (!startDate) return null;
+  const ref = dateVal ? new Date(dateVal) : new Date();
+  ref.setHours(0, 0, 0, 0);
+  return calcCurrentWeek(ref, buildDateList(startDate, forTri));
+}
+
+// ── Dropdown setup ────────────────────────────────────────────────────────────
+
+function populateYearTri() {
+  const yearSel = document.getElementById('sel-year');
+  const triSel  = document.getElementById('sel-tri');
+  Object.keys(triConfig)
+    .sort((a, b) => Number(b) - Number(a))
+    .forEach(y => {
+      const opt = new Option(y, y);
+      if (y === '2026') opt.selected = true;
+      yearSel.appendChild(opt);
+    });
+  function populateTri() {
+    triSel.innerHTML = '';
+    Object.keys(triConfig[yearSel.value] ?? {}).forEach(t => {
+      const opt = new Option(t, t);
+      if (t === 'T1') opt.selected = true;
+      triSel.appendChild(opt);
+    });
+  }
+  yearSel.addEventListener('change', () => { populateTri(); scheduleRender(); });
+  triSel.addEventListener('change', scheduleRender);
+  populateTri();
+}
+
+async function refreshUnitConfig() {
+  const unit = document.getElementById('sel-unit').value;
+  try {
+    unitConfig = await loadJson(`../config/units/${unit}.json`);
+  } catch {
+    unitConfig = null;
+  }
+  populateWeekDropdown();
+}
+
+function populateWeekDropdown() {
+  const sel  = document.getElementById('sel-week');
+  const prev = sel.value;
+  const weeks = unitConfig?.weeks ?? {};
+  sel.innerHTML = '<option value="auto">Auto (today / date override)</option>';
+  for (let w = 0; w <= 14; w++) {
+    const wk = weeks[String(w)];
+    let label;
+    if (!wk)                       label = w === 0 ? 'Zero Week' : `Week ${w}`;
+    else if (wk.item && wk.title)  label = `${wk.item} — ${wk.title}`;
+    else if (wk.item)              label = wk.item;
+    else                           label = `Week ${w}`;
+    const opt = new Option(`Week ${w} — ${label}`, String(w));
+    sel.appendChild(opt);
+  }
+  if ([...sel.options].some(o => o.value === prev)) sel.value = prev;
+}
+
+// ── Date override state ───────────────────────────────────────────────────────
+
+function syncDateOverrideState() {
+  const weekVal   = document.getElementById('sel-week').value;
+  const dateInput = document.getElementById('date-override');
+  const hint      = document.getElementById('date-hint');
+  const isAuto    = weekVal === 'auto';
+  dateInput.disabled = !isAuto;
+  hint.textContent   = isAuto ? '' : 'Set Week to Auto to use';
+}
+
+// ── Status bar ────────────────────────────────────────────────────────────────
+
+function renderStatus(forUnit, forTri, forYear, weekVal, dateVal, effectiveWeek) {
+  if (effectiveWeek === null) {
+    setStatus(
+      `<span class="s-unit">${forUnit}</span>` +
+      `<span class="s-sep">•</span>` +
+      `<span>${forTri} ${forYear}</span>` +
+      `<span class="s-sep">•</span>` +
+      `<span class="s-err">No start date configured for ${forTri}-${forYear}</span>`
+    );
+    return;
+  }
+
+  const wk = unitConfig?.weeks?.[String(effectiveWeek)];
+  const weekTitle = wk?.item
+    ? (wk.title ? `${wk.item} — ${wk.title}` : wk.item)
+    : effectiveWeek === 0 ? 'Zero Week' : `Week ${effectiveWeek}`;
+
+  let badge;
+  if (weekVal !== 'auto') {
+    badge = `<span class="s-badge s-badge-week">week explicit</span>`;
+  } else if (dateVal) {
+    badge = `<span class="s-badge s-badge-date">date: ${dateVal}</span>`;
+  } else {
+    badge = `<span class="s-badge s-badge-auto">auto: today</span>`;
+  }
+
+  setStatus(
+    `<span class="s-unit">${forUnit}</span>` +
+    `<span class="s-sep">•</span>` +
+    `<span>${forTri} ${forYear}</span>` +
+    `<span class="s-sep">•</span>` +
+    `<span>Week <span class="s-week">${effectiveWeek}</span></span>` +
+    `<span class="s-sep">•</span>` +
+    `<span class="s-title">${weekTitle}</span>` +
+    badge
+  );
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+
+function setLoading() {
+  CONTAINER_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = '<div class="block-loading">Rendering…</div>';
+  });
+}
+
+function markEmptyIfBlank(id) {
+  const el = document.getElementById(id);
+  if (el && !el.innerHTML.trim()) {
+    el.innerHTML = '<div class="block-empty">Block renders nothing for this week.</div>';
+  }
+}
+
+function showErr(id, e) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = `<div class="block-err">Error: ${e.message}</div>`;
+}
+
+async function renderAll() {
+  const gen = ++renderGen;
+
+  const forUnit = document.getElementById('sel-unit').value;
+  const forYear = document.getElementById('sel-year').value;
+  const forTri  = document.getElementById('sel-tri').value;
+  const weekVal = document.getElementById('sel-week').value;
+  const dateVal = document.getElementById('date-override').value;
+
+  const effectiveWeek = calcEffectiveWeek(forYear, forTri, weekVal, dateVal);
+  syncDateOverrideState();
+  renderStatus(forUnit, forTri, forYear, weekVal, dateVal, effectiveWeek);
+  setLoading();
+
+  // Build params object — pass exactly what the live shells would pass,
+  // plus forWeek or forDate when explicitly set.
+  const base = { forUnit, forTri, forYear };
+  const params = weekVal !== 'auto' ? { ...base, forWeek: Number(weekVal) }
+    : dateVal                       ? { ...base, forDate: dateVal }
+    :                                  base;
+
+  await Promise.all([
+    renderAnnouncementBlock(params).catch(e => showErr('lxdune-announcement', e)),
+    renderWorkflowCard(params).catch(e => showErr('lxdune-workflow', e)),
+    renderLectureBlock(params).catch(e => showErr('lxdune-lecture', e)),
+    renderLiveSessionHub(params).catch(e => showErr('lxdune-live-hub', e)),
+    renderAssessmentDownloadBlock(params).catch(e => showErr('lxdune-assessment-downloads', e)),
+    renderLearningOutcomesTable(params).catch(e => showErr('lxdune-outcomes', e)),
+    renderResourceDirectory(params).catch(e => showErr('lxdune-resource-directory', e)),
+  ]);
+
+  if (gen !== renderGen) return; // a newer render already ran
+
+  ['lxdune-workflow', 'lxdune-lecture', 'lxdune-live-hub', 'lxdune-resource-directory'].forEach(markEmptyIfBlank);
+}
+
+function scheduleRender(delay = 150) {
+  clearTimeout(renderTimer);
+  renderTimer = setTimeout(renderAll, delay);
+  if (activeTab === 'hub') scheduleHubRender(delay);
+}
+
+// ── Event wiring ──────────────────────────────────────────────────────────────
+
+document.getElementById('sel-unit').addEventListener('change', async () => {
+  await refreshUnitConfig();
+  scheduleRender();
+});
+document.getElementById('sel-week').addEventListener('change', () => {
+  syncDateOverrideState();
+  scheduleRender();
+});
+document.getElementById('date-override').addEventListener('change', scheduleRender);
+document.getElementById('rerender-btn').addEventListener('click', () => scheduleRender(0));
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+
+async function init() {
+  try {
+    triConfig = await loadJson('../config/trimester-config.json');
+  } catch (e) {
+    setStatus(`<span class="s-err">Could not load trimester config: ${e.message}</span>`);
+    return;
+  }
+  populateYearTri();
+  await refreshUnitConfig();
+  scheduleRender(0);
+}
+
+// ── Tab switching ─────────────────────────────────────────────────────────────
+
+let activeTab = 'blocks';
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.getElementById('tab-blocks').classList.toggle('active', tab === 'blocks');
+  document.getElementById('tab-assess').classList.toggle('active', tab === 'assess');
+  document.getElementById('tab-hub').classList.toggle('active', tab === 'hub');
+  document.querySelector('.blocks-page').style.display = tab === 'blocks' ? '' : 'none';
+  document.getElementById('assess-page').style.display = tab === 'assess' ? '' : 'none';
+  document.getElementById('hub-page').style.display = tab === 'hub' ? '' : 'none';
+  if (tab === 'assess') scheduleAssessRender(0);
+  if (tab === 'hub') scheduleHubRender(0);
+}
+
+document.getElementById('tab-blocks').addEventListener('click', () => switchTab('blocks'));
+document.getElementById('tab-assess').addEventListener('click', () => switchTab('assess'));
+document.getElementById('tab-hub').addEventListener('click', () => switchTab('hub'));
+
+// ── Assessment render ─────────────────────────────────────────────────────────
+
+let assessTimer = null;
+
+async function renderAssess() {
+  const forUnit = document.getElementById('sel-unit').value;
+  const forTask = document.getElementById('sel-task').value;
+  const el = document.getElementById('lxdune-assessment-page');
+  el.innerHTML = '<div class="block-loading">Rendering…</div>';
+  try {
+    await renderAssessmentPage({ forUnit, forTask });
+    if (!el.innerHTML.trim()) {
+      el.innerHTML = '<div class="block-empty">No assessmentTasks data found for this unit/task.</div>';
+    }
+  } catch (e) {
+    el.innerHTML = `<div class="block-err">Error: ${e.message}</div>`;
+  }
+}
+
+function scheduleAssessRender(delay = 150) {
+  clearTimeout(assessTimer);
+  assessTimer = setTimeout(renderAssess, delay);
+}
+
+document.getElementById('sel-task').addEventListener('change', () => scheduleAssessRender());
+document.getElementById('rerender-assess-btn').addEventListener('click', () => scheduleAssessRender(0));
+
+// ── Course hub render ──────────────────────────────────────────────────────────
+
+let hubTimer = null;
+
+async function renderHub() {
+  const forUnit = document.getElementById('sel-unit').value;
+  const forTri  = document.getElementById('sel-tri').value;
+  const forYear = document.getElementById('sel-year').value;
+  const el = document.querySelector('[data-lx-block="course-hub"]');
+  if (el) el.innerHTML = '<div class="block-loading">Rendering…</div>';
+  try {
+    await renderCourseHub({ forUnit, forTri, forYear });
+    if (el && !el.innerHTML.trim()) {
+      el.innerHTML = '<div class="block-empty">No weekly content configured for this unit.</div>';
+    }
+  } catch (e) {
+    if (el) el.innerHTML = `<div class="block-err">Error: ${e.message}</div>`;
+  }
+}
+
+function scheduleHubRender(delay = 150) {
+  clearTimeout(hubTimer);
+  hubTimer = setTimeout(renderHub, delay);
+}
+
+// Also refresh task dropdown when unit changes (repopulate from unit JSON)
+const origUnitChange = document.getElementById('sel-unit').onchange;
+document.getElementById('sel-unit').addEventListener('change', async () => {
+  if (activeTab === 'assess') {
+    // Reload unit config and repopulate task selector
+    const unit = document.getElementById('sel-unit').value;
+    try {
+      const cfg = await loadJson(`../config/units/${unit}.json`);
+      const tasks = cfg.assessmentTasks ?? [];
+      const taskSel = document.getElementById('sel-task');
+      if (tasks.length) {
+        taskSel.innerHTML = tasks.map(t => `<option value="${t.id}">${t.id} — ${t.title}</option>`).join('');
+      }
+    } catch { /* keep existing options */ }
+    scheduleAssessRender();
+  }
+});
+
+init().catch(e => setStatus(`<span class="s-err">Init error: ${e.message}</span>`));
+</script>
+</body>
+</html>

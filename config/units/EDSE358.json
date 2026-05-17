@@ -1,0 +1,974 @@
+{
+  "code": "EDSE358",
+  "name": "Science Education 11–12: Plan, Assess and Report",
+  "itemLabel": "Module",
+  "liveDay": "Thursday",
+  "liveTime": "5:30–6:30pm",
+  "trimesters": [
+    "T1",
+    "T2"
+  ],
+  "assessmentPortalUrl": "https://mylearn.une.edu.au/course/section.php?id=477943",
+  "week0Message": "Have a look around at the first few tiles below and finish up the Week 0 section — we'll get started next week!",
+  "theme": {
+    "primary": "#7C5DB6",
+    "accent": "#4FA9B5",
+    "pill": "#EDE8FB",
+    "pillBorder": "#c9bef5"
+  },
+  "learningOutcomes": [
+    {
+      "id": "LO1",
+      "color": "#25797F",
+      "title": "Curriculum Knowledge",
+      "description": "Demonstrate knowledge and understanding of the concepts, substance and structure of content and teaching strategies across Biology, Chemistry, Physics, Investigating Science, Earth & Environmental Science and Science Extension syllabi.",
+      "gtsd": "2.1.1"
+    },
+    {
+      "id": "LO2",
+      "color": "#3F88C5",
+      "title": "Assessment Knowledge",
+      "description": "Demonstrate understanding of assessment strategies (diagnostic, formative, summative; informal and formal) and the importance of reporting student progress and effective home–school communication.",
+      "gtsd": "5.1.1, 5.4.1"
+    },
+    {
+      "id": "LO3",
+      "color": "#7C5DB6",
+      "title": "Investigative Skills & Safety",
+      "description": "Include and evaluate a range of teaching strategies that develop investigative skills, cognitive engagement, and safe scientific practice in senior secondary contexts.",
+      "gtsd": "3.3.1, 4.1.1, 4.2.1, 4.4.1"
+    },
+    {
+      "id": "LO4",
+      "color": "#4FA9B5",
+      "title": "ICT & Resource Evaluation",
+      "description": "Implement teaching strategies that use ICT to expand learning opportunities and critically analyse and evaluate digital and other teaching resources.",
+      "gtsd": "2.6.1"
+    },
+    {
+      "id": "LO5",
+      "color": "#8FB77A",
+      "title": "Professional Resources & Networks",
+      "description": "Demonstrate knowledge of professional resources and critically analyse textbooks and other resources to enhance learning opportunities.",
+      "gtsd": "3.4.1, 7.4.1, 3.6.1"
+    },
+    {
+      "id": "LO6",
+      "color": "#D98C5F",
+      "title": "Critical Textbook Analysis",
+      "description": "Demonstrate ability to critically analyse a textbook and provide a range of appropriate resources and activities to address identified shortcomings.",
+      "gtsd": "3.4.1, 3.6.1"
+    }
+  ],
+  "assessmentTasks": [
+    {
+      "id": "AT1",
+      "title": "Teaching, Learning and Assessment Design",
+      "weighting": 60,
+      "length": null,
+      "due": "2026-04-05",
+      "duePartA": "2026-03-22",
+      "flexiblePortal": null,
+      "learningOutcomes": [
+        "LO1",
+        "LO2",
+        "LO3",
+        "LO5"
+      ],
+      "aitslStandards": [
+        "2.1.1",
+        "2.2.1",
+        "5.1.1",
+        "5.2.1",
+        "5.4.1"
+      ],
+      "rationale": null,
+      "aim": null,
+      "links": {
+        "rubric": null,
+        "taskFiles": null,
+        "submit": null,
+        "forum": null,
+        "video": null
+      },
+      "parts": [
+        {
+          "id": "A",
+          "title": "Part A",
+          "marks": 20,
+          "wordCount": null,
+          "description": null,
+          "requirements": null,
+          "bespoke": null,
+          "loLinks": [
+            "LO1",
+            "LO2"
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Part B",
+          "marks": 20,
+          "wordCount": null,
+          "description": null,
+          "requirements": null,
+          "bespoke": null,
+          "loLinks": [
+            "LO2",
+            "LO3"
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Part C",
+          "marks": 50,
+          "wordCount": null,
+          "description": null,
+          "requirements": null,
+          "bespoke": null,
+          "loLinks": [
+            "LO1",
+            "LO2",
+            "LO5"
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Part D",
+          "marks": 10,
+          "wordCount": null,
+          "description": null,
+          "requirements": null,
+          "bespoke": null,
+          "loLinks": [
+            "LO3",
+            "LO5"
+          ]
+        }
+      ],
+      "criteria": [],
+      "rubric": [
+        {
+          "part": "A",
+          "criterion": "Teaching and Learning Design — Planning and rationale",
+          "marks": 20,
+          "loLinks": [
+            "LO1",
+            "LO2"
+          ],
+          "bands": {
+            "HD": {
+              "range": "20–18",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "D": {
+              "range": "17–15",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "C": {
+              "range": "14–12",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "P": {
+              "range": "11–10",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "N": {
+              "range": "9–0",
+              "descriptor": "To be confirmed — check official rubric document"
+            }
+          }
+        },
+        {
+          "part": "B",
+          "criterion": "Assessment Design — Task and instrument construction",
+          "marks": 20,
+          "loLinks": [
+            "LO2",
+            "LO3"
+          ],
+          "bands": {
+            "HD": {
+              "range": "20–18",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "D": {
+              "range": "17–15",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "C": {
+              "range": "14–12",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "P": {
+              "range": "11–10",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "N": {
+              "range": "9–0",
+              "descriptor": "To be confirmed — check official rubric document"
+            }
+          }
+        },
+        {
+          "part": "C",
+          "criterion": "Teaching Program — Sequence, strategies, and syllabus alignment",
+          "marks": 50,
+          "loLinks": [
+            "LO1",
+            "LO2",
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "50–45",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "D": {
+              "range": "44–38",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "C": {
+              "range": "37–30",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "P": {
+              "range": "29–25",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "N": {
+              "range": "24–0",
+              "descriptor": "To be confirmed — check official rubric document"
+            }
+          }
+        },
+        {
+          "part": "D",
+          "criterion": "Reflective Self-Assessment",
+          "marks": 10,
+          "loLinks": [
+            "LO3",
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "10–9",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "D": {
+              "range": "8",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "C": {
+              "range": "7–6",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "P": {
+              "range": "5",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "N": {
+              "range": "4–0",
+              "descriptor": "To be confirmed — check official rubric document"
+            }
+          }
+        }
+      ],
+      "hdCallout": null,
+      "submissionInstructions": []
+    },
+    {
+      "id": "AT2",
+      "title": "Resource Curation and Critical Analysis",
+      "weighting": 40,
+      "length": null,
+      "due": "2026-05-04",
+      "flexiblePortal": null,
+      "learningOutcomes": [
+        "LO4",
+        "LO5",
+        "LO6"
+      ],
+      "aitslStandards": [
+        "2.6.1",
+        "3.4.1",
+        "3.6.1",
+        "7.4.1"
+      ],
+      "rationale": null,
+      "aim": null,
+      "links": {
+        "rubric": null,
+        "taskFiles": null,
+        "submit": null,
+        "forum": null,
+        "video": null
+      },
+      "parts": [],
+      "criteria": [],
+      "rubric": [
+        {
+          "part": null,
+          "criterion": "Professional Judgement & Evaluation",
+          "marks": 40,
+          "loLinks": [
+            "LO4",
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "40–36",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "D": {
+              "range": "35–30",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "C": {
+              "range": "29–24",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "P": {
+              "range": "23–20",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "N": {
+              "range": "19–0",
+              "descriptor": "To be confirmed — check official rubric document"
+            }
+          }
+        },
+        {
+          "part": null,
+          "criterion": "Curriculum & Syllabus Alignment",
+          "marks": 35,
+          "loLinks": [
+            "LO4",
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "35–32",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "D": {
+              "range": "31–26",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "C": {
+              "range": "25–21",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "P": {
+              "range": "20–18",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "N": {
+              "range": "17–0",
+              "descriptor": "To be confirmed — check official rubric document"
+            }
+          }
+        },
+        {
+          "part": null,
+          "criterion": "Scholarly Grounding",
+          "marks": 25,
+          "loLinks": [
+            "LO5",
+            "LO6"
+          ],
+          "bands": {
+            "HD": {
+              "range": "25–23",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "D": {
+              "range": "22–19",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "C": {
+              "range": "18–15",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "P": {
+              "range": "14–13",
+              "descriptor": "To be confirmed — check official rubric document"
+            },
+            "N": {
+              "range": "12–0",
+              "descriptor": "To be confirmed — check official rubric document"
+            }
+          }
+        }
+      ],
+      "hdCallout": null,
+      "submissionInstructions": []
+    }
+  ],
+  "trimesterConfig": {
+    "T1-2026": {
+      "zoom": {
+        "meetingId": "848 7032 4762",
+        "password": "288268",
+        "url": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1"
+      },
+      "assessmentFiles": {
+        "AT1": {
+          "rubricUrl": null,
+          "disciplines": {
+            "biology": {
+              "task": null,
+              "marking": null
+            },
+            "chemistry": {
+              "task": null,
+              "marking": null
+            },
+            "ees": {
+              "task": null,
+              "marking": null
+            },
+            "physics": {
+              "task": null,
+              "marking": null
+            }
+          }
+        },
+        "AT2": {
+          "rubricUrl": "https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/Assessment%20Task%202%20EDSE358%20Rubric.pdf?forcedownload=1",
+          "disciplines": {
+            "biology": {
+              "task": "https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/Biology Task Biodiversity.pdf?forcedownload=1",
+              "marking": "https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/Biology Task marking.pdf?forcedownload=1"
+            },
+            "chemistry": {
+              "task": "https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/Chemistry%20Task.pdf?forcedownload=1",
+              "marking": null,
+              "markingNote": "⚠️ KNOWN ISSUE — duplicates task link, verify correct URL before use"
+            },
+            "ees": {
+              "task": null,
+              "taskNote": "⚠️ KNOWN ISSUE — currently points to Physics task file, verify correct URL before use",
+              "marking": "https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/Earth  Env task marking.pdf?forcedownload=1"
+            },
+            "physics": {
+              "task": "https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/Physics task new.pdf?forcedownload=1",
+              "marking": "https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/Physics Task marking.pdf?forcedownload=1"
+            }
+          }
+        }
+      }
+    },
+    "T2-2026": {
+      "zoom": {
+        "meetingId": null,
+        "password": null,
+        "url": null
+      },
+      "assessmentFiles": {}
+    }
+  },
+  "weeks": {
+    "0": {
+      "video": "vOe6VqwXMk0"
+    },
+    "1": {
+      "item": "Module 1",
+      "title": "The Senior Science Syllabus",
+      "live": "LIVE SESSION 1",
+      "notes": [
+        "Download BOTH assessment tasks 💾",
+        "Make a plan to complete them 🗓️"
+      ],
+      "announcementBody": {
+        "intro": "Welcome to EDSE358. This week we begin with Module 1 — an introduction to the senior science syllabus as the governing framework for everything you will plan, assess, and report against as a science teacher.",
+        "focus": "Module 1 establishes the senior science syllabus as the authoritative document shaping your teaching practice. You will examine the structure of the syllabus for your teaching area and begin to understand how outcomes, content, and assessment requirements connect."
+      },
+      "liveSessionFocus": "In our first live session, we set the scene for the unit, clarify expectations around assessment, and begin exploring the syllabus structures that underpin your work as a senior science teacher.",
+      "liveSessionTasks": [
+        "Download both assessment tasks from the Assessment Portal and review the requirements before the session.",
+        "Choose your primary teaching area and review its senior science syllabus — note the key components: outcomes, content, and assessment requirements.",
+        "Come ready to share one thing that surprised you about the syllabus structure and one question you would like to discuss."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "video": "twvP-4YOPWw"
+    },
+    "2": {
+      "item": "Module 2",
+      "title": "The Nature of Science Teaching",
+      "live": "🎤 LIVE SESSION 2: MODULE 1&2",
+      "announcementBody": {
+        "intro": "This week we explore the nature of science as a discipline and what it means to teach it well in a senior secondary context. Module 2 asks you to think carefully about the kind of science teacher you want to be.",
+        "focus": "Module 2 focuses on the Nature of Science (NOS) — the values, practices, and epistemological commitments that characterise science as a way of knowing. Understanding NOS shapes how you select content, design experiences, and communicate science to students."
+      },
+      "liveSessionFocus": "Session 2 covers Modules 1 and 2 together. We will examine the syllabus as a professional document and explore how an understanding of NOS can shape your approach to planning senior science lessons.",
+      "liveSessionTasks": [
+        "Review the lecture recordings and readings for both Modules 1 and 2 before the session.",
+        "Identify one aspect of the Nature of Science that you find most difficult to communicate to senior students.",
+        "Consider: how does your teaching area's syllabus reflect or constrain a NOS-informed approach to teaching?"
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "video": "mHYoYi15J1Y"
+    },
+    "3": {
+      "item": "Module 3A",
+      "title": "Planning and Assessing Learning Models and Constructivist Teaching",
+      "live": "🎤 LIVE SESSION 3",
+      "announcementBody": {
+        "intro": "This week we begin Module 3, turning our attention to how students learn and what that means for how we plan and teach. Understanding learning models — and in particular constructivist approaches — is foundational to everything that follows in this unit, including how we design assessment that genuinely supports learning.",
+        "focus": "Module 3A focuses on the theoretical underpinnings of effective teaching and learning in senior science. As you work through the materials, keep asking yourself: how does this change the way I would plan a lesson or a unit of work?",
+        "keyIdea": "A key idea this week is that learning is not passive reception — it is active construction. Your job as a teacher is to design experiences that give students something worth constructing."
+      },
+      "liveSessionFocus": "Consolidate learning about learning models, constructivist teaching, and their relationship to planning learning and designing assessment.",
+      "liveSessionTasks": [
+        "Write 3–5 key takeaways.",
+        "Note one question you want to test or discuss.",
+        "Share one key idea you would apply in your own planning.",
+        "Respond to a peer in the forum."
+      ],
+      "workflow": [
+        "Study the Materials",
+        "Watch the Lecture",
+        "Summarise & Prepare Questions",
+        "Join the Live Session",
+        "Post to the Forum (3A)"
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1",
+        "recording": null,
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381717",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3381716",
+        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=477946#module-3516724"
+      },
+      "video": "dZiRQE7dgFA"
+    },
+    "4": {
+      "item": "Module 3B",
+      "title": "Planning and Assessing Programs and Lesson Plans",
+      "live": "🎤 LIVE SESSION 4: MODULE 3",
+      "assessments": [
+        {
+          "name": "Assessment Task 1 — Part A (5%)",
+          "due": "2026-03-22"
+        }
+      ],
+      "announcementBody": {
+        "intro": "This week we move from theory to practice, applying the learning models and constructivist principles from Module 3A to the design of programs and lesson plans. Good planning is not about filling time — it is about making deliberate decisions that connect learning intentions, teaching strategies, and assessment evidence.",
+        "focus": "Module 3B focuses on how experienced teachers translate curriculum and pedagogy into coherent, purposeful plans. As you work through the materials, pay attention to the decisions being made and why — not just the format of the plan itself.",
+        "keyIdea": "A key idea this week is that planning is a professional act. The choices you make about sequence, timing, and strategy reflect your understanding of your students, your subject, and your purpose as a teacher."
+      },
+      "liveSessionFocus": "Apply learning models and constructivist planning principles to program and lesson planning.",
+      "liveSessionTasks": [
+        "Work through the Module 3B book.",
+        "Identify your 'must-do' planning moves.",
+        "Note one challenge you want help with.",
+        "Bring planning questions to the live session.",
+        "Comment on a program/plan idea from the module.",
+        "Respond to at least one peer."
+      ],
+      "workflow": [
+        "Study the Materials",
+        "Watch the Lecture",
+        "Summarise & Prepare Questions",
+        "Join the Live Session",
+        "Post to the Forum (3B)"
+      ],
+      "links": {
+        "lecture": "https://echo360.net.au/media/caea3e78-bbfb-4923-b8fc-a2ae90b1a7cd/public?autoplay=false&automute=false",
+        "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3517881",
+        "zoom": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1",
+        "recording": null,
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381720",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3381719",
+        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=477946#module-3517882"
+      },
+      "resources": [
+        {
+          "label": "Effective Pedagogical Practice",
+          "url": "https://mylearn.une.edu.au/mod/page/view.php?id=3502059",
+          "type": "link"
+        },
+        {
+          "label": "Classroom Management",
+          "url": "https://mylearn.une.edu.au/mod/page/view.php?id=3502060",
+          "type": "link"
+        },
+        {
+          "label": "Enabling Factors for Teaching",
+          "url": "https://mylearn.une.edu.au/mod/page/view.php?id=3502061",
+          "type": "link"
+        }
+      ],
+      "video": "HXhzDcirQ-0"
+    },
+    "5": {
+      "item": "Module 4A",
+      "title": "Assessing and Reporting — Assessment for learning",
+      "live": "🎤 LIVE SESSION 5",
+      "notes": [
+        "Census Day occurs this week."
+      ],
+      "announcementBody": {
+        "intro": "This week we begin Module 4, which runs across four parts and sits at the heart of this unit. We start with the most important question: why do we assess? Before designing any assessment task or rubric, it is worth understanding what assessment is actually for — and how it can be used to move learning forward rather than simply measure it.",
+        "focus": "Module 4A focuses on assessment for learning — the use of feedback, questioning, and peer and self-reflection to improve student understanding during the learning process. As you work through the materials, think about how assessment can be woven into teaching rather than added on at the end.",
+        "keyIdea": "A key idea this week is that the most powerful assessment happens before the final mark — in the moments where a teacher notices where a student is and responds."
+      },
+      "liveSessionFocus": "Identify where teacher feedback, peer input, and student self-reflection can move learning forward in a portfolio task.",
+      "liveSessionTasks": [
+        "Work through the Module 4A learning materials.",
+        "Watch the lecture.",
+        "Write 3–5 key takeaways.",
+        "Note one question to bring forward.",
+        "Bring one example of where feedback, peer input, or self-reflection could move learning forward in the portfolio task.",
+        "Post feedback and questioning ideas to the 4A forum."
+      ],
+      "workflow": [
+        "Study the Materials",
+        "Watch the Lecture",
+        "Summarise & Prepare Questions",
+        "Join the Live Session",
+        "Post to the Forum"
+      ],
+      "links": {
+        "lecture": "https://echo360.net.au/media/50aec677-a460-45e7-9ba4-1ee73feebb74/public?autoplay=false&automute=false",
+        "slides": null,
+        "zoom": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1",
+        "recording": null,
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381725",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3381723",
+        "liveHub": "https://mylearn.une.edu.au/course/view.php?id=31730&expandsection=6#module-3520942"
+      },
+      "resources": [
+        {
+          "label": "NSW Portfolio example (Investigating Science)",
+          "url": "https://education.nsw.gov.au/content/dam/main-education/teaching-and-learning/curriculum/key-learning-areas/science/s-6/investigating-science/m1-student-portfolio-investigating-science.docx",
+          "type": "download"
+        }
+      ],
+      "forumPrompts": [
+        "Using the portfolio example, decide where there might be natural points for feedback from the teacher and from peers. Locate or suggest places where student self-reflection would be appropriate.",
+        "At the teacher feedback points, develop a set of questions that teachers might use to elicit student thinking. Post these to the 4A forum for discussion."
+      ],
+      "video": "6vPFCsOBL3A"
+    },
+    "6": {
+      "item": "Module 4B",
+      "title": "Assessing and Reporting — Designing assessment instruments",
+      "live": "🎤 LIVE SESSION 6: MODULE 4A&B",
+      "assessments": [
+        {
+          "name": "Assessment Task 1 — Parts B, C & D (55%)",
+          "due": "2026-04-05"
+        }
+      ],
+      "announcementBody": {
+        "intro": "This week we move from the purpose of assessment to its design. Designing a good assessment instrument is a complex professional task — it requires you to be clear about what you are assessing, how students will demonstrate it, and how you will know quality when you see it.",
+        "focus": "Module 4B focuses on constructive alignment: the relationship between syllabus outcomes, task design, and marking criteria. A well-designed task makes this alignment visible and gives students a genuine opportunity to demonstrate their learning.",
+        "keyIdea": "A key idea this week is that assessment design is curriculum design. The choices you make about task type, conditions, and criteria shape what students learn and how they think about their own progress."
+      },
+      "liveSessionFocus": "Explore alignment between syllabus outcomes, task design, and marking criteria.",
+      "liveSessionTasks": [
+        "Work through the Module 4B materials.",
+        "Complete the syllabus mapping exercise.",
+        "Watch the two Module 4B lecture recordings.",
+        "Write 3–5 key takeaways.",
+        "Note one question to bring forward.",
+        "Bring one question about alignment between syllabus outcomes, task design, and marking criteria.",
+        "Contribute a short post about the syllabus mapping exercise conducted on a task and marking rubric."
+      ],
+      "workflow": [
+        "Study the Materials",
+        "Watch the Lectures",
+        "Summarise & Prepare Questions",
+        "Join the Live Session",
+        "Post to the Forum"
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1",
+        "recording": null,
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381728",
+        "materials": "https://mylearn.une.edu.au/course/section.php?id=477947#module-3381726",
+        "liveHub": null
+      },
+      "additionalLectures": [
+        {
+          "label": "Module 4B Assessment Design",
+          "recording": "https://echo360.net.au/media/557ec6c4-20aa-445f-943b-c2c02478de36/public?autoplay=false&automute=false",
+          "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3520940"
+        },
+        {
+          "label": "Module 4B Assessment Task Design for Stage 6",
+          "recording": "https://echo360.net.au/media/4704afcd-abb9-4414-9539-ba7b03fea2b7/public?autoplay=false&automute=false",
+          "slides": "https://mylearn.une.edu.au/pluginfile.php/5335663/mod_resource/content/1/Module%204B%20stage6_assessment_design.pdf"
+        }
+      ],
+      "video": "JbvXUQJa9_g"
+    },
+    "7": {
+      "item": "Module 4C",
+      "title": "Assessing and Reporting — Designing differentiated assessment",
+      "live": "🎤 LIVE SESSION 7",
+      "announcementBody": {
+        "intro": "This week we examine one of the most demanding aspects of assessment design: creating tasks that are accessible to all students without compromising the rigour of the syllabus outcomes. In a senior science classroom, your students will bring a wide range of learning needs, cultural backgrounds, and prior experiences — and your assessment design needs to account for this from the outset.",
+        "focus": "Module 4C focuses on inclusive assessment design — adjustments, UDL principles, and the NESA and NSW DoE frameworks that support diverse learners. As you work through the materials, pay attention to the distinction between adjustments that change how a student demonstrates learning and changes that alter what is being assessed.",
+        "keyIdea": "A key idea this week is that inclusion in assessment is not about lowering the bar — it is about ensuring every student can reach it."
+      },
+      "liveSessionFocus": "Consider how assessment tasks can be adjusted for inclusion without changing the intended syllabus outcome.",
+      "liveSessionTasks": [
+        "Work through Module 4C materials with an eye on inclusion in assessment design.",
+        "Watch the NSW DoE website resource guide.",
+        "Watch the Module 4C differentiated assessment lecture.",
+        "Write 3–5 key takeaways.",
+        "Note one question to bring forward.",
+        "Bring one example of how an assessment task could be adjusted for inclusion without changing the outcome.",
+        "Reflect on how inclusion is, or is not, evident in an assessment task notification."
+      ],
+      "workflow": [
+        "Study the Materials",
+        "Watch the Lecture",
+        "Summarise & Prepare Questions",
+        "Join the Live Session",
+        "Post to the Forum"
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1",
+        "recording": null,
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381731",
+        "materials": "https://mylearn.une.edu.au/course/section.php?id=477947#module-3381729",
+        "liveHub": null
+      },
+      "additionalLectures": [
+        {
+          "label": "NSW DoE Website resource guide",
+          "recording": "https://echo360.net.au/media/bc8d5c06-edf4-47ea-8490-caecd3566f06/public?autoplay=false&automute=false",
+          "slides": null
+        },
+        {
+          "label": "Module 4C Designing differentiated assessment",
+          "recording": "https://echo360.net.au/media/a6644332-9215-4028-83f7-f72c60ceeec2/public?autoplay=false&automute=false",
+          "slides": null
+        }
+      ],
+      "resources": [
+        {
+          "category": "Equity",
+          "label": "Diversity and inclusion",
+          "url": "https://education.nsw.gov.au/teaching-and-learning/learning-remotely/diversity-and-inclusion",
+          "type": "link"
+        },
+        {
+          "category": "NESA",
+          "label": "Curriculum",
+          "url": "https://education.nsw.gov.au/teaching-and-learning/curriculum",
+          "type": "link"
+        },
+        {
+          "category": "NESA",
+          "label": "Planning, programming & assessing K–12",
+          "url": "https://education.nsw.gov.au/teaching-and-learning/curriculum/planning-programming-and-assessing-k-12",
+          "type": "link"
+        },
+        {
+          "category": "NESA",
+          "label": "NSW Curriculum (NESA)",
+          "url": "https://curriculum.nsw.edu.au/",
+          "type": "link"
+        },
+        {
+          "category": "Assessment",
+          "label": "Inclusive assessment principles",
+          "url": "https://curriculum.nsw.edu.au/assessment-and-reporting/assessment-principles#inclusive-assessment",
+          "type": "link"
+        },
+        {
+          "category": "Assessment",
+          "label": "Assessment adjustments",
+          "url": "https://curriculum.nsw.edu.au/assessment-and-reporting/assessment-principles#adjustments-for-students-with-disability",
+          "type": "link"
+        },
+        {
+          "category": "Assessment",
+          "label": "Assessment in Stage 6",
+          "url": "https://curriculum.nsw.edu.au/assessment-and-reporting/assessment-in-stage-6",
+          "type": "link"
+        },
+        {
+          "category": "Equity",
+          "label": "Collaborative curriculum planning",
+          "url": "https://www.nsw.gov.au/education-and-training/nesa/diversity-of-learners/special-education/collaborative-curriculum-planning",
+          "type": "link"
+        },
+        {
+          "category": "Equity",
+          "label": "Types of adjustments",
+          "url": "https://www.nsw.gov.au/education-and-training/nesa/diversity-of-learners/special-education/adjustments#toc-types-of-adjustments",
+          "type": "link"
+        },
+        {
+          "category": "UDL",
+          "label": "Universal Design for Learning",
+          "url": "https://education.nsw.gov.au/teaching-and-learning/curriculum/planning-programming-and-assessing-k-12/about-universal-design-for-learning",
+          "type": "link"
+        },
+        {
+          "category": "UDL",
+          "label": "Curriculum planning for every student",
+          "url": "https://education.nsw.gov.au/teaching-and-learning/curriculum/planning-programming-and-assessing-k-12/advice-on-curriculum-planning-for-every-student-k-12#Inclusive2",
+          "type": "link"
+        },
+        {
+          "category": "UDL",
+          "label": "Curriculum planning webinars",
+          "url": "https://education.nsw.gov.au/teaching-and-learning/curriculum/planning-programming-and-assessing-k-12/curriculum-planning-for-every-student-introductory-webinars",
+          "type": "link"
+        },
+        {
+          "category": "Equity",
+          "label": "Diversity of learners (NESA)",
+          "url": "https://curriculum.nsw.edu.au/diversity-of-learners",
+          "type": "link"
+        },
+        {
+          "category": "Equity",
+          "label": "Diversity of learners (NSW)",
+          "url": "https://www.nsw.gov.au/education-and-training/nesa/diversity-of-learners",
+          "type": "link"
+        },
+        {
+          "category": "Equity",
+          "label": "Supporting Aboriginal students",
+          "url": "https://www.nsw.gov.au/education-and-training/nesa/aboriginal-education/supporting-aboriginal-students#toc-strategies-and-considerations",
+          "type": "link"
+        },
+        {
+          "category": "Equity",
+          "label": "Gifted education",
+          "url": "https://www.nsw.gov.au/education-and-training/nesa/diversity-of-learners/gifted-education#toc-assessment",
+          "type": "link"
+        },
+        {
+          "category": "UDL",
+          "label": "Differentiation adjustment tool",
+          "url": "https://education.nsw.gov.au/teaching-and-learning/high-potential-and-gifted-education/supporting-educators/implement/differentiation-adjustment-strategies#Adjustment:0",
+          "type": "link"
+        },
+        {
+          "category": "Equity",
+          "label": "EAL/D support",
+          "url": "https://www.nsw.gov.au/education-and-training/nesa/diversity-of-learners/eald#toc-how-to-assess-learning-progress",
+          "type": "link"
+        },
+        {
+          "category": "Assessment",
+          "label": "Assessment and reporting",
+          "url": "https://www.nsw.gov.au/education-and-training/nesa/diversity-of-learners/special-education/assessment-and-reporting",
+          "type": "link"
+        }
+      ],
+      "video": "ZMXgRNeHBEw"
+    },
+    "8": {
+      "item": "Module 4D",
+      "title": "Assessing and Reporting — Developing rubrics and providing feedback",
+      "live": "🎤 LIVE SESSION 8: MODULE 4C&D",
+      "announcementBody": null,
+      "liveSessionFocus": null,
+      "liveSessionTasks": null,
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "extension": {
+        "label": "Approaches to Assessment",
+        "page": "https://mylearn.une.edu.au/mod/page/view.php?id=3510856",
+        "video": "https://echo360.net.au/media/3b147218-9de0-40a3-a8cb-cb8345c93527/public?autoplay=false&automute=false",
+        "resources": [
+          {
+            "label": "Align with taxonomies of learning",
+            "url": "https://www.monash.edu/learning-teaching/TeachHQ/Teaching-practices/learning-outcomes/how-to/align-with-taxonomies",
+            "type": "link"
+          },
+          {
+            "label": "Are grades and assessment harmful?",
+            "url": "http://www.alfiekohn.org/category/subject/grades-and-assessment/",
+            "type": "link"
+          },
+          {
+            "label": "Assessment and Reporting — NSW DoE",
+            "url": "https://curriculum.nsw.edu.au/assessment-and-reporting",
+            "type": "link"
+          },
+          {
+            "label": "Assessment Modes — NSW DoE",
+            "url": "https://education.nsw.gov.au/teaching-and-learning/assessment/strengthening-assessment/assessment-modes",
+            "type": "link"
+          }
+        ]
+      },
+      "video": "0QVsntPYBrE"
+    },
+    "9": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "10": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "11": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "assessments": [
+        {
+          "name": "EDSE358 Assessment 2 (40%)",
+          "due": "2026-05-04"
+        }
+      ],
+      "video": "DGIXT7ce3vQ"
+    },
+    "12": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "13": {
+      "item": "Professional Experience",
+      "title": "Flexible Window for Professional Experience (School of Education Only)",
+      "video": "DGIXT7ce3vQ"
+    },
+    "14": {
+      "item": "Assessment period",
+      "title": "Assessment and Intensive Period 2",
+      "video": "DGIXT7ce3vQ"
+    }
+  }
+}

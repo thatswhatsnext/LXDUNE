@@ -1,0 +1,53 @@
+<style>
+    .topic-dashboard { max-width:950px; margin:30px auto; font-family:Arial,sans-serif; color:#1F2A33; }
+    .topic-pill { display:inline-block; background:#DAF0F7; border:1px solid #cbe6ee; color:#1F2A33; padding:4px 10px; border-radius:999px; font-size:.8em; font-weight:800; margin-bottom:12px; }
+    .topic-dashboard h2 { margin:0 0 14px 0; color:#1F2A33; }
+    .topic-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+    .topic-card { padding:22px; border-radius:16px; text-decoration:none; color:#1F2A33; border:1px solid #dfe6ea; transition:transform .2s ease,box-shadow .2s ease; background:#ffffff; display:block; position:relative; }
+    .topic-card:hover { transform:translateY(-6px); box-shadow:0 12px 24px rgba(0,0,0,0.08); }
+    .topic-step { font-size:.75em; font-weight:900; text-transform:uppercase; margin-bottom:6px; opacity:.82; letter-spacing:.5px; }
+    .topic-card h4 { margin:0; }
+    .topic-extra { margin-top:12px; border-radius:12px; padding:0 12px; border:1px solid #dfe6ea; opacity:0; max-height:0; overflow:hidden; transform:translateY(-4px); transition:max-height .28s ease,opacity .22s ease,transform .22s ease,padding .28s ease; font-size:.92em; color:#444; line-height:1.55; }
+    .topic-card:hover .topic-extra { opacity:1; max-height:260px; transform:translateY(0); padding:12px; }
+    @media (hover:none) { .topic-extra { opacity:1; max-height:none; padding:12px; transform:none; } }
+    .topic-study { border-left:6px solid #25797F; background:#f4f6f8; }
+    .topic-lecture { border-left:6px solid #1f6fb2; background:#ffffff; }
+    .topic-live { border-left:6px solid #f1c40f; background:#ffffff; }
+    .topic-forum { border-left:6px solid #25797F; background:#f4f6f8; }
+    .link-pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .pill { display:inline-block; background:#eef5fb; border:1px solid #dfe6ea; color:#1f6fb2; padding:6px 10px; border-radius:999px; font-weight:800; font-size:.88em; text-decoration:none; line-height:1.2; }
+    .pill:hover { text-decoration:underline; }
+    .pill.secondary { background:#f4f6f8; color:#25797F; }
+    .pill.warn { background:#fff8e6; color:#6F7B84; }
+</style>
+<div class="topic-dashboard">
+    <div class="topic-pill">EDSE357 • TOPIC 8</div>
+    <h2>How to Approach Topic 8: Teaching with a diverse cohort</h2>
+    <div class="topic-grid">
+        <a class="topic-card topic-study" href="{{MATERIALS_LINK}}" target="_blank" rel="noopener">
+            <div class="topic-step">Step 1</div>
+            <h4>Read the Topic Materials</h4>
+            <div class="topic-extra">Work through the topic materials with a focus on this week's key ideas.<div class="link-pills"><span class="pill secondary">Topic materials</span></div></div>
+        </a>
+        <a class="topic-card topic-lecture" href="{{LECTURE_LINK}}" target="_blank" rel="noopener">
+            <div class="topic-step">Step 2</div>
+            <h4>Watch the Lecture Recording</h4>
+            <div class="topic-extra">Use the lecture to deepen your understanding of this week's content.<div class="link-pills"><span class="pill">Lecture recording</span></div></div>
+        </a>
+        <a class="topic-card topic-live" href="{{LIVE_HUB_LINK}}" target="_blank" rel="noopener">
+            <div class="topic-step">Step 3</div>
+            <h4>Prepare for the Live Session</h4>
+            <div class="topic-extra">Review the activities and prepare notes to bring to the session.<div class="link-pills"><span class="pill">Live session hub</span></div></div>
+        </a>
+        <a class="topic-card topic-live" href="{{ZOOM_URL}}" target="_blank" rel="noopener">
+            <div class="topic-step">Step 4</div>
+            <h4>Join the Live Session</h4>
+            <div class="topic-extra">Bring your reflections to discuss with peers and the lecturer.<div class="link-pills"><span class="pill">Join Zoom</span></div></div>
+        </a>
+        <a class="topic-card topic-forum" href="{{FORUM_LINK}}" target="_blank" rel="noopener">
+            <div class="topic-step">Step 5</div>
+            <h4>Post to the Forum</h4>
+            <div class="topic-extra">Share a reflection and respond to at least one peer.<div class="link-pills"><span class="pill warn">Forum</span></div></div>
+        </a>
+    </div>
+</div>
