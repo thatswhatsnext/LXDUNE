@@ -151,126 +151,217 @@
       "rubric": [
         {
           "part": "A",
-          "criterion": "Teaching and Learning Design — Planning and rationale",
-          "marks": 20,
-          "loLinks": [
-            "LO1",
-            "LO2"
-          ],
+          "criterion": "Task outline",
+          "marks": 5,
           "bands": {
             "HD": {
-              "range": "20–18",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "5",
+              "descriptor": "Task outline is accurate, complete, and professionally presented. Concept, year level, and outcomes are correctly identified. Clear alignment between model, syllabus outcomes, and assessment purpose. Forum post is concise, coherent, and clearly communicates intent."
             },
             "D": {
-              "range": "17–15",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "4",
+              "descriptor": "Task outline is accurate and complete. Concept and outcomes are correctly identified with clear alignment. Forum post clearly communicates the planned assessment."
             },
             "C": {
-              "range": "14–12",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "3",
+              "descriptor": "Task outline is mostly accurate with minor errors or omissions. Concept and outcomes are identified but alignment may be brief or descriptive. Forum post addresses requirements but lacks some clarity or detail."
             },
             "P": {
-              "range": "11–10",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "2",
+              "descriptor": "Some inaccuracies or missing elements. Alignment between model and outcomes is unclear or underdeveloped. Forum post partially addresses task requirements."
             },
             "N": {
-              "range": "9–0",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "0–1",
+              "descriptor": "Major inaccuracies or missing components. Outcomes not correctly identified or misaligned. Forum post not submitted or does not address requirements."
             }
           }
         },
         {
-          "part": "B",
-          "criterion": "Assessment Design — Task and instrument construction",
+          "part": "B1",
+          "criterion": "Unit structure, constructivist pedagogy, differentiation, NSW syllabus alignment",
           "marks": 20,
-          "loLinks": [
-            "LO2",
-            "LO3"
-          ],
           "bands": {
             "HD": {
               "range": "20–18",
-              "descriptor": "To be confirmed — check official rubric document"
+              "descriptor": "Coherent 5-week NSW Stage 6 unit. Logical progression toward model construction. Constructivist pedagogy embedded throughout. Differentiation specific and responsive to named cohort (incl. Aboriginal and EAL/D learners). Outcomes and content explicitly and accurately integrated."
             },
             "D": {
               "range": "17–15",
-              "descriptor": "To be confirmed — check official rubric document"
+              "descriptor": "Clear 5-week NSW-aligned unit with logical progression. Constructivist pedagogy evident. Differentiation addresses cohort with specific strategies. Outcomes/content accurate and clearly identified."
             },
             "C": {
               "range": "14–12",
-              "descriptor": "To be confirmed — check official rubric document"
+              "descriptor": "NSW-aligned structure present. Progression generally clear. Constructivist elements evident. Differentiation appropriate but may lack depth. Outcomes mostly accurate."
             },
             "P": {
-              "range": "11–10",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "11–9",
+              "descriptor": "Unit present but loosely aligned to NSW syllabus. Constructivist pedagogy inconsistent. Differentiation general. Outcome links incomplete or unclear."
             },
             "N": {
-              "range": "9–0",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "8–0",
+              "descriptor": "No coherent structure. Not aligned to NSW syllabus. Constructivist pedagogy absent. Differentiation absent. Outcomes missing or inaccurate."
             }
           }
         },
         {
-          "part": "C",
-          "criterion": "Teaching Program — Sequence, strategies, and syllabus alignment",
-          "marks": 50,
-          "loLinks": [
-            "LO1",
-            "LO2",
-            "LO5"
-          ],
+          "part": "B2",
+          "criterion": "Resources and student ICT use",
+          "marks": 10,
           "bands": {
             "HD": {
-              "range": "50–45",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "10–9",
+              "descriptor": "Resources intentionally deepen conceptual learning and support model construction. Integrated across lessons. ICT use purposeful and enhances inquiry, collaboration, or modelling."
             },
             "D": {
-              "range": "44–38",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "8",
+              "descriptor": "Resources clearly support learning goals and model task. ICT enhances learning meaningfully."
             },
             "C": {
-              "range": "37–30",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "7–6",
+              "descriptor": "Resources relevant and appropriate. ICT contributes to learning."
             },
             "P": {
-              "range": "29–25",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "5",
+              "descriptor": "Resources adequate but generic or loosely connected. ICT minimal or substitutive."
             },
             "N": {
-              "range": "24–0",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "4–0",
+              "descriptor": "Resources inappropriate, irrelevant, or absent. ICT absent or misused."
+            }
+          }
+        },
+        {
+          "part": "B3",
+          "criterion": "Learning activities aligned to syllabus outcomes",
+          "marks": 10,
+          "bands": {
+            "HD": {
+              "range": "10–9",
+              "descriptor": "Activities explicitly aligned to NSW outcomes and scaffold toward model construction. Clear constructivist strategies evident. Descriptions detailed and implementable."
+            },
+            "D": {
+              "range": "8",
+              "descriptor": "Activities aligned and build toward model task. Constructivist approach evident. Descriptions clear."
+            },
+            "C": {
+              "range": "7–6",
+              "descriptor": "Activities aligned and appropriate. Some constructivist elements. Descriptions generally clear."
+            },
+            "P": {
+              "range": "5",
+              "descriptor": "Activities partially aligned. Limited constructivist pedagogy. Descriptions lack clarity."
+            },
+            "N": {
+              "range": "4–0",
+              "descriptor": "Activities missing, misaligned, or unclear."
+            }
+          }
+        },
+        {
+          "part": "B4",
+          "criterion": "Formative assessment and feedback",
+          "marks": 10,
+          "bands": {
+            "HD": {
+              "range": "10–9",
+              "descriptor": "Two or more purposeful formative tasks embedded. Feedback specific and actionable. Clear explanation of how evidence informs future teaching and supports model completion."
+            },
+            "D": {
+              "range": "8",
+              "descriptor": "Two formative tasks embedded. Feedback linked to learning. Teaching adjustments explained."
+            },
+            "C": {
+              "range": "7–6",
+              "descriptor": "Formative tasks present and appropriate. Feedback mentioned. Some explanation of instructional response."
+            },
+            "P": {
+              "range": "5",
+              "descriptor": "Limited formative assessment. Feedback minimal. Little explanation of instructional adjustment."
+            },
+            "N": {
+              "range": "4–0",
+              "descriptor": "Formative assessment missing or unclear. No meaningful feedback or instructional response."
+            }
+          }
+        },
+        {
+          "part": "C1",
+          "criterion": "Justification of pedagogical decisions",
+          "marks": 20,
+          "bands": {
+            "HD": {
+              "range": "20–18",
+              "descriptor": "Presents a coherent, well-structured argument that clearly explains why key pedagogical decisions were made. Explicitly links decisions to cohort needs, syllabus outcomes, and constructivist principles. Uses integrated and synthesised peer-reviewed literature to justify choices."
+            },
+            "D": {
+              "range": "17–15",
+              "descriptor": "Clear and well-developed justification of pedagogical decisions. Links to cohort and syllabus are explicit. Literature is well integrated and supports reasoning."
+            },
+            "C": {
+              "range": "14–12",
+              "descriptor": "Sound justification of pedagogical decisions. Links to cohort and syllabus are present but may be more descriptive than analytical. Literature supports claims."
+            },
+            "P": {
+              "range": "11–9",
+              "descriptor": "Basic justification provided. Links to cohort or syllabus are limited or general. Minimal use of peer-reviewed literature."
+            },
+            "N": {
+              "range": "8–0",
+              "descriptor": "Justification is missing, unclear, or largely descriptive. Little or no relevant literature used."
+            }
+          }
+        },
+        {
+          "part": "C2",
+          "criterion": "Justification of resources",
+          "marks": 15,
+          "bands": {
+            "HD": {
+              "range": "15–13",
+              "descriptor": "Provides clear selection criteria and explicitly explains why chosen resources are superior for this cohort and unit. Links resource choice to outcomes, differentiation, and ICT integration. Uses literature to support evaluative reasoning."
+            },
+            "D": {
+              "range": "12–11",
+              "descriptor": "Clearly explains why selected resources are appropriate and effective. Links to cohort and learning goals are evident. Literature supports justification."
+            },
+            "C": {
+              "range": "10–9",
+              "descriptor": "Adequate explanation of why resources were selected. Some links to cohort or learning goals. Literature used but may be descriptive."
+            },
+            "P": {
+              "range": "8–6",
+              "descriptor": "Limited explanation of why resources were chosen. Weak or general links to cohort or outcomes. Minimal literature support."
+            },
+            "N": {
+              "range": "5–0",
+              "descriptor": "Resources are not justified or are inappropriate. No clear reasoning or literature support."
             }
           }
         },
         {
           "part": "D",
-          "criterion": "Reflective Self-Assessment",
+          "criterion": "Reflection",
           "marks": 10,
-          "loLinks": [
-            "LO3",
-            "LO5"
-          ],
           "bands": {
             "HD": {
               "range": "10–9",
-              "descriptor": "To be confirmed — check official rubric document"
+              "descriptor": "Demonstrates deep, critical reflection. Clearly identifies specific pedagogical insights gained from the task and explains how thinking has changed. Explicitly links reflection to future teaching practice. Reflection is analytical rather than descriptive and may draw on relevant literature to support insight."
             },
             "D": {
               "range": "8",
-              "descriptor": "To be confirmed — check official rubric document"
+              "descriptor": "Demonstrates strong reflective thinking. Clearly identifies learning gained and implications for future teaching. Reflection moves beyond description into analysis."
             },
             "C": {
               "range": "7–6",
-              "descriptor": "To be confirmed — check official rubric document"
+              "descriptor": "Demonstrates reflective thinking with clear identification of learning gained. Some analytical elements present, though reflection may still be partly descriptive."
             },
             "P": {
               "range": "5",
-              "descriptor": "To be confirmed — check official rubric document"
+              "descriptor": "Reflection is largely descriptive. Identifies what was done but provides limited insight into learning or future improvement."
             },
             "N": {
               "range": "4–0",
-              "descriptor": "To be confirmed — check official rubric document"
+              "descriptor": "Reflection is superficial, minimal, or not submitted. No clear evidence of reflective thinking."
             }
           }
         }
@@ -309,95 +400,164 @@
       "criteria": [],
       "rubric": [
         {
-          "part": null,
-          "criterion": "Professional Judgement & Evaluation",
-          "marks": 40,
-          "loLinks": [
-            "LO4",
-            "LO5"
-          ],
-          "bands": {
-            "HD": {
-              "range": "40–36",
-              "descriptor": "To be confirmed — check official rubric document"
-            },
-            "D": {
-              "range": "35–30",
-              "descriptor": "To be confirmed — check official rubric document"
-            },
-            "C": {
-              "range": "29–24",
-              "descriptor": "To be confirmed — check official rubric document"
-            },
-            "P": {
-              "range": "23–20",
-              "descriptor": "To be confirmed — check official rubric document"
-            },
-            "N": {
-              "range": "19–0",
-              "descriptor": "To be confirmed — check official rubric document"
-            }
-          }
-        },
-        {
-          "part": null,
-          "criterion": "Curriculum & Syllabus Alignment",
-          "marks": 35,
-          "loLinks": [
-            "LO4",
-            "LO5"
-          ],
-          "bands": {
-            "HD": {
-              "range": "35–32",
-              "descriptor": "To be confirmed — check official rubric document"
-            },
-            "D": {
-              "range": "31–26",
-              "descriptor": "To be confirmed — check official rubric document"
-            },
-            "C": {
-              "range": "25–21",
-              "descriptor": "To be confirmed — check official rubric document"
-            },
-            "P": {
-              "range": "20–18",
-              "descriptor": "To be confirmed — check official rubric document"
-            },
-            "N": {
-              "range": "17–0",
-              "descriptor": "To be confirmed — check official rubric document"
-            }
-          }
-        },
-        {
-          "part": null,
-          "criterion": "Scholarly Grounding",
+          "part": "A1",
+          "criterion": "Evaluation of Assessment Design",
           "marks": 25,
-          "loLinks": [
-            "LO5",
-            "LO6"
-          ],
           "bands": {
             "HD": {
-              "range": "25–23",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "25–21",
+              "descriptor": "Clear, detailed and well-organised critique. Accurately explains and applies validity, fairness, internal alignment and cognitive demand. Suitability for the cohort clearly analysed."
             },
             "D": {
-              "range": "22–19",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "20–17",
+              "descriptor": "Strong critique applying assessment concepts accurately. Explains suitability for cohort."
             },
             "C": {
-              "range": "18–15",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "16–13",
+              "descriptor": "Identifies strengths and weaknesses with some use of assessment concepts. Cohort discussion uneven."
             },
             "P": {
-              "range": "14–13",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "12–9",
+              "descriptor": "Mostly descriptive. Limited evaluation using assessment concepts. Cohort link general."
             },
             "N": {
-              "range": "12–0",
-              "descriptor": "To be confirmed — check official rubric document"
+              "range": "8–0",
+              "descriptor": "Very limited or inaccurate critique. Little understanding of assessment principles."
+            }
+          }
+        },
+        {
+          "part": "A2",
+          "criterion": "Syllabus & Working Scientifically Alignment",
+          "marks": 20,
+          "bands": {
+            "HD": {
+              "range": "20–17",
+              "descriptor": "Accurately identifies relevant Stage 6 outcomes and content. Clearly analyses Working Scientifically skills, scientific reasoning and safety where relevant."
+            },
+            "D": {
+              "range": "16–14",
+              "descriptor": "Correctly identifies outcomes and content. Clear explanation including Working Scientifically elements."
+            },
+            "C": {
+              "range": "13–11",
+              "descriptor": "Appropriate outcomes identified but alignment explanation lacks depth. Working Scientifically mentioned but limited analysis."
+            },
+            "P": {
+              "range": "10–7",
+              "descriptor": "Limited or unclear reference to outcomes. Alignment mostly asserted. Minimal Working Scientifically reference."
+            },
+            "N": {
+              "range": "6–0",
+              "descriptor": "Syllabus incorrectly referenced or not referenced."
+            }
+          }
+        },
+        {
+          "part": "A3",
+          "criterion": "Use of Assessment Theory and Literature",
+          "marks": 15,
+          "bands": {
+            "HD": {
+              "range": "15–13",
+              "descriptor": "Relevant peer-reviewed literature strengthens and justifies evaluation. Sources clearly connected to argument."
+            },
+            "D": {
+              "range": "12–11",
+              "descriptor": "Relevant literature supports key claims clearly."
+            },
+            "C": {
+              "range": "10–9",
+              "descriptor": "Literature used appropriately but links to critique sometimes underdeveloped."
+            },
+            "P": {
+              "range": "8–6",
+              "descriptor": "Limited or uneven use of literature."
+            },
+            "N": {
+              "range": "5–0",
+              "descriptor": "Little or no appropriate peer-reviewed literature."
+            }
+          }
+        },
+        {
+          "part": "B1",
+          "criterion": "Coherence, Alignment, ICT & Feedback",
+          "marks": 20,
+          "bands": {
+            "HD": {
+              "range": "20–17",
+              "descriptor": "Clear, professional task. Explicit alignment between outcomes, instructions, evidence and criteria. Feedback checkpoint built into process. ICT meaningfully enhances learning. Changes address Part A critique."
+            },
+            "D": {
+              "range": "16–14",
+              "descriptor": "Clear and well-aligned task. Feedback and ICT used appropriately. Most issues from Part A addressed."
+            },
+            "C": {
+              "range": "13–11",
+              "descriptor": "Workable task with general alignment. Feedback and ICT included but not fully developed."
+            },
+            "P": {
+              "range": "10–7",
+              "descriptor": "Alignment inconsistent or unclear. Feedback or ICT appear added without clear purpose."
+            },
+            "N": {
+              "range": "6–0",
+              "descriptor": "Unclear, incomplete or poorly aligned task."
+            }
+          }
+        },
+        {
+          "part": "B2",
+          "criterion": "Differentiation & Cohort Responsiveness",
+          "marks": 10,
+          "bands": {
+            "HD": {
+              "range": "10–9",
+              "descriptor": "Adjustments clearly support diverse learners including Aboriginal and/or Torres Strait Islander students. Access increased without lowering expectations."
+            },
+            "D": {
+              "range": "8",
+              "descriptor": "Appropriate adjustments for a range of learners. Cohort diversity clearly considered."
+            },
+            "C": {
+              "range": "7–6",
+              "descriptor": "Some adjustments included though may be general or uneven."
+            },
+            "P": {
+              "range": "5",
+              "descriptor": "Limited or unclear adjustments. Cohort mentioned but not embedded in design."
+            },
+            "N": {
+              "range": "4–0",
+              "descriptor": "Little or no consideration of cohort diversity."
+            }
+          }
+        },
+        {
+          "part": "C",
+          "criterion": "Reflection",
+          "marks": 10,
+          "bands": {
+            "HD": {
+              "range": "10–9",
+              "descriptor": "Thoughtful reflection showing clear learning and future classroom application."
+            },
+            "D": {
+              "range": "8",
+              "descriptor": "Clear reflection with practical connections to teaching."
+            },
+            "C": {
+              "range": "7–6",
+              "descriptor": "Relevant reflection with some insight."
+            },
+            "P": {
+              "range": "5",
+              "descriptor": "Basic reflection, mostly descriptive."
+            },
+            "N": {
+              "range": "4–0",
+              "descriptor": "Minimal or superficial reflection."
             }
           }
         }
