@@ -1,6 +1,6 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-05-17 (Phase 4 complete)  
+**Last updated:** 2026-05-17 (all phases complete — production deployment)  
 **Repo:** `https://github.com/thatswhatsnext/LXDUNE`  
 **GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`  
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
@@ -77,27 +77,22 @@ Pasted once into Moodle, never edited again. The script fetches config on every 
 
 **Never commit directly to `main`.** The path is always `feature/* → dev → main`.
 
-> ✅ **GitHub Pages is serving from `main`** — switched back from `dev` on 2026-05-17 after dev→main merge. The live URL is safe to share with students.
+> ✅ **GitHub Pages is serving from `main`** — confirmed 2026-05-17 after Phases 1–4 production deployment. All three live scripts verified 200 from the Pages URL. Safe to share with students.
 
 ---
 
 ## Current branch status
 
-`dev` is **5 commits ahead of `main`** — Phase 4 refactors merged to dev, awaiting sandpit testing before final dev→main merge.
+`dev` and `main` are **fully in sync** — 0 commits delta. Merged 2026-05-17 (merge commit `449164f`).
 
-### `main` (GitHub Pages source — live ✅)
-Reflects the pre-Phase-4 state. `whatson.js` and `autovideos.js` still use embedded static data. Safe for students.
+### `main` (GitHub Pages source — production ✅)
+All phases complete and live. Verified:
+- `https://thatswhatsnext.github.io/LXDUNE/whatson/whatson.js` → 200
+- `https://thatswhatsnext.github.io/LXDUNE/autovideos/autovideos.js` → 200
+- `https://thatswhatsnext.github.io/LXDUNE/moodle-blocks/blocks.js` → 200
 
-### `dev` (5 commits ahead of main)
-Phase 4 complete. Both live scripts now async and config-driven:
-- `whatson/whatson.js` — refactored; reads `config/units/*.json` (commit `de0894c`)
-- `autovideos/autovideos.js` — refactored; reads `config/units/*.json`, EDIT legacy fallback at bottom (commit `df4a601`)
-- `config/units/EDSE357.json` — `videoInterval: 1` added
-- `config/units/EDSE358.json` — `videoInterval: 1` added
-- `config/units/EDSE362.json` — `videoInterval: 2` added
-- All other files unchanged from `main`
-
-**Do not merge dev→main until Moodle sandpit testing passes for both whatson and autovideos widgets.**
+### `dev` (in sync with main — 0 commits ahead)
+No divergence. All future work follows the same path: `feature/* → dev → sandpit → main`.
 
 ---
 
@@ -224,7 +219,7 @@ Phase 4 complete. Both live scripts now async and config-driven:
 - Generator shell type: `course-hub`; test harness tab: **Course Hub**
 - Verified in test harness for EDSE357 and EDSE358 on 2026-05-17
 
-### Phase 4 — Refactor whatson.js and autovideos.js ✅ COMPLETE (merged to dev; pending sandpit)
+### Phase 4 — Refactor whatson.js and autovideos.js ✅ COMPLETE (merged to main; in production)
 
 Both live scripts refactored to read from `config/units/*.json` instead of embedded static data. Merged to `dev` 2026-05-17. Awaiting Moodle sandpit testing before final dev→main merge.
 
@@ -407,25 +402,36 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
 12. **EDSE358 assessmentTasks — rationale, aim, part descriptions, links all null:** stub structure is in place; full population needed before rendering.
 13. **EDSE362 assessmentTasks — completely empty:** AT1 and AT2 are schema-only stubs. Populate closer to T2 2027 go-live.
 14. **EDSE362 — video IDs all null:** no YouTube videos configured for any week.
+15. **`DGIXT7ce3vQ` — third-party placeholder video:** used for PE weeks (9–14) in all unit configs and all EDIT* legacy arrays. Currently live (confirmed 2026-05-17) but not owned — can be removed or made private by the channel owner without notice. Replace with a university-owned video when available.
 
 ---
 
 ## Next tasks in priority order
 
-1. **Sandpit testing — Phase 4** — test both `whatson.js` and `autovideos.js` in Moodle sandpit with EDSE357 and EDSE358. Confirm fetch, rendering, and EDIT legacy fallback behaviour before dev→main merge.
-2. **Merge dev→main** — after sandpit passes. Switch GitHub Pages to confirm live URL is serving Phase 4 code.
-3. **EDSE358 week 8** — write `announcementBody`, `liveSessionFocus`, `liveSessionTasks` for Module 4D (Developing rubrics and providing feedback).
-4. **EDSE358 AT1 — populate fully** — add rationale, aim, part descriptions, requirements, all rubric descriptors from official document, and all links (taskFiles, submit, forum, rubric) once published.
-5. **EDSE358 AT2 — populate fully** — same: rationale, aim, rubric descriptors, links.
-6. **Resolve EDSE358 AT2 known issues** — get correct Chemistry marking URL and EES task URL.
-7. **Add EDSE357 week links** — all weeks, all link types, as content is published.
-8. **Add EDSE358 lecture/slides/liveHub/recording links** — weeks 1–2, 3, 6, 7 as content is published.
-9. **Add EDSE357 AT2 rubric link** — once the marking rubric PDF is published on Moodle.
-10. **Add assessmentFiles URLs** — EDSE358 AT1, EDSE357 AT1/AT2 — as task and marking files are uploaded.
+1. **Replace `DGIXT7ce3vQ` placeholder** — this third-party YouTube video (tropical beach ambience, channel: Relaxing Soundzzz) is used as the PE-weeks placeholder for all units and the EDIT* legacy arrays. Replace with a university-owned or stable video to eliminate the risk of unannounced removal. One config change across weeks 9–14 in each unit JSON plus the seven EDIT* arrays in `autovideos.js`.
+2. **EDSE358 week 8** — write `announcementBody`, `liveSessionFocus`, `liveSessionTasks` for Module 4D (Developing rubrics and providing feedback).
+3. **EDSE358 AT1 — populate fully** — add rationale, aim, part descriptions, requirements, all rubric descriptors from official document, and all links (taskFiles, submit, forum, rubric) once published.
+4. **EDSE358 AT2 — populate fully** — same: rationale, aim, rubric descriptors, links.
+5. **Resolve EDSE358 AT2 known issues** — get correct Chemistry marking URL and EES task URL.
+6. **Add EDSE357 week links** — all weeks, all link types, as content is published.
+7. **Add EDSE358 lecture/slides/liveHub/recording links** — weeks 1–2, 3, 6, 7 as content is published.
+8. **Add EDSE357 AT2 rubric link** — once the marking rubric PDF is published on Moodle.
+9. **Add assessmentFiles URLs** — EDSE358 AT1, EDSE357 AT1/AT2 — as task and marking files are uploaded.
 
 ---
 
 ## Session notes
+
+### 2026-05-17 — Production deployment: all phases complete
+
+**Final dev→main merge (commit `449164f`):**
+- All 4 phases complete and in sync: config layer, block renderer (9 functions + theme + assessment content system + Course Hub), Phase 4 (both live scripts config-driven)
+- Sandpit passed: 5 shells tested — EDSE357/EDSE358 whatson ✅, EDSE357/EDSE358 autovideos (config fetch path) ✅, EDIT426 legacy fallback ✅
+- GitHub Pages switched to `main`; all three live scripts verified 200
+- `dev` and `main` are fully in sync (0 commits delta)
+
+**Video placeholder issue identified during sandpit:**
+- `DGIXT7ce3vQ` (used as PE-weeks fallback for all units and EDIT* arrays) is a third-party YouTube video ("Tropical Beach Ambience" — Relaxing Soundzzz channel). All teaching-week videos are owned/controlled and confirmed valid. The placeholder is the only third-party dependency and should be replaced when a suitable owned video is available.
 
 ### 2026-05-17 — Phase 4 complete; merged to dev
 
@@ -447,7 +453,7 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
 - EDSE362: all video fields are null → defaults to `DGIXT7ce3vQ` for every week; functionally identical to old behaviour.
 - EDIT* units: old behaviour relied on switch(unit) in synchronous code; new behaviour fetches config, fails, falls back to legacy class with console.warn — net result same video, slightly delayed (one fetch round-trip before fallback).
 
-**Next:** Moodle sandpit testing for both widgets before dev→main merge.
+**Sandpit testing (2026-05-17):** All 5 shells passed — EDSE357/EDSE358 whatson, EDSE357/EDSE358 autovideos (config path), EDIT426 legacy fallback. Merged to main same session.
 
 ### 2026-05-17 — dev → main merge; GitHub Pages switched to main
 
@@ -532,7 +538,7 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
 
 ## Critical constraints (always apply)
 
-- **`whatson/whatson.js` and `autovideos/autovideos.js` are now config-driven (Phase 4 complete).** Both scripts are still live for enrolled students — all changes go through dev and sandpit testing first.
+- **`whatson/whatson.js` and `autovideos/autovideos.js` are config-driven (Phase 4, in production).** Both are live for enrolled students. All changes follow `feature/* → dev → sandpit → main`.
 - **Never commit directly to `main`.**
 - **EDSE357 and EDSE358 are live with enrolled students.** Breaking changes are not acceptable. All changes go through dev and sandpit testing first.
 - **`<\/script>` in shell template literals** — use `<\/script>` inside JavaScript strings to prevent the HTML parser from closing the outer script tag prematurely.
