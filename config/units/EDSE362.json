@@ -4,7 +4,9 @@
   "itemLabel": "Topic",
   "liveDay": "Wednesday",
   "liveTime": "5:30–6:30pm",
-  "trimesters": ["T2"],
+  "trimesters": [
+    "T2"
+  ],
   "assessmentPortalUrl": null,
   "week0Message": "Have a look around at the first few tiles below — we'll get started next week!",
   "theme": {
@@ -57,6 +59,64 @@
       "gtsd": "2.1.1, 3.3.1"
     }
   ],
+  "assessmentTasks": [
+    {
+      "id": "AT1",
+      "title": null,
+      "weighting": 50,
+      "length": null,
+      "due": null,
+      "flexiblePortal": null,
+      "learningOutcomes": [
+        "LO1",
+        "LO2",
+        "LO3"
+      ],
+      "aitslStandards": [],
+      "rationale": null,
+      "aim": null,
+      "links": {
+        "rubric": null,
+        "taskFiles": null,
+        "submit": null,
+        "forum": null,
+        "video": null
+      },
+      "parts": [],
+      "criteria": [],
+      "rubric": [],
+      "hdCallout": null,
+      "submissionInstructions": []
+    },
+    {
+      "id": "AT2",
+      "title": null,
+      "weighting": 50,
+      "length": null,
+      "due": null,
+      "flexiblePortal": null,
+      "learningOutcomes": [
+        "LO4",
+        "LO5",
+        "LO6"
+      ],
+      "aitslStandards": [],
+      "rationale": null,
+      "aim": null,
+      "links": {
+        "rubric": null,
+        "taskFiles": null,
+        "submit": null,
+        "forum": null,
+        "video": null
+      },
+      "parts": [],
+      "criteria": [],
+      "rubric": [],
+      "hdCallout": null,
+      "submissionInstructions": []
+    }
+  ],
   "trimesterConfig": {
     "T2-2027": {
       "zoom": {
@@ -68,19 +128,43 @@
         "AT1": {
           "rubricUrl": null,
           "disciplines": {
-            "biology":   { "task": null, "marking": null },
-            "chemistry": { "task": null, "marking": null },
-            "ees":       { "task": null, "marking": null },
-            "physics":   { "task": null, "marking": null }
+            "biology": {
+              "task": null,
+              "marking": null
+            },
+            "chemistry": {
+              "task": null,
+              "marking": null
+            },
+            "ees": {
+              "task": null,
+              "marking": null
+            },
+            "physics": {
+              "task": null,
+              "marking": null
+            }
           }
         },
         "AT2": {
           "rubricUrl": null,
           "disciplines": {
-            "biology":   { "task": null, "marking": null },
-            "chemistry": { "task": null, "marking": null },
-            "ees":       { "task": null, "marking": null },
-            "physics":   { "task": null, "marking": null }
+            "biology": {
+              "task": null,
+              "marking": null
+            },
+            "chemistry": {
+              "task": null,
+              "marking": null
+            },
+            "ees": {
+              "task": null,
+              "marking": null
+            },
+            "physics": {
+              "task": null,
+              "marking": null
+            }
           }
         }
       }
