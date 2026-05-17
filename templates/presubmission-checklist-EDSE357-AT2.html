@@ -1,0 +1,236 @@
+<div class="edse357-at2-checklist" role="region" aria-label="EDSE357 AT2 Pre-submission checklist">
+  <style>
+    .edse357-at2-checklist {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+      max-width: 960px;
+    }
+    .edse357-at2-checklist .card {
+      border: 1px solid #d0d7de;
+      border-radius: 12px;
+      padding: 16px;
+      background: #fff;
+      margin: 12px 0;
+    }
+    .edse357-at2-checklist h2 { margin: 0 0 8px 0; }
+    .edse357-at2-checklist .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .edse357-at2-checklist button {
+      border: 1px solid #d0d7de;
+      background: #f6f8fa;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .edse357-at2-checklist button:hover { background: #eef2f6; }
+    .edse357-at2-checklist .status { font-weight: 700; margin-top: 10px; }
+    .edse357-at2-checklist .good { color: #0a7a2f; }
+    .edse357-at2-checklist .warn { color: #9a5b00; }
+    .edse357-at2-checklist details {
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      background: #fafbfc;
+    }
+    .edse357-at2-checklist summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .edse357-at2-checklist .item { margin: 10px 0; }
+    .edse357-at2-checklist label {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      cursor: pointer;
+    }
+    .edse357-at2-checklist input[type="checkbox"] { margin-top: 3px; }
+    .edse357-at2-checklist .tip {
+      margin: 8px 0 0 28px;
+      padding: 10px 12px;
+      border-left: 4px solid #cfd8e3;
+      background: #f6f8fa;
+      border-radius: 6px;
+      display: none;
+    }
+    .edse357-at2-checklist .tip strong { display: block; margin-bottom: 4px; }
+  </style>
+
+  <div class="card">
+    <h2>EDSE357 AT2 — Pre-Submission Checklist</h2>
+    <div class="controls">
+      <button type="button" data-action="show-missing">Show recommendations</button>
+      <button type="button" data-action="hide-all">Hide recommendations</button>
+      <button type="button" data-action="check-all">Check all</button>
+      <button type="button" data-action="uncheck-all">Uncheck all</button>
+    </div>
+    <div class="status warn" data-status="">
+      Progress: <span data-done="">0</span>/<span data-total="">0</span> checked
+    </div>
+  </div>
+
+  <!-- CRITERION 1 -->
+  <details>
+    <summary>Professional Judgement &amp; Critical Evaluation (35%)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip1"><span><strong>1.</strong> For each resource, I explain why I would or would not use it — not just whether it is good or bad.</span></label>
+      <div class="tip" id="at2-tip1">
+        <strong>Recommendation if not checked</strong>
+        Replace verdict sentences with reasoned ones. Use a sentence frame:
+        "I would [use / not use / adapt] this resource because it [does / does not] ___. In a Year ___ science classroom, this means students would ___."
+        A professional judgement names the consequence of the decision, not just the decision itself.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip2"><span><strong>2.</strong> I analyse both strengths and limitations for each resource — not only one side.</span></label>
+      <div class="tip" id="at2-tip2">
+        <strong>Recommendation if not checked</strong>
+        Even resources you would use have limitations, and resources you would not use may have value in a different context. Add a balancing sentence to each critique:
+        "While this resource is strong in ___, it is limited by ___, which would need to be addressed by ___."
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip3"><span><strong>3.</strong> Where relevant, I comment on accuracy and reliability of the resource content.</span></label>
+      <div class="tip" id="at2-tip3">
+        <strong>Recommendation if not checked</strong>
+        Ask: Is the science in this resource correct? Is it current? Is the source credible? For digital resources especially, a brief comment on accuracy and authority is expected. Use a sentence frame:
+        "The scientific content of this resource is [accurate / outdated / incomplete] because ___."
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip4"><span><strong>4.</strong> I consider whether the resource is suitable for the specific cohort — not just for senior science generally.</span></label>
+      <div class="tip" id="at2-tip4">
+        <strong>Recommendation if not checked</strong>
+        Name specific cohort characteristics (language background, prior knowledge, access to equipment, cultural context) and explain how the resource does or does not account for them. Use a sentence frame:
+        "For a cohort that includes ___, this resource [supports / creates a barrier] because ___."
+      </div>
+    </div>
+
+  </details>
+
+  <!-- CRITERION 2 -->
+  <details>
+    <summary>Diversity &amp; Intentional Curation (15%)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip5"><span><strong>5.</strong> My collection includes at least one example of each required resource type.</span></label>
+      <div class="tip" id="at2-tip5">
+        <strong>Recommendation if not checked</strong>
+        Use the checklist in the task instructions to confirm coverage: textbook chapter/section, digital resource, first-hand investigation, second-hand data investigation, external expert, assessment item. At least one resource must be applicable for Life Skills. If any type is missing, add a resource before submitting.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip6"><span><strong>6.</strong> I explain why I chose this combination of resources — not just that I have the required types.</span></label>
+      <div class="tip" id="at2-tip6">
+        <strong>Recommendation if not checked</strong>
+        The marker wants to see that your collection is intentional, not just compliant. Add a short rationale to your collection — either in an introduction or woven into individual critiques — that explains how the resources work together for a Year 11–12 cohort in your chosen discipline. Use a sentence frame:
+        "I selected this combination because it gives students exposure to ___, which is important for ___ because ___."
+      </div>
+    </div>
+
+  </details>
+
+  <!-- CRITERION 3 -->
+  <details>
+    <summary>Curriculum Literacy &amp; Assessment Alignment (30%)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip7"><span><strong>7.</strong> I have accurately identified the NSW syllabus outcomes and content dot points addressed by each resource.</span></label>
+      <div class="tip" id="at2-tip7">
+        <strong>Recommendation if not checked</strong>
+        Copy outcome codes and content dot points directly from the NSW syllabus PDF for your discipline. Do not paraphrase outcomes — the marker needs to see you can read the syllabus accurately. Then add one sentence explaining the link:
+        "This resource addresses [outcome code] because it requires students to ___."
+        Syllabus extracts do not count toward word count.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip8"><span><strong>8.</strong> I explain the investigative skills each resource develops — not just the content it covers.</span></label>
+      <div class="tip" id="at2-tip8">
+        <strong>Recommendation if not checked</strong>
+        Senior science is as much about Working Scientifically skills as content knowledge. For each resource, identify the relevant Working Scientifically strand and explain how the resource develops it. Use a sentence frame:
+        "This resource develops [Working Scientifically strand] by requiring students to ___, at a level of [independence / structure] appropriate for Year ___."
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip9"><span><strong>9.</strong> Where relevant, I explain how the resource connects to assessment — not just to teaching.</span></label>
+      <div class="tip" id="at2-tip9">
+        <strong>Recommendation if not checked</strong>
+        For at least some resources — particularly the assessment item — explain what evidence the resource produces and how a teacher would use it to make an assessment decision. Use a sentence frame:
+        "This resource could be used as [formative / summative] assessment because it produces evidence of ___, which can be evaluated against ___."
+      </div>
+    </div>
+
+  </details>
+
+  <!-- CRITERION 4 -->
+  <details>
+    <summary>Scholarly Grounding &amp; Pedagogical Insight (20%)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip10"><span><strong>10.</strong> I use peer-reviewed literature to support my critiques — not just to reference generally.</span></label>
+      <div class="tip" id="at2-tip10">
+        <strong>Recommendation if not checked</strong>
+        Replace floating citations with applied ones. Use a sentence frame:
+        "___ (Author, Year) argues that [pedagogical principle]. This resource [does / does not] reflect that principle because ___."
+        Aim for fewer sources used precisely rather than many listed without purpose.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip11"><span><strong>11.</strong> I connect learning theory to my evaluation — not just to the subject matter.</span></label>
+      <div class="tip" id="at2-tip11">
+        <strong>Recommendation if not checked</strong>
+        Name a learning theory (constructivism, inquiry-based learning, cognitive load theory, UDL) and explain how it shapes your evaluation of the resource. Use a sentence frame:
+        "From a constructivist perspective, effective resources should ___. This resource [meets / falls short of] that standard because ___."
+        Theory should strengthen your professional judgement — not appear as a separate section disconnected from your critique.
+      </div>
+    </div>
+
+  </details>
+
+  <script>
+    (function() {
+      const root = document.querySelector('.edse357-at2-checklist');
+      if (!root) return;
+      const boxes = Array.from(root.querySelectorAll('input[type="checkbox"][data-tip]'));
+      const totalEl = root.querySelector('[data-total]');
+      const doneEl = root.querySelector('[data-done]');
+      const statusEl = root.querySelector('[data-status]');
+      function showTip(box) {
+        const tip = root.querySelector('#' + box.dataset.tip);
+        if (tip) tip.style.display = box.checked ? 'none' : 'block';
+      }
+      function update() {
+        const done = boxes.filter(b => b.checked).length;
+        totalEl.textContent = boxes.length;
+        doneEl.textContent = done;
+        statusEl.className = 'status ' + (done === boxes.length ? 'good' : 'warn');
+      }
+      boxes.forEach(b => { b.addEventListener('change', () => { showTip(b); update(); }); });
+      root.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const action = btn.dataset.action;
+          if (action === 'show-missing') boxes.forEach(b => { if (!b.checked) showTip(b); });
+          if (action === 'hide-all') boxes.forEach(b => { const tip = root.querySelector('#' + b.dataset.tip); if (tip) tip.style.display = 'none'; });
+          if (action === 'check-all') boxes.forEach(b => { b.checked = true; showTip(b); });
+          if (action === 'uncheck-all') boxes.forEach(b => { b.checked = false; showTip(b); });
+          update();
+        });
+      });
+      update();
+    })();
+  </script>
+</div>
