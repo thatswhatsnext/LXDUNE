@@ -70,7 +70,11 @@ function getCurrentVideoIndex(forToday, fromDateList) {
   return 0;
 }
 
-export async function setUpVideos({ forUnit: unit, startDate: theStartDate, andTri: trimester }) {
+export async function setUpVideos({ forUnit: unit, startDate: theStartDate, andTri: trimester, containerId }) {
+  const container = containerId
+    ? document.getElementById(containerId)
+    : document.getElementsByClassName('embed-container')[0];
+
   const classStartDate = new Date(theStartDate);
   classStartDate.setHours(0, 0, 0, 0);
 
@@ -89,13 +93,13 @@ export async function setUpVideos({ forUnit: unit, startDate: theStartDate, andT
       let index = getCurrentVideoIndex(today, getDateList(classStartDate, 2, trimester));
       if (index < 0) index = 0;
       if (index >= legacy.length) index = legacy.length - 1;
-      document.getElementsByClassName('embed-container')[0].innerHTML =
+      container.innerHTML =
         '<iframe src="https://www.youtube.com/embed/' +
         legacy[index] +
         '" title="YouTube video player" width="100%" frameborder="0" ' +
         'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
     } else {
-      document.getElementsByClassName('embed-container')[0].innerHTML =
+      container.innerHTML =
         '<div>Video unavailable — please refresh the page.</div>';
     }
     return;
@@ -113,14 +117,14 @@ export async function setUpVideos({ forUnit: unit, startDate: theStartDate, andT
   let index = getCurrentVideoIndex(today, dateList);
 
   if (!videoPlaceholders.length) {
-    document.getElementsByClassName('embed-container')[0].innerHTML =
+    container.innerHTML =
       '<div>Video unavailable — no videos configured for this unit.</div>';
     return;
   }
   if (index < 0) index = 0;
   if (index >= videoPlaceholders.length) index = videoPlaceholders.length - 1;
 
-  document.getElementsByClassName('embed-container')[0].innerHTML =
+  container.innerHTML =
     '<iframe src="https://www.youtube.com/embed/' +
     videoPlaceholders[index] +
     '" title="YouTube video player" width="100%" frameborder="0" ' +
