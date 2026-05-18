@@ -1,0 +1,282 @@
+<div class="edse358-at1-checklist" role="region" aria-label="EDSE358 AT1 Pre-submission checklist">
+  <style>
+    .edse358-at1-checklist {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+      max-width: 960px;
+    }
+    .edse358-at1-checklist .card {
+      border: 1px solid #d0d7de;
+      border-radius: 12px;
+      padding: 16px;
+      background: #fff;
+      margin: 12px 0;
+    }
+    .edse358-at1-checklist h2 { margin: 0 0 8px 0; }
+    .edse358-at1-checklist .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .edse358-at1-checklist button {
+      border: 1px solid #d0d7de;
+      background: #f6f8fa;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .edse358-at1-checklist button:hover { background: #eef2f6; }
+    .edse358-at1-checklist .status { font-weight: 700; margin-top: 10px; }
+    .edse358-at1-checklist .good { color: #0a7a2f; }
+    .edse358-at1-checklist .warn { color: #9a5b00; }
+    .edse358-at1-checklist details {
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      background: #fafbfc;
+    }
+    .edse358-at1-checklist summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .edse358-at1-checklist .item { margin: 10px 0; }
+    .edse358-at1-checklist label {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      cursor: pointer;
+    }
+    .edse358-at1-checklist input[type="checkbox"] { margin-top: 3px; }
+    .edse358-at1-checklist .tip {
+      margin: 8px 0 0 28px;
+      padding: 10px 12px;
+      border-left: 4px solid #cfd8e3;
+      background: #f6f8fa;
+      border-radius: 6px;
+      display: none;
+    }
+    .edse358-at1-checklist .tip strong { display: block; margin-bottom: 4px; }
+  </style>
+
+  <div class="card">
+    <h2>EDSE358 AT1 — Pre-Submission Checklist</h2>
+    <div class="controls">
+      <button type="button" data-action="show-missing">Show recommendations</button>
+      <button type="button" data-action="hide-all">Hide recommendations</button>
+      <button type="button" data-action="check-all">Check all</button>
+      <button type="button" data-action="uncheck-all">Uncheck all</button>
+    </div>
+    <div class="status warn" data-status="">
+      Progress: <span data-done="">0</span>/<span data-total="">0</span> checked
+    </div>
+  </div>
+
+  <!-- PART A -->
+  <details>
+    <summary>Part A — Task Outline &amp; Forum Post</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1a-tip1"><span><strong>A1.</strong> My task outline accurately identifies the concept, year level, and NSW Stage 6 outcomes.</span></label>
+      <div class="tip" id="e358at1a-tip1">
+        <strong>Recommendation if not checked</strong>
+        Copy the outcome code(s) directly from the NSW syllabus — do not paraphrase. Then add one sentence explaining the link:
+        "This task addresses [outcome code] because it requires students to ___."
+        Vague outcome references (e.g. "relates to Stage 6 science") will not demonstrate the alignment the rubric requires.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1a-tip2"><span><strong>A2.</strong> My task outline shows clear alignment between the learning model, the syllabus outcomes, and the assessment purpose.</span></label>
+      <div class="tip" id="e358at1a-tip2">
+        <strong>Recommendation if not checked</strong>
+        Alignment means the model, the outcomes, and what you are assessing all point to the same thing. Ask: "Does the learning model I have chosen naturally lead students toward the outcome? And does my assessment actually capture evidence of that outcome?" If any of the three are pointing in different directions, revise before submitting.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1a-tip3"><span><strong>A3.</strong> My forum post is concise, clearly communicates my intended assessment design, and meets the word or format requirements.</span></label>
+      <div class="tip" id="e358at1a-tip3">
+        <strong>Recommendation if not checked</strong>
+        The forum post should tell your peers what you are planning clearly enough that they could give useful feedback. It is not a draft of the full unit — it is a professional summary. Use a sentence frame:
+        "For this unit I am designing a [task type] for Year [level] [discipline]. The assessment targets [outcome] by asking students to ___. The main challenge I am designing around is ___."
+      </div>
+    </div>
+
+  </details>
+
+  <!-- PART B -->
+  <details>
+    <summary>Part B — Five-Week Unit</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1b-tip1"><span><strong>B1.</strong> My unit has a clear 5-week structure with logical progression toward the model construction task.</span></label>
+      <div class="tip" id="e358at1b-tip1">
+        <strong>Recommendation if not checked</strong>
+        Each week should build on the last. Ask: "If a student did Week 1 only, could they do Week 2 without Week 1?" If yes, your sequence may not have clear progression. Add explicit connections between weeks — for example, a skill introduced in Week 2 should be applied or extended in Week 3.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1b-tip2"><span><strong>B2.</strong> Constructivist pedagogy is embedded throughout the unit — not just mentioned once.</span></label>
+      <div class="tip" id="e358at1b-tip2">
+        <strong>Recommendation if not checked</strong>
+        Constructivism should be visible in how lessons are structured — students building on prior knowledge, active construction of understanding, collaborative sense-making. If constructivism only appears in your justification essay and not in the lesson activities themselves, revise at least two lessons to make the approach explicit.
+        Use a sentence frame:
+        "In this lesson, students first ___ (activate prior knowledge), then ___ (construct new understanding by), and finally ___ (consolidate by)."
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1b-tip3"><span><strong>B3.</strong> My differentiation is specific to my named cohort — not generic strategies that could apply to any class.</span></label>
+      <div class="tip" id="e358at1b-tip3">
+        <strong>Recommendation if not checked</strong>
+        Generic differentiation (e.g. "I will provide extra support where needed") does not meet the rubric. Name the cohort characteristics you are designing for — including Aboriginal and/or EAL/D learners — and describe the specific adjustment. Use a sentence frame:
+        "For students who ___, I will ___ in Week ___ so that they can ___ without the barrier of ___."
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1b-tip4"><span><strong>B4.</strong> Resources are integrated across the unit and intentionally support the model construction task.</span></label>
+      <div class="tip" id="e358at1b-tip4">
+        <strong>Recommendation if not checked</strong>
+        Resources should deepen conceptual learning — not just fill time. For each resource, ask: "How does this resource move students closer to completing the model task?" If the connection is not clear, either replace the resource or add a sentence explaining how it is used.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1b-tip5"><span><strong>B5.</strong> ICT use is purposeful and enhances inquiry, collaboration, or modelling — not substitutive.</span></label>
+      <div class="tip" id="e358at1b-tip5">
+        <strong>Recommendation if not checked</strong>
+        Substitutive ICT replaces a non-digital task with a digital one without adding value (e.g. typing up notes instead of writing them). Purposeful ICT changes what is possible (e.g. using a simulation to explore conditions that can't be replicated in a school lab). Revise your ICT to explain what it enables that a non-digital approach could not.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1b-tip6"><span><strong>B6.</strong> I have included at least two formative assessment tasks with specific, actionable feedback opportunities.</span></label>
+      <div class="tip" id="e358at1b-tip6">
+        <strong>Recommendation if not checked</strong>
+        A formative task needs three things: what students produce, what feedback focuses on, and how the feedback connects to the next stage of learning. Use a sentence frame:
+        "At the end of Week ___, students submit ___. Teacher feedback focuses on ___, so that students can improve ___ before ___."
+        If your formative tasks are present but feedback is vague ("teacher provides feedback on progress"), revise to make the feedback actionable.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- PART C -->
+  <details>
+    <summary>Part C — Justification Essays</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1c-tip1"><span><strong>C1.</strong> Essay 1 explains why I made key pedagogical decisions — not just what those decisions were.</span></label>
+      <div class="tip" id="e358at1c-tip1">
+        <strong>Recommendation if not checked</strong>
+        Shift from description to justification. Use a sentence frame:
+        "I chose ___ because ___, which is important for this cohort because ___. This decision is supported by ___ (Author, Year) who argues ___."
+        If your essay reads as a summary of your unit rather than a reasoned argument for your choices, revise to foreground the reasoning.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1c-tip2"><span><strong>C2.</strong> Essay 1 explicitly links my decisions to cohort needs and NSW syllabus outcomes.</span></label>
+      <div class="tip" id="e358at1c-tip2">
+        <strong>Recommendation if not checked</strong>
+        Every major decision should connect to at least one of: what the syllabus requires, what the cohort needs, or what the literature recommends. If a decision is only justified by "it is good pedagogy generally," strengthen it by naming the specific cohort or outcome it serves.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1c-tip3"><span><strong>C3.</strong> Essay 2 explains why I selected these specific resources — not just that they are appropriate.</span></label>
+      <div class="tip" id="e358at1c-tip3">
+        <strong>Recommendation if not checked</strong>
+        The selection criteria should be explicit. Use a sentence frame:
+        "I selected this resource over alternatives because it ___. For this cohort, this matters because ___."
+        Avoid simply describing what each resource contains — explain the professional reasoning behind choosing it.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1c-tip4"><span><strong>C4.</strong> Both essays use peer-reviewed literature that is integrated into my argument — not just cited at the end.</span></label>
+      <div class="tip" id="e358at1c-tip4">
+        <strong>Recommendation if not checked</strong>
+        Literature should strengthen your reasoning, not decorate it. Use a sentence frame:
+        "___ (Author, Year) argues ___. My unit reflects this by ___."
+        If your citations only appear in the reference list or as parenthetical additions to sentences that already make their point, revise to show how the literature actually shaped your decisions.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- PART D -->
+  <details>
+    <summary>Part D — Reflection</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1d-tip1"><span><strong>D1.</strong> I identify specific pedagogical insights gained from this task — not just what I did or produced.</span></label>
+      <div class="tip" id="e358at1d-tip1">
+        <strong>Recommendation if not checked</strong>
+        Shift from describing the task to analysing what it revealed about your thinking. Use a sentence frame:
+        "Before this task, I assumed ___. Working through [specific part] changed my understanding of ___ because ___."
+        A reflection that describes what the task involved rather than what you learned from it will not demonstrate the depth the rubric requires.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1d-tip2"><span><strong>D2.</strong> My reflection is analytical — I explain how my thinking has changed, not just that it has.</span></label>
+      <div class="tip" id="e358at1d-tip2">
+        <strong>Recommendation if not checked</strong>
+        Analytical reflection explains the mechanism of change, not just the outcome. Use a sentence frame:
+        "My thinking changed because ___ showed me that ___. I now understand ___ differently, which means in my future teaching I will ___."
+        Avoid phrases like "this was a valuable learning experience" without explaining what specifically was learned and why it matters.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1d-tip3"><span><strong>D3.</strong> I explicitly connect my reflection to my future Stage 6 teaching practice with a concrete example.</span></label>
+      <div class="tip" id="e358at1d-tip3">
+        <strong>Recommendation if not checked</strong>
+        Name one specific change you will make. Use a sentence frame:
+        "In my future Stage 6 classroom, I will ___ because this task showed me ___. Without this change, ___."
+        Vague future commitments ("I will be more aware of differentiation") are not sufficient — describe what it will look like in practice.
+      </div>
+    </div>
+
+  </details>
+
+  <script>
+    (function() {
+      const root = document.querySelector('.edse358-at1-checklist');
+      if (!root) return;
+      const boxes = Array.from(root.querySelectorAll('input[type="checkbox"][data-tip]'));
+      const totalEl = root.querySelector('[data-total]');
+      const doneEl = root.querySelector('[data-done]');
+      const statusEl = root.querySelector('[data-status]');
+      function showTip(box) {
+        const tip = root.querySelector('#' + box.dataset.tip);
+        if (tip) tip.style.display = box.checked ? 'none' : 'block';
+      }
+      function update() {
+        const done = boxes.filter(b => b.checked).length;
+        totalEl.textContent = boxes.length;
+        doneEl.textContent = done;
+        statusEl.className = 'status ' + (done === boxes.length ? 'good' : 'warn');
+      }
+      boxes.forEach(b => { b.addEventListener('change', () => { showTip(b); update(); }); });
+      root.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const action = btn.dataset.action;
+          if (action === 'show-missing') boxes.forEach(b => { if (!b.checked) showTip(b); });
+          if (action === 'hide-all') boxes.forEach(b => { const tip = root.querySelector('#' + b.dataset.tip); if (tip) tip.style.display = 'none'; });
+          if (action === 'check-all') boxes.forEach(b => { b.checked = true; showTip(b); });
+          if (action === 'uncheck-all') boxes.forEach(b => { b.checked = false; showTip(b); });
+          update();
+        });
+      });
+      update();
+    })();
+  </script>
+</div>

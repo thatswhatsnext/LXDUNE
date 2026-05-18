@@ -1,0 +1,279 @@
+<div class="edse357-at1-checklist" role="region" aria-label="EDSE357 AT1 Pre-submission checklist">
+  <style>
+    .edse357-at1-checklist {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+      max-width: 960px;
+    }
+    .edse357-at1-checklist .card {
+      border: 1px solid #d0d7de;
+      border-radius: 12px;
+      padding: 16px;
+      background: #fff;
+      margin: 12px 0;
+    }
+    .edse357-at1-checklist h2 { margin: 0 0 8px 0; }
+    .edse357-at1-checklist .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .edse357-at1-checklist button {
+      border: 1px solid #d0d7de;
+      background: #f6f8fa;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .edse357-at1-checklist button:hover { background: #eef2f6; }
+    .edse357-at1-checklist .status { font-weight: 700; margin-top: 10px; }
+    .edse357-at1-checklist .good { color: #0a7a2f; }
+    .edse357-at1-checklist .warn { color: #9a5b00; }
+    .edse357-at1-checklist details {
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      background: #fafbfc;
+    }
+    .edse357-at1-checklist summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .edse357-at1-checklist .item { margin: 10px 0; }
+    .edse357-at1-checklist label {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      cursor: pointer;
+    }
+    .edse357-at1-checklist input[type="checkbox"] { margin-top: 3px; }
+    .edse357-at1-checklist .tip {
+      margin: 8px 0 0 28px;
+      padding: 10px 12px;
+      border-left: 4px solid #cfd8e3;
+      background: #f6f8fa;
+      border-radius: 6px;
+      display: none;
+    }
+    .edse357-at1-checklist .tip strong { display: block; margin-bottom: 4px; }
+  </style>
+
+  <div class="card">
+    <h2>EDSE357 AT1 — Pre-Submission Checklist</h2>
+    <div class="controls">
+      <button type="button" data-action="show-missing">Show recommendations</button>
+      <button type="button" data-action="hide-all">Hide recommendations</button>
+      <button type="button" data-action="check-all">Check all</button>
+      <button type="button" data-action="uncheck-all">Uncheck all</button>
+    </div>
+    <div class="status warn" data-status="">
+      Progress: <span data-done="">0</span>/<span data-total="">0</span> checked
+    </div>
+  </div>
+
+  <!-- PART A -->
+  <details>
+    <summary>Part A — Digital Resource Critique</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1a-tip1"><span><strong>A1.</strong> I have selected one specific practical investigation from the list provided and clearly identified it in my critique.</span></label>
+      <div class="tip" id="at1a-tip1">
+        <strong>Recommendation if not checked</strong>
+        Name the investigation explicitly at the start of Part A — the discipline, the page number, and the year level. Your critique should be clearly anchored to one specific practical, not a general resource about science.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1a-tip2"><span><strong>A2.</strong> I critique the resource — I explain why it is or is not useful, not just describe what it contains.</span></label>
+      <div class="tip" id="at1a-tip2">
+        <strong>Recommendation if not checked</strong>
+        Replace descriptive sentences with evaluative ones. Use a sentence frame:
+        "This resource would/would not support students because it ___, which means students are likely to ___."
+        Description tells the reader what the resource is. Critique tells them what it does — or fails to do — for learning.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1a-tip3"><span><strong>A3.</strong> I explicitly connect the resource to constructivist pedagogy or inquiry-based learning principles.</span></label>
+      <div class="tip" id="at1a-tip3">
+        <strong>Recommendation if not checked</strong>
+        Name the pedagogical approach and explain how the resource does or does not support it. Use a sentence frame:
+        "A constructivist approach requires students to ___. This resource ___ that by ___."
+        Avoid simply stating "this is constructivist" without explaining the connection.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1a-tip4"><span><strong>A4.</strong> I link the resource to one or more Working Scientifically outcomes from the NSW syllabus.</span></label>
+      <div class="tip" id="at1a-tip4">
+        <strong>Recommendation if not checked</strong>
+        Identify the specific Working Scientifically strand the resource addresses (e.g. Questioning and Predicting, Planning Investigations, Processing Data). Then explain whether the resource develops that skill deeply or only superficially.
+        "This resource addresses the Working Scientifically outcome ___ because it requires students to ___. However, it does not require students to ___, which limits its depth."
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1a-tip5"><span><strong>A5.</strong> I use peer-reviewed scholarly literature to support my critique — not just the resource itself.</span></label>
+      <div class="tip" id="at1a-tip5">
+        <strong>Recommendation if not checked</strong>
+        At least one peer-reviewed source should be integrated into the critique — not just listed. Use a sentence frame:
+        "___ (Author, Year) argues that effective resources for scientific inquiry should ___. This resource ___ that criterion because ___."
+        Aim for literature that justifies your evaluative position, not literature that just describes inquiry generally.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- PART B -->
+  <details>
+    <summary>Part B — Risk Assessment, Equipment List &amp; Method</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1b-tip1"><span><strong>B1.</strong> After completing RiskAssess, I went back and revised my method to reflect the risk controls and mitigations it identified.</span></label>
+      <div class="tip" id="at1b-tip1">
+        <strong>Recommendation if not checked</strong>
+        RiskAssess is a revision tool, not a tick-box. Go back through your method step by step and ask: "Does this step reflect what RiskAssess identified as a control or mitigation?" If RiskAssess flagged a hazard and your method does not address it in the procedure itself, revise the step — not just the hazard list.
+        A common gap: students add safety information to the risk assessment section but leave the original method unchanged.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1b-tip2"><span><strong>B2.</strong> Safety procedures are embedded within the method steps — not listed separately as an afterthought.</span></label>
+      <div class="tip" id="at1b-tip2">
+        <strong>Recommendation if not checked</strong>
+        Safety should appear at the point in the procedure where it is relevant, not in a separate section students might skip. Use a sentence frame:
+        "Step 3: [action] — ensure [specific control measure, e.g. safety goggles are worn, fume cupboard is in use] before proceeding."
+        If your safety information only appears in the RiskAssess output and not in the method, a student following your instructions could perform the practical without ever seeing it.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1b-tip3"><span><strong>B3.</strong> My method is written so that a Year 11 or 12 student could follow it independently without needing prior knowledge of the practical.</span></label>
+      <div class="tip" id="at1b-tip3">
+        <strong>Recommendation if not checked</strong>
+        Read your method as if you have never done this practical before. Ask: "Would I know what to do next at every step?" Gaps often appear at setup, measurement, and data recording stages. Add specificity: quantities, equipment settings, timing, and what to do if something goes wrong.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1b-tip4"><span><strong>B4.</strong> PPE requirements and emergency procedures are explicitly stated — not assumed.</span></label>
+      <div class="tip" id="at1b-tip4">
+        <strong>Recommendation if not checked</strong>
+        State PPE at the start of the method and at relevant steps. For emergencies, include what a student should do — not just what to avoid. Use a sentence frame:
+        "In the event of [specific incident], students should immediately [specific action]. Do not [specific risk behaviour]."
+      </div>
+    </div>
+
+  </details>
+
+  <!-- PART C -->
+  <details>
+    <summary>Part C — Depth Study Design</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1c-tip1"><span><strong>C1.</strong> My Depth Study has a clear aim that connects to the syllabus outcomes I have selected.</span></label>
+      <div class="tip" id="at1c-tip1">
+        <strong>Recommendation if not checked</strong>
+        The aim should name what students will investigate and why it connects to the syllabus. Use a sentence frame:
+        "The aim of this Depth Study is for students to ___, which addresses [outcome code] by requiring them to ___."
+        A vague aim (e.g. "students will learn about ecosystems") does not demonstrate syllabus alignment.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1c-tip2"><span><strong>C2.</strong> I have included the specific syllabus outcomes and content dot points addressed by the Depth Study.</span></label>
+      <div class="tip" id="at1c-tip2">
+        <strong>Recommendation if not checked</strong>
+        Copy the outcome codes and relevant content dot points from the NSW syllabus PDF. Then explain how the Depth Study addresses each one — do not leave the connection implicit. Syllabus extracts do not count toward word count.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1c-tip3"><span><strong>C3.</strong> My instructions for the Open-Ended Investigation (OEI) are clear enough for students to develop their own inquiry question.</span></label>
+      <div class="tip" id="at1c-tip3">
+        <strong>Recommendation if not checked</strong>
+        The OEI requires students to drive their own inquiry — but they need enough structure to get started. Check: have you explained what a valid inquiry question looks like for this topic? Have you shown what students need to produce? If your instructions assume students already know how to design an OEI, add scaffolding steps.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1c-tip4"><span><strong>C4.</strong> I have specified what students produce across the five hours — not just what they do.</span></label>
+      <div class="tip" id="at1c-tip4">
+        <strong>Recommendation if not checked</strong>
+        List the tangible outputs students submit or present at each stage (e.g. a written plan, a data table, a draft hypothesis, an annotated diagram). Without clear products, a teacher cannot assess engagement or provide feedback at check-in points.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1c-tip5"><span><strong>C5.</strong> I have included formative assessment check-in points where I would provide feedback on OEI planning.</span></label>
+      <div class="tip" id="at1c-tip5">
+        <strong>Recommendation if not checked</strong>
+        Formative assessment should appear twice in each week of your program — not just across the unit as a whole. For each instance, specify what students produce, what feedback focuses on, and how that feedback connects to the next lesson or stage of work. Use a sentence frame: "In Week ___, students first ___ (formative task 1). Feedback focuses on ___. Later in Week ___, students ___ (formative task 2). Feedback focuses on ___, so that students can ___ in the following week."
+      </div>
+    </div>
+
+  </details>
+
+  <!-- PART D -->
+  <details>
+    <summary>Part D — Reflective Self-Assessment</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1d-tip1"><span><strong>D1.</strong> I identify something specific I learned — not just what I did.</span></label>
+      <div class="tip" id="at1d-tip1">
+        <strong>Recommendation if not checked</strong>
+        Shift from describing the task to analysing your learning. Use a sentence frame:
+        "I used to think ___ about [practical investigations / risk assessment / depth studies]. Working through this task changed my thinking because ___."
+        A description of what the task involved is not a reflection on learning.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1d-tip2"><span><strong>D2.</strong> I explain how this learning will influence my future teaching — with a specific example.</span></label>
+      <div class="tip" id="at1d-tip2">
+        <strong>Recommendation if not checked</strong>
+        Name one concrete change you will make in your future practice. Use a sentence frame:
+        "In my future classroom, I will ___ because this task showed me that ___."
+        Avoid vague statements like "I will be more aware of safety" — explain what that awareness will look like in practice.
+      </div>
+    </div>
+
+  </details>
+
+  <script>
+    (function() {
+      const root = document.querySelector('.edse357-at1-checklist');
+      if (!root) return;
+      const boxes = Array.from(root.querySelectorAll('input[type="checkbox"][data-tip]'));
+      const totalEl = root.querySelector('[data-total]');
+      const doneEl = root.querySelector('[data-done]');
+      const statusEl = root.querySelector('[data-status]');
+      function showTip(box) {
+        const tip = root.querySelector('#' + box.dataset.tip);
+        if (tip) tip.style.display = box.checked ? 'none' : 'block';
+      }
+      function update() {
+        const done = boxes.filter(b => b.checked).length;
+        totalEl.textContent = boxes.length;
+        doneEl.textContent = done;
+        statusEl.className = 'status ' + (done === boxes.length ? 'good' : 'warn');
+      }
+      boxes.forEach(b => { b.addEventListener('change', () => { showTip(b); update(); }); });
+      root.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const action = btn.dataset.action;
+          if (action === 'show-missing') boxes.forEach(b => { if (!b.checked) showTip(b); });
+          if (action === 'hide-all') boxes.forEach(b => { const tip = root.querySelector('#' + b.dataset.tip); if (tip) tip.style.display = 'none'; });
+          if (action === 'check-all') boxes.forEach(b => { b.checked = true; showTip(b); });
+          if (action === 'uncheck-all') boxes.forEach(b => { b.checked = false; showTip(b); });
+          update();
+        });
+      });
+      update();
+    })();
+  </script>
+</div>

@@ -14,6 +14,9 @@ Reference HTML implementations for all Moodle block components. These are the so
 | `assessment-download-block.html` | Assessment Download Files Block | Assessment pages — discipline-specific file downloads |
 | `learning-outcomes-table.html` | Learning Outcomes Table | Assessment pages — LO1–LO6 colour-coded pills |
 | `feedback-comment.html` | Clean Feedback Comment | Moodle grading feedback boxes |
+| `presubmission-checklist-EDSE357-AT1.html` | Pre-Submission Checklist — EDSE357 AT1 | Moodle AT1 assessment page — Parts A–D (11 items) |
+| `presubmission-checklist-EDSE357-AT2.html` | Pre-Submission Checklist — EDSE357 AT2 | Moodle AT2 assessment page — 4 criteria (11 items) |
+| `presubmission-checklist-EDSE358-AT1.html` | Pre-Submission Checklist — EDSE358 AT1 | Moodle AT1 assessment page — Parts A–D (16 items) |
 
 ## Dynamic value tokens
 

@@ -268,6 +268,7 @@
     <button class="tab-btn active" id="tab-blocks" type="button">Week Blocks</button>
     <button class="tab-btn" id="tab-assess" type="button">Assessment Page</button>
     <button class="tab-btn" id="tab-hub" type="button">Course Hub</button>
+    <button class="tab-btn" id="tab-checklist" type="button">Checklist</button>
   </div>
 </div>
 
@@ -339,6 +340,23 @@
   </div>
 </div>
 
+<!-- ── Checklist tab ───────────────────────────────────────────────────────── -->
+<div class="assess-page" id="checklist-page" style="display:none;">
+  <div class="assess-ctrl-bar">
+    <div class="ctrl-group">
+      <label>Task</label>
+      <select id="sel-cl-task" style="font-family:Arial,sans-serif;font-size:.875em;padding:5px 9px;border:1px solid #dfe6ea;border-radius:6px;min-width:180px;">
+        <option value="AT1">AT1</option>
+        <option value="AT2">AT2</option>
+      </select>
+    </div>
+    <button class="rerender-btn" id="rerender-cl-btn">Re-render</button>
+  </div>
+  <div class="assess-output" style="padding:16px;">
+    <div id="lxdune-presubmission-checklist"></div>
+  </div>
+</div>
+
 <!-- ── Assessment tab ─────────────────────────────────────────────────────── -->
 <div class="assess-page" id="assess-page" style="display:none;">
   <div class="assess-ctrl-bar">
@@ -365,6 +383,7 @@ import {
   renderResourceDirectory,
   renderAssessmentPage,
   renderCourseHub,
+  renderPresubmissionChecklist,
 } from '../moodle-blocks/blocks.js';
 
 // ── State ─────────────────────────────────────────────────────────────────────
@@ -595,6 +614,7 @@ function scheduleRender(delay = 150) {
   clearTimeout(renderTimer);
   renderTimer = setTimeout(renderAll, delay);
   if (activeTab === 'hub') scheduleHubRender(delay);
+  if (activeTab === 'checklist') scheduleClRender(delay);
 }
 
 // ── Event wiring ──────────────────────────────────────────────────────────────
@@ -633,16 +653,20 @@ function switchTab(tab) {
   document.getElementById('tab-blocks').classList.toggle('active', tab === 'blocks');
   document.getElementById('tab-assess').classList.toggle('active', tab === 'assess');
   document.getElementById('tab-hub').classList.toggle('active', tab === 'hub');
+  document.getElementById('tab-checklist').classList.toggle('active', tab === 'checklist');
   document.querySelector('.blocks-page').style.display = tab === 'blocks' ? '' : 'none';
   document.getElementById('assess-page').style.display = tab === 'assess' ? '' : 'none';
   document.getElementById('hub-page').style.display = tab === 'hub' ? '' : 'none';
+  document.getElementById('checklist-page').style.display = tab === 'checklist' ? '' : 'none';
   if (tab === 'assess') scheduleAssessRender(0);
   if (tab === 'hub') scheduleHubRender(0);
+  if (tab === 'checklist') scheduleClRender(0);
 }
 
 document.getElementById('tab-blocks').addEventListener('click', () => switchTab('blocks'));
 document.getElementById('tab-assess').addEventListener('click', () => switchTab('assess'));
 document.getElementById('tab-hub').addEventListener('click', () => switchTab('hub'));
+document.getElementById('tab-checklist').addEventListener('click', () => switchTab('checklist'));
 
 // ── Assessment render ─────────────────────────────────────────────────────────
 
@@ -695,6 +719,33 @@ function scheduleHubRender(delay = 150) {
   clearTimeout(hubTimer);
   hubTimer = setTimeout(renderHub, delay);
 }
+
+// ── Checklist render ──────────────────────────────────────────────────────────
+
+let clTimer = null;
+
+async function renderChecklist() {
+  const forUnit = document.getElementById('sel-unit').value;
+  const forTask = document.getElementById('sel-cl-task').value;
+  const el = document.getElementById('lxdune-presubmission-checklist');
+  if (el) el.innerHTML = '<div class="block-loading">Rendering…</div>';
+  try {
+    await renderPresubmissionChecklist({ forUnit, forTask });
+    if (el && !el.innerHTML.trim()) {
+      el.innerHTML = '<div class="block-empty">No checklist found for this unit/task.</div>';
+    }
+  } catch (e) {
+    if (el) el.innerHTML = `<div class="block-err">Error: ${e.message}</div>`;
+  }
+}
+
+function scheduleClRender(delay = 150) {
+  clearTimeout(clTimer);
+  clTimer = setTimeout(renderChecklist, delay);
+}
+
+document.getElementById('sel-cl-task').addEventListener('change', () => scheduleClRender());
+document.getElementById('rerender-cl-btn').addEventListener('click', () => scheduleClRender(0));
 
 // Also refresh task dropdown when unit changes (repopulate from unit JSON)
 const origUnitChange = document.getElementById('sel-unit').onchange;
