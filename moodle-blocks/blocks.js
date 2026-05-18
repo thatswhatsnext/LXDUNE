@@ -899,7 +899,58 @@ export async function renderAssessmentPage({ forUnit, forTask } = {}) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 9. renderCourseHub
+// 9. renderPresubmissionChecklist
+// Container: <div id="lxdune-presubmission-checklist"></div>
+// Fetches templates/presubmission-checklist-{UNIT}-{TASK}.html and wraps it
+// in a collapsible <details> section. Scripts are re-executed after injection.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const CHECKLIST_CSS = `
+.lx-cl-wrap{border:1px solid #dfe6ea;border-radius:12px;margin:16px 0;overflow:hidden;font-family:Arial,sans-serif;}
+.lx-cl-wrap>summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:900;background:#f4f6f8;font-size:1.05em;display:flex;align-items:center;gap:8px;}
+.lx-cl-wrap>summary::-webkit-details-marker{display:none;}
+.lx-cl-wrap[open]>summary{border-bottom:1px solid #dfe6ea;}
+.lx-cl-wrap>.lx-cl-body{padding:16px 0;}`;
+
+export async function renderPresubmissionChecklist({ forUnit, forTask } = {}) {
+  const el = getEl('lxdune-presubmission-checklist');
+  if (!el) return;
+
+  let unitCfg;
+  try {
+    unitCfg = await fetchJson(`${BASE}config/units/${forUnit}.json`);
+  } catch (e) {
+    setError(el, `Could not load content: ${e.message}`);
+    return;
+  }
+  applyTheme(unitCfg);
+  injectStyles('lx-cl-wrap-styles', CHECKLIST_CSS);
+
+  let checklistHtml;
+  try {
+    const res = await fetch(`${BASE}templates/presubmission-checklist-${forUnit}-${forTask}.html`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    checklistHtml = await res.text();
+  } catch {
+    el.innerHTML = `<div style="padding:14px 16px;border:1px solid #dfe6ea;border-radius:8px;font-family:Arial,sans-serif;color:#6F7B84;">Pre-submission checklist not yet available for ${esc(forUnit)} ${esc(forTask)}.</div>`;
+    return;
+  }
+
+  el.innerHTML = `<details class="lx-cl-wrap">
+    <summary>📋 Pre-Submission Checklist — Review before submitting</summary>
+    <div class="lx-cl-body">${checklistHtml}</div>
+  </details>`;
+
+  // Scripts injected via innerHTML don't execute — recreate each one
+  el.querySelectorAll('script').forEach(old => {
+    const s = document.createElement('script');
+    s.textContent = old.textContent;
+    old.replaceWith(s);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. renderCourseHub
 // Container: <div data-lx-block="course-hub"></div>
 // Renders all weeks as CSS-only collapsible <details>/<summary> rows.
 // ─────────────────────────────────────────────────────────────────────────────

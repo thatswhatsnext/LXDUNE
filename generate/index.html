@@ -89,6 +89,7 @@
         <option value="outcomes">Learning outcomes table</option>
         <option value="assessment-page">Assessment page</option>
         <option value="course-hub">Course hub</option>
+        <option value="presubmission-checklist">Pre-submission checklist</option>
       </select>
     </div>
     <div class="form-row" id="task-row" style="display:none;">
@@ -140,7 +141,7 @@
     const typeSel = document.getElementById('sel-type');
     const taskRow = document.getElementById('task-row');
     function syncTaskRow() {
-      taskRow.style.display = typeSel.value === 'assessment-page' ? '' : 'none';
+      taskRow.style.display = ['assessment-page', 'presubmission-checklist'].includes(typeSel.value) ? '' : 'none';
     }
     typeSel.addEventListener('change', syncTaskRow);
     syncTaskRow();
@@ -210,6 +211,20 @@
       `  });\n` +
       `<\/script>\n` +
       `<div data-lx-block="course-hub"></div>`
+    );
+  }
+
+  function shellChecklist(unit, taskId) {
+    return (
+      `<script type="module">\n` +
+      `  import { renderPresubmissionChecklist }\n` +
+      `  from "${PAGES_BASE}/moodle-blocks/blocks.js";\n` +
+      `  renderPresubmissionChecklist({\n` +
+      `    forUnit: "${unit}",\n` +
+      `    forTask: "${taskId}",\n` +
+      `  });\n` +
+      `<\/script>\n` +
+      `<div id="lxdune-presubmission-checklist"></div>`
     );
   }
 
@@ -400,6 +415,26 @@
         badge: 'blocks.js', badgeClass: 'badge-ready',
         code,
         note: `Static block — paste once per assessment task page. Reads from <code>assessmentTasks</code> in the unit JSON.`,
+        rows: 9,
+      });
+      const output = document.getElementById('output');
+      output.innerHTML = `<div class="result-banner">Shell for <strong>${unit}</strong> — <strong>${taskId}</strong></div>${cards}`;
+      output.style.display = 'block';
+      bindCopyButtons();
+      btn.disabled = false;
+      btn.textContent = 'Generate shell';
+      output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Pre-submission checklist (no tri/year, task-scoped)
+    if (pageType === 'presubmission-checklist') {
+      const code = shellChecklist(unit, taskId);
+      const cards = snippetCard({
+        title: `Pre-submission checklist — ${taskId}`,
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code,
+        note: `Static block — paste once per assessment task page. Fetches <code>templates/presubmission-checklist-${unit}-${taskId}.html</code> and wraps it in a collapsible section.`,
         rows: 9,
       });
       const output = document.getElementById('output');
