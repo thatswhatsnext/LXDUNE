@@ -41,6 +41,7 @@ templates/
 docs/
   STAFF-README.md             ← plain-language guide for non-technical coordinators
   LXDUNE-ClaudeCode-Briefing.md ← this file
+  ACTION-PLAN.md              ← prioritised action plan for content and system work
   EDSE357-T1-2026-shells.html ← git-ignored; open in browser to copy shells
   EDSE358-T1-2026-shells.html ← git-ignored; open in browser to copy shells
 
