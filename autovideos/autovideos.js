@@ -71,6 +71,8 @@ function getCurrentVideoIndex(forToday, fromDateList) {
 }
 
 export async function setUpVideos({ forUnit: unit, startDate: theStartDate, andTri: trimester, containerId }) {
+  // containerId: sandpit-only convenience for pages with multiple shells on the same page.
+  // Generated production shells omit this — they rely on the embed-container[0] fallback.
   const container = containerId
     ? document.getElementById(containerId)
     : document.getElementsByClassName('embed-container')[0];
