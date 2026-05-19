@@ -227,8 +227,8 @@ Last merge: `ee6bbe1` (2026-05-19) — T2 2026 prep: per-trimester dates schema,
 - AT1 "Teaching, Learning and Assessment Design" (60%): title/LOs/AITSL ✅; `trimesterDates.T1-2026.due` = 2026-04-05, `duePartA` = 2026-03-22 ✅; T2-2026 stub present (due null — pending); **8-row rubric fully populated** (A, B1, B2, B3, B4, C1, C2, D — 100 marks, 40 band descriptors) ✅; rationale null, aim null; parts A/B/C/D have marks but null descriptions; criteria empty; links all null; submission instructions empty
 - AT2 "Resource Curation and Critical Analysis" (40%): title/LOs/AITSL ✅; `trimesterDates.T1-2026.due` = 2026-05-04 ✅; T2-2026 stub present (due null — pending); **6-row rubric fully populated** (A1, A2, A3, B1, B2, C — 100 marks, 30 band descriptors) ✅; rationale null, aim null; parts [] (holistic); criteria empty; links all null; submission instructions empty
 
-**EDSE362 assessmentTasks — current state (empty stubs):**
-- AT1 and AT2: `trimesterDates.T2-2027` present but all null; title null, rationale null, aim null, all links null, rubric empty — not live until T2 2027
+**EDSE362 assessmentTasks — current state:**
+- AT1 and AT2: `trimesterDates.T2-2026` populated with due dates ✅ (AT1 due 2026-07-26, AT2 due 2026-09-06); title null, rationale null, aim null, all links null, rubric empty — to populate before T2 2026 go-live
 
 **AT2 note (EDSE357):** `parts: []` because AT2 is holistically assessed. The "What do I need to do?" section is omitted; the aim describes all requirements.
 
@@ -279,7 +279,7 @@ Last merge: `ee6bbe1` (2026-05-19) — T2 2026 prep: per-trimester dates schema,
 ]
 ```
 
-- `bannerUrl` and all three keyLinks URLs populated for EDSE357 and EDSE358; EDSE362 `keyLinks` still null (not live until T2 2027)
+- `bannerUrl` and all three keyLinks URLs populated for EDSE357 and EDSE358; EDSE362 `keyLinks` still null — populate before T2 2026 go-live
 - Generator shell types: `unit-key-info`, `assessment-status`
 - Test harness tab: **Navigation** (side-by-side preview of both blocks)
 - Template reference files: `templates/unit-key-info.html`, `templates/assessment-status.html`
@@ -392,17 +392,17 @@ EDSE358 has 3 sections: course-level (5 shells + 2 amber placeholder cards for c
 - **T1 2026 status:** AT1 Part A (due 2026-03-22) and AT1 Parts B/C/D (due 2026-04-05) past due. AT2 (due 2026-05-04) past due. Unit is in PE/assessment period.
 
 ### EDSE362 — Science Education 11–12: Curriculum, Pedagogy and Inclusive Practice
-- **Live:** T2 2027 (not yet live — future unit)
-- **Trimesters configured:** T2
-- **Zoom (T2-2027):** `null` — not yet created
+- **Live:** T2 2026, Wednesdays 5:30–6:30pm — ⚠️ **correction: previously recorded as T2 2027; unit runs T2 2026**
+- **Trimesters configured:** T2-2026 ✅
+- **Zoom (T2-2026):** `null` — not yet created; add to `trimesterConfig.T2-2026` when meeting is set up
 - **Theme:** green/warm gold — `primary: #2E7D52`, `accent: #E3B089`, `pill: #E8F5EE`, `pillBorder: #b8dcc8`
 - **bannerUrl:** `assets/banners/EDSE362-banner.svg` ✅ (green gradient, warm gold accent bar, live on GitHub Pages)
-- **keyLinks:** all three URLs still `null` — populate before T2 2027 go-live
+- **keyLinks:** all three URLs still `null` — populate before T2 2026 go-live
 - **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅; `resources: []` present on each week (empty arrays, ready to fill)
 - **Videos (weeks 1–8):** all `null` — will default to `DGIXT7ce3vQ` until real IDs are added
-- **Links (all weeks):** all `null`; `assessmentPortalUrl: null` (no portal yet)
-- **assessmentTasks:** schema-only stubs — AT1 (50%) and AT2 (50%) LOs set; title/due/rationale/aim/rubric all null
-- **T2-2027 start date:** `2027-06-21` — ⚠️ placeholder, confirm against UNE academic calendar before go-live
+- **Links (all weeks):** all `null`
+- **assessmentTasks:** `trimesterDates.T2-2026` due dates populated ✅ (AT1 due 2026-07-26, AT2 due 2026-09-06); rationale/aim/parts/criteria/rubric all null — to be populated before go-live
+- **T2-2026 start date:** `2026-06-22` ✅ confirmed in `trimester-config.json`
 
 ---
 
@@ -477,7 +477,7 @@ Pre-generated shell files are in `docs/` (git-ignored). See Shell snippet files 
 | 2026 | 2026-02-23 | 2026-06-22 | 2026-10-19 |
 | 2027 | 2027-02-22 | 2027-06-21 ⚠️ | 2027-10-18 ⚠️ |
 
-⚠️ 2027 T2 and T3 dates are estimates — confirm against the UNE academic calendar before EDSE362 goes live.
+T2 2026 start `2026-06-22` is confirmed. ⚠️ 2027 dates are estimates — confirm against UNE academic calendar if needed for future trimesters.
 
 ---
 
@@ -490,8 +490,8 @@ Pre-generated shell files are in `docs/` (git-ignored). See Shell snippet files 
 5. **EDSE358 AT1 assessmentFiles — all null:** task and marking URLs not yet uploaded for AT1 disciplines.
 6. **`DGIXT7ce3vQ` — third-party placeholder video:** used for PE weeks (9–14) in all unit configs and EDIT* legacy arrays. Not university-owned — replace when a stable owned video is available.
 7. **`announcementBody.keyIdea`:** stored in some EDSE358 weeks but not rendered. Future enhancement only.
-8. **EDSE362 — all null:** not live until T2 2027; all links, videos, zoom, and assessmentTasks are empty stubs.
-9. **2027 T2/T3 start dates:** estimates — confirm against UNE academic calendar before EDSE362 goes live.
+8. **EDSE362 — content not yet populated:** live T2 2026 (starts 2026-06-22); due dates set ✅; all week links, videos, zoom, keyLinks, and assessmentTask content (rationale/aim/rubric) still null — populate before go-live.
+9. **EDSE362 Zoom not yet created:** add Zoom meeting ID and URL to `trimesterConfig.T2-2026` when meeting is set up.
 10. **Pre-submission checklist — static templates:** current implementation fetches static HTML from `templates/`. Refactor to config-driven schema before writing a fourth checklist — see ACTION-PLAN.md item 15.
 11. **EDSE358 T2-2026 assessment due dates null:** `trimesterDates.T2-2026.due` is null for both AT1 and AT2. Populate once Steve confirms T2 due dates — then regenerate Moodle shells with `forTri: "T2"` and `forYear: "2026"`.
 12. **Existing Moodle shells for renderAssessmentPage show no due date:** shells deployed to Moodle for T1 2026 do not pass `forTri`/`forYear` (schema change). Both T1 ATs are past due so this is low impact. New T2 shells from the generator will include tri/year correctly.
@@ -521,7 +521,7 @@ See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary
 - EDSE358 week 8 item 7 table corrected: lecture/zoom/forum/materials confirmed live; slides/recording/liveHub still null
 - `assessmentTasks` schema extended: flat `due`, `duePartA`, `flexiblePortal` replaced by `trimesterDates` object keyed by trimester (e.g. `T1-2026`) in all three unit JSONs
 - Existing T1-2026 dates migrated into `trimesterDates.T1-2026` for EDSE357 and EDSE358
-- T2-2026 stubs added to EDSE358 (both ATs); T2-2026 and T3-2026 stubs added to EDSE357; T2-2027 stub for EDSE362
+- T2-2026 stubs added to EDSE358 (both ATs); T2-2026 and T3-2026 stubs added to EDSE357; T2-2026 stub for EDSE362 (⚠️ was incorrectly recorded as T2-2027 — corrected in subsequent commit)
 - `blocks.js` `resolve()` updated: `week` computed before `zoom`; `zoomUrl` falls back to `week.links.zoom` if `trimesterConfig[triKey].zoom.url` is null
 - `renderAssessmentPage` signature extended: `forTri` and `forYear` now accepted; reads dates from `trimesterDates[triKey]`
 - `renderUnitKeyInfo` and `renderAssessmentStatus` updated to read from `trimesterDates[triKey]`
@@ -547,7 +547,7 @@ See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary
 - `renderUnitKeyInfo` (fn 11) and `renderAssessmentStatus` (fn 12) added to `blocks.js` on `feature/navigation-blocks`, merged to dev then main
 - Unit JSON schema extended with `bannerUrl`, `supportCallout`, `keyLinks[]` on all three unit JSONs
 - `keyLinks` URLs populated for EDSE357 (Unit Outline, Learning Materials, Assessment Portal) and EDSE358 (same)
-- EDSE362 `keyLinks` all null — to be populated before T2 2027 go-live
+- EDSE362 `keyLinks` all null — to be populated before T2 2026 go-live
 - SVG banners created for all three units (`assets/banners/`), pushed to main, confirmed 200 on GitHub Pages
 - `bannerUrl` set to live GitHub Pages URLs in all three unit JSONs
 - Generator: `unit-key-info` and `assessment-status` shell types added
