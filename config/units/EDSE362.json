@@ -155,6 +155,18 @@
       "external": false
     }
   ],
+  "contacts": [
+    {
+      "role": "Unit Coordinator",
+      "name": null,
+      "email": null
+    },
+    {
+      "role": "Lecturer",
+      "name": null,
+      "email": null
+    }
+  ],
   "trimesterConfig": {
     "T2-2026": {
       "zoom": {

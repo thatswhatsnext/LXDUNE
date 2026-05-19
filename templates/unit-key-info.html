@@ -19,6 +19,17 @@
 .lx-ki-teal{background:#d0f0ec;color:#0e5a52}
 .lx-ki-callout{margin-top:14px;padding:14px 16px;border-radius:10px;border:1px solid #b2dfdb;border-left:6px solid #26a69a;background:#e0f2f1;font-size:.93em;line-height:1.5}
 .lx-ki-callout-label{font-size:.78em;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:#0e5a52;margin-bottom:6px}
+.lx-ki-contacts{margin-bottom:18px;border:1px solid var(--lx-pill-border,#cbe6ee);border-radius:10px;overflow:hidden}
+.lx-ki-contacts>summary{padding:10px 14px;font-size:.9em;font-weight:700;color:var(--lx-primary,#1f6fb2);cursor:pointer;list-style:none;user-select:none}
+.lx-ki-contacts>summary::-webkit-details-marker{display:none}
+.lx-ki-contacts-body{padding:4px 14px 10px 26px}
+.lx-ki-contact{padding:8px 0}
+.lx-ki-contact+.lx-ki-contact{border-top:1px solid #dfe6ea}
+.lx-ki-contact-role{font-size:.75em;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:#6F7B84;margin-bottom:2px}
+.lx-ki-contact-name{font-weight:700;font-size:.93em}
+.lx-ki-contact-email{font-size:.88em;margin-top:2px}
+.lx-ki-contact-email a{color:var(--lx-primary,#1f6fb2);text-decoration:none}
+.lx-ki-contact-email a:hover{text-decoration:underline}
 </style>
 
 <div class="lx-ki">
@@ -37,6 +48,21 @@
     <a class="lx-ki-link" href="{{LEARNING_MATERIALS_URL}}">Learning Materials</a>
     <span class="lx-ki-link" style="opacity:.55;pointer-events:none;">Assessment Portal</span>
   </div>
+
+  <!-- Contacts — rendered when contacts array is set in unit JSON; omitted if absent/empty -->
+  <details class="lx-ki-contacts">
+    <summary>Unit Coordinator / Lecturer</summary>
+    <div class="lx-ki-contacts-body">
+      <!-- One .lx-ki-contact per entry; repeat as needed -->
+      <div class="lx-ki-contact">
+        <div class="lx-ki-contact-role">{{CONTACT_ROLE}}</div>
+        <div class="lx-ki-contact-name">{{CONTACT_NAME}}</div>
+        <!-- Email link — only rendered when email is non-null -->
+        <div class="lx-ki-contact-email"><a href="mailto:{{CONTACT_EMAIL}}">{{CONTACT_EMAIL}}</a></div>
+      </div>
+      <!-- Divider between contacts: .lx-ki-contact+.lx-ki-contact has border-top automatically -->
+    </div>
+  </details>
 
   <!-- Due dates — one row per assessmentTask with a due date -->
   <div style="margin-bottom:14px;">
@@ -80,7 +106,8 @@
 CONFIG SOURCES
   bannerUrl         → unitCfg.bannerUrl (null → placeholder div)
   keyLinks[]        → unitCfg.keyLinks  (url null → disabled span)
-  due date rows     → unitCfg.assessmentTasks[].due
+  contacts[]        → unitCfg.contacts  (absent/empty → section omitted; null name → "TBC"; null email → name only, no link)
+  due date rows     → unitCfg.assessmentTasks[].trimesterDates[triKey].due
   chip colour logic →
     days < 0  + fp still open  → teal  "Flexible portal open"
     days < 0  + fp closed      → grey  "Submitted"
