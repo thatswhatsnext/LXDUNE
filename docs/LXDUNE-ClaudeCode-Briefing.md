@@ -1,6 +1,6 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-05-19 (briefing checkpoint — renderPresubmissionChecklist added; autovideos containerId; staff guide updated)  
+**Last updated:** 2026-05-19 (navigation blocks built and deployed; SVG banners live; keyLinks populated; shells deployed to Moodle)  
 **Repo:** `https://github.com/thatswhatsnext/LXDUNE`  
 **GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`  
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
@@ -23,8 +23,14 @@ config/
     EDSE358.json
     EDSE362.json
 
+assets/
+  banners/
+    EDSE357-banner.svg        ← 800×200 gradient SVG banner (blue → #4a90d9, teal accent bar)
+    EDSE358-banner.svg        ← 800×200 gradient SVG banner (purple → #a085d4, teal accent bar)
+    EDSE362-banner.svg        ← 800×200 gradient SVG banner (green → #4aad78, warm gold accent bar)
+
 moodle-blocks/
-  blocks.js                   ← ES module, 10 exported render functions
+  blocks.js                   ← ES module, 12 exported render functions
   bespoke/                    ← static HTML fragments injected by renderAssessmentPage
     discipline-tab-switcher.html
     riskassess-callout.html
@@ -36,15 +42,18 @@ test/
   index.html                  ← dynamic QA harness (local dev only)
 
 templates/
-  *.html                      ← 12 reference HTML components (static, not rendered)
-                                 incl. presubmission-checklist-EDSE357-AT1/AT2 and EDSE358-AT1
+  *.html                      ← 14 reference HTML components (static, not rendered)
+                                 incl. presubmission-checklist-EDSE357-AT1/AT2 and EDSE358-AT1,
+                                 unit-key-info.html, assessment-status.html
 
 docs/
   STAFF-README.md             ← plain-language guide for non-technical coordinators
   LXDUNE-ClaudeCode-Briefing.md ← this file
   ACTION-PLAN.md              ← prioritised action plan for content and system work
-  EDSE357-T1-2026-shells.html ← git-ignored; open in browser to copy shells
-  EDSE358-T1-2026-shells.html ← git-ignored; open in browser to copy shells
+  EDSE357-T1-2026-shells.html    ← git-ignored; open in browser to copy shells
+  EDSE358-T1-2026-shells.html    ← git-ignored; open in browser to copy shells
+  EDSE357-navigation-shells.html ← git-ignored; navigation block shells (renderUnitKeyInfo + renderAssessmentStatus)
+  EDSE358-navigation-shells.html ← git-ignored; navigation block shells
 
 .claude/
   commands/
@@ -87,21 +96,18 @@ Pasted once into Moodle, never edited again. The script fetches config on every 
 
 ## Current branch status
 
-`dev` is **2 commits ahead of `main`** — docs-only changes, safe to merge at any time.
-
-| Commit | Message |
-|---|---|
-| `46b0adf` | docs: update staff guide for Moodle page maintenance |
-| `1dba966` | docs(autovideos): mark containerId as sandpit-only convenience parameter |
+`dev` and `main` are **in sync** — all changes pushed and merged as of 2026-05-19.
 
 ### `main` (GitHub Pages source — production ✅)
-All phases complete and live. Last major merge: `bfba196` (2026-05-18) — included renderPresubmissionChecklist, EDSE358 rubric descriptors, assessment file links, week 8 content, action plan, and the autovideos containerId fix.
+Last merge: `02ee0d7` (2026-05-19) — navigation blocks, SVG banners, keyLinks URLs, bannerUrl populated for all three units.
 - `https://thatswhatsnext.github.io/LXDUNE/whatson/whatson.js` → 200
 - `https://thatswhatsnext.github.io/LXDUNE/autovideos/autovideos.js` → 200
 - `https://thatswhatsnext.github.io/LXDUNE/moodle-blocks/blocks.js` → 200
+- `https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE357-banner.svg` → 200
+- `https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE358-banner.svg` → 200
+- `https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE362-banner.svg` → 200
 
-### `dev` (2 commits ahead — docs only)
-No JS or config changes. Safe to merge to main immediately.
+### `dev` (0 commits ahead — in sync with main)
 
 ---
 
@@ -115,9 +121,9 @@ No JS or config changes. Safe to merge to main immediately.
 
 `generate/index.html` — admin-only tool for generating Moodle shell snippets. Covers all 9 block types including Resource directory, Assessment page (with task selector), and Course Hub.
 
-### Phase 3 — Block renderer ✅ COMPLETE (10 functions)
+### Phase 3 — Block renderer ✅ COMPLETE (12 functions)
 
-`moodle-blocks/blocks.js` — ES module with 10 exported render functions and a theme system.
+`moodle-blocks/blocks.js` — ES module with 12 exported render functions and a theme system.
 
 **Exported functions:**
 
@@ -133,6 +139,8 @@ No JS or config changes. Safe to merge to main immediately.
 | 8 | `renderAssessmentPage` | `#lxdune-assessment-page` | No — takes `{ forUnit, forTask }` |
 | 9 | `renderPresubmissionChecklist` | `#lxdune-presubmission-checklist` | No — takes `{ forUnit, forTask }` |
 | 10 | `renderCourseHub` | `div[data-lx-block="course-hub"]` | No — renders all weeks 1–8 |
+| 11 | `renderUnitKeyInfo` | `#lxdune-unit-key-info` | No — navigation block, course homepage |
+| 12 | `renderAssessmentStatus` | `#lxdune-assessment-status` | No — navigation block, course homepage |
 
 **Note:** `renderCourseHub` uses a `data-lx-block` attribute selector rather than an `id` — intentional, to allow the block to sit anywhere in an existing page without ID conflicts.
 
@@ -239,6 +247,35 @@ No JS or config changes. Safe to merge to main immediately.
 | `presubmission-checklist-EDSE357-AT2.html` | EDSE357 | AT2 | 11 (4 criteria) |
 | `presubmission-checklist-EDSE358-AT1.html` | EDSE358 | AT1 | 16 (Parts A–D) |
 
+### Phase 3E — Navigation Blocks ✅ COMPLETE (deployed 2026-05-19)
+
+`renderUnitKeyInfo({ forUnit, forTri, forYear })` — 11th render function. Renders a unit homepage navigation panel:
+- **Banner:** `<img>` from `unitCfg.bannerUrl`; falls back to a themed placeholder div (unit code + name) when null
+- **Key links:** Bootstrap-style full-width buttons from `unitCfg.keyLinks[]`; disabled span when `url: null`
+- **Due date chips:** one row per `assessmentTask` with a due date — coloured chip (green >14d, amber 7–14d, red <7d/today, teal when flexible portal open, grey when submitted/closed), optional "Open portal" link
+- **Support callout:** teal left-border box from `unitCfg.supportCallout`; omitted when null
+
+`renderAssessmentStatus({ forUnit, forTri, forYear })` — 12th render function. Renders a responsive card grid (auto-fit minmax 260px):
+- One card per `assessmentTask` — title, meta line (date · weighting · length), status chip, LO colour pills, action pills (Rubric, Task files, Submit, flexible portal, Q&A forum)
+- Status chip colours are **semantic** (not theme colours): green `#d4edda/#155724`, amber `#fff3cd/#856404`, red `#f8d7da/#721c24`, teal `#d0f0ec/#0e5a52`, grey `#e2e3e5/#383d41`
+
+**Unit JSON schema additions (all three units):**
+```json
+"bannerUrl": "https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE357-banner.svg",
+"supportCallout": "Anything going on that may impact your success in this unit?...",
+"keyLinks": [
+  { "label": "Unit Outline",      "url": "https://...", "external": false },
+  { "label": "Learning Materials","url": "https://...", "external": false },
+  { "label": "Assessment Portal", "url": "https://...", "external": false }
+]
+```
+
+- `bannerUrl` and all three keyLinks URLs populated for EDSE357 and EDSE358; EDSE362 `keyLinks` still null (not live until T2 2027)
+- Generator shell types: `unit-key-info`, `assessment-status`
+- Test harness tab: **Navigation** (side-by-side preview of both blocks)
+- Template reference files: `templates/unit-key-info.html`, `templates/assessment-status.html`
+- Shell files: `docs/EDSE357-navigation-shells.html`, `docs/EDSE358-navigation-shells.html` (git-ignored)
+
 ### Phase 3D — Course Hub block ✅ COMPLETE
 
 `renderCourseHub({ forUnit, forTri, forYear })` — 10th render function. Renders all teaching weeks (1–8) as CSS-only collapsible `<details>/<summary>` rows. Each row shows the topic chip, week number, title, and (when expanded) announcement intro, live session focus, and tasks list. Non-teaching weeks (9–14) are excluded via the `NO_TEACHING` set.
@@ -291,8 +328,10 @@ Pre-generated copyable Moodle shell snippets. Open in a browser — each shell h
 |---|---|---|---|
 | `docs/EDSE358-T1-2026-shells.html` | 38 | 2 (AT1/AT2 checklists) | 2026-05-19 |
 | `docs/EDSE357-T1-2026-shells.html` | 37 | — | 2026-05-18 |
+| `docs/EDSE358-navigation-shells.html` | 2 | — | 2026-05-19 (rev 2) |
+| `docs/EDSE357-navigation-shells.html` | 2 | — | 2026-05-19 (rev 2) |
 
-EDSE358 has 3 sections: course-level (5 shells + 2 amber placeholder cards for checklist refactor), per-module weeks 1–8 (32 shells), Module 4C resource directory (1 shell). EDSE357 has no resource directory shell (none configured).
+EDSE358 has 3 sections: course-level (5 shells + 2 amber placeholder cards for checklist refactor), per-module weeks 1–8 (32 shells), Module 4C resource directory (1 shell). EDSE357 has no resource directory shell (none configured). Navigation shell files contain Shell 1 (renderUnitKeyInfo) and Shell 2 (renderAssessmentStatus) for the course homepage.
 
 ---
 
@@ -303,6 +342,8 @@ EDSE358 has 3 sections: course-level (5 shells + 2 amber placeholder cards for c
 - **Trimesters configured:** T1
 - **Zoom (T1-2026):** configured ✅
 - **Theme:** blue/teal — `primary: #1f6fb2`, `accent: #25797F`, `pill: #DAF0F7`, `pillBorder: #cbe6ee`
+- **bannerUrl:** `assets/banners/EDSE357-banner.svg` ✅ (blue gradient, teal accent bar, live on GitHub Pages)
+- **keyLinks:** Unit Outline ✅, Learning Materials ✅, Assessment Portal ✅ — all three URLs populated
 - **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅
 - **Weeks 9–14 and week 0:** minimal (non-teaching); videos set to `DGIXT7ce3vQ`
 - **Links (all weeks 1–8):** all `null` — content links not yet published; all render as Coming soon chips
@@ -318,6 +359,8 @@ EDSE358 has 3 sections: course-level (5 shells + 2 amber placeholder cards for c
 - **Trimesters configured:** T1, T2
 - **Zoom (T1-2026):** configured ✅
 - **Theme:** purple/cyan — `primary: #7C5DB6`, `accent: #4FA9B5`, `pill: #EDE8FB`, `pillBorder: #c9bef5`
+- **bannerUrl:** `assets/banners/EDSE358-banner.svg` ✅ (purple gradient, teal accent bar, live on GitHub Pages)
+- **keyLinks:** Unit Outline ✅, Learning Materials ✅, Assessment Portal ✅ — all three URLs populated
 - **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅
 - **Weeks 9–14 and week 0:** minimal (non-teaching); videos set to `DGIXT7ce3vQ`
 - **Links by week:**
@@ -344,6 +387,8 @@ EDSE358 has 3 sections: course-level (5 shells + 2 amber placeholder cards for c
 - **Trimesters configured:** T2
 - **Zoom (T2-2027):** `null` — not yet created
 - **Theme:** green/warm gold — `primary: #2E7D52`, `accent: #E3B089`, `pill: #E8F5EE`, `pillBorder: #b8dcc8`
+- **bannerUrl:** `assets/banners/EDSE362-banner.svg` ✅ (green gradient, warm gold accent bar, live on GitHub Pages)
+- **keyLinks:** all three URLs still `null` — populate before T2 2027 go-live
 - **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅; `resources: []` present on each week (empty arrays, ready to fill)
 - **Videos (weeks 1–8):** all `null` — will default to `DGIXT7ce3vQ` until real IDs are added
 - **Links (all weeks):** all `null`; `assessmentPortalUrl: null` (no portal yet)
@@ -403,13 +448,14 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
 - **Assessment tab:** task selector (AT1/AT2) renders the full assessment page via `renderAssessmentPage`
 - **Course Hub tab:** renders all weeks 1–8 for the selected unit via `renderCourseHub`
 - **Checklist tab:** task selector (AT1/AT2) renders the pre-submission checklist via `renderPresubmissionChecklist`
+- **Navigation tab:** side-by-side preview — `renderUnitKeyInfo` (left) and `renderAssessmentStatus` (right)
 - **Cache note:** after updating `blocks.js` exports, hard-refresh (Cmd+Shift+R) before testing
 
 ---
 
 ## Generator
 
-`generate/index.html` — run locally or via GitHub Pages URL. Select unit, year, trimester, page type, click Generate. Produces copyable shell snippets for all 9 page types including Resource directory, Assessment page (with task selector), and Course Hub. Requires HTTP (not `file://`).
+`generate/index.html` — run locally or via GitHub Pages URL. Select unit, year, trimester, page type, click Generate. Produces copyable shell snippets for all 12 page types including Resource directory, Assessment page (with task selector), Course Hub, Unit Key Info, and Assessment Status. Requires HTTP (not `file://`).
 
 Pre-generated shell files are in `docs/` (git-ignored). See Shell snippet files section above.
 
@@ -445,18 +491,45 @@ Pre-generated shell files are in `docs/` (git-ignored). See Shell snippet files 
 
 See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary:
 
-1. **Verify live Moodle shells** — confirm whatson and autovideos render correctly in production for EDSE357 and EDSE358 after Phase 4 refactor.
-2. **Deploy EDSE358 Moodle shells** — shells are generated (`docs/EDSE358-T1-2026-shells.html`); paste into Moodle module pages.
-3. **EDSE358 missing content** — populate rationale, aim, part descriptions, and links in assessmentTasks for AT1 and AT2.
-4. **EDSE357 week links** — add lecture/slides/recording/forum/materials/liveHub as content is published.
-5. **EDSE358 missing week links** — weeks 1–2 (all), weeks 3/6/7/8 (partial); add as content is published.
-6. **assessmentFiles URLs** — EDSE358 AT1, EDSE357 AT1/AT2 discipline files.
-7. **Merge dev → main** — 2 docs-only commits pending; safe to merge immediately.
-8. **Checklist refactor** — before writing a fourth static checklist template, do the config-driven refactor (ACTION-PLAN item 15).
+1. **EDSE358 missing content** — populate rationale, aim, part descriptions, and links in assessmentTasks for AT1 and AT2 (ACTION-PLAN item 8).
+2. **EDSE358 missing week links** — weeks 1–2 (all), weeks 3/6/7/8 (partial); add as content is published (ACTION-PLAN item 7).
+3. **EDSE358 AT2 broken links** — confirm correct Chemistry marking guide URL and EES task URL (ACTION-PLAN item 3).
+4. **EDSE357 week links** — add lecture/slides/recording/forum/materials/liveHub as content is published (ACTION-PLAN item 10).
+5. **EDSE357/358 assessment links** — rubric PDFs, task file URLs, submit URLs (ACTION-PLAN items 8, 11).
+6. **EDSE358 T2 2026 prep** — add T2-2026 trimesterConfig; update Zoom and due dates before T2 starts (ACTION-PLAN item 12).
+7. **Checklist refactor** — before writing a fourth static checklist template, do the config-driven refactor (ACTION-PLAN item 15).
 
 ---
 
 ## Session notes
+
+### 2026-05-19 — Navigation blocks; SVG banners; keyLinks; shells deployed
+
+**Completed this session:**
+
+- `renderUnitKeyInfo` (fn 11) and `renderAssessmentStatus` (fn 12) added to `blocks.js` on `feature/navigation-blocks`, merged to dev then main
+- Unit JSON schema extended with `bannerUrl`, `supportCallout`, `keyLinks[]` on all three unit JSONs
+- `keyLinks` URLs populated for EDSE357 (Unit Outline, Learning Materials, Assessment Portal) and EDSE358 (same)
+- EDSE362 `keyLinks` all null — to be populated before T2 2027 go-live
+- SVG banners created for all three units (`assets/banners/`), pushed to main, confirmed 200 on GitHub Pages
+- `bannerUrl` set to live GitHub Pages URLs in all three unit JSONs
+- Generator: `unit-key-info` and `assessment-status` shell types added
+- Test harness: Navigation tab added (side-by-side preview)
+- Template reference files: `unit-key-info.html`, `assessment-status.html`
+- Navigation shell files generated (git-ignored): `docs/EDSE357-navigation-shells.html`, `docs/EDSE358-navigation-shells.html`
+- ACTION-PLAN items 1, 4, 5, 6 marked complete; two new completed items added
+
+**Commits (all merged to main):**
+- `555a054` — feat: add renderUnitKeyInfo and renderAssessmentStatus navigation blocks
+- `8511d79` — feat: add unit banner SVGs and populate bannerUrl in unit configs
+- `b10340d` — content: populate keyLinks URLs for EDSE357 and EDSE358
+- `4709ba0` — content: set bannerUrl for all three units
+
+**Key design decisions:**
+- Navigation block status chip colours are semantic (green/amber/red/teal/grey), not theme colours — consistent across all units regardless of their branding
+- `formatDateShort(d)` added as a utility alongside existing `formatDateAU` — returns "3 May 2026" format (no weekday) for compact display in navigation blocks
+- `bannerUrl: null` falls back to a themed placeholder div showing unit code + name — never a broken image
+- SVG banners served from `assets/banners/` on GitHub Pages; `bannerUrl` in unit JSON points to the live URL
 
 ### 2026-05-19 — renderPresubmissionChecklist; autovideos containerId; staff guide
 
