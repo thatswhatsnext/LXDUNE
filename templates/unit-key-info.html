@@ -1,0 +1,93 @@
+<!--
+  unit-key-info.html
+  Static reference for renderUnitKeyInfo (blocks.js — function 11).
+  Container: <div id="lxdune-unit-key-info"></div>
+  {{PLACEHOLDER}} tokens show values injected from the unit config JSON.
+-->
+
+<style>
+.lx-ki{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33}
+.lx-ki-banner{width:100%;border-radius:12px;margin-bottom:18px;display:block;max-height:200px;object-fit:cover}
+.lx-ki-banner-ph{border-radius:12px;margin-bottom:18px;padding:28px 24px;background:var(--lx-primary,#1f6fb2);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80px;text-align:center}
+.lx-ki-links{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.lx-ki-link{display:block;text-align:center;padding:10px 16px;border-radius:8px;font-weight:700;text-decoration:none;border:1px solid #6c757d;background:#6c757d;color:#fff;font-family:Arial,sans-serif;font-size:.95em}
+.lx-ki-due-chip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.8em;font-weight:700}
+.lx-ki-green{background:#d4edda;color:#155724}
+.lx-ki-amber{background:#fff3cd;color:#856404}
+.lx-ki-red{background:#f8d7da;color:#721c24}
+.lx-ki-grey{background:#e2e3e5;color:#383d41}
+.lx-ki-teal{background:#d0f0ec;color:#0e5a52}
+.lx-ki-callout{margin-top:14px;padding:14px 16px;border-radius:10px;border:1px solid #b2dfdb;border-left:6px solid #26a69a;background:#e0f2f1;font-size:.93em;line-height:1.5}
+.lx-ki-callout-label{font-size:.78em;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:#0e5a52;margin-bottom:6px}
+</style>
+
+<div class="lx-ki">
+
+  <!-- Banner: img when bannerUrl is set; placeholder div when null -->
+  <!-- Option A: <img class="lx-ki-banner" src="{{BANNER_URL}}" alt="{{UNIT_CODE}} banner"> -->
+  <div class="lx-ki-banner-ph">
+    <div style="font-size:1.6em;font-weight:900;letter-spacing:1px;">{{UNIT_CODE}}</div>
+    <div style="font-size:.95em;margin-top:4px;opacity:.85;">{{UNIT_NAME}}</div>
+  </div>
+
+  <!-- Key links — Bootstrap-compatible btn btn-secondary btn-block equivalent -->
+  <!-- Disabled (span) when url is null; anchor when url is set -->
+  <div class="lx-ki-links">
+    <a class="lx-ki-link" href="{{UNIT_OUTLINE_URL}}" target="_blank" rel="noopener">Unit Outline</a>
+    <a class="lx-ki-link" href="{{LEARNING_MATERIALS_URL}}">Learning Materials</a>
+    <span class="lx-ki-link" style="opacity:.55;pointer-events:none;">Assessment Portal</span>
+  </div>
+
+  <!-- Due dates — one row per assessmentTask with a due date -->
+  <div style="margin-bottom:14px;">
+    <div style="font-size:.78em;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:#6F7B84;margin-bottom:6px;">Assessment Due Dates</div>
+
+    <!-- Green chip: >14 days until due -->
+    <div style="padding:10px 0;border-bottom:1px solid #dfe6ea;display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
+      <strong style="flex:1;min-width:100px;">AT1</strong>
+      <span style="font-size:.88em;color:#6F7B84;">{{AT1_DUE_LONG}}</span>
+      <span class="lx-ki-due-chip lx-ki-green">Due in {{AT1_DAYS}} days</span>
+    </div>
+
+    <!-- Amber chip: 7–14 days until due -->
+    <div style="padding:10px 0;border-bottom:1px solid #dfe6ea;display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
+      <strong style="flex:1;min-width:100px;">AT2</strong>
+      <span style="font-size:.88em;color:#6F7B84;">{{AT2_DUE_LONG}}</span>
+      <span class="lx-ki-due-chip lx-ki-amber">Due in {{AT2_DAYS}} days</span>
+    </div>
+
+    <!-- Red chip: <7 days / due today -->
+    <!-- <span class="lx-ki-due-chip lx-ki-red">Due today</span> -->
+    <!-- <span class="lx-ki-due-chip lx-ki-red">Due in 3 days</span> -->
+
+    <!-- Teal chip: flexible portal open -->
+    <!-- <span class="lx-ki-due-chip lx-ki-teal">Flexible portal open</span> -->
+    <!-- <a href="{{PORTAL_URL}}" ...>Open portal</a> -->
+
+    <!-- Grey chip: submitted / past due / portal closed -->
+    <!-- <span class="lx-ki-due-chip lx-ki-grey">Submitted</span> -->
+  </div>
+
+  <!-- Support callout — rendered when supportCallout is set in unit JSON -->
+  <div class="lx-ki-callout">
+    <div class="lx-ki-callout-label">Support</div>
+    {{SUPPORT_CALLOUT}}
+  </div>
+
+</div>
+
+<!--
+CONFIG SOURCES
+  bannerUrl         → unitCfg.bannerUrl (null → placeholder div)
+  keyLinks[]        → unitCfg.keyLinks  (url null → disabled span)
+  due date rows     → unitCfg.assessmentTasks[].due
+  chip colour logic →
+    days < 0  + fp still open  → teal  "Flexible portal open"
+    days < 0  + fp closed      → grey  "Submitted"
+    days === 0                 → red   "Due today"
+    fp.opensDate reached       → teal  "Flexible portal open"
+    days > 14                  → green "Due in N days"
+    days >= 7                  → amber "Due in N days"
+    else                       → red   "Due in N days"
+  supportCallout    → unitCfg.supportCallout (null → section omitted)
+-->
