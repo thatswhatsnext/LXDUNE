@@ -1,6 +1,6 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-05-18 (briefing checkpoint — rubric descriptors complete, shell files generated)  
+**Last updated:** 2026-05-19 (briefing checkpoint — renderPresubmissionChecklist added; autovideos containerId; staff guide updated)  
 **Repo:** `https://github.com/thatswhatsnext/LXDUNE`  
 **GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`  
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
@@ -24,7 +24,7 @@ config/
     EDSE362.json
 
 moodle-blocks/
-  blocks.js                   ← ES module, 9 exported render functions
+  blocks.js                   ← ES module, 10 exported render functions
   bespoke/                    ← static HTML fragments injected by renderAssessmentPage
     discipline-tab-switcher.html
     riskassess-callout.html
@@ -36,7 +36,8 @@ test/
   index.html                  ← dynamic QA harness (local dev only)
 
 templates/
-  *.html                      ← 9 reference HTML components (static, not rendered)
+  *.html                      ← 12 reference HTML components (static, not rendered)
+                                 incl. presubmission-checklist-EDSE357-AT1/AT2 and EDSE358-AT1
 
 docs/
   STAFF-README.md             ← plain-language guide for non-technical coordinators
@@ -86,22 +87,21 @@ Pasted once into Moodle, never edited again. The script fetches config on every 
 
 ## Current branch status
 
-`dev` is **3 commits ahead of `main`** with real content changes (not briefing-only). These commits should be merged to main after sandpit verification.
+`dev` is **2 commits ahead of `main`** — docs-only changes, safe to merge at any time.
 
 | Commit | Message |
 |---|---|
-| `9537d93` | content: populate EDSE358 AT1 and AT2 rubric descriptors |
-| `b168bd0` | fix: populate Chemistry marking and EES task URLs in EDSE358 assessmentFiles |
-| `8592d5e` | content: populate EDSE358 week 8 Module 4D |
+| `46b0adf` | docs: update staff guide for Moodle page maintenance |
+| `1dba966` | docs(autovideos): mark containerId as sandpit-only convenience parameter |
 
 ### `main` (GitHub Pages source — production ✅)
-All phases complete and live. Verified 2026-05-17:
+All phases complete and live. Last major merge: `bfba196` (2026-05-18) — included renderPresubmissionChecklist, EDSE358 rubric descriptors, assessment file links, week 8 content, action plan, and the autovideos containerId fix.
 - `https://thatswhatsnext.github.io/LXDUNE/whatson/whatson.js` → 200
 - `https://thatswhatsnext.github.io/LXDUNE/autovideos/autovideos.js` → 200
 - `https://thatswhatsnext.github.io/LXDUNE/moodle-blocks/blocks.js` → 200
 
-### `dev` (3 commits ahead — content changes)
-Config-only changes (no JS). Safe to merge to main after confirming JSON renders correctly in test harness.
+### `dev` (2 commits ahead — docs only)
+No JS or config changes. Safe to merge to main immediately.
 
 ---
 
@@ -115,23 +115,24 @@ Config-only changes (no JS). Safe to merge to main after confirming JSON renders
 
 `generate/index.html` — admin-only tool for generating Moodle shell snippets. Covers all 9 block types including Resource directory, Assessment page (with task selector), and Course Hub.
 
-### Phase 3 — Block renderer ✅ COMPLETE (9 functions)
+### Phase 3 — Block renderer ✅ COMPLETE (10 functions)
 
-`moodle-blocks/blocks.js` — ES module with 9 exported render functions and a theme system.
+`moodle-blocks/blocks.js` — ES module with 10 exported render functions and a theme system.
 
 **Exported functions:**
 
-| Function | Container | Week-aware |
-|---|---|---|
-| `renderAnnouncementBlock` | `#lxdune-announcement` | Yes |
-| `renderWorkflowCard` | `#lxdune-workflow` | Yes |
-| `renderLectureBlock` | `#lxdune-lecture` | Yes |
-| `renderLiveSessionHub` | `#lxdune-live-hub` | Yes |
-| `renderAssessmentDownloadBlock` | `#lxdune-assessment-downloads` | No |
-| `renderLearningOutcomesTable` | `#lxdune-outcomes` | No |
-| `renderResourceDirectory` | `#lxdune-resource-directory` | Yes |
-| `renderAssessmentPage` | `#lxdune-assessment-page` | No — takes `{ forUnit, forTask }` |
-| `renderCourseHub` | `div[data-lx-block="course-hub"]` | No — renders all weeks 1–8 |
+| # | Function | Container | Week-aware |
+|---|---|---|---|
+| 1 | `renderAnnouncementBlock` | `#lxdune-announcement` | Yes |
+| 2 | `renderWorkflowCard` | `#lxdune-workflow` | Yes |
+| 3 | `renderLectureBlock` | `#lxdune-lecture` | Yes |
+| 4 | `renderLiveSessionHub` | `#lxdune-live-hub` | Yes |
+| 5 | `renderAssessmentDownloadBlock` | `#lxdune-assessment-downloads` | No |
+| 6 | `renderLearningOutcomesTable` | `#lxdune-outcomes` | No |
+| 7 | `renderResourceDirectory` | `#lxdune-resource-directory` | Yes |
+| 8 | `renderAssessmentPage` | `#lxdune-assessment-page` | No — takes `{ forUnit, forTask }` |
+| 9 | `renderPresubmissionChecklist` | `#lxdune-presubmission-checklist` | No — takes `{ forUnit, forTask }` |
+| 10 | `renderCourseHub` | `div[data-lx-block="course-hub"]` | No — renders all weeks 1–8 |
 
 **Note:** `renderCourseHub` uses a `data-lx-block` attribute selector rather than an `id` — intentional, to allow the block to sit anywhere in an existing page without ID conflicts.
 
@@ -219,9 +220,28 @@ Config-only changes (no JS). Safe to merge to main after confirming JSON renders
 - `riskassess-callout.html` — RiskAssess login callout with credentials (AT1 Part B)
 - Fetched async; on failure, a styled placeholder is shown (not a crash)
 
-### Phase 3C — Course Hub block ✅ COMPLETE
+### Phase 3C — Pre-Submission Checklist block ✅ COMPLETE
 
-`renderCourseHub({ forUnit, forTri, forYear })` — 9th render function. Renders all teaching weeks (1–8) as CSS-only collapsible `<details>/<summary>` rows. Each row shows the topic chip, week number, title, and (when expanded) announcement intro, live session focus, and tasks list. Non-teaching weeks (9–14) are excluded via the `NO_TEACHING` set.
+`renderPresubmissionChecklist({ forUnit, forTask })` — 9th render function. Fetches the static HTML template from `templates/presubmission-checklist-{UNIT}-{TASK}.html` and wraps it in a collapsible `<details class="lx-cl-wrap">` section. Scripts injected via `innerHTML` are re-executed via `document.createElement('script')` + `replaceWith` pattern (required because scripts in `innerHTML` do not auto-execute).
+
+- Container: `<div id="lxdune-presubmission-checklist"></div>`
+- Template files: `templates/presubmission-checklist-EDSE357-AT1.html`, `…-AT2.html`, `…-EDSE358-AT1.html`
+- Each template is a self-contained HTML fragment with scoped `<style>` and an IIFE `<script>`
+- Renders a graceful "not yet available" message if the template fetch fails (HTTP 404 or other error)
+- Generator shell type: `presubmission-checklist`; test harness tab: **Checklist**
+- **Note:** The current implementation fetches static HTML templates. A config-driven refactor (`renderChecklistBlock`) is planned — see ACTION-PLAN.md item 15. Do not write a fourth static template before doing the refactor.
+
+**Templates available:**
+
+| Template file | Unit | Task | Items |
+|---|---|---|---|
+| `presubmission-checklist-EDSE357-AT1.html` | EDSE357 | AT1 | 11 (Parts A–D) |
+| `presubmission-checklist-EDSE357-AT2.html` | EDSE357 | AT2 | 11 (4 criteria) |
+| `presubmission-checklist-EDSE358-AT1.html` | EDSE358 | AT1 | 16 (Parts A–D) |
+
+### Phase 3D — Course Hub block ✅ COMPLETE
+
+`renderCourseHub({ forUnit, forTri, forYear })` — 10th render function. Renders all teaching weeks (1–8) as CSS-only collapsible `<details>/<summary>` rows. Each row shows the topic chip, week number, title, and (when expanded) announcement intro, live session focus, and tasks list. Non-teaching weeks (9–14) are excluded via the `NO_TEACHING` set.
 
 - Container: `<div data-lx-block="course-hub"></div>` (attribute selector, not ID)
 - CSS: all theme colours via `var(--lx-*)` custom properties
@@ -232,8 +252,9 @@ Config-only changes (no JS). Safe to merge to main after confirming JSON renders
 
 Both live scripts refactored to read from `config/units/*.json` instead of embedded static data. Sandpit-tested and merged to `main` 2026-05-17 (merge commit `449164f`). In production.
 
-**`autovideos/autovideos.js` changes (commit `df4a601`):**
-- `setUpVideos` is now `async`; fetches `${BASE}config/units/${unit}.json`
+**`autovideos/autovideos.js` — production state (main @ `bfba196`):**
+- Optional `containerId` parameter added: if provided, uses `getElementById(containerId)`; if absent, falls back to `getElementsByClassName('embed-container')[0]` for backwards compatibility with all existing live Moodle shells. **This parameter is sandpit-only** — generated production shells do not include it. The correct fix for multi-shell test pages is separate Moodle labels, not custom container IDs.
+- `setUpVideos` is `async`; fetches `${BASE}config/units/${unit}.json`
 - Reads `unitCfg.videoInterval ?? 2` for weekly/fortnightly interval
 - Builds video sequence from `Object.keys(unitCfg.weeks).sort().map(k => unitCfg.weeks[k].video ?? 'DGIXT7ce3vQ')`
 - On fetch failure: checks `VideoURLs[unit]` legacy class; if found, uses it with `console.warn`; if not, shows "Video unavailable — please refresh"
@@ -266,12 +287,12 @@ Both live scripts refactored to read from `config/units/*.json` instead of embed
 
 Pre-generated copyable Moodle shell snippets. Open in a browser — each shell has a Copy button. Git-ignored (pattern `/docs/*-shells.html`); local use only.
 
-| File | Shells | Generated |
-|---|---|---|
-| `docs/EDSE358-T1-2026-shells.html` | 38 | 2026-05-18 |
-| `docs/EDSE357-T1-2026-shells.html` | 37 | 2026-05-18 |
+| File | Copyable shells | Placeholder entries | Generated |
+|---|---|---|---|
+| `docs/EDSE358-T1-2026-shells.html` | 38 | 2 (AT1/AT2 checklists) | 2026-05-19 |
+| `docs/EDSE357-T1-2026-shells.html` | 37 | — | 2026-05-18 |
 
-EDSE358 includes a Resource directory shell for week 7 (Module 4C). EDSE357 does not (no resource directory configured).
+EDSE358 has 3 sections: course-level (5 shells + 2 amber placeholder cards for checklist refactor), per-module weeks 1–8 (32 shells), Module 4C resource directory (1 shell). EDSE357 has no resource directory shell (none configured).
 
 ---
 
@@ -381,6 +402,7 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
 - **All 7 week-blocks** re-render immediately on any control change (150ms debounce)
 - **Assessment tab:** task selector (AT1/AT2) renders the full assessment page via `renderAssessmentPage`
 - **Course Hub tab:** renders all weeks 1–8 for the selected unit via `renderCourseHub`
+- **Checklist tab:** task selector (AT1/AT2) renders the pre-submission checklist via `renderPresubmissionChecklist`
 - **Cache note:** after updating `blocks.js` exports, hard-refresh (Cmd+Shift+R) before testing
 
 ---
@@ -406,32 +428,61 @@ Pre-generated shell files are in `docs/` (git-ignored). See Shell snippet files 
 
 ## Known issues
 
-1. **EDSE357 — all week links null:** unit is live but content links haven't been added yet; all render as Coming soon chips.
-2. **EDSE362 — all links null, zoom null, videos null:** not live until T2 2027; links to be added closer to go-live.
-3. **2027 T2/T3 start dates:** placeholders — must be confirmed against UNE academic calendar before EDSE362 goes live.
-4. **`announcementBody.keyIdea`:** stored in some EDSE358 weeks but not yet rendered by any block function. Future enhancement.
-5. **EDSE357 AT2 rubric link null:** add URL when rubric is published to Moodle.
-6. **EDSE358 assessmentTasks — rationale, aim, part descriptions, links all null:** rubric is now fully populated; remaining content (rationale, aim, part descriptions, links) pending before assessment pages go live.
-7. **EDSE362 assessmentTasks — completely empty:** AT1 and AT2 are schema-only stubs. Populate closer to T2 2027 go-live.
-8. **EDSE362 — video IDs all null:** no YouTube videos configured for any week.
-9. **`DGIXT7ce3vQ` — third-party placeholder video:** used for PE weeks (9–14) in all unit configs and all EDIT* legacy arrays. Currently live (confirmed 2026-05-17) but not owned — can be removed or made private by the channel owner without notice. Replace with a university-owned video when available.
+1. **EDSE357 — all week links null:** unit is live but content links not yet added; all render as Coming soon chips. Populate as content is published.
+2. **EDSE358 assessmentTasks — rationale, aim, part descriptions, links all null:** rubric is fully populated; remaining content pending before assessment pages go live.
+3. **EDSE357 AT2 rubric link null:** add URL when rubric PDF is published to Moodle.
+4. **EDSE358 missing week links:** weeks 1–2 (all), week 3 (lecture/slides/recording), week 6 (lecture/slides/liveHub/recording), week 7 (lecture/slides/liveHub/recording), week 8 (slides/recording/liveHub).
+5. **EDSE358 AT1 assessmentFiles — all null:** task and marking URLs not yet uploaded for AT1 disciplines.
+6. **`DGIXT7ce3vQ` — third-party placeholder video:** used for PE weeks (9–14) in all unit configs and EDIT* legacy arrays. Not university-owned — replace when a stable owned video is available.
+7. **`announcementBody.keyIdea`:** stored in some EDSE358 weeks but not rendered. Future enhancement only.
+8. **EDSE362 — all null:** not live until T2 2027; all links, videos, zoom, and assessmentTasks are empty stubs.
+9. **2027 T2/T3 start dates:** estimates — confirm against UNE academic calendar before EDSE362 goes live.
+10. **Pre-submission checklist — static templates:** current implementation fetches static HTML from `templates/`. Refactor to config-driven schema before writing a fourth checklist — see ACTION-PLAN.md item 15.
 
 ---
 
 ## Next tasks in priority order
 
-1. **Replace `DGIXT7ce3vQ` placeholder** — this third-party YouTube video (tropical beach ambience, channel: Relaxing Soundzzz) is used as the PE-weeks placeholder for all units and the EDIT* legacy arrays. Replace with a university-owned or stable video to eliminate the risk of unannounced removal.
-2. **EDSE358 AT1 — populate rationale, aim, part descriptions, links** — rubric is done; remaining content needed before assessment page goes live.
-3. **EDSE358 AT2 — populate rationale, aim, links** — rubric is done; remaining content needed before assessment page goes live.
-4. **Add EDSE357 week links** — all weeks, all link types, as content is published.
-5. **Add EDSE358 lecture/slides/liveHub/recording links** — weeks 1–2, 3, 6, 7 as content is published.
-6. **Add EDSE357 AT2 rubric link** — once the marking rubric PDF is published on Moodle.
-7. **Add assessmentFiles URLs** — EDSE358 AT1, EDSE357 AT1/AT2 — as task and marking files are uploaded.
-8. **Merge dev → main** — 3 content commits on dev (week 8 population, assessmentFiles fixes, rubric descriptors). Merge when ready to deploy updated configs to students.
+See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary:
+
+1. **Verify live Moodle shells** — confirm whatson and autovideos render correctly in production for EDSE357 and EDSE358 after Phase 4 refactor.
+2. **Deploy EDSE358 Moodle shells** — shells are generated (`docs/EDSE358-T1-2026-shells.html`); paste into Moodle module pages.
+3. **EDSE358 missing content** — populate rationale, aim, part descriptions, and links in assessmentTasks for AT1 and AT2.
+4. **EDSE357 week links** — add lecture/slides/recording/forum/materials/liveHub as content is published.
+5. **EDSE358 missing week links** — weeks 1–2 (all), weeks 3/6/7/8 (partial); add as content is published.
+6. **assessmentFiles URLs** — EDSE358 AT1, EDSE357 AT1/AT2 discipline files.
+7. **Merge dev → main** — 2 docs-only commits pending; safe to merge immediately.
+8. **Checklist refactor** — before writing a fourth static checklist template, do the config-driven refactor (ACTION-PLAN item 15).
 
 ---
 
 ## Session notes
+
+### 2026-05-19 — renderPresubmissionChecklist; autovideos containerId; staff guide
+
+**Commits on dev (not yet merged to main):**
+- `46b0adf` — STAFF-README.md substantially expanded: added shell deployment how-to, live session content editing, assessment file and task links, resource directory, new trimester setup, expanded troubleshooting table
+- `1dba966` — autovideos.js: code comment marking `containerId` as sandpit-only convenience parameter; not part of the production API; generated shells do not include it
+
+**Committed to main via merge `bfba196` (2026-05-18):**
+- `renderPresubmissionChecklist` added to `blocks.js` as 9th function (renderCourseHub moved to 10th)
+  - Fetches `templates/presubmission-checklist-{UNIT}-{TASK}.html` and wraps in collapsible `<details>`
+  - Scripts re-executed after `innerHTML` injection via `createElement('script')` + `replaceWith` pattern
+  - Container: `#lxdune-presubmission-checklist`
+- Three template files created: EDSE357-AT1 (11 items), EDSE357-AT2 (11 items), EDSE358-AT1 (16 items)
+- Generator: `presubmission-checklist` shell type added with `shellChecklist()` function
+- Test harness: Checklist tab added with `sel-cl-task` selector and `scheduleClRender()`
+- `docs/ACTION-PLAN.md` created — 16 action items across 5 priority horizons
+- `docs/LXDUNE-ClaudeCode-Briefing.md` updated (ACTION-PLAN.md added to file tree)
+- `autovideos.js`: optional `containerId` parameter — `getElementById` when provided, `[0]` fallback when absent; backwards-compatible with all live Moodle shells
+
+**Also merged to main via `ccebf8b` (2026-05-18):**
+Full dev merge including: EDSE358 rubric descriptors (AT1 8-row, AT2 6-row), assessmentFiles fixes, week 8 population, checklist templates, ACTION-PLAN.md, briefing updates.
+
+**Key decisions:**
+- `containerId` on `setUpVideos` is sandpit-only — the correct multi-shell test approach is separate Moodle labels, not custom IDs. Generated shells never include `containerId`.
+- Static checklist templates are the current implementation. Do not write a fourth static template — refactor to config-driven first (ACTION-PLAN item 15).
+- EDSE358 shells file regenerated: 38 copyable shells + 2 amber placeholder cards for AT1/AT2 checklists (pending refactor).
 
 ### 2026-05-18 — Rubric descriptors complete; shell files generated
 
