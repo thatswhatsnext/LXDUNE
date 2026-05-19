@@ -66,13 +66,6 @@
       "title": "Practical Investigation and Depth Study Design",
       "weighting": 50,
       "length": "2,000 words (equivalent) +/- 10%",
-      "due": "2026-03-29",
-      "flexiblePortal": {
-        "label": "Flexible portal to 5 April 2026",
-        "url": "https://mylearn.une.edu.au/mod/choice/view.php?id=3509333",
-        "opensDate": "2026-03-27",
-        "closesDate": "2026-04-05"
-      },
       "learningOutcomes": [
         "LO1",
         "LO2",
@@ -500,19 +493,32 @@
         "Name your file: LastNameFirstInitial_A1EDSE357",
         "Syllabus extracts do not contribute to word count.",
         "Reference list and risk assessment do not contribute to word count."
-      ]
+      ],
+      "trimesterDates": {
+        "T1-2026": {
+          "due": "2026-03-29",
+          "flexiblePortal": {
+            "label": "Flexible portal to 5 April 2026",
+            "url": "https://mylearn.une.edu.au/mod/choice/view.php?id=3509333",
+            "opensDate": "2026-03-27",
+            "closesDate": "2026-04-05"
+          }
+        },
+        "T2-2026": {
+          "due": null,
+          "flexiblePortal": null
+        },
+        "T3-2026": {
+          "due": null,
+          "flexiblePortal": null
+        }
+      }
     },
     {
       "id": "AT2",
       "title": "Curating & Critically Evaluating Senior Science Resources",
       "weighting": 50,
       "length": "2,000 words +/- 10%",
-      "due": "2026-05-03",
-      "flexiblePortal": {
-        "label": "Flexible portal to 10 May 2026",
-        "url": null,
-        "closesDate": "2026-05-10"
-      },
       "learningOutcomes": [
         "LO1",
         "LO2",
@@ -748,15 +754,45 @@
         "Submit one document.",
         "Include a cover page and academic integrity statement.",
         "Use APA 7th referencing."
-      ]
+      ],
+      "trimesterDates": {
+        "T1-2026": {
+          "due": "2026-05-03",
+          "flexiblePortal": {
+            "label": "Flexible portal to 10 May 2026",
+            "url": null,
+            "closesDate": "2026-05-10"
+          }
+        },
+        "T2-2026": {
+          "due": null,
+          "flexiblePortal": null
+        },
+        "T3-2026": {
+          "due": null,
+          "flexiblePortal": null
+        }
+      }
     }
   ],
   "bannerUrl": "https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE357-banner.svg",
   "supportCallout": "Anything going on that may impact your success in this unit? Don't hesitate to reach out to your lecturer sooner rather than later. We're here to support you.",
   "keyLinks": [
-    { "label": "Unit Outline", "url": "https://mylearn.une.edu.au/mod/book/view.php?id=3381529", "external": false },
-    { "label": "Learning Materials", "url": "https://mylearn.une.edu.au/course/view.php?id=31729#module-3381532", "external": false },
-    { "label": "Assessment Portal", "url": "https://mylearn.une.edu.au/course/section.php?id=477930", "external": false }
+    {
+      "label": "Unit Outline",
+      "url": "https://mylearn.une.edu.au/mod/book/view.php?id=3381529",
+      "external": false
+    },
+    {
+      "label": "Learning Materials",
+      "url": "https://mylearn.une.edu.au/course/view.php?id=31729#module-3381532",
+      "external": false
+    },
+    {
+      "label": "Assessment Portal",
+      "url": "https://mylearn.une.edu.au/course/section.php?id=477930",
+      "external": false
+    }
   ],
   "trimesterConfig": {
     "T1-2026": {

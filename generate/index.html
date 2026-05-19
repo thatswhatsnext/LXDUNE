@@ -230,13 +230,15 @@
     );
   }
 
-  function shellAssessment(unit, taskId) {
+  function shellAssessment(unit, tri, year, taskId) {
     return (
       `<script type="module">\n` +
       `  import { renderAssessmentPage }\n` +
       `  from "${PAGES_BASE}/moodle-blocks/blocks.js";\n` +
       `  renderAssessmentPage({\n` +
       `    forUnit: "${unit}",\n` +
+      `    forTri: "${tri}",\n` +
+      `    forYear: "${year}",\n` +
       `    forTask: "${taskId}",\n` +
       `  });\n` +
       `<\/script>\n` +
@@ -425,9 +427,9 @@
 
     const taskId = document.getElementById('sel-task').value;
 
-    // Assessment page is generated separately (no tri/year, task-scoped)
+    // Assessment page — task-scoped; tri/year needed for trimesterDates date resolution
     if (pageType === 'assessment-page') {
-      const code = shellAssessment(unit, taskId);
+      const code = shellAssessment(unit, tri, year, taskId);
       const cards = snippetCard({
         title: `Assessment page — ${taskId}`,
         badge: 'blocks.js', badgeClass: 'badge-ready',
