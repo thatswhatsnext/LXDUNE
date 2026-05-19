@@ -193,7 +193,18 @@ const KEY_INFO_CSS = `
 .lx-ki-grey{background:#e2e3e5;color:#383d41}
 .lx-ki-teal{background:#d0f0ec;color:#0e5a52}
 .lx-ki-callout{margin-top:14px;padding:14px 16px;border-radius:10px;border:1px solid #b2dfdb;border-left:6px solid #26a69a;background:#e0f2f1;font-size:.93em;line-height:1.5}
-.lx-ki-callout-label{font-size:.78em;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:#0e5a52;margin-bottom:6px}`;
+.lx-ki-callout-label{font-size:.78em;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:#0e5a52;margin-bottom:6px}
+.lx-ki-contacts{margin-bottom:18px;border:1px solid var(--lx-pill-border,#cbe6ee);border-radius:10px;overflow:hidden}
+.lx-ki-contacts>summary{padding:10px 14px;font-size:.9em;font-weight:700;color:var(--lx-primary,#1f6fb2);cursor:pointer;list-style:none;user-select:none}
+.lx-ki-contacts>summary::-webkit-details-marker{display:none}
+.lx-ki-contacts-body{padding:4px 14px 10px 26px}
+.lx-ki-contact{padding:8px 0}
+.lx-ki-contact+.lx-ki-contact{border-top:1px solid #dfe6ea}
+.lx-ki-contact-role{font-size:.75em;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:#6F7B84;margin-bottom:2px}
+.lx-ki-contact-name{font-weight:700;font-size:.93em}
+.lx-ki-contact-email{font-size:.88em;margin-top:2px}
+.lx-ki-contact-email a{color:var(--lx-primary,#1f6fb2);text-decoration:none}
+.lx-ki-contact-email a:hover{text-decoration:underline}`;
 
 const ASSESSMENT_STATUS_CSS = `
 .lx-as{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33}
@@ -1113,6 +1124,28 @@ export async function renderUnitKeyInfo({ forUnit, forTri, forYear } = {}) {
       return `<span class="lx-ki-link disabled">${esc(l.label)}</span>`;
     }).join('');
     sections.push(`<div class="lx-ki-links">${btnHtml}</div>`);
+  }
+
+  // Contacts
+  const contacts = unitCfg.contacts ?? {};
+  const coord = contacts.coordinator ?? null;
+  const lect  = contacts.lecturer  ?? null;
+  const hasCoord = coord !== null && (coord.name !== null || coord.email !== null);
+  const hasLect  = lect  !== null && (lect.name  !== null || lect.email  !== null);
+  if (hasCoord || hasLect) {
+    const contactRow = (roleLabel, c) => {
+      const name  = c?.name  ? `<div class="lx-ki-contact-name">${esc(c.name)}</div>`
+                              : `<div class="lx-ki-contact-name" style="color:#6F7B84;">TBC</div>`;
+      const email = c?.email ? `<div class="lx-ki-contact-email"><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></div>` : '';
+      return `<div class="lx-ki-contact"><div class="lx-ki-contact-role">${esc(roleLabel)}</div>${name}${email}</div>`;
+    };
+    const rows = (hasCoord && !hasLect) ? contactRow('Unit Coordinator / Lecturer', coord)
+               : (hasCoord && hasLect)  ? contactRow('Unit Coordinator', coord) + contactRow('Lecturer', lect)
+               :                          contactRow('Lecturer', lect);
+    sections.push(`<details class="lx-ki-contacts">
+      <summary>Unit Coordinator / Lecturer</summary>
+      <div class="lx-ki-contacts-body">${rows}</div>
+    </details>`);
   }
 
   // Due dates from assessmentTasks
