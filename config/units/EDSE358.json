@@ -67,9 +67,6 @@
       "title": "Teaching, Learning and Assessment Design",
       "weighting": 60,
       "length": null,
-      "due": "2026-04-05",
-      "duePartA": "2026-03-22",
-      "flexiblePortal": null,
       "learningOutcomes": [
         "LO1",
         "LO2",
@@ -367,15 +364,25 @@
         }
       ],
       "hdCallout": null,
-      "submissionInstructions": []
+      "submissionInstructions": [],
+      "trimesterDates": {
+        "T1-2026": {
+          "due": "2026-04-05",
+          "duePartA": "2026-03-22",
+          "flexiblePortal": null
+        },
+        "T2-2026": {
+          "due": null,
+          "duePartA": null,
+          "flexiblePortal": null
+        }
+      }
     },
     {
       "id": "AT2",
       "title": "Resource Curation and Critical Analysis",
       "weighting": 40,
       "length": null,
-      "due": "2026-05-04",
-      "flexiblePortal": null,
       "learningOutcomes": [
         "LO4",
         "LO5",
@@ -563,15 +570,37 @@
         }
       ],
       "hdCallout": null,
-      "submissionInstructions": []
+      "submissionInstructions": [],
+      "trimesterDates": {
+        "T1-2026": {
+          "due": "2026-05-04",
+          "flexiblePortal": null
+        },
+        "T2-2026": {
+          "due": null,
+          "flexiblePortal": null
+        }
+      }
     }
   ],
   "bannerUrl": "https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE358-banner.svg",
   "supportCallout": "Anything going on that may impact your success in this unit? Don't hesitate to reach out to your lecturer sooner rather than later. We're here to support you.",
   "keyLinks": [
-    { "label": "Unit Outline", "url": "https://mylearn.une.edu.au/course/section.php?id=477942", "external": false },
-    { "label": "Learning Materials", "url": "https://mylearn.une.edu.au/course/section.php?id=477942#module-3381663", "external": false },
-    { "label": "Assessment Portal", "url": "https://mylearn.une.edu.au/course/section.php?id=477943", "external": false }
+    {
+      "label": "Unit Outline",
+      "url": "https://mylearn.une.edu.au/course/section.php?id=477942",
+      "external": false
+    },
+    {
+      "label": "Learning Materials",
+      "url": "https://mylearn.une.edu.au/course/section.php?id=477942#module-3381663",
+      "external": false
+    },
+    {
+      "label": "Assessment Portal",
+      "url": "https://mylearn.une.edu.au/course/section.php?id=477943",
+      "external": false
+    }
   ],
   "trimesterConfig": {
     "T1-2026": {
@@ -718,7 +747,7 @@
       "links": {
         "lecture": null,
         "slides": null,
-        "zoom": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1",
+        "zoom": null,
         "recording": null,
         "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381717",
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3381716",
@@ -760,7 +789,7 @@
       "links": {
         "lecture": "https://echo360.net.au/media/caea3e78-bbfb-4923-b8fc-a2ae90b1a7cd/public?autoplay=false&automute=false",
         "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3517881",
-        "zoom": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1",
+        "zoom": null,
         "recording": null,
         "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381720",
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3381719",
@@ -816,7 +845,7 @@
       "links": {
         "lecture": "https://echo360.net.au/media/50aec677-a460-45e7-9ba4-1ee73feebb74/public?autoplay=false&automute=false",
         "slides": null,
-        "zoom": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1",
+        "zoom": null,
         "recording": null,
         "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381725",
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3381723",
@@ -870,7 +899,7 @@
       "links": {
         "lecture": null,
         "slides": null,
-        "zoom": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1",
+        "zoom": null,
         "recording": null,
         "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381728",
         "materials": "https://mylearn.une.edu.au/course/section.php?id=477947#module-3381726",
@@ -919,7 +948,7 @@
       "links": {
         "lecture": null,
         "slides": null,
-        "zoom": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1",
+        "zoom": null,
         "recording": null,
         "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381731",
         "materials": "https://mylearn.une.edu.au/course/section.php?id=477947#module-3381729",
@@ -1082,7 +1111,7 @@
       "links": {
         "lecture": "https://echo360.net.au/media/fb30dee2-fc9e-40dd-9a5a-00b268b4984b/public?autoplay=false&automute=false",
         "slides": null,
-        "zoom": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1",
+        "zoom": null,
         "recording": null,
         "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381734",
         "materials": "https://mylearn.une.edu.au/course/section.php?id=477947#module-3381732",
