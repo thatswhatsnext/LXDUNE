@@ -751,7 +751,7 @@
       ]
     }
   ],
-  "bannerUrl": null,
+  "bannerUrl": "https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE357-banner.svg",
   "supportCallout": "Anything going on that may impact your success in this unit? Don't hesitate to reach out to your lecturer sooner rather than later. We're here to support you.",
   "keyLinks": [
     { "label": "Unit Outline", "url": "https://mylearn.une.edu.au/mod/book/view.php?id=3381529", "external": false },
