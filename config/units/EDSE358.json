@@ -372,9 +372,14 @@
           "flexiblePortal": null
         },
         "T2-2026": {
-          "due": null,
-          "duePartA": null,
-          "flexiblePortal": null
+          "duePartA": "2026-07-05",
+          "due": "2026-07-26",
+          "flexiblePortal": {
+            "label": "Flexible portal",
+            "url": null,
+            "opensDate": null,
+            "closesDate": "2026-08-02"
+          }
         }
       }
     },
@@ -577,8 +582,13 @@
           "flexiblePortal": null
         },
         "T2-2026": {
-          "due": null,
-          "flexiblePortal": null
+          "due": "2026-09-06",
+          "flexiblePortal": {
+            "label": "Flexible portal",
+            "url": null,
+            "opensDate": null,
+            "closesDate": "2026-09-13"
+          }
         }
       }
     }
