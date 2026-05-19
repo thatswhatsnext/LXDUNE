@@ -1,0 +1,100 @@
+<!--
+  assessment-status.html
+  Static reference for renderAssessmentStatus (blocks.js — function 12).
+  Container: <div id="lxdune-assessment-status"></div>
+  {{PLACEHOLDER}} tokens show values injected from the unit config JSON.
+-->
+
+<style>
+.lx-as{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33}
+.lx-as-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.lx-as-card{border:1px solid #dfe6ea;border-radius:14px;padding:18px;background:#fff}
+.lx-as-title{font-weight:900;font-size:1em;margin:0 0 6px}
+.lx-as-meta{font-size:.85em;color:#6F7B84;margin-bottom:10px}
+.lx-as-status{display:inline-block;padding:4px 12px;border-radius:999px;font-size:.82em;font-weight:700;margin-bottom:10px}
+.lx-as-green{background:#d4edda;color:#155724}
+.lx-as-amber{background:#fff3cd;color:#856404}
+.lx-as-red{background:#f8d7da;color:#721c24}
+.lx-as-teal{background:#d0f0ec;color:#0e5a52}
+.lx-as-grey{background:#e2e3e5;color:#383d41}
+.lx-as-lo-row{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}
+.lx-as-lo-pill{display:inline-block;padding:3px 8px;border-radius:999px;font-size:.78em;font-weight:700;color:#fff}
+.lx-as-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.lx-as-action{display:inline-block;padding:6px 10px;border-radius:999px;font-size:.82em;font-weight:700;text-decoration:none;border:1px solid #dfe6ea;background:#f4f6f8;color:#1F2A33}
+.lx-as-action.submit{background:#e8f5e9;border-color:#27ae60;color:#155724}
+.lx-as-action.primary{background:#DAF0F7;border-color:#cbe6ee;color:#1f6fb2}
+</style>
+
+<div class="lx-as">
+
+  <div style="display:inline-block;background:#DAF0F7;border:1px solid #cbe6ee;padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px;">
+    {{UNIT_CODE}} • Assessment Status
+  </div>
+  <h2 style="margin:0 0 16px;">Assessment Overview</h2>
+
+  <div class="lx-as-grid">
+
+    <!-- Card 1: upcoming (green chip) -->
+    <div class="lx-as-card">
+      <div class="lx-as-title">AT1 — {{AT1_TITLE}}</div>
+      <div class="lx-as-meta">{{AT1_DUE_LONG}} · {{AT1_WEIGHTING}}% · {{AT1_LENGTH}}</div>
+      <span class="lx-as-status lx-as-green">Due in {{AT1_DAYS}} days</span>
+      <div class="lx-as-lo-row">
+        <span class="lx-as-lo-pill" style="background:{{LO1_COLOR}};">LO1</span>
+        <span class="lx-as-lo-pill" style="background:{{LO2_COLOR}};">LO2</span>
+      </div>
+      <div class="lx-as-actions">
+        <a class="lx-as-action primary" href="{{AT1_RUBRIC_URL}}" target="_blank" rel="noopener">Rubric</a>
+        <a class="lx-as-action primary" href="{{AT1_TASK_FILES_URL}}" target="_blank" rel="noopener">Task files</a>
+        <a class="lx-as-action submit" href="{{AT1_SUBMIT_URL}}" target="_blank" rel="noopener">Submit</a>
+        <a class="lx-as-action" href="{{AT1_FORUM_URL}}" target="_blank" rel="noopener">Q&amp;A forum</a>
+      </div>
+    </div>
+
+    <!-- Card 2: approaching (amber chip) -->
+    <div class="lx-as-card">
+      <div class="lx-as-title">AT2 — {{AT2_TITLE}}</div>
+      <div class="lx-as-meta">{{AT2_DUE_LONG}} · {{AT2_WEIGHTING}}%</div>
+      <span class="lx-as-status lx-as-amber">Due in {{AT2_DAYS}} days</span>
+      <div class="lx-as-lo-row">
+        <span class="lx-as-lo-pill" style="background:{{LO3_COLOR}};">LO3</span>
+        <span class="lx-as-lo-pill" style="background:{{LO4_COLOR}};">LO4</span>
+      </div>
+      <div class="lx-as-actions">
+        <a class="lx-as-action primary" href="{{AT2_RUBRIC_URL}}" target="_blank" rel="noopener">Rubric</a>
+        <a class="lx-as-action submit" href="{{AT2_SUBMIT_URL}}" target="_blank" rel="noopener">Submit</a>
+      </div>
+    </div>
+
+    <!-- Additional chip states (not shown simultaneously — for reference only) -->
+    <!-- <span class="lx-as-status lx-as-red">Due today</span> -->
+    <!-- <span class="lx-as-status lx-as-red">Due in 3 days</span> -->
+    <!-- <span class="lx-as-status lx-as-teal">Flexible portal open</span> -->
+    <!-- <span class="lx-as-status lx-as-grey">Submitted / period closed</span> -->
+    <!-- <span class="lx-as-status lx-as-grey">Date TBC</span> -->
+    <!-- Flexible portal action pill (teal, shown when portal is open): -->
+    <!-- <a class="lx-as-action" style="background:#d0f0ec;border-color:#b2dfdb;color:#0e5a52;" href="{{FP_URL}}" ...>Flexible portal</a> -->
+
+  </div>
+</div>
+
+<!--
+CONFIG SOURCES
+  assessmentTasks[].id, title  → card header
+  assessmentTasks[].due        → meta line + chip (formatDateShort)
+  assessmentTasks[].weighting  → meta line
+  assessmentTasks[].length     → meta line
+  assessmentTasks[].learningOutcomes[] → LO pills (colour from unitCfg.learningOutcomes)
+  assessmentTasks[].links      → action pills (rubric, taskFiles, submit, forum)
+  assessmentTasks[].flexiblePortal → portal action pill + teal/grey status logic
+
+STATUS CHIP LOGIC
+  task.due null                → grey  "Date TBC"
+  days < 0  + fp still open   → teal  "Flexible portal open"
+  days < 0  + fp closed/null  → grey  "Submitted / period closed"
+  days === 0                   → red   "Due today"
+  fp.opensDate reached (>0)   → teal  "Flexible portal open"
+  days > 14                   → green "Due in N days"
+  days >= 7                    → amber "Due in N days"
+  else (1–6)                   → red   "Due in N days"
+-->

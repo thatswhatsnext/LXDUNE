@@ -178,6 +178,43 @@ const ASSESSMENT_CSS = `
 .lx-rubric-table thead th{background:#f4f6f8;font-weight:700;text-align:center}
 .lx-rubric-table tbody td{background:#fff}`;
 
+const KEY_INFO_CSS = `
+.lx-ki{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33}
+.lx-ki-banner{width:100%;border-radius:12px;margin-bottom:18px;display:block;max-height:200px;object-fit:cover}
+.lx-ki-banner-ph{border-radius:12px;margin-bottom:18px;padding:28px 24px;background:var(--lx-primary,#1f6fb2);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80px;text-align:center}
+.lx-ki-links{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.lx-ki-link{display:block;text-align:center;padding:10px 16px;border-radius:8px;font-weight:700;text-decoration:none;border:1px solid #6c757d;background:#6c757d;color:#fff;transition:background .15s,border-color .15s;font-family:Arial,sans-serif;font-size:.95em}
+.lx-ki-link:hover{background:#5a6268;border-color:#545b62;color:#fff}
+.lx-ki-link.disabled{opacity:.55;pointer-events:none}
+.lx-ki-due-chip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.8em;font-weight:700}
+.lx-ki-green{background:#d4edda;color:#155724}
+.lx-ki-amber{background:#fff3cd;color:#856404}
+.lx-ki-red{background:#f8d7da;color:#721c24}
+.lx-ki-grey{background:#e2e3e5;color:#383d41}
+.lx-ki-teal{background:#d0f0ec;color:#0e5a52}
+.lx-ki-callout{margin-top:14px;padding:14px 16px;border-radius:10px;border:1px solid #b2dfdb;border-left:6px solid #26a69a;background:#e0f2f1;font-size:.93em;line-height:1.5}
+.lx-ki-callout-label{font-size:.78em;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:#0e5a52;margin-bottom:6px}`;
+
+const ASSESSMENT_STATUS_CSS = `
+.lx-as{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33}
+.lx-as-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.lx-as-card{border:1px solid #dfe6ea;border-radius:14px;padding:18px;background:#fff}
+.lx-as-title{font-weight:900;font-size:1em;margin:0 0 6px}
+.lx-as-meta{font-size:.85em;color:#6F7B84;margin-bottom:10px}
+.lx-as-status{display:inline-block;padding:4px 12px;border-radius:999px;font-size:.82em;font-weight:700;margin-bottom:10px}
+.lx-as-green{background:#d4edda;color:#155724}
+.lx-as-amber{background:#fff3cd;color:#856404}
+.lx-as-red{background:#f8d7da;color:#721c24}
+.lx-as-teal{background:#d0f0ec;color:#0e5a52}
+.lx-as-grey{background:#e2e3e5;color:#383d41}
+.lx-as-lo-row{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}
+.lx-as-lo-pill{display:inline-block;padding:3px 8px;border-radius:999px;font-size:.78em;font-weight:700;color:#fff}
+.lx-as-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.lx-as-action{display:inline-block;padding:6px 10px;border-radius:999px;font-size:.82em;font-weight:700;text-decoration:none;border:1px solid #dfe6ea;background:#f4f6f8;color:#1F2A33}
+.lx-as-action:hover{text-decoration:underline}
+.lx-as-action.submit{background:#e8f5e9;border-color:#27ae60;color:#155724}
+.lx-as-action.primary{background:var(--lx-pill,#DAF0F7);border-color:var(--lx-pill-border,#cbe6ee);color:var(--lx-primary,#1f6fb2)}`;
+
 // ── Date calculation (mirrors whatson.js logic) ───────────────────────────────
 
 function buildDateList(startDate, trimester) {
@@ -234,6 +271,10 @@ async function resolve({ forUnit, forTri, forYear, forWeek, forDate }) {
 
 function formatDateAU(d) {
   return new Date(d).toLocaleDateString('en-AU', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function formatDateShort(d) {
+  return new Date(d + 'T00:00:00').toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
 function buildAssessmentReminders(unitCfg, portalUrl) {
@@ -1018,5 +1059,217 @@ export async function renderCourseHub({ forUnit, forTri, forYear } = {}) {
     <div class="lx-hub-pill">${esc(unitCfg.code)} • Course Hub</div>
     <h2>Course Hub — All Weeks</h2>
     ${rows || '<p style="color:#6F7B84;">No weekly content configured yet.</p>'}
+  </div>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 11. renderUnitKeyInfo
+// Container: <div id="lxdune-unit-key-info"></div>
+// Reads bannerUrl, keyLinks, assessmentTasks, supportCallout from unitCfg.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export async function renderUnitKeyInfo({ forUnit, forTri, forYear } = {}) {
+  const el = getEl('lxdune-unit-key-info');
+  if (!el) return;
+
+  let unitCfg;
+  try {
+    unitCfg = await fetchJson(`${BASE}config/units/${forUnit}.json`);
+  } catch (e) {
+    setError(el, `Could not load content: ${e.message}`);
+    return;
+  }
+
+  applyTheme(unitCfg);
+  injectStyles('lx-ki-styles', KEY_INFO_CSS);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const sections = [];
+
+  // Banner or placeholder
+  if (unitCfg.bannerUrl) {
+    sections.push(`<img class="lx-ki-banner" src="${esc(unitCfg.bannerUrl)}" alt="${esc(unitCfg.code)} banner">`);
+  } else {
+    sections.push(`<div class="lx-ki-banner-ph">
+      <div style="font-size:1.6em;font-weight:900;letter-spacing:1px;">${esc(unitCfg.code)}</div>
+      <div style="font-size:.95em;margin-top:4px;opacity:.85;">${esc(unitCfg.name ?? '')}</div>
+    </div>`);
+  }
+
+  // Key links (Bootstrap-style btn btn-secondary btn-block)
+  const keyLinks = unitCfg.keyLinks ?? [];
+  if (keyLinks.length) {
+    const btnHtml = keyLinks.map(l => {
+      if (l.url) {
+        const target = l.external !== false ? ' target="_blank" rel="noopener"' : '';
+        return `<a class="lx-ki-link" href="${esc(l.url)}"${target}>${esc(l.label)}</a>`;
+      }
+      return `<span class="lx-ki-link disabled">${esc(l.label)}</span>`;
+    }).join('');
+    sections.push(`<div class="lx-ki-links">${btnHtml}</div>`);
+  }
+
+  // Due dates from assessmentTasks
+  const tasks = unitCfg.assessmentTasks ?? [];
+  const dueDates = tasks.filter(t => t.due).map(t => {
+    const due = new Date(t.due + 'T00:00:00');
+    const days = Math.round((due - today) / 86400000);
+    const fp = t.flexiblePortal ?? null;
+
+    let chipClass, chipText;
+    if (days < 0) {
+      const fpStillOpen = fp?.closesDate && new Date(fp.closesDate + 'T00:00:00') >= today;
+      if (fpStillOpen) { chipClass = 'lx-ki-teal'; chipText = 'Flexible portal open'; }
+      else             { chipClass = 'lx-ki-grey'; chipText = 'Submitted'; }
+    } else if (days === 0) {
+      chipClass = 'lx-ki-red'; chipText = 'Due today';
+    } else if (fp?.opensDate && new Date(fp.opensDate + 'T00:00:00') <= today) {
+      chipClass = 'lx-ki-teal'; chipText = 'Flexible portal open';
+    } else if (days > 14) {
+      chipClass = 'lx-ki-green'; chipText = `Due in ${days} days`;
+    } else if (days >= 7) {
+      chipClass = 'lx-ki-amber'; chipText = `Due in ${days} days`;
+    } else {
+      chipClass = 'lx-ki-red'; chipText = `Due in ${days} days`;
+    }
+
+    const showPortalLink = fp?.url && (
+      days < 0
+        ? (fp.closesDate && new Date(fp.closesDate + 'T00:00:00') >= today)
+        : (fp.opensDate  && new Date(fp.opensDate  + 'T00:00:00') <= today)
+    );
+    const portalLink = showPortalLink
+      ? ` <a href="${esc(fp.url)}" target="_blank" rel="noopener" style="font-size:.85em;color:var(--lx-primary,#1f6fb2);font-weight:700;">Open portal</a>`
+      : '';
+
+    return `<div style="padding:10px 0;border-bottom:1px solid #dfe6ea;display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
+      <strong style="flex:1;min-width:100px;">${esc(t.id)}</strong>
+      <span style="font-size:.88em;color:#6F7B84;">${formatDateShort(t.due)}</span>
+      <span class="lx-ki-due-chip ${chipClass}">${esc(chipText)}</span>
+      ${portalLink}
+    </div>`;
+  });
+
+  if (dueDates.length) {
+    sections.push(`<div style="margin-bottom:14px;">
+      <div style="font-size:.78em;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:#6F7B84;margin-bottom:6px;">Assessment Due Dates</div>
+      ${dueDates.join('')}
+    </div>`);
+  }
+
+  // Support callout
+  if (unitCfg.supportCallout) {
+    sections.push(`<div class="lx-ki-callout">
+      <div class="lx-ki-callout-label">Support</div>
+      ${esc(unitCfg.supportCallout)}
+    </div>`);
+  }
+
+  el.innerHTML = `<div class="lx-ki">${sections.join('\n')}</div>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 12. renderAssessmentStatus
+// Container: <div id="lxdune-assessment-status"></div>
+// Renders one card per assessmentTask with status chip, LO pills, action pills.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export async function renderAssessmentStatus({ forUnit, forTri, forYear } = {}) {
+  const el = getEl('lxdune-assessment-status');
+  if (!el) return;
+
+  let unitCfg;
+  try {
+    unitCfg = await fetchJson(`${BASE}config/units/${forUnit}.json`);
+  } catch (e) {
+    setError(el, `Could not load content: ${e.message}`);
+    return;
+  }
+
+  applyTheme(unitCfg);
+  injectStyles('lx-as-styles', ASSESSMENT_STATUS_CSS);
+
+  const tasks = unitCfg.assessmentTasks ?? [];
+  if (!tasks.length) {
+    el.innerHTML = `<div style="padding:14px 16px;border:1px solid #dfe6ea;border-radius:8px;font-family:Arial,sans-serif;color:#6F7B84;">No assessment tasks configured for ${esc(forUnit)}.</div>`;
+    return;
+  }
+
+  const loMap = Object.fromEntries((unitCfg.learningOutcomes ?? []).map(lo => [lo.id, lo]));
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const cards = tasks.map(task => {
+    const due  = task.due ? new Date(task.due + 'T00:00:00') : null;
+    const days = due ? Math.round((due - today) / 86400000) : null;
+    const fp   = task.flexiblePortal ?? null;
+
+    // Status chip
+    let statusClass, statusText;
+    if (days === null) {
+      statusClass = 'lx-as-grey'; statusText = 'Date TBC';
+    } else if (days < 0) {
+      const fpStillOpen = fp?.closesDate && new Date(fp.closesDate + 'T00:00:00') >= today;
+      if (fpStillOpen) { statusClass = 'lx-as-teal'; statusText = 'Flexible portal open'; }
+      else             { statusClass = 'lx-as-grey'; statusText = 'Submitted / period closed'; }
+    } else if (days === 0) {
+      statusClass = 'lx-as-red'; statusText = 'Due today';
+    } else if (fp?.opensDate && new Date(fp.opensDate + 'T00:00:00') <= today) {
+      statusClass = 'lx-as-teal'; statusText = 'Flexible portal open';
+    } else if (days > 14) {
+      statusClass = 'lx-as-green'; statusText = `Due in ${days} days`;
+    } else if (days >= 7) {
+      statusClass = 'lx-as-amber'; statusText = `Due in ${days} days`;
+    } else {
+      statusClass = 'lx-as-red'; statusText = `Due in ${days} days`;
+    }
+
+    // Meta line
+    const metaParts = [
+      task.due       ? formatDateShort(task.due) : null,
+      task.weighting ? `${task.weighting}%`      : null,
+      task.length    ? esc(task.length)           : null,
+    ].filter(Boolean);
+
+    // LO pills
+    const loPills = (task.learningOutcomes ?? []).map(id => {
+      const lo    = loMap[id];
+      const color = lo?.color ?? '#6F7B84';
+      return `<span class="lx-as-lo-pill" style="background:${color};">${esc(id)}</span>`;
+    }).join('');
+
+    // Action pills
+    const lnk     = task.links ?? {};
+    const actions  = [];
+    if (lnk.rubric)    actions.push(`<a class="lx-as-action primary" href="${esc(lnk.rubric)}" target="_blank" rel="noopener">Rubric</a>`);
+    if (lnk.taskFiles) actions.push(`<a class="lx-as-action primary" href="${esc(lnk.taskFiles)}" target="_blank" rel="noopener">Task files</a>`);
+    if (lnk.submit)    actions.push(`<a class="lx-as-action submit" href="${esc(lnk.submit)}" target="_blank" rel="noopener">Submit</a>`);
+
+    const fpPortalVisible = fp?.url && (
+      days !== null && (
+        days < 0
+          ? (fp.closesDate && new Date(fp.closesDate + 'T00:00:00') >= today)
+          : (fp.opensDate  && new Date(fp.opensDate  + 'T00:00:00') <= today)
+      )
+    );
+    if (fpPortalVisible) {
+      actions.push(`<a class="lx-as-action" style="background:#d0f0ec;border-color:#b2dfdb;color:#0e5a52;" href="${esc(fp.url)}" target="_blank" rel="noopener">Flexible portal</a>`);
+    }
+    if (lnk.forum) actions.push(`<a class="lx-as-action" href="${esc(lnk.forum)}" target="_blank" rel="noopener">Q&amp;A forum</a>`);
+
+    return `<div class="lx-as-card">
+      <div class="lx-as-title">${esc(task.id)} — ${esc(task.title)}</div>
+      ${metaParts.length ? `<div class="lx-as-meta">${metaParts.join(' · ')}</div>` : ''}
+      <span class="lx-as-status ${statusClass}">${esc(statusText)}</span>
+      ${loPills ? `<div class="lx-as-lo-row">${loPills}</div>` : ''}
+      ${actions.length ? `<div class="lx-as-actions">${actions.join('')}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `<div class="lx-as">
+    <div style="display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px;">${esc(unitCfg.code)} • Assessment Status</div>
+    <h2 style="margin:0 0 16px;">Assessment Overview</h2>
+    <div class="lx-as-grid">${cards}</div>
   </div>`;
 }

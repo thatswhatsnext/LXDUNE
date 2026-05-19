@@ -90,6 +90,8 @@
         <option value="assessment-page">Assessment page</option>
         <option value="course-hub">Course hub</option>
         <option value="presubmission-checklist">Pre-submission checklist</option>
+        <option value="unit-key-info">Unit key info (navigation)</option>
+        <option value="assessment-status">Assessment status (navigation)</option>
       </select>
     </div>
     <div class="form-row" id="task-row" style="display:none;">
@@ -402,6 +404,22 @@
         code: shellCourseHub(unit, tri, year),
         note: `Static block — paste once. Lists all weeks as CSS-only collapsible rows. Uses <code>data-lx-block="course-hub"</code> container.`,
         rows: 10,
+      },
+      {
+        key: 'unit-key-info',
+        title: 'Unit key info',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellBlocks('renderUnitKeyInfo', 'lxdune-unit-key-info', unit, tri, year),
+        note: `Navigation block — paste on the unit home page. Shows banner, key links, due date chips, and support callout. Reads <code>bannerUrl</code>, <code>keyLinks</code>, <code>assessmentTasks</code>, <code>supportCallout</code> from the unit JSON.`,
+        rows: 9,
+      },
+      {
+        key: 'assessment-status',
+        title: 'Assessment status',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellBlocks('renderAssessmentStatus', 'lxdune-assessment-status', unit, tri, year),
+        note: `Navigation block — paste on the unit home page. One card per assessmentTask with live status chip, LO pills, and action links. Reads from <code>assessmentTasks</code> in the unit JSON.`,
+        rows: 9,
       },
     ];
 
