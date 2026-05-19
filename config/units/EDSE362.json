@@ -66,8 +66,6 @@
       "title": null,
       "weighting": 50,
       "length": null,
-      "due": null,
-      "flexiblePortal": null,
       "learningOutcomes": [
         "LO1",
         "LO2",
@@ -87,15 +85,19 @@
       "criteria": [],
       "rubric": [],
       "hdCallout": null,
-      "submissionInstructions": []
+      "submissionInstructions": [],
+      "trimesterDates": {
+        "T2-2027": {
+          "due": null,
+          "flexiblePortal": null
+        }
+      }
     },
     {
       "id": "AT2",
       "title": null,
       "weighting": 50,
       "length": null,
-      "due": null,
-      "flexiblePortal": null,
       "learningOutcomes": [
         "LO4",
         "LO5",
@@ -115,15 +117,33 @@
       "criteria": [],
       "rubric": [],
       "hdCallout": null,
-      "submissionInstructions": []
+      "submissionInstructions": [],
+      "trimesterDates": {
+        "T2-2027": {
+          "due": null,
+          "flexiblePortal": null
+        }
+      }
     }
   ],
   "bannerUrl": "https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE362-banner.svg",
   "supportCallout": "Anything going on that may impact your success in this unit? Don't hesitate to reach out to your lecturer sooner rather than later. We're here to support you.",
   "keyLinks": [
-    { "label": "Unit Outline", "url": null, "external": false },
-    { "label": "Learning Materials", "url": null, "external": false },
-    { "label": "Assessment Portal", "url": null, "external": false }
+    {
+      "label": "Unit Outline",
+      "url": null,
+      "external": false
+    },
+    {
+      "label": "Learning Materials",
+      "url": null,
+      "external": false
+    },
+    {
+      "label": "Assessment Portal",
+      "url": null,
+      "external": false
+    }
   ],
   "trimesterConfig": {
     "T2-2027": {

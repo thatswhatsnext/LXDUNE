@@ -254,7 +254,6 @@ async function resolve({ forUnit, forTri, forYear, forWeek, forDate }) {
   if (!startDate) throw new Error(`No start date for ${forTri} ${forYear}`);
 
   const triKey = `${forTri}-${forYear}`;
-  const zoom = unitCfg.trimesterConfig?.[triKey]?.zoom ?? null;
 
   let weekNum = forWeek != null ? Number(forWeek) : null;
   if (weekNum == null) {
@@ -264,6 +263,10 @@ async function resolve({ forUnit, forTri, forYear, forWeek, forDate }) {
   }
 
   const week = unitCfg.weeks[String(weekNum)] ?? null;
+  const triZoom = unitCfg.trimesterConfig?.[triKey]?.zoom ?? null;
+  const zoomUrl = triZoom?.url ?? week?.links?.zoom ?? null;
+  const zoom = triZoom ? { ...triZoom, url: zoomUrl } : (zoomUrl ? { url: zoomUrl } : null);
+
   return { unitCfg, triCfg, week, weekNum, triKey, startDate, zoom };
 }
 
@@ -732,7 +735,7 @@ function initTabSwitchers(container) {
   });
 }
 
-export async function renderAssessmentPage({ forUnit, forTask } = {}) {
+export async function renderAssessmentPage({ forUnit, forTask, forTri, forYear } = {}) {
   const el = getEl('lxdune-assessment-page');
   if (!el) return;
 
@@ -766,10 +769,12 @@ export async function renderAssessmentPage({ forUnit, forTask } = {}) {
     }
   }
 
-  const loMap   = Object.fromEntries((unitCfg.learningOutcomes ?? []).map(lo => [lo.id, lo]));
-  const lnk     = task.links ?? {};
-  const fp      = task.flexiblePortal ?? null;
-  const parts   = task.parts ?? [];
+  const loMap    = Object.fromEntries((unitCfg.learningOutcomes ?? []).map(lo => [lo.id, lo]));
+  const lnk      = task.links ?? {};
+  const triKey   = forTri && forYear ? `${forTri}-${forYear}` : null;
+  const triDates = triKey ? (task.trimesterDates?.[triKey] ?? {}) : {};
+  const fp       = triDates.flexiblePortal ?? null;
+  const parts    = task.parts ?? [];
   const sections = [];
 
   // Header pill + title
@@ -781,7 +786,7 @@ export async function renderAssessmentPage({ forUnit, forTask } = {}) {
   // ── Section 1: At a glance ─────────────────────────────────────────────────
   const flexLabel = fp ? (fp.label ?? `Flexible portal: ${fp.closesDate}`) : null;
   const metaPills = [
-    task.due       ? `Due: ${esc(formatDateAU(task.due))}` : null,
+    triDates.due   ? `Due: ${esc(formatDateAU(triDates.due))}` : null,
     task.weighting ? `Weighting: ${task.weighting}%` : null,
     task.length    ? `Length: ${esc(task.length)}` : null,
     flexLabel      ? esc(flexLabel) : null,
@@ -1111,11 +1116,15 @@ export async function renderUnitKeyInfo({ forUnit, forTri, forYear } = {}) {
   }
 
   // Due dates from assessmentTasks
+  const triKey = `${forTri}-${forYear}`;
   const tasks = unitCfg.assessmentTasks ?? [];
-  const dueDates = tasks.filter(t => t.due).map(t => {
-    const due = new Date(t.due + 'T00:00:00');
+  const dueDates = tasks.map(t => {
+    const triDates = t.trimesterDates?.[triKey] ?? {};
+    const dueStr = triDates.due ?? null;
+    if (!dueStr) return null;
+    const due = new Date(dueStr + 'T00:00:00');
     const days = Math.round((due - today) / 86400000);
-    const fp = t.flexiblePortal ?? null;
+    const fp = triDates.flexiblePortal ?? null;
 
     let chipClass, chipText;
     if (days < 0) {
@@ -1145,11 +1154,11 @@ export async function renderUnitKeyInfo({ forUnit, forTri, forYear } = {}) {
 
     return `<div style="padding:10px 0;border-bottom:1px solid #dfe6ea;display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
       <strong style="flex:1;min-width:100px;">${esc(t.id)}</strong>
-      <span style="font-size:.88em;color:#6F7B84;">${formatDateShort(t.due)}</span>
+      <span style="font-size:.88em;color:#6F7B84;">${formatDateShort(dueStr)}</span>
       <span class="lx-ki-due-chip ${chipClass}">${esc(chipText)}</span>
       ${portalLink}
     </div>`;
-  });
+  }).filter(Boolean);
 
   if (dueDates.length) {
     sections.push(`<div style="margin-bottom:14px;">
@@ -1196,14 +1205,17 @@ export async function renderAssessmentStatus({ forUnit, forTri, forYear } = {}) 
     return;
   }
 
+  const triKey = `${forTri}-${forYear}`;
   const loMap = Object.fromEntries((unitCfg.learningOutcomes ?? []).map(lo => [lo.id, lo]));
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
   const cards = tasks.map(task => {
-    const due  = task.due ? new Date(task.due + 'T00:00:00') : null;
+    const triDates = task.trimesterDates?.[triKey] ?? {};
+    const dueStr = triDates.due ?? null;
+    const due  = dueStr ? new Date(dueStr + 'T00:00:00') : null;
     const days = due ? Math.round((due - today) / 86400000) : null;
-    const fp   = task.flexiblePortal ?? null;
+    const fp   = triDates.flexiblePortal ?? null;
 
     // Status chip
     let statusClass, statusText;
@@ -1227,7 +1239,7 @@ export async function renderAssessmentStatus({ forUnit, forTri, forYear } = {}) 
 
     // Meta line
     const metaParts = [
-      task.due       ? formatDateShort(task.due) : null,
+      dueStr         ? formatDateShort(dueStr)   : null,
       task.weighting ? `${task.weighting}%`      : null,
       task.length    ? esc(task.length)           : null,
     ].filter(Boolean);

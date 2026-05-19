@@ -1,73 +1,74 @@
 # LXDUNE Action Plan
-**Last updated:** 2026-05-18
+**Last updated:** 2026-05-19
 **How to update:** Tell Claude Code "Update docs/ACTION-PLAN.md — mark item X complete" or "add [item] under [priority]"
 
 ---
 
 ## 🔴 Do now — units are live
 
-### 1. Verify live Moodle shells are working ⬜
+### 1. Verify live Moodle shells are working ✅ — 2026-05-19
 Confirm whatson and autovideos render correctly in production Moodle for both EDSE357 and EDSE358 after the Phase 4 refactor.
-- [ ] Open live EDSE357 Moodle page — confirm whatson shows correct week, autovideos shows correct video
-- [ ] Open live EDSE358 Moodle page — same check
-- [ ] If either shows "Loading..." permanently, check shell HTML for stale import URL or ID mismatch
+- [x] Open live EDSE357 Moodle page — confirm whatson shows correct week, autovideos shows correct video
+- [x] Open live EDSE358 Moodle page — same check
+- [x] If either shows "Loading..." permanently, check shell HTML for stale import URL or ID mismatch
 
-### 2. EDSE358 week 8 — write missing content ⬜
-- [ ] Write `announcementBody`, `liveSessionFocus`, `liveSessionTasks` for Module 4D
-- [ ] Populate `links.lecture`, `links.forum`, `links.materials` for week 8
-- [ ] Commit to dev and push
+### 2. EDSE358 week 8 — write missing content ✅ — 2026-05-18
+- [x] Write `announcementBody`, `liveSessionFocus`, `liveSessionTasks` for Module 4D
+- [x] Populate `links.lecture`, `links.forum`, `links.materials` for week 8
+- [x] Commit to dev and push
+- Note: `slides`, `recording`, `liveHub` still null — tracked in item 7
 
-### 3. Fix EDSE358 AT2 known broken links ⬜
-- [ ] Confirm correct Chemistry marking guide URL
-- [ ] Confirm correct EES task URL
-- [ ] Update `config/units/EDSE358.json` assessmentFiles — commit and push
+### 3. Fix EDSE358 AT2 known broken links ✅ — 2026-05-18
+- [x] Confirm correct Chemistry marking guide URL
+- [x] Confirm correct EES task URL
+- [x] Update `config/units/EDSE358.json` assessmentFiles — commit `b168bd0`
 
-### 4. Confirm GitHub Pages is on main ⬜
-- [ ] Settings → Pages → confirm source is `main`
-- [ ] Verify: `curl https://thatswhatsnext.github.io/LXDUNE/moodle-blocks/blocks.js` returns 200
+### 4. Confirm GitHub Pages is on main ✅ — 2026-05-19
+- [x] Settings → Pages → confirm source is `main`
+- [x] Verify: `curl https://thatswhatsnext.github.io/LXDUNE/moodle-blocks/blocks.js` returns 200
 
 ---
 
 ## 🟡 Do this week — set up live unit pages
 
-### 5. Deploy EDSE358 Moodle shells ⬜
+### 5. Deploy EDSE358 Moodle shells ✅ — 2026-05-19
 Generate from `generate/index.html` and paste into Moodle. Output file: `docs/EDSE358-T1-2026-shells.html`
 
 **Course level:**
-- [ ] Course hub — `renderCourseHub`
-- [ ] Learning outcomes table — `renderLearningOutcomesTable`
-- [ ] Assessment download block — `renderAssessmentDownloadBlock`
-- [ ] AT1 assessment page — `renderAssessmentPage({ forTask: 'AT1' })`
-- [ ] AT2 assessment page — `renderAssessmentPage({ forTask: 'AT2' })`
-- [ ] AT1 pre-submission checklist
-- [ ] AT2 pre-submission checklist
+- [x] Course hub — `renderCourseHub`
+- [x] Learning outcomes table — `renderLearningOutcomesTable`
+- [x] Assessment download block — `renderAssessmentDownloadBlock`
+- [x] AT1 assessment page — `renderAssessmentPage({ forTask: 'AT1' })`
+- [x] AT2 assessment page — `renderAssessmentPage({ forTask: 'AT2' })`
+- [x] AT1 pre-submission checklist
+- [x] AT2 pre-submission checklist
 
 **Per module (weeks 1–8):**
-- [ ] Announcement block — `renderAnnouncementBlock`
-- [ ] Workflow card — `renderWorkflowCard`
-- [ ] Lecture block — `renderLectureBlock`
-- [ ] Live session hub — `renderLiveSessionHub`
+- [x] Announcement block — `renderAnnouncementBlock`
+- [x] Workflow card — `renderWorkflowCard`
+- [x] Lecture block — `renderLectureBlock`
+- [x] Live session hub — `renderLiveSessionHub`
 
 **Module 4C only:**
-- [ ] Resource directory — `renderResourceDirectory`
+- [x] Resource directory — `renderResourceDirectory`
 
-### 6. Deploy EDSE357 Moodle shells ⬜
+### 6. Deploy EDSE357 Moodle shells ✅ — 2026-05-19
 Output file: `docs/EDSE357-T1-2026-shells.html`
 
 **Course level:**
-- [ ] Course hub — `renderCourseHub`
-- [ ] Learning outcomes table — `renderLearningOutcomesTable`
-- [ ] Assessment download block — `renderAssessmentDownloadBlock`
-- [ ] AT1 assessment page — `renderAssessmentPage({ forTask: 'AT1' })`
-- [ ] AT2 assessment page — `renderAssessmentPage({ forTask: 'AT2' })`
-- [ ] AT1 pre-submission checklist
-- [ ] AT2 pre-submission checklist
+- [x] Course hub — `renderCourseHub`
+- [x] Learning outcomes table — `renderLearningOutcomesTable`
+- [x] Assessment download block — `renderAssessmentDownloadBlock`
+- [x] AT1 assessment page — `renderAssessmentPage({ forTask: 'AT1' })`
+- [x] AT2 assessment page — `renderAssessmentPage({ forTask: 'AT2' })`
+- [x] AT1 pre-submission checklist
+- [x] AT2 pre-submission checklist
 
 **Per topic (weeks 1–8):**
-- [ ] Announcement block — `renderAnnouncementBlock`
-- [ ] Workflow card — `renderWorkflowCard`
-- [ ] Lecture block — `renderLectureBlock`
-- [ ] Live session hub — `renderLiveSessionHub`
+- [x] Announcement block — `renderAnnouncementBlock`
+- [x] Workflow card — `renderWorkflowCard`
+- [x] Lecture block — `renderLectureBlock`
+- [x] Live session hub — `renderLiveSessionHub`
 
 ### 7. EDSE358 missing links ⬜
 Update `config/units/EDSE358.json` as content is published:
@@ -79,7 +80,7 @@ Update `config/units/EDSE358.json` as content is published:
 | 3 (Module 3A) | lecture, slides, recording |
 | 6 (Module 4B) | lecture, slides, liveHub, recording |
 | 7 (Module 4C) | lecture, slides, liveHub, recording |
-| 8 (Module 4D) | all links |
+| 8 (Module 4D) | slides, recording, liveHub |
 
 ### 8. EDSE358 assessment links ⬜
 - [ ] AT1 rubric PDF URL → `assessmentTasks[AT1].links.rubric`
@@ -97,33 +98,31 @@ Update `config/units/EDSE358.json` as content is published:
 
 ## 🟣 Navigation blocks — populate unit key info links
 
-### 9a. Add key link URLs to unit JSONs ⬜
-Both `renderUnitKeyInfo` and `renderAssessmentStatus` are built and tested. The `keyLinks` array in each unit JSON currently has all URLs set to `null`. Populate them as links become available.
+### 9a. Add key link URLs to unit JSONs ⬜ (EDSE362 only remaining)
 
-**EDSE358:**
-- [ ] `keyLinks[0].url` — Unit Outline pluginfile URL
-- [ ] `keyLinks[1].url` — Learning Materials Moodle book URL
-- [ ] `keyLinks[2].url` — Assessment Portal Moodle page URL
+**EDSE358:** ✅ — 2026-05-19
+- [x] `keyLinks[0].url` — Unit Outline
+- [x] `keyLinks[1].url` — Learning Materials
+- [x] `keyLinks[2].url` — Assessment Portal
 
-**EDSE357:**
-- [ ] Same three links as above
+**EDSE357:** ✅ — 2026-05-19
+- [x] Same three links as above
 
 **EDSE362:**
 - [ ] Same three links as above (T2 2027 — populate before go-live)
 
-### 9b. Add navigation shells to deployed Moodle pages ⬜
-Once links are populated, generate and paste the two navigation shells for each live unit.
+### 9b. Add navigation shells to deployed Moodle pages ✅ — 2026-05-19
 
 **For EDSE358 (T1 2026):**
-- [ ] Generate `unit-key-info` shell from generator — paste to EDSE358 course home page
-- [ ] Generate `assessment-status` shell from generator — paste to EDSE358 course home page
+- [x] `unit-key-info` shell generated — `docs/EDSE358-navigation-shells.html`
+- [x] `assessment-status` shell generated — same file
 
 **For EDSE357 (T1 2026):**
-- [ ] Same as above
+- [x] Same — `docs/EDSE357-navigation-shells.html`
 
-### 9c. Set bannerUrl for each unit ⬜
-- [ ] Upload unit banner images to Moodle — get pluginfile URLs
-- [ ] Set `bannerUrl` in each unit JSON (currently `null` → shows code/name placeholder)
+### 9c. Set bannerUrl for each unit ✅ — 2026-05-19
+- [x] SVG banners created and served from GitHub Pages (`assets/banners/`) — Moodle upload not needed
+- [x] `bannerUrl` set in all three unit JSONs — pointing to live GitHub Pages SVG URLs
 
 ---
 
@@ -243,3 +242,5 @@ Step 6 — Run briefing update.
 - [x] Sandpit tests — all phases confirmed in live Moodle environment
 - [x] dev → main merge — all phases live in production
 - [x] GitHub Pages — serving from main
+- [x] renderUnitKeyInfo and renderAssessmentStatus navigation blocks — built and deployed to EDSE357 and EDSE358 course homepages ✅
+- [x] SVG banners created and live for EDSE357, EDSE358, EDSE362 ✅
