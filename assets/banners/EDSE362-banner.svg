@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200" viewBox="0 0 800 200">
+  <defs>
+    <linearGradient id="bg362" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2E7D52"/>
+      <stop offset="100%" stop-color="#4aad78"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="200" fill="url(#bg362)"/>
+
+  <!-- Unit code -->
+  <text x="44" y="95" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700" fill="#ffffff" letter-spacing="-1">EDSE362</text>
+
+  <!-- Unit name (two lines — longer title) -->
+  <text font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#ffffff" opacity="0.90">
+    <tspan x="46" dy="0" y="128">Science Education 11&#x2013;12: Curriculum, Pedagogy</tspan>
+    <tspan x="46" dy="24">and Inclusive Practice</tspan>
+  </text>
+
+  <!-- University name -->
+  <text x="760" y="182" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#ffffff" opacity="0.55" text-anchor="end">University of New England</text>
+
+  <!-- Accent bar -->
+  <rect x="0" y="196" width="800" height="4" fill="#E3B089"/>
+</svg>

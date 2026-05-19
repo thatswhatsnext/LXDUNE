@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200" viewBox="0 0 800 200">
+  <defs>
+    <linearGradient id="bg358" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7C5DB6"/>
+      <stop offset="100%" stop-color="#a085d4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="200" fill="url(#bg358)"/>
+
+  <!-- Unit code -->
+  <text x="44" y="108" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700" fill="#ffffff" letter-spacing="-1">EDSE358</text>
+
+  <!-- Unit name -->
+  <text x="46" y="138" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#ffffff" opacity="0.90">Science Education 11&#x2013;12: Plan, Assess and Report</text>
+
+  <!-- University name -->
+  <text x="760" y="182" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#ffffff" opacity="0.55" text-anchor="end">University of New England</text>
+
+  <!-- Accent bar -->
+  <rect x="0" y="196" width="800" height="4" fill="#4FA9B5"/>
+</svg>
