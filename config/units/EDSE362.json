@@ -155,6 +155,16 @@
       "external": false
     }
   ],
+  "contacts": {
+    "coordinator": {
+      "name": "Steve Grant",
+      "email": "sgrant39@une.edu.au"
+    },
+    "lecturer": {
+      "name": null,
+      "email": null
+    }
+  },
   "trimesterConfig": {
     "T2-2026": {
       "zoom": {
