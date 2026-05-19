@@ -152,14 +152,17 @@ Populate as content is published — for each of Topics 1–8:
 
 ## 🟢 Do before T2 2026
 
-### 12. EDSE358 T2 2026 preparation ⬜
+### 12. EDSE358 T2 2026 preparation ⬜ (in progress)
 T2 starts 2026-06-22.
-- [ ] Add T2-2026 trimesterConfig to `EDSE358.json` — new Zoom meeting ID and URL
-- [ ] Confirm T2 start date in `trimester-config.json` (currently `2026-06-22`)
-- [ ] Review and update assessment due dates for T2
+- [x] Per-trimester dates schema implemented — `assessmentTasks` now uses `trimesterDates` object keyed by trimester (e.g. `T1-2026`) in all three unit JSONs ✅ 2026-05-19
+- [x] Zoom URL now driven from `trimesterConfig` — week-level `links.zoom` nulled out in EDSE358 weeks 3–8; `blocks.js` falls back to `week.links.zoom` if `trimesterConfig` zoom is null ✅ 2026-05-19
+- [x] T2-2026 stub added to EDSE358 `trimesterConfig` ✅ 2026-05-19
+- [x] T2-2026 Zoom meeting ID and URL — set to same meeting as T1-2026 ✅ 2026-05-19
+- [x] Confirm T2 start date in `trimester-config.json` — `2026-06-22` ✅ already correct
+- [ ] Confirm T2 assessment due dates — pending Steve providing dates; add to `assessmentTasks[AT1/AT2].trimesterDates.T2-2026`
+- [x] Verify test harness for T2 — blocks render correctly; T2 date fields show "Date TBC" until due dates are added ✅ 2026-05-19
+- [ ] Update Moodle shells `forTri` and `forYear` for T2 — regenerate from generator once T2 due dates are confirmed
 - [ ] Update any module content that changes between trimesters
-- [ ] Verify whatson and autovideos render correctly for T2 dates in test harness
-- [ ] Update Moodle shells `forTri` and `forStartDate` parameters
 
 ### 13. Fix `briefing-update` slash command ⬜
 - [ ] Update Claude Code: `npm update -g @anthropic-ai/claude-code`
