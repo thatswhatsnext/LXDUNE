@@ -269,6 +269,7 @@
     <button class="tab-btn" id="tab-assess" type="button">Assessment Page</button>
     <button class="tab-btn" id="tab-hub" type="button">Course Hub</button>
     <button class="tab-btn" id="tab-checklist" type="button">Checklist</button>
+    <button class="tab-btn" id="tab-nav" type="button">Navigation</button>
   </div>
 </div>
 
@@ -357,6 +358,20 @@
   </div>
 </div>
 
+<!-- ── Navigation tab ────────────────────────────────────────────────────── -->
+<div class="assess-page" id="nav-page" style="display:none;">
+  <div style="display:grid;grid-template-columns:minmax(280px,380px) 1fr;gap:20px;align-items:start;">
+    <div class="assess-output" style="padding:16px;">
+      <div style="font-family:'Courier New',monospace;font-size:.78em;color:#9aacb8;margin-bottom:10px;">renderUnitKeyInfo — #lxdune-unit-key-info</div>
+      <div id="lxdune-unit-key-info"></div>
+    </div>
+    <div class="assess-output" style="padding:16px;">
+      <div style="font-family:'Courier New',monospace;font-size:.78em;color:#9aacb8;margin-bottom:10px;">renderAssessmentStatus — #lxdune-assessment-status</div>
+      <div id="lxdune-assessment-status"></div>
+    </div>
+  </div>
+</div>
+
 <!-- ── Assessment tab ─────────────────────────────────────────────────────── -->
 <div class="assess-page" id="assess-page" style="display:none;">
   <div class="assess-ctrl-bar">
@@ -384,6 +399,8 @@ import {
   renderAssessmentPage,
   renderCourseHub,
   renderPresubmissionChecklist,
+  renderUnitKeyInfo,
+  renderAssessmentStatus,
 } from '../moodle-blocks/blocks.js';
 
 // ── State ─────────────────────────────────────────────────────────────────────
@@ -615,6 +632,7 @@ function scheduleRender(delay = 150) {
   renderTimer = setTimeout(renderAll, delay);
   if (activeTab === 'hub') scheduleHubRender(delay);
   if (activeTab === 'checklist') scheduleClRender(delay);
+  if (activeTab === 'nav') scheduleNavRender(delay);
 }
 
 // ── Event wiring ──────────────────────────────────────────────────────────────
@@ -654,19 +672,23 @@ function switchTab(tab) {
   document.getElementById('tab-assess').classList.toggle('active', tab === 'assess');
   document.getElementById('tab-hub').classList.toggle('active', tab === 'hub');
   document.getElementById('tab-checklist').classList.toggle('active', tab === 'checklist');
+  document.getElementById('tab-nav').classList.toggle('active', tab === 'nav');
   document.querySelector('.blocks-page').style.display = tab === 'blocks' ? '' : 'none';
   document.getElementById('assess-page').style.display = tab === 'assess' ? '' : 'none';
   document.getElementById('hub-page').style.display = tab === 'hub' ? '' : 'none';
   document.getElementById('checklist-page').style.display = tab === 'checklist' ? '' : 'none';
+  document.getElementById('nav-page').style.display = tab === 'nav' ? '' : 'none';
   if (tab === 'assess') scheduleAssessRender(0);
   if (tab === 'hub') scheduleHubRender(0);
   if (tab === 'checklist') scheduleClRender(0);
+  if (tab === 'nav') scheduleNavRender(0);
 }
 
 document.getElementById('tab-blocks').addEventListener('click', () => switchTab('blocks'));
 document.getElementById('tab-assess').addEventListener('click', () => switchTab('assess'));
 document.getElementById('tab-hub').addEventListener('click', () => switchTab('hub'));
 document.getElementById('tab-checklist').addEventListener('click', () => switchTab('checklist'));
+document.getElementById('tab-nav').addEventListener('click', () => switchTab('nav'));
 
 // ── Assessment render ─────────────────────────────────────────────────────────
 
@@ -746,6 +768,35 @@ function scheduleClRender(delay = 150) {
 
 document.getElementById('sel-cl-task').addEventListener('change', () => scheduleClRender());
 document.getElementById('rerender-cl-btn').addEventListener('click', () => scheduleClRender(0));
+
+// ── Navigation render ─────────────────────────────────────────────────────────
+
+let navTimer = null;
+
+async function renderNav() {
+  const forUnit = document.getElementById('sel-unit').value;
+  const forTri  = document.getElementById('sel-tri').value;
+  const forYear = document.getElementById('sel-year').value;
+  const kiEl    = document.getElementById('lxdune-unit-key-info');
+  const asEl    = document.getElementById('lxdune-assessment-status');
+  if (kiEl) kiEl.innerHTML = '<div class="block-loading">Rendering…</div>';
+  if (asEl) asEl.innerHTML = '<div class="block-loading">Rendering…</div>';
+  await Promise.all([
+    renderUnitKeyInfo({ forUnit, forTri, forYear }).catch(e => {
+      if (kiEl) kiEl.innerHTML = `<div class="block-err">Error: ${e.message}</div>`;
+    }),
+    renderAssessmentStatus({ forUnit, forTri, forYear }).catch(e => {
+      if (asEl) asEl.innerHTML = `<div class="block-err">Error: ${e.message}</div>`;
+    }),
+  ]);
+  if (kiEl && !kiEl.innerHTML.trim()) kiEl.innerHTML = '<div class="block-empty">No key info configured for this unit.</div>';
+  if (asEl && !asEl.innerHTML.trim()) asEl.innerHTML = '<div class="block-empty">No assessment tasks configured for this unit.</div>';
+}
+
+function scheduleNavRender(delay = 150) {
+  clearTimeout(navTimer);
+  navTimer = setTimeout(renderNav, delay);
+}
 
 // Also refresh task dropdown when unit changes (repopulate from unit JSON)
 const origUnitChange = document.getElementById('sel-unit').onchange;

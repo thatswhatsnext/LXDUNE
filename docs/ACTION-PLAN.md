@@ -95,6 +95,38 @@ Update `config/units/EDSE358.json` as content is published:
 
 ---
 
+## 🟣 Navigation blocks — populate unit key info links
+
+### 9a. Add key link URLs to unit JSONs ⬜
+Both `renderUnitKeyInfo` and `renderAssessmentStatus` are built and tested. The `keyLinks` array in each unit JSON currently has all URLs set to `null`. Populate them as links become available.
+
+**EDSE358:**
+- [ ] `keyLinks[0].url` — Unit Outline pluginfile URL
+- [ ] `keyLinks[1].url` — Learning Materials Moodle book URL
+- [ ] `keyLinks[2].url` — Assessment Portal Moodle page URL
+
+**EDSE357:**
+- [ ] Same three links as above
+
+**EDSE362:**
+- [ ] Same three links as above (T2 2027 — populate before go-live)
+
+### 9b. Add navigation shells to deployed Moodle pages ⬜
+Once links are populated, generate and paste the two navigation shells for each live unit.
+
+**For EDSE358 (T1 2026):**
+- [ ] Generate `unit-key-info` shell from generator — paste to EDSE358 course home page
+- [ ] Generate `assessment-status` shell from generator — paste to EDSE358 course home page
+
+**For EDSE357 (T1 2026):**
+- [ ] Same as above
+
+### 9c. Set bannerUrl for each unit ⬜
+- [ ] Upload unit banner images to Moodle — get pluginfile URLs
+- [ ] Set `bannerUrl` in each unit JSON (currently `null` → shows code/name placeholder)
+
+---
+
 ## 🟠 Do before end of trimester — EDSE357 content
 
 ### 10. EDSE357 week links ⬜
