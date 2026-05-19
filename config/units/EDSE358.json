@@ -566,12 +566,12 @@
       "submissionInstructions": []
     }
   ],
-  "bannerUrl": "https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE358-banner.svg",
+  "bannerUrl": null,
   "supportCallout": "Anything going on that may impact your success in this unit? Don't hesitate to reach out to your lecturer sooner rather than later. We're here to support you.",
   "keyLinks": [
-    { "label": "Unit Outline", "url": null, "external": false },
-    { "label": "Learning Materials", "url": null, "external": false },
-    { "label": "Assessment Portal", "url": null, "external": false }
+    { "label": "Unit Outline", "url": "https://mylearn.une.edu.au/course/section.php?id=477942", "external": false },
+    { "label": "Learning Materials", "url": "https://mylearn.une.edu.au/course/section.php?id=477942#module-3381663", "external": false },
+    { "label": "Assessment Portal", "url": "https://mylearn.une.edu.au/course/section.php?id=477943", "external": false }
   ],
   "trimesterConfig": {
     "T1-2026": {
