@@ -1127,23 +1127,24 @@ export async function renderUnitKeyInfo({ forUnit, forTri, forYear } = {}) {
   }
 
   // Contacts
-  const contacts = unitCfg.contacts ?? [];
-  if (contacts.length) {
-    const contactItems = contacts.map(c => {
-      const namePart = c.name
-        ? `<div class="lx-ki-contact-name">${esc(c.name)}</div>`
-        : `<div class="lx-ki-contact-name" style="color:#6F7B84;">TBC</div>`;
-      const emailPart = c.email
-        ? `<div class="lx-ki-contact-email"><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></div>`
-        : '';
-      return `<div class="lx-ki-contact">
-        <div class="lx-ki-contact-role">${esc(c.role ?? '')}</div>
-        ${namePart}${emailPart}
-      </div>`;
-    }).join('');
+  const contacts = unitCfg.contacts ?? {};
+  const coord = contacts.coordinator ?? null;
+  const lect  = contacts.lecturer  ?? null;
+  const hasCoord = coord !== null && (coord.name !== null || coord.email !== null);
+  const hasLect  = lect  !== null && (lect.name  !== null || lect.email  !== null);
+  if (hasCoord || hasLect) {
+    const contactRow = (roleLabel, c) => {
+      const name  = c?.name  ? `<div class="lx-ki-contact-name">${esc(c.name)}</div>`
+                              : `<div class="lx-ki-contact-name" style="color:#6F7B84;">TBC</div>`;
+      const email = c?.email ? `<div class="lx-ki-contact-email"><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></div>` : '';
+      return `<div class="lx-ki-contact"><div class="lx-ki-contact-role">${esc(roleLabel)}</div>${name}${email}</div>`;
+    };
+    const rows = (hasCoord && !hasLect) ? contactRow('Unit Coordinator / Lecturer', coord)
+               : (hasCoord && hasLect)  ? contactRow('Unit Coordinator', coord) + contactRow('Lecturer', lect)
+               :                          contactRow('Lecturer', lect);
     sections.push(`<details class="lx-ki-contacts">
       <summary>Unit Coordinator / Lecturer</summary>
-      <div class="lx-ki-contacts-body">${contactItems}</div>
+      <div class="lx-ki-contacts-body">${rows}</div>
     </details>`);
   }
 

@@ -49,18 +49,43 @@
     <span class="lx-ki-link" style="opacity:.55;pointer-events:none;">Assessment Portal</span>
   </div>
 
-  <!-- Contacts — rendered when contacts array is set in unit JSON; omitted if absent/empty -->
+  <!--
+    Contacts — rendered from contacts.coordinator / contacts.lecturer in unit JSON.
+    Omitted entirely when both coordinator and lecturer have null name and email.
+
+    Pattern A: coordinator only (lecturer null) → one row labelled 'Unit Coordinator / Lecturer'
+    Pattern B: both present → two rows with distinct labels 'Unit Coordinator' / 'Lecturer'
+    Pattern C: lecturer only (edge case) → one row labelled 'Lecturer'
+    Pattern D: both null → section omitted
+  -->
+
+  <!-- Pattern A — coordinator only -->
   <details class="lx-ki-contacts">
     <summary>Unit Coordinator / Lecturer</summary>
     <div class="lx-ki-contacts-body">
-      <!-- One .lx-ki-contact per entry; repeat as needed -->
       <div class="lx-ki-contact">
-        <div class="lx-ki-contact-role">{{CONTACT_ROLE}}</div>
-        <div class="lx-ki-contact-name">{{CONTACT_NAME}}</div>
-        <!-- Email link — only rendered when email is non-null -->
-        <div class="lx-ki-contact-email"><a href="mailto:{{CONTACT_EMAIL}}">{{CONTACT_EMAIL}}</a></div>
+        <div class="lx-ki-contact-role">Unit Coordinator / Lecturer</div>
+        <div class="lx-ki-contact-name">{{COORDINATOR_NAME}}</div>
+        <div class="lx-ki-contact-email"><a href="mailto:{{COORDINATOR_EMAIL}}">{{COORDINATOR_EMAIL}}</a></div>
       </div>
-      <!-- Divider between contacts: .lx-ki-contact+.lx-ki-contact has border-top automatically -->
+    </div>
+  </details>
+
+  <!-- Pattern B — both present -->
+  <details class="lx-ki-contacts">
+    <summary>Unit Coordinator / Lecturer</summary>
+    <div class="lx-ki-contacts-body">
+      <div class="lx-ki-contact">
+        <div class="lx-ki-contact-role">Unit Coordinator</div>
+        <div class="lx-ki-contact-name">{{COORDINATOR_NAME}}</div>
+        <div class="lx-ki-contact-email"><a href="mailto:{{COORDINATOR_EMAIL}}">{{COORDINATOR_EMAIL}}</a></div>
+      </div>
+      <!-- .lx-ki-contact+.lx-ki-contact gets border-top automatically -->
+      <div class="lx-ki-contact">
+        <div class="lx-ki-contact-role">Lecturer</div>
+        <div class="lx-ki-contact-name">{{LECTURER_NAME}}</div>
+        <div class="lx-ki-contact-email"><a href="mailto:{{LECTURER_EMAIL}}">{{LECTURER_EMAIL}}</a></div>
+      </div>
     </div>
   </details>
 
@@ -106,7 +131,10 @@
 CONFIG SOURCES
   bannerUrl         → unitCfg.bannerUrl (null → placeholder div)
   keyLinks[]        → unitCfg.keyLinks  (url null → disabled span)
-  contacts[]        → unitCfg.contacts  (absent/empty → section omitted; null name → "TBC"; null email → name only, no link)
+  contacts          → unitCfg.contacts.coordinator / .lecturer
+                       coord only → one row 'Unit Coordinator / Lecturer'
+                       both → two rows with distinct labels
+                       both null → section omitted
   due date rows     → unitCfg.assessmentTasks[].trimesterDates[triKey].due
   chip colour logic →
     days < 0  + fp still open  → teal  "Flexible portal open"
