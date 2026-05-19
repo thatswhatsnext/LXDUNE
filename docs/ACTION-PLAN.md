@@ -109,7 +109,7 @@ Update `config/units/EDSE358.json` as content is published:
 - [x] Same three links as above
 
 **EDSE362:**
-- [ ] Same three links as above (T2 2027 — populate before go-live)
+- [ ] Same three links as above (T2 2026 — populate before go-live)
 
 ### 9b. Add navigation shells to deployed Moodle pages ✅ — 2026-05-19
 
@@ -215,12 +215,15 @@ Step 6 — Run briefing update.
 
 ---
 
-## 🔵 Do before T2 2027 — EDSE362
+## 🔵 Do before T2 2026 go-live — EDSE362
+
+⚠️ **Correction: EDSE362 runs T2 2026 (starts 2026-06-22), not T2 2027 as previously recorded.**
 
 ### 16. EDSE362 full population ⬜
-- [ ] Confirm T2 2027 start date against UNE academic calendar (currently placeholder `2027-06-21`)
-- [ ] Confirm T3 2027 dates
-- [ ] Set up Zoom meeting for T2 2027 — add to config
+- [x] T2-2026 start date confirmed — `2026-06-22` in `trimester-config.json` ✅
+- [x] AT1 and AT2 due dates populated in `trimesterDates.T2-2026` ✅ (AT1: 2026-07-26, AT2: 2026-09-06)
+- [ ] Set up Zoom meeting for T2 2026 — add `meetingId`, `password`, `url` to `trimesterConfig.T2-2026`
+- [ ] Populate `keyLinks` URLs (Unit Outline, Learning Materials, Assessment Portal)
 - [ ] Record week 0–8 lecture videos — add YouTube IDs to config
 - [ ] Populate all week links as content is created
 - [ ] Write `assessmentTasks` AT1 and AT2 in full — rationale, aim, parts, criteria, rubric descriptors, checklists

@@ -87,10 +87,6 @@
       "hdCallout": null,
       "submissionInstructions": [],
       "trimesterDates": {
-        "T2-2027": {
-          "due": null,
-          "flexiblePortal": null
-        },
         "T2-2026": {
           "due": "2026-07-26",
           "flexiblePortal": {
@@ -128,10 +124,6 @@
       "hdCallout": null,
       "submissionInstructions": [],
       "trimesterDates": {
-        "T2-2027": {
-          "due": null,
-          "flexiblePortal": null
-        },
         "T2-2026": {
           "due": "2026-09-06",
           "flexiblePortal": {
@@ -164,7 +156,7 @@
     }
   ],
   "trimesterConfig": {
-    "T2-2027": {
+    "T2-2026": {
       "zoom": {
         "meetingId": null,
         "password": null,
