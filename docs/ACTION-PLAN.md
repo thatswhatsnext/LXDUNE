@@ -213,13 +213,20 @@ Step 6 — Run briefing update.
 
 **Estimated effort:** one session, two parallel subagents (schema migration + renderer/generator/test harness).
 
+### 16. Build renderAlignmentMap() as 13th render function ⬜
+Config-driven alignment map reading from `unitCfg.alignmentMap`. Migrate EDSE362 alignment map data from static template into `config/units/EDSE362.json`. Add shell type to generator and tab to test harness.
+
+**Trigger:** when a second unit needs an alignment map, or before T2 2026 go-live for EDSE362.
+
+**Spec:** see `templates/constructive-alignment-map.html` for reference implementation. JSON schema follows the same pattern as `weeks` and `assessmentTasks` — outcomes array with `id`, `shortTitle`, `aitsl`, `teaching`, `practice`, `a1`, `a2`, and `advice` fields.
+
 ---
 
 ## 🔵 Do before T2 2026 go-live — EDSE362
 
 ⚠️ **Correction: EDSE362 runs T2 2026 (starts 2026-06-22), not T2 2027 as previously recorded.**
 
-### 16. EDSE362 full population ⬜
+### 17. EDSE362 full population ⬜
 - [x] T2-2026 start date confirmed — `2026-06-22` in `trimester-config.json` ✅
 - [x] AT1 and AT2 due dates populated in `trimesterDates.T2-2026` ✅ (AT1: 2026-07-26, AT2: 2026-09-06)
 - [ ] Set up Zoom meeting for T2 2026 — add `meetingId`, `password`, `url` to `trimesterConfig.T2-2026`

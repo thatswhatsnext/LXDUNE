@@ -1,0 +1,357 @@
+<!--
+  constructive-alignment-map.html
+  Purpose: reusable constructive alignment map for any UNE science education unit.
+  How to use: copy this file, replace all {{PLACEHOLDER}} tokens with unit-specific content.
+  See constructive-alignment-map-EDSE362.html for a fully populated reference example.
+
+  ── TOKEN REFERENCE ────────────────────────────────────────────────────────────────
+
+  {{UNIT_CODE}}          Unit code shown in the title bar (e.g. EDSE362)
+  {{UNIT_NAME}}          Full unit name for the sr-only heading
+  {{A1_LABEL}}           Assessment 1 column heading HTML including weight
+                           e.g. Assessment 1 <span style="font-weight:400">(40 marks)</span>
+  {{A2_LABEL}}           Assessment 2 column heading HTML including weight
+  {{FOOTER_NOTE}}        Text inside the "Reading the map" footer
+
+  Per LO (repeat LON_ prefix for LO1 through LO6):
+  {{LON_ID}}             Label text inside the pill (e.g. LO1)
+  {{LON_SHORT_TITLE}}    Short description shown under the pill
+  {{LON_AITSL}}          AITSL GTSD codes (e.g. 2.1.1 · 2.2.1)
+  {{LON_TEACHING_PILLS}} One or more <span class="cell-pill pill-X">…</span> elements
+  {{LON_PRACTICE_PILLS}} Pills and/or gap-note / imp-note divs (see below)
+  {{LON_A1_PILLS}}       Pills with optional mark-badge spans; use pill-none if not assessed
+  {{LON_A2_PILLS}}       Pills with optional mark-badge spans
+  {{LON_ADVICE}}         Full advice paragraph shown in the expandable detail panel
+
+  ── AVAILABLE PILL CLASSES ─────────────────────────────────────────────────────────
+
+  pill-topic   Teaching content (green tint)
+  pill-forum   Practice activities / forum tasks (amber tint)
+  pill-new     New or revised additions — renders italic (green tint, italic)
+  pill-a1      Assessment 1 items (green tint)
+  pill-a2      Assessment 2 items (amber tint)
+  pill-none    Not assessed in this column (red tint)
+
+  ── AVAILABLE NOTE CLASSES ─────────────────────────────────────────────────────────
+
+  gap-note     Amber left-border callout — preparation advice, flags a practice gap
+  imp-note     Green left-border callout — improvement or new content note
+
+  ── LO COLOUR CLASSES ──────────────────────────────────────────────────────────────
+
+  lo1-label through lo6-label control the LO pill background.
+  Colours are set by --lo1 through --lo6 CSS custom properties in :root.
+  Update these hex values to match the unit's LO colour scheme.
+  Also update the hardcoded theme colour (#2E7D52 in .ca-title border,
+  .ca-table th background, .detail-close hover, and mark-badge border)
+  to match the unit's primary colour.
+
+  ── STATUS COLUMN ──────────────────────────────────────────────────────────────────
+
+  There is no status column — this is a student-facing resource.
+  Alignment strength is conveyed implicitly through pill density and advice text.
+
+-->
+
+<h2 class="sr-only">Constructive alignment map for {{UNIT_CODE}}: {{UNIT_NAME}} — showing how each learning outcome is taught, practised, and assessed across the unit</h2>
+
+<style>
+:root {
+
+  --color-text-primary:        #1F2A33;
+  --color-text-secondary:      #4a5568;
+  --color-text-tertiary:       #6F7B84;
+  --color-background-primary:  #ffffff;
+  --color-background-secondary:#f0f7f3;
+  --color-border-secondary:    #b8dcc8;
+  --color-border-tertiary:     #dfe6ea;
+
+  /* LO colours — update these to match the unit's LO colour scheme */
+  --lo1: #2E7D52;
+  --lo2: #E3B089;
+  --lo3: #4aad78;
+  --lo4: #C4872D;
+  --lo5: #1f6fb2;
+  --lo6: #25797F;
+}
+
+* { box-sizing: border-box; }
+
+.ca-wrap {
+  padding: 1rem 0;
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+  color: var(--color-text-primary);
+  max-width: 100%;
+}
+
+.ca-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 4px;
+  border-left: 5px solid #2E7D52;
+  padding-left: 10px;
+}
+
+.ca-sub {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  margin: 0 0 16px;
+  padding-left: 15px;
+}
+
+.ca-table { width: 100%; border-collapse: collapse; }
+
+.ca-table th {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: 8px 10px;
+  border-bottom: 2px solid #2E7D52;
+  text-align: left;
+  background: #2E7D52;
+}
+
+.ca-table th:first-child { border-radius: 8px 0 0 0; }
+.ca-table th:last-child  { border-radius: 0 8px 0 0; }
+.ca-table th.col-t  { width: 22%; }
+.ca-table th.col-p  { width: 24%; }
+.ca-table th.col-a1 { width: 27%; }
+.ca-table th.col-a2 { width: 27%; }
+
+.lo-row td {
+  vertical-align: top;
+  padding: 10px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  background: var(--color-background-primary);
+  cursor: pointer;
+}
+
+.lo-row:hover td { background: var(--color-background-secondary); }
+
+/* LO label pills — matching course-wide LO styling */
+.lo-label {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 13px;
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.lo1-label { background: var(--lo1); }
+.lo2-label { background: var(--lo2); color: #1F2A33; }
+.lo3-label { background: var(--lo3); }
+.lo4-label { background: var(--lo4); }
+.lo5-label { background: var(--lo5); }
+.lo6-label { background: var(--lo6); }
+
+.lo-gtsd {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  margin-top: 2px;
+}
+
+.cell-pill {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 11px;
+  font-weight: 500;
+  margin: 2px 2px 2px 0;
+  line-height: 1.5;
+}
+
+.pill-topic  { background: #f0f7f3; color: #2E7D52; border: 0.5px solid #b8dcc8; }
+.pill-forum  { background: #fff8f0; color: #7a4a1a; border: 0.5px solid #E3B089; }
+.pill-new    { background: #e8f5ee; color: #1a5c38; border: 0.5px solid #2E7D52; font-style: italic; }
+.pill-a1     { background: #e8f5ee; color: #1a5c38; border: 0.5px solid #4aad78; }
+.pill-a2     { background: #fff3e8; color: #7a4a1a; border: 0.5px solid #E3B089; }
+.pill-none   { background: #FCEBEB; color: #791F1F; border: 0.5px solid #F09595; }
+
+
+.mark-badge {
+  display: inline-block;
+  background: #f0f7f3;
+  border: 0.5px solid #b8dcc8;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 10px;
+  color: #2E7D52;
+  margin-left: 3px;
+}
+
+.detail-panel {
+  display: none;
+  background: #f0f7f3;
+  border-radius: 8px;
+  border: 0.5px solid #b8dcc8;
+  border-left: 4px solid #2E7D52;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.detail-panel.open { display: block; }
+
+.detail-panel strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.detail-close {
+  float: right;
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.detail-close:hover { color: #2E7D52; }
+.lo-row td:first-child { min-width: 110px; }
+
+.gap-note {
+  background: #fff8f0;
+  border-left: 2px solid #E3B089;
+  border-radius: 0 4px 4px 0;
+  padding: 6px 8px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #7a4a1a;
+}
+
+.imp-note {
+  background: #e8f5ee;
+  border-left: 2px solid #2E7D52;
+  border-radius: 0 4px 4px 0;
+  padding: 6px 8px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #1a5c38;
+}
+
+.ca-footer {
+  margin-top: 16px;
+  padding: 10px 12px;
+  background: #f0f7f3;
+  border-radius: 8px;
+  border: 0.5px solid #b8dcc8;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.ca-footer strong { color: var(--color-text-primary); font-size: 12px; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+</style>
+
+<div class="ca-wrap">
+  <p class="ca-title">{{UNIT_CODE}} — Constructive Alignment Map</p>
+  <p class="ca-sub">Click any row for advice on how to meet each learning outcome.</p>
+  <table class="ca-table">
+    <thead>
+      <tr>
+        <th>Learning outcome<br><span style="font-weight:400;text-transform:none;letter-spacing:0">+ AITSL GTSDs</span></th>
+        <th class="col-t">Teaching <span style="font-weight:400">(Topics)</span></th>
+        <th class="col-p">Practice <span style="font-weight:400">(Activities)</span></th>
+        <th class="col-a1">{{A1_LABEL}}</th>
+        <th class="col-a2">{{A2_LABEL}}</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- ── LO1 ── -->
+      <tr class="lo-row" onclick="toggle('lo1')">
+        <td><div class="lo-label lo1-label">{{LO1_ID}}</div><div style="font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-top:2px">{{LO1_SHORT_TITLE}}</div><div class="lo-gtsd">{{LO1_AITSL}}</div></td>
+        <td>{{LO1_TEACHING_PILLS}}</td>
+        <td>{{LO1_PRACTICE_PILLS}}</td>
+        <td>{{LO1_A1_PILLS}}</td>
+        <td>{{LO1_A2_PILLS}}</td>
+      </tr>
+      <tr><td colspan="5" style="padding:0 0 8px 0"><div class="detail-panel" id="lo1"><button class="detail-close" onclick="toggle('lo1');event.stopPropagation()">close ✕</button>{{LO1_ADVICE}}</div></td></tr>
+
+      <!-- ── LO2 ── -->
+      <tr class="lo-row" onclick="toggle('lo2')">
+        <td><div class="lo-label lo2-label">{{LO2_ID}}</div><div style="font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-top:2px">{{LO2_SHORT_TITLE}}</div><div class="lo-gtsd">{{LO2_AITSL}}</div></td>
+        <td>{{LO2_TEACHING_PILLS}}</td>
+        <td>{{LO2_PRACTICE_PILLS}}</td>
+        <td>{{LO2_A1_PILLS}}</td>
+        <td>{{LO2_A2_PILLS}}</td>
+      </tr>
+      <tr><td colspan="5" style="padding:0 0 8px 0"><div class="detail-panel" id="lo2"><button class="detail-close" onclick="toggle('lo2');event.stopPropagation()">close ✕</button>{{LO2_ADVICE}}</div></td></tr>
+
+      <!-- ── LO3 ── -->
+      <tr class="lo-row" onclick="toggle('lo3')">
+        <td><div class="lo-label lo3-label">{{LO3_ID}}</div><div style="font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-top:2px">{{LO3_SHORT_TITLE}}</div><div class="lo-gtsd">{{LO3_AITSL}}</div></td>
+        <td>{{LO3_TEACHING_PILLS}}</td>
+        <td>{{LO3_PRACTICE_PILLS}}</td>
+        <td>{{LO3_A1_PILLS}}</td>
+        <td>{{LO3_A2_PILLS}}</td>
+      </tr>
+      <tr><td colspan="5" style="padding:0 0 8px 0"><div class="detail-panel" id="lo3"><button class="detail-close" onclick="toggle('lo3');event.stopPropagation()">close ✕</button>{{LO3_ADVICE}}</div></td></tr>
+
+      <!-- ── LO4 ── -->
+      <tr class="lo-row" onclick="toggle('lo4')">
+        <td><div class="lo-label lo4-label">{{LO4_ID}}</div><div style="font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-top:2px">{{LO4_SHORT_TITLE}}</div><div class="lo-gtsd">{{LO4_AITSL}}</div></td>
+        <td>{{LO4_TEACHING_PILLS}}</td>
+        <td>{{LO4_PRACTICE_PILLS}}</td>
+        <td>{{LO4_A1_PILLS}}</td>
+        <td>{{LO4_A2_PILLS}}</td>
+      </tr>
+      <tr><td colspan="5" style="padding:0 0 8px 0"><div class="detail-panel" id="lo4"><button class="detail-close" onclick="toggle('lo4');event.stopPropagation()">close ✕</button>{{LO4_ADVICE}}</div></td></tr>
+
+      <!-- ── LO5 ── -->
+      <tr class="lo-row" onclick="toggle('lo5')">
+        <td><div class="lo-label lo5-label">{{LO5_ID}}</div><div style="font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-top:2px">{{LO5_SHORT_TITLE}}</div><div class="lo-gtsd">{{LO5_AITSL}}</div></td>
+        <td>{{LO5_TEACHING_PILLS}}</td>
+        <td>{{LO5_PRACTICE_PILLS}}</td>
+        <td>{{LO5_A1_PILLS}}</td>
+        <td>{{LO5_A2_PILLS}}</td>
+      </tr>
+      <tr><td colspan="5" style="padding:0 0 8px 0"><div class="detail-panel" id="lo5"><button class="detail-close" onclick="toggle('lo5');event.stopPropagation()">close ✕</button>{{LO5_ADVICE}}</div></td></tr>
+
+      <!-- ── LO6 ── -->
+      <tr class="lo-row" onclick="toggle('lo6')">
+        <td><div class="lo-label lo6-label">{{LO6_ID}}</div><div style="font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-top:2px">{{LO6_SHORT_TITLE}}</div><div class="lo-gtsd">{{LO6_AITSL}}</div></td>
+        <td>{{LO6_TEACHING_PILLS}}</td>
+        <td>{{LO6_PRACTICE_PILLS}}</td>
+        <td>{{LO6_A1_PILLS}}</td>
+        <td>{{LO6_A2_PILLS}}</td>
+      </tr>
+      <tr><td colspan="5" style="padding:0 0 8px 0"><div class="detail-panel" id="lo6"><button class="detail-close" onclick="toggle('lo6');event.stopPropagation()">close ✕</button>{{LO6_ADVICE}}</div></td></tr>
+
+    </tbody>
+  </table>
+
+  <div class="ca-footer">
+    <strong>Reading the map</strong><br>
+    {{FOOTER_NOTE}}
+  </div>
+</div>
+
+<script>
+function toggle(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+</script>

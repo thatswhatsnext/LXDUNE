@@ -1,0 +1,377 @@
+
+<h2 class="sr-only">Constructive alignment map for EDSE362: showing how each learning outcome is taught, practised, and assessed across the unit</h2>
+
+<style>
+:root {
+
+  --color-text-primary:        #1F2A33;
+  --color-text-secondary:      #4a5568;
+  --color-text-tertiary:       #6F7B84;
+  --color-background-primary:  #ffffff;
+  --color-background-secondary:#f0f7f3;
+  --color-border-secondary:    #b8dcc8;
+  --color-border-tertiary:     #dfe6ea;
+
+  /* LO colours — matching course-wide convention */
+  --lo1: #2E7D52;
+  --lo2: #E3B089;
+  --lo3: #4aad78;
+  --lo4: #C4872D;
+  --lo5: #1f6fb2;
+  --lo6: #25797F;
+}
+
+* { box-sizing: border-box; }
+
+.ca-wrap {
+  padding: 1rem 0;
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+  color: var(--color-text-primary);
+  max-width: 100%;
+}
+
+.ca-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 4px;
+  border-left: 5px solid #2E7D52;
+  padding-left: 10px;
+}
+
+.ca-sub {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  margin: 0 0 16px;
+  padding-left: 15px;
+}
+
+.ca-table { width: 100%; border-collapse: collapse; }
+
+.ca-table th {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: 8px 10px;
+  border-bottom: 2px solid #2E7D52;
+  text-align: left;
+  background: #2E7D52;
+}
+
+.ca-table th:first-child { border-radius: 8px 0 0 0; }
+.ca-table th:last-child  { border-radius: 0 8px 0 0; }
+.ca-table th.col-t  { width: 22%; }
+.ca-table th.col-p  { width: 24%; }
+.ca-table th.col-a1 { width: 27%; }
+.ca-table th.col-a2 { width: 27%; }
+
+.lo-row td {
+  vertical-align: top;
+  padding: 10px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  background: var(--color-background-primary);
+  cursor: pointer;
+}
+
+.lo-row:hover td { background: var(--color-background-secondary); }
+
+/* LO label pills — matching course-wide LO styling */
+.lo-label {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 13px;
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.lo1-label { background: var(--lo1); }
+.lo2-label { background: var(--lo2); color: #1F2A33; }
+.lo3-label { background: var(--lo3); }
+.lo4-label { background: var(--lo4); }
+.lo5-label { background: var(--lo5); }
+.lo6-label { background: var(--lo6); }
+
+.lo-gtsd {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  margin-top: 2px;
+}
+
+.cell-pill {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 11px;
+  font-weight: 500;
+  margin: 2px 2px 2px 0;
+  line-height: 1.5;
+}
+
+.pill-topic  { background: #f0f7f3; color: #2E7D52; border: 0.5px solid #b8dcc8; }
+.pill-forum  { background: #fff8f0; color: #7a4a1a; border: 0.5px solid #E3B089; }
+.pill-new    { background: #e8f5ee; color: #1a5c38; border: 0.5px solid #2E7D52; font-style: italic; }
+.pill-a1     { background: #e8f5ee; color: #1a5c38; border: 0.5px solid #4aad78; }
+.pill-a2     { background: #fff3e8; color: #7a4a1a; border: 0.5px solid #E3B089; }
+.pill-none   { background: #FCEBEB; color: #791F1F; border: 0.5px solid #F09595; }
+
+
+.mark-badge {
+  display: inline-block;
+  background: #f0f7f3;
+  border: 0.5px solid #b8dcc8;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 10px;
+  color: #2E7D52;
+  margin-left: 3px;
+}
+
+.detail-panel {
+  display: none;
+  background: #f0f7f3;
+  border-radius: 8px;
+  border: 0.5px solid #b8dcc8;
+  border-left: 4px solid #2E7D52;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.detail-panel.open { display: block; }
+
+.detail-panel strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.detail-close {
+  float: right;
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.detail-close:hover { color: #2E7D52; }
+.lo-row td:first-child { min-width: 110px; }
+
+.gap-note {
+  background: #fff8f0;
+  border-left: 2px solid #E3B089;
+  border-radius: 0 4px 4px 0;
+  padding: 6px 8px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #7a4a1a;
+}
+
+.imp-note {
+  background: #e8f5ee;
+  border-left: 2px solid #2E7D52;
+  border-radius: 0 4px 4px 0;
+  padding: 6px 8px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #1a5c38;
+}
+
+.ca-footer {
+  margin-top: 16px;
+  padding: 10px 12px;
+  background: #f0f7f3;
+  border-radius: 8px;
+  border: 0.5px solid #b8dcc8;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.ca-footer strong { color: var(--color-text-primary); font-size: 12px; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+</style>
+
+<div class="ca-wrap">
+  <p class="ca-title">EDSE362 — Constructive Alignment Map</p>
+  <p class="ca-sub">Click any row for advice on how to meet each learning outcome.</p>
+  <table class="ca-table">
+    <thead>
+      <tr>
+        <th>Learning outcome<br><span style="font-weight:400;text-transform:none;letter-spacing:0">+ AITSL GTSDs</span></th>
+        <th class="col-t">Teaching <span style="font-weight:400">(Topics)</span></th>
+        <th class="col-p">Practice <span style="font-weight:400">(Activities)</span></th>
+        <th class="col-a1">Assessment 1 <span style="font-weight:400">(40 marks)</span></th>
+        <th class="col-a2">Assessment 2 <span style="font-weight:400">(60 marks)</span></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr class="lo-row" onclick="toggle('lo1')">
+        <td><div class="lo-label lo1-label">LO1</div><div style="font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-top:2px">Science content, structure, and practical integration</div><div class="lo-gtsd">2.1.1</div></td>
+        <td>
+          <span class="cell-pill pill-topic">T1 K–10 continuum</span>
+          <span class="cell-pill pill-topic">T2 Nature of science</span>
+          <span class="cell-pill pill-topic">T3 Resources</span>
+          <span class="cell-pill pill-topic">T4 Teaching differently</span>
+          <span class="cell-pill pill-topic">T7 Analogies &amp; models</span>
+          <span class="cell-pill pill-topic">T8 Content knowledge</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-forum">T1 Forum: prior knowledge</span>
+          <span class="cell-pill pill-forum">T2 Forum: nature of science</span>
+          <span class="cell-pill pill-forum">T3 Forum: resource eval</span>
+          <span class="cell-pill pill-forum">T4 Forum: questioning</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-a1">Part A — practical table</span><span class="mark-badge">LO1 · 26m holistic</span>
+          <span class="cell-pill pill-a1">Part B — justification</span><span class="mark-badge">10m</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-a2">Part A — unit program</span><span class="mark-badge">LO1 · syllabus criterion 14m</span>
+          <span class="cell-pill pill-a2">Part B — highlight</span><span class="mark-badge">9m</span>
+        </td>
+      </tr>
+      <tr><td colspan="5" style="padding:0 0 8px 0"><div class="detail-panel" id="lo1"><button class="detail-close" onclick="toggle('lo1');event.stopPropagation()">close ✕</button><strong>LO1 — Science content, structure, and practical integration (GTSD 2.1.1)</strong><br><br>This outcome is about knowing your science deeply enough to teach it practically. You develop LO1 across Topics 1, 2, 3, 4, 7, and 8 — pay particular attention to how science content connects to the K–10 continuum and how practical activities can make abstract concepts accessible. Your forum posts in Topics 1–4 are your practice ground — use them to test your thinking before assessment.<br><br>In <strong>Assessment 1</strong>, Part A rewards accurate syllabus mapping and well-chosen practicals. In <strong>Assessment 2</strong>, Part A (syllabus criterion, 14 marks) and the highlight task (9 marks) both draw directly on this outcome — your knowledge of content structure needs to be precise and applied, not general.</div></td></tr>
+
+      <tr class="lo-row" onclick="toggle('lo2')">
+        <td><div class="lo-label lo2-label">LO2</div><div style="font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-top:2px">Logical, sequential teaching sequences</div><div class="lo-gtsd">2.2.1 · 2.3.1</div></td>
+        <td>
+          <span class="cell-pill pill-topic">T1 K–10 continuum</span>
+          <span class="cell-pill pill-topic">T6 Unit planning</span>
+          <span class="cell-pill pill-topic">T7 Analogies &amp; models</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-forum">T1 Activity 3: strand map</span>
+          <span class="cell-pill pill-forum">T6 Forum: programming</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-a1">Part A — sequence</span><span class="mark-badge">LO2 · 26m holistic</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-a2">Part A — syllabus criterion</span><span class="mark-badge">LO2 · 14m</span>
+          <span class="cell-pill pill-a2">Part A — teaching sequence criterion</span><span class="mark-badge">13m</span>
+        </td>
+      </tr>
+      <tr><td colspan="5" style="padding:0 0 8px 0"><div class="detail-panel" id="lo2"><button class="detail-close" onclick="toggle('lo2');event.stopPropagation()">close ✕</button><strong>LO2 — Logical, sequential teaching sequences (GTSDs 2.2.1, 2.3.1)</strong><br><br>This outcome is about designing teaching that builds — where each lesson makes the next one possible. Topics 1, 6, and 7 develop this thinking. The strand mapping activity in Topic 1 and the programming forum in Topic 6 are your key practice opportunities — treat them seriously, not as box-ticking exercises.<br><br>In <strong>Assessment 1</strong>, sequencing is embedded in the holistic Part A criterion. In <strong>Assessment 2</strong>, logical sequence is assessed twice — in the syllabus criterion (14 marks) and the teaching sequence criterion (13 marks). A weak sequence in A2 affects 27 marks. Plan your unit so that each lesson has a clear purpose in the overall arc.</div></td></tr>
+
+      <tr class="lo-row" onclick="toggle('lo3')">
+        <td><div class="lo-label lo3-label">LO3</div><div style="font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-top:2px">Plan sequences using student learning, content, and teaching strategies</div><div class="lo-gtsd">3.2.1</div></td>
+        <td>
+          <span class="cell-pill pill-topic">T3 Resources</span>
+          <span class="cell-pill pill-topic">T4 Teaching differently</span>
+          <span class="cell-pill pill-topic">T6 Unit planning</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-forum">T4 Activity 1: constructivism</span>
+          <span class="cell-pill pill-forum">T6 Forum: programming</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-a1">Part A — pedagogy cluster</span><span class="mark-badge">LO3 · 26m holistic</span>
+          <span class="cell-pill pill-a1">Part B — justification</span><span class="mark-badge">10m</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-a2">Part A — teaching sequence criterion</span><span class="mark-badge">LO3 · 13m</span>
+        </td>
+      </tr>
+      <tr><td colspan="5" style="padding:0 0 8px 0"><div class="detail-panel" id="lo3"><button class="detail-close" onclick="toggle('lo3');event.stopPropagation()">close ✕</button><strong>LO3 — Plan sequences using student learning, content, and teaching strategies (GTSD 3.2.1)</strong><br><br>This outcome asks you to connect what you know about how students learn with what you know about the content and your teaching strategies. Topics 3, 4, and 6 build this capacity — the constructivism activity in Topic 4 is the most important practice opportunity for LO3.<br><br>In <strong>Assessment 1</strong>, Part A's pedagogy cluster and Part B's justification both target this outcome. In <strong>Assessment 2</strong>, the teaching sequence criterion (13 marks) requires you to articulate your constructivist approach, strategies, and learning goals explicitly. Vague references to "student-centred learning" will not score well — you need to show how specific strategies respond to specific learning needs.</div></td></tr>
+
+      <tr class="lo-row" onclick="toggle('lo4')">
+        <td><div class="lo-label lo4-label">LO4</div><div style="font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-top:2px">Evaluate programs and design assessment with embedded strategies</div><div class="lo-gtsd">3.6.1 · 5.3.1 · 5.3.2</div></td>
+        <td>
+          <span class="cell-pill pill-topic">T6 Unit planning</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-new">★ T6 critique forum (new)</span>
+          <div class="imp-note">Scaffolded assessment critique activity added — students identify alignment gaps and rubric flaws before designing their own in A2.</div>
+        </td>
+        <td>
+          <span class="cell-pill pill-none">Not assessed in A1</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-a2">Part B — formative tasks</span><span class="mark-badge">LO4 · 3m</span>
+          <span class="cell-pill pill-a2">Part C — task design</span><span class="mark-badge">6m</span>
+          <span class="cell-pill pill-a2">Part C — alignment</span><span class="mark-badge">6m</span>
+          <span class="cell-pill pill-a2">Part C — rubric quality</span><span class="mark-badge">6m</span>
+        </td>
+      </tr>
+      <tr><td colspan="5" style="padding:0 0 8px 0"><div class="detail-panel" id="lo4"><button class="detail-close" onclick="toggle('lo4');event.stopPropagation()">close ✕</button><strong>LO4 — Evaluate programs and design assessment with embedded strategies (GTSDs 3.6.1, 5.3.1, 5.3.2)</strong><br><br>This outcome is not assessed in Assessment 1 — which makes the Topic 6 critique forum critical. Before you design your own assessment task in A2, you need to practise identifying alignment gaps and rubric flaws in someone else's task first. Use the T6 activity seriously — the quality of your A2 Part C work depends on having done that analytical groundwork.<br><br>In <strong>Assessment 2</strong>, alignment is assessed as a distinct criterion — it is not enough for your task to seem reasonable. You need to show that outcomes, instructions, evidence, and criteria all point to the same thing. Part C carries 18 marks across three criteria: task design (6m), internal alignment (6m), and rubric quality (6m). Each rewards a different dimension of assessment literacy.</div></td></tr>
+
+      <tr class="lo-row" onclick="toggle('lo5')">
+        <td><div class="lo-label lo5-label">LO5</div><div style="font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-top:2px">Responsive strategies for diverse learners incl. literacy and numeracy</div><div class="lo-gtsd">1.3.1 · 1.4.1 · 2.4.1 · 2.5.1</div></td>
+        <td>
+          <span class="cell-pill pill-topic">T2 Nature of science</span>
+          <span class="cell-pill pill-topic">T3 Resources</span>
+          <span class="cell-pill pill-topic">T5 Inclusive classroom</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-forum">T5 Reflective post</span>
+          <div class="gap-note">Your only practice before A1 is reflective — go further in T5 by drafting actual adjustments for a specific cohort so you are prepared for Assessment 1.</div>
+        </td>
+        <td>
+          <span class="cell-pill pill-a1">Part A — safety &amp; inclusion cluster</span><span class="mark-badge">LO5 · 26m holistic</span>
+          <span class="cell-pill pill-a1">Part B — justification</span><span class="mark-badge">10m</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-a2">Part A — adjustments criterion</span><span class="mark-badge">LO5 · 6m</span>
+          <span class="cell-pill pill-a2">Part B — ATSI &amp; literacy</span><span class="mark-badge">3m</span>
+          <span class="cell-pill pill-a2">Part B — inclusion</span><span class="mark-badge">3m</span>
+        </td>
+      </tr>
+      <tr><td colspan="5" style="padding:0 0 8px 0"><div class="detail-panel" id="lo5"><button class="detail-close" onclick="toggle('lo5');event.stopPropagation()">close ✕</button><strong>LO5 — Responsive strategies for diverse learners (GTSDs 1.3.1, 1.4.1, 2.4.1, 2.5.1)</strong><br><br>This outcome has the richest assessment coverage in the unit — it appears in A1 Part A, A1 Part B, A2 Part A, and twice in A2 Part B. That breadth reflects how central inclusive practice is to good science teaching.<br><br>The challenge is that your only practice opportunity before A1 is the Topic 5 reflective post — which is reflective, not applied. To prepare well, go beyond reflection in Topic 5: think through a specific cohort, identify real barriers, and draft actual adjustments. When you arrive at <strong>Assessment 1</strong> Part A, you need to produce specific, justified adjustments — not general statements about valuing diversity. In <strong>Assessment 2</strong>, the adjustments criterion (6m), ATSI and literacy criterion (3m), and inclusion criterion (3m) all require you to show how your program design responds to real learner needs.</div></td></tr>
+
+      <tr class="lo-row" onclick="toggle('lo6')">
+        <td><div class="lo-label lo6-label">LO6</div><div style="font-size:11px;color:var(--color-text-secondary);line-height:1.4;margin-top:2px">Professional learning rationale and relevant sources</div><div class="lo-gtsd">5.3.2 · 5.4.1 · 6.2.1 · 6.4.1 · 7.4.1</div></td>
+        <td>
+          <span class="cell-pill pill-topic">T6 Unit planning</span>
+          <span class="cell-pill pill-topic">T8 Content knowledge</span>
+        </td>
+        <td>
+          <span class="cell-pill pill-forum">T8 Self-directed quiz</span>
+          <div class="gap-note">Use T8 to actively identify professional learning sources relevant to your discipline and teaching context — don't treat this as a passive knowledge check.</div>
+        </td>
+        <td>
+          <span class="cell-pill pill-a1">Part C — reflection</span><span class="mark-badge">LO6 · 4m</span>
+          <div class="imp-note">Revised prompt requires naming a specific professional learning source with justification.</div>
+        </td>
+        <td>
+          <span class="cell-pill pill-a2">Part D — reflection</span><span class="mark-badge">LO6 · 6m</span>
+          <div class="imp-note">Revised prompt requires program evaluation evidence and naming an external professional or community source.</div>
+        </td>
+      </tr>
+      <tr><td colspan="5" style="padding:0 0 8px 0"><div class="detail-panel" id="lo6"><button class="detail-close" onclick="toggle('lo6');event.stopPropagation()">close ✕</button><strong>LO6 — Professional learning rationale and relevant sources (GTSDs 5.3.2, 5.4.1, 6.2.1, 6.4.1, 7.4.1)</strong><br><br>This outcome appears in both assessments through the reflection tasks — but the prompts have been deliberately redesigned to require specificity. Generic reflections about "learning a lot" or "improving time management" will not meet this outcome.<br><br>In <strong>Assessment 1</strong> Part C, you need to name a specific professional learning source and justify why it is relevant to your development as a science teacher. In <strong>Assessment 2</strong> Part D, you need to provide evidence of program evaluation and name an external professional or community source. The five GTSDs attached to LO6 span professional engagement, collaboration, and continuous improvement — your reflection needs to show you understand these as ongoing professional obligations, not one-off tasks.</div></td></tr>
+
+    </tbody>
+  </table>
+
+  <div class="ca-footer">
+    <strong>Reading the map</strong><br>
+    <span style="color:#2E7D52;">★ New</span> = additions from this revision. Holistic criterion marks (A1 Part A 26m) span LO1–LO5 together — individual LO contributions are not separately weighted. A2 Part A marks (27m total) split across syllabus criterion (14m: LO1+LO2+LO3) and teaching sequence criterion (13m: LO2+LO3+LO5). Click any row for advice on meeting that outcome.
+  </div>
+</div>
+
+<script>
+function toggle(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+</script>
