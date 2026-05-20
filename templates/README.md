@@ -17,8 +17,10 @@ Reference HTML implementations for all Moodle block components. These are the so
 | `presubmission-checklist-EDSE357-AT1.html` | Pre-Submission Checklist — EDSE357 AT1 | Moodle AT1 assessment page — Parts A–D (11 items) |
 | `presubmission-checklist-EDSE357-AT2.html` | Pre-Submission Checklist — EDSE357 AT2 | Moodle AT2 assessment page — 4 criteria (11 items) |
 | `presubmission-checklist-EDSE358-AT1.html` | Pre-Submission Checklist — EDSE358 AT1 | Moodle AT1 assessment page — Parts A–D (16 items) |
-| `unit-key-info.html` | Unit Key Info (navigation block) | Unit home page — banner, key links, due date chips, support callout |
+| `unit-key-info.html` | Unit Key Info (navigation block) | Unit home page — banner, key links, contact toggle, due date chips, support callout |
 | `assessment-status.html` | Assessment Status (navigation block) | Unit home page — one card per task, status chip, LO pills, action links |
+| `constructive-alignment-map.html` | Constructive Alignment Map (generic template) | Unit pages — how each LO is taught, practised, and assessed; fully tokenised for reuse |
+| `constructive-alignment-map-EDSE362.html` | Constructive Alignment Map — EDSE362 | EDSE362 T2 2026 — fully populated reference implementation |
 
 ## Dynamic value tokens
 
