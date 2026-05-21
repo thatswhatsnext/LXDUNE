@@ -226,6 +226,33 @@ const ASSESSMENT_STATUS_CSS = `
 .lx-as-action.submit{background:#e8f5e9;border-color:#27ae60;color:#155724}
 .lx-as-action.primary{background:var(--lx-pill,#DAF0F7);border-color:var(--lx-pill-border,#cbe6ee);color:var(--lx-primary,#1f6fb2)}`;
 
+const ORIENTATION_NOTE_CSS = `
+.lx-on{max-width:950px;margin:0 auto 20px;font-family:Arial,sans-serif}
+.lx-on-inner{background:#f0f7ff;border-left:4px solid var(--lx-primary,#1f6fb2);border-radius:8px;padding:12px 16px}
+.lx-on-label{font-size:.75em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lx-primary,#1f6fb2);margin-bottom:6px}
+.lx-on-text{margin:0;font-size:.95em;color:#2c3e50;line-height:1.55}`;
+
+const FORUM_PROMPTS_CSS = `
+.lx-fp{max-width:950px;margin:0 auto 20px;font-family:Arial,sans-serif}
+.lx-fp-inner{background:#f9f9f9;border:1px solid #dde2e5;border-radius:8px;padding:14px 16px}
+.lx-fp-label{font-size:.75em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lx-accent,#25797F);margin-bottom:10px}
+.lx-fp-list{list-style:none;margin:0;padding:0}
+.lx-fp-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;font-size:.95em;line-height:1.5}
+.lx-fp-item:last-child{margin-bottom:0}
+.lx-fp-num{background:var(--lx-primary,#1f6fb2);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:.78em;font-weight:700;flex-shrink:0;margin-top:2px}`;
+
+const WORKED_EXAMPLE_CSS = `
+.lx-we{max-width:950px;margin:0 auto 20px;font-family:Arial,sans-serif}
+.lx-we-details{border:1px solid var(--lx-pill-border,#cbe6ee);border-radius:8px}
+.lx-we-details summary{padding:12px 16px;cursor:pointer;font-weight:700;color:var(--lx-primary,#1f6fb2);list-style:none;background:var(--lx-pill,#DAF0F7);border-radius:8px;font-size:.95em;display:flex;align-items:center;gap:8px}
+.lx-we-details summary::-webkit-details-marker{display:none}
+.lx-we-details summary::before{content:'▶';font-size:.75em;opacity:.7}
+.lx-we-details[open] summary::before{content:'▼'}
+.lx-we-details[open] summary{border-radius:8px 8px 0 0}
+.lx-we-body{padding:14px 16px;font-size:.95em;color:#2c3e50;line-height:1.6}
+.lx-we-body p{margin:0 0 10px}
+.lx-we-body p:last-child{margin-bottom:0}`;
+
 // ── Date calculation (mirrors whatson.js logic) ───────────────────────────────
 
 function buildDateList(startDate, trimester) {
@@ -871,13 +898,16 @@ export async function renderAssessmentPage({ forUnit, forTask, forTri, forYear }
       const bespokeHtml = p.bespoke && bespokeCache[p.bespoke]
         ? `<div class="lx-ap-bespoke">${bespokeCache[p.bespoke]}</div>`
         : '';
+      const guidanceHtml = (p.guidanceNotes ?? []).length
+        ? `<div style="margin:10px 0;"><hr style="border:none;border-top:1px solid #e0e0e0;margin:8px 0;"><div style="font-size:.85em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--lx-accent,#e8522a);margin-bottom:6px;">Additional guidance</div>${p.guidanceNotes.map(n => `<p style="font-size:.9em;margin:4px 0;">→ ${esc(n)}</p>`).join('')}</div>`
+        : '';
       const marksNote = p.marks != null ? ` (${p.marks} marks)` : '';
       const wordNote  = p.wordCount ? ` <span style="font-weight:400;">| ~${p.wordCount} words</span>` : '';
       return `<details class="lx-ap-details">
         <summary>Part ${esc(p.id)} — ${esc(p.title)}${marksNote}${wordNote}</summary>
         <div class="lx-ap-part-body">
           ${p.description ? `<p style="margin-top:0;">${esc(p.description)}</p>` : ''}
-          ${bespokeHtml}${noteHtml}${reqHtml}${critiqueHtml}${resHtml}
+          ${bespokeHtml}${noteHtml}${reqHtml}${critiqueHtml}${resHtml}${guidanceHtml}
         </div>
       </details>`;
     }).join('');
@@ -1317,4 +1347,62 @@ export async function renderAssessmentStatus({ forUnit, forTri, forYear } = {}) 
     <h2 style="margin:0 0 16px;">Assessment Overview</h2>
     <div class="lx-as-grid">${cards}</div>
   </div>`;
+}
+
+// ── 13. renderOrientationNote ─────────────────────────────────────────────────
+export async function renderOrientationNote({ forUnit, forTri, forYear }) {
+  const el = getEl('lxdune-orientation-note'); if (!el) return;
+  try {
+    const { unitCfg, week } = await resolve({ forUnit, forTri, forYear });
+    applyTheme(unitCfg);
+    const note = week?.orientationNote;
+    if (!note) { el.innerHTML = ''; return; }
+    injectStyles('lx-orientation-note', ORIENTATION_NOTE_CSS);
+    el.innerHTML = `<div class="lx-on"><div class="lx-on-inner">
+      <div class="lx-on-label">Unit context</div>
+      <p class="lx-on-text">${esc(note)}</p>
+    </div></div>`;
+  } catch (e) {
+    setError(el, e);
+  }
+}
+
+// ── 14. renderForumPrompts ────────────────────────────────────────────────────
+export async function renderForumPrompts({ forUnit, forTri, forYear }) {
+  const el = getEl('lxdune-forum-prompts'); if (!el) return;
+  try {
+    const { unitCfg, week } = await resolve({ forUnit, forTri, forYear });
+    applyTheme(unitCfg);
+    const prompts = week?.forumPrompts ?? [];
+    if (!prompts.length) { el.innerHTML = ''; return; }
+    injectStyles('lx-forum-prompts', FORUM_PROMPTS_CSS);
+    const items = prompts.map((p, i) =>
+      `<li class="lx-fp-item"><span class="lx-fp-num">${i + 1}</span><span>${esc(p)}</span></li>`
+    ).join('');
+    el.innerHTML = `<div class="lx-fp"><div class="lx-fp-inner">
+      <div class="lx-fp-label">Forum discussion prompts</div>
+      <ul class="lx-fp-list">${items}</ul>
+    </div></div>`;
+  } catch (e) {
+    setError(el, e);
+  }
+}
+
+// ── 15. renderWorkedExample ───────────────────────────────────────────────────
+export async function renderWorkedExample({ forUnit, forTri, forYear }) {
+  const el = getEl('lxdune-worked-example'); if (!el) return;
+  try {
+    const { unitCfg, week } = await resolve({ forUnit, forTri, forYear });
+    applyTheme(unitCfg);
+    const example = week?.workedExample;
+    if (!example) { el.innerHTML = ''; return; }
+    injectStyles('lx-worked-example', WORKED_EXAMPLE_CSS);
+    const paras = example.split('\n').filter(Boolean).map(s => `<p>${esc(s)}</p>`).join('');
+    el.innerHTML = `<div class="lx-we"><details class="lx-we-details">
+      <summary>Worked example</summary>
+      <div class="lx-we-body">${paras}</div>
+    </details></div>`;
+  } catch (e) {
+    setError(el, e);
+  }
 }
