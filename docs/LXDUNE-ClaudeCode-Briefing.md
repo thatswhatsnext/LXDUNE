@@ -1,6 +1,6 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-05-21 (EDSE358 alignment map template; forWeek fix on fns 13–15; production shells generated for new render functions)
+**Last updated:** 2026-05-21 (constructive alignment visibility: loMapping on weeks, LO pills in course hub, reverse alignment map in LO table; EDSE358 LOs + AT1 data fixes; generator bug fix)
 **Repo:** `https://github.com/thatswhatsnext/LXDUNE`
 **GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
@@ -103,14 +103,14 @@ Pasted once into Moodle, never edited again. The script fetches config on every 
 `dev` and `main` are **in sync** — 0 commits on dev ahead of main as of 2026-05-21.
 
 ### `main` (GitHub Pages source — production ✅)
-Last merge: `9983df3` (2026-05-21) — fix forWeek params on fns 13–15; extend gitignore for dated shell files.
+Last merge: `b0cd1b4` (2026-05-21) — constructive alignment visibility layer.
 
 Recent main history:
-- `9983df3` — Merge dev: fix forWeek params on new render fns; gitignore dated shell files
-- `8a1cad9` — Merge dev: add EDSE358 constructive alignment map template
-- `f42b8d8` — chore: briefing update
-- `99b8a06` — Merge dev: render alignment fields, synthesis generator, D1/D2 checklist update
-- `ae70f97` — Merge dev into main: EDSE358 alignment audit improvements G1-G8
+- `b0cd1b4` — Merge dev into main: constructive alignment visibility
+- `f55d933` — feat: add loMapping to weeks, LO pills in course hub, reverse alignment map in LO table
+- `4afc808` — fix: populate EDSE358 learningOutcomes and wire unit-level blocks to unit change in test harness
+- `4932241` — fix: correct EDSE358 AT1 part titles, descriptions, LOs, AITSL standards and word counts
+- `19ffb91` — fix: generator weeks.map TypeError — weeks is a keyed object not an array
 
 Live scripts serving from main:
 - `https://thatswhatsnext.github.io/LXDUNE/whatson/whatson.js` → 200
@@ -147,7 +147,7 @@ Live scripts serving from main:
 | 3 | `renderLectureBlock` | `#lxdune-lecture` | Yes |
 | 4 | `renderLiveSessionHub` | `#lxdune-live-hub` | Yes |
 | 5 | `renderAssessmentDownloadBlock` | `#lxdune-assessment-downloads` | No |
-| 6 | `renderLearningOutcomesTable` | `#lxdune-outcomes` | No |
+| 6 | `renderLearningOutcomesTable` | `#lxdune-outcomes` | No — dual schema (`label`/`aitsl` or `title`/`gtsd`); each LO row includes collapsible reverse alignment map showing teaching weeks + assessment references |
 | 7 | `renderResourceDirectory` | `#lxdune-resource-directory` | Yes |
 | 8 | `renderAssessmentPage` | `#lxdune-assessment-page` | No — takes `{ forUnit, forTask }` |
 | 9 | `renderPresubmissionChecklist` | `#lxdune-presubmission-checklist` | No — takes `{ forUnit, forTask }` |
@@ -310,12 +310,12 @@ Live scripts serving from main:
 
 ### Phase 3D — Course Hub block ✅ COMPLETE
 
-`renderCourseHub({ forUnit, forTri, forYear })` — 10th render function. Renders all teaching weeks (1–8) as CSS-only collapsible `<details>/<summary>` rows. Each row shows the topic chip, week number, title, and (when expanded) announcement intro, live session focus, and tasks list. Non-teaching weeks (9–14) are excluded via the `NO_TEACHING` set.
+`renderCourseHub({ forUnit, forTri, forYear })` — 10th render function. Renders all teaching weeks (1–8) as CSS-only collapsible `<details>/<summary>` rows. Each row shows: the topic chip, week number, title, **LO colour pills** (always visible, from `week.loMapping`), and (when expanded) announcement intro, live session focus, and tasks list. Non-teaching weeks (9–14) are excluded via the `NO_TEACHING` set.
 
 - Container: `<div data-lx-block="course-hub"></div>` (attribute selector, not ID)
-- CSS: all theme colours via `var(--lx-*)` custom properties
+- CSS: all theme colours via `var(--lx-*)` custom properties; LO pills use inline `background` colour from `lo.color`
 - Generator shell type: `course-hub`; test harness tab: **Course Hub**
-- Verified in test harness for EDSE357 and EDSE358 on 2026-05-17
+- Verified in test harness for EDSE357 and EDSE358 on 2026-05-17; LO pills added 2026-05-21
 
 ### Phase 4 — Refactor whatson.js and autovideos.js ✅ COMPLETE (merged to main; in production)
 
@@ -383,12 +383,13 @@ All week-specific shells use `forWeek: N` — pinned to that module's content re
 - **keyLinks:** Unit Outline ✅, Learning Materials ✅, Assessment Portal ✅
 - **contacts:** coordinator Steve Grant ✅; lecturer null
 - **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅
-- **Weeks 9–14 and week 0:** minimal (non-teaching); videos set to `DGIXT7ce3vQ`
+- **loMapping (weeks 1–8):** ✅ added 2026-05-21 — 1: LO1/LO2; 2–4: LO1/LO3; 5: LO2/LO4/LO5; 6: LO1/LO2/LO4; 7: LO1/LO6; 8: LO1/LO2/LO5
+- **Weeks 9–14 and week 0:** minimal (non-teaching); videos set to `DGIXT7ce3vQ`; loMapping: `[]`
 - **Links (all weeks 1–8):** all `null` — content links not yet published; all render as Coming soon chips
-- **Learning outcomes:** LO1–LO6 ✅
+- **Learning outcomes:** LO1–LO6 ✅ (`title`/`gtsd` schema)
 - **assessmentTasks:** AT1 and AT2 — fully populated including 55 rubric descriptors ✅; `trimesterDates.T1-2026` dates populated ✅; T2-2026 and T3-2026 stubs present (due null — pending)
-  - AT1 links: rubric ✅, taskFiles ✅, submit ✅, forum ✅, video null
-  - AT2 links: rubric null ⚠️, taskFiles ✅, submit ✅, forum null, video ✅; T1-2026 flexiblePortal.url null (past-due)
+  - AT1: learningOutcomes LO1–LO5 ✅; links: rubric ✅, taskFiles ✅, submit ✅, forum ✅, video null
+  - AT2: learningOutcomes LO1/LO2/LO4/LO5/LO6 ✅; links: rubric null ⚠️, taskFiles ✅, submit ✅, forum null, video ✅; T1-2026 flexiblePortal.url null (past-due)
 - **assessmentFiles (T1-2026):** all discipline task/marking URLs `null`
 - **T1 2026 status:** both AT1 (due 2026-03-29) and AT2 (due 2026-05-03) are past due. Unit is in PE/assessment period.
 
@@ -402,12 +403,15 @@ All week-specific shells use `forWeek: N` — pinned to that module's content re
 - **keyLinks:** Unit Outline ✅, Learning Materials ✅, Assessment Portal ✅
 - **contacts:** coordinator Steve Grant ✅; lecturer null
 - **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅
+- **loMapping (weeks 1–8):** ✅ added 2026-05-21 — 1–3: LO1/LO3; 4: LO1/LO2/LO3; 5–6: LO3/LO4; 7: LO2/LO3; 8: LO3/LO4
+- **Learning outcomes:** 4 LOs ✅ (replaced 6 stale entries 2026-05-21; uses `label`/`aitsl` schema):
+  - LO1 Lesson Sequence Design (#7C5DB6), LO2 Resources ICT & Safe Approaches (#1f6fb2), LO3 Activities Assessment & Programming (#4FA9B5), LO4 Feedback & Reflective Practice (#E3B089)
 - **Alignment improvement fields (all now rendered — ACTION-PLAN item 18 ✅):**
   - `orientationNote` → weeks 4 (Module 3B), 5 (Module 4A) — rendered by `renderOrientationNote` (fn 13)
   - `forumPrompts` → weeks 4 (3 prompts), 5 (2 prompts), 6 (2 prompts), 8 (3 prompts) — rendered by `renderForumPrompts` (fn 14)
   - `synthesisTemplate` → week 6 — lecturer-only output in generator "Post-forum synthesis" shell type
   - `workedExample` → week 6 — rendered by `renderWorkedExample` (fn 15) as collapsible `<details>`
-  - `guidanceNotes` on AT1 parts → Part B (4 items), Part D2 (1 item) — rendered in `renderAssessmentPage` after requirements (divider + accent heading + → paragraphs)
+  - `guidanceNotes` on AT1 parts → Part B (4 items), Part D2 (1 item) — rendered in `renderAssessmentPage` after requirements
 
 - **Links by week** (zoom always null at week level — resolved from trimesterConfig):
 
@@ -423,16 +427,13 @@ All week-specific shells use `forWeek: N` — pinned to that module's content re
 | 8 (Module 4D) | lecture, forum, materials ✅ | slides, zoom, recording, liveHub |
 
 - **assessmentFiles (T1-2026):** AT1: all null; AT2: all discipline files resolved ✅
-- **assessmentTasks — AT1 structure (post-audit):**
-  - 5 parts: A(20), B(20), C(50), D1(5), D2(5) — total 100 marks ✅
-  - Part D split: D1 = "Planning timely and purposeful feedback" (5 marks, 5 requirements); D2 = "Reflective self-assessment" (5 marks, 2 requirements)
+- **assessmentTasks — AT1 structure (post-audit, fully titled and described 2026-05-21):**
+  - 5 parts: A "Task outline and forum post"(20), B "Unit program"(20), C "Justification essays"(50), D1(5), D2(5) — total 100 marks ✅
+  - All parts have description, requirements, and wordCount populated ✅
   - 9-row rubric: A, B1, B2, B3, B4, C1, C2, D1, D2 — 100 marks, 45 band descriptors ✅
-  - B1 C/P/N descriptors updated with ATSI differentiation language (G5)
-  - B2 HD descriptor: replaced with resource-range + ICT + safety/CSIS language (G8+G3); C/P/N updated with safety language (G3)
-  - B3 HD: activity-range sentence appended (G7)
-  - B4 HD: evaluation-strategy sentence appended (G4)
-  - D1 rubric: new feedback-planning descriptors across all 5 bands
-  - D2 rubric: new reflective-practice descriptors across all 5 bands
+  - AT1 learningOutcomes: LO1/LO2/LO3/LO4 ✅ (fixed 2026-05-21)
+  - AT1 AITSL standards: 13 correct entries ✅ (fixed 2026-05-21)
+- **assessmentTasks — AT2:** learningOutcomes LO1/LO2/LO3/LO4 ✅ (fixed from LO4/LO5/LO6 — 2026-05-21); 6-row rubric ✅; parts [] (holistic)
 - **T1 2026 status:** AT1 Part A (due 2026-03-22), Parts B/C/D (due 2026-04-05), AT2 (due 2026-05-04) — all past due. Unit in PE/assessment period.
 
 ### EDSE362 — Science Education 11–12: Curriculum, Pedagogy and Inclusive Practice
@@ -442,14 +443,15 @@ All week-specific shells use `forWeek: N` — pinned to that module's content re
 - **Zoom (T2-2026):** `null` — not yet created; add to `trimesterConfig.T2-2026` when meeting is set up
 - **Theme:** green/warm gold — `primary: #2E7D52`, `accent: #E3B089`, `pill: #E8F5EE`, `pillBorder: #b8dcc8`
 - **bannerUrl:** `assets/banners/EDSE362-banner.svg` ✅
-- **keyLinks:** Unit Outline ✅, Learning Materials ✅, Assessment Portal ✅ — all three populated ✅ (updated 2026-05-21)
+- **keyLinks:** Unit Outline ✅, Learning Materials ✅, Assessment Portal ✅
 - **contacts:** coordinator Steve Grant ✅; lecturer null
-- **Learning outcomes:** LO1–LO6 ✅ (added 2026-05-21)
+- **Learning outcomes:** LO1–LO6 ✅ (`title`/`gtsd` schema)
 - **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅; `resources: []` present on each week (empty arrays, ready to fill)
+- **loMapping (weeks 1–8):** ✅ added 2026-05-21 — 1: LO1/LO2; 2: LO1/LO2/LO3; 3: LO2/LO3; 4–5: LO1/LO5; 6: LO1/LO2/LO3/LO4; 7: LO1/LO3; 8: LO1/LO6
 - **Videos (weeks 1–8):** all `null` — will default to `DGIXT7ce3vQ` until real IDs are added
 - **Links (all weeks):** all `null`
-- **assessmentTasks:** `trimesterDates.T2-2026` due dates ✅ (AT1 due 2026-07-26, AT2 due 2026-09-06); title null, rationale null, parts null, criteria null, rubric empty — to be populated before go-live
-- **Constructive alignment map:** EDSE362-specific template at `templates/constructive-alignment-map-EDSE362.html` ✅; EDSE358-specific template at `templates/constructive-alignment-map-EDSE358.html` ✅ (added 2026-05-21, reflects post-audit G1–G8 state); generic reusable version at `templates/constructive-alignment-map-generic.html` ✅; config-driven rendering planned — ACTION-PLAN item 16
+- **assessmentTasks:** `trimesterDates.T2-2026` due dates ✅ (AT1 due 2026-07-26, AT2 due 2026-09-06); learningOutcomes null (stubs — nulled 2026-05-21); title null, rationale null, parts null, criteria null, rubric empty — to be populated before go-live
+- **Constructive alignment map:** EDSE362-specific template at `templates/constructive-alignment-map-EDSE362.html` ✅; EDSE358-specific template at `templates/constructive-alignment-map-EDSE358.html` ✅; generic reusable version at `templates/constructive-alignment-map-generic.html` ✅; config-driven rendering planned — ACTION-PLAN item 16
 
 ---
 
@@ -485,6 +487,7 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
   "forumPrompts": ["Prompt 1.", "Prompt 2.", "Prompt 3."],
   "synthesisTemplate": "Post-forum synthesis template (lecturer tool — not student-facing).",
   "workedExample": "Worked example text — rendered by renderWorkedExample (fn 15) as collapsible details.",
+  "loMapping": ["LO1", "LO3"],
   "resources": [
     { "category": "UDL", "label": "Resource label", "url": "url_or_null", "type": "link" }
   ],
@@ -581,6 +584,41 @@ See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary
 ---
 
 ## Session notes
+
+### 2026-05-21 — Constructive alignment visibility layer; EDSE358 data fixes; generator bug fix
+
+**Completed this session (feature/alignment-visibility → dev → main, merge commit `b0cd1b4`):**
+
+**Generator bug fix (commit `19ffb91`):**
+- `unitCfg.weeks` is a plain object keyed by string numbers (`"0"`–`"14"`), not an array
+- `(unitCfg.weeks ?? []).map(...)` failed with `TypeError: weeks.map is not a function` because the object is truthy, so the `?? []` fallback never fires
+- Fixed: week dropdown now uses `Object.entries(unitCfg.weeks ?? {})` with `[k, w]` destructuring; synthesis-template lookup uses `unitCfg.weeks[weekKey]` string key
+- Week dropdown labels fixed: used non-existent `w.week` and `w.moduleTitle`; corrected to key `k` and `w.title`
+- **Rule:** Always use `Object.entries()` when iterating `unitCfg.weeks` — never `.map()` directly on the object
+
+**EDSE358 AT1 data fixes (commit `4932241`):**
+- `learningOutcomes`: `['LO1','LO2','LO3','LO5']` → `['LO1','LO2','LO3','LO4']`
+- `aitslStandards`: 5 wrong entries → 13 correct: `['1.2.1','1.5.1','2.1.1','2.2.1','2.3.1','2.4.1','2.6.1','3.1.1','3.3.1','3.4.1','4.4.1','5.1.1','5.2.1']`
+- Part titles: generic `"Part A/B/C"` → descriptive `"Task outline and forum post"`, `"Unit program"`, `"Justification essays"`
+- Parts A, B, C: all now have `description`, `requirements[]`, and `wordCount` populated
+
+**EDSE358 learningOutcomes replacement + renderer dual schema (commit `4afc808`):**
+- Replaced 6 stale LOs with 4 correct EDSE358 LOs using `label`/`aitsl`/`color` schema (not `title`/`gtsd`)
+- `renderLearningOutcomesTable` updated to handle both schemas: `lo.label ?? lo.title`, `lo.aitsl` (array) or `lo.gtsd` (string), `stdLabel` = 'AITSL' or 'GTSD' accordingly
+- AT2 `learningOutcomes` fixed: `['LO4','LO5','LO6']` (wrong placeholder) → `['LO1','LO2','LO3','LO4']`
+
+**Constructive alignment visibility — `loMapping` + LO pills + reverse alignment map (commit `f55d933`):**
+- `loMapping: [...]` added to all teaching weeks (1–8) across EDSE357, EDSE358, EDSE362; `loMapping: []` for non-teaching weeks
+- `renderCourseHub`: LO colour pills now appear below the week title in the `<summary>` (always visible, not hidden behind expand); built from `unitCfg.learningOutcomes` lookup by LO id; `hexRgba(hex, alpha)` inline helper for tinted backgrounds
+- `renderLearningOutcomesTable`: each LO row now includes a `<details>/<summary>` collapsible reverse alignment map showing:
+  - Teaching weeks where that LO is taught (from `loMapping`)
+  - Assessment references (part-level `loLinks` take priority over task-level `learningOutcomes` for the same task to avoid duplication)
+- EDSE362 AT1/AT2 `learningOutcomes` nulled (were stubs with unverified placeholder arrays); reverse map will auto-populate once real AT data is added (ACTION-PLAN item 22)
+
+**Key design decisions:**
+- Reverse alignment map uses part-level `loLinks` with priority over task-level `learningOutcomes`: if any parts reference an LO, show part labels ("AT1 Part D1"); if no parts but task references it, show task label ("AT1"). Prevents showing both "AT1" and "AT1 Part D1" for the same task.
+- LO pill backgrounds in reverse map use `hexRgba(lo.color, 0.15)` for week pills and `hexRgba(lo.color, 0.1)` for assessment pills — tinted rather than solid for readability
+- EDSE362 AT1/AT2 learningOutcomes intentionally null: stubs with placeholder arrays are worse than null because the reverse map would show false connections
 
 ### 2026-05-21 — EDSE358 alignment map; forWeek fix; production shells generated
 
