@@ -114,6 +114,12 @@
           "loLinks": [
             "LO2",
             "LO3"
+          ],
+          "guidanceNotes": [
+            "ICT use should enhance learning — not merely substitute a non-digital activity for a digital one. For each ICT tool in your unit, explain what it makes possible that a non-digital approach could not. Discipline examples: PhET simulations (Chemistry, Physics), Geogebra (Mathematics/Science data), NESA data sets (Earth and Environmental Science, Biology), virtual excursions, modelling tools.",
+            "Aboriginal and Torres Strait Islander perspectives should be embedded as integral to the science content — not added as a separate topic or acknowledgement. Identify where in your unit these perspectives connect authentically to a syllabus outcome and explain how you would frame this for students.",
+            "Your five-week unit should show a clear sequence — each week building on the last toward the model construction task. Before submitting, read your unit from Week 1 to Week 5 and ask: could a student do Week 3 without having done Weeks 1 and 2? If yes, your sequence may need stronger connections between weeks.",
+            "Formative assessment should appear twice in each week of your program — once early in the lesson to activate or check prior knowledge, and once later to consolidate or identify gaps before the next lesson. Specify what students produce at each point and what feedback focuses on."
           ]
         },
         {
@@ -141,7 +147,9 @@
           "loLinks": [
             "LO3",
             "LO5"
-          ]
+          ],
+          "guidanceNotes": [
+            "Your reflection should be analytical, not descriptive. Do not summarise what the task asked you to do. Instead, identify one specific thing that changed in your thinking and explain why it changed. Use a sentence frame if helpful: 'Before this task I assumed ___. Working through ___ changed my understanding because ___.'"]
         }
       ],
       "criteria": [],
@@ -790,6 +798,7 @@
         "focus": "Module 3B focuses on how experienced teachers translate curriculum and pedagogy into coherent, purposeful plans. As you work through the materials, pay attention to the decisions being made and why — not just the format of the plan itself.",
         "keyIdea": "A key idea this week is that planning is a professional act. The choices you make about sequence, timing, and strategy reflect your understanding of your students, your subject, and your purpose as a teacher."
       },
+      "orientationNote": "Module 3B builds directly on the constructivist and learning model foundations from Module 3A. As you work through programs and lesson plans this week, pay attention to two things that connect directly to Assessment Task 1: how ICT can be used purposefully to enhance learning (not just support it), and how Aboriginal and Torres Strait Islander perspectives can be embedded authentically into science content from the outset of planning — not added on afterwards. Both will be assessed in AT1 Part B.",
       "liveSessionFocus": "Apply learning models and constructivist planning principles to program and lesson planning.",
       "liveSessionTasks": [
         "Work through the Module 3B book.",
@@ -832,6 +841,10 @@
           "type": "link"
         }
       ],
+      "forumPrompts": [
+        "Review two digital tools relevant to your science discipline (e.g. PhET simulations, Geogebra, NESA data sets, or equivalent). For each tool, explain how it enhances — not merely supports — a specific syllabus outcome. What does the tool make possible that a non-digital approach could not?",
+        "Identify one opportunity to embed an Aboriginal and Torres Strait Islander perspective into a topic in your chosen science discipline. Explain its connection to a specific syllabus outcome and how you would frame it for students as integral to the science, not as an add-on."
+      ],
       "video": "HXhzDcirQ-0"
     },
     "5": {
@@ -846,6 +859,7 @@
         "focus": "Module 4A focuses on assessment for learning — the use of feedback, questioning, and peer and self-reflection to improve student understanding during the learning process. As you work through the materials, think about how assessment can be woven into teaching rather than added on at the end.",
         "keyIdea": "A key idea this week is that the most powerful assessment happens before the final mark — in the moments where a teacher notices where a student is and responds."
       },
+      "orientationNote": "Modules 4A through 4D form a deliberate spiral. Module 4A establishes why we assess and how feedback moves learning forward. Module 4B applies that thinking to designing assessment instruments. Module 4C extends this to differentiated and inclusive assessment. Module 4D brings it together through rubric design and feedback practice. Assessment Task 1 draws on all four modules — and Assessment Task 2 asks you to apply everything you have learned across the sequence. As you work through each module, keep asking: how does this change the way I would design or respond to an assessment task?",
       "liveSessionFocus": "Identify where teacher feedback, peer input, and student self-reflection can move learning forward in a portfolio task.",
       "liveSessionTasks": [
         "Work through the Module 4A learning materials.",
@@ -937,6 +951,11 @@
           "slides": "https://mylearn.une.edu.au/pluginfile.php/5335663/mod_resource/content/1/Module%204B%20stage6_assessment_design.pdf"
         }
       ],
+      "forumPrompts": [
+        "Find an assessment task used in a NSW Stage 6 science classroom. Analyse its alignment: do the outcomes, instructions, evidence students produce, and marking criteria all point to the same thing? Identify one strength and one gap. Then identify or suggest a feedback mechanism — how would a teacher respond to student work on this task in a way that moves learning forward?"
+      ],
+      "synthesisTemplate": "Thanks everyone for your contributions to the Module 4B forum this week. A few things stood out across the cohort: [STRENGTH OBSERVED — e.g. strong identification of alignment between outcomes and task instructions]. One area worth revisiting before Assessment Task 1: [COMMON ISSUE — e.g. many tasks had marking criteria that rewarded completion rather than quality of reasoning]. Keep this in mind as you move into Module 4C — the same alignment thinking applies when you are designing differentiated assessment. More soon.",
+      "workedExample": "STRONG ALIGNMENT — Stage 6 Chemistry, Module 5: Equilibrium and Acid Reactions\n\nOutcome: CH12-6 — explains the relationship between the rate of a chemical reaction and the frequency of effective collisions.\n\nTask instruction: Design and conduct an investigation to determine how temperature affects the rate of the reaction between sodium thiosulfate and hydrochloric acid. Record your data, identify a trend, and explain it using collision theory.\n\nEvidence produced: A data table, a graph showing rate vs temperature, and a written explanation using collision theory.\n\nMarking criterion: Accurately explains the relationship between temperature, particle energy, collision frequency, and reaction rate using collected data.\n\nWhy this is strong: The outcome, instruction, evidence, and criterion all require the same thinking — applying collision theory to data. A student who understands the outcome knows exactly what to do and why.\n\nPARTIAL ALIGNMENT — Stage 6 Biology, Module 5: Heredity\n\nOutcome: BIO12-12 — analyses the relationship between inheritance patterns and molecular genetics.\n\nTask instruction: Research Mendel's experiments and write a 500-word report on his findings.\n\nEvidence produced: A descriptive written report.\n\nMarking criterion: Report is 400–600 words, uses correct terminology, and includes a bibliography.\n\nWhy this is partial: The outcome requires analysis of the relationship between inheritance patterns and molecular genetics. The task produces a descriptive report about historical experiments. The marking criterion rewards length and terminology — not analytical thinking. A student could score full marks without demonstrating the outcome.",
       "video": "JbvXUQJa9_g"
     },
     "7": {
