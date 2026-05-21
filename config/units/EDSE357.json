@@ -465,23 +465,23 @@
           "bands": {
             "HD": {
               "range": "10–9",
-              "descriptor": "Reflection completed to a very high standard; clear link to future teaching and learning."
+              "descriptor": "Reflection identifies a specific shift in thinking during the task, names what caused that shift, and explicitly connects it to a concrete future teaching decision. Reflection is analytical rather than descriptive — it explains why thinking changed, not just that it did. May draw on relevant literature to support insight."
             },
             "D": {
               "range": "8",
-              "descriptor": "Reflection completed to a satisfactory standard; evidence of growth mentioned but not strongly linked."
+              "descriptor": "Clear reflection identifying learning gained. A shift in thinking is evident and connected to future practice. Moves beyond description into analysis."
             },
             "C": {
               "range": "7–6",
-              "descriptor": "Reflection attempted but not satisfactory."
+              "descriptor": "Reflective thinking evident with identification of learning gained. Some analytical elements present though reflection may remain partly descriptive."
             },
             "P": {
               "range": "5",
-              "descriptor": "Reflection attempted but unsatisfactory."
+              "descriptor": "Reflection largely descriptive. Identifies what was done but provides limited insight into how or why thinking changed."
             },
             "N": {
               "range": "4–0",
-              "descriptor": "Reflection missing or inadequate."
+              "descriptor": "Reflection superficial, minimal, or not submitted. No evidence of analytical thinking about learning."
             }
           }
         }
@@ -664,7 +664,7 @@
           "bands": {
             "HD": {
               "range": "13–15",
-              "descriptor": "Purposeful and strategic selection of diverse resource types. Clear rationale for future professional use."
+              "descriptor": "Purposeful and strategic selection of diverse resource types. Clear rationale for future professional use. Selection demonstrates awareness of professional learning networks and community expertise relevant to senior science teaching. Resources are culturally safe, current, and where relevant reflect awareness of Aboriginal and Torres Strait Islander perspectives in science education."
             },
             "D": {
               "range": "11–12",
@@ -672,11 +672,11 @@
             },
             "C": {
               "range": "9–10",
-              "descriptor": "Required resource types included. Some rationale evident."
+              "descriptor": "Required resource types included. Some rationale evident. Resources are generally culturally appropriate. Some awareness of professional networks evident."
             },
             "P": {
               "range": "7–8",
-              "descriptor": "Compliance-based selection. Limited professional reasoning."
+              "descriptor": "Compliance-based selection. Limited professional reasoning. Limited evidence of cultural awareness or professional network consideration."
             },
             "N": {
               "range": "0–6",
@@ -748,6 +748,10 @@
             }
           }
         }
+      ],
+      "taskGuidanceNotes": [
+        "Your textbook resource is your primary opportunity to demonstrate LO6 — critical textbook analysis. Choose a textbook chapter that gives you something substantive to evaluate, and analyse it with the same rigour you would apply to any other resource.",
+        "Your external expert or community representative resource connects directly to LO5 — professional resources and networks. Think carefully about what makes an external expert valuable for senior science students, and how this connects to your professional responsibilities as a teacher."
       ],
       "hdCallout": "HD work reads like the thinking of a capable early-career science teacher who understands curriculum deeply, evaluates resources professionally, uses literature strategically (not as decoration), and makes sound, future-oriented decisions.",
       "submissionInstructions": [
@@ -934,6 +938,11 @@
         "Identify two challenges students typically face when designing open-ended investigations, and think about how you might scaffold around them.",
         "Consider: what does teacher guidance look like at each stage of a student-designed investigation without undermining student ownership of the inquiry?"
       ],
+      "orientationNote": "Topic 3 directly prepares you for the most substantial part of Assessment Task 1 — the Depth Study design (Part C, 50 marks). As you work through the materials on open-ended investigations, pay close attention to what makes OEI instructions clear enough for students to work independently. You will need to write these instructions yourself in Part C2. The forum activity this week gives you a low-stakes opportunity to practise that analytical thinking before the assessment.",
+      "forumPrompts": [
+        "Review the sample OEI instructions provided in this topic. What makes them clear enough for students to work independently? Identify one element that works well and one element that is missing or unclear. What would you add or change to make them more effective?",
+        "When you design your own OEI instructions for Assessment Task 1 Part C, what do you think will be the hardest part to get right? Why?"
+      ],
       "links": {
         "lecture": null,
         "slides": null,
@@ -994,6 +1003,11 @@
         "Select one textbook or digital resource you would consider using in your primary teaching area and evaluate it against at least two criteria: syllabus alignment and scientific accuracy.",
         "Identify one gap or weakness in the resource and consider what supplementary material you might use to address it.",
         "Come prepared to share your evaluation and the criteria you applied — we will compare approaches across teaching areas in the session."
+      ],
+      "orientationNote": "Topic 5 is direct preparation for Assessment Task 2. The professional judgement criterion in AT2 (35%) rewards sophisticated evaluation of resources — including digital tools — that goes well beyond description. As you work through the Topic 5 materials, shift your thinking from \"what does this resource contain?\" to \"what does this resource make possible for learners, and how do I know?\" The forum activity this week gives you a structured opportunity to practise exactly that before the high-stakes assessment.",
+      "forumPrompts": [
+        "Find one digital resource relevant to your chosen senior science discipline. Evaluate it against these three questions: (a) What does this resource make possible that a non-digital approach could not? (b) Is it accurately aligned to a specific NSW syllabus outcome — which one, and how do you know? (c) Would you use it in your first year of teaching — and why? Post your evaluation (100 words) to the forum.",
+        "Assessment Task 2 asks you to evaluate eight resources including at least one digital resource. This forum activity is your rehearsal. What did you find hardest about evaluating the digital resource you chose?"
       ],
       "links": {
         "lecture": null,
@@ -1060,6 +1074,11 @@
         "Before the session, select two or three content areas from your Stage 6 syllabus that you feel least confident teaching at present.",
         "For each, identify what resources or professional learning you might access to address the gap — textbooks, online courses, professional associations, or university content.",
         "Come prepared to discuss what 'deep content knowledge' looks like for a senior science teacher and how it differs from exam-level subject knowledge."
+      ],
+      "orientationNote": "Topic 7 asks you to audit your own science content knowledge — and it also prepares you for a specific requirement in Assessment Task 2. AT2 requires you to include a textbook resource, and your critical analysis of that resource connects directly to LO6 — the ability to critically analyse a textbook and identify its strengths and shortcomings relative to the syllabus. The forum activity this week is your formative rehearsal for that. Treat it seriously: the evaluative thinking you practise here will directly improve the quality of your AT2 textbook critique.",
+      "forumPrompts": [
+        "Select one chapter from a commonly used senior science textbook in your chosen discipline. Evaluate it against three criteria: (a) Is the science content accurate and current? (b) Does it align accurately to a specific NSW syllabus outcome — or does it miss, misrepresent, or extend beyond it? (c) What is its pedagogical approach — and does that approach suit the learning demands of senior science? Post 100 words to the forum.",
+        "Assessment Task 2 requires you to include a textbook chapter or section as one of your eight resources. Your critical analysis of that textbook resource is your primary opportunity to demonstrate LO6 — critical textbook analysis. Use this forum activity to develop your evaluative approach before the assessment."
       ],
       "links": {
         "lecture": null,
