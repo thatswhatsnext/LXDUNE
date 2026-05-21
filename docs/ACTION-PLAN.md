@@ -245,6 +245,12 @@ the same pattern as the planned EDSE362 migration (item 16).
 
 **Trigger:** when `renderAlignmentMap()` is built as part of item 16.
 
+### 22. Add loMapping to EDSE362 assessmentTasks once AT1 and AT2 are defined ⬜
+EDSE362 assessmentTasks are currently empty stubs. Once AT1 and AT2 are
+populated with learningOutcomes arrays, the reverse map in
+renderLearningOutcomesTable will automatically show assessment connections
+for EDSE362. No code change needed — data only.
+
 ---
 
 ## 🔵 Do before T2 2026 go-live — EDSE362

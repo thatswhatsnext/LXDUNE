@@ -114,7 +114,7 @@ const HUB_CSS = `
 .lx-hub-pill{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:#1F2A33;padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px}
 .lx-hub h2{margin:0 0 16px;color:#1F2A33}
 .lx-hub-week{border:1px solid #dfe6ea;border-radius:10px;margin-bottom:10px;overflow:hidden;background:#fff}
-.lx-hub-week-summary{cursor:pointer;list-style:none;padding:12px 14px;font-weight:700;display:flex;align-items:center;gap:10px;background:#f4f6f8;border-radius:10px}
+.lx-hub-week-summary{cursor:pointer;list-style:none;padding:12px 14px;font-weight:700;display:flex;flex-direction:column;gap:0;background:#f4f6f8;border-radius:10px}
 .lx-hub-week[open]>.lx-hub-week-summary{border-bottom:1px solid #dfe6ea;border-radius:10px 10px 0 0}
 .lx-hub-week-summary::-webkit-details-marker{display:none}
 .lx-hub-week-summary::marker{display:none}
@@ -126,7 +126,10 @@ const HUB_CSS = `
 .lx-hub-announce{margin-bottom:10px;padding:10px 12px;border-radius:8px;border-left:4px solid var(--lx-primary,#1f6fb2);background:#f4f6f8;font-size:.93em}
 .lx-hub-tasks{margin:8px 0 0 0;padding-left:18px;font-size:.93em}
 .lx-hub-tasks li{margin:5px 0}
-.lx-hub-coming{font-size:.88em;color:#6F7B84;font-style:italic}`;
+.lx-hub-coming{font-size:.88em;color:#6F7B84;font-style:italic}
+.lx-hub-summary-top{display:flex;align-items:center;gap:10px;width:100%}
+.lx-hub-lo-pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;margin-bottom:2px}
+.lx-hub-lo-pill{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:700;color:#fff;white-space:nowrap}`;
 
 const ASSESSMENT_CSS = `
 .lx-ap{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33;line-height:1.55}
@@ -675,12 +678,79 @@ export async function renderLearningOutcomesTable({ forUnit, forTri, forYear } =
     return;
   }
 
+  // Build reverse map: loId → teaching week objects (weeks 1–8 only)
+  const weeks = unitCfg.weeks ?? {};
+  const loToWeeks = {};
+  for (const [k, w] of Object.entries(weeks)) {
+    const n = Number(k);
+    if (n < 1 || n > 8) continue;
+    for (const id of (w.loMapping ?? [])) {
+      (loToWeeks[id] = loToWeeks[id] ?? []).push(w);
+    }
+  }
+
+  // Build reverse map: loId → assessment pill labels
+  // Part-level references take priority over task-level for the same task.
+  const loToAssess = {};
+  for (const task of (unitCfg.assessmentTasks ?? [])) {
+    const taskLos = new Set(task.learningOutcomes ?? []);
+    const partsByLo = {};
+    for (const part of (task.parts ?? [])) {
+      for (const id of (part.loLinks ?? [])) {
+        (partsByLo[id] = partsByLo[id] ?? []).push(part);
+      }
+    }
+    // Collect: part-level if any, else task-level
+    const allLoIds = new Set([...taskLos, ...Object.keys(partsByLo)]);
+    for (const id of allLoIds) {
+      if (partsByLo[id]?.length) {
+        for (const part of partsByLo[id]) {
+          (loToAssess[id] = loToAssess[id] ?? []).push(`${task.id} Part ${part.id}`);
+        }
+      } else if (taskLos.has(id)) {
+        (loToAssess[id] = loToAssess[id] ?? []).push(task.id);
+      }
+    }
+  }
+
+  // Hex → rgba helper
+  function hexRgba(hex, alpha) {
+    const h = (hex ?? '#888888').replace('#', '');
+    const r = parseInt(h.slice(0,2), 16) || 128;
+    const g = parseInt(h.slice(2,4), 16) || 128;
+    const b = parseInt(h.slice(4,6), 16) || 128;
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+
   const rows = los.map(lo => {
     const name = lo.label ?? lo.title ?? '';
     const standards = Array.isArray(lo.aitsl)
       ? lo.aitsl.join(', ')
       : (lo.gtsd ?? '');
     const stdLabel = Array.isArray(lo.aitsl) ? 'AITSL' : 'GTSD';
+
+    // Teaching week pills
+    const weekItems = loToWeeks[lo.id] ?? [];
+    const weekPillsHtml = weekItems.length
+      ? weekItems.map(w => `<span style="display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:700;background:${hexRgba(lo.color,0.15)};color:${esc(lo.color)};border:1px solid ${hexRgba(lo.color,0.35)};">${esc(w.item ?? 'Week')}</span>`).join(' ')
+      : `<span style="color:#6F7B84;font-size:.88em;font-style:italic;">No teaching weeks currently mapped to this outcome.</span>`;
+
+    // Assessment pills
+    const assessRefs = loToAssess[lo.id] ?? [];
+    const assessPillsHtml = assessRefs.length
+      ? assessRefs.map(label => `<span style="display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:700;background:${hexRgba(lo.color,0.1)};color:${esc(lo.color)};border:1px solid ${hexRgba(lo.color,0.25)};">${esc(label)}</span>`).join(' ')
+      : `<span style="color:#6F7B84;font-size:.88em;font-style:italic;">Not directly assessed in a named criterion.</span>`;
+
+    const reverseMap = `<details style="margin-top:8px;">
+      <summary style="font-size:.82em;font-weight:700;color:${esc(lo.color)};cursor:pointer;list-style:none;display:inline-block;user-select:none;">Where this outcome is developed ▸</summary>
+      <div style="margin-top:8px;padding:10px 12px;border-radius:8px;border-left:3px solid ${hexRgba(lo.color,0.4)};background:${hexRgba(lo.color,0.05)};">
+        <div style="font-size:.8em;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#6F7B84;margin-bottom:6px;">Teaching weeks</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;">${weekPillsHtml}</div>
+        <div style="font-size:.8em;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#6F7B84;margin-bottom:6px;">Assessment</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;">${assessPillsHtml}</div>
+      </div>
+    </details>`;
+
     return `<tr id="${esc(lo.id)}" style="border-top:2px solid ${esc(lo.color)};">
     <td style="width:110px;padding:12px;vertical-align:top;">
       <span style="background:${esc(lo.color)};color:white;padding:6px 10px;border-radius:999px;font-weight:bold;">${esc(lo.id)}</span>
@@ -689,6 +759,7 @@ export async function renderLearningOutcomesTable({ forUnit, forTri, forYear } =
       <strong>${esc(name)}</strong><br>
       ${esc(lo.description)}<br>
       <em>${esc(stdLabel)} ${esc(standards)}</em>
+      ${reverseMap}
     </td>
   </tr>`;
   }).join('');
@@ -1065,6 +1136,8 @@ export async function renderCourseHub({ forUnit, forTri, forYear } = {}) {
   injectStyles('lx-hub', HUB_CSS);
 
   const weeks = unitCfg.weeks ?? {};
+  const loMap = Object.fromEntries((unitCfg.learningOutcomes ?? []).map(lo => [lo.id, lo]));
+
   const weekNums = Object.keys(weeks)
     .map(Number)
     .filter(n => n >= 1 && !NO_TEACHING.has(n))
@@ -1074,6 +1147,17 @@ export async function renderCourseHub({ forUnit, forTri, forYear } = {}) {
     const week = weeks[String(n)];
     const itemLabel = week.item ? esc(week.item) : `Week ${n}`;
     const title     = week.title ? esc(week.title) : '';
+
+    // LO pills
+    const loIds = Array.isArray(week.loMapping) ? week.loMapping : [];
+    const loPillsHtml = loIds
+      .map(id => {
+        const lo = loMap[id];
+        if (!lo) return '';
+        return `<span class="lx-hub-lo-pill" style="background:${esc(lo.color)};">${esc(id)}</span>`;
+      })
+      .filter(Boolean)
+      .join('');
 
     // Body parts
     const bodyParts = [];
@@ -1100,9 +1184,12 @@ export async function renderCourseHub({ forUnit, forTri, forYear } = {}) {
 
     return `<details class="lx-hub-week">
       <summary class="lx-hub-week-summary">
-        <span class="lx-hub-chip">${itemLabel}</span>
-        <span class="lx-hub-week-num">Week ${n}</span>
-        ${title ? `<span class="lx-hub-week-title">${title}</span>` : ''}
+        <div class="lx-hub-summary-top">
+          <span class="lx-hub-chip">${itemLabel}</span>
+          <span class="lx-hub-week-num">Week ${n}</span>
+          ${title ? `<span class="lx-hub-week-title">${title}</span>` : ''}
+        </div>
+        ${loPillsHtml ? `<div class="lx-hub-lo-pills">${loPillsHtml}</div>` : ''}
       </summary>
       <div class="lx-hub-body">${body}</div>
     </details>`;

@@ -66,11 +66,7 @@
       "title": null,
       "weighting": 50,
       "length": null,
-      "learningOutcomes": [
-        "LO1",
-        "LO2",
-        "LO3"
-      ],
+      "learningOutcomes": null,
       "aitslStandards": [],
       "rationale": null,
       "aim": null,
@@ -103,11 +99,7 @@
       "title": null,
       "weighting": 50,
       "length": null,
-      "learningOutcomes": [
-        "LO4",
-        "LO5",
-        "LO6"
-      ],
+      "learningOutcomes": null,
       "aitslStandards": [],
       "rationale": null,
       "aim": null,
@@ -220,7 +212,8 @@
   },
   "weeks": {
     "0": {
-      "video": "vOe6VqwXMk0"
+      "video": "vOe6VqwXMk0",
+      "loMapping": []
     },
     "1": {
       "item": "Topic 1",
@@ -246,7 +239,11 @@
         "liveHub": null
       },
       "resources": [],
-      "video": null
+      "video": null,
+      "loMapping": [
+        "LO1",
+        "LO2"
+      ]
     },
     "2": {
       "item": "Topic 2",
@@ -272,7 +269,12 @@
         "liveHub": null
       },
       "resources": [],
-      "video": null
+      "video": null,
+      "loMapping": [
+        "LO1",
+        "LO2",
+        "LO3"
+      ]
     },
     "3": {
       "item": "Topic 3",
@@ -298,7 +300,11 @@
         "liveHub": null
       },
       "resources": [],
-      "video": null
+      "video": null,
+      "loMapping": [
+        "LO2",
+        "LO3"
+      ]
     },
     "4": {
       "item": "Topic 4",
@@ -324,7 +330,11 @@
         "liveHub": null
       },
       "resources": [],
-      "video": null
+      "video": null,
+      "loMapping": [
+        "LO1",
+        "LO5"
+      ]
     },
     "5": {
       "item": "Topic 5",
@@ -350,7 +360,11 @@
         "liveHub": null
       },
       "resources": [],
-      "video": null
+      "video": null,
+      "loMapping": [
+        "LO1",
+        "LO5"
+      ]
     },
     "6": {
       "item": "Topic 6",
@@ -376,7 +390,13 @@
         "liveHub": null
       },
       "resources": [],
-      "video": null
+      "video": null,
+      "loMapping": [
+        "LO1",
+        "LO2",
+        "LO3",
+        "LO4"
+      ]
     },
     "7": {
       "item": "Topic 7",
@@ -402,7 +422,11 @@
         "liveHub": null
       },
       "resources": [],
-      "video": null
+      "video": null,
+      "loMapping": [
+        "LO1",
+        "LO3"
+      ]
     },
     "8": {
       "item": "Topic 8",
@@ -428,37 +452,47 @@
         "liveHub": null
       },
       "resources": [],
-      "video": null
+      "video": null,
+      "loMapping": [
+        "LO1",
+        "LO6"
+      ]
     },
     "9": {
       "item": "Professional Experience",
       "title": "Flexible Window for Professional Experience (School of Education Only)",
-      "video": "DGIXT7ce3vQ"
+      "video": "DGIXT7ce3vQ",
+      "loMapping": []
     },
     "10": {
       "item": "Professional Experience",
       "title": "Flexible Window for Professional Experience (School of Education Only)",
-      "video": "DGIXT7ce3vQ"
+      "video": "DGIXT7ce3vQ",
+      "loMapping": []
     },
     "11": {
       "item": "Professional Experience",
       "title": "Flexible Window for Professional Experience (School of Education Only)",
-      "video": "DGIXT7ce3vQ"
+      "video": "DGIXT7ce3vQ",
+      "loMapping": []
     },
     "12": {
       "item": "Professional Experience",
       "title": "Flexible Window for Professional Experience (School of Education Only)",
-      "video": "DGIXT7ce3vQ"
+      "video": "DGIXT7ce3vQ",
+      "loMapping": []
     },
     "13": {
       "item": "Professional Experience",
       "title": "Flexible Window for Professional Experience (School of Education Only)",
-      "video": "DGIXT7ce3vQ"
+      "video": "DGIXT7ce3vQ",
+      "loMapping": []
     },
     "14": {
       "item": "Assessment period",
       "title": "Assessment and Intensive Period 2",
-      "video": "DGIXT7ce3vQ"
+      "video": "DGIXT7ce3vQ",
+      "loMapping": []
     }
   }
 }

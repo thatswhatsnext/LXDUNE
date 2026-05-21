@@ -859,7 +859,8 @@
   },
   "weeks": {
     "0": {
-      "video": "vOe6VqwXMk0"
+      "video": "vOe6VqwXMk0",
+      "loMapping": []
     },
     "1": {
       "item": "Topic 1",
@@ -884,7 +885,11 @@
         "materials": null,
         "liveHub": null
       },
-      "video": "1jVXNAaZ1P8"
+      "video": "1jVXNAaZ1P8",
+      "loMapping": [
+        "LO1",
+        "LO2"
+      ]
     },
     "2": {
       "item": "Topic 2",
@@ -909,7 +914,11 @@
         "materials": null,
         "liveHub": null
       },
-      "video": "SItTfkDrkKo"
+      "video": "SItTfkDrkKo",
+      "loMapping": [
+        "LO1",
+        "LO3"
+      ]
     },
     "3": {
       "item": "Topic 3",
@@ -934,7 +943,11 @@
         "materials": null,
         "liveHub": null
       },
-      "video": "MOVpOGshy9M"
+      "video": "MOVpOGshy9M",
+      "loMapping": [
+        "LO1",
+        "LO3"
+      ]
     },
     "4": {
       "item": "Topic 4",
@@ -959,7 +972,11 @@
         "materials": null,
         "liveHub": null
       },
-      "video": "brEVCv7P8Tw"
+      "video": "brEVCv7P8Tw",
+      "loMapping": [
+        "LO1",
+        "LO3"
+      ]
     },
     "5": {
       "item": "Topic 5",
@@ -987,7 +1004,12 @@
         "materials": null,
         "liveHub": null
       },
-      "video": "T4ZrteC1S1A"
+      "video": "T4ZrteC1S1A",
+      "loMapping": [
+        "LO2",
+        "LO4",
+        "LO5"
+      ]
     },
     "6": {
       "item": "Topic 6",
@@ -1018,7 +1040,12 @@
         "materials": null,
         "liveHub": null
       },
-      "video": "NGeQF5M5fEc"
+      "video": "NGeQF5M5fEc",
+      "loMapping": [
+        "LO1",
+        "LO2",
+        "LO4"
+      ]
     },
     "7": {
       "item": "Topic 7",
@@ -1043,7 +1070,11 @@
         "materials": null,
         "liveHub": null
       },
-      "video": "qHHfqvXy2iE"
+      "video": "qHHfqvXy2iE",
+      "loMapping": [
+        "LO1",
+        "LO6"
+      ]
     },
     "8": {
       "item": "Topic 8",
@@ -1068,12 +1099,18 @@
         "materials": null,
         "liveHub": null
       },
-      "video": "tZawrfxdeaM"
+      "video": "tZawrfxdeaM",
+      "loMapping": [
+        "LO1",
+        "LO2",
+        "LO5"
+      ]
     },
     "9": {
       "item": "Professional Experience",
       "title": "Flexible Window for Professional Experience (School of Education Only)",
-      "video": "DGIXT7ce3vQ"
+      "video": "DGIXT7ce3vQ",
+      "loMapping": []
     },
     "10": {
       "item": "Professional Experience",
@@ -1084,27 +1121,32 @@
           "due": "2026-05-03"
         }
       ],
-      "video": "DGIXT7ce3vQ"
+      "video": "DGIXT7ce3vQ",
+      "loMapping": []
     },
     "11": {
       "item": "Professional Experience",
       "title": "Flexible Window for Professional Experience (School of Education Only)",
-      "video": "DGIXT7ce3vQ"
+      "video": "DGIXT7ce3vQ",
+      "loMapping": []
     },
     "12": {
       "item": "Professional Experience",
       "title": "Flexible Window for Professional Experience (School of Education Only)",
-      "video": "DGIXT7ce3vQ"
+      "video": "DGIXT7ce3vQ",
+      "loMapping": []
     },
     "13": {
       "item": "Professional Experience",
       "title": "Flexible Window for Professional Experience (School of Education Only)",
-      "video": "DGIXT7ce3vQ"
+      "video": "DGIXT7ce3vQ",
+      "loMapping": []
     },
     "14": {
       "item": "Assessment period",
       "title": "Assessment and Intensive Period 2",
-      "video": "DGIXT7ce3vQ"
+      "video": "DGIXT7ce3vQ",
+      "loMapping": []
     }
   }
 }
