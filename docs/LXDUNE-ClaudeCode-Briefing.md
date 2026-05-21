@@ -1,6 +1,6 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-05-21 (EDSE357 alignment audit G1-G7: orientationNote + forumPrompts weeks 3/5/7; AT1 Part D rubric updated to analytical reflection; AT2 Diversity rubric + taskGuidanceNotes added)
+**Last updated:** 2026-05-21 (EDSE357 LO replacement label/aitsl schema; constructive-alignment-map-EDSE357.html template added; ACTION-PLAN item 23 added)
 **Repo:** `https://github.com/thatswhatsnext/LXDUNE`
 **GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
@@ -42,12 +42,13 @@ test/
   index.html                  ← dynamic QA harness (local dev only)
 
 templates/
-  *.html                      ← 16 reference HTML components (static, not rendered)
+  *.html                      ← 17 reference HTML components (static, not rendered)
                                  incl. presubmission-checklist-EDSE357-AT1/AT2 and EDSE358-AT1,
                                  unit-key-info.html, assessment-status.html,
                                  constructive-alignment-map-EDSE362.html,
                                  constructive-alignment-map-EDSE358.html (added 2026-05-21),
-                                 constructive-alignment-map.html (generic/generic)
+                                 constructive-alignment-map-EDSE357.html (added 2026-05-21),
+                                 constructive-alignment-map.html (generic/reusable)
 
 docs/
   STAFF-README.md             ← plain-language guide for non-technical coordinators
@@ -102,17 +103,15 @@ Pasted once into Moodle, never edited again. The script fetches config on every 
 
 `dev` is **1 commit ahead of main** as of 2026-05-21.
 
-Uncommitted on dev: `75c7b02 chore: update ACTION-PLAN — mark EDSE357 alignment audit complete`
-
 ### `main` (GitHub Pages source — production ✅)
-Last merge: `0120da0` (2026-05-21) — EDSE357 alignment improvements.
+Last merge: `7b0f289` (2026-05-21) — EDSE357 LO replacement + alignment map template.
 
 Recent main history:
+- `7b0f289` — Merge dev: fix EDSE357 learningOutcomes + alignment map template + ACTION-PLAN item 23
+- `f18412b` — fix: replace EDSE357 learningOutcomes with correct official unit outcomes
+- `debf015` — feat: add EDSE357 constructive alignment map template, update README and action plan (pending merge to main at next push)
 - `0120da0` — Merge dev into main: EDSE357 alignment improvements
 - `d2f457c` — content: EDSE357 alignment audit improvements — forum prompts, orientation notes, rubric updates G1-G7
-- `3fc53b2` — Merge dev into main: briefing update
-- `8cb6506` — chore: briefing update
-- `b0cd1b4` — Merge dev into main: constructive alignment visibility
 
 Live scripts serving from main:
 - `https://thatswhatsnext.github.io/LXDUNE/whatson/whatson.js` → 200
@@ -361,6 +360,7 @@ Pre-generated copyable Moodle shell snippets. Open in a browser — each shell h
 | `docs/EDSE358-navigation-shells.html` | 2 | — | 2026-05-19 (rev 2) | Current |
 | `docs/EDSE357-navigation-shells.html` | 2 | — | 2026-05-19 (rev 2) | Current |
 | `docs/EDSE358-new-shells-may2026.html` | 7 | — | 2026-05-21 | **Use this for EDSE358 AT1 + new week blocks** |
+| `docs/EDSE357-new-shells-may2026.html` | 6 | — | 2026-05-21 | Orientation notes + forum prompts for Topics 3, 5, 7 |
 
 **`EDSE358-new-shells-may2026.html` contains (7 shells):**
 - Section 1: Updated AT1 assessment page — **replace** existing Moodle shell (reflects D1/D2 split + guidanceNotes)
@@ -392,7 +392,8 @@ All week-specific shells use `forWeek: N` — pinned to that module's content re
   - No `synthesisTemplate` or `workedExample` fields — not yet added to EDSE357
 - **Weeks 9–14 and week 0:** minimal (non-teaching); videos set to `DGIXT7ce3vQ`; loMapping: `[]`
 - **Links (all weeks 1–8):** all `null` — content links not yet published; all render as Coming soon chips
-- **Learning outcomes:** LO1–LO6 ✅ (`title`/`gtsd` schema)
+- **Learning outcomes:** LO1–LO6 ✅ (`label`/`aitsl` schema — replaced 2026-05-21; correct official unit outcomes):
+  - LO1 Science Content & Teaching Strategies (#1f6fb2), LO2 Assessment Knowledge (#25797F), LO3 Investigative Skills & Safety (#2E86AB), LO4 ICT & Resource Evaluation (#4a90d9), LO5 Professional Resources & Networks (#E3B089), LO6 Critical Textbook Analysis (#C4872D)
 - **assessmentTasks:** AT1 and AT2 — fully populated; `trimesterDates.T1-2026` dates populated ✅; T2-2026 and T3-2026 stubs present (due null — pending)
   - AT1: learningOutcomes LO1–LO5 ✅; 7-row rubric; **Part D descriptors updated 2026-05-21** to analytical reflection focus (shift in thinking → future teaching decision); links: rubric ✅, taskFiles ✅, submit ✅, forum ✅, video null
   - AT2: learningOutcomes LO1/LO2/LO4/LO5/LO6 ✅; **`taskGuidanceNotes` added 2026-05-21** (2 items: textbook→LO6, external expert→LO5); **Diversity & Intentional Curation rubric updated** — HD appended (professional networks, ATSI cultural awareness), C/P appended (shorter versions); links: rubric null ⚠️, taskFiles ✅, submit ✅, forum null, video ✅; T1-2026 flexiblePortal.url null (past-due)
@@ -457,7 +458,7 @@ All week-specific shells use `forWeek: N` — pinned to that module's content re
 - **Videos (weeks 1–8):** all `null` — will default to `DGIXT7ce3vQ` until real IDs are added
 - **Links (all weeks):** all `null`
 - **assessmentTasks:** `trimesterDates.T2-2026` due dates ✅ (AT1 due 2026-07-26, AT2 due 2026-09-06); learningOutcomes null (stubs — nulled 2026-05-21); title null, rationale null, parts null, criteria null, rubric empty — to be populated before go-live
-- **Constructive alignment map:** EDSE362-specific template at `templates/constructive-alignment-map-EDSE362.html` ✅; EDSE358-specific template at `templates/constructive-alignment-map-EDSE358.html` ✅; generic reusable version at `templates/constructive-alignment-map-generic.html` ✅; config-driven rendering planned — ACTION-PLAN item 16
+- **Constructive alignment map:** EDSE362-specific template at `templates/constructive-alignment-map-EDSE362.html` ✅; EDSE358-specific template at `templates/constructive-alignment-map-EDSE358.html` ✅; EDSE357-specific template at `templates/constructive-alignment-map-EDSE357.html` ✅ (added 2026-05-21 — 6 LOs, blue/teal theme, G1–G7 improved state); generic reusable version at `templates/constructive-alignment-map-generic.html` ✅; config-driven rendering planned — ACTION-PLAN items 16 and 23
 
 ---
 
@@ -571,7 +572,7 @@ T2 2026 start `2026-06-22` is confirmed. ⚠️ 2027 dates are estimates — con
 13. ~~**EDSE358 alignment fields stored but not rendered**~~ — ✅ RESOLVED 2026-05-21. All five fields now rendered: `renderOrientationNote`, `renderForumPrompts`, `renderWorkedExample` (fns 13–15); `guidanceNotes` in `renderAssessmentPage`; `synthesisTemplate` in generator admin tool.
 14. **EDSE358 AT1 shell needs replacing in Moodle:** Updated AT1 assessment page shell is in `docs/EDSE358-new-shells-may2026.html` Section 1 (generated 2026-05-21). Steve to paste it into Moodle, replacing the old shell. Reflects D1/D2 split, updated rubric descriptors, and guidanceNotes rendering. The checklist template has been updated (D1: 5 items, D2: 2 items) — once the checklist refactor (item 15) is done, a new checklist render shell will also be needed.
 15. **EDSE362 lecturer name null:** `contacts.lecturer.name` is null across all three units. Populate when confirmed.
-16. **EDSE357 orientation notes and forum prompts not yet deployed to Moodle:** `orientationNote` and `forumPrompts` data is live in the config for weeks 3, 5, and 7, but no `renderOrientationNote` or `renderForumPrompts` shells have been pasted into the EDSE357 module pages. Low priority — T1 2026 is past due. Generate shells from the generator before T2 2026 if EDSE357 runs again.
+16. **EDSE357 orientation notes and forum prompts not yet deployed to Moodle:** `orientationNote` and `forumPrompts` data is live in the config for weeks 3, 5, and 7. Shells are ready in `docs/EDSE357-new-shells-may2026.html` (6 shells, Topics 3/5/7). Steve to paste into Moodle module pages. Low priority — T1 2026 is past due. Deploy before T2 2026 if EDSE357 runs again.
 17. **EDSE357 AT1 assessment page shell may need regenerating:** The Part D rubric descriptors were updated (analytical reflection focus). The existing Moodle AT1 shell will show old descriptors until a new shell is generated and pasted. Low priority — T1 2026 is past due.
 
 ---
@@ -586,13 +587,41 @@ See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary
 4. **EDSE358 missing week links** — weeks 1–2 (all), weeks 3/6/7/8 (partial); add as content is published (ACTION-PLAN item 7).
 5. **EDSE357 week links** — add lecture/slides/recording/forum/materials/liveHub as content is published (ACTION-PLAN item 10).
 6. **Checklist refactor** — before writing a fourth static checklist template, do the config-driven refactor (ACTION-PLAN item 15).
-7. **Alignment map renderer** — `renderAlignmentMap()` as 16th render function, reading from `unitCfg.alignmentMap`; both EDSE358 and EDSE362 static templates now exist as references (ACTION-PLAN item 16).
+7. **Alignment map renderer** — `renderAlignmentMap()` as 16th render function, reading from `unitCfg.alignmentMap`; all three unit-specific static templates now exist as references: EDSE362, EDSE358, EDSE357 (ACTION-PLAN items 16, 21, 23).
 8. **Apply alignment fields to EDSE362** — write `orientationNote`, `forumPrompts`, `workedExample`, `synthesisTemplate`, `guidanceNotes` content for EDSE362; EDSE357 alignment fields now populated ✅; rendering is live (ACTION-PLAN item 19).
 9. **EDSE357 T2 2026 prep** — if EDSE357 runs again in T2 2026, generate and deploy orientation note + forum prompt shells for weeks 3, 5, 7; regenerate AT1 assessment page shell (updated Part D rubric); confirm T2 dates (ACTION-PLAN items 10, 11).
 
 ---
 
 ## Session notes
+
+### 2026-05-21 — EDSE357 LO replacement and alignment map template
+
+**Completed this session:**
+
+**EDSE357 `learningOutcomes` replacement (commit `f18412b` → main `7b0f289`):**
+- Old schema: `title`/`gtsd` — 6 placeholder LOs (generic names, no AITSL standards)
+- New schema: `label`/`aitsl` — 6 official unit outcomes from unit documents
+  - LO1 Science Content & Teaching Strategies — AITSL 2.1.1
+  - LO2 Assessment Knowledge — AITSL 5.1.1, 5.4.1
+  - LO3 Investigative Skills & Safety — AITSL 3.3.1, 4.1.1, 4.2.1, 4.4.1
+  - LO4 ICT & Resource Evaluation — AITSL 2.6.1
+  - LO5 Professional Resources & Networks — AITSL 3.4.1, 7.4.1
+  - LO6 Critical Textbook Analysis — AITSL 3.4.1, 3.6.1
+- LO IDs (LO1–LO6) unchanged — all `loMapping` and `loLinks` references remain structurally valid
+- Renderer already handles dual schema (`lo.label ?? lo.title`); no code change needed
+- Colors: LO5 (#E3B089 warm gold) and LO6 (#C4872D amber) are warm tones — intentional distinction from the blue/teal LO1–LO4 group
+
+**`templates/constructive-alignment-map-EDSE357.html` (commit `debf015` → merge pending):**
+- Static student-facing alignment map; 6 LOs across Teaching, Practice, AT1 and AT2 columns; blue/teal theme
+- Reflects post-audit improved state (G1–G7); new formative activities in Topics 3, 5, 7 flagged
+- Click-to-expand rows show student advice per LO
+- `templates/README.md` updated with entry (same format as EDSE358 and EDSE362 entries)
+- ACTION-PLAN item 23 added: "Build renderAlignmentMap() for EDSE357" — trigger: item 16
+
+**Key notes:**
+- LO semantic content has shifted substantially (e.g. old LO2 = "Working Scientifically" → new LO2 = "Assessment Knowledge") — rubric `loLinks` in weeks and assessmentTasks were structurally correct (IDs unchanged) but may warrant semantic review
+- Three unit-specific alignment map static templates now exist (EDSE362, EDSE358, EDSE357) — enough reference material to build the config-driven `renderAlignmentMap()` renderer when ready
 
 ### 2026-05-21 — EDSE357 constructive alignment audit G1-G7
 
