@@ -71,14 +71,22 @@
         "LO1",
         "LO2",
         "LO3",
-        "LO5"
+        "LO4"
       ],
       "aitslStandards": [
+        "1.2.1",
+        "1.5.1",
         "2.1.1",
         "2.2.1",
+        "2.3.1",
+        "2.4.1",
+        "2.6.1",
+        "3.1.1",
+        "3.3.1",
+        "3.4.1",
+        "4.4.1",
         "5.1.1",
-        "5.2.1",
-        "5.4.1"
+        "5.2.1"
       ],
       "rationale": null,
       "aim": null,
@@ -92,11 +100,16 @@
       "parts": [
         {
           "id": "A",
-          "title": "Part A",
+          "title": "Task outline and forum post",
           "marks": 20,
-          "wordCount": null,
-          "description": null,
-          "requirements": null,
+          "wordCount": "~100 words (forum post)",
+          "description": "Complete the missing details from the highlighted sections on the supplied assessment as learning task on the template. Post a 100-word summary of your intended unit plan to the dedicated forum.",
+          "requirements": [
+            "Complete the highlighted sections of the provided task outline using the NSW science discipline syllabus of your choice",
+            "Clearly state the science discipline, topic name, and module/unit focus",
+            "Indicate whether the assessment as learning task will be individual or small group, and briefly justify this choice",
+            "Post a 100-word summary to the forum by 8 March 2026 mentioning the discipline, topic, any first-hand experience planned, and group/individual structure"
+          ],
           "bespoke": null,
           "loLinks": [
             "LO1",
@@ -105,11 +118,19 @@
         },
         {
           "id": "B",
-          "title": "Part B",
+          "title": "Unit program",
           "marks": 20,
-          "wordCount": null,
-          "description": null,
-          "requirements": null,
+          "wordCount": "~1500 word equivalent",
+          "description": "Write a teaching and learning program for five weeks including time allocated for model completion. Each week has a single A4 page as per the supplied template.",
+          "requirements": [
+            "Five-week program on the supplied template — one A4 page per week",
+            "High level detail of what teachers and students do each week",
+            "Suggested learning activities and resources",
+            "Differentiation to meet the learning needs of the given cohort",
+            "At least two formative assessment tasks per week to guide further teaching and learning",
+            "Program must address the given Skills outcomes and single Knowledge and Understanding outcome",
+            "Unit program MUST be based on NSW syllabus documents"
+          ],
           "bespoke": null,
           "loLinks": [
             "LO2",
@@ -124,11 +145,16 @@
         },
         {
           "id": "C",
-          "title": "Part C",
+          "title": "Justification essays",
           "marks": 50,
-          "wordCount": null,
-          "description": null,
-          "requirements": null,
+          "wordCount": "~800 words",
+          "description": "Write two short justification essays for the pedagogical decisions you made in your unit.",
+          "requirements": [
+            "Essay 1 (15 marks): Explain why key pedagogical decisions were made. Link decisions to cohort needs, syllabus outcomes, and constructivist principles. Use peer-reviewed literature.",
+            "Essay 2 (15 marks): Justify your resource choices. Explain why selected resources are superior for this cohort and unit. Link to outcomes, differentiation, and ICT integration. Use literature to support evaluative reasoning.",
+            "Total: 800 words across both essays",
+            "Draw on both supplied materials and further wide reading"
+          ],
           "bespoke": null,
           "loLinks": [
             "LO1",

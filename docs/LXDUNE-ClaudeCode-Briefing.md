@@ -1,6 +1,6 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-05-21 (render alignment fields: orientationNote, forumPrompts, workedExample, guidanceNotes; synthesis generator shell; D1/D2 checklist update)
+**Last updated:** 2026-05-21 (EDSE358 alignment map template; forWeek fix on fns 13–15; production shells generated for new render functions)
 **Repo:** `https://github.com/thatswhatsnext/LXDUNE`
 **GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
@@ -42,20 +42,22 @@ test/
   index.html                  ← dynamic QA harness (local dev only)
 
 templates/
-  *.html                      ← 14+ reference HTML components (static, not rendered)
+  *.html                      ← 16 reference HTML components (static, not rendered)
                                  incl. presubmission-checklist-EDSE357-AT1/AT2 and EDSE358-AT1,
                                  unit-key-info.html, assessment-status.html,
-                                 constructive-alignment-map.html (EDSE362),
-                                 constructive-alignment-map-generic.html
+                                 constructive-alignment-map-EDSE362.html,
+                                 constructive-alignment-map-EDSE358.html (added 2026-05-21),
+                                 constructive-alignment-map.html (generic/generic)
 
 docs/
   STAFF-README.md             ← plain-language guide for non-technical coordinators
   LXDUNE-ClaudeCode-Briefing.md ← this file
   ACTION-PLAN.md              ← prioritised action plan for content and system work
   EDSE357-T1-2026-shells.html    ← git-ignored; open in browser to copy shells
-  EDSE358-T1-2026-shells.html    ← git-ignored; open in browser to copy shells
+  EDSE358-T1-2026-shells.html    ← git-ignored; stale for AT1 (pre D1/D2 split); use new-shells file instead
   EDSE357-navigation-shells.html ← git-ignored; navigation block shells (renderUnitKeyInfo + renderAssessmentStatus)
   EDSE358-navigation-shells.html ← git-ignored; navigation block shells
+  EDSE358-new-shells-may2026.html ← git-ignored; 7 shells: updated AT1 + fns 13–15 for weeks 4/5/6/8
 
 .claude/
   commands/
@@ -101,15 +103,14 @@ Pasted once into Moodle, never edited again. The script fetches config on every 
 `dev` and `main` are **in sync** — 0 commits on dev ahead of main as of 2026-05-21.
 
 ### `main` (GitHub Pages source — production ✅)
-Last merge: `99b8a06` (2026-05-21) — render alignment fields, synthesis generator, D1/D2 checklist update.
+Last merge: `9983df3` (2026-05-21) — fix forWeek params on fns 13–15; extend gitignore for dated shell files.
 
-Recent main history (since last briefing 2026-05-19):
+Recent main history:
+- `9983df3` — Merge dev: fix forWeek params on new render fns; gitignore dated shell files
+- `8a1cad9` — Merge dev: add EDSE358 constructive alignment map template
+- `f42b8d8` — chore: briefing update
 - `99b8a06` — Merge dev: render alignment fields, synthesis generator, D1/D2 checklist update
 - `ae70f97` — Merge dev into main: EDSE358 alignment audit improvements G1-G8
-- `f5277d4` — Merge dev into main: EDSE358 alignment improvement content
-- `2baf406` — Merge dev into main: constructive alignment map templates and action plan update
-- `da61386` — Merge dev into main: toggleable contact section for renderUnitKeyInfo
-- `de67199` — Merge dev into main: EDSE362 keyLinks for T2 2026
 
 Live scripts serving from main:
 - `https://thatswhatsnext.github.io/LXDUNE/whatson/whatson.js` → 200
@@ -153,9 +154,9 @@ Live scripts serving from main:
 | 10 | `renderCourseHub` | `div[data-lx-block="course-hub"]` | No — renders all weeks 1–8 |
 | 11 | `renderUnitKeyInfo` | `#lxdune-unit-key-info` | No — navigation block, course homepage |
 | 12 | `renderAssessmentStatus` | `#lxdune-assessment-status` | No — navigation block, course homepage |
-| 13 | `renderOrientationNote` | `#lxdune-orientation-note` | Yes — renders nothing if `orientationNote` absent |
-| 14 | `renderForumPrompts` | `#lxdune-forum-prompts` | Yes — renders nothing if `forumPrompts` absent/empty |
-| 15 | `renderWorkedExample` | `#lxdune-worked-example` | Yes — collapsible `<details>`; renders nothing if `workedExample` absent |
+| 13 | `renderOrientationNote` | `#lxdune-orientation-note` | Yes — accepts `forWeek`/`forDate`; renders nothing if `orientationNote` absent |
+| 14 | `renderForumPrompts` | `#lxdune-forum-prompts` | Yes — accepts `forWeek`/`forDate`; renders nothing if `forumPrompts` absent/empty |
+| 15 | `renderWorkedExample` | `#lxdune-worked-example` | Yes — accepts `forWeek`/`forDate`; collapsible `<details>`; renders nothing if `workedExample` absent |
 
 **Note:** `renderCourseHub` uses a `data-lx-block` attribute selector rather than an `id` — intentional, to allow the block to sit anywhere in an existing page without ID conflicts.
 
@@ -351,14 +352,22 @@ Both live scripts refactored to read from `config/units/*.json` instead of embed
 
 Pre-generated copyable Moodle shell snippets. Open in a browser — each shell has a Copy button. Git-ignored (pattern `/docs/*-shells.html`); local use only.
 
-| File | Copyable shells | Placeholder entries | Generated |
-|---|---|---|---|
-| `docs/EDSE358-T1-2026-shells.html` | 38 | 2 (AT1/AT2 checklists) | 2026-05-19 |
-| `docs/EDSE357-T1-2026-shells.html` | 37 | — | 2026-05-18 |
-| `docs/EDSE358-navigation-shells.html` | 2 | — | 2026-05-19 (rev 2) |
-| `docs/EDSE357-navigation-shells.html` | 2 | — | 2026-05-19 (rev 2) |
+| File | Copyable shells | Placeholder entries | Generated | Status |
+|---|---|---|---|---|
+| `docs/EDSE358-T1-2026-shells.html` | 38 | 2 (AT1/AT2 checklists) | 2026-05-19 | ⚠️ AT1 shell stale — use new-shells file instead |
+| `docs/EDSE357-T1-2026-shells.html` | 37 | — | 2026-05-18 | Current |
+| `docs/EDSE358-navigation-shells.html` | 2 | — | 2026-05-19 (rev 2) | Current |
+| `docs/EDSE357-navigation-shells.html` | 2 | — | 2026-05-19 (rev 2) | Current |
+| `docs/EDSE358-new-shells-may2026.html` | 7 | — | 2026-05-21 | **Use this for EDSE358 AT1 + new week blocks** |
 
-⚠️ **EDSE358 shells are stale** — AT1 parts have changed (D split into D1/D2; new guidanceNotes rendered; new rubric descriptors). Regenerate from `generate/index.html` before deploying updated AT1 assessment page shells to Moodle.
+**`EDSE358-new-shells-may2026.html` contains (7 shells):**
+- Section 1: Updated AT1 assessment page — **replace** existing Moodle shell (reflects D1/D2 split + guidanceNotes)
+- Section 2: Week 4 orientation note + forum prompts (Module 3B page)
+- Section 3: Week 5 orientation note (Module 4A page)
+- Section 4: Week 6 forum prompts + worked example (Module 4B page)
+- Section 5: Week 8 forum prompts (Module 4D page)
+
+All week-specific shells use `forWeek: N` — pinned to that module's content regardless of current date.
 
 ---
 
@@ -440,7 +449,7 @@ Pre-generated copyable Moodle shell snippets. Open in a browser — each shell h
 - **Videos (weeks 1–8):** all `null` — will default to `DGIXT7ce3vQ` until real IDs are added
 - **Links (all weeks):** all `null`
 - **assessmentTasks:** `trimesterDates.T2-2026` due dates ✅ (AT1 due 2026-07-26, AT2 due 2026-09-06); title null, rationale null, parts null, criteria null, rubric empty — to be populated before go-live
-- **Constructive alignment map:** static template at `templates/constructive-alignment-map.html` ✅; generic reusable version at `templates/constructive-alignment-map-generic.html` ✅; config-driven rendering planned — ACTION-PLAN item 16
+- **Constructive alignment map:** EDSE362-specific template at `templates/constructive-alignment-map-EDSE362.html` ✅; EDSE358-specific template at `templates/constructive-alignment-map-EDSE358.html` ✅ (added 2026-05-21, reflects post-audit G1–G8 state); generic reusable version at `templates/constructive-alignment-map-generic.html` ✅; config-driven rendering planned — ACTION-PLAN item 16
 
 ---
 
@@ -462,7 +471,7 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
     "focus": "This week's focus — second paragraph.",
     "keyIdea": "A key idea this week is… (stored but not yet rendered)"
   },
-  "orientationNote": "Framing paragraph shown at top of module — stored, not yet rendered.",
+  "orientationNote": "Framing paragraph — rendered by renderOrientationNote (fn 13).",
   "liveSessionFocus": "One or two sentences describing the live session focus.",
   "liveSessionTasks": ["Task 1.", "Task 2.", "Task 3."],
   "workflow": ["Step 1 label", "Step 2 label"],
@@ -475,7 +484,7 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
   ],
   "forumPrompts": ["Prompt 1.", "Prompt 2.", "Prompt 3."],
   "synthesisTemplate": "Post-forum synthesis template (lecturer tool — not student-facing).",
-  "workedExample": "Worked example text supporting module activity — stored, not yet rendered.",
+  "workedExample": "Worked example text — rendered by renderWorkedExample (fn 15) as collapsible details.",
   "resources": [
     { "category": "UDL", "label": "Resource label", "url": "url_or_null", "type": "link" }
   ],
@@ -551,7 +560,7 @@ T2 2026 start `2026-06-22` is confirmed. ⚠️ 2027 dates are estimates — con
 11. **EDSE358 T2-2026 assessment due dates null:** `trimesterDates.T2-2026.due` is null for both AT1 and AT2. Populate once Steve confirms T2 due dates — then regenerate Moodle shells with `forTri: "T2"` and `forYear: "2026"`.
 12. **Existing Moodle shells for renderAssessmentPage show no due date:** shells deployed to Moodle for T1 2026 do not pass `forTri`/`forYear`. Both T1 ATs are past due so this is low impact. New T2 shells from the generator will include tri/year correctly.
 13. ~~**EDSE358 alignment fields stored but not rendered**~~ — ✅ RESOLVED 2026-05-21. All five fields now rendered: `renderOrientationNote`, `renderForumPrompts`, `renderWorkedExample` (fns 13–15); `guidanceNotes` in `renderAssessmentPage`; `synthesisTemplate` in generator admin tool.
-14. **EDSE358 shells stale post-audit:** AT1 assessment page shell and presubmission checklist shell in `docs/EDSE358-T1-2026-shells.html` pre-date the D→D1/D2 split, new rubric descriptors, and guidanceNotes rendering. Regenerate from `generate/index.html` before redeploying. The checklist template has been updated (D1: 5 items, D2: 2 items) but the Moodle shell for the checklist render block also needs regeneration.
+14. **EDSE358 AT1 shell needs replacing in Moodle:** Updated AT1 assessment page shell is in `docs/EDSE358-new-shells-may2026.html` Section 1 (generated 2026-05-21). Steve to paste it into Moodle, replacing the old shell. Reflects D1/D2 split, updated rubric descriptors, and guidanceNotes rendering. The checklist template has been updated (D1: 5 items, D2: 2 items) — once the checklist refactor (item 15) is done, a new checklist render shell will also be needed.
 15. **EDSE362 lecturer name null:** `contacts.lecturer.name` is null across all three units. Populate when confirmed.
 
 ---
@@ -560,18 +569,51 @@ T2 2026 start `2026-06-22` is confirmed. ⚠️ 2027 dates are estimates — con
 
 See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary:
 
-1. **EDSE358 T2 due dates** — Steve to provide T2 2026 due dates for AT1 and AT2; populate `trimesterDates.T2-2026`; regenerate Moodle shells (ACTION-PLAN item 12).
-2. **Regenerate EDSE358 AT1 shell** — D→D1/D2 split, rubric changes, and new guidanceNotes rendering mean the deployed assessment page shell is stale. Regenerate from generator and redeploy to Moodle (known issue 14).
+1. **Paste EDSE358 new shells into Moodle** — `docs/EDSE358-new-shells-may2026.html` is ready. 7 shells: replace AT1 assessment page; add orientation notes (weeks 4, 5), forum prompts (weeks 4, 6, 8), worked example (week 6). See placement instructions in the file header (known issue 14).
+2. **EDSE358 T2 due dates** — Steve to provide T2 2026 due dates for AT1 and AT2; populate `trimesterDates.T2-2026`; regenerate Moodle shells (ACTION-PLAN item 12).
 3. **EDSE362 go-live prep** — Zoom setup; assessmentTask title/rationale/aim/parts/rubric; lecturer name; video IDs; week links — all before T2 2026 starts 2026-06-22 (ACTION-PLAN item 17).
 4. **EDSE358 missing week links** — weeks 1–2 (all), weeks 3/6/7/8 (partial); add as content is published (ACTION-PLAN item 7).
 5. **EDSE357 week links** — add lecture/slides/recording/forum/materials/liveHub as content is published (ACTION-PLAN item 10).
 6. **Checklist refactor** — before writing a fourth static checklist template, do the config-driven refactor (ACTION-PLAN item 15).
-7. **Alignment map renderer** — `renderAlignmentMap()` as 16th render function, reading from `unitCfg.alignmentMap`; static template reference exists at `templates/constructive-alignment-map.html` (ACTION-PLAN item 16).
+7. **Alignment map renderer** — `renderAlignmentMap()` as 16th render function, reading from `unitCfg.alignmentMap`; both EDSE358 and EDSE362 static templates now exist as references (ACTION-PLAN item 16).
 8. **Apply alignment fields to EDSE357/EDSE362** — write `orientationNote`, `forumPrompts`, `workedExample`, `synthesisTemplate`, `guidanceNotes` content for those units; rendering is already live (ACTION-PLAN item 19).
 
 ---
 
 ## Session notes
+
+### 2026-05-21 — EDSE358 alignment map; forWeek fix; production shells generated
+
+**Completed this session:**
+
+**Bug fix — `forWeek`/`forDate` params missing from fns 13–15 (commit `9174faa` → main `9983df3`):**
+- `renderOrientationNote`, `renderForumPrompts`, `renderWorkedExample` were missing `forWeek` and `forDate` in their function signatures
+- The params would have been silently dropped, causing date-based (not week-pinned) resolution when `forWeek: N` was passed
+- Fixed: all three signatures now `({ forUnit, forTri, forYear, forWeek, forDate } = {})` with `forWeek`/`forDate` passed through to `resolve()`
+- **Important:** Always include `forWeek`/`forDate` in week-aware render function signatures. Check when adding future fns 16+.
+
+**Gitignore extended (commit `e04b9cc`):**
+- New pattern `/docs/*-shells-*.html` added alongside existing `/docs/*-shells.html`
+- Covers dated shell files like `EDSE358-new-shells-may2026.html`
+
+**EDSE358 constructive alignment map template (commit `a7b8bf1` → main `8a1cad9`):**
+- `templates/constructive-alignment-map-EDSE358.html` — 340-line static template; 4 LOs across Teaching, Practice, AT1 and AT2 columns; purple/cyan theme; click-to-expand rows with student advice; reflects post-audit G1–G8 state
+- `templates/README.md` updated with entry
+- ACTION-PLAN item 20 marked complete; item 21 added (renderAlignmentMap() for EDSE358, trigger: item 16)
+- Two static alignment map templates now exist: EDSE362 and EDSE358 — both available as references for the config-driven renderer (item 16)
+
+**Production shells generated — `docs/EDSE358-new-shells-may2026.html` (git-ignored, not committed):**
+- 7 shells covering all new and updated blocks for EDSE358 T1 2026
+- All week-specific shells (fns 13–15) use `forWeek: N` — pinned to their module's content, not date-resolved
+- Section 1 (AT1 assessment page): REPLACE existing Moodle shell — now reflects D1/D2 split, guidanceNotes, updated rubric
+- Sections 2–5: NEW additions on Module 3B/4A/4B/4D pages — placement instructions included in file header
+- Steve to paste these into Moodle; all shells are ready to use
+
+**Key design decision — week pinning for module-specific supplementary blocks:**
+- `renderOrientationNote`, `renderForumPrompts`, `renderWorkedExample` are placed on specific Moodle module pages
+- Using `forWeek: N` ensures the block always shows that module's content even when the trimester has moved on
+- Contrast with the core week-aware blocks (announcement, workflow, lecture, live-hub) which are intentionally date-driven and show "current week" content — those do NOT use `forWeek`
+- Rule: supplementary contextual blocks pinned to a page → use `forWeek`; dynamic current-state blocks → omit `forWeek`
 
 ### 2026-05-21 — ACTION-PLAN item 18 complete: render alignment fields
 

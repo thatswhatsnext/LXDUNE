@@ -330,8 +330,8 @@
 
     // Populate week dropdown from unit JSON
     const weekSel = document.getElementById('sel-week');
-    const weeks = unitCfg.weeks ?? [];
-    weekSel.innerHTML = weeks.map((w, i) => `<option value="${i}">Week ${w.week ?? i + 1}${w.moduleTitle ? ` — ${w.moduleTitle}` : ''}</option>`).join('');
+    const weekEntries = Object.entries(unitCfg.weeks ?? {});
+    weekSel.innerHTML = weekEntries.map(([k, w]) => `<option value="${k}">Week ${k}${w.title ? ` — ${w.title}` : ''}</option>`).join('');
 
     const triKey = `${tri}-${year}`;
     const zoom = unitCfg.trimesterConfig?.[triKey]?.zoom;
@@ -488,10 +488,10 @@
 
     // Post-forum synthesis — plain text output for lecturer, not a render shell
     if (pageType === 'synthesis-template') {
-      const weekIdx = parseInt(document.getElementById('sel-week').value, 10);
-      const w = (unitCfg.weeks ?? [])[weekIdx];
+      const weekKey = document.getElementById('sel-week').value;
+      const w = (unitCfg.weeks ?? {})[weekKey];
       const template = w?.synthesisTemplate;
-      const weekLabel = `Week ${w?.week ?? weekIdx + 1}${w?.moduleTitle ? ` — ${w.moduleTitle}` : ''}`;
+      const weekLabel = `Week ${weekKey}${w?.title ? ` — ${w.title}` : ''}`;
       const code = template
         ? template
         : `[No synthesisTemplate defined for this week in config/units/${unit}.json]`;
