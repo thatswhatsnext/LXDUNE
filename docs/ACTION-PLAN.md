@@ -233,6 +233,18 @@ Config-driven alignment map reading from `unitCfg.alignmentMap`. Migrate EDSE362
 ### 19. Apply alignment fields to EDSE357 and EDSE362 ⬜
 When content is written for those units, add `orientationNote`, `forumPrompts`, `workedExample`, `synthesisTemplate`, `guidanceNotes` fields to their JSON configs. Rendering is already live.
 
+### 20. Build EDSE358 constructive alignment map ✅ — 2026-05-21
+- [x] Static HTML template created — `templates/constructive-alignment-map-EDSE358.html`
+- [x] 4 LOs across Teaching, Practice, AT1 and AT2 columns. Purple/cyan theme. Reflects post-audit improved state (G1–G8). Click-to-expand rows show student advice.
+- [x] Added to `templates/README.md`
+
+### 21. Build renderAlignmentMap() for EDSE358 ⬜
+Migrate EDSE358 alignment map data from static template into
+`config/units/EDSE358.json` under an `alignmentMap` field, following
+the same pattern as the planned EDSE362 migration (item 16).
+
+**Trigger:** when `renderAlignmentMap()` is built as part of item 16.
+
 ---
 
 ## 🔵 Do before T2 2026 go-live — EDSE362
