@@ -1,5 +1,5 @@
 # LXDUNE Action Plan
-**Last updated:** 2026-05-19
+**Last updated:** 2026-05-21
 **How to update:** Tell Claude Code "Update docs/ACTION-PLAN.md — mark item X complete" or "add [item] under [priority]"
 
 ---
@@ -219,6 +219,30 @@ Config-driven alignment map reading from `unitCfg.alignmentMap`. Migrate EDSE362
 **Trigger:** when a second unit needs an alignment map, or before T2 2026 go-live for EDSE362.
 
 **Spec:** see `templates/constructive-alignment-map.html` for reference implementation. JSON schema follows the same pattern as `weeks` and `assessmentTasks` — outcomes array with `id`, `shortTitle`, `aitsl`, `teaching`, `practice`, `a1`, `a2`, and `advice` fields.
+
+### 18. Render new alignment improvement fields in blocks.js ⬜
+Five new fields are stored in EDSE358.json but not yet rendered to students.
+Add rendering support to the relevant blocks.js functions:
+
+- `orientationNote` → render at top of `renderAnnouncementBlock` or as a
+  new `renderOrientationNote` function — a framing paragraph shown at the
+  start of a module
+- `forumPrompts` → render inside `renderLiveSessionHub` after live session
+  tasks — a list of forum discussion prompts
+- `workedExample` → render inside `renderLectureBlock` or as a collapsible
+  section — a worked example supporting the module activity
+- `synthesisTemplate` → not student-facing — this is a lecturer tool.
+  Add to the generate/index.html admin tool as a 'Post-forum synthesis'
+  shell type that outputs the template for the lecturer to personalise
+- `guidanceNotes` on AT1 parts → render inside `renderAssessmentPage`
+  Part detail sections — additional guidance paragraphs shown after
+  requirements
+
+Also apply same fields to EDSE357.json and EDSE362.json where relevant
+once content is written for those units.
+
+Trigger: before T2 2026 EDSE358 go-live, or when content is ready to
+surface to students.
 
 ---
 
