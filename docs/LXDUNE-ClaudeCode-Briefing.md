@@ -1,6 +1,6 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-05-21 (constructive alignment visibility: loMapping on weeks, LO pills in course hub, reverse alignment map in LO table; EDSE358 LOs + AT1 data fixes; generator bug fix)
+**Last updated:** 2026-05-21 (EDSE357 alignment audit G1-G7: orientationNote + forumPrompts weeks 3/5/7; AT1 Part D rubric updated to analytical reflection; AT2 Diversity rubric + taskGuidanceNotes added)
 **Repo:** `https://github.com/thatswhatsnext/LXDUNE`
 **GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
@@ -100,17 +100,19 @@ Pasted once into Moodle, never edited again. The script fetches config on every 
 
 ## Current branch status
 
-`dev` and `main` are **in sync** — 0 commits on dev ahead of main as of 2026-05-21.
+`dev` is **1 commit ahead of main** as of 2026-05-21.
+
+Uncommitted on dev: `75c7b02 chore: update ACTION-PLAN — mark EDSE357 alignment audit complete`
 
 ### `main` (GitHub Pages source — production ✅)
-Last merge: `b0cd1b4` (2026-05-21) — constructive alignment visibility layer.
+Last merge: `0120da0` (2026-05-21) — EDSE357 alignment improvements.
 
 Recent main history:
+- `0120da0` — Merge dev into main: EDSE357 alignment improvements
+- `d2f457c` — content: EDSE357 alignment audit improvements — forum prompts, orientation notes, rubric updates G1-G7
+- `3fc53b2` — Merge dev into main: briefing update
+- `8cb6506` — chore: briefing update
 - `b0cd1b4` — Merge dev into main: constructive alignment visibility
-- `f55d933` — feat: add loMapping to weeks, LO pills in course hub, reverse alignment map in LO table
-- `4afc808` — fix: populate EDSE358 learningOutcomes and wire unit-level blocks to unit change in test harness
-- `4932241` — fix: correct EDSE358 AT1 part titles, descriptions, LOs, AITSL standards and word counts
-- `19ffb91` — fix: generator weeks.map TypeError — weeks is a keyed object not an array
 
 Live scripts serving from main:
 - `https://thatswhatsnext.github.io/LXDUNE/whatson/whatson.js` → 200
@@ -120,7 +122,7 @@ Live scripts serving from main:
 - `https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE358-banner.svg` → 200
 - `https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE362-banner.svg` → 200
 
-### `dev` (0 commits ahead — in sync with main)
+### `dev` (1 commit ahead of main)
 
 ---
 
@@ -383,13 +385,17 @@ All week-specific shells use `forWeek: N` — pinned to that module's content re
 - **keyLinks:** Unit Outline ✅, Learning Materials ✅, Assessment Portal ✅
 - **contacts:** coordinator Steve Grant ✅; lecturer null
 - **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅
-- **loMapping (weeks 1–8):** ✅ added 2026-05-21 — 1: LO1/LO2; 2–4: LO1/LO3; 5: LO2/LO4/LO5; 6: LO1/LO2/LO4; 7: LO1/LO6; 8: LO1/LO2/LO5
+- **loMapping (weeks 1–8):** ✅ — 1: LO1/LO2; 2–4: LO1/LO3; 5: LO2/LO4/LO5; 6: LO1/LO2/LO4; 7: LO1/LO6; 8: LO1/LO2/LO5
+- **Alignment improvement fields (added 2026-05-21 ✅):**
+  - `orientationNote` → weeks 3 (AT1 Part C direct prep — OEI instructions), 5 (AT2 prep — professional judgement criterion), 7 (AT2 prep — textbook critique / LO6)
+  - `forumPrompts` → weeks 3 (2 prompts: OEI instruction analysis, AT1 Part C reflection), 5 (2 prompts: digital resource eval, AT2 rehearsal), 7 (2 prompts: textbook critique, AT2 textbook requirement)
+  - No `synthesisTemplate` or `workedExample` fields — not yet added to EDSE357
 - **Weeks 9–14 and week 0:** minimal (non-teaching); videos set to `DGIXT7ce3vQ`; loMapping: `[]`
 - **Links (all weeks 1–8):** all `null` — content links not yet published; all render as Coming soon chips
 - **Learning outcomes:** LO1–LO6 ✅ (`title`/`gtsd` schema)
-- **assessmentTasks:** AT1 and AT2 — fully populated including 55 rubric descriptors ✅; `trimesterDates.T1-2026` dates populated ✅; T2-2026 and T3-2026 stubs present (due null — pending)
-  - AT1: learningOutcomes LO1–LO5 ✅; links: rubric ✅, taskFiles ✅, submit ✅, forum ✅, video null
-  - AT2: learningOutcomes LO1/LO2/LO4/LO5/LO6 ✅; links: rubric null ⚠️, taskFiles ✅, submit ✅, forum null, video ✅; T1-2026 flexiblePortal.url null (past-due)
+- **assessmentTasks:** AT1 and AT2 — fully populated; `trimesterDates.T1-2026` dates populated ✅; T2-2026 and T3-2026 stubs present (due null — pending)
+  - AT1: learningOutcomes LO1–LO5 ✅; 7-row rubric; **Part D descriptors updated 2026-05-21** to analytical reflection focus (shift in thinking → future teaching decision); links: rubric ✅, taskFiles ✅, submit ✅, forum ✅, video null
+  - AT2: learningOutcomes LO1/LO2/LO4/LO5/LO6 ✅; **`taskGuidanceNotes` added 2026-05-21** (2 items: textbook→LO6, external expert→LO5); **Diversity & Intentional Curation rubric updated** — HD appended (professional networks, ATSI cultural awareness), C/P appended (shorter versions); links: rubric null ⚠️, taskFiles ✅, submit ✅, forum null, video ✅; T1-2026 flexiblePortal.url null (past-due)
 - **assessmentFiles (T1-2026):** all discipline task/marking URLs `null`
 - **T1 2026 status:** both AT1 (due 2026-03-29) and AT2 (due 2026-05-03) are past due. Unit is in PE/assessment period.
 
@@ -565,6 +571,8 @@ T2 2026 start `2026-06-22` is confirmed. ⚠️ 2027 dates are estimates — con
 13. ~~**EDSE358 alignment fields stored but not rendered**~~ — ✅ RESOLVED 2026-05-21. All five fields now rendered: `renderOrientationNote`, `renderForumPrompts`, `renderWorkedExample` (fns 13–15); `guidanceNotes` in `renderAssessmentPage`; `synthesisTemplate` in generator admin tool.
 14. **EDSE358 AT1 shell needs replacing in Moodle:** Updated AT1 assessment page shell is in `docs/EDSE358-new-shells-may2026.html` Section 1 (generated 2026-05-21). Steve to paste it into Moodle, replacing the old shell. Reflects D1/D2 split, updated rubric descriptors, and guidanceNotes rendering. The checklist template has been updated (D1: 5 items, D2: 2 items) — once the checklist refactor (item 15) is done, a new checklist render shell will also be needed.
 15. **EDSE362 lecturer name null:** `contacts.lecturer.name` is null across all three units. Populate when confirmed.
+16. **EDSE357 orientation notes and forum prompts not yet deployed to Moodle:** `orientationNote` and `forumPrompts` data is live in the config for weeks 3, 5, and 7, but no `renderOrientationNote` or `renderForumPrompts` shells have been pasted into the EDSE357 module pages. Low priority — T1 2026 is past due. Generate shells from the generator before T2 2026 if EDSE357 runs again.
+17. **EDSE357 AT1 assessment page shell may need regenerating:** The Part D rubric descriptors were updated (analytical reflection focus). The existing Moodle AT1 shell will show old descriptors until a new shell is generated and pasted. Low priority — T1 2026 is past due.
 
 ---
 
@@ -579,11 +587,53 @@ See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary
 5. **EDSE357 week links** — add lecture/slides/recording/forum/materials/liveHub as content is published (ACTION-PLAN item 10).
 6. **Checklist refactor** — before writing a fourth static checklist template, do the config-driven refactor (ACTION-PLAN item 15).
 7. **Alignment map renderer** — `renderAlignmentMap()` as 16th render function, reading from `unitCfg.alignmentMap`; both EDSE358 and EDSE362 static templates now exist as references (ACTION-PLAN item 16).
-8. **Apply alignment fields to EDSE357/EDSE362** — write `orientationNote`, `forumPrompts`, `workedExample`, `synthesisTemplate`, `guidanceNotes` content for those units; rendering is already live (ACTION-PLAN item 19).
+8. **Apply alignment fields to EDSE362** — write `orientationNote`, `forumPrompts`, `workedExample`, `synthesisTemplate`, `guidanceNotes` content for EDSE362; EDSE357 alignment fields now populated ✅; rendering is live (ACTION-PLAN item 19).
+9. **EDSE357 T2 2026 prep** — if EDSE357 runs again in T2 2026, generate and deploy orientation note + forum prompt shells for weeks 3, 5, 7; regenerate AT1 assessment page shell (updated Part D rubric); confirm T2 dates (ACTION-PLAN items 10, 11).
 
 ---
 
 ## Session notes
+
+### 2026-05-21 — EDSE357 constructive alignment audit G1-G7
+
+**Completed this session (feature/edse357-alignment-improvements → dev → main, merge commit `0120da0`):**
+
+**Alignment improvement fields — weeks 3, 5, 7 (commit `d2f457c`):**
+- `orientationNote` added to weeks 3, 5, 7 — each frames the week's content as direct preparation for a specific assessment task
+  - Week 3 → AT1 Part C (OEI instruction design): "pay close attention to what makes OEI instructions clear enough for students to work independently"
+  - Week 5 → AT2 (professional judgement criterion 35%): shifts thinking from "what does this resource contain?" to "what does this resource make possible?"
+  - Week 7 → AT2 textbook resource (LO6 direct connection): "your critical analysis of that resource is your primary opportunity to demonstrate LO6"
+- `forumPrompts` added to weeks 3 (2), 5 (2), 7 (2) — each forum is framed as formative rehearsal for the relevant assessment task
+  - Week 3: OEI instruction analysis + AT1 Part C planning reflection
+  - Week 5: digital resource evaluation (3-question scaffold, 100 words) + AT2 rehearsal debrief
+  - Week 7: textbook critique (3-criterion scaffold, 100 words) + AT2 textbook requirement direct link
+
+**AT1 Part D rubric update (G7):**
+- All 5 band descriptors replaced — old descriptors were generic ("reflection completed to a very high standard")
+- New descriptors focus on analytical reflection: identifying a specific shift in thinking, naming the cause, connecting explicitly to a future teaching decision
+- Key distinction: reflection is analytical, not descriptive — explains *why* thinking changed, not just *that* it did
+- HD now: "Reflection identifies a specific shift in thinking during the task, names what caused that shift, and explicitly connects it to a concrete future teaching decision... May draw on relevant literature to support insight."
+
+**AT2 Diversity & Intentional Curation rubric update (G4/G6):**
+- HD appended: professional learning networks + community expertise; cultural safety; ATSI perspectives in science education
+- C appended: "Resources are generally culturally appropriate. Some awareness of professional networks evident."
+- P appended: "Limited evidence of cultural awareness or professional network consideration."
+- D and N unchanged
+
+**AT2 `taskGuidanceNotes` — new task-level field:**
+- 2 guidance notes at task level (not part level — AT2 has no parts): connects specific resource types to specific LOs
+  - Textbook resource → LO6 (critical textbook analysis): "your primary opportunity to demonstrate LO6"
+  - External expert/community representative → LO5 (professional resources and networks): connects to professional responsibilities as a teacher
+- `taskGuidanceNotes` is a new schema field; distinct from `guidanceNotes` (which is part-level in EDSE358)
+- Not yet rendered by `blocks.js` — will require a renderer update before it displays on the AT2 assessment page
+
+**Step 8 — no changes needed:**
+- AT1 and AT2 `learningOutcomes`, `aitslStandards`, `weighting`, and `trimesterDates` all already correct
+
+**Key design decisions:**
+- Orientation notes link each week explicitly to a specific assessment task component — this is the pattern for constructive alignment visibility at the topic level
+- Forum prompts are framed as "formative rehearsal" not just "discussion activities" — the framing matters for how students engage with them before the high-stakes task
+- `taskGuidanceNotes` (AT2 task-level) vs `guidanceNotes` (part-level in EDSE358): two different fields serving the same purpose at different structural levels; when `renderAssessmentPage` is updated to read `taskGuidanceNotes`, it should render them after the task aim, before the parts/rubric section
 
 ### 2026-05-21 — Constructive alignment visibility layer; EDSE358 data fixes; generator bug fix
 

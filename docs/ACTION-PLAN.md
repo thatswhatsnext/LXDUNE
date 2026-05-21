@@ -288,3 +288,4 @@ for EDSE362. No code change needed — data only.
 - [x] GitHub Pages — serving from main
 - [x] renderUnitKeyInfo and renderAssessmentStatus navigation blocks — built and deployed to EDSE357 and EDSE358 course homepages ✅
 - [x] SVG banners created and live for EDSE357, EDSE358, EDSE362 ✅
+- [x] EDSE357 constructive alignment audit complete — gaps G1-G7 identified and addressed. Forum prompts and orientation notes added to weeks 3, 5, 7. AT1 Part D and AT2 Diversity rubric descriptors updated. AT2 task-level LO5/LO6 guidance notes added.
