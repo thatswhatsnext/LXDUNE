@@ -137,19 +137,40 @@
           ]
         },
         {
-          "id": "D",
-          "title": "Part D",
-          "marks": 10,
-          "wordCount": null,
-          "description": null,
-          "requirements": null,
+          "id": "D1",
+          "title": "Planning timely and purposeful feedback for students",
+          "marks": 5,
+          "wordCount": "~100 words",
+          "description": "Your unit program must include a clearly articulated feedback plan for the model construction task.",
+          "requirements": [
+            "Specify when feedback will be provided relative to student work submission",
+            "Specify the form feedback will take (oral, written, peer, self-assessment)",
+            "Explain how feedback language will be differentiated for the named cohort including Aboriginal students and EAL/D learners",
+            "Explain how feedback will be used to inform subsequent teaching decisions",
+            "Connect feedback planning explicitly to syllabus outcomes"
+          ],
           "bespoke": null,
           "loLinks": [
-            "LO3",
-            "LO5"
+            "LO4"
+          ]
+        },
+        {
+          "id": "D2",
+          "title": "Reflective self-assessment",
+          "marks": 5,
+          "wordCount": "~100 words",
+          "description": "Write a reflective statement on your learning journey for this task.",
+          "requirements": [
+            "Identify something specific you learned — not just what you did",
+            "Explain how this learning will influence your future teaching with a specific example"
+          ],
+          "bespoke": null,
+          "loLinks": [
+            "LO4"
           ],
           "guidanceNotes": [
-            "Your reflection should be analytical, not descriptive. Do not summarise what the task asked you to do. Instead, identify one specific thing that changed in your thinking and explain why it changed. Use a sentence frame if helpful: 'Before this task I assumed ___. Working through ___ changed my understanding because ___.'"]
+            "Your reflection should be analytical, not descriptive. Do not summarise what the task asked you to do. Instead, identify one specific thing that changed in your thinking and explain why it changed. Use a sentence frame if helpful: 'Before this task I assumed ___. Working through ___ changed my understanding because ___.'"
+          ]
         }
       ],
       "criteria": [],
@@ -196,15 +217,15 @@
             },
             "C": {
               "range": "14–12",
-              "descriptor": "NSW-aligned structure present. Progression generally clear. Constructivist elements evident. Differentiation appropriate but may lack depth. Outcomes mostly accurate."
+              "descriptor": "NSW-aligned structure present. Progression generally clear. Constructivist elements evident. Differentiation appropriate but may lack depth. Outcomes mostly accurate. Differentiation addresses cohort with specific strategies, including some acknowledgement of Aboriginal and Torres Strait Islander students and EAL/D learners, though depth or specificity may vary."
             },
             "P": {
               "range": "11–9",
-              "descriptor": "Unit present but loosely aligned to NSW syllabus. Constructivist pedagogy inconsistent. Differentiation general. Outcome links incomplete or unclear."
+              "descriptor": "Unit present but loosely aligned to NSW syllabus. Constructivist pedagogy inconsistent. Differentiation general. Outcome links incomplete or unclear. Differentiation present but general. Aboriginal and Torres Strait Islander perspectives acknowledged but not specifically integrated into planned activities."
             },
             "N": {
               "range": "8–0",
-              "descriptor": "No coherent structure. Not aligned to NSW syllabus. Constructivist pedagogy absent. Differentiation absent. Outcomes missing or inaccurate."
+              "descriptor": "No coherent structure. Not aligned to NSW syllabus. Constructivist pedagogy absent. Differentiation absent. Outcomes missing or inaccurate. Differentiation absent or inappropriate. No acknowledgement of Aboriginal and Torres Strait Islander students or EAL/D learners in the given cohort."
             }
           }
         },
@@ -215,7 +236,7 @@
           "bands": {
             "HD": {
               "range": "10–9",
-              "descriptor": "Resources intentionally deepen conceptual learning and support model construction. Integrated across lessons. ICT use purposeful and enhances inquiry, collaboration, or modelling."
+              "descriptor": "Resources are intentionally selected to deepen conceptual learning across the unit, with clear rationale for how each resource supports specific learning goals. A range of resource types is evident (e.g., digital simulations, primary sources, practical materials, visual models). ICT use is purposeful and enhances inquiry, collaboration, or modelling. Resources are appropriate, engaging and safe for the named cohort. Resources and approaches are appropriate, engaging and safe. Safety considerations are explicitly addressed in the unit program where practical work is involved, with reference to relevant guidelines (e.g., CSIS)."
             },
             "D": {
               "range": "8",
@@ -223,15 +244,15 @@
             },
             "C": {
               "range": "7–6",
-              "descriptor": "Resources relevant and appropriate. ICT contributes to learning."
+              "descriptor": "Resources relevant and appropriate. ICT contributes to learning. Resources and approaches are generally appropriate and safe. Safety considerations are mentioned where relevant."
             },
             "P": {
               "range": "5",
-              "descriptor": "Resources adequate but generic or loosely connected. ICT minimal or substitutive."
+              "descriptor": "Resources adequate but generic or loosely connected. ICT minimal or substitutive. Resources and approaches are adequate. Safety considerations are present but may be generic or incomplete."
             },
             "N": {
               "range": "4–0",
-              "descriptor": "Resources inappropriate, irrelevant, or absent. ICT absent or misused."
+              "descriptor": "Resources inappropriate, irrelevant, or absent. ICT absent or misused. Safety considerations are absent or inappropriate."
             }
           }
         },
@@ -242,7 +263,7 @@
           "bands": {
             "HD": {
               "range": "10–9",
-              "descriptor": "Activities explicitly aligned to NSW outcomes and scaffold toward model construction. Clear constructivist strategies evident. Descriptions detailed and implementable."
+              "descriptor": "Activities explicitly aligned to NSW outcomes and scaffold toward model construction. Clear constructivist strategies evident. Descriptions detailed and implementable. A range of activity types is evident across the unit (e.g., investigations, discussions, modelling, analysis tasks, collaborative tasks). No single activity mode dominates."
             },
             "D": {
               "range": "8",
@@ -269,7 +290,7 @@
           "bands": {
             "HD": {
               "range": "10–9",
-              "descriptor": "Two or more purposeful formative tasks embedded. Feedback specific and actionable. Clear explanation of how evidence informs future teaching and supports model completion."
+              "descriptor": "Two or more purposeful formative tasks embedded. Feedback specific and actionable. Clear explanation of how evidence informs future teaching and supports model completion. The unit includes a coherent evaluation strategy that explicitly connects the sequence of formative and summative tasks to the targeted syllabus outcomes, demonstrating how evidence of student learning will be gathered, interpreted and used across the five-week program."
             },
             "D": {
               "range": "8",
@@ -344,28 +365,55 @@
           }
         },
         {
-          "part": "D",
-          "criterion": "Reflection",
-          "marks": 10,
+          "part": "D1",
+          "criterion": "Feedback planning",
+          "marks": 5,
           "bands": {
             "HD": {
-              "range": "10–9",
-              "descriptor": "Demonstrates deep, critical reflection. Clearly identifies specific pedagogical insights gained from the task and explains how thinking has changed. Explicitly links reflection to future teaching practice. Reflection is analytical rather than descriptive and may draw on relevant literature to support insight."
+              "range": "5",
+              "descriptor": "The unit program includes a clearly articulated, multi-point feedback plan specifying: timing of oral and/or written feedback relative to student work; form of feedback (written annotations, verbal conferencing, peer feedback, self-assessment); how feedback language will be differentiated for the named cohort including Aboriginal students and EAL/D learners; and how feedback will inform subsequent teaching decisions. Feedback planning is explicitly connected to syllabus outcomes and demonstrates understanding of research-informed feedback principles."
             },
             "D": {
-              "range": "8",
-              "descriptor": "Demonstrates strong reflective thinking. Clearly identifies learning gained and implications for future teaching. Reflection moves beyond description into analysis."
+              "range": "4",
+              "descriptor": "The unit program includes a well-developed feedback plan with clear timing, form and connection to outcomes. Differentiation of feedback for the cohort is addressed. Feed-forward orientation is evident."
             },
             "C": {
-              "range": "7–6",
-              "descriptor": "Demonstrates reflective thinking with clear identification of learning gained. Some analytical elements present, though reflection may still be partly descriptive."
+              "range": "3",
+              "descriptor": "The unit program includes a feedback plan with appropriate timing and form. Some differentiation for the cohort is present. Connection to outcomes is evident though may be general."
             },
             "P": {
+              "range": "2",
+              "descriptor": "A feedback plan is present but timing or form may be vague. Limited differentiation for the cohort. Connection to outcomes is asserted rather than demonstrated."
+            },
+            "N": {
+              "range": "0–1",
+              "descriptor": "Feedback planning is absent, superficial, or not connected to outcomes or the cohort."
+            }
+          }
+        },
+        {
+          "part": "D2",
+          "criterion": "Reflective practice",
+          "marks": 5,
+          "bands": {
+            "HD": {
               "range": "5",
+              "descriptor": "Reflection completed to a very high standard demonstrating deep analytical thinking. Clearly identifies specific pedagogical insights and explains how thinking has changed. Explicitly links reflection to future teaching practice with a concrete example."
+            },
+            "D": {
+              "range": "4",
+              "descriptor": "Strong reflective thinking. Clearly identifies learning gained and implications for future teaching. Reflection moves beyond description into analysis."
+            },
+            "C": {
+              "range": "3",
+              "descriptor": "Reflective thinking evident with clear identification of learning. Some analytical elements present though reflection may be partly descriptive."
+            },
+            "P": {
+              "range": "2",
               "descriptor": "Reflection is largely descriptive. Identifies what was done but provides limited insight into learning or future improvement."
             },
             "N": {
-              "range": "4–0",
+              "range": "0–1",
               "descriptor": "Reflection is superficial, minimal, or not submitted. No clear evidence of reflective thinking."
             }
           }
@@ -798,7 +846,7 @@
         "focus": "Module 3B focuses on how experienced teachers translate curriculum and pedagogy into coherent, purposeful plans. As you work through the materials, pay attention to the decisions being made and why — not just the format of the plan itself.",
         "keyIdea": "A key idea this week is that planning is a professional act. The choices you make about sequence, timing, and strategy reflect your understanding of your students, your subject, and your purpose as a teacher."
       },
-      "orientationNote": "Module 3B builds directly on the constructivist and learning model foundations from Module 3A. As you work through programs and lesson plans this week, pay attention to two things that connect directly to Assessment Task 1: how ICT can be used purposefully to enhance learning (not just support it), and how Aboriginal and Torres Strait Islander perspectives can be embedded authentically into science content from the outset of planning — not added on afterwards. Both will be assessed in AT1 Part B.",
+      "orientationNote": "Module 3B builds directly on the constructivist and learning model foundations from Module 3A. As you work through programs and lesson plans this week, pay attention to two things that connect directly to Assessment Task 1: how ICT can be used purposefully to enhance learning (not just support it), and how Aboriginal and Torres Strait Islander perspectives can be embedded authentically into science content from the outset of planning — not added on afterwards. Both will be assessed in AT1 Part B. Safety is a pedagogical design consideration — not just an administrative requirement. As you plan your practical activities, ask: how does your choice of activity affect the safety demands on students and on you as a teacher? How does this influence your planning decisions?",
       "liveSessionFocus": "Apply learning models and constructivist planning principles to program and lesson planning.",
       "liveSessionTasks": [
         "Work through the Module 3B book.",
@@ -843,7 +891,8 @@
       ],
       "forumPrompts": [
         "Review two digital tools relevant to your science discipline (e.g. PhET simulations, Geogebra, NESA data sets, or equivalent). For each tool, explain how it enhances — not merely supports — a specific syllabus outcome. What does the tool make possible that a non-digital approach could not?",
-        "Identify one opportunity to embed an Aboriginal and Torres Strait Islander perspective into a topic in your chosen science discipline. Explain its connection to a specific syllabus outcome and how you would frame it for students as integral to the science, not as an add-on."
+        "Identify one opportunity to embed an Aboriginal and Torres Strait Islander perspective into a topic in your chosen science discipline. Explain its connection to a specific syllabus outcome and how you would frame it for students as integral to the science, not as an add-on.",
+        "List the activity types used across the week you selected from the sample unit. Does the unit use a sufficient range? What types are missing and why might that matter for student learning?"
       ],
       "video": "HXhzDcirQ-0"
     },
@@ -952,7 +1001,8 @@
         }
       ],
       "forumPrompts": [
-        "Find an assessment task used in a NSW Stage 6 science classroom. Analyse its alignment: do the outcomes, instructions, evidence students produce, and marking criteria all point to the same thing? Identify one strength and one gap. Then identify or suggest a feedback mechanism — how would a teacher respond to student work on this task in a way that moves learning forward?"
+        "Find an assessment task used in a NSW Stage 6 science classroom. Analyse its alignment: do the outcomes, instructions, evidence students produce, and marking criteria all point to the same thing? Identify one strength and one gap. Then identify or suggest a feedback mechanism — how would a teacher respond to student work on this task in a way that moves learning forward?",
+        "Looking at the sample unit as a whole, what is its evaluation strategy? How do the formative and summative tasks together tell the teacher whether students have achieved the targeted outcomes? Is this strategy coherent and sufficient?"
       ],
       "synthesisTemplate": "Thanks everyone for your contributions to the Module 4B forum this week. A few things stood out across the cohort: [STRENGTH OBSERVED — e.g. strong identification of alignment between outcomes and task instructions]. One area worth revisiting before Assessment Task 1: [COMMON ISSUE — e.g. many tasks had marking criteria that rewarded completion rather than quality of reasoning]. Keep this in mind as you move into Module 4C — the same alignment thinking applies when you are designing differentiated assessment. More soon.",
       "workedExample": "STRONG ALIGNMENT — Stage 6 Chemistry, Module 5: Equilibrium and Acid Reactions\n\nOutcome: CH12-6 — explains the relationship between the rate of a chemical reaction and the frequency of effective collisions.\n\nTask instruction: Design and conduct an investigation to determine how temperature affects the rate of the reaction between sodium thiosulfate and hydrochloric acid. Record your data, identify a trend, and explain it using collision theory.\n\nEvidence produced: A data table, a graph showing rate vs temperature, and a written explanation using collision theory.\n\nMarking criterion: Accurately explains the relationship between temperature, particle energy, collision frequency, and reaction rate using collected data.\n\nWhy this is strong: The outcome, instruction, evidence, and criterion all require the same thinking — applying collision theory to data. A student who understands the outcome knows exactly what to do and why.\n\nPARTIAL ALIGNMENT — Stage 6 Biology, Module 5: Heredity\n\nOutcome: BIO12-12 — analyses the relationship between inheritance patterns and molecular genetics.\n\nTask instruction: Research Mendel's experiments and write a 500-word report on his findings.\n\nEvidence produced: A descriptive written report.\n\nMarking criterion: Report is 400–600 words, uses correct terminology, and includes a bibliography.\n\nWhy this is partial: The outcome requires analysis of the relationship between inheritance patterns and molecular genetics. The task produces a descriptive report about historical experiments. The marking criterion rewards length and terminology — not analytical thinking. A student could score full marks without demonstrating the outcome.",
@@ -1138,7 +1188,11 @@
         "Watch the lecture on rubrics and feedback.",
         "Prepare for the live session and note down examples or questions.",
         "Bring one question about what makes a rubric useful or what makes feedback likely to improve learning.",
-        "Post a short reflection to the Module 4D forum."
+        "Post a short reflection to the Module 4D forum.",
+        "Work through the Module 4D materials on rubrics and feedback.",
+        "Read the anonymised sample student response provided in the module.",
+        "Write 100–150 words of feedback for this student. Your feedback must: (a) identify one specific strength linked to a criterion, (b) provide one actionable improvement with explicit guidance on how to address it, and (c) include one forward-looking comment connecting to the next task.",
+        "Post your feedback to the Module 4D forum and respond to one peer's post, noting one thing they did well in their feedback."
       ],
       "workflow": [
         "Work through the Module 4D materials in Moodle",
@@ -1156,6 +1210,11 @@
         "materials": "https://mylearn.une.edu.au/course/section.php?id=477947#module-3381732",
         "liveHub": null
       },
+      "forumPrompts": [
+        "What makes a rubric useful for both teachers and students?",
+        "How can feedback be designed to promote improvement rather than just justify a mark?",
+        "What challenges do you anticipate in providing effective feedback in senior science?"
+      ],
       "extension": {
         "label": "Approaches to Assessment",
         "page": "https://mylearn.une.edu.au/mod/page/view.php?id=3510856",
