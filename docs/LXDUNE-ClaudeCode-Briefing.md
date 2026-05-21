@@ -1,8 +1,8 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-05-19 (T2 2026 prep: per-trimester dates schema, Zoom driven from trimesterConfig, T2-2026 stub configured for EDSE358)  
-**Repo:** `https://github.com/thatswhatsnext/LXDUNE`  
-**GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`  
+**Last updated:** 2026-05-21 (EDSE358 alignment audit G1–G8; alignment improvement fields; EDSE362 LOs and keyLinks; contacts schema; alignment map templates)
+**Repo:** `https://github.com/thatswhatsnext/LXDUNE`
+**GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
 
 ---
@@ -42,9 +42,11 @@ test/
   index.html                  ← dynamic QA harness (local dev only)
 
 templates/
-  *.html                      ← 14 reference HTML components (static, not rendered)
+  *.html                      ← 14+ reference HTML components (static, not rendered)
                                  incl. presubmission-checklist-EDSE357-AT1/AT2 and EDSE358-AT1,
-                                 unit-key-info.html, assessment-status.html
+                                 unit-key-info.html, assessment-status.html,
+                                 constructive-alignment-map.html (EDSE362),
+                                 constructive-alignment-map-generic.html
 
 docs/
   STAFF-README.md             ← plain-language guide for non-technical coordinators
@@ -96,10 +98,21 @@ Pasted once into Moodle, never edited again. The script fetches config on every 
 
 ## Current branch status
 
-`dev` and `main` are **in sync** — all changes pushed and merged as of 2026-05-19.
+`dev` and `main` are **in sync** — 0 commits delta as of 2026-05-21.
 
 ### `main` (GitHub Pages source — production ✅)
-Last merge: `ee6bbe1` (2026-05-19) — T2 2026 prep: per-trimester dates schema, Zoom driven from trimesterConfig, EDSE358 T2-2026 Zoom configured.
+Last merge: `ae70f97` (2026-05-21) — EDSE358 alignment audit improvements G1-G8.
+
+Recent main history (since last briefing 2026-05-19):
+- `ae70f97` — Merge dev into main: EDSE358 alignment audit improvements G1-G8
+- `f5277d4` — Merge dev into main: EDSE358 alignment improvement content
+- `2baf406` — Merge dev into main: constructive alignment map templates and action plan update
+- `da61386` — Merge dev into main: toggleable contact section for renderUnitKeyInfo
+- `de67199` — Merge dev into main: EDSE362 keyLinks for T2 2026
+- `30b3b24` — Merge dev into main: EDSE362 learning outcomes
+- `243114c` — Merge dev into main: fix EDSE362 T2-2026 dates and correct T2 2027 references
+
+Live scripts serving from main:
 - `https://thatswhatsnext.github.io/LXDUNE/whatson/whatson.js` → 200
 - `https://thatswhatsnext.github.io/LXDUNE/autovideos/autovideos.js` → 200
 - `https://thatswhatsnext.github.io/LXDUNE/moodle-blocks/blocks.js` → 200
@@ -169,7 +182,7 @@ Last merge: `ee6bbe1` (2026-05-19) — T2 2026 prep: per-trimester dates schema,
 
 **Schema** — `assessmentTasks` array on each unit JSON:
 
-`due`, `duePartA`, and `flexiblePortal` are now stored inside a `trimesterDates` object keyed by trimester identifier (e.g. `T1-2026`). All render functions in `blocks.js` read from `task.trimesterDates[triKey]`; fall back gracefully to null if key absent. `renderAssessmentPage` now requires `forTri` and `forYear` — generator shells include these. Existing Moodle shells without tri/year show no date (graceful).
+`due`, `duePartA`, and `flexiblePortal` are now stored inside a `trimesterDates` object keyed by trimester identifier (e.g. `T1-2026`). All render functions in `blocks.js` read from `task.trimesterDates[triKey]`; fall back gracefully to null if key absent. `renderAssessmentPage` now requires `forTri` and `forYear` — generator shells include these.
 
 ```json
 {
@@ -192,10 +205,11 @@ Last merge: `ee6bbe1` (2026-05-19) — T2 2026 prep: per-trimester dates schema,
   "links": { "rubric": null, "taskFiles": null, "submit": null, "forum": null, "video": null },
   "parts": [
     {
-      "id": "A", "title": "...", "marks": 20, "wordCount": 300,
+      "id": "A", "title": "...", "marks": 20, "wordCount": "~300 words",
       "description": "...", "requirements": ["..."], "critique": ["..."],
       "resources": [{ "label": "...", "url": "..." }],
-      "loLinks": ["LO1"], "bespoke": "discipline-tab-switcher"
+      "loLinks": ["LO1"], "bespoke": "discipline-tab-switcher",
+      "guidanceNotes": ["Additional guidance paragraph shown after requirements."]
     }
   ],
   "criteria": [
@@ -224,7 +238,7 @@ Last merge: `ee6bbe1` (2026-05-19) — T2 2026 prep: per-trimester dates schema,
 - AT2: fully populated — rationale, aim, parts:[] (holistic), 4 criteria with bullets/colors, 4-row rubric with all 20 band descriptors, HD callout, submission instructions; `trimesterDates.T1-2026.due` = 2026-05-03 ✅; T2-2026 and T3-2026 stubs present; links: rubric null, taskFiles ✅, submit ✅, forum null, video ✅
 
 **EDSE358 assessmentTasks — current state:**
-- AT1 "Teaching, Learning and Assessment Design" (60%): title/LOs/AITSL ✅; `trimesterDates.T1-2026.due` = 2026-04-05, `duePartA` = 2026-03-22 ✅; T2-2026 stub present (due null — pending); **8-row rubric fully populated** (A, B1, B2, B3, B4, C1, C2, D — 100 marks, 40 band descriptors) ✅; rationale null, aim null; parts A/B/C/D have marks but null descriptions; criteria empty; links all null; submission instructions empty
+- AT1 "Teaching, Learning and Assessment Design" (60%): title/LOs/AITSL ✅; `trimesterDates.T1-2026.due` = 2026-04-05, `duePartA` = 2026-03-22 ✅; T2-2026 due dates null — pending; **9-row rubric fully populated** (A, B1, B2, B3, B4, C1, C2, D1, D2 — 100 marks, 45 band descriptors) ✅; **5 parts: A(20), B(20), C(50), D1(5), D2(5) = 100 marks** ✅; Part B has `guidanceNotes` (4 items) ✅; Part D2 has `guidanceNotes` (1 item) ✅; rationale null, aim null; parts A/C have null descriptions; criteria empty; links all null; submission instructions empty
 - AT2 "Resource Curation and Critical Analysis" (40%): title/LOs/AITSL ✅; `trimesterDates.T1-2026.due` = 2026-05-04 ✅; T2-2026 stub present (due null — pending); **6-row rubric fully populated** (A1, A2, A3, B1, B2, C — 100 marks, 30 band descriptors) ✅; rationale null, aim null; parts [] (holistic); criteria empty; links all null; submission instructions empty
 
 **EDSE362 assessmentTasks — current state:**
@@ -256,11 +270,12 @@ Last merge: `ee6bbe1` (2026-05-19) — T2 2026 prep: per-trimester dates schema,
 | `presubmission-checklist-EDSE357-AT2.html` | EDSE357 | AT2 | 11 (4 criteria) |
 | `presubmission-checklist-EDSE358-AT1.html` | EDSE358 | AT1 | 16 (Parts A–D) |
 
-### Phase 3E — Navigation Blocks ✅ COMPLETE (deployed 2026-05-19)
+### Phase 3E — Navigation Blocks ✅ COMPLETE (deployed 2026-05-19; contacts section added 2026-05-21)
 
 `renderUnitKeyInfo({ forUnit, forTri, forYear })` — 11th render function. Renders a unit homepage navigation panel:
 - **Banner:** `<img>` from `unitCfg.bannerUrl`; falls back to a themed placeholder div (unit code + name) when null
 - **Key links:** Bootstrap-style full-width buttons from `unitCfg.keyLinks[]`; disabled span when `url: null`
+- **Contacts:** toggleable coordinator/lecturer section from `unitCfg.contacts`; rendered only when at least one name is non-null
 - **Due date chips:** one row per `assessmentTask` with a due date — coloured chip (green >14d, amber 7–14d, red <7d/today, teal when flexible portal open, grey when submitted/closed), optional "Open portal" link
 - **Support callout:** teal left-border box from `unitCfg.supportCallout`; omitted when null
 
@@ -276,10 +291,15 @@ Last merge: `ee6bbe1` (2026-05-19) — T2 2026 prep: per-trimester dates schema,
   { "label": "Unit Outline",      "url": "https://...", "external": false },
   { "label": "Learning Materials","url": "https://...", "external": false },
   { "label": "Assessment Portal", "url": "https://...", "external": false }
-]
+],
+"contacts": {
+  "coordinator": { "name": "Steve Grant", "email": "sgrant39@une.edu.au" },
+  "lecturer":    { "name": null, "email": null }
+}
 ```
 
-- `bannerUrl` and all three keyLinks URLs populated for EDSE357 and EDSE358; EDSE362 `keyLinks` still null — populate before T2 2026 go-live
+- `bannerUrl` and all three `keyLinks` URLs populated for EDSE357 ✅, EDSE358 ✅, and EDSE362 ✅
+- `contacts.coordinator` populated for all three units ✅; `contacts.lecturer` null — populate when confirmed
 - Generator shell types: `unit-key-info`, `assessment-status`
 - Test harness tab: **Navigation** (side-by-side preview of both blocks)
 - Template reference files: `templates/unit-key-info.html`, `templates/assessment-status.html`
@@ -299,7 +319,7 @@ Last merge: `ee6bbe1` (2026-05-19) — T2 2026 prep: per-trimester dates schema,
 Both live scripts refactored to read from `config/units/*.json` instead of embedded static data. Sandpit-tested and merged to `main` 2026-05-17 (merge commit `449164f`). In production.
 
 **`autovideos/autovideos.js` — production state (main @ `bfba196`):**
-- Optional `containerId` parameter added: if provided, uses `getElementById(containerId)`; if absent, falls back to `getElementsByClassName('embed-container')[0]` for backwards compatibility with all existing live Moodle shells. **This parameter is sandpit-only** — generated production shells do not include it. The correct fix for multi-shell test pages is separate Moodle labels, not custom container IDs.
+- Optional `containerId` parameter added: if provided, uses `getElementById(containerId)`; if absent, falls back to `getElementsByClassName('embed-container')[0]` for backwards compatibility with all existing live Moodle shells. **This parameter is sandpit-only** — generated production shells do not include it.
 - `setUpVideos` is `async`; fetches `${BASE}config/units/${unit}.json`
 - Reads `unitCfg.videoInterval ?? 2` for weekly/fortnightly interval
 - Builds video sequence from `Object.keys(unitCfg.weeks).sort().map(k => unitCfg.weeks[k].video ?? 'DGIXT7ce3vQ')`
@@ -313,10 +333,6 @@ Both live scripts refactored to read from `config/units/*.json` instead of embed
 - `portalLink()` null guard: returns plain text when `assessmentPortalUrl` is null
 - `week0Message` handled as string (JSON) or legacy array — fixes pre-existing `undefined` paragraph bug
 - JSON week key lookup: `unitCfg.weeks[String(thisWeek)]` (JSON keys are strings, not integers)
-
-**`config/units/*.json` additions:**
-- `videoInterval: 1` added to EDSE357 and EDSE358 (weekly rotation)
-- `videoInterval: 2` added to EDSE362 (fortnightly, default)
 
 ---
 
@@ -340,19 +356,21 @@ Pre-generated copyable Moodle shell snippets. Open in a browser — each shell h
 | `docs/EDSE358-navigation-shells.html` | 2 | — | 2026-05-19 (rev 2) |
 | `docs/EDSE357-navigation-shells.html` | 2 | — | 2026-05-19 (rev 2) |
 
-EDSE358 has 3 sections: course-level (5 shells + 2 amber placeholder cards for checklist refactor), per-module weeks 1–8 (32 shells), Module 4C resource directory (1 shell). EDSE357 has no resource directory shell (none configured). Navigation shell files contain Shell 1 (renderUnitKeyInfo) and Shell 2 (renderAssessmentStatus) for the course homepage.
+⚠️ **EDSE358 shells are stale** — AT1 parts have changed (D split into D1/D2; new guidanceNotes rendered; new rubric descriptors). Regenerate from `generate/index.html` before deploying updated AT1 assessment page shells to Moodle.
 
 ---
 
 ## Unit configs — current state
 
 ### EDSE357 — Science Education 11–12: Curriculum and Pedagogy
+
 - **Live:** T1 2026, Wednesdays 5:30–6:30pm
-- **Trimesters configured:** T1
+- **Trimesters configured:** T1-2026
 - **Zoom (T1-2026):** configured ✅
 - **Theme:** blue/teal — `primary: #1f6fb2`, `accent: #25797F`, `pill: #DAF0F7`, `pillBorder: #cbe6ee`
-- **bannerUrl:** `assets/banners/EDSE357-banner.svg` ✅ (blue gradient, teal accent bar, live on GitHub Pages)
-- **keyLinks:** Unit Outline ✅, Learning Materials ✅, Assessment Portal ✅ — all three URLs populated
+- **bannerUrl:** `assets/banners/EDSE357-banner.svg` ✅
+- **keyLinks:** Unit Outline ✅, Learning Materials ✅, Assessment Portal ✅
+- **contacts:** coordinator Steve Grant ✅; lecturer null
 - **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅
 - **Weeks 9–14 and week 0:** minimal (non-teaching); videos set to `DGIXT7ce3vQ`
 - **Links (all weeks 1–8):** all `null` — content links not yet published; all render as Coming soon chips
@@ -360,19 +378,27 @@ EDSE358 has 3 sections: course-level (5 shells + 2 amber placeholder cards for c
 - **assessmentTasks:** AT1 and AT2 — fully populated including 55 rubric descriptors ✅; `trimesterDates.T1-2026` dates populated ✅; T2-2026 and T3-2026 stubs present (due null — pending)
   - AT1 links: rubric ✅, taskFiles ✅, submit ✅, forum ✅, video null
   - AT2 links: rubric null ⚠️, taskFiles ✅, submit ✅, forum null, video ✅; T1-2026 flexiblePortal.url null (past-due)
-- **assessmentFiles (T1-2026):** structure in place; all discipline task/marking URLs `null`
+- **assessmentFiles (T1-2026):** all discipline task/marking URLs `null`
 - **T1 2026 status:** both AT1 (due 2026-03-29) and AT2 (due 2026-05-03) are past due. Unit is in PE/assessment period.
 
 ### EDSE358 — Science Education 11–12: Plan, Assess and Report
+
 - **Live:** T1 2026, Thursdays 5:30–6:30pm; T2 2026 starts 2026-06-22
 - **Trimesters configured:** T1-2026 ✅, T2-2026 ✅
-- **Zoom:** T1-2026 configured ✅; T2-2026 configured ✅ (same meeting ID as T1). Week-level `links.zoom` nulled out on all weeks — Zoom is now resolved entirely from `trimesterConfig[triKey].zoom`.
+- **Zoom:** T1-2026 ✅; T2-2026 ✅ (same meeting ID). Week-level `links.zoom` null on all weeks — resolved from `trimesterConfig[triKey].zoom`.
 - **Theme:** purple/cyan — `primary: #7C5DB6`, `accent: #4FA9B5`, `pill: #EDE8FB`, `pillBorder: #c9bef5`
-- **bannerUrl:** `assets/banners/EDSE358-banner.svg` ✅ (purple gradient, teal accent bar, live on GitHub Pages)
-- **keyLinks:** Unit Outline ✅, Learning Materials ✅, Assessment Portal ✅ — all three URLs populated
+- **bannerUrl:** `assets/banners/EDSE358-banner.svg` ✅
+- **keyLinks:** Unit Outline ✅, Learning Materials ✅, Assessment Portal ✅
+- **contacts:** coordinator Steve Grant ✅; lecturer null
 - **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅
-- **Weeks 9–14 and week 0:** minimal (non-teaching); videos set to `DGIXT7ce3vQ`
-- **Links by week** (zoom now always null at week level — resolved from trimesterConfig):
+- **New alignment improvement fields (stored, not yet rendered — ACTION-PLAN item 18):**
+  - `orientationNote` → weeks 4 (Module 3B), 5 (Module 4A)
+  - `forumPrompts` → weeks 4 (3 prompts), 5 (2 prompts, existing), 6 (2 prompts), 8 (3 prompts)
+  - `synthesisTemplate` → week 6 (lecturer tool — not student-facing)
+  - `workedExample` → week 6
+  - `guidanceNotes` on AT1 parts → Part B (4 items), Part D2 (1 item)
+
+- **Links by week** (zoom always null at week level — resolved from trimesterConfig):
 
 | Week | Live links | Null links |
 |---|---|---|
@@ -385,45 +411,56 @@ EDSE358 has 3 sections: course-level (5 shells + 2 amber placeholder cards for c
 | 7 (Module 4C) | forum, materials + 2 additionalLectures ✅ | lecture, slides, zoom, liveHub, recording |
 | 8 (Module 4D) | lecture, forum, materials ✅ | slides, zoom, recording, liveHub |
 
-- **assessmentFiles (T1-2026):**
-  - AT1: all URLs `null`
-  - AT2: rubric ✅, biology ✅, chemistry task ✅, chemistry marking ✅, EES task ✅, EES marking ✅, physics ✅ — **all discipline files now resolved** ✅
-- **assessmentTasks:** rubric structures fully populated ✅; `trimesterDates.T1-2026` dates populated ✅; T2-2026 due dates null — pending Steve providing T2 dates; rationale/aim/part descriptions/links still null
-- **T1 2026 status:** AT1 Part A (due 2026-03-22) and AT1 Parts B/C/D (due 2026-04-05) past due. AT2 (due 2026-05-04) past due. Unit is in PE/assessment period.
+- **assessmentFiles (T1-2026):** AT1: all null; AT2: all discipline files resolved ✅
+- **assessmentTasks — AT1 structure (post-audit):**
+  - 5 parts: A(20), B(20), C(50), D1(5), D2(5) — total 100 marks ✅
+  - Part D split: D1 = "Planning timely and purposeful feedback" (5 marks, 5 requirements); D2 = "Reflective self-assessment" (5 marks, 2 requirements)
+  - 9-row rubric: A, B1, B2, B3, B4, C1, C2, D1, D2 — 100 marks, 45 band descriptors ✅
+  - B1 C/P/N descriptors updated with ATSI differentiation language (G5)
+  - B2 HD descriptor: replaced with resource-range + ICT + safety/CSIS language (G8+G3); C/P/N updated with safety language (G3)
+  - B3 HD: activity-range sentence appended (G7)
+  - B4 HD: evaluation-strategy sentence appended (G4)
+  - D1 rubric: new feedback-planning descriptors across all 5 bands
+  - D2 rubric: new reflective-practice descriptors across all 5 bands
+- **T1 2026 status:** AT1 Part A (due 2026-03-22), Parts B/C/D (due 2026-04-05), AT2 (due 2026-05-04) — all past due. Unit in PE/assessment period.
 
 ### EDSE362 — Science Education 11–12: Curriculum, Pedagogy and Inclusive Practice
-- **Live:** T2 2026, Wednesdays 5:30–6:30pm — ⚠️ **correction: previously recorded as T2 2027; unit runs T2 2026**
+
+- **Live:** T2 2026, Wednesdays 5:30–6:30pm (starts 2026-06-22)
 - **Trimesters configured:** T2-2026 ✅
 - **Zoom (T2-2026):** `null` — not yet created; add to `trimesterConfig.T2-2026` when meeting is set up
 - **Theme:** green/warm gold — `primary: #2E7D52`, `accent: #E3B089`, `pill: #E8F5EE`, `pillBorder: #b8dcc8`
-- **bannerUrl:** `assets/banners/EDSE362-banner.svg` ✅ (green gradient, warm gold accent bar, live on GitHub Pages)
-- **keyLinks:** all three URLs still `null` — populate before T2 2026 go-live
+- **bannerUrl:** `assets/banners/EDSE362-banner.svg` ✅
+- **keyLinks:** Unit Outline ✅, Learning Materials ✅, Assessment Portal ✅ — all three populated ✅ (updated 2026-05-21)
+- **contacts:** coordinator Steve Grant ✅; lecturer null
+- **Learning outcomes:** LO1–LO6 ✅ (added 2026-05-21)
 - **Teaching weeks 1–8:** `announcementBody`, `liveSessionFocus`, `liveSessionTasks` — all populated ✅; `resources: []` present on each week (empty arrays, ready to fill)
 - **Videos (weeks 1–8):** all `null` — will default to `DGIXT7ce3vQ` until real IDs are added
 - **Links (all weeks):** all `null`
-- **assessmentTasks:** `trimesterDates.T2-2026` due dates populated ✅ (AT1 due 2026-07-26, AT2 due 2026-09-06); rationale/aim/parts/criteria/rubric all null — to be populated before go-live
-- **T2-2026 start date:** `2026-06-22` ✅ confirmed in `trimester-config.json`
+- **assessmentTasks:** `trimesterDates.T2-2026` due dates ✅ (AT1 due 2026-07-26, AT2 due 2026-09-06); title null, rationale null, parts null, criteria null, rubric empty — to be populated before go-live
+- **Constructive alignment map:** static template at `templates/constructive-alignment-map.html` ✅; generic reusable version at `templates/constructive-alignment-map-generic.html` ✅; config-driven rendering planned — ACTION-PLAN item 16
 
 ---
 
 ## Config schema — week object
 
-Teaching weeks (1–8) follow this shape. All three units conform to this schema; EDSE362 has `resources` on every week; EDSE358 adds `workflow`, `additionalLectures`, `forumPrompts`, and (on week 8) `extension` as additional fields.
+Teaching weeks (1–8) follow this shape. All three units conform to this schema. EDSE358 adds `workflow`, `additionalLectures`, `synthesisTemplate`, `workedExample`, `orientationNote`, and (on week 8) `extension` as additional fields. `forumPrompts` is present on EDSE358 weeks 4, 5, 6, 8.
 
 ```json
-"1": {
-  "item": "Topic 1",
+"4": {
+  "item": "Module 3B",
   "title": "Full topic title",
   "live": "🎤 Live Session",
   "notes": ["Optional note shown on the week tile"],
   "assessments": [
-    { "name": "Assessment Task 1", "due": "2026-03-29" }
+    { "name": "Assessment Task 1", "due": "2026-03-22" }
   ],
   "announcementBody": {
     "intro": "Opening paragraph.",
     "focus": "This week's focus — second paragraph.",
     "keyIdea": "A key idea this week is… (stored but not yet rendered)"
   },
+  "orientationNote": "Framing paragraph shown at top of module — stored, not yet rendered.",
   "liveSessionFocus": "One or two sentences describing the live session focus.",
   "liveSessionTasks": ["Task 1.", "Task 2.", "Task 3."],
   "workflow": ["Step 1 label", "Step 2 label"],
@@ -434,7 +471,9 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
   "additionalLectures": [
     { "label": "Lecture title", "recording": "echo360_url", "slides": "slides_url_or_null" }
   ],
-  "forumPrompts": ["Prompt 1.", "Prompt 2."],
+  "forumPrompts": ["Prompt 1.", "Prompt 2.", "Prompt 3."],
+  "synthesisTemplate": "Post-forum synthesis template (lecturer tool — not student-facing).",
+  "workedExample": "Worked example text supporting module activity — stored, not yet rendered.",
   "resources": [
     { "category": "UDL", "label": "Resource label", "url": "url_or_null", "type": "link" }
   ],
@@ -443,6 +482,13 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
 ```
 
 `null` links always render as Coming soon chips. Non-teaching weeks (9–14) only need `item`, `title`, `video`, and optionally `assessments`.
+
+**New fields stored but not yet rendered** (`blocks.js` does not read these — ACTION-PLAN item 18):
+- `orientationNote` — framing paragraph at module start
+- `forumPrompts` — forum discussion prompt list (blocks.js has never read this, even where it pre-existed)
+- `synthesisTemplate` — lecturer tool; belongs in generator admin tool, not student-facing renderer
+- `workedExample` — collapsible worked example
+- `guidanceNotes` (on parts) — additional guidance paragraphs after requirements
 
 ---
 
@@ -484,17 +530,20 @@ T2 2026 start `2026-06-22` is confirmed. ⚠️ 2027 dates are estimates — con
 ## Known issues
 
 1. **EDSE357 — all week links null:** unit is live but content links not yet added; all render as Coming soon chips. Populate as content is published.
-2. **EDSE358 assessmentTasks — rationale, aim, part descriptions, links all null:** rubric is fully populated; remaining content pending before assessment pages go live.
+2. **EDSE358 assessmentTasks — rationale, aim, part descriptions (A and C), links all null:** rubric and parts structure fully populated; remaining content pending before assessment pages go live.
 3. **EDSE357 AT2 rubric link null:** add URL when rubric PDF is published to Moodle.
 4. **EDSE358 missing week links:** weeks 1–2 (all), week 3 (lecture/slides/recording), week 6 (lecture/slides/liveHub/recording), week 7 (lecture/slides/liveHub/recording), week 8 (slides/recording/liveHub).
 5. **EDSE358 AT1 assessmentFiles — all null:** task and marking URLs not yet uploaded for AT1 disciplines.
 6. **`DGIXT7ce3vQ` — third-party placeholder video:** used for PE weeks (9–14) in all unit configs and EDIT* legacy arrays. Not university-owned — replace when a stable owned video is available.
 7. **`announcementBody.keyIdea`:** stored in some EDSE358 weeks but not rendered. Future enhancement only.
-8. **EDSE362 — content not yet populated:** live T2 2026 (starts 2026-06-22); due dates set ✅; all week links, videos, zoom, keyLinks, and assessmentTask content (rationale/aim/rubric) still null — populate before go-live.
+8. **EDSE362 — content not yet populated:** live T2 2026 (starts 2026-06-22); due dates ✅, keyLinks ✅, LOs ✅; all week links, videos, zoom, and assessmentTask content (title/rationale/aim/rubric) still null — populate before go-live.
 9. **EDSE362 Zoom not yet created:** add Zoom meeting ID and URL to `trimesterConfig.T2-2026` when meeting is set up.
 10. **Pre-submission checklist — static templates:** current implementation fetches static HTML from `templates/`. Refactor to config-driven schema before writing a fourth checklist — see ACTION-PLAN.md item 15.
 11. **EDSE358 T2-2026 assessment due dates null:** `trimesterDates.T2-2026.due` is null for both AT1 and AT2. Populate once Steve confirms T2 due dates — then regenerate Moodle shells with `forTri: "T2"` and `forYear: "2026"`.
-12. **Existing Moodle shells for renderAssessmentPage show no due date:** shells deployed to Moodle for T1 2026 do not pass `forTri`/`forYear` (schema change). Both T1 ATs are past due so this is low impact. New T2 shells from the generator will include tri/year correctly.
+12. **Existing Moodle shells for renderAssessmentPage show no due date:** shells deployed to Moodle for T1 2026 do not pass `forTri`/`forYear`. Both T1 ATs are past due so this is low impact. New T2 shells from the generator will include tri/year correctly.
+13. **EDSE358 alignment fields stored but not rendered:** `orientationNote`, `forumPrompts`, `workedExample`, `synthesisTemplate`, `guidanceNotes` on parts are in the config but blocks.js does not read any of them. See ACTION-PLAN item 18 for rendering spec.
+14. **EDSE358 shells stale post-audit:** AT1 assessment page shell in `docs/EDSE358-T1-2026-shells.html` pre-dates the D→D1/D2 split and rubric descriptor updates. Regenerate before redeploying to Moodle.
+15. **EDSE362 lecturer name null:** `contacts.lecturer.name` is null across all three units. Populate when confirmed.
 
 ---
 
@@ -502,16 +551,71 @@ T2 2026 start `2026-06-22` is confirmed. ⚠️ 2027 dates are estimates — con
 
 See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary:
 
-1. **EDSE358 T2 due dates** — Steve to provide T2 2026 due dates for AT1 and AT2; populate `trimesterDates.T2-2026` in EDSE358.json; regenerate Moodle shells (ACTION-PLAN item 12).
-2. **EDSE358 missing content** — populate rationale, aim, part descriptions, and links in assessmentTasks for AT1 and AT2 (ACTION-PLAN item 8).
-3. **EDSE358 missing week links** — weeks 1–2 (all), weeks 3/6/7/8 (partial); add as content is published (ACTION-PLAN item 7).
-4. **EDSE357 week links** — add lecture/slides/recording/forum/materials/liveHub as content is published (ACTION-PLAN item 10).
-5. **EDSE357/358 assessment links** — rubric PDFs, task file URLs, submit URLs (ACTION-PLAN items 8, 11).
-6. **Checklist refactor** — before writing a fourth static checklist template, do the config-driven refactor (ACTION-PLAN item 15).
+1. **EDSE358 T2 due dates** — Steve to provide T2 2026 due dates for AT1 and AT2; populate `trimesterDates.T2-2026`; regenerate Moodle shells (ACTION-PLAN item 12).
+2. **EDSE358 alignment fields — render in blocks.js** — `orientationNote`, `forumPrompts`, `workedExample`, `guidanceNotes` need renderer support; `synthesisTemplate` goes in the generator admin tool (ACTION-PLAN item 18). Trigger: before T2 2026 go-live.
+3. **Regenerate EDSE358 AT1 shell** — D split and rubric changes mean the deployed assessment page shell is stale. Regenerate from generator and redeploy to Moodle.
+4. **EDSE362 go-live prep** — Zoom setup; assessmentTask title/rationale/aim/parts/rubric; lecturer name; video IDs; week links — all before T2 2026 starts 2026-06-22 (ACTION-PLAN item 17).
+5. **EDSE358 missing week links** — weeks 1–2 (all), weeks 3/6/7/8 (partial); add as content is published (ACTION-PLAN item 7).
+6. **EDSE357 week links** — add lecture/slides/recording/forum/materials/liveHub as content is published (ACTION-PLAN item 10).
+7. **Checklist refactor** — before writing a fourth static checklist template, do the config-driven refactor (ACTION-PLAN item 15).
+8. **Alignment map renderer** — `renderAlignmentMap()` as 13th render function, reading from `unitCfg.alignmentMap`; static template reference exists at `templates/constructive-alignment-map.html` (ACTION-PLAN item 16).
 
 ---
 
 ## Session notes
+
+### 2026-05-21 — EDSE358 alignment audit G1–G8; alignment improvement fields; EDSE362 updates
+
+**Completed this session:**
+
+**EDSE362 updates (merged to main):**
+- T2-2026 dates corrected (was incorrectly recorded as T2-2027 in some config)
+- Learning outcomes LO1–LO6 added to EDSE362 ✅
+- `keyLinks` URLs populated for EDSE362 (Unit Outline, Learning Materials, Assessment Portal) ✅
+
+**renderUnitKeyInfo — contacts section (merged to main):**
+- Toggleable coordinator/lecturer section added to `renderUnitKeyInfo`
+- `contacts` schema added to all three unit JSONs: `{ coordinator: { name, email }, lecturer: { name, email } }`
+- Steve Grant set as coordinator in all three units; lecturer null across all units
+- Contacts section is rendered only when at least one name is non-null
+
+**Constructive alignment map templates (merged to main):**
+- `templates/constructive-alignment-map.html` — EDSE362-specific static template
+- `templates/constructive-alignment-map-generic.html` — reusable version
+- Config-driven rendering deferred to ACTION-PLAN item 16
+
+**EDSE358 alignment improvement fields (`feature/edse358-alignment-improvements` → main, commit `d5300ac`):**
+New schema fields added and populated:
+- `orientationNote` (week-level string): weeks 4 (Module 3B — ICT/ATSI framing + safety) and 5 (Module 4A — 4A–4D spiral framing)
+- `forumPrompts` (week-level array): weeks 4 (3 prompts: ICT tools, ATSI embedding, activity types), 6 (2 prompts: alignment analysis, evaluation strategy), 8 (3 prompts: rubrics, feedback, senior science challenges)
+- `synthesisTemplate` (week-level string): week 6 — post-forum synthesis template for lecturer use
+- `workedExample` (week-level string): week 6 — Chemistry (strong alignment) + Biology (partial alignment) contrasting examples
+- `guidanceNotes` (parts-level array): AT1 Part B (4 items: ICT, ATSI, unit sequence, formative assessment frequency); AT1 Part D2 (1 item: analytical reflection guidance)
+
+None of these fields are rendered by blocks.js — see ACTION-PLAN item 18.
+
+**EDSE358 alignment audit G1–G8 (`feature/edse358-rubric-gaps` → main, commits `055cc7d` + `9e3b9e9`):**
+- **G1:** AT1 Part D (10 marks, "Reflection") split into:
+  - D1: "Planning timely and purposeful feedback for students" (5 marks, 5 requirements, loLinks: LO4)
+  - D2: "Reflective self-assessment" (5 marks, 2 requirements, loLinks: LO4, inherits guidanceNotes)
+  - Rubric: new D1 (feedback planning) and D2 (reflective practice) descriptors across all 5 bands each
+- **G2:** Week 8 (Module 4D): 4 new `liveSessionTasks` appended (feedback-writing formative activity on anonymised sample); 3 `forumPrompts` added (rubrics, feedback design, senior science challenges)
+- **G3:** B2 rubric C/P/N: safety language appended. Week 4 `orientationNote`: safety-as-pedagogy sentence appended.
+- **G4:** B4 rubric HD: evaluation strategy sentence appended. Week 6 `forumPrompts`: evaluation strategy prompt added.
+- **G5:** B1 rubric C/P/N: ATSI-specific differentiation language appended.
+- **G7:** B3 rubric HD: range-of-activity-types sentence appended. Week 4 `forumPrompts`: activity-types audit prompt added.
+- **G8:** B2 rubric HD: fully replaced with new text covering resource rationale, range of types, ICT, and safety.
+- **G3+G8 tidy-up (`9e3b9e9`):** B2 HD de-duplicated — removed redundant "appropriate, engaging and safe" phrase; kept specific CSIS safety reference only.
+- Final B2 HD: "Resources are intentionally selected to deepen conceptual learning… A range of resource types is evident… ICT use is purposeful… Safety considerations are explicitly addressed… with reference to relevant guidelines (e.g., CSIS), and resources are appropriate and engaging for the named cohort."
+
+**Action plan updated:**
+- Item 18 added to 🟢 section: "Render new alignment improvement fields in blocks.js" — spec for orientationNote, forumPrompts, workedExample, synthesisTemplate, guidanceNotes rendering
+
+**Key design decisions:**
+- `synthesisTemplate` is not student-facing. It belongs in the generator admin tool as a "Post-forum synthesis" shell type — the lecturer personalises the output before posting. It should never be rendered to students via blocks.js.
+- AT1 Part D split (G1) uses Option B: two new parts (D1 + D2), each 5 marks, total unchanged at 10. loLinks changed from LO3/LO5 to LO4 for both — feedback planning and reflection are now explicitly linked to Assessment Knowledge.
+- `guidanceNotes` was added to the `parts` schema to hold supplementary guidance paragraphs shown below `requirements` in the assessment page renderer. The field was populated in this session but the renderer doesn't read it yet.
+- Week 8 `liveSessionTasks` append (G2): 4 new tasks added on top of existing 5 — first new task partially overlaps with existing "Work through the Module 4D materials in Moodle." Steve may want to consolidate; flagged but not merged since this is a content decision.
 
 ### 2026-05-19 — T2 2026 prep: per-trimester dates schema; Zoom from trimesterConfig
 
@@ -521,22 +625,15 @@ See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary
 - EDSE358 week 8 item 7 table corrected: lecture/zoom/forum/materials confirmed live; slides/recording/liveHub still null
 - `assessmentTasks` schema extended: flat `due`, `duePartA`, `flexiblePortal` replaced by `trimesterDates` object keyed by trimester (e.g. `T1-2026`) in all three unit JSONs
 - Existing T1-2026 dates migrated into `trimesterDates.T1-2026` for EDSE357 and EDSE358
-- T2-2026 stubs added to EDSE358 (both ATs); T2-2026 and T3-2026 stubs added to EDSE357; T2-2026 stub for EDSE362 (⚠️ was incorrectly recorded as T2-2027 — corrected in subsequent commit)
-- `blocks.js` `resolve()` updated: `week` computed before `zoom`; `zoomUrl` falls back to `week.links.zoom` if `trimesterConfig[triKey].zoom.url` is null
-- `renderAssessmentPage` signature extended: `forTri` and `forYear` now accepted; reads dates from `trimesterDates[triKey]`
-- `renderUnitKeyInfo` and `renderAssessmentStatus` updated to read from `trimesterDates[triKey]`
-- EDSE358 week-level `links.zoom` nulled out for weeks 3–8; EDSE357 was already all null
+- T2-2026 stubs added to EDSE358 (both ATs); T2-2026 and T3-2026 stubs added to EDSE357; T2-2026 stub for EDSE362
+- `blocks.js` `resolve()` updated: `zoomUrl` falls back to `week.links.zoom` if `trimesterConfig[triKey].zoom.url` is null
+- `renderAssessmentPage`, `renderUnitKeyInfo`, `renderAssessmentStatus` extended to read from `trimesterDates[triKey]`
+- EDSE358 week-level `links.zoom` nulled out for weeks 3–8
 - T2-2026 `trimesterConfig` stub in EDSE358 populated with same Zoom meeting as T1-2026
 - Generator `shellAssessment` updated to include `forTri` and `forYear` in output
-- `feature/t2-prep` merged to dev then main; branch deleted
-
-**Commits (all on main):**
-- `b228461` — feat: per-trimester dates schema and Zoom URL fallback to trimesterConfig
-- `26bb49e` — content: set EDSE358 T2-2026 Zoom to same meeting as T1-2026
 
 **Key design decisions:**
 - `trimesterDates` key format is `{forTri}-{forYear}` (e.g. `T1-2026`) — matches the `triKey` variable already used throughout `blocks.js`
-- `renderAssessmentPage` existing Moodle shells (T1 2026) show no due date after migration — acceptable since both T1 ATs are past due; new T2 shells will be generated with tri/year
 - Zoom is now resolved from `trimesterConfig` only; week-level zoom is a fallback for edge cases only. Do not re-add zoom URLs to week `links` objects — keep them null
 - EDSE357 `trimesterConfig` currently only has `T1-2026`. When T2 is confirmed, add a `T2-2026` entry (same pattern as EDSE358)
 
@@ -546,21 +643,10 @@ See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary
 
 - `renderUnitKeyInfo` (fn 11) and `renderAssessmentStatus` (fn 12) added to `blocks.js` on `feature/navigation-blocks`, merged to dev then main
 - Unit JSON schema extended with `bannerUrl`, `supportCallout`, `keyLinks[]` on all three unit JSONs
-- `keyLinks` URLs populated for EDSE357 (Unit Outline, Learning Materials, Assessment Portal) and EDSE358 (same)
-- EDSE362 `keyLinks` all null — to be populated before T2 2026 go-live
+- `keyLinks` URLs populated for EDSE357 and EDSE358; EDSE362 deferred (now done 2026-05-21)
 - SVG banners created for all three units (`assets/banners/`), pushed to main, confirmed 200 on GitHub Pages
 - `bannerUrl` set to live GitHub Pages URLs in all three unit JSONs
-- Generator: `unit-key-info` and `assessment-status` shell types added
-- Test harness: Navigation tab added (side-by-side preview)
-- Template reference files: `unit-key-info.html`, `assessment-status.html`
 - Navigation shell files generated (git-ignored): `docs/EDSE357-navigation-shells.html`, `docs/EDSE358-navigation-shells.html`
-- ACTION-PLAN items 1, 4, 5, 6 marked complete; two new completed items added
-
-**Commits (all merged to main):**
-- `555a054` — feat: add renderUnitKeyInfo and renderAssessmentStatus navigation blocks
-- `8511d79` — feat: add unit banner SVGs and populate bannerUrl in unit configs
-- `b10340d` — content: populate keyLinks URLs for EDSE357 and EDSE358
-- `4709ba0` — content: set bannerUrl for all three units
 
 **Key design decisions:**
 - Navigation block status chip colours are semantic (green/amber/red/teal/grey), not theme colours — consistent across all units regardless of their branding
@@ -570,25 +656,6 @@ See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary
 
 ### 2026-05-19 — renderPresubmissionChecklist; autovideos containerId; staff guide
 
-**Commits on dev (not yet merged to main):**
-- `46b0adf` — STAFF-README.md substantially expanded: added shell deployment how-to, live session content editing, assessment file and task links, resource directory, new trimester setup, expanded troubleshooting table
-- `1dba966` — autovideos.js: code comment marking `containerId` as sandpit-only convenience parameter; not part of the production API; generated shells do not include it
-
-**Committed to main via merge `bfba196` (2026-05-18):**
-- `renderPresubmissionChecklist` added to `blocks.js` as 9th function (renderCourseHub moved to 10th)
-  - Fetches `templates/presubmission-checklist-{UNIT}-{TASK}.html` and wraps in collapsible `<details>`
-  - Scripts re-executed after `innerHTML` injection via `createElement('script')` + `replaceWith` pattern
-  - Container: `#lxdune-presubmission-checklist`
-- Three template files created: EDSE357-AT1 (11 items), EDSE357-AT2 (11 items), EDSE358-AT1 (16 items)
-- Generator: `presubmission-checklist` shell type added with `shellChecklist()` function
-- Test harness: Checklist tab added with `sel-cl-task` selector and `scheduleClRender()`
-- `docs/ACTION-PLAN.md` created — 16 action items across 5 priority horizons
-- `docs/LXDUNE-ClaudeCode-Briefing.md` updated (ACTION-PLAN.md added to file tree)
-- `autovideos.js`: optional `containerId` parameter — `getElementById` when provided, `[0]` fallback when absent; backwards-compatible with all live Moodle shells
-
-**Also merged to main via `ccebf8b` (2026-05-18):**
-Full dev merge including: EDSE358 rubric descriptors (AT1 8-row, AT2 6-row), assessmentFiles fixes, week 8 population, checklist templates, ACTION-PLAN.md, briefing updates.
-
 **Key decisions:**
 - `containerId` on `setUpVideos` is sandpit-only — the correct multi-shell test approach is separate Moodle labels, not custom IDs. Generated shells never include `containerId`.
 - Static checklist templates are the current implementation. Do not write a fourth static template — refactor to config-driven first (ACTION-PLAN item 15).
@@ -596,52 +663,9 @@ Full dev merge including: EDSE358 rubric descriptors (AT1 8-row, AT2 6-row), ass
 
 ### 2026-05-18 — Rubric descriptors complete; shell files generated
 
-**Tasks completed this session:**
-
-**1. EDSE358 assessmentFiles broken links fixed (commit `b168bd0`):**
-- Chemistry marking URL: `null` → `https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/Chemistry%20task%20marking.pdf?forcedownload=1`
-- EES task URL: `null` → `https://mylearn.une.edu.au/pluginfile.php/5143125/mod_assign/introattachment/0/EES%20task%20.pdf?forcedownload=1`
-- `markingNote` and `taskNote` warning fields removed; all EDSE358 AT2 discipline files now resolved
-
-**2. EDSE358 AT1 and AT2 rubric structures replaced (commit `9537d93`):**
-- AT1: 4 placeholder rows → 8 official rows (A, B1, B2, B3, B4, C1, C2, D), 100 marks, 40 descriptors
-  - Part A (5 marks): Task outline
-  - Part B1 (20 marks): Unit structure, constructivist pedagogy, differentiation, NSW syllabus alignment
-  - Part B2 (10 marks): Resources and student ICT use
-  - Part B3 (10 marks): Learning activities aligned to syllabus outcomes
-  - Part B4 (10 marks): Formative assessment and feedback
-  - Part C1 (20 marks): Justification of pedagogical decisions
-  - Part C2 (15 marks): Justification of resources
-  - Part D (10 marks): Reflection
-- AT2: 3 placeholder rows → 6 official rows (A1, A2, A3, B1, B2, C), 100 marks, 30 descriptors
-  - Part A1 (25 marks): Evaluation of Assessment Design
-  - Part A2 (20 marks): Syllabus & Working Scientifically Alignment
-  - Part A3 (15 marks): Use of Assessment Theory and Literature
-  - Part B1 (20 marks): Coherence, Alignment, ICT & Feedback
-  - Part B2 (10 marks): Differentiation & Cohort Responsiveness
-  - Part C (10 marks): Reflection
-- All 70 descriptors populated verbatim from official document
-
-**3. Shell snippet files generated (git-ignored, local use only):**
-- `docs/EDSE358-T1-2026-shells.html` — 38 shells (5 course-level + 32 per-week + 1 week-7 resource directory)
-- `docs/EDSE357-T1-2026-shells.html` — 37 shells (5 course-level + 32 per-week)
-- `.gitignore` updated: `/docs/*-shells.html` pattern added to prevent accidental commits
-
-**Also completed (prior session carry-over on dev):**
-- EDSE358 week 8 (Module 4D) populated (commit `8592d5e`): announcementBody, liveSessionFocus, liveSessionTasks, workflow, lecture/zoom/forum/materials links
-
-**Decisions made:**
-- AT1 Part C1 mark allocation corrected to 20 marks (not 15 as written in rubric header); band ranges set to match Part B1 (same mark value): HD 20–18, D 17–15, C 14–12, P 11–9, N 8–0
+**Key decisions:**
+- AT1 Part C1 mark allocation corrected to 20 marks; band ranges set to match Part B1 (same mark value): HD 20–18, D 17–15, C 14–12, P 11–9, N 8–0
 - EES task filename confirmed as `EES%20task%20.pdf` (trailing space in filename is intentional — matches actual file)
-
-### 2026-05-17 — Briefing checkpoint (routine /briefing-update after production deployment)
-
-No code changes this session. Verified current state against all three unit JSONs:
-- EDSE357: confirmed all weeks 1–8 populated; both ATs past due; all week links still null; AT2 rubric link and flexiblePortal.url still null (past-due, low priority)
-- EDSE358: confirmed weeks 1–7 populated, week 8 still null; both ATs past due; known issues with chemistry marking URL and EES task URL unchanged
-- EDSE362: confirmed weeks 1–8 populated with content; all videos and links null as expected; assessmentTasks remain schema-only stubs
-
-Branch delta corrected: dev is 1 commit ahead of main (briefing-only commit `0b60de8`). No code divergence.
 
 ### 2026-05-17 — Production deployment: all phases complete
 
@@ -649,25 +673,9 @@ Branch delta corrected: dev is 1 commit ahead of main (briefing-only commit `0b6
 - All 4 phases complete and in sync: config layer, block renderer (9 functions + theme + assessment content system + Course Hub), Phase 4 (both live scripts config-driven)
 - Sandpit passed: 5 shells tested — EDSE357/EDSE358 whatson ✅, EDSE357/EDSE358 autovideos (config fetch path) ✅, EDIT426 legacy fallback ✅
 - GitHub Pages switched to `main`; all three live scripts verified 200
-- `dev` and `main` are fully in sync (0 commits delta)
 
 **Video placeholder issue identified during sandpit:**
-- `DGIXT7ce3vQ` (used as PE-weeks fallback for all units and EDIT* arrays) is a third-party YouTube video ("Tropical Beach Ambience" — Relaxing Soundzzz channel). All teaching-week videos are owned/controlled and confirmed valid. The placeholder is the only third-party dependency and should be replaced when a suitable owned video is available.
-
-### 2026-05-17 — Phase 4 complete; merged to dev
-
-**Feature branches merged:**
-- `feature/phase4-autovideos` → dev (merge commit `df4a601`); feature branch commit `fd7eb98`
-- `feature/phase4-whatson` → dev (merge commit `de0894c`); feature branch commit `21a429d`
-- Pushed to `origin/dev`; dev is now 5 commits ahead of main
-
-**Key decisions made:**
-- EDIT* units (no config JSON) get a legacy fallback — `VideoURLs` static class preserved at bottom of `autovideos.js` with a clear comment; used only on fetch failure with `console.warn`. Do not add new units to this class; create a config JSON instead.
-- `week0Message` in JSON is a string (not an array as in the old `Events` static class) — new code handles both types; pre-existing `<p>undefined</p>` bug from the old array code is now fixed.
-- `portalLink()` returns plain text "the Assessment Portal" when `assessmentPortalUrl` is null (EDSE362) — no broken link, no crash.
-- JSON week keys are strings ("1", "2"...) — requires `unitCfg.weeks[String(thisWeek)]` not integer lookup.
-- `videoInterval` field added to all three unit JSONs: EDSE357=1, EDSE358=1, EDSE362=2.
-- Test suite: 29 assertions across 7 scenarios, all passing before merge.
+- `DGIXT7ce3vQ` (used as PE-weeks fallback for all units and EDIT* arrays) is a third-party YouTube video. All teaching-week videos are owned/controlled and confirmed valid. The placeholder is the only third-party dependency and should be replaced when a suitable owned video is available.
 
 ---
 
@@ -679,3 +687,4 @@ Branch delta corrected: dev is 1 commit ahead of main (briefing-only commit `0b6
 - **`<\/script>` in shell template literals** — use `<\/script>` inside JavaScript strings to prevent the HTML parser from closing the outer script tag prematurely.
 - **`import.meta.url`** — used in `blocks.js` to derive the config base URL dynamically. This means `blocks.js` works from any host without hardcoded URLs.
 - **GitHub Pages is on `main`** — live URL is safe. Do not switch back to `dev` without a deliberate sandpit decision.
+- **Zoom is resolved from `trimesterConfig`, not week-level `links.zoom`** — do not add Zoom URLs to individual week `links` objects. Keep them null.
