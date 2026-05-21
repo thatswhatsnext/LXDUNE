@@ -21,6 +21,7 @@ Reference HTML implementations for all Moodle block components. These are the so
 | `assessment-status.html` | Assessment Status (navigation block) | Unit home page — one card per task, status chip, LO pills, action links |
 | `constructive-alignment-map.html` | Constructive Alignment Map (generic template) | Unit pages — how each LO is taught, practised, and assessed; fully tokenised for reuse |
 | `constructive-alignment-map-EDSE362.html` | Constructive Alignment Map — EDSE362 | EDSE362 T2 2026 — fully populated reference implementation |
+| `constructive-alignment-map-EDSE358.html` | Constructive Alignment Map — EDSE358 | Student-facing constructive alignment map for EDSE358 — 4 LOs across Teaching, Practice, AT1 and AT2 columns. Purple/cyan theme. Reflects post-audit improved state (G1–G8). Click-to-expand rows show student advice. |
 
 ## Dynamic value tokens
 
