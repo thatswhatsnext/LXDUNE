@@ -311,15 +311,22 @@
       "title": "Introduction to Teaching Differentiation",
       "live": "🎤 Live Session: Topic 3 & 4",
       "announcementBody": {
-        "intro": "This week we introduce one of the most important — and most misunderstood — practices in teaching: differentiation. We begin with the principles and theory before we turn to application in the senior science classroom next week.",
-        "focus": "Topic 4 establishes a clear conceptual foundation for differentiated instruction: what it is, what it is not, and why it matters for student learning in a Stage 6 context. You will examine models of differentiation by content, process, product, and environment, and begin to consider how these apply to the practical realities of teaching senior science."
+        "intro": "This week we turn our attention to one of the most powerful tools in any teacher's repertoire — questioning. Not just asking questions, but designing them deliberately to do different cognitive work. We look at why open questions reveal thinking while closed questions shut it down, how Bloom's Taxonomy and the Q-Matrix can sharpen your questions across different levels of cognitive demand, and what psychological safety has to do with whether students answer at all. The central idea this week, from Eddie Woo: the person doing the talking is the person doing the learning."
       },
-      "liveSessionFocus": "Session 4 covers Topics 3 and 4 together. We will examine resource evaluation and the principles of differentiation, and connect both to your planning responsibilities as a science teacher.",
+      "liveSessionFocus": "Designing questions that shift cognitive work to students — from closed recall to open inquiry",
       "liveSessionTasks": [
-        "Read the introductory topic materials on differentiation and identify one model or framework that you find most useful for thinking about your teaching.",
-        "Consider a class or cohort you have worked with (or observed) and identify two or three ways in which students' learning needs varied — what would effective differentiation have looked like?",
-        "Come prepared to discuss one misconception about differentiation that you have encountered or hold yourself, and how the topic materials addressed it."
+        "Work through the Topic 4 readings and lecture before the live session — pay particular attention to the Koufetta-Menicou & Scaife (2000) classification table of nine question types",
+        "Watch the Eddie Woo video and note one phrase or moment that changes how you think about classroom talk",
+        "Identify which question types from the Koufetta-Menicou & Scaife classification you currently use most in your teaching or placements, and which you rarely use — bring your reflection to the live session",
+        "Complete at least one of the three forum activities before or during the live session"
       ],
+      "orientationNote": "Topic 4 sits at the midpoint of the unit and marks a shift — from what you teach to how you teach it. The questioning techniques you develop here will show up in every lesson you ever run. They are directly relevant to Assessment Task 1: the practical activities you design in Part B and the Depth Study in Part C both require deliberate questioning moments — at the toolbox safety briefing, during investigation setup, and in the closing reflection. As you work through the materials, keep asking: what would I actually say to a class of Year 9 students at this moment?",
+      "forumPrompts": [
+        "Choose any practical for any Year group from any source. Identify the key questioning moments in a lesson built around it: (a) What would you ask to open the lesson and activate prior knowledge? (b) What questions would you use in the toolbox safety briefing? (c) What questions would engage students during the investigation itself? (d) What reflective question would close the lesson? Record 3–5 questions with a brief reason for each, then post to the forum.",
+        "Using the Q-Matrix or Bloom's Taxonomy as a guide, design a sequence of 4 questions of increasing cognitive demand about a topic from your science discipline. Start at Knowledge/Remembering and work toward at least Analysis or Evaluation level. Post your sequence and explain the progression — why does the order matter?",
+        "Locate an image online that could be used as an engagement hook in a Year 7–10 science classroom. Record the URL. Devise 3 questions you would use with students: one to elicit current understanding, one to surface possible misconceptions, one to push higher-order thinking. Post the image URL and your three questions with a brief explanation of each."
+      ],
+      "synthesisTemplate": "Thanks everyone for your Topic 4 forum contributions this week. Some strong questioning sequences coming through. A few patterns worth noting across the cohort: [OBSERVATION — e.g. most sequences started well at recall level but the jump to analysis was sometimes abrupt — consider what bridging question sits in between]. One thing to take into the live session: [FOCUS — e.g. the distinction between an open question and a genuinely divergent question — open doesn't automatically mean high cognitive demand]. See you [DAY] at [TIME].",
       "links": {
         "lecture": null,
         "slides": null,
