@@ -675,16 +675,23 @@ export async function renderLearningOutcomesTable({ forUnit, forTri, forYear } =
     return;
   }
 
-  const rows = los.map(lo => `<tr id="${esc(lo.id)}" style="border-top:2px solid ${esc(lo.color)};">
+  const rows = los.map(lo => {
+    const name = lo.label ?? lo.title ?? '';
+    const standards = Array.isArray(lo.aitsl)
+      ? lo.aitsl.join(', ')
+      : (lo.gtsd ?? '');
+    const stdLabel = Array.isArray(lo.aitsl) ? 'AITSL' : 'GTSD';
+    return `<tr id="${esc(lo.id)}" style="border-top:2px solid ${esc(lo.color)};">
     <td style="width:110px;padding:12px;vertical-align:top;">
       <span style="background:${esc(lo.color)};color:white;padding:6px 10px;border-radius:999px;font-weight:bold;">${esc(lo.id)}</span>
     </td>
     <td style="padding:12px;">
-      <strong>${esc(lo.title)}</strong><br>
+      <strong>${esc(name)}</strong><br>
       ${esc(lo.description)}<br>
-      <em>GTSD ${esc(lo.gtsd)}</em>
+      <em>${esc(stdLabel)} ${esc(standards)}</em>
     </td>
-  </tr>`).join('');
+  </tr>`;
+  }).join('');
 
   el.innerHTML = `<div style="background:#fff;padding:18px;border:1px solid #dfe6ea;border-radius:12px;margin:20px 0;font-family:Arial,sans-serif;">
     <h3 style="margin-top:0;">Unit Learning Outcomes (Linked to Assessment)</h3>
