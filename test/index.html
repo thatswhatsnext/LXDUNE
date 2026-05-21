@@ -332,6 +332,30 @@
     <div class="block-output" id="lxdune-resource-directory"></div>
   </div>
 
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderOrientationNote</span>
+      <span class="ctr-id">#lxdune-orientation-note</span>
+    </div>
+    <div class="block-output" id="lxdune-orientation-note"></div>
+  </div>
+
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderForumPrompts</span>
+      <span class="ctr-id">#lxdune-forum-prompts</span>
+    </div>
+    <div class="block-output" id="lxdune-forum-prompts"></div>
+  </div>
+
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderWorkedExample</span>
+      <span class="ctr-id">#lxdune-worked-example</span>
+    </div>
+    <div class="block-output" id="lxdune-worked-example"></div>
+  </div>
+
 </div>
 
 <!-- ── Course hub tab ─────────────────────────────────────────────────────── -->
@@ -401,6 +425,9 @@ import {
   renderPresubmissionChecklist,
   renderUnitKeyInfo,
   renderAssessmentStatus,
+  renderOrientationNote,
+  renderForumPrompts,
+  renderWorkedExample,
 } from '../moodle-blocks/blocks.js';
 
 // ── State ─────────────────────────────────────────────────────────────────────
@@ -418,6 +445,9 @@ const CONTAINER_IDS = [
   'lxdune-assessment-downloads',
   'lxdune-outcomes',
   'lxdune-resource-directory',
+  'lxdune-orientation-note',
+  'lxdune-forum-prompts',
+  'lxdune-worked-example',
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -620,11 +650,14 @@ async function renderAll() {
     renderAssessmentDownloadBlock(params).catch(e => showErr('lxdune-assessment-downloads', e)),
     renderLearningOutcomesTable(params).catch(e => showErr('lxdune-outcomes', e)),
     renderResourceDirectory(params).catch(e => showErr('lxdune-resource-directory', e)),
+    renderOrientationNote(params).catch(e => showErr('lxdune-orientation-note', e)),
+    renderForumPrompts(params).catch(e => showErr('lxdune-forum-prompts', e)),
+    renderWorkedExample(params).catch(e => showErr('lxdune-worked-example', e)),
   ]);
 
   if (gen !== renderGen) return; // a newer render already ran
 
-  ['lxdune-workflow', 'lxdune-lecture', 'lxdune-live-hub', 'lxdune-resource-directory'].forEach(markEmptyIfBlank);
+  ['lxdune-workflow', 'lxdune-lecture', 'lxdune-live-hub', 'lxdune-resource-directory', 'lxdune-orientation-note', 'lxdune-forum-prompts', 'lxdune-worked-example'].forEach(markEmptyIfBlank);
 }
 
 function scheduleRender(delay = 150) {

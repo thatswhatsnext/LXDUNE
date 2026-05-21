@@ -92,6 +92,10 @@
         <option value="presubmission-checklist">Pre-submission checklist</option>
         <option value="unit-key-info">Unit key info (navigation)</option>
         <option value="assessment-status">Assessment status (navigation)</option>
+        <option value="orientation-note">Orientation note</option>
+        <option value="forum-prompts">Forum discussion prompts</option>
+        <option value="worked-example">Worked example</option>
+        <option value="synthesis-template">Post-forum synthesis (lecturer)</option>
       </select>
     </div>
     <div class="form-row" id="task-row" style="display:none;">
@@ -100,6 +104,10 @@
         <option value="AT1">AT1</option>
         <option value="AT2">AT2</option>
       </select>
+    </div>
+    <div class="form-row" id="week-row" style="display:none;">
+      <label for="sel-week">Week</label>
+      <select id="sel-week"></select>
     </div>
     <button class="btn" id="gen-btn">Generate shell</button>
   </div>
@@ -139,14 +147,16 @@
     yearSel.addEventListener('change', populateTri);
     populateTri();
 
-    // Show/hide task selector based on page type
+    // Show/hide task/week selectors based on page type
     const typeSel = document.getElementById('sel-type');
     const taskRow = document.getElementById('task-row');
-    function syncTaskRow() {
+    const weekRow = document.getElementById('week-row');
+    function syncSelectors() {
       taskRow.style.display = ['assessment-page', 'presubmission-checklist'].includes(typeSel.value) ? '' : 'none';
+      weekRow.style.display = typeSel.value === 'synthesis-template' ? '' : 'none';
     }
-    typeSel.addEventListener('change', syncTaskRow);
-    syncTaskRow();
+    typeSel.addEventListener('change', syncSelectors);
+    syncSelectors();
   }
 
   // ── Shell builders ────────────────────────────────────────────────────────
@@ -318,6 +328,11 @@
       taskSel.innerHTML = atTasks.map(t => `<option value="${t.id}">${t.id} — ${t.title}</option>`).join('');
     }
 
+    // Populate week dropdown from unit JSON
+    const weekSel = document.getElementById('sel-week');
+    const weeks = unitCfg.weeks ?? [];
+    weekSel.innerHTML = weeks.map((w, i) => `<option value="${i}">Week ${w.week ?? i + 1}${w.moduleTitle ? ` — ${w.moduleTitle}` : ''}</option>`).join('');
+
     const triKey = `${tri}-${year}`;
     const zoom = unitCfg.trimesterConfig?.[triKey]?.zoom;
     const zoomNote = zoom?.url
@@ -423,6 +438,30 @@
         note: `Navigation block — paste on the unit home page. One card per assessmentTask with live status chip, LO pills, and action links. Reads from <code>assessmentTasks</code> in the unit JSON.`,
         rows: 9,
       },
+      {
+        key: 'orientation-note',
+        title: 'Orientation note',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellBlocks('renderOrientationNote', 'lxdune-orientation-note', unit, tri, year),
+        note: `${liveNote} Renders from <code>weeks[n].orientationNote</code>. Renders nothing if field is absent.`,
+        rows: 9,
+      },
+      {
+        key: 'forum-prompts',
+        title: 'Forum discussion prompts',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellBlocks('renderForumPrompts', 'lxdune-forum-prompts', unit, tri, year),
+        note: `${liveNote} Renders from <code>weeks[n].forumPrompts[]</code>. Renders nothing if array is absent or empty.`,
+        rows: 9,
+      },
+      {
+        key: 'worked-example',
+        title: 'Worked example',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellBlocks('renderWorkedExample', 'lxdune-worked-example', unit, tri, year),
+        note: `${liveNote} Renders from <code>weeks[n].workedExample</code> as a collapsible section. Uses <code>\\n</code> to separate paragraphs. Renders nothing if field is absent.`,
+        rows: 9,
+      },
     ];
 
     const taskId = document.getElementById('sel-task').value;
@@ -439,6 +478,32 @@
       });
       const output = document.getElementById('output');
       output.innerHTML = `<div class="result-banner">Shell for <strong>${unit}</strong> — <strong>${taskId}</strong></div>${cards}`;
+      output.style.display = 'block';
+      bindCopyButtons();
+      btn.disabled = false;
+      btn.textContent = 'Generate shell';
+      output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Post-forum synthesis — plain text output for lecturer, not a render shell
+    if (pageType === 'synthesis-template') {
+      const weekIdx = parseInt(document.getElementById('sel-week').value, 10);
+      const w = (unitCfg.weeks ?? [])[weekIdx];
+      const template = w?.synthesisTemplate;
+      const weekLabel = `Week ${w?.week ?? weekIdx + 1}${w?.moduleTitle ? ` — ${w.moduleTitle}` : ''}`;
+      const code = template
+        ? template
+        : `[No synthesisTemplate defined for this week in config/units/${unit}.json]`;
+      const cards = snippetCard({
+        title: `Post-forum synthesis — ${weekLabel}`,
+        badge: 'Lecturer only', badgeClass: 'badge-ready',
+        code,
+        note: `Personalise this text before posting to the Moodle forum. This is not a render shell — paste the text directly.`,
+        rows: 14,
+      });
+      const output = document.getElementById('output');
+      output.innerHTML = `<div class="result-banner">Post-forum synthesis for <strong>${unit}</strong> — <strong>${weekLabel}</strong></div>${cards}`;
       output.style.display = 'block';
       bindCopyButtons();
       btn.disabled = false;
