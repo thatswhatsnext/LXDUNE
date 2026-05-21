@@ -1350,10 +1350,10 @@ export async function renderAssessmentStatus({ forUnit, forTri, forYear } = {}) 
 }
 
 // ── 13. renderOrientationNote ─────────────────────────────────────────────────
-export async function renderOrientationNote({ forUnit, forTri, forYear }) {
+export async function renderOrientationNote({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
   const el = getEl('lxdune-orientation-note'); if (!el) return;
   try {
-    const { unitCfg, week } = await resolve({ forUnit, forTri, forYear });
+    const { unitCfg, week } = await resolve({ forUnit, forTri, forYear, forWeek, forDate });
     applyTheme(unitCfg);
     const note = week?.orientationNote;
     if (!note) { el.innerHTML = ''; return; }
@@ -1368,10 +1368,10 @@ export async function renderOrientationNote({ forUnit, forTri, forYear }) {
 }
 
 // ── 14. renderForumPrompts ────────────────────────────────────────────────────
-export async function renderForumPrompts({ forUnit, forTri, forYear }) {
+export async function renderForumPrompts({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
   const el = getEl('lxdune-forum-prompts'); if (!el) return;
   try {
-    const { unitCfg, week } = await resolve({ forUnit, forTri, forYear });
+    const { unitCfg, week } = await resolve({ forUnit, forTri, forYear, forWeek, forDate });
     applyTheme(unitCfg);
     const prompts = week?.forumPrompts ?? [];
     if (!prompts.length) { el.innerHTML = ''; return; }
@@ -1389,10 +1389,10 @@ export async function renderForumPrompts({ forUnit, forTri, forYear }) {
 }
 
 // ── 15. renderWorkedExample ───────────────────────────────────────────────────
-export async function renderWorkedExample({ forUnit, forTri, forYear }) {
+export async function renderWorkedExample({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
   const el = getEl('lxdune-worked-example'); if (!el) return;
   try {
-    const { unitCfg, week } = await resolve({ forUnit, forTri, forYear });
+    const { unitCfg, week } = await resolve({ forUnit, forTri, forYear, forWeek, forDate });
     applyTheme(unitCfg);
     const example = week?.workedExample;
     if (!example) { el.innerHTML = ''; return; }
