@@ -220,29 +220,18 @@ Config-driven alignment map reading from `unitCfg.alignmentMap`. Migrate EDSE362
 
 **Spec:** see `templates/constructive-alignment-map.html` for reference implementation. JSON schema follows the same pattern as `weeks` and `assessmentTasks` — outcomes array with `id`, `shortTitle`, `aitsl`, `teaching`, `practice`, `a1`, `a2`, and `advice` fields.
 
-### 18. Render new alignment improvement fields in blocks.js ⬜
-Five new fields are stored in EDSE358.json but not yet rendered to students.
-Add rendering support to the relevant blocks.js functions:
+### 18. Render new alignment improvement fields in blocks.js ✅ — 2026-05-21
+- [x] `renderOrientationNote` (fn 13) — standalone block, `#lxdune-orientation-note`, reads `weeks[n].orientationNote`
+- [x] `renderForumPrompts` (fn 14) — standalone block, `#lxdune-forum-prompts`, reads `weeks[n].forumPrompts[]`
+- [x] `renderWorkedExample` (fn 15) — standalone collapsible, `#lxdune-worked-example`, reads `weeks[n].workedExample`
+- [x] `synthesisTemplate` → 'Post-forum synthesis' shell type in generator (lecturer text output, not a render function)
+- [x] `guidanceNotes` → rendered in `renderAssessmentPage` after requirements for each part (divider + 'Additional guidance' heading + → paragraphs)
+- [x] `presubmission-checklist-EDSE358-AT1.html` — Part D replaced with D1 (feedback planning, 5 items) and D2 (reflective practice, 2 items) matching new AT1 structure
+- [x] Test harness updated — 3 new containers + imports in `test/index.html`
+- [x] Generator updated — 3 new render shell options + week selector for synthesis template in `generate/index.html`
 
-- `orientationNote` → render at top of `renderAnnouncementBlock` or as a
-  new `renderOrientationNote` function — a framing paragraph shown at the
-  start of a module
-- `forumPrompts` → render inside `renderLiveSessionHub` after live session
-  tasks — a list of forum discussion prompts
-- `workedExample` → render inside `renderLectureBlock` or as a collapsible
-  section — a worked example supporting the module activity
-- `synthesisTemplate` → not student-facing — this is a lecturer tool.
-  Add to the generate/index.html admin tool as a 'Post-forum synthesis'
-  shell type that outputs the template for the lecturer to personalise
-- `guidanceNotes` on AT1 parts → render inside `renderAssessmentPage`
-  Part detail sections — additional guidance paragraphs shown after
-  requirements
-
-Also apply same fields to EDSE357.json and EDSE362.json where relevant
-once content is written for those units.
-
-Trigger: before T2 2026 EDSE358 go-live, or when content is ready to
-surface to students.
+### 19. Apply alignment fields to EDSE357 and EDSE362 ⬜
+When content is written for those units, add `orientationNote`, `forumPrompts`, `workedExample`, `synthesisTemplate`, `guidanceNotes` fields to their JSON configs. Rendering is already live.
 
 ---
 
