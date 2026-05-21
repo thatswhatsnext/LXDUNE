@@ -1,3 +1,4 @@
 .gitignore
 /jsPsych/projects/splitattncursor/archive
 /docs/*-shells.html
+/docs/*-shells-*.html
