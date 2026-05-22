@@ -103,9 +103,43 @@ A hybrid worth considering: Journey header + Checklist body (timeline structure,
 
 ---
 
+## Option 4: Hybrid (Journey structure + Checklist content) — implemented
+
+**File:** `moodle-blocks/bespoke/assessment-page-hybrid.html`
+**Decision date:** 2026-05-23
+
+### What it does
+Journey's vertical timeline skeleton (gradient left rail, milestone circles, purple/cyan colour banding, header chips, summary bar) with Checklist-style content inside each card (checkbox action items with active verbs, early deadline notice, LO pills in the card header). Fully static — no JS, no collapsible toggle. Every part is always visible.
+
+### Design character
+Progressive and operational. The timeline communicates sequence and builds the sense of a journey toward submission; the action items make each step concrete and completable. Students see the whole task at a glance while knowing exactly what to do at each stage.
+
+### What changed from each parent
+- **From Journey:** kept outer layout, gradient rail, marker circles, colour bands, summary bar, header chips. Removed: collapsible JS, chevron, `ms-body` transition machinery.
+- **From Checklist:** kept checkbox items, action verbs, early deadline notice (orange, Part A), inline deadline badge. Removed: progress bar (static percentage was misleading), flat card sections replaced by timeline cards.
+
+### Strengths
+- No JS — fully CSS-only, Moodle-safe
+- Part A early deadline visually distinct (orange notice + inline badge)
+- Checkboxes are browser-native/CSS-styled — state persists within the session
+- Action verbs make each step unambiguous
+- Summary bar retains total marks and LO overview
+- Shorter scroll than original Journey (no expand/collapse latency)
+
+### Limitations
+- Longer scroll than Cards (everything open)
+- Checkbox state not persisted across page loads (no storage)
+
+### Verdict
+Recommended for deployment. Retains Journey's motivational sequence while making every step immediately actionable. The removal of collapsibles reduces interaction friction — students don't have to discover that parts are clickable.
+
+---
+
 ## Next steps
 
-- [ ] Steve opens all three files in browser and picks a preferred direction
-- [ ] Selected design is adapted for `renderAssessmentPage` (or a new bespoke block)
-- [ ] Template is extended for multi-part tasks across units
+- [x] Steve reviews three initial alternatives
+- [x] Hybrid implemented: `assessment-page-hybrid.html` on `feature/assessment-page-redesign`
+- [ ] Steve reviews hybrid in browser at `http://localhost:8000/moodle-blocks/bespoke/assessment-page-hybrid.html`
+- [ ] Adapt selected design for `renderAssessmentPage` (or a new bespoke block)
+- [ ] Extend template for multi-part tasks across units
 - [ ] Merge `feature/assessment-page-redesign` → dev when direction confirmed
