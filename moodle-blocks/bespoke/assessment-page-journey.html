@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AT1 — Teaching, Learning and Assessment Design</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #FAF9FF;
+    color: #1F2A33;
+    line-height: 1.55;
+    padding: 32px 16px 64px;
+  }
+
+  .journey-wrap {
+    max-width: 950px;
+    margin: 0 auto;
+  }
+
+  /* ── Page header ─────────────────────────────────────────── */
+  .page-header {
+    background: #7C5DB6;
+    color: #fff;
+    border-radius: 12px;
+    padding: 28px 32px 24px;
+    margin-bottom: 40px;
+  }
+  .page-header .unit-code {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 4px;
+  }
+  .page-header h1 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+  .page-header .unit-full {
+    font-size: 0.88rem;
+    opacity: 0.82;
+    margin-bottom: 18px;
+  }
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .header-chip {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+  .header-chip span { opacity: 0.75; font-weight: 400; margin-right: 4px; }
+
+  /* ── Section label ───────────────────────────────────────── */
+  .journey-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #7C5DB6;
+    margin-bottom: 20px;
+  }
+
+  /* ── Timeline rail ───────────────────────────────────────── */
+  .timeline {
+    position: relative;
+    padding-left: 56px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 24px;
+    bottom: 24px;
+    width: 4px;
+    border-radius: 2px;
+    background: linear-gradient(to bottom, #7C5DB6 0%, #4FA9B5 100%);
+  }
+
+  /* ── Milestone ───────────────────────────────────────────── */
+  .milestone {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .milestone:last-child { margin-bottom: 0; }
+
+  /* Connector circle */
+  .ms-marker {
+    position: absolute;
+    left: -46px;
+    top: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #7C5DB6;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 4px #FAF9FF, 0 0 0 6px #c9bef5;
+    z-index: 1;
+  }
+  .ms-marker.accent { background: #4FA9B5; box-shadow: 0 0 0 4px #FAF9FF, 0 0 0 6px #a8dde3; }
+  .ms-marker.finish {
+    background: #1F2A33;
+    box-shadow: 0 0 0 4px #FAF9FF, 0 0 0 6px #b0bec5;
+    font-size: 1rem;
+  }
+
+  /* Card */
+  .ms-card {
+    background: #fff;
+    border: 1.5px solid #e8e2f7;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .milestone.is-open .ms-card { border-color: #c9bef5; }
+
+  /* Band colours */
+  .band-a  { border-left: 5px solid #7C5DB6; }
+  .band-bc { border-left: 5px solid #4FA9B5; }
+  .band-d  { border-left: 5px solid #9bc4c9; }
+  .band-end { border-left: 5px solid #b0bec5; }
+
+  /* ── Milestone header (clickable) ────────────────────────── */
+  .ms-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .ms-top:hover { background: rgba(124, 93, 182, 0.04); }
+  .milestone.is-open .ms-top { background: rgba(124, 93, 182, 0.04); }
+
+  .ms-top-left { flex: 1; min-width: 0; }
+  .ms-top-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
+  .ms-part-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7C5DB6;
+    margin-bottom: 2px;
+  }
+  .ms-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1F2A33;
+  }
+  .ms-marks {
+    background: #EDE8FB;
+    border: 1px solid #c9bef5;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #7C5DB6;
+    white-space: nowrap;
+  }
+  .ms-marks.dim {
+    background: #e8f5f7;
+    border-color: #aed9df;
+    color: #3a8a95;
+  }
+
+  /* Chevron */
+  .ms-chevron {
+    flex-shrink: 0;
+    color: #9d8dd0;
+    display: flex;
+    align-items: center;
+    transition: transform 0.25s ease;
+  }
+  .milestone.is-open .ms-chevron { transform: rotate(180deg); }
+
+  /* ── Milestone body (collapsible) ────────────────────────── */
+  .ms-body {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.32s ease, opacity 0.25s ease;
+  }
+  .milestone.is-open .ms-body {
+    max-height: 300px;
+    opacity: 1;
+  }
+  .ms-body-inner {
+    padding: 0 20px 16px;
+    border-top: 1px solid #ede8fb;
+  }
+  .ms-desc {
+    font-size: 0.88rem;
+    color: #445060;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  .ms-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+
+  /* ── Final submission (always open, not collapsible) ─────── */
+  .ms-submit .ms-top { cursor: default; }
+  .ms-submit .ms-top:hover { background: transparent; }
+  .ms-submit .ms-body { max-height: 300px; opacity: 1; }
+  .ms-submit .ms-card { background: #f5f3fb; border-color: #c9bef5; }
+  .ms-submit .ms-title { color: #5a3fa0; }
+
+  /* ── Pills ───────────────────────────────────────────────── */
+  .lo-pill {
+    background: #EDE8FB;
+    border: 1px solid #c9bef5;
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #5a3fa0;
+  }
+  .deadline-badge {
+    background: #FDF0E3;
+    border: 1px solid #E3B089;
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #9b5f1e;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .deadline-badge::before { content: "⏰"; font-size: 0.78rem; }
+
+  /* ── Summary bar ─────────────────────────────────────────── */
+  .summary-bar {
+    margin-top: 36px;
+    background: #fff;
+    border: 1.5px solid #e8e2f7;
+    border-radius: 10px;
+    padding: 16px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+  }
+  .summary-bar .sb-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7C5DB6;
+  }
+  .summary-bar .sb-total {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #1F2A33;
+  }
+  .sb-divider { width: 1px; height: 36px; background: #e0daf5; flex-shrink: 0; }
+  .sb-los { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  @media (max-width: 600px) {
+    .timeline { padding-left: 44px; }
+    .timeline::before { left: 14px; }
+    .ms-marker { left: -38px; width: 30px; height: 30px; font-size: 0.78rem; }
+    .page-header { padding: 20px 18px 18px; }
+    .page-header h1 { font-size: 1.2rem; }
+    .ms-top { flex-wrap: wrap; }
+  }
+
+  /* ── Pre-submission checklist milestone ──────────────────── */
+  .ms-marker.review {
+    background: #4a3570;
+    box-shadow: 0 0 0 4px #FAF9FF, 0 0 0 6px #b0a0d8;
+    font-size: 0.7rem;
+    letter-spacing: 0.01em;
+  }
+  .band-review { border-left: 5px solid #4a3570; }
+  .ms-checklist.is-open .ms-body { max-height: 6000px; }
+  .ms-checklist .ms-body-inner { padding: 8px 12px 16px; }
+  .ms-checklist .edse358-at1-checklist { max-width: 100%; }
+</style>
+</head>
+<body>
+<div class="journey-wrap">
+
+  <!-- ── Page header ── -->
+  <header class="page-header">
+    <p class="unit-code">EDSE358 — AT1</p>
+    <h1>Teaching, Learning and Assessment Design</h1>
+    <p class="unit-full">Science Education 11–12: Plan, Assess and Report</p>
+    <div class="header-meta">
+      <div class="header-chip"><span>Weighting</span>60%</div>
+      <div class="header-chip"><span>Total marks</span>100</div>
+      <div class="header-chip"><span>Final submission</span>5 April 2026</div>
+    </div>
+  </header>
+
+  <!-- ── Journey label ── -->
+  <p class="journey-label">Your assessment journey — click each milestone to expand</p>
+
+  <!-- ── Timeline ── -->
+  <div class="timeline">
+
+    <!-- Part A -->
+    <div class="milestone">
+      <div class="ms-marker">A</div>
+      <div class="ms-card band-a">
+        <div class="ms-top" onclick="toggleMilestone(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="ms-top-left">
+            <p class="ms-part-label">Part A</p>
+            <p class="ms-title">Task outline and forum post</p>
+          </div>
+          <div class="ms-top-right">
+            <div class="ms-marks">20 marks</div>
+            <span class="ms-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </div>
+        <div class="ms-body">
+          <div class="ms-body-inner">
+            <p class="ms-desc">Write a ~100 word forum post responding to the task prompt, and complete the task outline template to map your planned approach before you begin the full submission.</p>
+            <div class="ms-tags">
+              <span class="lo-pill">LO1</span>
+              <span class="lo-pill">LO2</span>
+              <span class="deadline-badge">Early deadline: 22 March 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part B -->
+    <div class="milestone">
+      <div class="ms-marker">B</div>
+      <div class="ms-card band-bc">
+        <div class="ms-top" onclick="toggleMilestone(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="ms-top-left">
+            <p class="ms-part-label">Part B</p>
+            <p class="ms-title">Unit program</p>
+          </div>
+          <div class="ms-top-right">
+            <div class="ms-marks dim">20 marks</div>
+            <span class="ms-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </div>
+        <div class="ms-body">
+          <div class="ms-body-inner">
+            <p class="ms-desc">Design a 5-week teaching program using the provided template (~1,500 word equivalent). Your program should demonstrate coherent lesson sequencing and appropriate resource selection.</p>
+            <div class="ms-tags">
+              <span class="lo-pill">LO2</span>
+              <span class="lo-pill">LO3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part C -->
+    <div class="milestone">
+      <div class="ms-marker">C</div>
+      <div class="ms-card band-bc">
+        <div class="ms-top" onclick="toggleMilestone(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="ms-top-left">
+            <p class="ms-part-label">Part C</p>
+            <p class="ms-title">Justification essays</p>
+          </div>
+          <div class="ms-top-right">
+            <div class="ms-marks dim">50 marks</div>
+            <span class="ms-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </div>
+        <div class="ms-body">
+          <div class="ms-body-inner">
+            <p class="ms-desc">Write two justification essays (~800 words total) that explain and defend the pedagogical decisions made in your unit program, drawing on relevant theory and curriculum documentation.</p>
+            <div class="ms-tags">
+              <span class="lo-pill">LO1</span>
+              <span class="lo-pill">LO2</span>
+              <span class="lo-pill">LO3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part D1 -->
+    <div class="milestone">
+      <div class="ms-marker accent">D1</div>
+      <div class="ms-card band-d">
+        <div class="ms-top" onclick="toggleMilestone(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="ms-top-left">
+            <p class="ms-part-label">Part D1</p>
+            <p class="ms-title">Planning timely and purposeful feedback</p>
+          </div>
+          <div class="ms-top-right">
+            <div class="ms-marks dim">5 marks</div>
+            <span class="ms-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </div>
+        <div class="ms-body">
+          <div class="ms-body-inner">
+            <p class="ms-desc">Write ~100 words describing how you have planned to provide timely and purposeful feedback within your unit program, with reference to specific strategies or schedule.</p>
+            <div class="ms-tags">
+              <span class="lo-pill">LO4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part D2 -->
+    <div class="milestone">
+      <div class="ms-marker accent">D2</div>
+      <div class="ms-card band-d">
+        <div class="ms-top" onclick="toggleMilestone(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="ms-top-left">
+            <p class="ms-part-label">Part D2</p>
+            <p class="ms-title">Reflective self-assessment</p>
+          </div>
+          <div class="ms-top-right">
+            <div class="ms-marks dim">5 marks</div>
+            <span class="ms-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </div>
+        <div class="ms-body">
+          <div class="ms-body-inner">
+            <p class="ms-desc">Write ~100 words reflecting on your own learning through this task — what you found challenging, what you would do differently, and how the task has shaped your thinking as a teacher.</p>
+            <div class="ms-tags">
+              <span class="lo-pill">LO4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pre-submission checklist -->
+    <div class="milestone ms-checklist">
+      <div class="ms-marker review">CL</div>
+      <div class="ms-card band-review">
+        <div class="ms-top" onclick="toggleMilestone(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="ms-top-left">
+            <p class="ms-part-label">Pre-submission</p>
+            <p class="ms-title">Review all parts before you submit</p>
+          </div>
+          <div class="ms-top-right">
+            <span class="ms-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </div>
+        <div class="ms-body">
+          <div class="ms-body-inner">
+
+<div class="edse358-at1-checklist" role="region" aria-label="EDSE358 AT1 Pre-submission checklist">
+  <style>
+    .edse358-at1-checklist {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+      max-width: 100%;
+    }
+    .edse358-at1-checklist .card {
+      border: 1px solid #d0d7de;
+      border-radius: 12px;
+      padding: 16px;
+      background: #fff;
+      margin: 12px 0;
+    }
+    .edse358-at1-checklist h2 { margin: 0 0 8px 0; }
+    .edse358-at1-checklist .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .edse358-at1-checklist button {
+      border: 1px solid #d0d7de;
+      background: #f6f8fa;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .edse358-at1-checklist button:hover { background: #eef2f6; }
+    .edse358-at1-checklist .status { font-weight: 700; margin-top: 10px; }
+    .edse358-at1-checklist .good { color: #0a7a2f; }
+    .edse358-at1-checklist .warn { color: #9a5b00; }
+    .edse358-at1-checklist details {
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      background: #fafbfc;
+    }
+    .edse358-at1-checklist summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .edse358-at1-checklist .item { margin: 10px 0; }
+    .edse358-at1-checklist label {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      cursor: pointer;
+    }
+    .edse358-at1-checklist input[type="checkbox"] { margin-top: 3px; }
+    .edse358-at1-checklist .tip {
+      margin: 8px 0 0 28px;
+      padding: 10px 12px;
+      border-left: 4px solid #cfd8e3;
+      background: #f6f8fa;
+      border-radius: 6px;
+      display: none;
+    }
+    .edse358-at1-checklist .tip strong { display: block; margin-bottom: 4px; }
+  </style>
+
+  <div class="card">
+    <h2>EDSE358 AT1 — Pre-Submission Checklist</h2>
+    <div class="controls">
+      <button type="button" data-action="show-missing">Show recommendations</button>
+      <button type="button" data-action="hide-all">Hide recommendations</button>
+      <button type="button" data-action="check-all">Check all</button>
+      <button type="button" data-action="uncheck-all">Uncheck all</button>
+    </div>
+    <div class="status warn" data-status="">
+      Progress: <span data-done="">0</span>/<span data-total="">0</span> checked
+    </div>
+  </div>
+
+  <!-- PART A -->
+  <details>
+    <summary>Part A — Task Outline &amp; Forum Post</summary>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1a-tip1"><span><strong>A1.</strong> My task outline accurately identifies the concept, year level, and NSW Stage 6 outcomes.</span></label>
+      <div class="tip" id="e358at1a-tip1"><strong>Recommendation if not checked</strong> Copy the outcome code(s) directly from the NSW syllabus — do not paraphrase. Then add one sentence explaining the link: "This task addresses [outcome code] because it requires students to ___." Vague outcome references (e.g. "relates to Stage 6 science") will not demonstrate the alignment the rubric requires.</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1a-tip2"><span><strong>A2.</strong> My task outline shows clear alignment between the learning model, the syllabus outcomes, and the assessment purpose.</span></label>
+      <div class="tip" id="e358at1a-tip2"><strong>Recommendation if not checked</strong> Alignment means the model, the outcomes, and what you are assessing all point to the same thing. Ask: "Does the learning model I have chosen naturally lead students toward the outcome? And does my assessment actually capture evidence of that outcome?" If any of the three are pointing in different directions, revise before submitting.</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1a-tip3"><span><strong>A3.</strong> My forum post is concise, clearly communicates my intended assessment design, and meets the word or format requirements.</span></label>
+      <div class="tip" id="e358at1a-tip3"><strong>Recommendation if not checked</strong> The forum post should tell your peers what you are planning clearly enough that they could give useful feedback. Use a sentence frame: "For this unit I am designing a [task type] for Year [level] [discipline]. The assessment targets [outcome] by asking students to ___. The main challenge I am designing around is ___."</div>
+    </div>
+  </details>
+
+  <!-- PART B -->
+  <details>
+    <summary>Part B — Five-Week Unit</summary>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1b-tip1"><span><strong>B1.</strong> My unit has a clear 5-week structure with logical progression toward the model construction task.</span></label>
+      <div class="tip" id="e358at1b-tip1"><strong>Recommendation if not checked</strong> Each week should build on the last. Ask: "If a student did Week 1 only, could they do Week 2 without Week 1?" If yes, your sequence may not have clear progression. Add explicit connections between weeks — a skill introduced in Week 2 should be applied or extended in Week 3.</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1b-tip2"><span><strong>B2.</strong> Constructivist pedagogy is embedded throughout the unit — not just mentioned once.</span></label>
+      <div class="tip" id="e358at1b-tip2"><strong>Recommendation if not checked</strong> Constructivism should be visible in how lessons are structured — students building on prior knowledge, active construction of understanding, collaborative sense-making. If constructivism only appears in your justification essay and not in the lesson activities themselves, revise at least two lessons to make the approach explicit.</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1b-tip3"><span><strong>B3.</strong> My differentiation is specific to my named cohort — not generic strategies that could apply to any class.</span></label>
+      <div class="tip" id="e358at1b-tip3"><strong>Recommendation if not checked</strong> Generic differentiation (e.g. "I will provide extra support where needed") does not meet the rubric. Name the cohort characteristics you are designing for — including Aboriginal and/or EAL/D learners — and describe the specific adjustment. Use a sentence frame: "For students who ___, I will ___ in Week ___ so that they can ___ without the barrier of ___."</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1b-tip4"><span><strong>B4.</strong> Resources are integrated across the unit and intentionally support the model construction task.</span></label>
+      <div class="tip" id="e358at1b-tip4"><strong>Recommendation if not checked</strong> Resources should deepen conceptual learning — not just fill time. For each resource, ask: "How does this resource move students closer to completing the model task?" If the connection is not clear, either replace the resource or add a sentence explaining how it is used.</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1b-tip5"><span><strong>B5.</strong> ICT use is purposeful and enhances inquiry, collaboration, or modelling — not substitutive.</span></label>
+      <div class="tip" id="e358at1b-tip5"><strong>Recommendation if not checked</strong> Substitutive ICT replaces a non-digital task with a digital one without adding value (e.g. typing up notes instead of writing them). Purposeful ICT changes what is possible (e.g. using a simulation to explore conditions that can't be replicated in a school lab). Revise your ICT to explain what it enables that a non-digital approach could not.</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1b-tip6"><span><strong>B6.</strong> I have included at least two formative assessment tasks with specific, actionable feedback opportunities.</span></label>
+      <div class="tip" id="e358at1b-tip6"><strong>Recommendation if not checked</strong> A formative task needs three things: what students produce, what feedback focuses on, and how the feedback connects to the next stage of learning. Use a sentence frame: "At the end of Week ___, students submit ___. Teacher feedback focuses on ___, so that students can improve ___ before ___."</div>
+    </div>
+  </details>
+
+  <!-- PART C -->
+  <details>
+    <summary>Part C — Justification Essays</summary>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1c-tip1"><span><strong>C1.</strong> Essay 1 explains why I made key pedagogical decisions — not just what those decisions were.</span></label>
+      <div class="tip" id="e358at1c-tip1"><strong>Recommendation if not checked</strong> Shift from description to justification. Use a sentence frame: "I chose ___ because ___, which is important for this cohort because ___. This decision is supported by ___ (Author, Year) who argues ___." If your essay reads as a summary of your unit rather than a reasoned argument for your choices, revise to foreground the reasoning.</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1c-tip2"><span><strong>C2.</strong> Essay 1 explicitly links my decisions to cohort needs and NSW syllabus outcomes.</span></label>
+      <div class="tip" id="e358at1c-tip2"><strong>Recommendation if not checked</strong> Every major decision should connect to at least one of: what the syllabus requires, what the cohort needs, or what the literature recommends. If a decision is only justified by "it is good pedagogy generally," strengthen it by naming the specific cohort or outcome it serves.</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1c-tip3"><span><strong>C3.</strong> Essay 2 explains why I selected these specific resources — not just that they are appropriate.</span></label>
+      <div class="tip" id="e358at1c-tip3"><strong>Recommendation if not checked</strong> The selection criteria should be explicit. Use a sentence frame: "I selected this resource over alternatives because it ___. For this cohort, this matters because ___." Avoid simply describing what each resource contains — explain the professional reasoning behind choosing it.</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1c-tip4"><span><strong>C4.</strong> Both essays use peer-reviewed literature that is integrated into my argument — not just cited at the end.</span></label>
+      <div class="tip" id="e358at1c-tip4"><strong>Recommendation if not checked</strong> Literature should strengthen your reasoning, not decorate it. Use a sentence frame: "___ (Author, Year) argues ___. My unit reflects this by ___." If your citations only appear in the reference list or as parenthetical additions to sentences that already make their point, revise to show how the literature actually shaped your decisions.</div>
+    </div>
+  </details>
+
+  <!-- PART D1 -->
+  <details>
+    <summary>Part D1 — Planning timely and purposeful feedback (5 marks)</summary>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1d1-tip1"><span><strong>D1a.</strong> I specify when feedback will be provided relative to student work submission.</span></label>
+      <div class="tip" id="e358at1d1-tip1"><strong>Recommendation if not checked</strong> Be explicit about timing — not just "after submission" but when within the unit sequence. For example: "Formative feedback on draft outlines will be provided within five days of submission in week 4, allowing students time to revise before the final task deadline."</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1d1-tip2"><span><strong>D1b.</strong> I specify the form feedback will take (oral, written, peer, self-assessment, or a combination).</span></label>
+      <div class="tip" id="e358at1d1-tip2"><strong>Recommendation if not checked</strong> Name the mode(s) explicitly and explain why that mode suits this task and cohort. Avoid vague terms like "feedback will be given" — describe the format students will actually receive.</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1d1-tip3"><span><strong>D1c.</strong> I explain how feedback language will be differentiated for the named cohort, including Aboriginal students and EAL/D learners.</span></label>
+      <div class="tip" id="e358at1d1-tip3"><strong>Recommendation if not checked</strong> This is a required element, not optional. Address at minimum: how feedback will be accessible to EAL/D learners (e.g., visual supports, plain language) and how feedback will be culturally responsive for Aboriginal students. A sentence frame: "For EAL/D learners, feedback will be ___. For Aboriginal students, I will ___ to ensure feedback is ___."</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1d1-tip4"><span><strong>D1d.</strong> I explain how feedback will be used to inform subsequent teaching decisions.</span></label>
+      <div class="tip" id="e358at1d1-tip4"><strong>Recommendation if not checked</strong> Show the feedback loop — not just what feedback says, but how it changes what you do next. Use a sentence frame: "If student responses show ___, I will adjust ___ in the following week by ___."</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1d1-tip5"><span><strong>D1e.</strong> I connect feedback planning explicitly to syllabus outcomes.</span></label>
+      <div class="tip" id="e358at1d1-tip5"><strong>Recommendation if not checked</strong> Name the specific outcomes the feedback addresses. For example: "Feedback on Part B targets outcome [X] — students should be able to ___ — by helping them see where their resource selection does or does not demonstrate ___."</div>
+    </div>
+  </details>
+
+  <!-- PART D2 -->
+  <details>
+    <summary>Part D2 — Reflective self-assessment (5 marks)</summary>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1d2-tip1"><span><strong>D2a.</strong> I identify something specific I learned from this task — not just what I did or produced.</span></label>
+      <div class="tip" id="e358at1d2-tip1"><strong>Recommendation if not checked</strong> Your reflection should be analytical, not descriptive. Do not summarise what the task asked you to do. Instead, identify one specific thing that changed in your thinking and explain why it changed. Use a sentence frame: "Before this task, I assumed ___. Working through ___ changed my understanding because ___."</div>
+    </div>
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at1d2-tip2"><span><strong>D2b.</strong> I explain how this learning will influence my future teaching with a specific, concrete example.</span></label>
+      <div class="tip" id="e358at1d2-tip2"><strong>Recommendation if not checked</strong> Name one specific change you will make. Vague future commitments ("I will be more aware of differentiation") are not sufficient — describe what it will look like in practice. Use a sentence frame: "In my future Stage 6 classroom, I will ___ because this task showed me ___."</div>
+    </div>
+  </details>
+
+  <script>
+    (function() {
+      const root = document.querySelector('.edse358-at1-checklist');
+      if (!root) return;
+      const boxes = Array.from(root.querySelectorAll('input[type="checkbox"][data-tip]'));
+      const totalEl = root.querySelector('[data-total]');
+      const doneEl = root.querySelector('[data-done]');
+      const statusEl = root.querySelector('[data-status]');
+      function showTip(box) {
+        const tip = root.querySelector('#' + box.dataset.tip);
+        if (tip) tip.style.display = box.checked ? 'none' : 'block';
+      }
+      function update() {
+        const done = boxes.filter(b => b.checked).length;
+        totalEl.textContent = boxes.length;
+        doneEl.textContent = done;
+        statusEl.className = 'status ' + (done === boxes.length ? 'good' : 'warn');
+      }
+      boxes.forEach(b => { b.addEventListener('change', () => { showTip(b); update(); }); });
+      root.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const action = btn.dataset.action;
+          if (action === 'show-missing') boxes.forEach(b => { if (!b.checked) showTip(b); });
+          if (action === 'hide-all') boxes.forEach(b => { const tip = root.querySelector('#' + b.dataset.tip); if (tip) tip.style.display = 'none'; });
+          if (action === 'check-all') boxes.forEach(b => { b.checked = true; showTip(b); });
+          if (action === 'uncheck-all') boxes.forEach(b => { b.checked = false; showTip(b); });
+          update();
+        });
+      });
+      update();
+    })();
+  </script>
+</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final submission — always expanded, not collapsible -->
+    <div class="milestone ms-submit">
+      <div class="ms-marker finish">✓</div>
+      <div class="ms-card band-end">
+        <div class="ms-top">
+          <div class="ms-top-left">
+            <p class="ms-part-label">Full submission</p>
+            <p class="ms-title">Submit all parts via the myLearn assessment portal</p>
+          </div>
+          <div class="ms-top-right">
+            <div class="ms-marks">Due 5 April 2026</div>
+          </div>
+        </div>
+        <div class="ms-body">
+          <div class="ms-body-inner">
+            <p class="ms-desc">Submit Parts B, C, D1, and D2 as a single compiled file via the myLearn assessment portal. Ensure your Part A forum post has already been submitted by 22 March 2026.</p>
+            <div class="ms-tags">
+              <span class="deadline-badge">Final deadline: 5 April 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /timeline -->
+
+  <!-- ── Summary bar ── -->
+  <div class="summary-bar">
+    <div>
+      <div class="sb-label">Total marks</div>
+      <div class="sb-total">100</div>
+    </div>
+    <div class="sb-divider"></div>
+    <div>
+      <div class="sb-label">Weighting</div>
+      <div class="sb-total">60%</div>
+    </div>
+    <div class="sb-divider"></div>
+    <div>
+      <div class="sb-label">Learning outcomes addressed</div>
+      <div class="sb-los" style="margin-top:6px;">
+        <span class="lo-pill">LO1 — Lesson Sequence Design</span>
+        <span class="lo-pill">LO2 — Resources, ICT &amp; Safe Approaches</span>
+        <span class="lo-pill">LO3 — Activities, Assessment &amp; Programming</span>
+        <span class="lo-pill">LO4 — Feedback &amp; Reflective Practice</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /journey-wrap -->
+
+<script>
+  function toggleMilestone(top) {
+    var milestone = top.closest('.milestone');
+    var isOpen = milestone.classList.toggle('is-open');
+    top.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+  document.querySelectorAll('.ms-top[tabindex]').forEach(function(top) {
+    top.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMilestone(top); }
+    });
+  });
+</script>
+</body>
+</html>

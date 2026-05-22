@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDSE358 AT1 — Teaching, Learning and Assessment Design</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f0eef8;
+      color: #1F2A33;
+      padding: 32px 16px 64px;
+      line-height: 1.5;
+    }
+
+    .page-wrap {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    /* ── Page header ─────────────────────────────────────────── */
+    .page-header {
+      background: #7C5DB6;
+      color: #fff;
+      border-radius: 12px;
+      padding: 28px 32px 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 18px rgba(124,93,182,0.22);
+    }
+
+    .page-header .unit-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.78;
+      margin-bottom: 6px;
+    }
+
+    .page-header h1 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      line-height: 1.25;
+    }
+
+    .page-header .task-code {
+      font-size: 0.88rem;
+      opacity: 0.75;
+      margin-bottom: 18px;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .meta-badge {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.32);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .meta-badge.weighting {
+      background: #4FA9B5;
+      border-color: #3d8f9a;
+      font-size: 0.9rem;
+      padding: 5px 16px;
+    }
+
+    .due-dates {
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .due-item {
+      font-size: 0.82rem;
+      opacity: 0.9;
+    }
+
+    .due-item strong {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.7;
+      margin-bottom: 2px;
+    }
+
+    /* ── LO pills ────────────────────────────────────────────── */
+    .lo-pill {
+      display: inline-block;
+      background: #EDE8FB;
+      color: #5a3fa0;
+      border: 1px solid #c9bef5;
+      border-radius: 12px;
+      padding: 2px 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .lo-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    /* ── Cards ───────────────────────────────────────────────── */
+    .cards-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card {
+      background: #FAF9FF;
+      border: 1px solid #ddd8f5;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(124,93,182,0.07);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover { box-shadow: 0 4px 16px rgba(124,93,182,0.14); }
+    .card.is-open { border-color: #b3a4e8; }
+
+    /* Card header (always visible) */
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+      background: #FAF9FF;
+      transition: background 0.15s ease;
+    }
+
+    .card-header:hover { background: #f2effc; }
+    .card.is-open .card-header { background: #f2effc; border-bottom: 1px solid #ddd8f5; }
+
+    .part-label {
+      flex-shrink: 0;
+      background: #7C5DB6;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 6px;
+      padding: 4px 10px;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .card-header-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1F2A33;
+      margin-bottom: 2px;
+    }
+
+    .card-summary {
+      font-size: 0.82rem;
+      color: #5a6470;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .marks-badge {
+      flex-shrink: 0;
+      background: #4FA9B5;
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border-radius: 20px;
+      padding: 4px 12px;
+      white-space: nowrap;
+    }
+
+    .chevron {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9d8dd0;
+      transition: transform 0.25s ease;
+    }
+
+    .card.is-open .chevron { transform: rotate(180deg); }
+
+    /* Card body (expandable) */
+    .card-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.32s ease, opacity 0.25s ease;
+      opacity: 0;
+    }
+
+    .card.is-open .card-body {
+      max-height: 400px;
+      opacity: 1;
+    }
+
+    .card-body-inner {
+      padding: 18px 20px 20px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px 24px;
+      align-items: start;
+    }
+
+    .card-detail-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #7C5DB6;
+      margin-bottom: 4px;
+    }
+
+    .card-detail-text {
+      font-size: 0.88rem;
+      color: #1F2A33;
+    }
+
+    .card-body-left { grid-column: 1; }
+    .card-body-right {
+      grid-column: 2;
+      text-align: right;
+      min-width: 100px;
+    }
+
+    .marks-large {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #7C5DB6;
+      line-height: 1;
+    }
+
+    .marks-large span {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #9d8dd0;
+    }
+
+    .word-count {
+      margin-top: 4px;
+      font-size: 0.78rem;
+      color: #7a8492;
+    }
+
+    @media (max-width: 600px) {
+      .page-header { padding: 20px 18px 18px; }
+      .page-header h1 { font-size: 1.2rem; }
+      .card-body-inner { grid-template-columns: 1fr; }
+      .card-body-right { grid-column: 1; text-align: left; }
+      .card-summary { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <!-- Page header -->
+    <header class="page-header">
+      <div class="unit-label">EDSE358 — Science Education 11–12: Plan, Assess and Report</div>
+      <h1>Teaching, Learning and Assessment Design</h1>
+      <div class="task-code">AT1 &mdash; Assessment Task 1</div>
+
+      <div class="header-meta">
+        <span class="meta-badge weighting">60% of final grade</span>
+        <span class="meta-badge">100 marks total</span>
+        <span class="meta-badge">5 parts</span>
+      </div>
+
+      <div class="lo-pills-row" style="margin-bottom:16px;">
+        <span class="lo-pill" style="background:rgba(255,255,255,0.15);color:#fff;border-color:rgba(255,255,255,0.3);">LO1 Lesson Sequence Design</span>
+        <span class="lo-pill" style="background:rgba(255,255,255,0.15);color:#fff;border-color:rgba(255,255,255,0.3);">LO2 Resources, ICT &amp; Safe Approaches</span>
+        <span class="lo-pill" style="background:rgba(255,255,255,0.15);color:#fff;border-color:rgba(255,255,255,0.3);">LO3 Activities, Assessment &amp; Programming</span>
+        <span class="lo-pill" style="background:rgba(255,255,255,0.15);color:#fff;border-color:rgba(255,255,255,0.3);">LO4 Feedback &amp; Reflective Practice</span>
+      </div>
+
+      <div class="due-dates">
+        <div class="due-item">
+          <strong>Part A forum post due</strong>
+          22 March 2026, 11:59 pm
+        </div>
+        <div class="due-item">
+          <strong>Full submission due</strong>
+          5 April 2026, 11:59 pm
+        </div>
+      </div>
+    </header>
+
+    <!-- Assessment cards -->
+    <div class="cards-section" role="list">
+
+      <!-- Part A -->
+      <div class="card" role="listitem">
+        <div class="card-header" onclick="toggleCard(this)" aria-expanded="false">
+          <span class="part-label">Part A</span>
+          <div class="card-header-main">
+            <div class="card-title">Task outline and forum post</div>
+            <div class="card-summary">~100 word forum post + completed task outline template</div>
+          </div>
+          <span class="marks-badge">20 marks</span>
+          <span class="chevron" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-body-left">
+              <div class="card-detail-label">Requirements</div>
+              <div class="card-detail-text">Post a ~100 word introduction in the AT1 discussion forum, then submit a completed task outline template identifying your chosen topic, year level, and key design decisions.</div>
+              <div style="margin-top:12px;">
+                <div class="card-detail-label">Learning outcomes</div>
+                <div class="lo-pills-row">
+                  <span class="lo-pill">LO1 Lesson Sequence Design</span>
+                  <span class="lo-pill">LO2 Resources, ICT &amp; Safe Approaches</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body-right">
+              <div class="marks-large">20 <span>/ 100</span></div>
+              <div class="word-count">~100 words (forum)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Part B -->
+      <div class="card" role="listitem">
+        <div class="card-header" onclick="toggleCard(this)" aria-expanded="false">
+          <span class="part-label">Part B</span>
+          <div class="card-header-main">
+            <div class="card-title">Unit program</div>
+            <div class="card-summary">5-week teaching program on the provided template (~1500 word equivalent)</div>
+          </div>
+          <span class="marks-badge">20 marks</span>
+          <span class="chevron" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-body-left">
+              <div class="card-detail-label">Requirements</div>
+              <div class="card-detail-text">Design a complete 5-week unit of work using the provided template. Must incorporate appropriate resources, ICT integration, and safe science approaches relevant to your chosen Stage 6 topic.</div>
+              <div style="margin-top:12px;">
+                <div class="card-detail-label">Learning outcomes</div>
+                <div class="lo-pills-row">
+                  <span class="lo-pill">LO2 Resources, ICT &amp; Safe Approaches</span>
+                  <span class="lo-pill">LO3 Activities, Assessment &amp; Programming</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body-right">
+              <div class="marks-large">20 <span>/ 100</span></div>
+              <div class="word-count">~1500 word equiv.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Part C -->
+      <div class="card" role="listitem">
+        <div class="card-header" onclick="toggleCard(this)" aria-expanded="false">
+          <span class="part-label">Part C</span>
+          <div class="card-header-main">
+            <div class="card-title">Justification essays</div>
+            <div class="card-summary">Two justification essays explaining and defending your design decisions</div>
+          </div>
+          <span class="marks-badge">50 marks</span>
+          <span class="chevron" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-body-left">
+              <div class="card-detail-label">Requirements</div>
+              <div class="card-detail-text">Write two separate justification essays (~800 words total) that critically justify the pedagogical and curriculum choices made in your unit program, drawing on relevant literature and curriculum documents.</div>
+              <div style="margin-top:12px;">
+                <div class="card-detail-label">Learning outcomes</div>
+                <div class="lo-pills-row">
+                  <span class="lo-pill">LO1 Lesson Sequence Design</span>
+                  <span class="lo-pill">LO2 Resources, ICT &amp; Safe Approaches</span>
+                  <span class="lo-pill">LO3 Activities, Assessment &amp; Programming</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body-right">
+              <div class="marks-large">50 <span>/ 100</span></div>
+              <div class="word-count">~800 words total</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Part D1 -->
+      <div class="card" role="listitem">
+        <div class="card-header" onclick="toggleCard(this)" aria-expanded="false">
+          <span class="part-label">Part D1</span>
+          <div class="card-header-main">
+            <div class="card-title">Planning timely and purposeful feedback</div>
+            <div class="card-summary">Short written response on feedback planning strategies (~100 words)</div>
+          </div>
+          <span class="marks-badge">5 marks</span>
+          <span class="chevron" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-body-left">
+              <div class="card-detail-label">Requirements</div>
+              <div class="card-detail-text">Write a brief (~100 word) response outlining how you have planned to provide timely and purposeful feedback to students within your unit program, referencing specific assessment tasks.</div>
+              <div style="margin-top:12px;">
+                <div class="card-detail-label">Learning outcomes</div>
+                <div class="lo-pills-row">
+                  <span class="lo-pill">LO4 Feedback &amp; Reflective Practice</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body-right">
+              <div class="marks-large">5 <span>/ 100</span></div>
+              <div class="word-count">~100 words</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Part D2 -->
+      <div class="card" role="listitem">
+        <div class="card-header" onclick="toggleCard(this)" aria-expanded="false">
+          <span class="part-label">Part D2</span>
+          <div class="card-header-main">
+            <div class="card-title">Reflective self-assessment</div>
+            <div class="card-summary">Brief self-assessment of your own learning and growth through this task (~100 words)</div>
+          </div>
+          <span class="marks-badge">5 marks</span>
+          <span class="chevron" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-body-left">
+              <div class="card-detail-label">Requirements</div>
+              <div class="card-detail-text">Write a brief (~100 word) reflective self-assessment evaluating what you learned through completing this task, what you would do differently, and how the process has informed your developing practice as a science educator.</div>
+              <div style="margin-top:12px;">
+                <div class="card-detail-label">Learning outcomes</div>
+                <div class="lo-pills-row">
+                  <span class="lo-pill">LO4 Feedback &amp; Reflective Practice</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body-right">
+              <div class="marks-large">5 <span>/ 100</span></div>
+              <div class="word-count">~100 words</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.cards-section -->
+  </div><!-- /.page-wrap -->
+
+  <script>
+    function toggleCard(header) {
+      var card = header.parentElement;
+      var isOpen = card.classList.contains('is-open');
+      card.classList.toggle('is-open', !isOpen);
+      header.setAttribute('aria-expanded', String(!isOpen));
+    }
+  </script>
+</body>
+</html>
