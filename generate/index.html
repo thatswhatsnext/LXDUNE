@@ -375,10 +375,13 @@
       taskSel.innerHTML = atTasks.map(t => `<option value="${t.id}">${t.id} — ${t.title}</option>`).join('');
     }
 
-    // Populate week dropdown from unit JSON
+    // Populate week dropdown from unit JSON (preserve user's selection across Generate clicks)
     const weekSel = document.getElementById('sel-week');
-    const weekEntries = Object.entries(unitCfg.weeks ?? {});
+    const prevWeekVal = weekSel.value;
+    const weekEntries = Object.entries(unitCfg.weeks ?? {}).sort(([a], [b]) => Number(a) - Number(b));
     weekSel.innerHTML = weekEntries.map(([k, w]) => `<option value="${k}">Week ${k}${w.title ? ` — ${w.title}` : ''}</option>`).join('');
+    const firstTeachingWeek = weekEntries.find(([k]) => Number(k) >= 1)?.[0] ?? weekEntries[0]?.[0] ?? '';
+    weekSel.value = (prevWeekVal !== '' && [...weekSel.options].some(o => o.value === prevWeekVal)) ? prevWeekVal : firstTeachingWeek;
 
     const triKey = `${tri}-${year}`;
     const zoom = unitCfg.trimesterConfig?.[triKey]?.zoom;
