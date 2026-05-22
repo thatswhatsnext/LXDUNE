@@ -125,26 +125,34 @@
     background: #fff;
     border: 1.5px solid #e8e2f7;
     border-radius: 10px;
-    padding: 18px 22px 16px;
+    overflow: hidden;
     transition: border-color 0.15s;
   }
-  .ms-card:hover { border-color: #c9bef5; }
+  .milestone.is-open .ms-card { border-color: #c9bef5; }
 
-  /* Band colours for groupings */
+  /* Band colours */
   .band-a  { border-left: 5px solid #7C5DB6; }
   .band-bc { border-left: 5px solid #4FA9B5; }
   .band-d  { border-left: 5px solid #9bc4c9; }
   .band-end { border-left: 5px solid #b0bec5; }
 
-  /* Card top row */
+  /* ── Milestone header (clickable) ────────────────────────── */
   .ms-top {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 10px;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
   }
+  .ms-top:hover { background: rgba(124, 93, 182, 0.04); }
+  .milestone.is-open .ms-top { background: rgba(124, 93, 182, 0.04); }
+
+  .ms-top-left { flex: 1; min-width: 0; }
+  .ms-top-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
   .ms-part-label {
     font-size: 0.72rem;
     font-weight: 800;
@@ -167,7 +175,6 @@
     font-weight: 700;
     color: #7C5DB6;
     white-space: nowrap;
-    flex-shrink: 0;
   }
   .ms-marks.dim {
     background: #e8f5f7;
@@ -175,16 +182,47 @@
     color: #3a8a95;
   }
 
-  /* Description */
+  /* Chevron */
+  .ms-chevron {
+    flex-shrink: 0;
+    color: #9d8dd0;
+    display: flex;
+    align-items: center;
+    transition: transform 0.25s ease;
+  }
+  .milestone.is-open .ms-chevron { transform: rotate(180deg); }
+
+  /* ── Milestone body (collapsible) ────────────────────────── */
+  .ms-body {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.32s ease, opacity 0.25s ease;
+  }
+  .milestone.is-open .ms-body {
+    max-height: 300px;
+    opacity: 1;
+  }
+  .ms-body-inner {
+    padding: 0 20px 16px;
+    border-top: 1px solid #ede8fb;
+  }
   .ms-desc {
     font-size: 0.88rem;
     color: #445060;
+    margin-top: 12px;
     margin-bottom: 12px;
   }
-
-  /* Tag row */
   .ms-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 
+  /* ── Final submission (always open, not collapsible) ─────── */
+  .ms-submit .ms-top { cursor: default; }
+  .ms-submit .ms-top:hover { background: transparent; }
+  .ms-submit .ms-body { max-height: 300px; opacity: 1; }
+  .ms-submit .ms-card { background: #f5f3fb; border-color: #c9bef5; }
+  .ms-submit .ms-title { color: #5a3fa0; }
+
+  /* ── Pills ───────────────────────────────────────────────── */
   .lo-pill {
     background: #EDE8FB;
     border: 1px solid #c9bef5;
@@ -194,7 +232,6 @@
     font-weight: 600;
     color: #5a3fa0;
   }
-
   .deadline-badge {
     background: #FDF0E3;
     border: 1px solid #E3B089;
@@ -207,17 +244,7 @@
     align-items: center;
     gap: 4px;
   }
-  .deadline-badge::before {
-    content: "⏰";
-    font-size: 0.78rem;
-  }
-
-  /* ── Final submission milestone ───────────────────────────── */
-  .ms-submit .ms-card {
-    background: #f5f3fb;
-    border-color: #c9bef5;
-  }
-  .ms-submit .ms-title { color: #5a3fa0; }
+  .deadline-badge::before { content: "⏰"; font-size: 0.78rem; }
 
   /* ── Summary bar ─────────────────────────────────────────── */
   .summary-bar {
@@ -243,17 +270,7 @@
     font-weight: 800;
     color: #1F2A33;
   }
-  .summary-bar .sb-sub {
-    font-size: 0.8rem;
-    color: #667;
-    margin-top: 1px;
-  }
-  .sb-divider {
-    width: 1px;
-    height: 36px;
-    background: #e0daf5;
-    flex-shrink: 0;
-  }
+  .sb-divider { width: 1px; height: 36px; background: #e0daf5; flex-shrink: 0; }
   .sb-los { display: flex; flex-wrap: wrap; gap: 6px; }
 
   @media (max-width: 600px) {
@@ -262,7 +279,7 @@
     .ms-marker { left: -38px; width: 30px; height: 30px; font-size: 0.78rem; }
     .page-header { padding: 20px 18px 18px; }
     .page-header h1 { font-size: 1.2rem; }
-    .ms-top { flex-direction: column; }
+    .ms-top { flex-wrap: wrap; }
   }
 </style>
 </head>
@@ -282,7 +299,7 @@
   </header>
 
   <!-- ── Journey label ── -->
-  <p class="journey-label">Your assessment journey — follow the milestones in sequence</p>
+  <p class="journey-label">Your assessment journey — click each milestone to expand</p>
 
   <!-- ── Timeline ── -->
   <div class="timeline">
@@ -291,18 +308,27 @@
     <div class="milestone">
       <div class="ms-marker">A</div>
       <div class="ms-card band-a">
-        <div class="ms-top">
-          <div>
+        <div class="ms-top" onclick="toggleMilestone(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="ms-top-left">
             <p class="ms-part-label">Part A</p>
             <p class="ms-title">Task outline and forum post</p>
           </div>
-          <div class="ms-marks">20 marks</div>
+          <div class="ms-top-right">
+            <div class="ms-marks">20 marks</div>
+            <span class="ms-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
         </div>
-        <p class="ms-desc">Write a ~100 word forum post responding to the task prompt, and complete the task outline template to map your planned approach before you begin the full submission.</p>
-        <div class="ms-tags">
-          <span class="lo-pill">LO1</span>
-          <span class="lo-pill">LO2</span>
-          <span class="deadline-badge">Early deadline: 22 March 2026</span>
+        <div class="ms-body">
+          <div class="ms-body-inner">
+            <p class="ms-desc">Write a ~100 word forum post responding to the task prompt, and complete the task outline template to map your planned approach before you begin the full submission.</p>
+            <div class="ms-tags">
+              <span class="lo-pill">LO1</span>
+              <span class="lo-pill">LO2</span>
+              <span class="deadline-badge">Early deadline: 22 March 2026</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -311,17 +337,26 @@
     <div class="milestone">
       <div class="ms-marker">B</div>
       <div class="ms-card band-bc">
-        <div class="ms-top">
-          <div>
+        <div class="ms-top" onclick="toggleMilestone(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="ms-top-left">
             <p class="ms-part-label">Part B</p>
             <p class="ms-title">Unit program</p>
           </div>
-          <div class="ms-marks dim">20 marks</div>
+          <div class="ms-top-right">
+            <div class="ms-marks dim">20 marks</div>
+            <span class="ms-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
         </div>
-        <p class="ms-desc">Design a 5-week teaching program using the provided template (~1,500 word equivalent). Your program should demonstrate coherent lesson sequencing and appropriate resource selection.</p>
-        <div class="ms-tags">
-          <span class="lo-pill">LO2</span>
-          <span class="lo-pill">LO3</span>
+        <div class="ms-body">
+          <div class="ms-body-inner">
+            <p class="ms-desc">Design a 5-week teaching program using the provided template (~1,500 word equivalent). Your program should demonstrate coherent lesson sequencing and appropriate resource selection.</p>
+            <div class="ms-tags">
+              <span class="lo-pill">LO2</span>
+              <span class="lo-pill">LO3</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -330,18 +365,27 @@
     <div class="milestone">
       <div class="ms-marker">C</div>
       <div class="ms-card band-bc">
-        <div class="ms-top">
-          <div>
+        <div class="ms-top" onclick="toggleMilestone(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="ms-top-left">
             <p class="ms-part-label">Part C</p>
             <p class="ms-title">Justification essays</p>
           </div>
-          <div class="ms-marks dim">50 marks</div>
+          <div class="ms-top-right">
+            <div class="ms-marks dim">50 marks</div>
+            <span class="ms-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
         </div>
-        <p class="ms-desc">Write two justification essays (~800 words total) that explain and defend the pedagogical decisions made in your unit program, drawing on relevant theory and curriculum documentation.</p>
-        <div class="ms-tags">
-          <span class="lo-pill">LO1</span>
-          <span class="lo-pill">LO2</span>
-          <span class="lo-pill">LO3</span>
+        <div class="ms-body">
+          <div class="ms-body-inner">
+            <p class="ms-desc">Write two justification essays (~800 words total) that explain and defend the pedagogical decisions made in your unit program, drawing on relevant theory and curriculum documentation.</p>
+            <div class="ms-tags">
+              <span class="lo-pill">LO1</span>
+              <span class="lo-pill">LO2</span>
+              <span class="lo-pill">LO3</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -350,16 +394,25 @@
     <div class="milestone">
       <div class="ms-marker accent">D1</div>
       <div class="ms-card band-d">
-        <div class="ms-top">
-          <div>
+        <div class="ms-top" onclick="toggleMilestone(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="ms-top-left">
             <p class="ms-part-label">Part D1</p>
             <p class="ms-title">Planning timely and purposeful feedback</p>
           </div>
-          <div class="ms-marks dim">5 marks</div>
+          <div class="ms-top-right">
+            <div class="ms-marks dim">5 marks</div>
+            <span class="ms-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
         </div>
-        <p class="ms-desc">Write ~100 words describing how you have planned to provide timely and purposeful feedback within your unit program, with reference to specific strategies or schedule.</p>
-        <div class="ms-tags">
-          <span class="lo-pill">LO4</span>
+        <div class="ms-body">
+          <div class="ms-body-inner">
+            <p class="ms-desc">Write ~100 words describing how you have planned to provide timely and purposeful feedback within your unit program, with reference to specific strategies or schedule.</p>
+            <div class="ms-tags">
+              <span class="lo-pill">LO4</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -368,34 +421,49 @@
     <div class="milestone">
       <div class="ms-marker accent">D2</div>
       <div class="ms-card band-d">
-        <div class="ms-top">
-          <div>
+        <div class="ms-top" onclick="toggleMilestone(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="ms-top-left">
             <p class="ms-part-label">Part D2</p>
             <p class="ms-title">Reflective self-assessment</p>
           </div>
-          <div class="ms-marks dim">5 marks</div>
+          <div class="ms-top-right">
+            <div class="ms-marks dim">5 marks</div>
+            <span class="ms-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
         </div>
-        <p class="ms-desc">Write ~100 words reflecting on your own learning through this task — what you found challenging, what you would do differently, and how the task has shaped your thinking as a teacher.</p>
-        <div class="ms-tags">
-          <span class="lo-pill">LO4</span>
+        <div class="ms-body">
+          <div class="ms-body-inner">
+            <p class="ms-desc">Write ~100 words reflecting on your own learning through this task — what you found challenging, what you would do differently, and how the task has shaped your thinking as a teacher.</p>
+            <div class="ms-tags">
+              <span class="lo-pill">LO4</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Final submission -->
+    <!-- Final submission — always expanded, not collapsible -->
     <div class="milestone ms-submit">
       <div class="ms-marker finish">✓</div>
       <div class="ms-card band-end">
         <div class="ms-top">
-          <div>
+          <div class="ms-top-left">
             <p class="ms-part-label">Full submission</p>
-            <p class="ms-title">Submit all parts via the assignment dropbox</p>
+            <p class="ms-title">Submit all parts via the myLearn assessment portal</p>
           </div>
-          <div class="ms-marks">Due 5 April 2026</div>
+          <div class="ms-top-right">
+            <div class="ms-marks">Due 5 April 2026</div>
+          </div>
         </div>
-        <p class="ms-desc">Upload Parts B, C, D1, and D2 as a single compiled submission. Ensure your Part A forum post has already been submitted by 22 March 2026.</p>
-        <div class="ms-tags">
-          <span class="deadline-badge">Final deadline: 5 April 2026</span>
+        <div class="ms-body">
+          <div class="ms-body-inner">
+            <p class="ms-desc">Submit Parts B, C, D1, and D2 as a single compiled file via the myLearn assessment portal. Ensure your Part A forum post has already been submitted by 22 March 2026.</p>
+            <div class="ms-tags">
+              <span class="deadline-badge">Final deadline: 5 April 2026</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -426,5 +494,18 @@
   </div>
 
 </div><!-- /journey-wrap -->
+
+<script>
+  function toggleMilestone(top) {
+    var milestone = top.closest('.milestone');
+    var isOpen = milestone.classList.toggle('is-open');
+    top.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+  document.querySelectorAll('.ms-top[tabindex]').forEach(function(top) {
+    top.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMilestone(top); }
+    });
+  });
+</script>
 </body>
 </html>
