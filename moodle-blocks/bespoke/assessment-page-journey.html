@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AT1 — Teaching, Learning and Assessment Design</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #FAF9FF;
+    color: #1F2A33;
+    line-height: 1.55;
+    padding: 32px 16px 64px;
+  }
+
+  .journey-wrap {
+    max-width: 950px;
+    margin: 0 auto;
+  }
+
+  /* ── Page header ─────────────────────────────────────────── */
+  .page-header {
+    background: #7C5DB6;
+    color: #fff;
+    border-radius: 12px;
+    padding: 28px 32px 24px;
+    margin-bottom: 40px;
+  }
+  .page-header .unit-code {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 4px;
+  }
+  .page-header h1 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+  .page-header .unit-full {
+    font-size: 0.88rem;
+    opacity: 0.82;
+    margin-bottom: 18px;
+  }
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .header-chip {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+  .header-chip span { opacity: 0.75; font-weight: 400; margin-right: 4px; }
+
+  /* ── Section label ───────────────────────────────────────── */
+  .journey-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #7C5DB6;
+    margin-bottom: 20px;
+  }
+
+  /* ── Timeline rail ───────────────────────────────────────── */
+  .timeline {
+    position: relative;
+    padding-left: 56px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 24px;
+    bottom: 24px;
+    width: 4px;
+    border-radius: 2px;
+    background: linear-gradient(to bottom, #7C5DB6 0%, #4FA9B5 100%);
+  }
+
+  /* ── Milestone ───────────────────────────────────────────── */
+  .milestone {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .milestone:last-child { margin-bottom: 0; }
+
+  /* Connector circle */
+  .ms-marker {
+    position: absolute;
+    left: -46px;
+    top: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #7C5DB6;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 4px #FAF9FF, 0 0 0 6px #c9bef5;
+    z-index: 1;
+  }
+  .ms-marker.accent { background: #4FA9B5; box-shadow: 0 0 0 4px #FAF9FF, 0 0 0 6px #a8dde3; }
+  .ms-marker.finish {
+    background: #1F2A33;
+    box-shadow: 0 0 0 4px #FAF9FF, 0 0 0 6px #b0bec5;
+    font-size: 1rem;
+  }
+
+  /* Card */
+  .ms-card {
+    background: #fff;
+    border: 1.5px solid #e8e2f7;
+    border-radius: 10px;
+    padding: 18px 22px 16px;
+    transition: border-color 0.15s;
+  }
+  .ms-card:hover { border-color: #c9bef5; }
+
+  /* Band colours for groupings */
+  .band-a  { border-left: 5px solid #7C5DB6; }
+  .band-bc { border-left: 5px solid #4FA9B5; }
+  .band-d  { border-left: 5px solid #9bc4c9; }
+  .band-end { border-left: 5px solid #b0bec5; }
+
+  /* Card top row */
+  .ms-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .ms-part-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7C5DB6;
+    margin-bottom: 2px;
+  }
+  .ms-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1F2A33;
+  }
+  .ms-marks {
+    background: #EDE8FB;
+    border: 1px solid #c9bef5;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #7C5DB6;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .ms-marks.dim {
+    background: #e8f5f7;
+    border-color: #aed9df;
+    color: #3a8a95;
+  }
+
+  /* Description */
+  .ms-desc {
+    font-size: 0.88rem;
+    color: #445060;
+    margin-bottom: 12px;
+  }
+
+  /* Tag row */
+  .ms-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+
+  .lo-pill {
+    background: #EDE8FB;
+    border: 1px solid #c9bef5;
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #5a3fa0;
+  }
+
+  .deadline-badge {
+    background: #FDF0E3;
+    border: 1px solid #E3B089;
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #9b5f1e;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .deadline-badge::before {
+    content: "⏰";
+    font-size: 0.78rem;
+  }
+
+  /* ── Final submission milestone ───────────────────────────── */
+  .ms-submit .ms-card {
+    background: #f5f3fb;
+    border-color: #c9bef5;
+  }
+  .ms-submit .ms-title { color: #5a3fa0; }
+
+  /* ── Summary bar ─────────────────────────────────────────── */
+  .summary-bar {
+    margin-top: 36px;
+    background: #fff;
+    border: 1.5px solid #e8e2f7;
+    border-radius: 10px;
+    padding: 16px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+  }
+  .summary-bar .sb-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7C5DB6;
+  }
+  .summary-bar .sb-total {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #1F2A33;
+  }
+  .summary-bar .sb-sub {
+    font-size: 0.8rem;
+    color: #667;
+    margin-top: 1px;
+  }
+  .sb-divider {
+    width: 1px;
+    height: 36px;
+    background: #e0daf5;
+    flex-shrink: 0;
+  }
+  .sb-los { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  @media (max-width: 600px) {
+    .timeline { padding-left: 44px; }
+    .timeline::before { left: 14px; }
+    .ms-marker { left: -38px; width: 30px; height: 30px; font-size: 0.78rem; }
+    .page-header { padding: 20px 18px 18px; }
+    .page-header h1 { font-size: 1.2rem; }
+    .ms-top { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="journey-wrap">
+
+  <!-- ── Page header ── -->
+  <header class="page-header">
+    <p class="unit-code">EDSE358 — AT1</p>
+    <h1>Teaching, Learning and Assessment Design</h1>
+    <p class="unit-full">Science Education 11–12: Plan, Assess and Report</p>
+    <div class="header-meta">
+      <div class="header-chip"><span>Weighting</span>60%</div>
+      <div class="header-chip"><span>Total marks</span>100</div>
+      <div class="header-chip"><span>Final submission</span>5 April 2026</div>
+    </div>
+  </header>
+
+  <!-- ── Journey label ── -->
+  <p class="journey-label">Your assessment journey — follow the milestones in sequence</p>
+
+  <!-- ── Timeline ── -->
+  <div class="timeline">
+
+    <!-- Part A -->
+    <div class="milestone">
+      <div class="ms-marker">A</div>
+      <div class="ms-card band-a">
+        <div class="ms-top">
+          <div>
+            <p class="ms-part-label">Part A</p>
+            <p class="ms-title">Task outline and forum post</p>
+          </div>
+          <div class="ms-marks">20 marks</div>
+        </div>
+        <p class="ms-desc">Write a ~100 word forum post responding to the task prompt, and complete the task outline template to map your planned approach before you begin the full submission.</p>
+        <div class="ms-tags">
+          <span class="lo-pill">LO1</span>
+          <span class="lo-pill">LO2</span>
+          <span class="deadline-badge">Early deadline: 22 March 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part B -->
+    <div class="milestone">
+      <div class="ms-marker">B</div>
+      <div class="ms-card band-bc">
+        <div class="ms-top">
+          <div>
+            <p class="ms-part-label">Part B</p>
+            <p class="ms-title">Unit program</p>
+          </div>
+          <div class="ms-marks dim">20 marks</div>
+        </div>
+        <p class="ms-desc">Design a 5-week teaching program using the provided template (~1,500 word equivalent). Your program should demonstrate coherent lesson sequencing and appropriate resource selection.</p>
+        <div class="ms-tags">
+          <span class="lo-pill">LO2</span>
+          <span class="lo-pill">LO3</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part C -->
+    <div class="milestone">
+      <div class="ms-marker">C</div>
+      <div class="ms-card band-bc">
+        <div class="ms-top">
+          <div>
+            <p class="ms-part-label">Part C</p>
+            <p class="ms-title">Justification essays</p>
+          </div>
+          <div class="ms-marks dim">50 marks</div>
+        </div>
+        <p class="ms-desc">Write two justification essays (~800 words total) that explain and defend the pedagogical decisions made in your unit program, drawing on relevant theory and curriculum documentation.</p>
+        <div class="ms-tags">
+          <span class="lo-pill">LO1</span>
+          <span class="lo-pill">LO2</span>
+          <span class="lo-pill">LO3</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part D1 -->
+    <div class="milestone">
+      <div class="ms-marker accent">D1</div>
+      <div class="ms-card band-d">
+        <div class="ms-top">
+          <div>
+            <p class="ms-part-label">Part D1</p>
+            <p class="ms-title">Planning timely and purposeful feedback</p>
+          </div>
+          <div class="ms-marks dim">5 marks</div>
+        </div>
+        <p class="ms-desc">Write ~100 words describing how you have planned to provide timely and purposeful feedback within your unit program, with reference to specific strategies or schedule.</p>
+        <div class="ms-tags">
+          <span class="lo-pill">LO4</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part D2 -->
+    <div class="milestone">
+      <div class="ms-marker accent">D2</div>
+      <div class="ms-card band-d">
+        <div class="ms-top">
+          <div>
+            <p class="ms-part-label">Part D2</p>
+            <p class="ms-title">Reflective self-assessment</p>
+          </div>
+          <div class="ms-marks dim">5 marks</div>
+        </div>
+        <p class="ms-desc">Write ~100 words reflecting on your own learning through this task — what you found challenging, what you would do differently, and how the task has shaped your thinking as a teacher.</p>
+        <div class="ms-tags">
+          <span class="lo-pill">LO4</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final submission -->
+    <div class="milestone ms-submit">
+      <div class="ms-marker finish">✓</div>
+      <div class="ms-card band-end">
+        <div class="ms-top">
+          <div>
+            <p class="ms-part-label">Full submission</p>
+            <p class="ms-title">Submit all parts via the assignment dropbox</p>
+          </div>
+          <div class="ms-marks">Due 5 April 2026</div>
+        </div>
+        <p class="ms-desc">Upload Parts B, C, D1, and D2 as a single compiled submission. Ensure your Part A forum post has already been submitted by 22 March 2026.</p>
+        <div class="ms-tags">
+          <span class="deadline-badge">Final deadline: 5 April 2026</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /timeline -->
+
+  <!-- ── Summary bar ── -->
+  <div class="summary-bar">
+    <div>
+      <div class="sb-label">Total marks</div>
+      <div class="sb-total">100</div>
+    </div>
+    <div class="sb-divider"></div>
+    <div>
+      <div class="sb-label">Weighting</div>
+      <div class="sb-total">60%</div>
+    </div>
+    <div class="sb-divider"></div>
+    <div>
+      <div class="sb-label">Learning outcomes addressed</div>
+      <div class="sb-los" style="margin-top:6px;">
+        <span class="lo-pill">LO1 — Lesson Sequence Design</span>
+        <span class="lo-pill">LO2 — Resources, ICT &amp; Safe Approaches</span>
+        <span class="lo-pill">LO3 — Activities, Assessment &amp; Programming</span>
+        <span class="lo-pill">LO4 — Feedback &amp; Reflective Practice</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /journey-wrap -->
+</body>
+</html>
