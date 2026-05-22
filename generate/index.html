@@ -96,6 +96,8 @@
         <option value="forum-prompts">Forum discussion prompts</option>
         <option value="worked-example">Worked example</option>
         <option value="synthesis-template">Post-forum synthesis (lecturer)</option>
+        <option value="current-week">Current week spotlight</option>
+        <option value="full-section">Full section (all blocks)</option>
       </select>
     </div>
     <div class="form-row" id="task-row" style="display:none;">
@@ -153,7 +155,7 @@
     const weekRow = document.getElementById('week-row');
     function syncSelectors() {
       taskRow.style.display = ['assessment-page', 'presubmission-checklist'].includes(typeSel.value) ? '' : 'none';
-      weekRow.style.display = typeSel.value === 'synthesis-template' ? '' : 'none';
+      weekRow.style.display = ['synthesis-template', 'full-section', 'orientation-note', 'forum-prompts', 'worked-example'].includes(typeSel.value) ? '' : 'none';
     }
     typeSel.addEventListener('change', syncSelectors);
     syncSelectors();
@@ -253,6 +255,51 @@
       `  });\n` +
       `<\/script>\n` +
       `<div id="lxdune-assessment-page"></div>`
+    );
+  }
+
+  function shellCurrentWeek(unit, tri, year) {
+    return (
+      `<script type="module">\n` +
+      `  import { renderCurrentWeek }\n` +
+      `  from "${PAGES_BASE}/moodle-blocks/blocks.js";\n` +
+      `  renderCurrentWeek({\n` +
+      `    forUnit: "${unit}",\n` +
+      `    forTri: "${tri}",\n` +
+      `    forYear: "${year}",\n` +
+      `  });\n` +
+      `<\/script>\n` +
+      `<div id="lxdune-current-week"></div>`
+    );
+  }
+
+  function shellFullSection(unit, tri, year, weekNum) {
+    const W = Number(weekNum);
+    const sfx = `-w${W}`;
+    const fns = [
+      ['renderOrientationNote', `lxdune-orientation-note${sfx}`],
+      ['renderAnnouncementBlock', `lxdune-announcement${sfx}`],
+      ['renderLectureBlock', `lxdune-lecture${sfx}`],
+      ['renderLiveSessionHub', `lxdune-live-hub${sfx}`],
+      ['renderForumPrompts', `lxdune-forum-prompts${sfx}`],
+      ['renderWorkedExample', `lxdune-worked-example${sfx}`],
+    ];
+    const imports = fns.map(([fn]) => fn).join(', ');
+    const calls = fns.map(([fn, id]) =>
+      `  ${fn}({ forUnit:U, forTri:T, forYear:Y, forWeek:W, containerId:'${id}' });`
+    ).join('\n');
+    const divs = fns.map(([, id]) => `<div id='${id}'></div>`).join('\n');
+    return (
+      `<!-- ${unit} ${tri} ${year} — Week ${W}: Full section shell -->\n` +
+      `<!-- Paste the script tag anywhere in this Moodle section -->\n` +
+      `<!-- Place each div where you want that block to appear -->\n\n` +
+      `<script type="module">\n` +
+      `import { ${imports} }\n` +
+      `  from '${PAGES_BASE}/moodle-blocks/blocks.js';\n` +
+      `const U='${unit}', T='${tri}', Y='${year}', W=${W};\n` +
+      calls + `\n` +
+      `<\/script>\n\n` +
+      divs
     );
   }
 
@@ -462,6 +509,14 @@
         note: `${liveNote} Renders from <code>weeks[n].workedExample</code> as a collapsible section. Uses <code>\\n</code> to separate paragraphs. Renders nothing if field is absent.`,
         rows: 9,
       },
+      {
+        key: 'current-week',
+        title: 'Current week spotlight',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code: shellCurrentWeek(unit, tri, year),
+        note: `Date-aware. Renders orientation note, announcement, live session focus+tasks, first forum prompt, and LO pills for the current week. Container: <code>lxdune-current-week</code>.`,
+        rows: 9,
+      },
     ];
 
     const taskId = document.getElementById('sel-task').value;
@@ -504,6 +559,47 @@
       });
       const output = document.getElementById('output');
       output.innerHTML = `<div class="result-banner">Post-forum synthesis for <strong>${unit}</strong> — <strong>${weekLabel}</strong></div>${cards}`;
+      output.style.display = 'block';
+      bindCopyButtons();
+      btn.disabled = false;
+      btn.textContent = 'Generate shell';
+      output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Current week spotlight
+    if (pageType === 'current-week') {
+      const code = shellCurrentWeek(unit, tri, year);
+      const output = document.getElementById('output');
+      output.innerHTML = `<div class="result-banner">Shell for <strong>${unit}</strong> — <strong>${tri} ${year}</strong></div>` + snippetCard({
+        title: 'Current week spotlight',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code,
+        note: `Date-aware: renders the current week's orientation note, announcement, live session, first forum prompt, and LO pills. Paste on the unit home section. Container: <code>lxdune-current-week</code>.`,
+        rows: 9,
+      });
+      output.style.display = 'block';
+      bindCopyButtons();
+      btn.disabled = false;
+      btn.textContent = 'Generate shell';
+      output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Full section (aggregated single-import shell)
+    if (pageType === 'full-section') {
+      const weekKey = document.getElementById('sel-week').value;
+      const w = (unitCfg.weeks ?? {})[weekKey];
+      const weekLabel = `Week ${weekKey}${w?.title ? ` — ${w.title}` : ''}`;
+      const code = shellFullSection(unit, tri, year, weekKey);
+      const output = document.getElementById('output');
+      output.innerHTML = `<div class="result-banner">Full section shell for <strong>${unit}</strong> — <strong>${weekLabel}</strong></div>` + snippetCard({
+        title: `Full section — ${weekLabel}`,
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code,
+        note: `Single <code>&lt;script&gt;</code> imports all functions once. Place each <code>&lt;div&gt;</code> where that block should appear. Scoped container IDs prevent conflicts on single-page Moodle layouts.`,
+        rows: 18,
+      });
       output.style.display = 'block';
       bindCopyButtons();
       btn.disabled = false;
