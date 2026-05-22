@@ -441,6 +441,7 @@
   </div>
   <div class="assess-output" id="lxdune-assessment-page"></div>
   <div id="lxdune-assessment-nav" style="display:none;padding:16px;"></div>
+  <div id="assess-checklist-area" style="padding:0 0 16px;"></div>
 </div>
 
 <script type="module">
@@ -784,8 +785,11 @@ async function renderAssess() {
   navEl.style.display  = mode === 'nav' ? '' : 'none';
   taskCtrl.style.display = mode === 'single' ? '' : 'none';
 
+  const clArea = document.getElementById('assess-checklist-area');
+
   if (mode === 'nav') {
     navEl.innerHTML = '<div class="block-loading">Rendering…</div>';
+    clArea.innerHTML = '';
     try {
       await renderAssessmentNav({ forUnit, forTri, forYear });
       if (!navEl.innerHTML.trim()) navEl.innerHTML = '<div class="block-empty">No assessment tasks configured for this unit.</div>';
@@ -804,6 +808,23 @@ async function renderAssess() {
     if (!apEl.innerHTML.trim()) apEl.innerHTML = '<div class="block-empty">No assessmentTasks data found for this unit/task.</div>';
   } catch (e) {
     apEl.innerHTML = `<div class="block-err">Error: ${e.message}</div>`;
+  }
+
+  // Render pre-submission checklist(s) below the assessment content
+  if (mode === 'single') {
+    clArea.innerHTML = `<div id="lxdune-cl-assess"></div>`;
+    renderPresubmissionChecklist({ forUnit, forTask, containerId: 'lxdune-cl-assess' }).catch(() => {});
+  } else {
+    // All-tasks tabbed: render each task's checklist stacked below the tab switcher
+    const tasks = unitConfig?.assessmentTasks ?? [];
+    if (tasks.length) {
+      clArea.innerHTML = tasks.map(t => `<div id="lxdune-cl-assess-${t.id}"></div>`).join('');
+      tasks.forEach(t => {
+        renderPresubmissionChecklist({ forUnit, forTask: t.id, containerId: `lxdune-cl-assess-${t.id}` }).catch(() => {});
+      });
+    } else {
+      clArea.innerHTML = '';
+    }
   }
 }
 
