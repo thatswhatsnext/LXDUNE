@@ -851,43 +851,8 @@ function initTabSwitchers(container) {
   });
 }
 
-export async function renderAssessmentPage({ forUnit, forTask, forTri, forYear, containerId = 'lxdune-assessment-page' } = {}) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-
-  let unitCfg;
-  try {
-    unitCfg = await fetchJson(`${BASE}config/units/${forUnit}.json`);
-  } catch (e) {
-    setError(el, `Could not load content: ${e.message}`);
-    return;
-  }
-
-  applyTheme(unitCfg);
-  injectStyles('lx-ap-styles', ASSESSMENT_CSS);
-
-  const tasks = unitCfg.assessmentTasks ?? [];
-  const task = tasks.find(t => t.id === forTask);
-  if (!task) { el.innerHTML = ''; return; }
-
-  // Prefetch bespoke components; return a placeholder on failure
-  const bespokeCache = {};
-  for (const part of task.parts ?? []) {
-    if (part.bespoke && !bespokeCache[part.bespoke]) {
-      try {
-        const res = await fetch(`${BASE}moodle-blocks/bespoke/${part.bespoke}.html`);
-        bespokeCache[part.bespoke] = res.ok
-          ? await res.text()
-          : `<p style="color:#6F7B84;font-style:italic;">Custom component: ${esc(part.bespoke)}</p>`;
-      } catch {
-        bespokeCache[part.bespoke] = `<p style="color:#6F7B84;font-style:italic;">Custom component: ${esc(part.bespoke)}</p>`;
-      }
-    }
-  }
-
-  const loMap    = Object.fromEntries((unitCfg.learningOutcomes ?? []).map(lo => [lo.id, lo]));
+function buildTaskSections(task, loMap, triKey, bespokeCache) {
   const lnk      = task.links ?? {};
-  const triKey   = forTri && forYear ? `${forTri}-${forYear}` : null;
   const triDates = triKey ? (task.trimesterDates?.[triKey] ?? {}) : {};
   const fp       = triDates.flexiblePortal ?? null;
   const parts    = task.parts ?? [];
@@ -895,7 +860,7 @@ export async function renderAssessmentPage({ forUnit, forTask, forTri, forYear, 
 
   // Header pill + title
   sections.push(
-    `<div style="display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px;">${esc(unitCfg.code)} • ${esc(task.id)}</div>` +
+    `<div style="display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px;">${esc(task._unitCode ?? '')} • ${esc(task.id)}</div>` +
     `<h2 style="margin:0 0 16px;">${esc(task.title)}</h2>`
   );
 
@@ -1059,8 +1024,191 @@ export async function renderAssessmentPage({ forUnit, forTask, forTri, forYear, 
     sections.push(`<div class="lx-ap-sect-label">Support</div>${supportParts.join('\n')}`);
   }
 
-  el.innerHTML = `<div class="lx-ap">${sections.join('\n')}</div>`;
-  initTabSwitchers(el);
+  return sections;
+}
+
+export async function renderAssessmentPage({ forUnit, forTask, forTri, forYear, containerId = 'lxdune-assessment-page' } = {}) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+
+  let unitCfg;
+  try {
+    unitCfg = await fetchJson(`${BASE}config/units/${forUnit}.json`);
+  } catch (e) {
+    setError(el, `Could not load content: ${e.message}`);
+    return;
+  }
+
+  applyTheme(unitCfg);
+  injectStyles('lx-ap-styles', ASSESSMENT_CSS);
+
+  const allTasks = unitCfg.assessmentTasks ?? [];
+  let tasksToRender;
+
+  if (forTask === 'all') {
+    tasksToRender = allTasks;
+  } else if (Array.isArray(forTask)) {
+    tasksToRender = allTasks.filter(t => forTask.includes(t.id));
+  } else {
+    // Single task — existing behaviour
+    const task = allTasks.find(t => t.id === forTask);
+    if (!task) { el.innerHTML = ''; return; }
+
+    // Prefetch bespoke components; return a placeholder on failure
+    const bespokeCache = {};
+    for (const part of task.parts ?? []) {
+      if (part.bespoke && !bespokeCache[part.bespoke]) {
+        try {
+          const res = await fetch(`${BASE}moodle-blocks/bespoke/${part.bespoke}.html`);
+          bespokeCache[part.bespoke] = res.ok
+            ? await res.text()
+            : `<p style="color:#6F7B84;font-style:italic;">Custom component: ${esc(part.bespoke)}</p>`;
+        } catch {
+          bespokeCache[part.bespoke] = `<p style="color:#6F7B84;font-style:italic;">Custom component: ${esc(part.bespoke)}</p>`;
+        }
+      }
+    }
+
+    const loMap  = Object.fromEntries((unitCfg.learningOutcomes ?? []).map(lo => [lo.id, lo]));
+    const triKey = forTri && forYear ? `${forTri}-${forYear}` : null;
+    task._unitCode = unitCfg.code;
+    const sections = buildTaskSections(task, loMap, triKey, bespokeCache);
+    el.innerHTML = `<div class="lx-ap">${sections.join('\n')}</div>`;
+    initTabSwitchers(el);
+    return;
+  }
+
+  // Filter tasks with no title (skip nulls silently)
+  tasksToRender = tasksToRender.filter(t => t && t.id && t.title);
+  if (!tasksToRender.length) { el.innerHTML = ''; return; }
+
+  // Prefetch bespoke components for ALL tasks in tasksToRender
+  const bespokeCache = {};
+  for (const task of tasksToRender) {
+    for (const part of task.parts ?? []) {
+      if (part.bespoke && !bespokeCache[part.bespoke]) {
+        try {
+          const res = await fetch(`${BASE}moodle-blocks/bespoke/${part.bespoke}.html`);
+          bespokeCache[part.bespoke] = res.ok
+            ? await res.text()
+            : `<p style="color:#6F7B84;font-style:italic;">Custom component: ${esc(part.bespoke)}</p>`;
+        } catch {
+          bespokeCache[part.bespoke] = `<p style="color:#6F7B84;font-style:italic;">Custom component: ${esc(part.bespoke)}</p>`;
+        }
+      }
+    }
+  }
+
+  const loMap  = Object.fromEntries((unitCfg.learningOutcomes ?? []).map(lo => [lo.id, lo]));
+  const triKey = forTri && forYear ? `${forTri}-${forYear}` : null;
+
+  // Tag each task with the unit code for the header pill
+  tasksToRender.forEach(t => { t._unitCode = unitCfg.code; });
+
+  if (tasksToRender.length === 1) {
+    // Single filtered task — render without tab bar
+    const sections = buildTaskSections(tasksToRender[0], loMap, triKey, bespokeCache);
+    el.innerHTML = `<div class="lx-ap">${sections.join('\n')}</div>`;
+    initTabSwitchers(el);
+    return;
+  }
+
+  // Multiple tasks — tab bar + panels
+  const tabBarHtml = `<div style="display:flex;gap:4px;margin-bottom:0;">${
+    tasksToRender.map((task, i) =>
+      `<button data-lx-tab="${esc(task.id)}" style="padding:10px 16px;border:none;cursor:pointer;border-radius:8px 8px 0 0;font-family:Arial,sans-serif;font-size:.93em;background:${i === 0 ? 'var(--lx-primary,#1f6fb2)' : '#e5e7eb'};color:${i === 0 ? '#fff' : '#4a5568'};font-weight:${i === 0 ? '700' : '400'};">${esc(task.id)} — ${esc(task.title)}</button>`
+    ).join('')
+  }</div>`;
+
+  const panelsHtml = tasksToRender.map((task, i) => {
+    const sections = buildTaskSections(task, loMap, triKey, bespokeCache);
+    return `<div data-lx-panel="${esc(task.id)}" style="${i > 0 ? 'display:none;' : ''}"><div class="lx-ap">${sections.join('\n')}</div></div>`;
+  }).join('');
+
+  el.innerHTML = `<div style="font-family:Arial,sans-serif;">${tabBarHtml}<div style="border:1px solid #dfe6ea;border-radius:0 12px 12px 12px;">${panelsHtml}</div></div>`;
+
+  // Wire tab switching — scoped to el so multiple instances on one page never conflict
+  const tabBtns = el.querySelectorAll('[data-lx-tab]');
+  const tabPanels = el.querySelectorAll('[data-lx-panel]');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.lxTab;
+      tabBtns.forEach(b => {
+        const active = b === btn;
+        b.style.background = active ? 'var(--lx-primary,#1f6fb2)' : '#e5e7eb';
+        b.style.color = active ? '#fff' : '#4a5568';
+        b.style.fontWeight = active ? '700' : '400';
+      });
+      tabPanels.forEach(p => { p.style.display = p.dataset.lxPanel === target ? '' : 'none'; });
+    });
+  });
+  initTabSwitchers(el); // wire any bespoke tab switchers inside panels
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8b. renderAssessmentNav — 17th render function
+// Container: <div id="lxdune-assessment-nav"></div>
+// Unit home navigation card: one full-width button per assessment task with
+// due date, weighting, and LO colour pills. Graceful placeholder if no tasks.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const ASSESSMENT_NAV_CSS = `
+.lx-an{max-width:950px;margin:20px auto;font-family:Arial,sans-serif;color:#1F2A33;}
+.lx-an-heading{font-size:15px;font-weight:700;color:var(--lx-primary,#1f6fb2);margin-bottom:12px;}
+.lx-an-items{display:flex;flex-direction:column;gap:16px;}
+.lx-an-btn{display:block;width:100%;padding:12px 16px;background:var(--lx-primary,#1f6fb2);color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:.97em;font-family:Arial,sans-serif;box-sizing:border-box;}
+.lx-an-btn-disabled{display:block;width:100%;padding:12px 16px;background:#9aacb8;color:#fff;border-radius:8px;font-weight:700;font-size:.97em;font-family:Arial,sans-serif;box-sizing:border-box;cursor:not-allowed;}
+.lx-an-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.lx-an-pill{display:inline-block;padding:3px 8px;border-radius:999px;font-size:.78em;font-weight:700;background:#e8f0fb;color:var(--lx-primary,#1f6fb2);border:1px solid #b0c8e8;}
+.lx-an-lo{display:inline-block;padding:3px 8px;border-radius:999px;font-size:.78em;font-weight:700;color:#fff;}`;
+
+export async function renderAssessmentNav({ forUnit, forTri, forYear, containerId = 'lxdune-assessment-nav' } = {}) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+
+  let unitCfg;
+  try {
+    unitCfg = await fetchJson(`${BASE}config/units/${forUnit}.json`);
+  } catch (e) {
+    setError(el, `Could not load content: ${e.message}`);
+    return;
+  }
+
+  applyTheme(unitCfg);
+  injectStyles('lx-an-styles', ASSESSMENT_NAV_CSS);
+
+  const tasks = unitCfg.assessmentTasks ?? [];
+  if (!tasks.length) {
+    el.innerHTML = `<div class="lx-an"><div style="padding:16px;border:1px solid #dfe6ea;border-radius:8px;color:#6F7B84;font-style:italic;">Assessment information will be published here shortly.</div></div>`;
+    return;
+  }
+
+  const loMap  = Object.fromEntries((unitCfg.learningOutcomes ?? []).map(lo => [lo.id, lo]));
+  const triKey = forTri && forYear ? `${forTri}-${forYear}` : null;
+
+  const itemsHtml = tasks.map((task, i) => {
+    const triDates = triKey ? (task.trimesterDates?.[triKey] ?? {}) : {};
+    const metaPills = [
+      triDates.due   ? `Due: ${esc(formatDateAU(triDates.due))}` : null,
+      task.weighting ? `${task.weighting}%` : null,
+    ].filter(Boolean).map(t => `<span class="lx-an-pill">${t}</span>`).join('');
+
+    const loPills = (task.learningOutcomes ?? []).map(id => {
+      const lo    = loMap[id];
+      const color = lo?.color ?? 'var(--lx-primary,#1f6fb2)';
+      return `<span class="lx-an-lo" style="background:${color};">${esc(id)}</span>`;
+    }).join('');
+
+    const taskUrl = task.links?.taskFiles ?? null;
+    const label   = `Assessment Task ${i + 1} — ${esc(task.title)}`;
+    const btnHtml = taskUrl
+      ? `<a class="lx-an-btn" href="${esc(taskUrl)}" target="_blank" rel="noopener">${label}</a>`
+      : `<div class="lx-an-btn-disabled">${label} (Link coming soon)</div>`;
+
+    return `<div>${btnHtml}<div class="lx-an-meta">${metaPills}${loPills}</div></div>`;
+  }).join('');
+
+  el.innerHTML = `<div class="lx-an"><div class="lx-an-heading">Assessment Tasks</div><div class="lx-an-items">${itemsHtml}</div></div>`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

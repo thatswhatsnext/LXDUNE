@@ -88,6 +88,8 @@
         <option value="resource-directory">Resource directory</option>
         <option value="outcomes">Learning outcomes table</option>
         <option value="assessment-page">Assessment page</option>
+        <option value="all-assessments">All assessments (tabbed)</option>
+        <option value="assessment-nav">Assessment navigation</option>
         <option value="course-hub">Course hub</option>
         <option value="presubmission-checklist">Pre-submission checklist</option>
         <option value="unit-key-info">Unit key info (navigation)</option>
@@ -255,6 +257,30 @@
       `  });\n` +
       `<\/script>\n` +
       `<div id="lxdune-assessment-page"></div>`
+    );
+  }
+
+  function shellAllAssessments(unit, tri, year) {
+    return (
+      `<!-- ${unit} ${tri} ${year} — All assessments (tabbed) -->\n` +
+      `<div id="lxdune-assessment-page"></div>\n` +
+      `<script type="module">\n` +
+      `  import { renderAssessmentPage }\n` +
+      `  from "${PAGES_BASE}/moodle-blocks/blocks.js";\n` +
+      `  renderAssessmentPage({ forUnit: "${unit}", forTri: "${tri}", forYear: "${year}", forTask: "all" });\n` +
+      `<\/script>`
+    );
+  }
+
+  function shellAssessmentNav(unit, tri, year) {
+    return (
+      `<!-- ${unit} ${tri} ${year} — Assessment navigation -->\n` +
+      `<div id="lxdune-assessment-nav"></div>\n` +
+      `<script type="module">\n` +
+      `  import { renderAssessmentNav }\n` +
+      `  from "${PAGES_BASE}/moodle-blocks/blocks.js";\n` +
+      `  renderAssessmentNav({ forUnit: "${unit}", forTri: "${tri}", forYear: "${year}" });\n` +
+      `<\/script>`
     );
   }
 
@@ -602,6 +628,44 @@
         code,
         note: `Single <code>&lt;script&gt;</code> imports all functions once. Place each <code>&lt;div&gt;</code> where that block should appear. Scoped container IDs prevent conflicts on single-page Moodle layouts.`,
         rows: 18,
+      });
+      output.style.display = 'block';
+      bindCopyButtons();
+      btn.disabled = false;
+      btn.textContent = 'Generate shell';
+      output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // All assessments (tabbed)
+    if (pageType === 'all-assessments') {
+      const code = shellAllAssessments(unit, tri, year);
+      const output = document.getElementById('output');
+      output.innerHTML = `<div class="result-banner">Shell for <strong>${unit}</strong> — <strong>${tri} ${year}</strong></div>` + snippetCard({
+        title: 'All assessments (tabbed)',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code,
+        note: `Renders AT1 and AT2 in a tab switcher — one shell replaces two separate assessment page shells. Tab switching is IIFE-scoped so multiple instances on the same page don\'t conflict. Container: <code>lxdune-assessment-page</code>.`,
+        rows: 9,
+      });
+      output.style.display = 'block';
+      bindCopyButtons();
+      btn.disabled = false;
+      btn.textContent = 'Generate shell';
+      output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Assessment navigation
+    if (pageType === 'assessment-nav') {
+      const code = shellAssessmentNav(unit, tri, year);
+      const output = document.getElementById('output');
+      output.innerHTML = `<div class="result-banner">Shell for <strong>${unit}</strong> — <strong>${tri} ${year}</strong></div>` + snippetCard({
+        title: 'Assessment navigation',
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code,
+        note: `Renders one full-width button per assessment task with due date, weighting, and LO pills. Intended for the unit home page. Container: <code>lxdune-assessment-nav</code>.`,
+        rows: 9,
       });
       output.style.display = 'block';
       bindCopyButtons();
