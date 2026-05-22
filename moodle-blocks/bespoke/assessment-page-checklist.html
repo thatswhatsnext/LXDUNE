@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDSE358 AT1 — Action Checklist</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #F0EDF8;
+    color: #1F2A33;
+    padding: 28px 16px 48px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .lx-cl-wrap {
+    max-width: 950px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  .lx-cl-header {
+    background: #7C5DB6;
+    color: #fff;
+    border-radius: 12px 12px 0 0;
+    padding: 24px 28px 20px;
+  }
+  .lx-cl-header-meta {
+    font-size: 12px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    opacity: .8;
+    margin-bottom: 6px;
+  }
+  .lx-cl-header h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .lx-cl-header-sub {
+    font-size: .9rem;
+    opacity: .85;
+  }
+  .lx-cl-weight-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 20px;
+    padding: 2px 12px;
+    font-size: .82rem;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+
+  /* ── Progress bar ── */
+  .lx-cl-progress-wrap {
+    background: #fff;
+    padding: 14px 28px 16px;
+    border-left: 1px solid #e0d9f5;
+    border-right: 1px solid #e0d9f5;
+  }
+  .lx-cl-progress-label {
+    font-size: .78rem;
+    font-weight: 600;
+    color: #7C5DB6;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: 6px;
+  }
+  .lx-cl-progress-track {
+    background: #EDE8FB;
+    border-radius: 99px;
+    height: 10px;
+    overflow: hidden;
+  }
+  .lx-cl-progress-fill {
+    background: linear-gradient(90deg, #7C5DB6, #4FA9B5);
+    height: 100%;
+    width: 35%;
+    border-radius: 99px;
+  }
+  .lx-cl-progress-pct {
+    font-size: .75rem;
+    color: #888;
+    margin-top: 5px;
+  }
+
+  /* ── LO pills ── */
+  .lx-cl-los {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+  }
+  .lx-cl-lo {
+    background: #EDE8FB;
+    border: 1px solid #c9bef5;
+    color: #7C5DB6;
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: .75rem;
+    font-weight: 600;
+  }
+
+  /* ── Section groups ── */
+  .lx-cl-section {
+    background: #fff;
+    border-left: 1px solid #e0d9f5;
+    border-right: 1px solid #e0d9f5;
+    padding: 0 28px 24px;
+    margin-top: 4px;
+  }
+  .lx-cl-section:last-of-type {
+    border-radius: 0 0 12px 12px;
+    border-bottom: 1px solid #e0d9f5;
+  }
+
+  .lx-cl-part-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px 0 12px;
+    border-bottom: 1px solid #EDE8FB;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .lx-cl-part-label {
+    background: #7C5DB6;
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 3px 10px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .lx-cl-part-title {
+    font-weight: 700;
+    font-size: 1rem;
+    flex: 1;
+    min-width: 160px;
+  }
+  .lx-cl-marks {
+    background: #FAF9FF;
+    border: 1px solid #c9bef5;
+    color: #7C5DB6;
+    font-size: .78rem;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 3px 12px;
+    white-space: nowrap;
+  }
+
+  /* ── Early deadline notice ── */
+  .lx-cl-early-deadline {
+    background: #FEF4EB;
+    border: 1px solid #E3B089;
+    border-left: 4px solid #E3B089;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    font-size: .88rem;
+    color: #7a4a1e;
+  }
+  .lx-cl-early-deadline strong {
+    color: #b85c00;
+  }
+
+  /* ── Checklist items ── */
+  .lx-cl-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .lx-cl-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    transition: background .15s;
+  }
+  .lx-cl-list li:hover {
+    background: #FAF9FF;
+  }
+
+  /* Custom checkbox */
+  .lx-cl-list input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid #c9bef5;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    margin-top: 1px;
+    transition: border-color .15s, background .15s;
+  }
+  .lx-cl-list input[type="checkbox"]:hover {
+    border-color: #7C5DB6;
+  }
+  .lx-cl-list input[type="checkbox"]:checked {
+    background: #4FA9B5;
+    border-color: #4FA9B5;
+  }
+  .lx-cl-list input[type="checkbox"]:checked::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border: 2px solid #fff;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+  }
+
+  .lx-cl-item-text {
+    font-size: .93rem;
+    line-height: 1.45;
+    padding-top: 1px;
+  }
+  .lx-cl-item-text .lx-cl-deadline-inline {
+    display: inline-block;
+    background: #FEF4EB;
+    border: 1px solid #E3B089;
+    color: #b85c00;
+    font-size: .76rem;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 1px 8px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ── Submission callout ── */
+  .lx-cl-submit-callout {
+    background: #7C5DB6;
+    color: #fff;
+    border-radius: 10px;
+    padding: 18px 24px;
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .lx-cl-submit-callout .lx-cl-submit-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+  .lx-cl-submit-callout .lx-cl-submit-body {
+    flex: 1;
+    min-width: 180px;
+  }
+  .lx-cl-submit-callout .lx-cl-submit-label {
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    opacity: .8;
+    margin-bottom: 3px;
+  }
+  .lx-cl-submit-callout .lx-cl-submit-date {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .lx-cl-submit-callout .lx-cl-submit-note {
+    font-size: .83rem;
+    opacity: .85;
+    margin-top: 3px;
+  }
+
+  /* ── LO row inside part header ── */
+  .lx-cl-part-meta {
+    flex-basis: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+<div class="lx-cl-wrap">
+
+  <!-- Header -->
+  <div class="lx-cl-header">
+    <div class="lx-cl-header-meta">EDSE358 &mdash; Science Education 11&ndash;12: Plan, Assess and Report</div>
+    <h1>AT1 &mdash; Teaching, Learning and Assessment Design</h1>
+    <div class="lx-cl-header-sub">Use this checklist to track your progress through each part of the task.</div>
+    <div class="lx-cl-weight-badge">Worth 60% of final grade</div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="lx-cl-progress-wrap">
+    <div class="lx-cl-progress-label">Checklist progress</div>
+    <div class="lx-cl-progress-track">
+      <div class="lx-cl-progress-fill"></div>
+    </div>
+    <div class="lx-cl-progress-pct">Concept demo &mdash; ~35% complete</div>
+  </div>
+
+  <!-- Part A -->
+  <div class="lx-cl-section">
+    <div class="lx-cl-part-header">
+      <div class="lx-cl-part-label">Part A</div>
+      <div class="lx-cl-part-title">Forum Post &mdash; Discipline &amp; Topic Selection</div>
+      <div class="lx-cl-marks">20 marks</div>
+      <div class="lx-cl-part-meta">
+        <div class="lx-cl-los">
+          <span class="lx-cl-lo">LO1 Lesson Sequence Design</span>
+          <span class="lx-cl-lo">LO3 Activities, Assessment &amp; Programming</span>
+        </div>
+      </div>
+    </div>
+    <div class="lx-cl-early-deadline">
+      <strong>Early deadline: 22 March 2026</strong> &mdash; Part A must be submitted before the full task due date.
+      Complete and post your forum entry before moving to Part B.
+    </div>
+    <ul class="lx-cl-list">
+      <li>
+        <input type="checkbox" id="a1">
+        <label class="lx-cl-item-text" for="a1">Choose a NSW Stage 6 science discipline for your unit plan</label>
+      </li>
+      <li>
+        <input type="checkbox" id="a2">
+        <label class="lx-cl-item-text" for="a2">Download the assessment template from the Assessment Portal</label>
+      </li>
+      <li>
+        <input type="checkbox" id="a3">
+        <label class="lx-cl-item-text" for="a3">Complete the highlighted sections of the task outline</label>
+      </li>
+      <li>
+        <input type="checkbox" id="a4">
+        <label class="lx-cl-item-text" for="a4">Write a 100-word forum post covering: discipline, topic, first-hand experience, and individual or group structure</label>
+      </li>
+      <li>
+        <input type="checkbox" id="a5">
+        <label class="lx-cl-item-text" for="a5">
+          Post your entry to the AT1 Part A forum
+          <span class="lx-cl-deadline-inline">by 22 March 2026</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Part B -->
+  <div class="lx-cl-section">
+    <div class="lx-cl-part-header">
+      <div class="lx-cl-part-label">Part B</div>
+      <div class="lx-cl-part-title">5-Week Teaching and Learning Program</div>
+      <div class="lx-cl-marks">20 marks</div>
+      <div class="lx-cl-part-meta">
+        <div class="lx-cl-los">
+          <span class="lx-cl-lo">LO1 Lesson Sequence Design</span>
+          <span class="lx-cl-lo">LO2 Resources, ICT &amp; Safe Approaches</span>
+          <span class="lx-cl-lo">LO3 Activities, Assessment &amp; Programming</span>
+        </div>
+      </div>
+    </div>
+    <ul class="lx-cl-list">
+      <li>
+        <input type="checkbox" id="b1">
+        <label class="lx-cl-item-text" for="b1">Design a 5-week teaching and learning program using the supplied template</label>
+      </li>
+      <li>
+        <input type="checkbox" id="b2">
+        <label class="lx-cl-item-text" for="b2">Include high-level teacher and student activities for each week</label>
+      </li>
+      <li>
+        <input type="checkbox" id="b3">
+        <label class="lx-cl-item-text" for="b3">Embed at least 2 formative assessment tasks per week</label>
+      </li>
+      <li>
+        <input type="checkbox" id="b4">
+        <label class="lx-cl-item-text" for="b4">Integrate ICT in ways that enhance &mdash; not just substitute &mdash; learning</label>
+      </li>
+      <li>
+        <input type="checkbox" id="b5">
+        <label class="lx-cl-item-text" for="b5">Embed Aboriginal and Torres Strait Islander perspectives authentically</label>
+      </li>
+      <li>
+        <input type="checkbox" id="b6">
+        <label class="lx-cl-item-text" for="b6">Address differentiation strategies for the named cohort</label>
+      </li>
+      <li>
+        <input type="checkbox" id="b7">
+        <label class="lx-cl-item-text" for="b7">Confirm the program builds coherently toward the model construction task</label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Part C -->
+  <div class="lx-cl-section">
+    <div class="lx-cl-part-header">
+      <div class="lx-cl-part-label">Part C</div>
+      <div class="lx-cl-part-title">Justification Essays (2 essays, ~800 words total)</div>
+      <div class="lx-cl-marks">50 marks</div>
+      <div class="lx-cl-part-meta">
+        <div class="lx-cl-los">
+          <span class="lx-cl-lo">LO1 Lesson Sequence Design</span>
+          <span class="lx-cl-lo">LO2 Resources, ICT &amp; Safe Approaches</span>
+          <span class="lx-cl-lo">LO3 Activities, Assessment &amp; Programming</span>
+        </div>
+      </div>
+    </div>
+    <ul class="lx-cl-list">
+      <li>
+        <input type="checkbox" id="c1">
+        <label class="lx-cl-item-text" for="c1">Write Essay 1: Justify your key pedagogical decisions using peer-reviewed literature</label>
+      </li>
+      <li>
+        <input type="checkbox" id="c2">
+        <label class="lx-cl-item-text" for="c2">Write Essay 2: Justify your resource choices and explain why they suit this cohort</label>
+      </li>
+      <li>
+        <input type="checkbox" id="c3">
+        <label class="lx-cl-item-text" for="c3">Connect both essays to syllabus outcomes and constructivist principles</label>
+      </li>
+      <li>
+        <input type="checkbox" id="c4">
+        <label class="lx-cl-item-text" for="c4">Draw on both supplied materials and your own wide reading</label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Part D1 -->
+  <div class="lx-cl-section">
+    <div class="lx-cl-part-header">
+      <div class="lx-cl-part-label">Part D1</div>
+      <div class="lx-cl-part-title">Feedback Plan</div>
+      <div class="lx-cl-marks">5 marks</div>
+      <div class="lx-cl-part-meta">
+        <div class="lx-cl-los">
+          <span class="lx-cl-lo">LO4 Feedback &amp; Reflective Practice</span>
+        </div>
+      </div>
+    </div>
+    <ul class="lx-cl-list">
+      <li>
+        <input type="checkbox" id="d1a">
+        <label class="lx-cl-item-text" for="d1a">Articulate a feedback plan specifying timing, form, and differentiation</label>
+      </li>
+      <li>
+        <input type="checkbox" id="d1b">
+        <label class="lx-cl-item-text" for="d1b">Explain how your feedback will inform subsequent teaching decisions</label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Part D2 -->
+  <div class="lx-cl-section">
+    <div class="lx-cl-part-header">
+      <div class="lx-cl-part-label">Part D2</div>
+      <div class="lx-cl-part-title">Reflective Statement</div>
+      <div class="lx-cl-marks">5 marks</div>
+      <div class="lx-cl-part-meta">
+        <div class="lx-cl-los">
+          <span class="lx-cl-lo">LO4 Feedback &amp; Reflective Practice</span>
+        </div>
+      </div>
+    </div>
+    <ul class="lx-cl-list">
+      <li>
+        <input type="checkbox" id="d2a">
+        <label class="lx-cl-item-text" for="d2a">Write a reflective statement identifying specific learning gained from this task</label>
+      </li>
+      <li>
+        <input type="checkbox" id="d2b">
+        <label class="lx-cl-item-text" for="d2b">Connect your learning to a concrete future teaching decision</label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Final submission callout -->
+  <div class="lx-cl-submit-callout">
+    <div class="lx-cl-submit-icon">&#128197;</div>
+    <div class="lx-cl-submit-body">
+      <div class="lx-cl-submit-label">Full submission deadline</div>
+      <div class="lx-cl-submit-date">Sunday 5 April 2026</div>
+      <div class="lx-cl-submit-note">Submit all parts (B, C, D1, D2) via the Turnitin link on the Assessment page.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
