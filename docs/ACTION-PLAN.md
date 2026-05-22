@@ -257,6 +257,13 @@ Migrate EDSE357 alignment map data from static template into
 
 **Trigger:** when `renderAlignmentMap()` is built as part of item 16.
 
+### 24. Deploy multi-assessment shells to live Moodle units ⬜
+Replace existing single-task AT1 and AT2 shells on EDSE357 and EDSE358
+course pages with the new 'All assessments (tabbed)' shell — one shell
+replaces two, students see AT1/AT2 in a tab switcher. Also deploy
+`renderAssessmentNav` to course homepages. Generate shells from
+`generate/index.html` after `feature/multi-assessment-page` merges to main.
+
 ---
 
 ## 🔵 Do before T2 2026 go-live — EDSE362
@@ -278,6 +285,8 @@ Migrate EDSE357 alignment map data from static template into
 ---
 
 ## ✅ Completed
+
+- [x] renderAssessmentPage updated to support multi-task tabbed rendering (`forTask: 'all'` or array). Tab switcher scoped to container element — multiple instances on one page don't conflict. `renderAssessmentNav` added as 17th render function (unit home navigation card — one button per task, due date + weighting + LO pills). Both added to generator (shell types: 'All assessments (tabbed)', 'Assessment navigation') and test harness (view mode selector: Single task / All tasks tabbed / Navigation buttons).
 
 - [x] Phase 1 — Config layer (trimester-config.json, all unit JSONs)
 - [x] Phase 2 — Generator UI (generate/index.html)

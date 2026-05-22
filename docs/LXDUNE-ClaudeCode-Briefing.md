@@ -1,6 +1,6 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-05-21 (EDSE357 LO replacement label/aitsl schema; constructive-alignment-map-EDSE357.html template added; ACTION-PLAN item 23 added)
+**Last updated:** 2026-05-22 (multi-task tabbed assessment page; renderAssessmentNav added as fn 17; generator shell types; test harness view mode selector)
 **Repo:** `https://github.com/thatswhatsnext/LXDUNE`
 **GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
@@ -135,7 +135,7 @@ Live scripts serving from main:
 
 `generate/index.html` — admin-only tool for generating Moodle shell snippets. Covers all 9 block types including Resource directory, Assessment page (with task selector), and Course Hub.
 
-### Phase 3 — Block renderer ✅ COMPLETE (15 functions)
+### Phase 3 — Block renderer ✅ COMPLETE (17 functions)
 
 `moodle-blocks/blocks.js` — ES module with 15 exported render functions and a theme system.
 
@@ -150,7 +150,7 @@ Live scripts serving from main:
 | 5 | `renderAssessmentDownloadBlock` | `#lxdune-assessment-downloads` | No |
 | 6 | `renderLearningOutcomesTable` | `#lxdune-outcomes` | No — dual schema (`label`/`aitsl` or `title`/`gtsd`); each LO row includes collapsible reverse alignment map showing teaching weeks + assessment references |
 | 7 | `renderResourceDirectory` | `#lxdune-resource-directory` | Yes |
-| 8 | `renderAssessmentPage` | `#lxdune-assessment-page` | No — takes `{ forUnit, forTask }` |
+| 8 | `renderAssessmentPage` | `#lxdune-assessment-page` | No — takes `{ forUnit, forTask, forTri, forYear }`; `forTask`: single string (backwards compat), `'all'` or array → tabbed multi-task mode; tab switcher scoped to container |
 | 9 | `renderPresubmissionChecklist` | `#lxdune-presubmission-checklist` | No — takes `{ forUnit, forTask }` |
 | 10 | `renderCourseHub` | `div[data-lx-block="course-hub"]` | No — renders all weeks 1–8 |
 | 11 | `renderUnitKeyInfo` | `#lxdune-unit-key-info` | No — navigation block, course homepage |
@@ -158,6 +158,8 @@ Live scripts serving from main:
 | 13 | `renderOrientationNote` | `#lxdune-orientation-note` | Yes — accepts `forWeek`/`forDate`; renders nothing if `orientationNote` absent |
 | 14 | `renderForumPrompts` | `#lxdune-forum-prompts` | Yes — accepts `forWeek`/`forDate`; renders nothing if `forumPrompts` absent/empty |
 | 15 | `renderWorkedExample` | `#lxdune-worked-example` | Yes — accepts `forWeek`/`forDate`; collapsible `<details>`; renders nothing if `workedExample` absent |
+| 16 | `renderCurrentWeek` | `#lxdune-current-week` | No — date-aware spotlight card for the current teaching week; orientation note, announcement intro, live session focus+tasks, first forum prompt, LO pills |
+| 17 | `renderAssessmentNav` | `#lxdune-assessment-nav` | No — unit home navigation card; one full-width button per assessmentTask with due date, weighting, LO pills; graceful placeholder if no tasks |
 
 **Note:** `renderCourseHub` uses a `data-lx-block` attribute selector rather than an `id` — intentional, to allow the block to sit anywhere in an existing page without ID conflicts.
 
@@ -539,6 +541,10 @@ Teaching weeks (1–8) follow this shape. All three units conform to this schema
 - unit-key-info, assessment-status
 - orientation-note, forum-prompts, worked-example (week-aware date-driven renders)
 - **synthesis-template** — week selector dropdown; outputs `synthesisTemplate` plain text for lecturer personalisation (not a render shell)
+- **all-assessments** — 'All assessments (tabbed)'; renders all assessment tasks in a tab switcher; no task or week selector needed
+- **assessment-nav** — 'Assessment navigation'; compact unit home navigation card; no task or week selector needed
+- **current-week** — date-aware spotlight card for the current teaching week
+- **full-section** — week selector; aggregated single-import shell for all 6 week blocks
 
 Pre-generated shell files are in `docs/` (git-ignored). See Shell snippet files section above.
 
