@@ -270,11 +270,20 @@
     <button class="tab-btn" id="tab-hub" type="button">Course Hub</button>
     <button class="tab-btn" id="tab-checklist" type="button">Checklist</button>
     <button class="tab-btn" id="tab-nav" type="button">Navigation</button>
+    <button class="tab-btn" id="tab-spl" type="button">Single Page Layout</button>
   </div>
 </div>
 
 <!-- ── Block sections ─────────────────────────────────────────────────────── -->
 <div class="blocks-page">
+
+  <div class="block-section">
+    <div class="block-section-hdr">
+      <span class="fn-name">renderCurrentWeek</span>
+      <span class="ctr-id">#lxdune-current-week</span>
+    </div>
+    <div class="block-output" id="lxdune-current-week"></div>
+  </div>
 
   <div class="block-section">
     <div class="block-section-hdr">
@@ -396,6 +405,12 @@
   </div>
 </div>
 
+<!-- ── Single page layout tab ─────────────────────────────────────────────── -->
+<div class="assess-page" id="spl-page" style="display:none;">
+  <div id="lxdune-current-week-spl" style="margin-bottom:20px;"></div>
+  <div id="spl-content"></div>
+</div>
+
 <!-- ── Assessment tab ─────────────────────────────────────────────────────── -->
 <div class="assess-page" id="assess-page" style="display:none;">
   <div class="assess-ctrl-bar">
@@ -428,6 +443,7 @@ import {
   renderOrientationNote,
   renderForumPrompts,
   renderWorkedExample,
+  renderCurrentWeek,
 } from '../moodle-blocks/blocks.js';
 
 // ── State ─────────────────────────────────────────────────────────────────────
@@ -448,6 +464,7 @@ const CONTAINER_IDS = [
   'lxdune-orientation-note',
   'lxdune-forum-prompts',
   'lxdune-worked-example',
+  'lxdune-current-week',
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -653,11 +670,12 @@ async function renderAll() {
     renderOrientationNote(params).catch(e => showErr('lxdune-orientation-note', e)),
     renderForumPrompts(params).catch(e => showErr('lxdune-forum-prompts', e)),
     renderWorkedExample(params).catch(e => showErr('lxdune-worked-example', e)),
+    renderCurrentWeek(params).catch(e => showErr('lxdune-current-week', e)),
   ]);
 
   if (gen !== renderGen) return; // a newer render already ran
 
-  ['lxdune-workflow', 'lxdune-lecture', 'lxdune-live-hub', 'lxdune-resource-directory', 'lxdune-orientation-note', 'lxdune-forum-prompts', 'lxdune-worked-example'].forEach(markEmptyIfBlank);
+  ['lxdune-workflow', 'lxdune-lecture', 'lxdune-live-hub', 'lxdune-resource-directory', 'lxdune-orientation-note', 'lxdune-forum-prompts', 'lxdune-worked-example', 'lxdune-current-week'].forEach(markEmptyIfBlank);
 }
 
 function scheduleRender(delay = 150) {
@@ -666,6 +684,7 @@ function scheduleRender(delay = 150) {
   if (activeTab === 'hub') scheduleHubRender(delay);
   if (activeTab === 'checklist') scheduleClRender(delay);
   if (activeTab === 'nav') scheduleNavRender(delay);
+  if (activeTab === 'spl') scheduleSplRender(delay);
 }
 
 // ── Event wiring ──────────────────────────────────────────────────────────────
@@ -706,15 +725,18 @@ function switchTab(tab) {
   document.getElementById('tab-hub').classList.toggle('active', tab === 'hub');
   document.getElementById('tab-checklist').classList.toggle('active', tab === 'checklist');
   document.getElementById('tab-nav').classList.toggle('active', tab === 'nav');
+  document.getElementById('tab-spl').classList.toggle('active', tab === 'spl');
   document.querySelector('.blocks-page').style.display = tab === 'blocks' ? '' : 'none';
   document.getElementById('assess-page').style.display = tab === 'assess' ? '' : 'none';
   document.getElementById('hub-page').style.display = tab === 'hub' ? '' : 'none';
   document.getElementById('checklist-page').style.display = tab === 'checklist' ? '' : 'none';
   document.getElementById('nav-page').style.display = tab === 'nav' ? '' : 'none';
+  document.getElementById('spl-page').style.display = tab === 'spl' ? '' : 'none';
   if (tab === 'assess') scheduleAssessRender(0);
   if (tab === 'hub') scheduleHubRender(0);
   if (tab === 'checklist') scheduleClRender(0);
   if (tab === 'nav') scheduleNavRender(0);
+  if (tab === 'spl') scheduleSplRender(0);
 }
 
 document.getElementById('tab-blocks').addEventListener('click', () => switchTab('blocks'));
@@ -722,6 +744,7 @@ document.getElementById('tab-assess').addEventListener('click', () => switchTab(
 document.getElementById('tab-hub').addEventListener('click', () => switchTab('hub'));
 document.getElementById('tab-checklist').addEventListener('click', () => switchTab('checklist'));
 document.getElementById('tab-nav').addEventListener('click', () => switchTab('nav'));
+document.getElementById('tab-spl').addEventListener('click', () => switchTab('spl'));
 
 // ── Assessment render ─────────────────────────────────────────────────────────
 
@@ -848,6 +871,56 @@ document.getElementById('sel-unit').addEventListener('change', async () => {
     scheduleAssessRender();
   }
 });
+
+// ── Single-page layout render ─────────────────────────────────────────────────
+
+let splTimer = null;
+
+async function renderSinglePageLayout() {
+  const forUnit = document.getElementById('sel-unit').value;
+  const forTri  = document.getElementById('sel-tri').value;
+  const forYear = document.getElementById('sel-year').value;
+  const weekVal = document.getElementById('sel-week').value;
+  const dateVal = document.getElementById('date-override').value;
+  const base = { forUnit, forTri, forYear };
+  const dateParams = weekVal !== 'auto' ? base : (dateVal ? { ...base, forDate: dateVal } : base);
+
+  renderCurrentWeek({ ...dateParams, containerId: 'lxdune-current-week-spl' }).catch(() => {});
+
+  const content = document.getElementById('spl-content');
+  const TEACHING_WEEKS = [1, 2, 3, 4, 5, 6, 7, 8];
+  const weeks = unitConfig?.weeks ?? {};
+  content.innerHTML = TEACHING_WEEKS.map(n => {
+    const wk = weeks[String(n)];
+    const label = wk ? (wk.item ? `${wk.item}: ${wk.title ?? ''}` : `Week ${n}`) : `Week ${n}`;
+    return `<div style="margin-bottom:32px;">
+      <div style="font-family:'Courier New',monospace;font-size:.78em;color:#9aacb8;margin-bottom:8px;padding:6px 10px;background:#1a2530;border-radius:6px;">Week ${n} — ${label}</div>
+      <div id="lxdune-orientation-note-w${n}"></div>
+      <div id="lxdune-announcement-w${n}"></div>
+      <div id="lxdune-lecture-w${n}"></div>
+      <div id="lxdune-live-hub-w${n}"></div>
+      <div id="lxdune-forum-prompts-w${n}"></div>
+      <div id="lxdune-worked-example-w${n}"></div>
+    </div>`;
+  }).join('');
+
+  await Promise.all(TEACHING_WEEKS.flatMap(n => {
+    const wp = { ...base, forWeek: n };
+    return [
+      renderOrientationNote({ ...wp, containerId: `lxdune-orientation-note-w${n}` }).catch(() => {}),
+      renderAnnouncementBlock({ ...wp, containerId: `lxdune-announcement-w${n}` }).catch(() => {}),
+      renderLectureBlock({ ...wp, containerId: `lxdune-lecture-w${n}` }).catch(() => {}),
+      renderLiveSessionHub({ ...wp, containerId: `lxdune-live-hub-w${n}` }).catch(() => {}),
+      renderForumPrompts({ ...wp, containerId: `lxdune-forum-prompts-w${n}` }).catch(() => {}),
+      renderWorkedExample({ ...wp, containerId: `lxdune-worked-example-w${n}` }).catch(() => {}),
+    ];
+  }));
+}
+
+function scheduleSplRender(delay = 150) {
+  clearTimeout(splTimer);
+  splTimer = setTimeout(renderSinglePageLayout, delay);
+}
 
 init().catch(e => setStatus(`<span class="s-err">Init error: ${e.message}</span>`));
 </script>

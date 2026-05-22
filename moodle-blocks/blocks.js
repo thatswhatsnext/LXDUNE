@@ -354,8 +354,8 @@ function buildAssessmentReminders(unitCfg, portalUrl) {
 // Container: <div id="lxdune-announcement"></div>
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
-  const el = getEl('lxdune-announcement');
+export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWeek, forDate, containerId = 'lxdune-announcement' } = {}) {
+  const el = document.getElementById(containerId);
   if (!el) return;
   let ctx;
   try { ctx = await resolve({ forUnit, forTri, forYear, forWeek, forDate }); }
@@ -433,8 +433,8 @@ export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWee
 // Container: <div id="lxdune-workflow"></div>
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
-  const el = getEl('lxdune-workflow');
+export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek, forDate, containerId = 'lxdune-workflow' } = {}) {
+  const el = document.getElementById(containerId);
   if (!el) return;
   let ctx;
   try { ctx = await resolve({ forUnit, forTri, forYear, forWeek, forDate }); }
@@ -480,8 +480,8 @@ export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek, fo
 // Container: <div id="lxdune-lecture"></div>
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function renderLectureBlock({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
-  const el = getEl('lxdune-lecture');
+export async function renderLectureBlock({ forUnit, forTri, forYear, forWeek, forDate, containerId = 'lxdune-lecture' } = {}) {
+  const el = document.getElementById(containerId);
   if (!el) return;
   let ctx;
   try { ctx = await resolve({ forUnit, forTri, forYear, forWeek, forDate }); }
@@ -541,8 +541,8 @@ export async function renderLectureBlock({ forUnit, forTri, forYear, forWeek, fo
 // Container: <div id="lxdune-live-hub"></div>
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
-  const el = getEl('lxdune-live-hub');
+export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, forDate, containerId = 'lxdune-live-hub' } = {}) {
+  const el = document.getElementById(containerId);
   if (!el) return;
   let ctx;
   try { ctx = await resolve({ forUnit, forTri, forYear, forWeek, forDate }); }
@@ -603,8 +603,8 @@ export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, 
 // Reads from unit.trimesterConfig[triKey].assessmentFiles
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function renderAssessmentDownloadBlock({ forUnit, forTri, forYear } = {}) {
-  const el = getEl('lxdune-assessment-downloads');
+export async function renderAssessmentDownloadBlock({ forUnit, forTri, forYear, containerId = 'lxdune-assessment-downloads' } = {}) {
+  const el = document.getElementById(containerId);
   if (!el) return;
   let ctx;
   try { ctx = await resolve({ forUnit, forTri, forYear, forWeek: 1 }); }
@@ -662,8 +662,8 @@ export async function renderAssessmentDownloadBlock({ forUnit, forTri, forYear }
 // Reads from unitCfg.learningOutcomes
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function renderLearningOutcomesTable({ forUnit, forTri, forYear } = {}) {
-  const el = getEl('lxdune-outcomes');
+export async function renderLearningOutcomesTable({ forUnit, forTri, forYear, containerId = 'lxdune-outcomes' } = {}) {
+  const el = document.getElementById(containerId);
   if (!el) return;
   let ctx;
   try { ctx = await resolve({ forUnit, forTri, forYear, forWeek: 1 }); }
@@ -779,8 +779,8 @@ export async function renderLearningOutcomesTable({ forUnit, forTri, forYear } =
 // Groups items by category and renders pill-links under category headings.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function renderResourceDirectory({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
-  const el = getEl('lxdune-resource-directory');
+export async function renderResourceDirectory({ forUnit, forTri, forYear, forWeek, forDate, containerId = 'lxdune-resource-directory' } = {}) {
+  const el = document.getElementById(containerId);
   if (!el) return;
   let ctx;
   try { ctx = await resolve({ forUnit, forTri, forYear, forWeek, forDate }); }
@@ -851,8 +851,8 @@ function initTabSwitchers(container) {
   });
 }
 
-export async function renderAssessmentPage({ forUnit, forTask, forTri, forYear } = {}) {
-  const el = getEl('lxdune-assessment-page');
+export async function renderAssessmentPage({ forUnit, forTask, forTri, forYear, containerId = 'lxdune-assessment-page' } = {}) {
+  const el = document.getElementById(containerId);
   if (!el) return;
 
   let unitCfg;
@@ -1077,8 +1077,8 @@ const CHECKLIST_CSS = `
 .lx-cl-wrap[open]>summary{border-bottom:1px solid #dfe6ea;}
 .lx-cl-wrap>.lx-cl-body{padding:16px 0;}`;
 
-export async function renderPresubmissionChecklist({ forUnit, forTask } = {}) {
-  const el = getEl('lxdune-presubmission-checklist');
+export async function renderPresubmissionChecklist({ forUnit, forTask, containerId = 'lxdune-presubmission-checklist' } = {}) {
+  const el = document.getElementById(containerId);
   if (!el) return;
 
   let unitCfg;
@@ -1120,8 +1120,8 @@ export async function renderPresubmissionChecklist({ forUnit, forTask } = {}) {
 // Renders all weeks as CSS-only collapsible <details>/<summary> rows.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function renderCourseHub({ forUnit, forTri, forYear } = {}) {
-  const el = document.querySelector('div[data-lx-block="course-hub"]');
+export async function renderCourseHub({ forUnit, forTri, forYear, containerId = null } = {}) {
+  const el = containerId ? document.getElementById(containerId) : document.querySelector('div[data-lx-block="course-hub"]');
   if (!el) return;
 
   let unitCfg;
@@ -1208,8 +1208,8 @@ export async function renderCourseHub({ forUnit, forTri, forYear } = {}) {
 // Reads bannerUrl, keyLinks, assessmentTasks, supportCallout from unitCfg.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function renderUnitKeyInfo({ forUnit, forTri, forYear } = {}) {
-  const el = getEl('lxdune-unit-key-info');
+export async function renderUnitKeyInfo({ forUnit, forTri, forYear, containerId = 'lxdune-unit-key-info' } = {}) {
+  const el = document.getElementById(containerId);
   if (!el) return;
 
   let unitCfg;
@@ -1341,8 +1341,8 @@ export async function renderUnitKeyInfo({ forUnit, forTri, forYear } = {}) {
 // Renders one card per assessmentTask with status chip, LO pills, action pills.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function renderAssessmentStatus({ forUnit, forTri, forYear } = {}) {
-  const el = getEl('lxdune-assessment-status');
+export async function renderAssessmentStatus({ forUnit, forTri, forYear, containerId = 'lxdune-assessment-status' } = {}) {
+  const el = document.getElementById(containerId);
   if (!el) return;
 
   let unitCfg;
@@ -1444,8 +1444,8 @@ export async function renderAssessmentStatus({ forUnit, forTri, forYear } = {}) 
 }
 
 // ── 13. renderOrientationNote ─────────────────────────────────────────────────
-export async function renderOrientationNote({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
-  const el = getEl('lxdune-orientation-note'); if (!el) return;
+export async function renderOrientationNote({ forUnit, forTri, forYear, forWeek, forDate, containerId = 'lxdune-orientation-note' } = {}) {
+  const el = document.getElementById(containerId); if (!el) return;
   try {
     const { unitCfg, week } = await resolve({ forUnit, forTri, forYear, forWeek, forDate });
     applyTheme(unitCfg);
@@ -1462,8 +1462,8 @@ export async function renderOrientationNote({ forUnit, forTri, forYear, forWeek,
 }
 
 // ── 14. renderForumPrompts ────────────────────────────────────────────────────
-export async function renderForumPrompts({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
-  const el = getEl('lxdune-forum-prompts'); if (!el) return;
+export async function renderForumPrompts({ forUnit, forTri, forYear, forWeek, forDate, containerId = 'lxdune-forum-prompts' } = {}) {
+  const el = document.getElementById(containerId); if (!el) return;
   try {
     const { unitCfg, week } = await resolve({ forUnit, forTri, forYear, forWeek, forDate });
     applyTheme(unitCfg);
@@ -1483,8 +1483,8 @@ export async function renderForumPrompts({ forUnit, forTri, forYear, forWeek, fo
 }
 
 // ── 15. renderWorkedExample ───────────────────────────────────────────────────
-export async function renderWorkedExample({ forUnit, forTri, forYear, forWeek, forDate } = {}) {
-  const el = getEl('lxdune-worked-example'); if (!el) return;
+export async function renderWorkedExample({ forUnit, forTri, forYear, forWeek, forDate, containerId = 'lxdune-worked-example' } = {}) {
+  const el = document.getElementById(containerId); if (!el) return;
   try {
     const { unitCfg, week } = await resolve({ forUnit, forTri, forYear, forWeek, forDate });
     applyTheme(unitCfg);
@@ -1499,4 +1499,117 @@ export async function renderWorkedExample({ forUnit, forTri, forYear, forWeek, f
   } catch (e) {
     setError(el, e);
   }
+}
+
+// ── CSS for renderCurrentWeek ─────────────────────────────────────────────────
+const CURRENT_WEEK_CSS = `
+.lx-cw{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33;line-height:1.55;}
+.lx-cw-header{padding:20px 24px;background:var(--lx-primary,#1f6fb2);color:#fff;border-radius:12px 12px 0 0;margin-bottom:0;}
+.lx-cw-header-pre{font-size:.75em;font-weight:900;text-transform:uppercase;letter-spacing:.8px;opacity:.8;margin-bottom:4px;}
+.lx-cw-title{font-size:1.25em;font-weight:900;margin:0;}
+.lx-cw-body{border:1px solid #dfe6ea;border-top:none;border-radius:0 0 12px 12px;overflow:hidden;}
+.lx-cw-section{padding:16px 20px;border-bottom:1px solid #f0f2f4;}
+.lx-cw-section:last-child{border-bottom:none;}
+.lx-cw-label{font-size:.72em;font-weight:900;text-transform:uppercase;letter-spacing:.6px;color:#6F7B84;margin-bottom:6px;}
+.lx-cw-note{background:#eef5fb;border-left:4px solid var(--lx-primary,#1f6fb2);border-radius:4px;padding:10px 14px;font-size:.92em;color:#1F2A33;}
+.lx-cw-focus{font-weight:700;font-size:.97em;color:#1F2A33;}
+.lx-cw-tasks{margin:8px 0 0 18px;padding:0;font-size:.9em;}
+.lx-cw-tasks li{margin:5px 0;}
+.lx-cw-prompt{font-size:.9em;color:#1F2A33;background:#f9fafb;border:1px solid #e8edf0;border-radius:6px;padding:10px 14px;}
+.lx-cw-see-all{display:inline-block;margin-top:6px;font-size:.82em;color:var(--lx-accent,#25797F);font-weight:700;text-decoration:none;}
+.lx-cw-lo-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+.lx-cw-lo-pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.78em;font-weight:800;color:#fff;}
+.lx-cw-pe{padding:20px;border:1px solid #dfe6ea;border-left:6px solid #6F7B84;border-radius:12px;background:#f4f6f8;}
+.lx-cw-pe h3{margin:0 0 6px;color:#1F2A33;}`;
+
+// ── 16. renderCurrentWeek ─────────────────────────────────────────────────────
+// Container: <div id="lxdune-current-week"></div>
+// Renders a 'This week' spotlight card for the current teaching week.
+export async function renderCurrentWeek({ forUnit, forTri, forYear, forDate, containerId = 'lxdune-current-week' } = {}) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  let ctx;
+  try { ctx = await resolve({ forUnit, forTri, forYear, forDate }); }
+  catch (e) { setError(el, `Could not load content: ${e.message}`); return; }
+
+  const { unitCfg, week, weekNum } = ctx;
+  applyTheme(unitCfg);
+  injectStyles('lx-cw-styles', CURRENT_WEEK_CSS);
+
+  // PE / non-teaching period
+  if (!week || NO_TEACHING.has(weekNum)) {
+    const label = weekNum === 14 ? 'Assessment and Intensive Period' : 'Professional Experience Period';
+    const reminder = buildAssessmentReminders(unitCfg, unitCfg.assessmentPortalUrl);
+    el.innerHTML = `<div class="lx-cw">
+      <div class="lx-cw-pe">
+        <h3>${esc(label)}</h3>
+        <p style="margin:0;font-size:.93em;">There is no teaching this week. Use this time for Professional Experience and to stay on top of assessment requirements.</p>
+        ${reminder}
+      </div>
+    </div>`;
+    return;
+  }
+
+  const loMap = Object.fromEntries((unitCfg.learningOutcomes ?? []).map(lo => [lo.id, lo]));
+  const sections = [];
+
+  // Orientation note — expanded (not collapsible)
+  if (week.orientationNote) {
+    sections.push(`<div class="lx-cw-section">
+      <div class="lx-cw-label">Unit context</div>
+      <div class="lx-cw-note">${esc(week.orientationNote)}</div>
+    </div>`);
+  }
+
+  // Announcement body
+  const ab = week.announcementBody ?? null;
+  const intro = typeof ab === 'object' && ab !== null ? (ab.intro ?? null) : (typeof ab === 'string' ? ab : null);
+  if (intro) {
+    sections.push(`<div class="lx-cw-section">
+      <div class="lx-cw-label">This week</div>
+      <div style="font-size:.93em;">${esc(intro)}</div>
+    </div>`);
+  }
+
+  // Live session focus + tasks
+  if (week.liveSessionFocus || (week.liveSessionTasks ?? []).length) {
+    const tasks = (week.liveSessionTasks ?? []).map(t => `<li>${esc(t)}</li>`).join('');
+    sections.push(`<div class="lx-cw-section">
+      <div class="lx-cw-label">Live session</div>
+      ${week.liveSessionFocus ? `<div class="lx-cw-focus">${esc(week.liveSessionFocus)}</div>` : ''}
+      ${tasks ? `<ul class="lx-cw-tasks">${tasks}</ul>` : ''}
+    </div>`);
+  }
+
+  // First forum prompt only
+  const prompts = week.forumPrompts ?? [];
+  if (prompts.length) {
+    const more = prompts.length > 1 ? `<span class="lx-cw-see-all">See all prompts below ↓</span>` : '';
+    sections.push(`<div class="lx-cw-section">
+      <div class="lx-cw-label">Forum activity</div>
+      <div class="lx-cw-prompt">${esc(prompts[0])}</div>
+      ${more}
+    </div>`);
+  }
+
+  // LO pills
+  const loIds = Array.isArray(week.loMapping) ? week.loMapping : [];
+  if (loIds.length) {
+    const pills = loIds.map(id => {
+      const lo = loMap[id];
+      return lo ? `<span class="lx-cw-lo-pill" style="background:${esc(lo.color)};">${esc(id)}</span>` : '';
+    }).filter(Boolean).join('');
+    sections.push(`<div class="lx-cw-section">
+      <div class="lx-cw-label">Learning outcomes this week</div>
+      <div class="lx-cw-lo-row">${pills}</div>
+    </div>`);
+  }
+
+  el.innerHTML = `<div class="lx-cw">
+    <div class="lx-cw-header">
+      <div class="lx-cw-header-pre">${esc(unitCfg.code)} • Week ${weekNum} — This week</div>
+      <div class="lx-cw-title">${esc(week.item ?? `Week ${weekNum}`)}: ${esc(week.title ?? '')}</div>
+    </div>
+    <div class="lx-cw-body">${sections.join('') || '<div class="lx-cw-section"><p style="margin:0;color:#6F7B84;">Content coming soon.</p></div>'}</div>
+  </div>`;
 }
