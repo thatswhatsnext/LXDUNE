@@ -76,9 +76,9 @@
   "assessmentTasks": [
     {
       "id": "AT1",
-      "title": "Teaching, Learning and Assessment Design",
+      "title": "Teaching and Learning Program — Model Construction Unit",
       "weighting": 60,
-      "length": null,
+      "length": "2,500 words (equivalent) ±10%",
       "learningOutcomes": [
         "LO1",
         "LO2",
@@ -100,8 +100,8 @@
         "5.1.1",
         "5.2.1"
       ],
-      "rationale": null,
-      "aim": null,
+      "rationale": "The term 'model' appears in every science discipline syllabus document. Using models to explain phenomena is a fundamental principle of science.",
+      "aim": "Plan and teach a unit culminating in students constructing a physical model to demonstrate their understanding. Demonstrate application of discipline content, syllabus knowledge, and pedagogical principles for a given cohort.",
       "links": {
         "rubric": null,
         "taskFiles": null,
@@ -113,59 +113,51 @@
         {
           "id": "A",
           "title": "Task outline and forum post",
-          "marks": 20,
-          "wordCount": "~100 words (forum post)",
-          "description": "Complete the missing details from the highlighted sections on the supplied assessment as learning task on the template. Post a 100-word summary of your intended unit plan to the dedicated forum.",
+          "marks": 5,
+          "wordCount": 100,
+          "description": "Complete missing sections of the supplied assessment-as-learning task outline and post a 100-word summary to the dedicated forum by 8 March.",
           "requirements": [
-            "Complete the highlighted sections of the provided task outline using the NSW science discipline syllabus of your choice",
-            "Clearly state the science discipline, topic name, and module/unit focus",
-            "Indicate whether the assessment as learning task will be individual or small group, and briefly justify this choice",
-            "Post a 100-word summary to the forum by 8 March 2026 mentioning the discipline, topic, any first-hand experience planned, and group/individual structure"
+            "Complete highlighted sections of the provided task outline using your chosen NSW science discipline syllabus",
+            "Choose individual or small group model construction task — justify this in Part C",
+            "Post 100-word forum summary naming: science discipline, topic, Module/Unit/s, group or individual assessment, and any major first-hand experience"
           ],
           "bespoke": null,
           "loLinks": [
-            "LO1",
-            "LO2"
+            "LO3"
           ]
         },
         {
           "id": "B",
           "title": "Unit program",
-          "marks": 20,
-          "wordCount": "~1500 word equivalent",
-          "description": "Write a teaching and learning program for five weeks including time allocated for model completion. Each week has a single A4 page as per the supplied template.",
+          "marks": 50,
+          "wordCount": 1500,
+          "description": "Five-week teaching and learning program for a given cohort, culminating in student model construction.",
           "requirements": [
-            "Five-week program on the supplied template — one A4 page per week",
-            "High level detail of what teachers and students do each week",
-            "Suggested learning activities and resources",
-            "Differentiation to meet the learning needs of the given cohort",
-            "At least two formative assessment tasks per week to guide further teaching and learning",
-            "Program must address the given Skills outcomes and single Knowledge and Understanding outcome",
-            "Unit program MUST be based on NSW syllabus documents"
+            "Five weeks, one A4 page per week on the supplied template",
+            "Integrate 10 hours of model construction and portfolio time across the five weeks as you see fit",
+            "Each week: high-level teacher/student activity detail, suggested learning activities and resources, differentiation for the named cohort, at least two formative assessment tasks",
+            "Address given Skills outcomes and the single Knowledge and Understanding outcome defined in Part A",
+            "Must be based on NSW syllabus documents"
           ],
+          "note": "Word equivalent: research, critical thinking, and curation effort is recognised — actual word count may be less than 1500.",
           "bespoke": null,
           "loLinks": [
+            "LO1",
             "LO2",
-            "LO3"
-          ],
-          "guidanceNotes": [
-            "ICT use should enhance learning — not merely substitute a non-digital activity for a digital one. For each ICT tool in your unit, explain what it makes possible that a non-digital approach could not. Discipline examples: PhET simulations (Chemistry, Physics), Geogebra (Mathematics/Science data), NESA data sets (Earth and Environmental Science, Biology), virtual excursions, modelling tools.",
-            "Aboriginal and Torres Strait Islander perspectives should be embedded as integral to the science content — not added as a separate topic or acknowledgement. Identify where in your unit these perspectives connect authentically to a syllabus outcome and explain how you would frame this for students.",
-            "Your five-week unit should show a clear sequence — each week building on the last toward the model construction task. Before submitting, read your unit from Week 1 to Week 5 and ask: could a student do Week 3 without having done Weeks 1 and 2? If yes, your sequence may need stronger connections between weeks.",
-            "Formative assessment should appear twice in each week of your program — once early in the lesson to activate or check prior knowledge, and once later to consolidate or identify gaps before the next lesson. Specify what students produce at each point and what feedback focuses on."
+            "LO3",
+            "LO4"
           ]
         },
         {
           "id": "C",
-          "title": "Justification essays",
-          "marks": 50,
-          "wordCount": "~800 words",
-          "description": "Write two short justification essays for the pedagogical decisions you made in your unit.",
+          "title": "Justification essay",
+          "marks": 35,
+          "wordCount": 800,
+          "description": "Short essay justifying pedagogical decisions made throughout the unit planning process.",
           "requirements": [
-            "Essay 1 (15 marks): Explain why key pedagogical decisions were made. Link decisions to cohort needs, syllabus outcomes, and constructivist principles. Use peer-reviewed literature.",
-            "Essay 2 (15 marks): Justify your resource choices. Explain why selected resources are superior for this cohort and unit. Link to outcomes, differentiation, and ICT integration. Use literature to support evaluative reasoning.",
-            "Total: 800 words across both essays",
-            "Draw on both supplied materials and further wide reading"
+            "Explain why key pedagogical decisions were made",
+            "Cite literature from supplied materials and wider reading",
+            "Demonstrate how all learners in the given cohort are supported, using examples from your unit program"
           ],
           "bespoke": null,
           "loLinks": [
@@ -175,16 +167,16 @@
         },
         {
           "id": "D1",
-          "title": "Planning timely and purposeful feedback for students",
+          "title": "Feedback planning",
           "marks": 5,
-          "wordCount": "~100 words",
-          "description": "Your unit program must include a clearly articulated feedback plan for the model construction task.",
+          "wordCount": 100,
+          "description": "Clearly articulated feedback plan embedded within the unit program for the model construction task.",
           "requirements": [
             "Specify when feedback will be provided relative to student work submission",
-            "Specify the form feedback will take (oral, written, peer, self-assessment)",
-            "Explain how feedback language will be differentiated for the named cohort including Aboriginal students and EAL/D learners",
-            "Explain how feedback will be used to inform subsequent teaching decisions",
-            "Connect feedback planning explicitly to syllabus outcomes"
+            "State the form feedback will take (oral, written, peer, self-assessment)",
+            "Explain how feedback language will be differentiated for Aboriginal students and EAL/D learners",
+            "Explain how feedback will inform subsequent teaching decisions",
+            "Connect feedback planning explicitly to the syllabus outcomes addressed"
           ],
           "bespoke": null,
           "loLinks": [
@@ -193,20 +185,17 @@
         },
         {
           "id": "D2",
-          "title": "Reflective self-assessment",
+          "title": "Personal reflection",
           "marks": 5,
-          "wordCount": "~100 words",
-          "description": "Write a reflective statement on your learning journey for this task.",
+          "wordCount": 100,
+          "description": "Brief reflection on learning throughout the assessment task.",
           "requirements": [
-            "Identify something specific you learned — not just what you did",
-            "Explain how this learning will influence your future teaching with a specific example"
+            "What worked well, what would you do differently?",
+            "When were you most engaged and why?"
           ],
           "bespoke": null,
           "loLinks": [
             "LO4"
-          ],
-          "guidanceNotes": [
-            "Your reflection should be analytical, not descriptive. Do not summarise what the task asked you to do. Instead, identify one specific thing that changed in your thinking and explain why it changed. Use a sentence frame if helpful: 'Before this task I assumed ___. Working through ___ changed my understanding because ___.'"
           ]
         }
       ],
@@ -214,255 +203,312 @@
       "rubric": [
         {
           "part": "A",
-          "criterion": "Task outline",
+          "criterion": "Task outline completion and forum post",
           "marks": 5,
+          "loLinks": [
+            "LO3"
+          ],
           "bands": {
             "HD": {
-              "range": "5",
-              "descriptor": "Task outline is accurate, complete, and professionally presented. Concept, year level, and outcomes are correctly identified. Clear alignment between model, syllabus outcomes, and assessment purpose. Forum post is concise, coherent, and clearly communicates intent."
+              "range": "",
+              "descriptor": "Task outline accurate, complete, and professionally presented. Concept, year level, and outcomes correctly identified. Clear alignment between model, syllabus outcomes, and assessment purpose. Forum post concise, coherent, and clearly communicates intent."
             },
             "D": {
-              "range": "4",
-              "descriptor": "Task outline is accurate and complete. Concept and outcomes are correctly identified with clear alignment. Forum post clearly communicates the planned assessment."
+              "range": "",
+              "descriptor": "Task outline accurate and complete. Concept and outcomes correctly identified with clear alignment. Forum post clearly communicates the planned assessment."
             },
             "C": {
-              "range": "3",
-              "descriptor": "Task outline is mostly accurate with minor errors or omissions. Concept and outcomes are identified but alignment may be brief or descriptive. Forum post addresses requirements but lacks some clarity or detail."
+              "range": "",
+              "descriptor": "Task outline mostly accurate with minor errors or omissions. Concept and outcomes identified but alignment may be brief or descriptive. Forum post addresses requirements but lacks some clarity or detail."
             },
             "P": {
-              "range": "2",
-              "descriptor": "Some inaccuracies or missing elements. Alignment between model and outcomes is unclear or underdeveloped. Forum post partially addresses task requirements."
+              "range": "",
+              "descriptor": "Some inaccuracies or missing elements. Alignment between model and outcomes unclear or underdeveloped. Forum post partially addresses task requirements."
             },
             "N": {
-              "range": "0–1",
+              "range": "",
               "descriptor": "Major inaccuracies or missing components. Outcomes not correctly identified or misaligned. Forum post not submitted or does not address requirements."
             }
           }
         },
         {
-          "part": "B1",
+          "part": "B",
           "criterion": "Unit structure, constructivist pedagogy, differentiation, NSW syllabus alignment",
           "marks": 20,
+          "loLinks": [
+            "LO1",
+            "LO2",
+            "LO3",
+            "LO4"
+          ],
           "bands": {
             "HD": {
-              "range": "20–18",
+              "range": "",
               "descriptor": "Coherent 5-week NSW Stage 6 unit. Logical progression toward model construction. Constructivist pedagogy embedded throughout. Differentiation specific and responsive to named cohort (incl. Aboriginal and EAL/D learners). Outcomes and content explicitly and accurately integrated."
             },
             "D": {
-              "range": "17–15",
+              "range": "",
               "descriptor": "Clear 5-week NSW-aligned unit with logical progression. Constructivist pedagogy evident. Differentiation addresses cohort with specific strategies. Outcomes/content accurate and clearly identified."
             },
             "C": {
-              "range": "14–12",
-              "descriptor": "NSW-aligned structure present. Progression generally clear. Constructivist elements evident. Differentiation appropriate but may lack depth. Outcomes mostly accurate. Differentiation addresses cohort with specific strategies, including some acknowledgement of Aboriginal and Torres Strait Islander students and EAL/D learners, though depth or specificity may vary."
+              "range": "",
+              "descriptor": "NSW-aligned structure present. Progression generally clear. Constructivist elements evident. Differentiation appropriate but may lack depth. Outcomes mostly accurate. Some acknowledgement of Aboriginal and Torres Strait Islander students and EAL/D learners, though depth or specificity may vary."
             },
             "P": {
-              "range": "11–9",
-              "descriptor": "Unit present but loosely aligned to NSW syllabus. Constructivist pedagogy inconsistent. Differentiation general. Outcome links incomplete or unclear. Differentiation present but general. Aboriginal and Torres Strait Islander perspectives acknowledged but not specifically integrated into planned activities."
+              "range": "",
+              "descriptor": "Unit present but loosely aligned to NSW syllabus. Constructivist pedagogy inconsistent. Differentiation general. Outcome links incomplete or unclear. Aboriginal and Torres Strait Islander perspectives acknowledged but not specifically integrated into planned activities."
             },
             "N": {
-              "range": "8–0",
-              "descriptor": "No coherent structure. Not aligned to NSW syllabus. Constructivist pedagogy absent. Differentiation absent. Outcomes missing or inaccurate. Differentiation absent or inappropriate. No acknowledgement of Aboriginal and Torres Strait Islander students or EAL/D learners in the given cohort."
+              "range": "",
+              "descriptor": "No coherent structure. Not aligned to NSW syllabus. Constructivist pedagogy absent. Differentiation absent. Outcomes missing or inaccurate. No acknowledgement of Aboriginal and Torres Strait Islander students or EAL/D learners."
             }
           }
         },
         {
-          "part": "B2",
+          "part": "B",
           "criterion": "Resources and student ICT use",
           "marks": 10,
+          "loLinks": [
+            "LO1",
+            "LO2"
+          ],
           "bands": {
             "HD": {
-              "range": "10–9",
-              "descriptor": "Resources are intentionally selected to deepen conceptual learning across the unit, with clear rationale for how each resource supports specific learning goals. A range of resource types is evident (e.g., digital simulations, primary sources, practical materials, visual models). ICT use is purposeful and enhances inquiry, collaboration, or modelling. Safety considerations are explicitly addressed in the unit program where practical work is involved, with reference to relevant guidelines (e.g., CSIS), and resources are appropriate and engaging for the named cohort."
+              "range": "",
+              "descriptor": "Resources intentionally selected to deepen conceptual learning across the unit with clear rationale for how each supports specific learning goals. Range of resource types evident. ICT purposeful and enhances inquiry, collaboration, or modelling. Resources appropriate, engaging and safe. Safety considerations explicitly addressed with reference to relevant guidelines (e.g., CSIS)."
             },
             "D": {
-              "range": "8",
-              "descriptor": "Resources clearly support learning goals and model task. ICT enhances learning meaningfully."
+              "range": "",
+              "descriptor": "Resources clearly support learning goals and model task. ICT enhances learning meaningfully. Resources and approaches generally appropriate and safe."
             },
             "C": {
-              "range": "7–6",
-              "descriptor": "Resources relevant and appropriate. ICT contributes to learning. Resources and approaches are generally appropriate and safe. Safety considerations are mentioned where relevant."
+              "range": "",
+              "descriptor": "Resources relevant and appropriate. ICT contributes to learning. Safety considerations mentioned where relevant."
             },
             "P": {
-              "range": "5",
-              "descriptor": "Resources adequate but generic or loosely connected. ICT minimal or substitutive. Resources and approaches are adequate. Safety considerations are present but may be generic or incomplete."
+              "range": "",
+              "descriptor": "Resources adequate but generic or loosely connected. ICT minimal or substitutive. Safety considerations present but may be generic or incomplete."
             },
             "N": {
-              "range": "4–0",
-              "descriptor": "Resources inappropriate, irrelevant, or absent. ICT absent or misused. Safety considerations are absent or inappropriate."
+              "range": "",
+              "descriptor": "Resources inappropriate, irrelevant, or absent. ICT absent or misused. Safety considerations absent or inappropriate."
             }
           }
         },
         {
-          "part": "B3",
+          "part": "B",
           "criterion": "Learning activities aligned to syllabus outcomes",
           "marks": 10,
+          "loLinks": [
+            "LO1",
+            "LO2",
+            "LO3"
+          ],
           "bands": {
             "HD": {
-              "range": "10–9",
-              "descriptor": "Activities explicitly aligned to NSW outcomes and scaffold toward model construction. Clear constructivist strategies evident. Descriptions detailed and implementable. A range of activity types is evident across the unit (e.g., investigations, discussions, modelling, analysis tasks, collaborative tasks). No single activity mode dominates."
+              "range": "",
+              "descriptor": "Activities explicitly aligned to NSW outcomes and scaffold toward model construction. Clear constructivist strategies evident. Descriptions detailed and implementable. Range of activity types evident across the unit (investigations, discussions, modelling, analysis, collaborative tasks). No single activity mode dominates."
             },
             "D": {
-              "range": "8",
+              "range": "",
               "descriptor": "Activities aligned and build toward model task. Constructivist approach evident. Descriptions clear."
             },
             "C": {
-              "range": "7–6",
+              "range": "",
               "descriptor": "Activities aligned and appropriate. Some constructivist elements. Descriptions generally clear."
             },
             "P": {
-              "range": "5",
+              "range": "",
               "descriptor": "Activities partially aligned. Limited constructivist pedagogy. Descriptions lack clarity."
             },
             "N": {
-              "range": "4–0",
+              "range": "",
               "descriptor": "Activities missing, misaligned, or unclear."
             }
           }
         },
         {
-          "part": "B4",
+          "part": "B",
           "criterion": "Formative assessment and feedback",
           "marks": 10,
+          "loLinks": [
+            "LO4"
+          ],
           "bands": {
             "HD": {
-              "range": "10–9",
-              "descriptor": "Two or more purposeful formative tasks embedded. Feedback specific and actionable. Clear explanation of how evidence informs future teaching and supports model completion. The unit includes a coherent evaluation strategy that explicitly connects the sequence of formative and summative tasks to the targeted syllabus outcomes, demonstrating how evidence of student learning will be gathered, interpreted and used across the five-week program."
+              "range": "",
+              "descriptor": "Two or more purposeful formative tasks embedded. Feedback specific and actionable. Clear explanation of how evidence informs future teaching and supports model completion. Coherent evaluation strategy explicitly connecting formative and summative tasks to targeted syllabus outcomes."
             },
             "D": {
-              "range": "8",
+              "range": "",
               "descriptor": "Two formative tasks embedded. Feedback linked to learning. Teaching adjustments explained."
             },
             "C": {
-              "range": "7–6",
+              "range": "",
               "descriptor": "Formative tasks present and appropriate. Feedback mentioned. Some explanation of instructional response."
             },
             "P": {
-              "range": "5",
+              "range": "",
               "descriptor": "Limited formative assessment. Feedback minimal. Little explanation of instructional adjustment."
             },
             "N": {
-              "range": "4–0",
+              "range": "",
               "descriptor": "Formative assessment missing or unclear. No meaningful feedback or instructional response."
             }
           }
         },
         {
-          "part": "C1",
+          "part": "C",
           "criterion": "Justification of pedagogical decisions",
-          "marks": 20,
+          "marks": 15,
+          "loLinks": [
+            "LO1",
+            "LO2"
+          ],
           "bands": {
             "HD": {
-              "range": "20–18",
-              "descriptor": "Presents a coherent, well-structured argument that clearly explains why key pedagogical decisions were made. Explicitly links decisions to cohort needs, syllabus outcomes, and constructivist principles. Uses integrated and synthesised peer-reviewed literature to justify choices."
+              "range": "",
+              "descriptor": "Coherent, well-structured argument clearly explaining why key pedagogical decisions were made. Explicitly links decisions to cohort needs, syllabus outcomes, and constructivist principles. Uses integrated and synthesised peer-reviewed literature."
             },
             "D": {
-              "range": "17–15",
-              "descriptor": "Clear and well-developed justification of pedagogical decisions. Links to cohort and syllabus are explicit. Literature is well integrated and supports reasoning."
+              "range": "",
+              "descriptor": "Clear and well-developed justification. Links to cohort and syllabus explicit. Literature well integrated and supports reasoning."
             },
             "C": {
-              "range": "14–12",
-              "descriptor": "Sound justification of pedagogical decisions. Links to cohort and syllabus are present but may be more descriptive than analytical. Literature supports claims."
+              "range": "",
+              "descriptor": "Sound justification. Links to cohort and syllabus present but more descriptive than analytical. Literature supports claims."
             },
             "P": {
-              "range": "11–9",
-              "descriptor": "Basic justification provided. Links to cohort or syllabus are limited or general. Minimal use of peer-reviewed literature."
+              "range": "",
+              "descriptor": "Basic justification. Links to cohort or syllabus limited or general. Minimal peer-reviewed literature."
             },
             "N": {
-              "range": "8–0",
-              "descriptor": "Justification is missing, unclear, or largely descriptive. Little or no relevant literature used."
+              "range": "",
+              "descriptor": "Justification missing, unclear, or largely descriptive. Little or no relevant literature."
             }
           }
         },
         {
-          "part": "C2",
-          "criterion": "Justification of resources",
+          "part": "C",
+          "criterion": "Justification of resources curated for the unit",
           "marks": 15,
+          "loLinks": [
+            "LO1",
+            "LO2"
+          ],
           "bands": {
             "HD": {
-              "range": "15–13",
-              "descriptor": "Provides clear selection criteria and explicitly explains why chosen resources are superior for this cohort and unit. Links resource choice to outcomes, differentiation, and ICT integration. Uses literature to support evaluative reasoning."
+              "range": "",
+              "descriptor": "Clear selection criteria. Explicitly explains why chosen resources are superior for this cohort and unit. Links resource choice to outcomes, differentiation, and ICT integration. Uses literature to support evaluative reasoning."
             },
             "D": {
-              "range": "12–11",
-              "descriptor": "Clearly explains why selected resources are appropriate and effective. Links to cohort and learning goals are evident. Literature supports justification."
+              "range": "",
+              "descriptor": "Clearly explains why selected resources are appropriate and effective. Links to cohort and learning goals evident. Literature supports justification."
             },
             "C": {
-              "range": "10–9",
+              "range": "",
               "descriptor": "Adequate explanation of why resources were selected. Some links to cohort or learning goals. Literature used but may be descriptive."
             },
             "P": {
-              "range": "8–6",
+              "range": "",
               "descriptor": "Limited explanation of why resources were chosen. Weak or general links to cohort or outcomes. Minimal literature support."
             },
             "N": {
-              "range": "5–0",
-              "descriptor": "Resources are not justified or are inappropriate. No clear reasoning or literature support."
+              "range": "",
+              "descriptor": "Resources not justified or inappropriate. No clear reasoning or literature support."
             }
           }
         },
         {
           "part": "D1",
-          "criterion": "Feedback planning",
+          "criterion": "Planning timely and purposeful feedback",
           "marks": 5,
+          "loLinks": [
+            "LO4"
+          ],
           "bands": {
             "HD": {
-              "range": "5",
-              "descriptor": "The unit program includes a clearly articulated, multi-point feedback plan specifying: timing of oral and/or written feedback relative to student work; form of feedback (written annotations, verbal conferencing, peer feedback, self-assessment); how feedback language will be differentiated for the named cohort including Aboriginal students and EAL/D learners; and how feedback will inform subsequent teaching decisions. Feedback planning is explicitly connected to syllabus outcomes and demonstrates understanding of research-informed feedback principles."
+              "range": "",
+              "descriptor": "Clearly articulated multi-point feedback plan specifying: timing of oral/written feedback relative to student work; form of feedback (written annotations, verbal conferencing, peer feedback, self-assessment); how feedback language will be differentiated for Aboriginal students and EAL/D learners; how feedback will inform subsequent teaching. Explicitly connected to syllabus outcomes. Demonstrates research-informed feedback principles."
             },
             "D": {
-              "range": "4",
-              "descriptor": "The unit program includes a well-developed feedback plan with clear timing, form and connection to outcomes. Differentiation of feedback for the cohort is addressed. Feed-forward orientation is evident."
+              "range": "",
+              "descriptor": "Well-developed feedback plan with clear timing, form, and connection to outcomes. Differentiation for the cohort addressed. Feed-forward orientation evident."
             },
             "C": {
-              "range": "3",
-              "descriptor": "The unit program includes a feedback plan with appropriate timing and form. Some differentiation for the cohort is present. Connection to outcomes is evident though may be general."
+              "range": "",
+              "descriptor": "Feedback plan with appropriate timing and form. Some differentiation for the cohort. Connection to outcomes evident though may be general."
             },
             "P": {
-              "range": "2",
-              "descriptor": "A feedback plan is present but timing or form may be vague. Limited differentiation for the cohort. Connection to outcomes is asserted rather than demonstrated."
+              "range": "",
+              "descriptor": "Feedback plan present but timing or form may be vague. Limited differentiation. Connection to outcomes asserted rather than demonstrated."
             },
             "N": {
-              "range": "0–1",
-              "descriptor": "Feedback planning is absent, superficial, or not connected to outcomes or the cohort."
+              "range": "",
+              "descriptor": "Feedback planning absent, superficial, or not connected to outcomes or the cohort."
             }
           }
         },
         {
           "part": "D2",
-          "criterion": "Reflective practice",
+          "criterion": "Evidence of reflective practice",
           "marks": 5,
+          "loLinks": [
+            "LO4"
+          ],
           "bands": {
             "HD": {
-              "range": "5",
-              "descriptor": "Reflection completed to a very high standard demonstrating deep analytical thinking. Clearly identifies specific pedagogical insights and explains how thinking has changed. Explicitly links reflection to future teaching practice with a concrete example."
+              "range": "",
+              "descriptor": "Deep, critical reflection. Clearly identifies specific pedagogical insights and explains how thinking has changed. Explicitly links reflection to future teaching practice. Analytical rather than descriptive; may draw on relevant literature."
             },
             "D": {
-              "range": "4",
-              "descriptor": "Strong reflective thinking. Clearly identifies learning gained and implications for future teaching. Reflection moves beyond description into analysis."
+              "range": "",
+              "descriptor": "Strong reflective thinking. Clearly identifies learning gained and implications for future teaching. Moves beyond description into analysis."
             },
             "C": {
-              "range": "3",
-              "descriptor": "Reflective thinking evident with clear identification of learning. Some analytical elements present though reflection may be partly descriptive."
+              "range": "",
+              "descriptor": "Reflective thinking with clear identification of learning gained. Some analytical elements, though may be partly descriptive."
             },
             "P": {
-              "range": "2",
-              "descriptor": "Reflection is largely descriptive. Identifies what was done but provides limited insight into learning or future improvement."
+              "range": "",
+              "descriptor": "Largely descriptive. Identifies what was done but limited insight into learning or future improvement."
             },
             "N": {
-              "range": "0–1",
-              "descriptor": "Reflection is superficial, minimal, or not submitted. No clear evidence of reflective thinking."
+              "range": "",
+              "descriptor": "Superficial, minimal, or not submitted. No clear evidence of reflective thinking."
             }
           }
         }
       ],
-      "hdCallout": null,
-      "submissionInstructions": [],
+      "hdCallout": "HD requires synthesis across parts — your Part C justification must explicitly connect back to specific decisions visible in Part B, and your D1 feedback plan must name cohort-specific differentiation strategies, not generic feedback principles.",
+      "checklist": [
+        "Part A task outline complete with correct NSW syllabus outcomes",
+        "Forum post submitted by 8 March (100 words, names discipline, topic, module, group/individual choice, first-hand experience)",
+        "Five-week program on supplied template (one A4 page per week)",
+        "10 hours of model construction/portfolio time integrated across the program",
+        "At least two formative assessment tasks per week",
+        "Differentiation specific to named cohort (Aboriginal students, EAL/D learners)",
+        "Part C essay cites peer-reviewed literature",
+        "D1 feedback plan specifies timing, form, language differentiation, and feed-forward",
+        "D2 reflection is analytical, not purely descriptive",
+        "Submitted as single PDF on the template by 5 April"
+      ],
+      "submissionInstructions": [
+        "Complete on the provided template",
+        "Save as PDF and submit as one document",
+        "Reference list and syllabus extracts are not included in the word count",
+        "Word count must be within ±10% of the required word count"
+      ],
       "trimesterDates": {
         "T1-2026": {
           "due": "2026-04-05",
-          "duePartA": "2026-03-22",
-          "flexiblePortal": null
+          "duePartA": "2026-03-08",
+          "flexiblePortal": {
+            "label": "Flexible submission portal",
+            "url": null,
+            "opensDate": null,
+            "closesDate": "2026-04-12"
+          }
         },
         "T2-2026": {
           "duePartA": "2026-07-05",
@@ -478,23 +524,26 @@
     },
     {
       "id": "AT2",
-      "title": "Resource Curation and Critical Analysis",
+      "title": "Assessment Design — Critique, Redesign, and Reflection",
       "weighting": 40,
-      "length": null,
+      "length": "1,500 words (equivalent) ±10%",
       "learningOutcomes": [
-        "LO1",
         "LO2",
         "LO3",
         "LO4"
       ],
       "aitslStandards": [
+        "1.5.1",
+        "2.1.1",
+        "2.3.1",
         "2.6.1",
         "3.4.1",
-        "3.6.1",
-        "7.4.1"
+        "4.4.1",
+        "5.1.1",
+        "5.2.1"
       ],
-      "rationale": null,
-      "aim": null,
+      "rationale": "Teachers must be able to critique, adapt and redesign assessment tasks to ensure they are valid, fair, syllabus-aligned, and responsive to the specific cohort they teach.",
+      "aim": "Demonstrate knowledge of sound assessment principles including internal alignment, syllabus alignment, and differentiation to support diverse learners while maintaining intellectual rigour.",
       "links": {
         "rubric": null,
         "taskFiles": null,
@@ -502,186 +551,293 @@
         "forum": null,
         "video": null
       },
-      "parts": [],
+      "parts": [
+        {
+          "id": "A",
+          "title": "Critique of an existing assessment task",
+          "marks": 60,
+          "wordCount": 1000,
+          "description": "Academic essay critiquing a provided Stage 6 science assessment task for suitability for the given cohort.",
+          "requirements": [
+            "Evaluate assessment design quality using validity, reliability, fairness, accessibility, and internal alignment",
+            "Demonstrate NSW Stage 6 syllabus alignment including outcomes, content, and Working Scientifically requirements",
+            "Analyse cognitive demand and scientific thinking required (reasoning, conceptual demand, depth of explanation)",
+            "Address cohort responsiveness and equity including differentiation and cultural responsiveness for Aboriginal and/or Torres Strait Islander students",
+            "Consider safety and feasibility where practical work is involved",
+            "Use peer-reviewed literature to support claims"
+          ],
+          "note": "Critique the task as an assessment instrument — how well it elicits valid evidence of learning — not only whether it is engaging.",
+          "bespoke": null,
+          "loLinks": [
+            "LO2",
+            "LO3",
+            "LO4"
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Redesigned assessment task",
+          "marks": 30,
+          "wordCount": 400,
+          "description": "Rewrite the Part A assessment task incorporating improvements identified and justified in the critique.",
+          "requirements": [
+            "Explicit alignment to NSW Stage 6 syllabus (outcomes, content, Working Scientifically)",
+            "Internal alignment: student instructions ↔ what is assessed ↔ criteria ↔ evidence produced",
+            "Differentiation appropriate to cohort without reducing rigour",
+            "At least one purposeful feedback point (teacher, peer, or self-assessment) before final submission",
+            "Meaningful ICT integration where appropriate — not simply typed submission"
+          ],
+          "guidanceNotes": [
+            "Recommended headings: Task title + course + year / NSW syllabus outcomes / Task description and purpose / Student instructions including conditions / Evidence to be submitted / Marking criteria / Differentiation, supports and extensions / Feedback checkpoint(s) / Safety and ethical considerations"
+          ],
+          "bespoke": null,
+          "loLinks": [
+            "LO2",
+            "LO3",
+            "LO4"
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Reflection",
+          "marks": 10,
+          "wordCount": 100,
+          "description": "Reflection on learning in this task.",
+          "requirements": [
+            "Where you were most engaged or challenged",
+            "One significant insight about assessment design in Stage 6 Science",
+            "How you will apply this process in future teaching"
+          ],
+          "bespoke": null,
+          "loLinks": [
+            "LO4"
+          ]
+        }
+      ],
       "criteria": [],
       "rubric": [
         {
-          "part": "A1",
-          "criterion": "Evaluation of Assessment Design",
+          "part": "A",
+          "criterion": "Evaluation of assessment design quality",
           "marks": 25,
+          "loLinks": [
+            "LO2",
+            "LO3",
+            "LO4"
+          ],
           "bands": {
             "HD": {
-              "range": "25–21",
+              "range": "",
               "descriptor": "Clear, detailed and well-organised critique. Accurately explains and applies validity, fairness, internal alignment and cognitive demand. Suitability for the cohort clearly analysed."
             },
             "D": {
-              "range": "20–17",
+              "range": "",
               "descriptor": "Strong critique applying assessment concepts accurately. Explains suitability for cohort."
             },
             "C": {
-              "range": "16–13",
+              "range": "",
               "descriptor": "Identifies strengths and weaknesses with some use of assessment concepts. Cohort discussion uneven."
             },
             "P": {
-              "range": "12–9",
+              "range": "",
               "descriptor": "Mostly descriptive. Limited evaluation using assessment concepts. Cohort link general."
             },
             "N": {
-              "range": "8–0",
+              "range": "",
               "descriptor": "Very limited or inaccurate critique. Little understanding of assessment principles."
             }
           }
         },
         {
-          "part": "A2",
-          "criterion": "Syllabus & Working Scientifically Alignment",
+          "part": "A",
+          "criterion": "Syllabus and Working Scientifically alignment",
           "marks": 20,
+          "loLinks": [
+            "LO2",
+            "LO3"
+          ],
           "bands": {
             "HD": {
-              "range": "20–17",
+              "range": "",
               "descriptor": "Accurately identifies relevant Stage 6 outcomes and content. Clearly analyses Working Scientifically skills, scientific reasoning and safety where relevant."
             },
             "D": {
-              "range": "16–14",
+              "range": "",
               "descriptor": "Correctly identifies outcomes and content. Clear explanation including Working Scientifically elements."
             },
             "C": {
-              "range": "13–11",
+              "range": "",
               "descriptor": "Appropriate outcomes identified but alignment explanation lacks depth. Working Scientifically mentioned but limited analysis."
             },
             "P": {
-              "range": "10–7",
+              "range": "",
               "descriptor": "Limited or unclear reference to outcomes. Alignment mostly asserted. Minimal Working Scientifically reference."
             },
             "N": {
-              "range": "6–0",
+              "range": "",
               "descriptor": "Syllabus incorrectly referenced or not referenced."
             }
           }
         },
         {
-          "part": "A3",
-          "criterion": "Use of Assessment Theory and Literature",
+          "part": "A",
+          "criterion": "Use of assessment theory and literature",
           "marks": 15,
+          "loLinks": [
+            "LO2"
+          ],
           "bands": {
             "HD": {
-              "range": "15–13",
+              "range": "",
               "descriptor": "Relevant peer-reviewed literature strengthens and justifies evaluation. Sources clearly connected to argument."
             },
             "D": {
-              "range": "12–11",
+              "range": "",
               "descriptor": "Relevant literature supports key claims clearly."
             },
             "C": {
-              "range": "10–9",
+              "range": "",
               "descriptor": "Literature used appropriately but links to critique sometimes underdeveloped."
             },
             "P": {
-              "range": "8–6",
+              "range": "",
               "descriptor": "Limited or uneven use of literature."
             },
             "N": {
-              "range": "5–0",
+              "range": "",
               "descriptor": "Little or no appropriate peer-reviewed literature."
             }
           }
         },
         {
-          "part": "B1",
-          "criterion": "Coherence, Alignment, ICT & Feedback",
+          "part": "B",
+          "criterion": "Coherence, alignment, ICT and feedback",
           "marks": 20,
+          "loLinks": [
+            "LO2",
+            "LO3",
+            "LO4"
+          ],
           "bands": {
             "HD": {
-              "range": "20–17",
+              "range": "",
               "descriptor": "Clear, professional task. Explicit alignment between outcomes, instructions, evidence and criteria. Feedback checkpoint built into process. ICT meaningfully enhances learning. Changes address Part A critique."
             },
             "D": {
-              "range": "16–14",
+              "range": "",
               "descriptor": "Clear and well-aligned task. Feedback and ICT used appropriately. Most issues from Part A addressed."
             },
             "C": {
-              "range": "13–11",
+              "range": "",
               "descriptor": "Workable task with general alignment. Feedback and ICT included but not fully developed."
             },
             "P": {
-              "range": "10–7",
+              "range": "",
               "descriptor": "Alignment inconsistent or unclear. Feedback or ICT appear added without clear purpose."
             },
             "N": {
-              "range": "6–0",
+              "range": "",
               "descriptor": "Unclear, incomplete or poorly aligned task."
             }
           }
         },
         {
-          "part": "B2",
-          "criterion": "Differentiation & Cohort Responsiveness",
+          "part": "B",
+          "criterion": "Differentiation and cohort responsiveness",
           "marks": 10,
+          "loLinks": [
+            "LO3",
+            "LO4"
+          ],
           "bands": {
             "HD": {
-              "range": "10–9",
+              "range": "",
               "descriptor": "Adjustments clearly support diverse learners including Aboriginal and/or Torres Strait Islander students. Access increased without lowering expectations."
             },
             "D": {
-              "range": "8",
+              "range": "",
               "descriptor": "Appropriate adjustments for a range of learners. Cohort diversity clearly considered."
             },
             "C": {
-              "range": "7–6",
+              "range": "",
               "descriptor": "Some adjustments included though may be general or uneven."
             },
             "P": {
-              "range": "5",
+              "range": "",
               "descriptor": "Limited or unclear adjustments. Cohort mentioned but not embedded in design."
             },
             "N": {
-              "range": "4–0",
+              "range": "",
               "descriptor": "Little or no consideration of cohort diversity."
             }
           }
         },
         {
           "part": "C",
-          "criterion": "Reflection",
+          "criterion": "Reflection on learning",
           "marks": 10,
+          "loLinks": [
+            "LO4"
+          ],
           "bands": {
             "HD": {
-              "range": "10–9",
+              "range": "",
               "descriptor": "Thoughtful reflection showing clear learning and future classroom application."
             },
             "D": {
-              "range": "8",
+              "range": "",
               "descriptor": "Clear reflection with practical connections to teaching."
             },
             "C": {
-              "range": "7–6",
+              "range": "",
               "descriptor": "Relevant reflection with some insight."
             },
             "P": {
-              "range": "5",
+              "range": "",
               "descriptor": "Basic reflection, mostly descriptive."
             },
             "N": {
-              "range": "4–0",
+              "range": "",
               "descriptor": "Minimal or superficial reflection."
             }
           }
         }
       ],
-      "hdCallout": null,
-      "submissionInstructions": [],
+      "hdCallout": "HD in Part B requires your redesigned task to explicitly address every gap you identified in Part A — markers will check for direct correspondence between your critique and your redesign decisions.",
+      "checklist": [
+        "Part A written as an academic essay (not a checklist or bullet-point critique)",
+        "Assessment concepts applied by name: validity, reliability, fairness, internal alignment, cognitive demand",
+        "NSW Stage 6 syllabus outcomes and Working Scientifically requirements explicitly referenced",
+        "Cohort responsiveness addressed including Aboriginal and/or Torres Strait Islander students",
+        "Peer-reviewed literature integrated throughout Part A",
+        "Part B redesign addresses every gap identified in Part A",
+        "Internal alignment explicit: instructions ↔ criteria ↔ evidence",
+        "At least one feedback checkpoint included in Part B",
+        "ICT integration meaningful, not cosmetic",
+        "Differentiation embedded in Part B design, not added as an afterthought",
+        "Submitted as one PDF by 10 May"
+      ],
+      "submissionInstructions": [
+        "Submit as one PDF document",
+        "Reference list and syllabus extracts are not included in the word count"
+      ],
       "trimesterDates": {
         "T1-2026": {
-          "due": "2026-05-04",
-          "flexiblePortal": null
-        },
-        "T2-2026": {
-          "due": "2026-09-06",
+          "due": "2026-05-10",
           "flexiblePortal": {
-            "label": "Flexible portal",
+            "label": "Flexible submission portal",
             "url": null,
             "opensDate": null,
-            "closesDate": "2026-09-13"
+            "closesDate": "2026-05-17"
+          }
+        },
+        "T2-2026": {
+          "due": null,
+          "flexiblePortal": {
+            "label": "Flexible submission portal",
+            "url": null,
+            "opensDate": null,
+            "closesDate": null
           }
         }
       }
