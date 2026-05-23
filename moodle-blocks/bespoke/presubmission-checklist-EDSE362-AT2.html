@@ -1,0 +1,364 @@
+<div class="edse362-at2-checklist" role="region" aria-label="EDSE362 AT2 Pre-submission checklist">
+  <style>
+    .edse362-at2-checklist {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+      max-width: 960px;
+    }
+    .edse362-at2-checklist .card {
+      border: 1px solid #b8d6c6;
+      border-radius: 12px;
+      padding: 16px;
+      background: #fff;
+      margin: 12px 0;
+    }
+    .edse362-at2-checklist h2 { margin: 0 0 8px 0; color: #2E7D52; }
+    .edse362-at2-checklist .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .edse362-at2-checklist button {
+      border: 1px solid #b8d6c6;
+      background: #f4f9f6;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .edse362-at2-checklist button:hover { background: #e3f0e9; }
+    .edse362-at2-checklist .status { font-weight: 700; margin-top: 10px; }
+    .edse362-at2-checklist .good { color: #2E7D52; }
+    .edse362-at2-checklist .warn { color: #9a5b00; }
+    .edse362-at2-checklist details {
+      border: 1px solid #c8dfd2;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      background: #fafcfb;
+    }
+    .edse362-at2-checklist summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #2E7D52;
+    }
+    .edse362-at2-checklist .item { margin: 10px 0; }
+    .edse362-at2-checklist label {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      cursor: pointer;
+    }
+    .edse362-at2-checklist input[type="checkbox"] { margin-top: 3px; }
+    .edse362-at2-checklist .tip {
+      margin: 8px 0 0 28px;
+      padding: 10px 12px;
+      border-left: 4px solid #E3B089;
+      background: #fdf8f3;
+      border-radius: 6px;
+      display: none;
+      font-size: .9rem;
+    }
+    .edse362-at2-checklist .tip strong { display: block; margin-bottom: 4px; color: #7a4a1e; }
+  </style>
+
+  <div class="card">
+    <h2>EDSE362 AT2 — Pre-Submission Checklist</h2>
+    <div class="controls">
+      <button type="button" data-action="show-missing">Show recommendations</button>
+      <button type="button" data-action="hide-all">Hide recommendations</button>
+      <button type="button" data-action="check-all">Check all</button>
+      <button type="button" data-action="uncheck-all">Uncheck all</button>
+    </div>
+    <div class="status warn" data-status="">
+      Progress: <span data-done="">0</span>/<span data-total="">0</span> checked
+    </div>
+  </div>
+
+  <!-- CRITERION 1 -->
+  <details>
+    <summary>Unit program — syllabus, outcomes, and practicals (14 marks — LO1, LO2, LO3)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip1"><span><strong>1.</strong> The constructivist approach is named explicitly at the start, and its key features are visible in the design of every week.</span></label>
+      <div class="tip" id="at2-tip1">
+        <strong>Recommendation if not checked</strong>
+        Name the approach (e.g. 5E model, inquiry-based constructivism, problem-based learning) in your opening section before Week 1. Then check each week: is there a moment where students construct understanding from experience before the teacher explains? If any week is purely teacher-led direct instruction with no student inquiry, prior knowledge activation, or investigation, it does not reflect constructivist design. Revise those weeks so the approach is visible in the structure, not just named in the introduction.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip2"><span><strong>2.</strong> Syllabus outcomes, content, and Working Scientifically skills are mapped across all five weeks.</span></label>
+      <div class="tip" id="at2-tip2">
+        <strong>Recommendation if not checked</strong>
+        Check that every week has at least one outcome code, one matching content dot point, and one named Working Scientifically strand. All three must be present in every week. Copy outcome codes and content dot points directly from the NSW Science Years 7–10 syllabus (2026) — do not paraphrase. Paraphrased outcomes will be marked as inaccurate content knowledge under this criterion, costing marks on a 14-mark section.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip3"><span><strong>3.</strong> There is at least one practical in a laboratory lesson in each of the five weeks.</span></label>
+      <div class="tip" id="at2-tip3">
+        <strong>Recommendation if not checked</strong>
+        Count practicals week by week. Each week must have at least one laboratory practical — even a brief structured investigation qualifies. Label it clearly as a practical or laboratory lesson in your program so the marker can identify it without inference. If any week is missing a practical, add one that addresses the content planned for that week.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip4"><span><strong>4.</strong> The science content knowledge in my program is accurate — outcome codes and content statements match the NSW Science Years 7–10 syllabus (2026).</span></label>
+      <div class="tip" id="at2-tip4">
+        <strong>Recommendation if not checked</strong>
+        Open the NSW Science Years 7–10 syllabus (2026) and check each outcome code and content statement you have included. If any code does not exist in the syllabus, or if any content statement is paraphrased in a way that changes its meaning, correct it. Inaccurate content knowledge is assessed in the lowest rubric band for this criterion and cannot be offset by strong pedagogy elsewhere in the program.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip5"><span><strong>5.</strong> My program is a high-level unit overview — not a sequence of detailed lesson plans.</span></label>
+      <div class="tip" id="at2-tip5">
+        <strong>Recommendation if not checked</strong>
+        Each week in your program should describe what students will learn and do at a high level — two to four sentences or key dot points per week is appropriate. If any week contains detailed lesson timings, minute-by-minute activities, or more than three or four specific teacher/student activity descriptions, you are writing lesson plans rather than a unit program. Trim these weeks to the high-level overview the task requires.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- CRITERION 2 -->
+  <details>
+    <summary>Teaching sequence, strategies, and cohort adjustments (13 marks — LO2, LO3, LO5)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip6"><span><strong>6.</strong> The teaching sequence builds understanding progressively — later weeks depend on earlier ones.</span></label>
+      <div class="tip" id="at2-tip6">
+        <strong>Recommendation if not checked</strong>
+        Read your program from Week 1 to Week 5. Ask: does Week 4 assume knowledge or skills developed in Weeks 1–3? If any week could be removed or swapped without affecting adjacent weeks, your sequence is not scaffolded — it is a collection of lessons. Add explicit prior knowledge hooks: reference what was established in earlier weeks when describing later weeks. Use language like "building on the particle model introduced in Week 2, students will…"
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip7"><span><strong>7.</strong> General Capabilities and Cross Curriculum Priorities are embedded — not listed in a header row and then ignored.</span></label>
+      <div class="tip" id="at2-tip7">
+        <strong>Recommendation if not checked</strong>
+        Search your program for the terms "General Capabilities" and "Cross Curriculum Priorities". If they appear only as column headings with the same values in every row, they are listed, not embedded. Rewrite at least two instances to show how a specific activity in a specific week develops a named capability or priority. For example: "Students analyse secondary data from the CSIRO drought monitor, developing Critical and Creative Thinking by evaluating source reliability."
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip8"><span><strong>8.</strong> At least two formative assessment opportunities are included across the five weeks.</span></label>
+      <div class="tip" id="at2-tip8">
+        <strong>Recommendation if not checked</strong>
+        Identify each formative assessment moment in your program. For each one, name: (1) the activity that produces evidence, (2) what evidence it produces, and (3) how you would use that evidence to adjust teaching. "Exit tickets" and "class discussion" only count if you explain what information they yield. "Students complete an exit ticket on particle behaviour" gives the marker nothing — add "to check whether students can distinguish between physical and chemical change before the next lesson."
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip9"><span><strong>9.</strong> Adjustments are included for all four named cohort groups: EAL/D, advanced, behind in science, and Aboriginal or Torres Strait Islander students.</span></label>
+      <div class="tip" id="at2-tip9">
+        <strong>Recommendation if not checked</strong>
+        Search your program for each of the four groups: EAL/D (or language background), advanced, behind in science (or struggling), and Aboriginal or Torres Strait Islander (or ATSI). If any group is absent from any week, add a specific adjustment for that week. Adjustments must be content-specific: the adjustment for a Week 2 practical on combustion should differ from the one for a Week 4 data analysis task.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip10"><span><strong>10.</strong> Adjustments are specific — they describe what I would actually do, not that I would differentiate.</span></label>
+      <div class="tip" id="at2-tip10">
+        <strong>Recommendation if not checked</strong>
+        Read each adjustment you have written. Ask: would this adjustment look different for a different unit or cohort? If not, it is generic. Replace "provide scaffolded worksheets" with the specific scaffold you would use for this content and this cohort. For example: "For EAL/D students, provide a bilingual glossary of key terms (acid, base, pH scale, indicator) and use the word wall developed in Week 1 throughout the titration practical in Week 4."
+      </div>
+    </div>
+
+  </details>
+
+  <!-- CRITERION 3 -->
+  <details>
+    <summary>Highlighting — literacy, numeracy, ATSI, and formative assessment (9 marks — LO4, LO5)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip11"><span><strong>11.</strong> Blue highlights mark genuine literacy and numeracy strategies — not cosmetic mentions of reading or maths.</span></label>
+      <div class="tip" id="at2-tip11">
+        <strong>Recommendation if not checked</strong>
+        Open your highlighted version and review every blue highlight. Ask: is this an activity where literacy or numeracy is the explicit learning move, or is it simply an activity that happens to involve reading or counting? Highlight only activities where the literacy or numeracy strategy is designed: for example, "students write a scientific explanation using the PEEL structure" (literacy) or "students calculate the mean and standard deviation of their results and compare across groups" (numeracy). Remove blue highlights from activities that merely mention reading or using numbers.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip12"><span><strong>12.</strong> Yellow highlights mark Aboriginal and Torres Strait Islander perspectives genuinely embedded in the learning — not added as a separate fact at the end of a lesson.</span></label>
+      <div class="tip" id="at2-tip12">
+        <strong>Recommendation if not checked</strong>
+        Check each yellow highlight. Is the ATSI perspective, history, or culture integrated into the inquiry itself, or mentioned as an afterthought? Tokenistic embedding — e.g. "students learn that Aboriginal people used this plant for medicine" as a single sentence at the end of a lesson — does not constitute genuine integration. Highlight moments where ATSI knowledge shapes the investigation: for example, "students examine traditional fire management practices as a context for investigating the chemistry of combustion and carbon cycles."
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip13"><span><strong>13.</strong> Green highlights mark at least two formative assessment tasks across the program.</span></label>
+      <div class="tip" id="at2-tip13">
+        <strong>Recommendation if not checked</strong>
+        Count your green highlights. You need at least two. Each highlighted activity must produce evidence you could use to make a teaching decision — not just a participation activity. "Students discuss in pairs" is not a formative assessment unless you explain what you observe and how you act on it. Highlight activities where you explicitly collect, observe, or analyse student output to inform your next teaching move.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip14"><span><strong>14.</strong> All three highlight colours are distributed across the program — not concentrated in one or two weeks.</span></label>
+      <div class="tip" id="at2-tip14">
+        <strong>Recommendation if not checked</strong>
+        Check the spread of each colour across all five weeks. If any colour is absent from more than two consecutive weeks, revisit those weeks and add authentic embedding. A program where all blue highlights are in Week 1, all yellow in Week 3, and all green in Week 5 signals retrofitting — that these were added after design, not during it. Distribute each type of strategy across the unit as evidence of intentional planning.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- CRITERION 4 -->
+  <details>
+    <summary>Summative assessment task and rubric (18 marks — LO4)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip15"><span><strong>15.</strong> My assessment task is designed for in-class completion — not a take-home or extended task.</span></label>
+      <div class="tip" id="at2-tip15">
+        <strong>Recommendation if not checked</strong>
+        Read your task and ask: can a student complete this within a single lesson period without taking it home? If the task requires students to conduct independent research, write extended responses over multiple sessions, or produce work that could be assisted outside school, redesign it as an in-class task. Add a time limit and specify the class conditions (e.g. "completed under supervised conditions in one 60-minute lesson").
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip16"><span><strong>16.</strong> My task is inclusive — adjustments, access arrangements, and alternative response modes are considered.</span></label>
+      <div class="tip" id="at2-tip16">
+        <strong>Recommendation if not checked</strong>
+        Check your task for three types of inclusion: (1) adjustments for EAL/D students (e.g. bilingual glossary provided, simplified prompts available); (2) access arrangements for students with disability (e.g. extended time, oral response option); (3) alternative response formats (e.g. annotated diagram instead of written explanation). If any of these three is missing, add a specific note to the task design. Markers assess whether you have considered inclusive practice in assessment design, not just in teaching.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip17"><span><strong>17.</strong> The task explicitly aligns to the syllabus outcomes addressed in Parts A and B.</span></label>
+      <div class="tip" id="at2-tip17">
+        <strong>Recommendation if not checked</strong>
+        List the syllabus outcomes your assessment task addresses. Now check your unit program in Parts A and B — are these the same outcomes that were taught? If your assessment task measures an outcome that does not appear in your unit program, either add that outcome to your program or revise your task. Assessment must measure what was taught, not what could have been taught.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip18"><span><strong>18.</strong> The task aligns to the unit program — it assesses what was actually taught across the five weeks.</span></label>
+      <div class="tip" id="at2-tip18">
+        <strong>Recommendation if not checked</strong>
+        Read your five-week unit program and then read your assessment task. Ask: could a student who only experienced your unit — and no other teaching — succeed on this task? If the task asks about content, skills, or investigations not covered in the program, revise either the task or the program so they align. Alignment between teaching and assessment is assessed at 18 marks — it is the largest single criterion in this task.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip19"><span><strong>19.</strong> My A–E marking rubric uses NESA Science Years 7–10 Performance Band Descriptor language across all five bands.</span></label>
+      <div class="tip" id="at2-tip19">
+        <strong>Recommendation if not checked</strong>
+        Open the NESA Science Years 7–10 Performance Band Descriptors and compare your rubric language band by band. Band A should reflect thorough and sophisticated understanding; Band B sound and detailed understanding; Band C basic understanding; Band D elementary understanding; Band E limited understanding. If your rubric uses different language or collapses any of these distinctions, revise it using the NESA descriptors as your reference point for each band's level of sophistication.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip20"><span><strong>20.</strong> My rubric supports consistent teacher judgement and helps students understand what is expected at each band.</span></label>
+      <div class="tip" id="at2-tip20">
+        <strong>Recommendation if not checked</strong>
+        Read your rubric as if you are a student and ask: do I understand what I need to do to achieve a B rather than a C? If the difference between adjacent bands is vague (e.g. "somewhat detailed" vs "detailed"), sharpen the descriptors. Each band should describe what a student can do — not just the degree to which they have done it. Also ask: could two markers applying this rubric independently reach the same grade? If not, the language is too ambiguous and needs to be made more concrete.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- CRITERION 5 -->
+  <details>
+    <summary>Reflection (6 marks — LO6)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip21"><span><strong>21.</strong> I identify what was most and least familiar across unit programming, assessment design, and planning for diverse learners.</span></label>
+      <div class="tip" id="at2-tip21">
+        <strong>Recommendation if not checked</strong>
+        Your reflection must name at least one specific most-familiar element and one specific least-familiar element — not a general statement that "some things were familiar and some were new." Use sentence frames: "I found [specific aspect of unit programming / assessment design / planning for diverse learners] most familiar because I had prior experience with ___." and "I found [specific aspect] least familiar because ___." Be specific enough that your reflection could only have been written after completing this particular task.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip22"><span><strong>22.</strong> I name one specific aspect of the unit program I would evaluate or refine after teaching, and name the evidence I would use.</span></label>
+      <div class="tip" id="at2-tip22">
+        <strong>Recommendation if not checked</strong>
+        Do not write "I would evaluate how well students responded to the program." Name the specific week, activity, or design decision you would evaluate, and then name the specific evidence you would collect: "I would evaluate the Week 3 titration practical by analysing student lab reports and comparing their error rates against class discussion transcripts to determine whether the pre-practical vocabulary work was sufficient preparation." The evidence must be named — vague references to "student performance" are not evidence.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip23"><span><strong>23.</strong> I name one specific external professional or community source and explain concretely how I would access that support.</span></label>
+      <div class="tip" id="at2-tip23">
+        <strong>Recommendation if not checked</strong>
+        Do not write "professional reading" or "talking to a colleague." Name a specific organisation (e.g. Primary Industries Education Foundation Australia, Science Teachers Association of NSW), a specific journal or publication (e.g. Teaching Science, Australian Science Teachers Journal), a named community group, or a specific type of external expert. Then explain concretely how you would access that support — not just that you would "reach out." For example: "I would apply for STANSW membership and attend the annual conference to observe how experienced teachers sequence constructivist practicals in Stage 4 chemistry."
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip24"><span><strong>24.</strong> My reflection is analytical — it identifies what I learned and what I will do differently, not just what I did.</span></label>
+      <div class="tip" id="at2-tip24">
+        <strong>Recommendation if not checked</strong>
+        Read your reflection and highlight every sentence that begins with "I designed…", "I included…", or "I created…" — these are descriptions, not reflections. Rewrite them using the frame: "Designing [element] showed me that ___. As a result, when I next [teach this unit / design an assessment / plan for diverse learners], I will ___." Every sentence in your reflection should either identify a specific learning or name a concrete future action. The 6 marks on LO6 reward honest self-assessment and forward-looking professional thinking.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- SUBMISSION -->
+  <details>
+    <summary>Submission checks</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip25"><span><strong>25.</strong> My assignment is submitted on the provided template.</span></label>
+      <div class="tip" id="at2-tip25">
+        <strong>Recommendation if not checked</strong>
+        Download the assessment template from the Assessment Portal if you have not already. Your unit program must be in the prescribed format — work submitted in a different template or a free-format document may be assessed against incomplete criteria or returned for resubmission.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip26"><span><strong>26.</strong> An APA 7th reference list is included.</span></label>
+      <div class="tip" id="at2-tip26">
+        <strong>Recommendation if not checked</strong>
+        Add a reference list at the end of your submission. Every source cited in your reflection and justification sections must appear in the list. Check each entry: author(s), year, title, source name, DOI or URL. References that appear only in the reference list but are not cited in the text should be removed — APA 7th does not include uncited sources in a reference list.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at2-tip27"><span><strong>27.</strong> My word count excludes citations, the reference list, syllabus extracts, and the unit program overview section.</span></label>
+      <div class="tip" id="at2-tip27">
+        <strong>Recommendation if not checked</strong>
+        Run a word count on your reflection and written justification sections only. Do not count: in-text citations in parentheses, your reference list, any syllabus outcome codes or content statements quoted directly, and the unit program overview table. The ±10% tolerance applies to the word-counted written sections. If you are significantly over, check whether your reflection is describing rather than analysing — description is usually the source of excess words.
+      </div>
+    </div>
+
+  </details>
+
+  <script>
+    (function() {
+      const root = document.querySelector('.edse362-at2-checklist');
+      if (!root) return;
+      const boxes = Array.from(root.querySelectorAll('input[type="checkbox"][data-tip]'));
+      const totalEl = root.querySelector('[data-total]');
+      const doneEl = root.querySelector('[data-done]');
+      const statusEl = root.querySelector('[data-status]');
+      function showTip(box) {
+        const tip = root.querySelector('#' + box.dataset.tip);
+        if (tip) tip.style.display = box.checked ? 'none' : 'block';
+      }
+      function update() {
+        const done = boxes.filter(b => b.checked).length;
+        totalEl.textContent = boxes.length;
+        doneEl.textContent = done;
+        statusEl.className = 'status ' + (done === boxes.length ? 'good' : 'warn');
+      }
+      boxes.forEach(b => { b.addEventListener('change', () => { showTip(b); update(); }); });
+      root.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const action = btn.dataset.action;
+          if (action === 'show-missing') boxes.forEach(b => { if (!b.checked) showTip(b); });
+          if (action === 'hide-all') boxes.forEach(b => { const tip = root.querySelector('#' + b.dataset.tip); if (tip) tip.style.display = 'none'; });
+          if (action === 'check-all') boxes.forEach(b => { b.checked = true; showTip(b); });
+          if (action === 'uncheck-all') boxes.forEach(b => { b.checked = false; showTip(b); });
+          update();
+        });
+      });
+      update();
+    })();
+  </script>
+</div>
