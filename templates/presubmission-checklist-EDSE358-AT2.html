@@ -1,0 +1,315 @@
+<div class="edse358-at2-checklist" role="region" aria-label="EDSE358 AT2 Pre-submission checklist">
+  <style>
+    .edse358-at2-checklist {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+      max-width: 960px;
+    }
+    .edse358-at2-checklist .card {
+      border: 1px solid #d0d7de;
+      border-radius: 12px;
+      padding: 16px;
+      background: #fff;
+      margin: 12px 0;
+    }
+    .edse358-at2-checklist h2 { margin: 0 0 8px 0; }
+    .edse358-at2-checklist .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .edse358-at2-checklist button {
+      border: 1px solid #d0d7de;
+      background: #f6f8fa;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .edse358-at2-checklist button:hover { background: #eef2f6; }
+    .edse358-at2-checklist .status { font-weight: 700; margin-top: 10px; }
+    .edse358-at2-checklist .good { color: #0a7a2f; }
+    .edse358-at2-checklist .warn { color: #9a5b00; }
+    .edse358-at2-checklist details {
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      background: #fafbfc;
+    }
+    .edse358-at2-checklist summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #7C5DB6;
+    }
+    .edse358-at2-checklist .item { margin: 10px 0; }
+    .edse358-at2-checklist label {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      cursor: pointer;
+    }
+    .edse358-at2-checklist input[type="checkbox"] { margin-top: 3px; }
+    .edse358-at2-checklist .tip {
+      margin: 8px 0 0 28px;
+      padding: 10px 12px;
+      border-left: 4px solid #4FA9B5;
+      background: #f6f8fa;
+      border-radius: 6px;
+      display: none;
+    }
+    .edse358-at2-checklist .tip strong { display: block; margin-bottom: 4px; }
+  </style>
+
+  <div class="card">
+    <h2>AT2 Pre-Submission Checklist — Resource Curation and Critical Analysis</h2>
+    <div class="controls">
+      <button type="button" data-action="show-missing">Show recommendations</button>
+      <button type="button" data-action="hide-all">Hide recommendations</button>
+      <button type="button" data-action="check-all">Check all</button>
+      <button type="button" data-action="uncheck-all">Uncheck all</button>
+    </div>
+    <div class="status warn" data-status="">
+      Progress: <span data-done="">0</span>/<span data-total="">0</span> checked
+    </div>
+  </div>
+
+  <!-- A1 — Resource Selection -->
+  <details>
+    <summary>A1 · Resource selection (20 marks)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-a1a"><span><strong>A1a.</strong> I have curated a collection of at least 8 resources relevant to my chosen science topic and stage.</span></label>
+      <div class="tip" id="e358at2-a1a">
+        <strong>Recommendation if not checked</strong>
+        Count your resources carefully — 8 is the minimum and the rubric is explicit about this. If you are below 8, add resources before submitting; do not bulk-add weak ones. Each resource you add should earn its place by contributing something the others do not.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-a1b"><span><strong>A1b.</strong> My collection includes a range of resource types (e.g. digital, print, practical, community-based).</span></label>
+      <div class="tip" id="e358at2-a1b">
+        <strong>Recommendation if not checked</strong>
+        List the types explicitly in your submission — do not assume the reader will infer variety from the titles. If your collection is dominated by one type (e.g. all websites), deliberately add at least one resource from a different category. A curated collection that only includes digital resources will not demonstrate the breadth the rubric requires.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-a1c"><span><strong>A1c.</strong> Each resource is clearly identified with full bibliographic or access details.</span></label>
+      <div class="tip" id="e358at2-a1c">
+        <strong>Recommendation if not checked</strong>
+        For each resource, check that a reader could locate it independently from your citation alone. For websites, include the URL and access date. For print resources, use APA 7th format. For community-based or practitioner resources, include the name of the source, organisation, and how it was accessed. Missing details undermine the credibility of your selection.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-a1d"><span><strong>A1d.</strong> Resources are appropriate for the named cohort and the NSW Science Years 11–12 syllabus context.</span></label>
+      <div class="tip" id="e358at2-a1d">
+        <strong>Recommendation if not checked</strong>
+        For each resource, ask: "Would I actually use this with this specific Year 11 or 12 cohort, in this discipline, for this stage of learning?" If the answer requires significant adaptation or is uncertain, either revise the resource choice or explicitly address the adaptation in your analysis. Resources that are too elementary, too advanced, or designed for a different curriculum context need justification.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- A2 — Critical Analysis -->
+  <details>
+    <summary>A2 · Critical analysis (20 marks)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-a2a"><span><strong>A2a.</strong> I have written a critical analysis for each resource — not a description or summary.</span></label>
+      <div class="tip" id="e358at2-a2a">
+        <strong>Recommendation if not checked</strong>
+        Description tells the reader what the resource contains. Critical analysis tells the reader what it is worth and why. Read your analysis and ask: "Have I evaluated this resource, or have I just described it?" If your writing mostly begins with "This resource is…" or "This website provides…", revise using evaluative language: "This resource is effective for this context because…" or "A limitation of this resource is…, which matters because…"
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-a2b"><span><strong>A2b.</strong> Each analysis evaluates the resource against explicit criteria (e.g. accuracy, pedagogical value, accessibility, cultural appropriateness).</span></label>
+      <div class="tip" id="e358at2-a2b">
+        <strong>Recommendation if not checked</strong>
+        Name your evaluation criteria and apply them consistently. If you evaluate resource 1 against accuracy and pedagogical value, apply the same lens to resource 3. Inconsistent criteria make your curation appear arbitrary. A useful frame: "I am evaluating this resource against [criterion] because this matters for [cohort/outcome] — this resource [meets/partially meets/does not meet] this criterion because…"
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-a2c"><span><strong>A2c.</strong> I have used scholarly or professional literature to support my evaluations.</span></label>
+      <div class="tip" id="e358at2-a2c">
+        <strong>Recommendation if not checked</strong>
+        Your evaluations should be grounded in what the research or professional literature says about effective resources — not just your personal judgement. A sentence frame: "[Author, Year] argues that effective science resources should [criterion]. This resource [does/does not] meet this standard because…" Aim for at least one literature source to anchor your evaluative criteria, not just to decorate individual analyses.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-a2d"><span><strong>A2d.</strong> My analyses identify strengths and limitations — not just strengths.</span></label>
+      <div class="tip" id="e358at2-a2d">
+        <strong>Recommendation if not checked</strong>
+        A critical analysis that only identifies strengths is not critical — it is promotional. Every resource has limitations relevant to a specific cohort or context. Identifying a limitation does not mean a resource is unsuitable; it demonstrates professional judgement. Use a sentence frame: "A limitation of this resource for this cohort is…, which I would address by…" If a resource has no identifiable limitations for your context, examine it more closely — or reconsider whether it is the right choice.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- A3 — Diversity and Intentional Curation -->
+  <details>
+    <summary>A3 · Diversity and intentional curation (15 marks)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-a3a"><span><strong>A3a.</strong> I have explicitly addressed how my curated collection supports diverse learners in the given cohort (EAL/D, advanced, behind, Aboriginal and Torres Strait Islander students).</span></label>
+      <div class="tip" id="e358at2-a3a">
+        <strong>Recommendation if not checked</strong>
+        This criterion requires you to address the full range of the given cohort — not just one or two groups. Work through each group: EAL/D learners, advanced students, students working below expected level, and Aboriginal and Torres Strait Islander students. For each, identify at least one resource in your collection and explain specifically why it supports that group. Generic statements ("this collection is inclusive") do not meet the rubric.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-a3b"><span><strong>A3b.</strong> I have considered cultural appropriateness and cultural safety across the collection.</span></label>
+      <div class="tip" id="e358at2-a3b">
+        <strong>Recommendation if not checked</strong>
+        Cultural appropriateness is not only about resources that explicitly address Aboriginal and Torres Strait Islander content — it also means scrutinising all resources for deficit framings, stereotypes, or assumptions that could undermine cultural safety. Ask of each resource: "Could any element of this resource harm or exclude students based on their cultural identity?" Where a risk exists, either exclude the resource or document how you would address it in practice.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-a3c"><span><strong>A3c.</strong> Where relevant, I have drawn on professional learning networks or community expertise to inform my curation choices.</span></label>
+      <div class="tip" id="e358at2-a3c">
+        <strong>Recommendation if not checked</strong>
+        This does not require formal consultation — it may include professional associations (e.g. ASTA), Aboriginal education consultancy resources, NESA guidance, or advice from experienced teachers. If you drew on any such source, name it and explain how it shaped your selection. If you did not, consider whether one or more resources in your collection would be strengthened by professional or community input — and address this in your rationale.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-a3d"><span><strong>A3d.</strong> My rationale for the collection as a whole — not just individual resources — is clearly articulated.</span></label>
+      <div class="tip" id="e358at2-a3d">
+        <strong>Recommendation if not checked</strong>
+        A collection is more than a list of individually good resources. Your rationale should explain how the resources work together: what gaps they collectively address, what progression they support, and what deliberate choices shaped the set as a whole. Use a sentence frame: "As a collection, these resources are designed to… Together they address… I deliberately included [type] because no single resource could…"
+      </div>
+    </div>
+
+  </details>
+
+  <!-- B1 — Referencing and Presentation -->
+  <details>
+    <summary>B1 · Referencing and presentation (5 marks)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-b1a"><span><strong>B1a.</strong> All resources and literature are referenced using APA 7th edition.</span></label>
+      <div class="tip" id="e358at2-b1a">
+        <strong>Recommendation if not checked</strong>
+        Check each reference against the APA 7th manual or the Purdue OWL APA guide. Common errors: missing DOI or URL for journal articles, incorrect capitalisation of article titles, missing publisher information for books, and using APA 6th format (e.g. &amp;amp; vs &amp;). Fix all reference list entries before submitting — the rubric applies to the entire submission, not just your strongest references.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-b1b"><span><strong>B1b.</strong> In-text citations are present wherever I make a claim supported by literature.</span></label>
+      <div class="tip" id="e358at2-b1b">
+        <strong>Recommendation if not checked</strong>
+        Read through your analyses sentence by sentence. Every evaluative claim that could be contested — about accuracy, pedagogical value, cultural appropriateness, or resource quality — should be anchored to a source. Uncited evaluative claims read as opinion. A sentence frame: "This resource demonstrates [quality] (Author, Year), which is important for this cohort because…"
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-b1c"><span><strong>B1c.</strong> My reference list is complete and correctly formatted.</span></label>
+      <div class="tip" id="e358at2-b1c">
+        <strong>Recommendation if not checked</strong>
+        Cross-check your reference list against every in-text citation — every citation must have a corresponding entry and vice versa. Entries should be alphabetical by first author surname. Check that the reference list is on a new page or clearly separated, and that every entry follows APA 7th hanging indent format.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- B2 — Syllabus Alignment -->
+  <details>
+    <summary>B2 · Syllabus alignment (20 marks)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-b2a"><span><strong>B2a.</strong> Each resource is explicitly linked to one or more NSW Science Years 11–12 syllabus outcomes.</span></label>
+      <div class="tip" id="e358at2-b2a">
+        <strong>Recommendation if not checked</strong>
+        Name the specific outcome code(s) for each resource — do not use general language like "relates to the syllabus" or "supports Stage 6 science." Copy the outcome code directly from the NSW syllabus document (e.g. "Biology Working Scientifically: BIO11/12-4") and add one sentence explaining the link. Alignment is a criterion across the entire collection, not just for some resources.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-b2b"><span><strong>B2b.</strong> I have identified the specific content, skills, or Working Scientifically strand each resource addresses.</span></label>
+      <div class="tip" id="e358at2-b2b">
+        <strong>Recommendation if not checked</strong>
+        Go beyond outcome codes — specify what aspect of the outcome the resource develops. For example: "This simulation supports Working Scientifically outcome [X] by giving students practice in processing and analysing data, specifically by…" Resources that are linked to outcomes only at the code level, without explanation of the mechanism, do not demonstrate deep alignment.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-b2c"><span><strong>B2c.</strong> The collection as a whole provides adequate coverage of the unit's key outcomes — not just a few.</span></label>
+      <div class="tip" id="e358at2-b2c">
+        <strong>Recommendation if not checked</strong>
+        Map your collection against the key outcomes for your unit: if the majority of resources address only one or two outcomes, your collection has a coverage gap. Add resources or adjust existing analyses to demonstrate how the collection spans the unit's scope. A simple table or list in your rationale showing "Outcome X — addressed by resources 2, 5, 7" makes coverage explicit and easy to assess.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- C — Reflection -->
+  <details>
+    <summary>C · Reflection (20 marks)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-ca"><span><strong>Ca.</strong> My reflection addresses what was new to me and what I already knew well about resource curation.</span></label>
+      <div class="tip" id="e358at2-ca">
+        <strong>Recommendation if not checked</strong>
+        Your reflection should be analytical, not descriptive — do not restate what the task asked you to do. Identify something specific that changed in your thinking or practice. Use a sentence frame: "Before this task, I assumed… Working through [specific part of the task] changed my understanding because… I now recognise that…" A reflection that only describes what you did will not meet this criterion.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-cb"><span><strong>Cb.</strong> I have identified a specific professional learning source relevant to my teaching context and justified my choice — not just named it.</span></label>
+      <div class="tip" id="e358at2-cb">
+        <strong>Recommendation if not checked</strong>
+        Naming a source (e.g. "I would use NESA resources") is not sufficient — you must justify why that specific source is relevant to your context and teaching area. Use a sentence frame: "I identified [source] as a professional learning priority because… In my context as a [discipline] teacher working with [cohort], this matters because… I would access this support by…" Generic professional learning commitments without context-specific justification will not meet the rubric.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="e358at2-cc"><span><strong>Cc.</strong> My reflection connects explicitly to how I would use or adapt these resources in my own teaching.</span></label>
+      <div class="tip" id="e358at2-cc">
+        <strong>Recommendation if not checked</strong>
+        The reflection should close the loop between the curation task and your future practice. Name at least one specific resource from your collection and describe how you would use or adapt it in a real teaching context. Use a sentence frame: "In my Stage 6 [discipline] classroom, I would use [resource] in [context] because… I would adapt it by… to better suit [specific cohort need]." A reflection that does not connect back to your teaching practice is incomplete.
+      </div>
+    </div>
+
+  </details>
+
+  <script>
+    (function() {
+      const root = document.querySelector('.edse358-at2-checklist');
+      if (!root) return;
+      const boxes = Array.from(root.querySelectorAll('input[type="checkbox"][data-tip]'));
+      const totalEl = root.querySelector('[data-total]');
+      const doneEl = root.querySelector('[data-done]');
+      const statusEl = root.querySelector('[data-status]');
+      function showTip(box) {
+        const tip = root.querySelector('#' + box.dataset.tip);
+        if (tip) tip.style.display = box.checked ? 'none' : 'block';
+      }
+      function update() {
+        const done = boxes.filter(b => b.checked).length;
+        totalEl.textContent = boxes.length;
+        doneEl.textContent = done;
+        statusEl.className = 'status ' + (done === boxes.length ? 'good' : 'warn');
+      }
+      boxes.forEach(b => { b.addEventListener('change', () => { showTip(b); update(); }); });
+      root.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const action = btn.dataset.action;
+          if (action === 'show-missing') boxes.forEach(b => { if (!b.checked) showTip(b); });
+          if (action === 'hide-all') boxes.forEach(b => { const tip = root.querySelector('#' + b.dataset.tip); if (tip) tip.style.display = 'none'; });
+          if (action === 'check-all') boxes.forEach(b => { b.checked = true; showTip(b); });
+          if (action === 'uncheck-all') boxes.forEach(b => { b.checked = false; showTip(b); });
+          update();
+        });
+      });
+      update();
+    })();
+  </script>
+</div>
