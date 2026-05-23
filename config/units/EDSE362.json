@@ -63,13 +63,32 @@
   "assessmentTasks": [
     {
       "id": "AT1",
-      "title": null,
-      "weighting": 50,
-      "length": null,
-      "learningOutcomes": null,
-      "aitslStandards": [],
-      "rationale": null,
-      "aim": null,
+      "title": "Design and Pedagogy — Practical Science Lessons",
+      "weighting": 40,
+      "length": "1,500 words (equivalent) ±10%",
+      "learningOutcomes": [
+        "LO1",
+        "LO2",
+        "LO3",
+        "LO5",
+        "LO6"
+      ],
+      "aitslStandards": [
+        "1.3.1",
+        "1.4.1",
+        "2.1.1",
+        "2.2.1",
+        "2.3.1",
+        "2.4.1",
+        "2.5.1",
+        "3.2.1",
+        "5.4.1",
+        "6.2.1",
+        "6.4.1",
+        "7.4.1"
+      ],
+      "rationale": "Secondary science teachers need to recognise and create practical opportunities as often as possible. The syllabus mandates minimum practical work which can always be exceeded. Teachers must build student understanding through practical work that connects to what students already know and can do.",
+      "aim": "Design a coherent practical science learning sequence and justify the pedagogical decisions behind it, demonstrating syllabus knowledge, constructivist pedagogy, safety, and inclusive practice.",
       "links": {
         "rubric": null,
         "taskFiles": null,
@@ -77,32 +96,222 @@
         "forum": null,
         "video": null
       },
-      "parts": [],
+      "parts": [
+        {
+          "id": "A",
+          "title": "Practical science learning sequence",
+          "marks": 26,
+          "wordCount": 1100,
+          "description": "Table of at least 8–10 practicals arranged in a logical learning progression for Stage 4 or Stage 5, any Knowledge and Understanding strand from NSW Science Years 7–10 syllabus (2026).",
+          "requirements": [
+            "Choose Stage 4 (Year 7–8) or Stage 5 (Year 9–10) and one Knowledge and Understanding strand",
+            "At least 8–10 practicals in a logical learning progression",
+            "For each practical include: chronological number, title, description (20 words max), NSW syllabus outcomes and content statements, prior knowledge and skills required, safety considerations (contemporary), adjustments for the given cohort"
+          ],
+          "bespoke": null,
+          "loLinks": [
+            "LO1",
+            "LO2",
+            "LO3",
+            "LO5"
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Justification",
+          "marks": 10,
+          "wordCount": 300,
+          "description": "Cited justification of the decisions made in Part A.",
+          "requirements": [
+            "Justify pedagogical approach with relevant literature",
+            "Explain how the sequence supports the given cohort",
+            "Address syllabus elements: Working Scientifically outcomes, General Capabilities, Cross Curriculum Priorities",
+            "Justify prior knowledge, safety decisions, and cohort adjustments"
+          ],
+          "bespoke": null,
+          "loLinks": [
+            "LO1",
+            "LO3",
+            "LO5"
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Reflection",
+          "marks": 4,
+          "wordCount": 100,
+          "description": "Reflection on learning journey for this task.",
+          "requirements": [
+            "Identify what was new and what was already familiar",
+            "Name one specific professional learning source (NESA resource, professional association such as ASTA, experienced teacher, or community representative) that could deepen content knowledge or teaching in the chosen strand",
+            "Justify your choice and identify any changes to your own approach to learning"
+          ],
+          "bespoke": null,
+          "loLinks": [
+            "LO6"
+          ]
+        }
+      ],
       "criteria": [],
-      "rubric": [],
-      "hdCallout": null,
-      "submissionInstructions": [],
+      "rubric": [
+        {
+          "part": "A",
+          "criterion": "Holistic assessment of the practical learning sequence — syllabus accuracy, logical progression, constructivist pedagogy and prior knowledge, safety and inclusion",
+          "marks": 26,
+          "loLinks": [
+            "LO1",
+            "LO2",
+            "LO3",
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Syllabus: comprehensive, nuanced, accurate. Sequence: expertly progressive; builds from foundational to complex. Pedagogy: constructivism deeply evident; prior knowledge insightfully identified; goals precise. Safety/inclusion: proactive professional judgement; nuanced, specific adjustments for all cohort groups."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Syllabus: thorough and accurate. Sequence: logical; builds understanding well. Pedagogy: constructivism clearly evident; prior knowledge accurately identified; goals clear. Safety/inclusion: consistently applied; accurate adjustments for the given cohort."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Syllabus: sound accuracy; minor gaps. Sequence: mostly logical; some gaps. Pedagogy: constructivism evident; prior knowledge noted; goals present. Safety/inclusion: correctly applied; adjustments address most cohort needs."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Syllabus: adequate; some inaccuracies. Sequence: adequate order; limited progression. Pedagogy: limited evidence; prior knowledge partially identified. Safety/inclusion: inconsistently applied; adjustments partial."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Syllabus: inaccurate or missing. Sequence: illogical or absent. Pedagogy: not evident; prior knowledge absent. Safety/inclusion: inadequate or absent."
+            }
+          }
+        },
+        {
+          "part": "B",
+          "criterion": "Cited justification of pedagogical decisions, syllabus choices, prior knowledge, safety, and cohort adjustments",
+          "marks": 10,
+          "loLinks": [
+            "LO1",
+            "LO3",
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Evidence comprehensive and precisely cited. Justification demonstrates deep, integrated reasoning across all required elements: pedagogy, syllabus, safety, and cohort."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Evidence thorough and well cited. Justification demonstrates strong reasoning across pedagogy, syllabus, safety, and cohort needs."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Evidence sound and mostly cited. Justification addresses all required elements with sound reasoning."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Evidence present but limited. Justification addresses some elements adequately."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Evidence inadequate or absent. Justification does not address required elements."
+            }
+          }
+        },
+        {
+          "part": "C",
+          "criterion": "Professional reflection and learning",
+          "marks": 4,
+          "loLinks": [
+            "LO6"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "All prompt elements addressed with specificity and genuine professional reasoning. Professional learning source well-chosen and convincingly justified in relation to teaching context."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "All prompt elements addressed clearly. Source named and justified; connection to teaching context evident if not fully developed."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Most prompt elements addressed. Source identified; justification limited or generic."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Prompt elements addressed superficially. Source absent, unnamed, or unjustified."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Not completed to an adequate standard or too generic to assess."
+            }
+          }
+        }
+      ],
+      "hdCallout": "HD in Part A requires proactive professional judgement on safety and nuanced, specific adjustments for every named group in the cohort — not generic inclusion statements. Your Part B justification must cite literature precisely, not as background decoration.",
+      "checklist": [
+        "Stage (4 or 5) and Knowledge and Understanding strand clearly named",
+        "At least 8–10 practicals in the table",
+        "Each practical includes: number, title, description (≤20 words), NSW outcomes and content codes, prior knowledge, safety considerations, cohort adjustments",
+        "Practicals arranged in a logical learning progression (foundational to complex)",
+        "Safety considerations are contemporary and specific to each practical",
+        "Adjustments address all named cohort groups: EAL/D, advanced, behind in science, Aboriginal or Torres Strait Islander students",
+        "Part B cites peer-reviewed literature accurately in APA 7th",
+        "Part C names a specific professional learning source and justifies the choice",
+        "Submitted on the template with APA 7th reference list"
+      ],
+      "submissionInstructions": [
+        "Submit on the template provided",
+        "APA 7th reference list required",
+        "In-text citations, reference list, and syllabus extracts are excluded from the word count",
+        "Submissions exceeding word count by more than 10% may be penalised"
+      ],
       "trimesterDates": {
         "T2-2026": {
-          "due": "2026-07-26",
+          "due": null,
           "flexiblePortal": {
-            "label": "Flexible portal",
+            "label": "Flexible submission portal",
             "url": null,
             "opensDate": null,
-            "closesDate": "2026-08-02"
+            "closesDate": null
           }
         }
       }
     },
     {
       "id": "AT2",
-      "title": null,
-      "weighting": 50,
-      "length": null,
-      "learningOutcomes": null,
-      "aitslStandards": [],
-      "rationale": null,
-      "aim": null,
+      "title": "Unit Program — Constructivist Science Teaching",
+      "weighting": 60,
+      "length": "2,500 words (equivalent) ±10%",
+      "learningOutcomes": [
+        "LO1",
+        "LO2",
+        "LO3",
+        "LO4",
+        "LO5",
+        "LO6"
+      ],
+      "aitslStandards": [
+        "1.3.1",
+        "1.4.1",
+        "2.1.1",
+        "2.2.1",
+        "2.3.1",
+        "2.4.1",
+        "2.5.1",
+        "3.2.1",
+        "3.6.1",
+        "5.3.1",
+        "5.3.2",
+        "5.4.1",
+        "6.2.1",
+        "6.4.1",
+        "7.4.1"
+      ],
+      "rationale": "Unit programming is a core professional competency. Teachers must be able to design coherent, inclusive, and syllabus-aligned learning sequences that integrate assessment, differentiation, and evidence-informed pedagogy.",
+      "aim": "Design a five-week constructivist unit program for a diverse given cohort, embed literacy/numeracy and ATSI perspectives, design a summative assessment task, and reflect on professional learning.",
       "links": {
         "rubric": null,
         "taskFiles": null,
@@ -110,19 +319,385 @@
         "forum": null,
         "video": null
       },
-      "parts": [],
+      "parts": [
+        {
+          "id": "A",
+          "title": "Unit program",
+          "marks": 27,
+          "wordCount": 1500,
+          "description": "Five-week unit program for the given cohort using a named constructivist pedagogical approach and a Knowledge and Understanding strand from NSW Science Years 7–10 syllabus (2026).",
+          "requirements": [
+            "Name and apply a constructivist pedagogical approach — its key features must be recognisable throughout",
+            "Assume four 50-minute lessons per week, two of which are laboratory lessons (20 lessons total)",
+            "Include: syllabus outcomes, content, and Working Scientifically skills; General Capabilities; Cross Curriculum Priorities; teaching strategies for the diverse cohort; adjustments for the given cohort; at least two formative assessment opportunities; at least one practical per week in a laboratory lesson"
+          ],
+          "note": "Do NOT write 20 lesson plans. This is a high-level unit program. Word count excludes: in-text citations, reference list, syllabus extracts, and the unit program overview section (year group, strand, pedagogical approach, and rationale — typically before the weekly tables).",
+          "bespoke": null,
+          "loLinks": [
+            "LO1",
+            "LO2",
+            "LO3",
+            "LO5"
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Highlight and embed",
+          "marks": 9,
+          "wordCount": null,
+          "description": "Apply colour highlights to the Part A unit program to evidence genuine embedding of literacy/numeracy, ATSI perspectives, and formative assessment.",
+          "requirements": [
+            "Blue — literacy and numeracy strategies",
+            "Yellow — Aboriginal and Torres Strait Islander perspectives, histories and cultures",
+            "Green — formative assessment tasks",
+            "Highlights must reflect genuine embedding, not retrospective addition",
+            "At least two formative assessment tasks must be present and highlighted"
+          ],
+          "bespoke": null,
+          "loLinks": [
+            "LO4",
+            "LO5"
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Summative assessment task with A–E marking rubric",
+          "marks": 18,
+          "wordCount": 550,
+          "description": "Design a summative assessment task appropriate to the end of the unit, completed in class, with an A–E marking rubric using NESA Performance Band Descriptor language.",
+          "requirements": [
+            "Task may be individual or collaborative, theory or practical",
+            "Must be completed in class (not take-home or extended)",
+            "Must be inclusive for all learners (adjustments, access arrangements, alternative response modes)",
+            "Must align to syllabus outcomes addressed in Parts A and B",
+            "Must include an A–E marking rubric using NESA Science Years 7–10 Performance Band Descriptor language"
+          ],
+          "bespoke": null,
+          "loLinks": [
+            "LO4"
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Reflection",
+          "marks": 6,
+          "wordCount": 150,
+          "description": "Reflection on learning across the task, with evaluation planning and professional connection.",
+          "requirements": [
+            "Reflect on what was most and least familiar across unit programming, assessment design, and planning for diverse learners",
+            "Identify one aspect of your unit program you would evaluate or refine after teaching it, and describe what evidence you would use",
+            "Name one external professional or community source (e.g. ATSI community representative, NESA consultant, science education professional association) whose input could improve your content knowledge or teaching — explain how you would access that support"
+          ],
+          "bespoke": null,
+          "loLinks": [
+            "LO6"
+          ]
+        }
+      ],
       "criteria": [],
-      "rubric": [],
-      "hdCallout": null,
-      "submissionInstructions": [],
+      "rubric": [
+        {
+          "part": "A",
+          "criterion": "Syllabus content, outcomes, skills, and practicals",
+          "marks": 14,
+          "loLinks": [
+            "LO1",
+            "LO2",
+            "LO3"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Nuanced, comprehensive syllabus outcomes, content, and skills across all five weeks. Practicals expertly integrated and purposefully matched to content. Exceptional science content knowledge evident."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Accurate syllabus outcomes, content, and skills throughout. Practicals well-integrated and matched to content. Strong science content knowledge evident."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Mostly accurate syllabus elements across the unit. Practicals present and appropriate. Sound science content knowledge."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Some accurate syllabus elements. Practicals present with some gaps or mismatches. Adequate content knowledge."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Syllabus elements inaccurate or missing. Practicals absent, inadequate, or poorly matched. Content knowledge not adequately demonstrated."
+            }
+          }
+        },
+        {
+          "part": "A",
+          "criterion": "Teaching sequence, strategies, and adjustments for the given cohort",
+          "marks": 13,
+          "loLinks": [
+            "LO2",
+            "LO3",
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Constructivist approach expertly named and sustained throughout. Innovative, cohort-responsive strategies. Sequence builds understanding with clear, expert progression. Nuanced adjustments and purposeful embedding of GCs and CCPs."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Constructivist approach clearly named and well-applied. Effective, cohort-responsive strategies. Sequence builds understanding well. Accurate adjustments and embedding of GCs and CCPs."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Constructivist approach named and evident. Appropriate strategies. Sequence mostly progressive. Sound adjustments; GCs and CCPs present."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Constructivist approach referenced but partially evident. Some strategies appropriate. Adequate progression. Limited adjustments; GCs or CCPs partially addressed."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Constructivist approach not named or evident. Strategies limited or inappropriate. Sequence does not build understanding. Adjustments absent or inadequate."
+            }
+          }
+        },
+        {
+          "part": "B",
+          "criterion": "Literacy, numeracy, and ATSI embedding",
+          "marks": 3,
+          "loLinks": [
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Exceptional range genuinely and effectively embedded. All elements highlighted throughout."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Strong range effectively embedded. All elements highlighted."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Sound embedding with appropriate strategies and perspectives. Elements highlighted."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Limited strategies embedded. Most elements highlighted."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Strategies absent or not highlighted."
+            }
+          }
+        },
+        {
+          "part": "B",
+          "criterion": "Inclusion and cohort appropriateness",
+          "marks": 3,
+          "loLinks": [
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Barriers expertly identified and mitigated. Unit provides genuinely equitable access for all cohort groups."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Barriers identified and mitigated. Unit provides clear access for all diverse learners."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Some barriers identified. Unit is mostly accessible for diverse learners."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Limited attention to barriers. Some adjustments present."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Barriers not identified. Unit does not address diverse learner needs."
+            }
+          }
+        },
+        {
+          "part": "B",
+          "criterion": "Formative assessment tasks",
+          "marks": 3,
+          "loLinks": [
+            "LO4"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Two or more tasks present and highlighted green. Purposefully designed with explicit connection to learning goals and clear link to informing future teaching for the cohort."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Two or more tasks present and highlighted. Well-chosen; connection to future teaching clearly evident."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Two or more tasks present and highlighted. Appropriate; some indication of how they inform teaching."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Two or more tasks present and highlighted. Generic or loosely connected to learning goals."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Fewer than two tasks present or highlighted, or tasks would not inform teaching."
+            }
+          }
+        },
+        {
+          "part": "C",
+          "criterion": "Task design and syllabus alignment",
+          "marks": 6,
+          "loLinks": [
+            "LO4"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Task details accurate and clearly appropriate. Exceptional alignment to syllabus outcomes. Instructions unambiguous, precise, and inclusive."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Task details accurate and appropriate. Strong syllabus alignment. Instructions clear and concise."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Task details accurate. Sound alignment. Instructions mostly clear."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Task details mostly accurate. Adequate alignment to some outcomes. Instructions present with room for improvement."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Errors in task details. Inadequate alignment. Instructions ambiguous or absent."
+            }
+          }
+        },
+        {
+          "part": "C",
+          "criterion": "Internal alignment and appropriateness",
+          "marks": 6,
+          "loLinks": [
+            "LO4"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Task aligns closely and purposefully to Parts A and B. All cohort members have a genuine, equitable opportunity to demonstrate achievement."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Task aligns well. Cohort members have a clear opportunity to demonstrate achievement."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Task aligns to Parts A and B. Most cohort members can demonstrate achievement; access for some may be limited."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Task aligns adequately. May not fully reflect outcomes or provide equitable access for all learners."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Task does not align to Parts A and B and/or does not provide adequate opportunity for all learners."
+            }
+          }
+        },
+        {
+          "part": "C",
+          "criterion": "Marking rubric quality",
+          "marks": 6,
+          "loLinks": [
+            "LO4"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Rubric strongly supports consistent marking and student understanding. NESA Performance Band Descriptor language used very effectively across all five bands."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Rubric supports consistent marking and student understanding. Performance Band Descriptor language used well."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Rubric provides some support for consistent marking. Performance Band Descriptor language used soundly."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Rubric present but may be poorly constructed. Performance Band Descriptor language attempted."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Rubric absent, very poorly constructed, or Performance Band Descriptor language not used."
+            }
+          }
+        },
+        {
+          "part": "D",
+          "criterion": "Professional reflection and learning",
+          "marks": 6,
+          "loLinks": [
+            "LO6"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Exceptional: specific evaluation aspect identified with precise evidence articulated. External source well-chosen and convincingly justified in relation to content knowledge or teaching of this unit."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Critical reflection: evaluation aspect identified with evidence noted. External source named and justified; connection to practice evident."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Some critical reflection: evaluation aspect noted. External source identified; justification present but limited."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Surface reflection: evaluation aspect or external source absent or too vague to assess."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Not completed to an adequate standard."
+            }
+          }
+        }
+      ],
+      "hdCallout": "HD in Part C requires your rubric to use NESA Performance Band Descriptor language precisely across all five bands — not generic quality descriptors. Your Part D reflection must name a specific external source and explain concretely how you would access that support.",
+      "checklist": [
+        "Constructivist approach named explicitly — its features are visible throughout the program",
+        "Five weeks, four lessons per week (two lab lessons), 20 lessons total",
+        "At least one practical per week in a laboratory lesson",
+        "At least two formative assessment opportunities included",
+        "Syllabus outcomes, content, Working Scientifically skills, GCs and CCPs included",
+        "Adjustments included for all cohort groups: EAL/D, advanced, behind in science, Aboriginal or Torres Strait Islander students",
+        "Part B highlights: blue (literacy/numeracy), yellow (ATSI), green (formative assessment) — genuine, not retrospective",
+        "Part C summative task is in-class, inclusive, and aligned to unit outcomes",
+        "Part C rubric uses NESA Performance Band Descriptor language across all five bands (A–E)",
+        "Part D names a specific external professional or community source with a concrete access plan",
+        "Submitted on the template with APA 7th reference list"
+      ],
+      "submissionInstructions": [
+        "Submit on the template provided",
+        "APA 7th reference list required",
+        "Word count excludes: in-text citations, reference list, syllabus extracts, and the unit program overview section"
+      ],
       "trimesterDates": {
         "T2-2026": {
-          "due": "2026-09-06",
+          "due": null,
           "flexiblePortal": {
-            "label": "Flexible portal",
+            "label": "Flexible submission portal",
             "url": null,
             "opensDate": null,
-            "closesDate": "2026-09-13"
+            "closesDate": null
           }
         }
       }
