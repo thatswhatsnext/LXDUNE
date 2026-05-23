@@ -398,7 +398,7 @@ All week-specific shells use `forWeek: N` — pinned to that module's content re
   - LO1 Science Content & Teaching Strategies (#1f6fb2), LO2 Assessment Knowledge (#25797F), LO3 Investigative Skills & Safety (#2E86AB), LO4 ICT & Resource Evaluation (#4a90d9), LO5 Professional Resources & Networks (#E3B089), LO6 Critical Textbook Analysis (#C4872D)
 - **assessmentTasks:** AT1 and AT2 — fully populated; `trimesterDates.T1-2026` dates populated ✅; T2-2026 and T3-2026 stubs present (due null — pending)
   - AT1: learningOutcomes LO1–LO5 ✅; 7-row rubric; **Part D descriptors updated 2026-05-21** to analytical reflection focus (shift in thinking → future teaching decision); links: rubric ✅, taskFiles ✅, submit ✅, forum ✅, video null
-  - AT2: learningOutcomes LO1/LO2/LO4/LO5/LO6 ✅; **`taskGuidanceNotes` added 2026-05-21** (2 items: textbook→LO6, external expert→LO5); **Diversity & Intentional Curation rubric updated** — HD appended (professional networks, ATSI cultural awareness), C/P appended (shorter versions); links: rubric null ⚠️, taskFiles ✅, submit ✅, forum null, video ✅; T1-2026 flexiblePortal.url null (past-due)
+  - AT2: learningOutcomes LO1/LO2/LO4/LO5/LO6 ✅; **`taskGuidanceNotes` added 2026-05-21** (2 items: textbook→LO6, external expert→LO5); **Diversity & Intentional Curation rubric updated** — HD appended (professional networks, Aboriginal and Torres Strait Islander cultural awareness), C/P appended (shorter versions); links: rubric null ⚠️, taskFiles ✅, submit ✅, forum null, video ✅; T1-2026 flexiblePortal.url null (past-due)
 - **assessmentFiles (T1-2026):** all discipline task/marking URLs `null`
 - **T1 2026 status:** both AT1 (due 2026-03-29) and AT2 (due 2026-05-03) are past due. Unit is in PE/assessment period.
 
@@ -650,7 +650,7 @@ See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary
 - HD now: "Reflection identifies a specific shift in thinking during the task, names what caused that shift, and explicitly connects it to a concrete future teaching decision... May draw on relevant literature to support insight."
 
 **AT2 Diversity & Intentional Curation rubric update (G4/G6):**
-- HD appended: professional learning networks + community expertise; cultural safety; ATSI perspectives in science education
+- HD appended: professional learning networks + community expertise; cultural safety; Aboriginal and Torres Strait Islander perspectives in science education
 - C appended: "Resources are generally culturally appropriate. Some awareness of professional networks evident."
 - P appended: "Limited evidence of cultural awareness or professional network consideration."
 - D and N unchanged
@@ -762,7 +762,7 @@ See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary
 **Checklist template `EDSE358-AT1` updated:**
 - Old "Part D — Reflection" (3 items: D1/D2/D3 as item labels) removed
 - Replaced with two `<details>` sections:
-  - D1 "Planning timely and purposeful feedback for students" (5 marks) — 5 items (D1a–D1e): timing, form, differentiation (incl. ATSI/EAL-D), teaching decisions, outcome alignment
+  - D1 "Planning timely and purposeful feedback for students" (5 marks) — 5 items (D1a–D1e): timing, form, differentiation (incl. Aboriginal and Torres Strait Islander students/EAL-D), teaching decisions, outcome alignment
   - D2 "Reflective self-assessment" (5 marks) — 2 items (D2a–D2b): identifying specific learning, concrete future teaching example
 - Old items were generic reflection prompts predating the D→D1/D2 structural split; new items map directly to AT1 Part D1/D2 requirements
 
@@ -796,11 +796,11 @@ See `docs/ACTION-PLAN.md` for the full prioritised list with checkboxes. Summary
 
 **EDSE358 alignment improvement fields (`feature/edse358-alignment-improvements` → main, commit `d5300ac`):**
 New schema fields added and populated:
-- `orientationNote` (week-level string): weeks 4 (Module 3B — ICT/ATSI framing + safety) and 5 (Module 4A — 4A–4D spiral framing)
-- `forumPrompts` (week-level array): weeks 4 (3 prompts: ICT tools, ATSI embedding, activity types), 6 (2 prompts: alignment analysis, evaluation strategy), 8 (3 prompts: rubrics, feedback, senior science challenges)
+- `orientationNote` (week-level string): weeks 4 (Module 3B — ICT/Aboriginal and Torres Strait Islander framing + safety) and 5 (Module 4A — 4A–4D spiral framing)
+- `forumPrompts` (week-level array): weeks 4 (3 prompts: ICT tools, Aboriginal and Torres Strait Islander embedding, activity types), 6 (2 prompts: alignment analysis, evaluation strategy), 8 (3 prompts: rubrics, feedback, senior science challenges)
 - `synthesisTemplate` (week-level string): week 6 — post-forum synthesis template for lecturer use
 - `workedExample` (week-level string): week 6 — Chemistry (strong alignment) + Biology (partial alignment) contrasting examples
-- `guidanceNotes` (parts-level array): AT1 Part B (4 items: ICT, ATSI, unit sequence, formative assessment frequency); AT1 Part D2 (1 item: analytical reflection guidance)
+- `guidanceNotes` (parts-level array): AT1 Part B (4 items: ICT, Aboriginal and Torres Strait Islander, unit sequence, formative assessment frequency); AT1 Part D2 (1 item: analytical reflection guidance)
 
 None of these fields are rendered by blocks.js — see ACTION-PLAN item 18.
 
@@ -812,7 +812,7 @@ None of these fields are rendered by blocks.js — see ACTION-PLAN item 18.
 - **G2:** Week 8 (Module 4D): 4 new `liveSessionTasks` appended (feedback-writing formative activity on anonymised sample); 3 `forumPrompts` added (rubrics, feedback design, senior science challenges)
 - **G3:** B2 rubric C/P/N: safety language appended. Week 4 `orientationNote`: safety-as-pedagogy sentence appended.
 - **G4:** B4 rubric HD: evaluation strategy sentence appended. Week 6 `forumPrompts`: evaluation strategy prompt added.
-- **G5:** B1 rubric C/P/N: ATSI-specific differentiation language appended.
+- **G5:** B1 rubric C/P/N: Aboriginal and Torres Strait Islander-specific differentiation language appended.
 - **G7:** B3 rubric HD: range-of-activity-types sentence appended. Week 4 `forumPrompts`: activity-types audit prompt added.
 - **G8:** B2 rubric HD: fully replaced with new text covering resource rationale, range of types, ICT, and safety.
 - **G3+G8 tidy-up (`9e3b9e9`):** B2 HD de-duplicated — removed redundant "appropriate, engaging and safe" phrase; kept specific CSIS safety reference only.

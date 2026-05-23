@@ -1,0 +1,280 @@
+<div class="edse362-at1-checklist" role="region" aria-label="EDSE362 AT1 Pre-submission checklist">
+  <style>
+    .edse362-at1-checklist {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+      max-width: 960px;
+    }
+    .edse362-at1-checklist .card {
+      border: 1px solid #b8d6c6;
+      border-radius: 12px;
+      padding: 16px;
+      background: #fff;
+      margin: 12px 0;
+    }
+    .edse362-at1-checklist h2 { margin: 0 0 8px 0; color: #2E7D52; }
+    .edse362-at1-checklist .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .edse362-at1-checklist button {
+      border: 1px solid #b8d6c6;
+      background: #f4f9f6;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .edse362-at1-checklist button:hover { background: #e3f0e9; }
+    .edse362-at1-checklist .status { font-weight: 700; margin-top: 10px; }
+    .edse362-at1-checklist .good { color: #2E7D52; }
+    .edse362-at1-checklist .warn { color: #9a5b00; }
+    .edse362-at1-checklist details {
+      border: 1px solid #c8dfd2;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      background: #fafcfb;
+    }
+    .edse362-at1-checklist summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #2E7D52;
+    }
+    .edse362-at1-checklist .item { margin: 10px 0; }
+    .edse362-at1-checklist label {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      cursor: pointer;
+    }
+    .edse362-at1-checklist input[type="checkbox"] { margin-top: 3px; }
+    .edse362-at1-checklist .tip {
+      margin: 8px 0 0 28px;
+      padding: 10px 12px;
+      border-left: 4px solid #E3B089;
+      background: #fdf8f3;
+      border-radius: 6px;
+      display: none;
+      font-size: .9rem;
+    }
+    .edse362-at1-checklist .tip strong { display: block; margin-bottom: 4px; color: #7a4a1e; }
+  </style>
+
+  <div class="card">
+    <h2>EDSE362 AT1 — Pre-Submission Checklist</h2>
+    <div class="controls">
+      <button type="button" data-action="show-missing">Show recommendations</button>
+      <button type="button" data-action="hide-all">Hide recommendations</button>
+      <button type="button" data-action="check-all">Check all</button>
+      <button type="button" data-action="uncheck-all">Uncheck all</button>
+    </div>
+    <div class="status warn" data-status="">
+      Progress: <span data-done="">0</span>/<span data-total="">0</span> checked
+    </div>
+  </div>
+
+  <!-- CRITERION 1 -->
+  <details>
+    <summary>Practical Learning Sequence (26 marks — LO1, LO2, LO3, LO5)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip1"><span><strong>1.</strong> The Stage (4 or 5) and Knowledge and Understanding strand are clearly named at the top of the table.</span></label>
+      <div class="tip" id="at1-tip1">
+        <strong>Recommendation if not checked</strong>
+        Add a header row or title above your table that names the specific Stage and the Knowledge and Understanding strand before the first practical entry. A marker who cannot identify these within ten seconds will apply the lowest band for curriculum alignment. This is worth up to 26 marks — do not lose marks on a missing label.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip2"><span><strong>2.</strong> I have included at least 8–10 practicals.</span></label>
+      <div class="tip" id="at1-tip2">
+        <strong>Recommendation if not checked</strong>
+        Count your practicals. The 8–10 range is an assessment requirement, not a suggestion. Fewer than 8 will not demonstrate adequate coverage of the strand; more than 10 risks superficiality — make sure each practical does distinct curriculum work before adding more. If you are short, add practicals that address untouched content points or Working Scientifically skills.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip3"><span><strong>3.</strong> Every practical has all required columns completed: number, title, ≤20-word description, NSW syllabus outcome codes and content statements, prior knowledge and skills, contemporary safety considerations, and cohort adjustments.</span></label>
+      <div class="tip" id="at1-tip3">
+        <strong>Recommendation if not checked</strong>
+        Open your table and scan each row against this list: (1) chronological number, (2) title, (3) description of 20 words or fewer, (4) NSW syllabus outcome code and matching content statement, (5) prior knowledge students need, (6) a safety consideration specific to this practical, (7) adjustments for the named cohort. Any empty cell in any row costs marks in the rubric's lowest band. Partial completion is not assessed as "mostly done" — each column is expected.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip4"><span><strong>4.</strong> Practicals are arranged in a logical progression from foundational to complex — not grouped by type or chosen arbitrarily.</span></label>
+      <div class="tip" id="at1-tip4">
+        <strong>Recommendation if not checked</strong>
+        Read your sequence from Practical 1 to the last practical and ask: does each practical depend on skills or knowledge established in earlier ones? If Practical 6 could be swapped with Practical 2 without loss, your sequence is a list, not a progression. Reorder so each practical explicitly builds on what precedes it — and if you can, note in the prior knowledge column what earlier practicals established.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip5"><span><strong>5.</strong> Safety considerations are specific to each practical and the named cohort — not generic lab rules repeated across all rows.</span></label>
+      <div class="tip" id="at1-tip5">
+        <strong>Recommendation if not checked</strong>
+        Replace any safety entry that could appear in any science lesson (e.g. "wear safety goggles", "tie back long hair") with a consideration specific to the hazard in that practical. Name the substance, equipment, or procedure, explain the specific risk, and state the control measure. For example: "Concentrated HCl fumes — conduct in fume hood; if cohort includes students with respiratory conditions, seat them furthest from bench." Generic safety statements earn no marks on this criterion.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip6"><span><strong>6.</strong> Adjustments address all four named cohort groups: EAL/D students, advanced students, students behind in science, and Aboriginal or Torres Strait Islander students.</span></label>
+      <div class="tip" id="at1-tip6">
+        <strong>Recommendation if not checked</strong>
+        Search your adjustments column for each of these four terms: EAL/D (or language background), advanced, behind (or struggling), and Aboriginal or Torres Strait Islander. If any group is absent from any practical, add a specific adjustment for that practical — not a blanket sentence that applies everywhere. Adjustments must be practical-specific: the adjustment for a titration practical should differ from the one for a microscopy practical.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- CRITERION 2 -->
+  <details>
+    <summary>Justification (10 marks — LO1, LO3, LO5)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip7"><span><strong>7.</strong> My pedagogical approach is named in the opening and its rationale is supported by peer-reviewed literature.</span></label>
+      <div class="tip" id="at1-tip7">
+        <strong>Recommendation if not checked</strong>
+        Name the approach in your first or second sentence — not buried in the middle. Then cite at least one peer-reviewed source that explains why this approach is effective for this type of content or cohort. "Inquiry-based learning is supported by the literature (Smith, 2021)" is insufficient — explain what Smith argues and connect that argument to a specific design decision you made in Part A.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip8"><span><strong>8.</strong> My justification explains how the sequence supports the named cohort, with specific reference to Part A decisions.</span></label>
+      <div class="tip" id="at1-tip8">
+        <strong>Recommendation if not checked</strong>
+        Name practicals from Part A by number or title in your justification and explain what about your cohort made you design them that way. A justification that could have been written without ever looking at Part A is not a justification — it is a description of good teaching in general. Specificity is the standard: "I structured Practical 3 as a guided inquiry rather than a demonstration because the EAL/D students in this cohort benefit from hands-on language production alongside content learning."
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip9"><span><strong>9.</strong> I address Working Scientifically outcomes, General Capabilities, and Cross Curriculum Priorities.</span></label>
+      <div class="tip" id="at1-tip9">
+        <strong>Recommendation if not checked</strong>
+        Each of these three elements needs at least one sentence in your justification. Name the specific Working Scientifically strand (e.g. Investigating SC4-WS-04), the named General Capability (e.g. Critical and Creative Thinking), and the Cross Curriculum Priority (e.g. Sustainability). Explain how your sequence addresses each — do not just list them. If these are absent, the marker will assess your justification against the lowest band regardless of how well you justify pedagogy.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip10"><span><strong>10.</strong> Prior knowledge, safety decisions, and cohort adjustments are justified — not just described.</span></label>
+      <div class="tip" id="at1-tip10">
+        <strong>Recommendation if not checked</strong>
+        Read each paragraph in your justification. If a sentence explains what you did without explaining why, it is a description. Rewrite it with a because-clause that names a principle, a cohort characteristic, or an evidence base. For example: "I sequenced practicals from concrete to abstract because the cohort includes students in their first year of secondary school who have limited experience with abstract scientific modelling (Ausubel, 1968)."
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip11"><span><strong>11.</strong> All literature is cited precisely in APA 7th — not listed as background decoration.</span></label>
+      <div class="tip" id="at1-tip11">
+        <strong>Recommendation if not checked</strong>
+        Check every in-text citation: (Author, Year) immediately follows the claim it supports — not at the end of the paragraph. Then open your reference list: each entry needs author(s), year, title, journal/publisher, and DOI or URL where applicable. A citation that appears in the text but not in the reference list (or vice versa) is an APA error. Fix all mismatches before submitting.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- CRITERION 3 -->
+  <details>
+    <summary>Reflection (4 marks — LO6)</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip12"><span><strong>12.</strong> My reflection distinguishes what was genuinely new from what I already knew — it is not a generic summary of the task.</span></label>
+      <div class="tip" id="at1-tip12">
+        <strong>Recommendation if not checked</strong>
+        Use these two sentence frames to structure your reflection: "Before this task I understood ___ but completing the sequence showed me ___." and "I had already encountered ___ but I now see ___." A reflection that describes everything as new is not credible, and a reflection that only summarises what you did is not reflective. The 4 marks on LO6 reward genuine self-assessment — claim it by being honest about what was and was not new for you.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip13"><span><strong>13.</strong> I name one specific professional learning source — not a category.</span></label>
+      <div class="tip" id="at1-tip13">
+        <strong>Recommendation if not checked</strong>
+        Do not write "professional reading" or "talking to colleagues". Name a specific organisation (e.g. Science Teachers Association of NSW), a named journal (e.g. Teaching Science), a specific type of practitioner (e.g. an experienced HoD in a school with a strong practical science culture), or a named professional association. The source must be external to this unit and external to your current placement or employer.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip14"><span><strong>14.</strong> I explain why I chose that source in relation to the specific strand and teaching context.</span></label>
+      <div class="tip" id="at1-tip14">
+        <strong>Recommendation if not checked</strong>
+        Add a sentence that connects your chosen source to the specific Knowledge and Understanding strand and your cohort: "I would seek professional learning from [source] because [reason directly linked to the strand's content challenges or the cohort's needs]." The justification must be specific enough that it would not apply equally well to a different strand or year group. If it would, make it more specific.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip15"><span><strong>15.</strong> I identify a concrete change to my own approach to professional learning.</span></label>
+      <div class="tip" id="at1-tip15">
+        <strong>Recommendation if not checked</strong>
+        Name one thing you will do differently — not "I will read more" but something specific and observable: "I will seek a mentor with expertise in practical sequence design in Stage 4 chemistry before I teach this strand, and I will use the STANSW Safety Guide as my primary safety reference rather than generic lab rules." The change must be concrete enough that you could describe, six months later, whether or not you did it.
+      </div>
+    </div>
+
+  </details>
+
+  <!-- SUBMISSION -->
+  <details>
+    <summary>Submission checks</summary>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip16"><span><strong>16.</strong> My assignment is submitted on the provided template.</span></label>
+      <div class="tip" id="at1-tip16">
+        <strong>Recommendation if not checked</strong>
+        Download the assessment template from the Assessment Portal if you have not already. Your practical table must be in the prescribed format — work submitted in a different format may not be accepted or may be assessed against incomplete criteria.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip17"><span><strong>17.</strong> An APA 7th reference list is included at the end of my justification.</span></label>
+      <div class="tip" id="at1-tip17">
+        <strong>Recommendation if not checked</strong>
+        Add a reference list immediately after your justification (before the reflection, or at the very end). Every source cited in your justification must appear in the list. Check: author, year, title, source, DOI or URL. References cited in the table but not in the justification do not need to appear unless the marking rubric requires it — check the task instructions.
+      </div>
+    </div>
+
+    <div class="item">
+      <label><input type="checkbox" data-tip="at1-tip18"><span><strong>18.</strong> My word count is within ±10% of the stated limit, with citations, reference list, and syllabus extracts excluded.</span></label>
+      <div class="tip" id="at1-tip18">
+        <strong>Recommendation if not checked</strong>
+        Run a word count on your justification and reflection only — exclude the practical table, all in-text citations in parentheses, the reference list, and any syllabus outcome codes or content statements you have quoted directly. The ±10% tolerance applies to the word-counted sections. If you are over, tighten your justification by removing description and keeping only reasoning. If you are under, check whether you have fully justified all three required elements (pedagogy, cohort, curriculum).
+      </div>
+    </div>
+
+  </details>
+
+  <script>
+    (function() {
+      const root = document.querySelector('.edse362-at1-checklist');
+      if (!root) return;
+      const boxes = Array.from(root.querySelectorAll('input[type="checkbox"][data-tip]'));
+      const totalEl = root.querySelector('[data-total]');
+      const doneEl = root.querySelector('[data-done]');
+      const statusEl = root.querySelector('[data-status]');
+      function showTip(box) {
+        const tip = root.querySelector('#' + box.dataset.tip);
+        if (tip) tip.style.display = box.checked ? 'none' : 'block';
+      }
+      function update() {
+        const done = boxes.filter(b => b.checked).length;
+        totalEl.textContent = boxes.length;
+        doneEl.textContent = done;
+        statusEl.className = 'status ' + (done === boxes.length ? 'good' : 'warn');
+      }
+      boxes.forEach(b => { b.addEventListener('change', () => { showTip(b); update(); }); });
+      root.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const action = btn.dataset.action;
+          if (action === 'show-missing') boxes.forEach(b => { if (!b.checked) showTip(b); });
+          if (action === 'hide-all') boxes.forEach(b => { const tip = root.querySelector('#' + b.dataset.tip); if (tip) tip.style.display = 'none'; });
+          if (action === 'check-all') boxes.forEach(b => { b.checked = true; showTip(b); });
+          if (action === 'uncheck-all') boxes.forEach(b => { b.checked = false; showTip(b); });
+          update();
+        });
+      });
+      update();
+    })();
+  </script>
+</div>
