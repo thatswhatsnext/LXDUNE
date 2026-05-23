@@ -271,6 +271,7 @@
     <button class="tab-btn" id="tab-checklist" type="button">Checklist</button>
     <button class="tab-btn" id="tab-nav" type="button">Navigation</button>
     <button class="tab-btn" id="tab-spl" type="button">Single Page Layout</button>
+    <button class="tab-btn" id="tab-hybrid" type="button">Hybrid</button>
   </div>
 </div>
 
@@ -419,6 +420,28 @@
   <div id="spl-content"></div>
 </div>
 
+<!-- ── Hybrid tab ──────────────────────────────────────────────────────────── -->
+<div class="assess-page" id="hybrid-page" style="display:none;">
+  <div class="assess-ctrl-bar">
+    <div class="ctrl-group">
+      <label>View mode</label>
+      <select id="sel-hybrid-mode" style="font-family:Arial,sans-serif;font-size:.875em;padding:5px 9px;border:1px solid #dfe6ea;border-radius:6px;">
+        <option value="single">Single task</option>
+        <option value="all">All tasks (tabbed)</option>
+      </select>
+    </div>
+    <div class="ctrl-group" id="hybrid-task-ctrl-group">
+      <label>Task</label>
+      <select id="sel-hybrid-task" style="font-family:Arial,sans-serif;font-size:.875em;padding:5px 9px;border:1px solid #dfe6ea;border-radius:6px;min-width:180px;">
+        <option value="AT1">AT1</option>
+        <option value="AT2">AT2</option>
+      </select>
+    </div>
+    <button class="rerender-btn" id="rerender-hybrid-btn">Re-render</button>
+  </div>
+  <div id="lxdune-assessment-hybrid"></div>
+</div>
+
 <!-- ── Assessment tab ─────────────────────────────────────────────────────── -->
 <div class="assess-page" id="assess-page" style="display:none;">
   <div class="assess-ctrl-bar">
@@ -463,6 +486,7 @@ import {
   renderWorkedExample,
   renderCurrentWeek,
   renderAssessmentNav,
+  renderAssessmentHybrid,
 } from '../moodle-blocks/blocks.js';
 
 // ── State ─────────────────────────────────────────────────────────────────────
@@ -704,6 +728,7 @@ function scheduleRender(delay = 150) {
   if (activeTab === 'checklist') scheduleClRender(delay);
   if (activeTab === 'nav') scheduleNavRender(delay);
   if (activeTab === 'spl') scheduleSplRender(delay);
+  if (activeTab === 'hybrid') scheduleHybridRender(delay);
 }
 
 // ── Event wiring ──────────────────────────────────────────────────────────────
@@ -745,17 +770,20 @@ function switchTab(tab) {
   document.getElementById('tab-checklist').classList.toggle('active', tab === 'checklist');
   document.getElementById('tab-nav').classList.toggle('active', tab === 'nav');
   document.getElementById('tab-spl').classList.toggle('active', tab === 'spl');
+  document.getElementById('tab-hybrid').classList.toggle('active', tab === 'hybrid');
   document.querySelector('.blocks-page').style.display = tab === 'blocks' ? '' : 'none';
   document.getElementById('assess-page').style.display = tab === 'assess' ? '' : 'none';
   document.getElementById('hub-page').style.display = tab === 'hub' ? '' : 'none';
   document.getElementById('checklist-page').style.display = tab === 'checklist' ? '' : 'none';
   document.getElementById('nav-page').style.display = tab === 'nav' ? '' : 'none';
   document.getElementById('spl-page').style.display = tab === 'spl' ? '' : 'none';
+  document.getElementById('hybrid-page').style.display = tab === 'hybrid' ? '' : 'none';
   if (tab === 'assess') scheduleAssessRender(0);
   if (tab === 'hub') scheduleHubRender(0);
   if (tab === 'checklist') scheduleClRender(0);
   if (tab === 'nav') scheduleNavRender(0);
   if (tab === 'spl') scheduleSplRender(0);
+  if (tab === 'hybrid') scheduleHybridRender(0);
 }
 
 document.getElementById('tab-blocks').addEventListener('click', () => switchTab('blocks'));
@@ -764,6 +792,7 @@ document.getElementById('tab-hub').addEventListener('click', () => switchTab('hu
 document.getElementById('tab-checklist').addEventListener('click', () => switchTab('checklist'));
 document.getElementById('tab-nav').addEventListener('click', () => switchTab('nav'));
 document.getElementById('tab-spl').addEventListener('click', () => switchTab('spl'));
+document.getElementById('tab-hybrid').addEventListener('click', () => switchTab('hybrid'));
 
 // ── Assessment render ─────────────────────────────────────────────────────────
 
@@ -836,6 +865,39 @@ function scheduleAssessRender(delay = 150) {
 document.getElementById('sel-task').addEventListener('change', () => scheduleAssessRender());
 document.getElementById('rerender-assess-btn').addEventListener('click', () => scheduleAssessRender(0));
 document.getElementById('sel-assess-mode').addEventListener('change', () => scheduleAssessRender());
+
+// ── Hybrid render ─────────────────────────────────────────────────────────────
+
+let hybridTimer = null;
+
+async function renderHybrid() {
+  const forUnit = document.getElementById('sel-unit').value;
+  const forTri  = document.getElementById('sel-tri').value;
+  const forYear = document.getElementById('sel-year').value;
+  const mode    = document.getElementById('sel-hybrid-mode').value;
+  const forTask = mode === 'all' ? 'all' : (document.getElementById('sel-hybrid-task')?.value ?? 'AT1');
+  const taskCtrl = document.getElementById('hybrid-task-ctrl-group');
+  if (taskCtrl) taskCtrl.style.display = mode === 'single' ? '' : 'none';
+
+  const el = document.getElementById('lxdune-assessment-hybrid');
+  if (!el) return;
+  el.innerHTML = '<div class="block-loading">Rendering…</div>';
+  try {
+    await renderAssessmentHybrid({ forUnit, forTri, forYear, forTask });
+    if (!el.innerHTML.trim()) el.innerHTML = '<div class="block-empty">No assessment data found for this task.</div>';
+  } catch (e) {
+    el.innerHTML = `<div class="block-err">Error: ${e.message}</div>`;
+  }
+}
+
+function scheduleHybridRender(delay = 150) {
+  clearTimeout(hybridTimer);
+  hybridTimer = setTimeout(renderHybrid, delay);
+}
+
+document.getElementById('sel-hybrid-task').addEventListener('change', () => scheduleHybridRender());
+document.getElementById('sel-hybrid-mode').addEventListener('change', () => scheduleHybridRender());
+document.getElementById('rerender-hybrid-btn').addEventListener('click', () => scheduleHybridRender(0));
 
 // ── Course hub render ──────────────────────────────────────────────────────────
 
