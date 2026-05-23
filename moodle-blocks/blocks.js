@@ -1212,10 +1212,11 @@ export async function renderAssessmentNav({ forUnit, forTri, forYear, containerI
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 8c. renderAssessmentHybrid — Journey timeline + checklist action items
+// 8c. renderAssessmentHybrid — Journey timeline assessment page
 // Container: <div id="lxdune-assessment-hybrid"></div>
-// Journey timeline structure (A→B→C→D1→D2→CL→✓) with action-verb checklist
-// content per part. CL milestone collapsible, embeds presubmission checklist.
+// Collapsible milestone cards (A→B→C→D1→D2→CL→✓). Each part header is
+// clickable (chevron toggle); body shows description + LO pills + deadline
+// badge. CL milestone embeds the presubmission checklist. Submit is static.
 // ─────────────────────────────────────────────────────────────────────────────
 
 const ASSESSMENT_HYBRID_CSS = `
@@ -1232,48 +1233,49 @@ const ASSESSMENT_HYBRID_CSS = `
 .lx-ah-milestone{position:relative;margin-bottom:20px}
 .lx-ah-milestone:last-child{margin-bottom:0}
 .lx-ah-marker{position:absolute;left:-46px;top:20px;width:36px;height:36px;border-radius:50%;background:var(--lx-primary,#1f6fb2);color:#fff;font-size:.85rem;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #FAF9FF,0 0 0 6px var(--lx-pill-border,#cbe6ee);z-index:1}
-.lx-ah-marker.lx-ah-accent{background:var(--lx-accent,#25797F)}
-.lx-ah-marker.lx-ah-review{background:#4a3570;box-shadow:0 0 0 4px #FAF9FF,0 0 0 6px #b0a0d8;font-size:.7rem}
+.lx-ah-marker.lx-ah-accent{background:var(--lx-accent,#25797F);box-shadow:0 0 0 4px #FAF9FF,0 0 0 6px var(--lx-pill-border,#cbe6ee)}
+.lx-ah-marker.lx-ah-review{background:#4a3570;box-shadow:0 0 0 4px #FAF9FF,0 0 0 6px #b0a0d8;font-size:.7rem;letter-spacing:.01em}
 .lx-ah-marker.lx-ah-finish{background:#1F2A33;box-shadow:0 0 0 4px #FAF9FF,0 0 0 6px #b0bec5;font-size:1rem}
-.lx-ah-card{background:#fff;border:1.5px solid #e8e2f7;border-radius:10px;overflow:hidden}
+.lx-ah-card{background:#fff;border:1.5px solid #e8e2f7;border-radius:10px;overflow:hidden;transition:border-color .15s}
+.lx-ah-milestone.is-open .lx-ah-card{border-color:var(--lx-pill-border,#cbe6ee)}
 .lx-ah-band-primary{border-left:5px solid var(--lx-primary,#1f6fb2)}
 .lx-ah-band-accent{border-left:5px solid var(--lx-accent,#25797F)}
 .lx-ah-band-dim{border-left:5px solid #9bc4c9}
 .lx-ah-band-review{border-left:5px solid #4a3570}
 .lx-ah-band-end{border-left:5px solid #b0bec5}
-.lx-ah-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 20px 12px;border-bottom:1px solid #ede8fb;flex-wrap:wrap}
-.lx-ah-head-left{flex:1;min-width:0}
-.lx-ah-head-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.lx-ah-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:16px 20px;cursor:pointer;user-select:none;transition:background .15s}
+.lx-ah-top:hover{background:rgba(0,0,0,.025)}
+.lx-ah-milestone.is-open .lx-ah-top{background:rgba(0,0,0,.025)}
+.lx-ah-top-left{flex:1;min-width:0}
+.lx-ah-top-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .lx-ah-part-label{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--lx-primary,#1f6fb2);margin-bottom:2px}
 .lx-ah-title{font-size:1.05rem;font-weight:700;color:#1F2A33}
 .lx-ah-marks{background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);border-radius:20px;padding:4px 14px;font-size:.82rem;font-weight:700;color:var(--lx-primary,#1f6fb2);white-space:nowrap}
 .lx-ah-marks.lx-ah-dim{background:#e8f5f7;border-color:#aed9df;color:var(--lx-accent,#25797F)}
-.lx-ah-los{flex-basis:100%;display:flex;flex-wrap:wrap;gap:5px;padding-top:8px}
-.lx-ah-lo-pill{background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);border-radius:12px;padding:2px 10px;font-size:.74rem;font-weight:600;color:var(--lx-primary,#1f6fb2)}
-.lx-ah-body{padding:14px 20px 18px}
-.lx-ah-early{background:#FEF4EB;border:1px solid #E3B089;border-left:4px solid #E3B089;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:.87rem;color:#7a4a1e}
-.lx-ah-early strong{color:#b85c00}
-.lx-ah-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin:0;padding:0}
-.lx-ah-list li{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-radius:8px}
-.lx-ah-list input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:20px;height:20px;min-width:20px;border:2px solid var(--lx-pill-border,#cbe6ee);border-radius:5px;background:#fff;cursor:pointer;position:relative;margin-top:1px;flex-shrink:0;transition:border-color .15s,background .15s}
-.lx-ah-list input[type="checkbox"]:checked{background:var(--lx-accent,#25797F);border-color:var(--lx-accent,#25797F)}
-.lx-ah-list input[type="checkbox"]:checked::after{content:"";display:block;position:absolute;left:5px;top:2px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
-.lx-ah-action-label{font-size:.92rem;line-height:1.45;padding-top:1px}
+.lx-ah-chevron{flex-shrink:0;color:#9d8dd0;display:flex;align-items:center;transition:transform .25s ease}
+.lx-ah-milestone.is-open .lx-ah-chevron{transform:rotate(180deg)}
+.lx-ah-body{max-height:0;overflow:hidden;opacity:0;transition:max-height .32s ease,opacity .25s ease}
+.lx-ah-milestone.is-open .lx-ah-body{max-height:300px;opacity:1}
+.lx-ah-milestone-cl.is-open .lx-ah-body{max-height:6000px}
+.lx-ah-milestone-cl .lx-ah-body-inner{padding:8px 12px 16px}
+.lx-ah-body-inner{padding:0 20px 16px;border-top:1px solid #ede8fb}
+.lx-ah-desc{font-size:.88rem;color:#445060;margin-top:12px;margin-bottom:12px}
+.lx-ah-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.lx-ah-lo-pill{background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);border-radius:12px;padding:2px 10px;font-size:.75rem;font-weight:600;color:var(--lx-primary,#1f6fb2)}
+.lx-ah-deadline{background:#FDF0E3;border:1px solid #E3B089;border-radius:12px;padding:2px 10px;font-size:.75rem;font-weight:700;color:#9b5f1e;display:inline-flex;align-items:center;gap:4px}
+.lx-ah-milestone-submit .lx-ah-top{cursor:default}
+.lx-ah-milestone-submit .lx-ah-top:hover{background:transparent}
+.lx-ah-milestone-submit .lx-ah-body{max-height:300px;opacity:1}
 .lx-ah-milestone-submit .lx-ah-card{background:#f5f3fb;border-color:var(--lx-pill-border,#cbe6ee)}
-.lx-ah-milestone-submit .lx-ah-body{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:16px 20px}
-.lx-ah-submit-icon{font-size:1.6rem;line-height:1}
-.lx-ah-submit-text{flex:1;min-width:180px}
-.lx-ah-submit-text p{font-size:.88rem;color:#445060;margin-top:4px}
-.lx-ah-cl-trigger{cursor:pointer;display:inline-flex;align-items:center;gap:6px;background:rgba(74,53,112,.12);border:1px solid rgba(74,53,112,.25);border-radius:20px;padding:5px 14px;font-size:.82rem;font-weight:700;color:#4a3570;font-family:inherit}
-.lx-ah-cl-trigger:hover{background:rgba(74,53,112,.22)}
-.lx-ah-cl-body{max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .25s ease}
-.lx-ah-milestone-cl.is-open .lx-ah-cl-body{max-height:6000px;opacity:1}
+.lx-ah-milestone-submit .lx-ah-title{color:var(--lx-primary,#1f6fb2)}
 .lx-ah-summary{margin-top:36px;background:#fff;border:1.5px solid #e8e2f7;border-radius:10px;padding:16px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}
 .lx-ah-sb-label{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lx-primary,#1f6fb2)}
 .lx-ah-sb-total{font-size:1.4rem;font-weight:800;color:#1F2A33}
 .lx-ah-sb-divider{width:1px;height:36px;background:#e0daf5;flex-shrink:0}
 .lx-ah-sb-los{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-@media(max-width:600px){.lx-ah-timeline{padding-left:44px}.lx-ah-timeline::before{left:14px}.lx-ah-marker{left:-38px;width:30px;height:30px;font-size:.78rem}.lx-ah-header{padding:20px 18px 18px}}`;
+@media(max-width:600px){.lx-ah-timeline{padding-left:44px}.lx-ah-timeline::before{left:14px}.lx-ah-marker{left:-38px;width:30px;height:30px;font-size:.78rem}.lx-ah-header{padding:20px 18px 18px}.lx-ah-top{flex-wrap:wrap}}`;
+
+const CHEVRON_SVG = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
 function partBandClass(partId) {
   const id = String(partId ?? '').toUpperCase();
@@ -1306,31 +1308,32 @@ function buildHybridTask(task, loMap, triKey, checklistHtml, unitCfg) {
     const markerCls = `lx-ah-marker${pid.startsWith('D') ? ' lx-ah-accent' : ''}`;
     const marksCls  = `lx-ah-marks${pid !== 'A' ? ' lx-ah-dim' : ''}`;
     const loIds     = p.loLinks ?? [];
-    const loPillsHtml = loIds.length
-      ? `<div class="lx-ah-los">${loIds.map(id => `<span class="lx-ah-lo-pill">${esc(id)}</span>`).join('')}</div>`
+    const loPillsHtml = loIds.map(id => `<span class="lx-ah-lo-pill">${esc(id)}</span>`).join('');
+    const deadlineHtml = (pid === 'A' && duePartA)
+      ? `<span class="lx-ah-deadline">⏰ Early deadline: ${esc(formatDateShort(duePartA))}</span>`
       : '';
-    const earlyHtml = (pid === 'A' && duePartA)
-      ? `<div class="lx-ah-early"><strong>Early deadline: ${esc(formatDateShort(duePartA))}</strong> — Complete Part A and post to the forum before moving on.</div>`
+    const tagsHtml = (loPillsHtml || deadlineHtml)
+      ? `<div class="lx-ah-tags">${loPillsHtml}${deadlineHtml}</div>`
       : '';
-    const reqs = p.requirements ?? [];
-    const listHtml = reqs.length
-      ? `<ul class="lx-ah-list">${reqs.map((req, i) => {
-          const cbId = `lx-ah-${String(task.id).toLowerCase()}-${String(p.id).toLowerCase()}-${i}`;
-          return `<li><input type="checkbox" id="${cbId}"><label class="lx-ah-action-label" for="${cbId}">${esc(req)}</label></li>`;
-        }).join('')}</ul>`
+    const descHtml = p.description
+      ? `<p class="lx-ah-desc">${esc(p.description)}</p>`
       : '';
     return `<div class="lx-ah-milestone">
       <div class="${markerCls}">${esc(String(p.id))}</div>
       <div class="lx-ah-card ${bandClass}">
-        <div class="lx-ah-head">
-          <div class="lx-ah-head-left">
+        <div class="lx-ah-top" role="button" tabindex="0" aria-expanded="false">
+          <div class="lx-ah-top-left">
             <p class="lx-ah-part-label">Part ${esc(String(p.id))}</p>
             <p class="lx-ah-title">${esc(p.title ?? '')}</p>
           </div>
-          ${p.marks != null ? `<div class="lx-ah-head-right"><div class="${marksCls}">${p.marks} marks</div></div>` : ''}
-          ${loPillsHtml}
+          <div class="lx-ah-top-right">
+            ${p.marks != null ? `<div class="${marksCls}">${p.marks} marks</div>` : ''}
+            <span class="lx-ah-chevron" aria-hidden="true">${CHEVRON_SVG}</span>
+          </div>
         </div>
-        <div class="lx-ah-body">${earlyHtml}${listHtml}</div>
+        <div class="lx-ah-body">
+          <div class="lx-ah-body-inner">${descHtml}${tagsHtml}</div>
+        </div>
       </div>
     </div>`;
   }).join('');
@@ -1339,35 +1342,43 @@ function buildHybridTask(task, loMap, triKey, checklistHtml, unitCfg) {
     ? `<div class="lx-ah-milestone lx-ah-milestone-cl">
         <div class="lx-ah-marker lx-ah-review">CL</div>
         <div class="lx-ah-card lx-ah-band-review">
-          <div class="lx-ah-head">
-            <div class="lx-ah-head-left">
-              <p class="lx-ah-part-label">Review</p>
-              <p class="lx-ah-title">Check your work before submitting</p>
+          <div class="lx-ah-top" role="button" tabindex="0" aria-expanded="false">
+            <div class="lx-ah-top-left">
+              <p class="lx-ah-part-label">Pre-submission</p>
+              <p class="lx-ah-title">Review all parts before you submit</p>
             </div>
-            <div class="lx-ah-head-right">
-              <button class="lx-ah-cl-trigger" aria-expanded="false">Open checklist ▾</button>
+            <div class="lx-ah-top-right">
+              <span class="lx-ah-chevron" aria-hidden="true">${CHEVRON_SVG}</span>
             </div>
           </div>
-          <div class="lx-ah-cl-body"><div style="padding:4px 20px 16px;">${checklistHtml}</div></div>
+          <div class="lx-ah-body">
+            <div class="lx-ah-body-inner">${checklistHtml}</div>
+          </div>
         </div>
       </div>`
+    : '';
+
+  const submitDesc = dueDate
+    ? `Submit Parts via the myLearn assessment portal. Ensure any early-deadline parts have already been submitted.`
+    : `Submit all parts via the myLearn assessment portal.`;
+  const submitDeadline = dueDate
+    ? `<span class="lx-ah-deadline">⏰ Final deadline: ${esc(formatDateShort(dueDate))}</span>`
     : '';
 
   const submitHtml = `<div class="lx-ah-milestone lx-ah-milestone-submit">
     <div class="lx-ah-marker lx-ah-finish">&#10003;</div>
     <div class="lx-ah-card lx-ah-band-end">
-      <div class="lx-ah-head">
-        <div class="lx-ah-head-left">
+      <div class="lx-ah-top">
+        <div class="lx-ah-top-left">
           <p class="lx-ah-part-label">Full submission</p>
           <p class="lx-ah-title">Submit all parts via the myLearn assessment portal</p>
         </div>
-        ${dueDate ? `<div class="lx-ah-head-right"><div class="lx-ah-marks">Due ${esc(formatDateShort(dueDate))}</div></div>` : ''}
+        ${dueDate ? `<div class="lx-ah-top-right"><div class="lx-ah-marks">Due ${esc(formatDateShort(dueDate))}</div></div>` : ''}
       </div>
       <div class="lx-ah-body">
-        <div class="lx-ah-submit-icon">&#128197;</div>
-        <div class="lx-ah-submit-text">
-          ${dueDate ? `<strong>${esc(formatDateShort(dueDate))}</strong>` : ''}
-          <p>Submit all parts via the myLearn assessment portal. Ensure any early-deadline parts have already been submitted.</p>
+        <div class="lx-ah-body-inner">
+          <p class="lx-ah-desc">${esc(submitDesc)}</p>
+          <div class="lx-ah-tags">${submitDeadline}</div>
         </div>
       </div>
     </div>
@@ -1388,7 +1399,7 @@ function buildHybridTask(task, loMap, triKey, checklistHtml, unitCfg) {
   </div>`;
 
   return `${headerHtml}
-  <p class="lx-ah-section-label">Work through each part in sequence — tick items as you complete them</p>
+  <p class="lx-ah-section-label">Your assessment journey — click each milestone to expand</p>
   <div class="lx-ah-timeline">${milestonesHtml}${clHtml}${submitHtml}</div>
   ${summaryHtml}`;
 }
@@ -1435,15 +1446,18 @@ export async function renderAssessmentHybrid({ forUnit, forTask, forTri, forYear
     } catch { return null; }
   }));
 
-  // Wire CL toggle buttons and re-execute any injected scripts
+  // Wire collapsible milestone tops and re-execute any injected scripts
   function wireEl(container) {
-    container.querySelectorAll('.lx-ah-cl-trigger').forEach(trigger => {
-      trigger.addEventListener('click', () => {
-        const ms = trigger.closest('.lx-ah-milestone-cl');
-        if (!ms) return;
+    container.querySelectorAll('.lx-ah-top').forEach(top => {
+      const ms = top.closest('.lx-ah-milestone');
+      if (!ms || ms.classList.contains('lx-ah-milestone-submit')) return;
+      function toggle() {
         const isOpen = ms.classList.toggle('is-open');
-        trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        trigger.textContent = isOpen ? 'Close checklist ▴' : 'Open checklist ▾';
+        top.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+      top.addEventListener('click', toggle);
+      top.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
       });
     });
     container.querySelectorAll('script').forEach(old => {
