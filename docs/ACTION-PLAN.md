@@ -1,5 +1,5 @@
 # LXDUNE Action Plan
-**Last updated:** 2026-05-21
+**Last updated:** 2026-05-23
 **How to update:** Tell Claude Code "Update docs/ACTION-PLAN.md — mark item X complete" or "add [item] under [priority]"
 
 ---
@@ -98,7 +98,7 @@ Update `config/units/EDSE358.json` as content is published:
 
 ## 🟣 Navigation blocks — populate unit key info links
 
-### 9a. Add key link URLs to unit JSONs ⬜ (EDSE362 only remaining)
+### 9a. Add key link URLs to unit JSONs ✅ — 2026-05-23
 
 **EDSE358:** ✅ — 2026-05-19
 - [x] `keyLinks[0].url` — Unit Outline
@@ -108,8 +108,10 @@ Update `config/units/EDSE358.json` as content is published:
 **EDSE357:** ✅ — 2026-05-19
 - [x] Same three links as above
 
-**EDSE362:**
-- [ ] Same three links as above (T2 2026 — populate before go-live)
+**EDSE362:** ✅ — 2026-05-23
+- [x] `keyLinks[0].url` — Unit Outline
+- [x] `keyLinks[1].url` — Learning Materials
+- [x] `keyLinks[2].url` — Assessment Portal
 
 ### 9b. Add navigation shells to deployed Moodle pages ✅ — 2026-05-19
 
@@ -277,7 +279,7 @@ replaces two, students see AT1/AT2 in a tab switcher. Also deploy
 - [ ] Populate `keyLinks` URLs (Unit Outline, Learning Materials, Assessment Portal)
 - [ ] Record week 0–8 lecture videos — add YouTube IDs to config
 - [ ] Populate all week links as content is created
-- [ ] Write `assessmentTasks` AT1 and AT2 in full — rationale, aim, parts, criteria, rubric descriptors, checklists
+- [x] AT1 and AT2 assessmentTasks fully populated — rationale, aim, parts, rubric (with band ranges), hdCallout, submissionInstructions, aitslStandards — merged to dev commit 88867d6 ✅ 2026-05-23
 - [ ] Add assessment file links once tasks are uploaded
 - [ ] Deploy all Moodle shells to EDSE362 course
 - [ ] Verify in test harness before go-live
