@@ -1306,6 +1306,16 @@ const ASSESSMENT_HYBRID_CSS = `
 .lx-ah-hd-callout strong{display:block;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#7a5c00;margin-bottom:6px}
 .lx-ah-fp-callout{background:#EBF5FC;border-left:4px solid var(--lx-accent,#25797F);border-radius:0 8px 8px 0;padding:14px 18px;font-size:.88rem}
 .lx-ah-fp-callout strong{display:block;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--lx-accent,#25797F);margin-bottom:6px}
+.lx-ah-early-notice{background:#FEF4EB;border:1px solid #E3B089;border-left:4px solid #E3B089;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:.87rem;color:#7a4a1e}
+.lx-ah-early-notice strong{color:#b85c00}
+.lx-ah-action-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin:0;padding:0}
+.lx-ah-action-list li{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-radius:8px;transition:background .12s}
+.lx-ah-action-list li:hover{background:#f8f9fb}
+.lx-ah-action-list input[type=checkbox]{appearance:none;-webkit-appearance:none;width:20px;height:20px;min-width:20px;border:2px solid var(--lx-pill-border,#cbe6ee);border-radius:5px;background:#fff;cursor:pointer;position:relative;margin-top:1px;transition:border-color .15s,background .15s;flex-shrink:0}
+.lx-ah-action-list input[type=checkbox]:hover{border-color:var(--lx-primary,#1f6fb2)}
+.lx-ah-action-list input[type=checkbox]:checked{background:var(--lx-accent,#25797F);border-color:var(--lx-accent,#25797F)}
+.lx-ah-action-list input[type=checkbox]:checked::after{content:"";display:block;position:absolute;left:5px;top:2px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
+.lx-ah-action-label{font-size:.92rem;line-height:1.45;padding-top:1px;cursor:pointer}
 @media(max-width:600px){.lx-ah-timeline{padding-left:44px}.lx-ah-timeline::before{left:14px}.lx-ah-marker{left:-38px;width:30px;height:30px;font-size:.78rem}.lx-ah-header{padding:20px 18px 18px}.lx-ah-top{flex-wrap:wrap}}`;
 
 const CHEVRON_SVG = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -1325,6 +1335,7 @@ function buildHybridTask(task, loMap, triKey, checklistHtml, unitCfg) {
   const fp         = triDates.flexiblePortal ?? null;
   const parts      = task.parts ?? [];
   const marksTotal = parts.reduce((sum, p) => sum + (p.marks ?? 0), 0);
+  const uid        = `${String(task.id ?? 'task').replace(/\W/g, '')}-${Math.random().toString(36).slice(2, 7)}`;
 
   // ── Header ─────────────────────────────────────────────────────────────────
   const headerHtml = `<header class="lx-ah-header">
@@ -1377,11 +1388,9 @@ function buildHybridTask(task, loMap, triKey, checklistHtml, unitCfg) {
     const marksCls  = `lx-ah-marks${pid !== 'A' ? ' lx-ah-dim' : ''}`;
     const loIds     = p.loLinks ?? [];
     const loPillsHtml = loIds.map(id => `<span class="lx-ah-lo-pill">${esc(id)}</span>`).join('');
-    const deadlineHtml = (pid === 'A' && duePartA)
-      ? `<span class="lx-ah-deadline">⏰ Early deadline: ${esc(formatDateShort(duePartA))}</span>`
-      : '';
-    const tagsHtml = (loPillsHtml || deadlineHtml)
-      ? `<div class="lx-ah-tags">${loPillsHtml}${deadlineHtml}</div>`
+    const tagsHtml = loPillsHtml ? `<div class="lx-ah-tags">${loPillsHtml}</div>` : '';
+    const earlyNoticeHtml = (pid === 'A' && duePartA)
+      ? `<div class="lx-ah-early-notice"><strong>Part A is due ${esc(formatDateShort(duePartA))}</strong> — submit via the Assessment Portal before moving to Part B.</div>`
       : '';
     const descHtml = p.description
       ? `<p class="lx-ah-desc">${esc(p.description)}</p>`
@@ -1392,9 +1401,12 @@ function buildHybridTask(task, loMap, triKey, checklistHtml, unitCfg) {
     const noteHtml = p.note
       ? `<div class="lx-ah-note"><strong>Important:</strong> ${esc(p.note)}</div>`
       : '';
-    const reqHtml = (p.requirements ?? []).length
-      ? `<div class="lx-ah-reqs"><div class="lx-ah-reqs-label">You must include:</div><ul>${p.requirements.map(r => `<li>${esc(r)}</li>`).join('')}</ul></div>`
-      : '';
+    const reqs = p.requirements ?? [];
+    const checkboxItems = reqs.length ? reqs : ['Complete this section — requirements to be added.'];
+    const reqHtml = `<ul class="lx-ah-action-list">${checkboxItems.map((r, i) => {
+      const cbId = `lxah-${uid}-${pid}-${i}`;
+      return `<li><input type="checkbox" id="${cbId}"><label class="lx-ah-action-label" for="${cbId}">${esc(r)}</label></li>`;
+    }).join('')}</ul>`;
     const resHtml = (p.resources ?? []).length
       ? `<div class="lx-ah-res"><div class="lx-ah-res-label">Helpful resources:</div><ul>${p.resources.map(r => `<li>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.label)}</a>` : esc(r.label)}</li>`).join('')}</ul></div>`
       : '';
@@ -1417,7 +1429,7 @@ function buildHybridTask(task, loMap, triKey, checklistHtml, unitCfg) {
         </div>
         <div class="lx-ah-body">
           <div class="lx-ah-body-inner">
-            ${descHtml}${wordCountHtml}${tagsHtml}${noteHtml}${reqHtml}${resHtml}${guidanceHtml}
+            ${descHtml}${wordCountHtml}${tagsHtml}${earlyNoticeHtml}${reqHtml}${resHtml}${noteHtml}${guidanceHtml}
           </div>
         </div>
       </div>

@@ -88,6 +88,7 @@
         <option value="resource-directory">Resource directory</option>
         <option value="outcomes">Learning outcomes table</option>
         <option value="assessment-page">Assessment page</option>
+        <option value="assessment-hybrid">Assessment page (hybrid layout)</option>
         <option value="all-assessments">All assessments (tabbed)</option>
         <option value="assessment-nav">Assessment navigation</option>
         <option value="course-hub">Course hub</option>
@@ -156,7 +157,7 @@
     const taskRow = document.getElementById('task-row');
     const weekRow = document.getElementById('week-row');
     function syncSelectors() {
-      taskRow.style.display = ['assessment-page', 'presubmission-checklist'].includes(typeSel.value) ? '' : 'none';
+      taskRow.style.display = ['assessment-page', 'assessment-hybrid', 'presubmission-checklist'].includes(typeSel.value) ? '' : 'none';
       weekRow.style.display = ['synthesis-template', 'full-section', 'orientation-note', 'forum-prompts', 'worked-example'].includes(typeSel.value) ? '' : 'none';
     }
     typeSel.addEventListener('change', syncSelectors);
@@ -257,6 +258,22 @@
       `  });\n` +
       `<\/script>\n` +
       `<div id="lxdune-assessment-page"></div>`
+    );
+  }
+
+  function shellAssessmentHybrid(unit, tri, year, taskId) {
+    return (
+      `<script type="module">\n` +
+      `  import { renderAssessmentHybrid }\n` +
+      `  from "${PAGES_BASE}/moodle-blocks/blocks.js";\n` +
+      `  renderAssessmentHybrid({\n` +
+      `    forUnit: "${unit}",\n` +
+      `    forTri: "${tri}",\n` +
+      `    forYear: "${year}",\n` +
+      `    forTask: "${taskId}",\n` +
+      `  });\n` +
+      `<\/script>\n` +
+      `<div id="lxdune-assessment-hybrid"></div>`
     );
   }
 
@@ -558,6 +575,26 @@
         badge: 'blocks.js', badgeClass: 'badge-ready',
         code,
         note: `Static block — paste once per assessment task page. Reads from <code>assessmentTasks</code> in the unit JSON.`,
+        rows: 9,
+      });
+      const output = document.getElementById('output');
+      output.innerHTML = `<div class="result-banner">Shell for <strong>${unit}</strong> — <strong>${taskId}</strong></div>${cards}`;
+      output.style.display = 'block';
+      bindCopyButtons();
+      btn.disabled = false;
+      btn.textContent = 'Generate shell';
+      output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Assessment page (hybrid layout) — task-scoped
+    if (pageType === 'assessment-hybrid') {
+      const code = shellAssessmentHybrid(unit, tri, year, taskId);
+      const cards = snippetCard({
+        title: `Assessment page (hybrid) — ${taskId}`,
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code,
+        note: `Timeline + checklist hybrid layout. Milestone cards expand per part; includes pre-submission checklist as CL milestone. Container: <code>lxdune-assessment-hybrid</code>.`,
         rows: 9,
       });
       const output = document.getElementById('output');
