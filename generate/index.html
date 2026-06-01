@@ -108,6 +108,7 @@
       <select id="sel-task">
         <option value="AT1">AT1</option>
         <option value="AT2">AT2</option>
+        <option value="all">All tasks (tabbed)</option>
       </select>
     </div>
     <div class="form-row" id="week-row" style="display:none;">
@@ -589,16 +590,17 @@
 
     // Assessment page (hybrid layout) — task-scoped
     if (pageType === 'assessment-hybrid') {
+      const taskLabel = taskId === 'all' ? 'All tasks (tabbed)' : taskId;
       const code = shellAssessmentHybrid(unit, tri, year, taskId);
       const cards = snippetCard({
-        title: `Assessment page (hybrid) — ${taskId}`,
+        title: `Assessment page (hybrid) — ${taskLabel}`,
         badge: 'blocks.js', badgeClass: 'badge-ready',
         code,
         note: `Timeline + checklist hybrid layout. Milestone cards expand per part; includes pre-submission checklist as CL milestone. Container: <code>lxdune-assessment-hybrid</code>.`,
         rows: 9,
       });
       const output = document.getElementById('output');
-      output.innerHTML = `<div class="result-banner">Shell for <strong>${unit}</strong> — <strong>${taskId}</strong></div>${cards}`;
+      output.innerHTML = `<div class="result-banner">Shell for <strong>${unit}</strong> — <strong>${taskLabel}</strong></div>${cards}`;
       output.style.display = 'block';
       bindCopyButtons();
       btn.disabled = false;
