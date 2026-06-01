@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EDSE362 T2 2026 — Go-live Checklist</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+    }
+
+    /* ── Header ─────────────────────────────────────────────── */
+    #page-header {
+      background: #2E7D52;
+      color: white;
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-title {
+      font-size: 1.05em;
+      font-weight: 600;
+    }
+
+    .header-sub {
+      font-size: 0.82em;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    .header-progress {
+      margin-top: 8px;
+    }
+
+    .progress-bar-track {
+      background: rgba(255,255,255,0.25);
+      height: 6px;
+      border-radius: 3px;
+    }
+
+    .progress-bar-fill {
+      background: #E3B089;
+      height: 6px;
+      border-radius: 3px;
+      width: 0%;
+      transition: width 300ms ease;
+    }
+
+    .progress-text {
+      color: white;
+      font-size: 0.85em;
+      margin-top: 4px;
+    }
+
+    /* ── Toast ───────────────────────────────────────────────── */
+    #toast {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 9999;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      color: white;
+      display: none;
+      pointer-events: none;
+    }
+
+    /* ── Completion banner ───────────────────────────────────── */
+    #completion-banner {
+      background: #E3B089;
+      color: #5a3a00;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 16px 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #completion-banner button {
+      background: none;
+      border: none;
+      font-size: 1.1em;
+      cursor: pointer;
+      color: #5a3a00;
+      line-height: 1;
+      padding: 0 4px;
+    }
+
+    /* ── Main container ──────────────────────────────────────── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* ── Section card ────────────────────────────────────────── */
+    .section-card {
+      background: white;
+      border-radius: 10px;
+      border: 1px solid #e0e0e0;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    /* ── Section header ──────────────────────────────────────── */
+    .section-header {
+      background: #E8F5EE;
+      padding: 12px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      transition: background 300ms, color 300ms;
+    }
+
+    .section-header.complete {
+      background: #2E7D52;
+      color: white;
+    }
+
+    .section-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chevron {
+      display: inline-block;
+      transition: transform 200ms ease;
+      font-size: 0.75em;
+    }
+
+    .chevron.expanded {
+      transform: rotate(90deg);
+    }
+
+    .section-title {
+      font-weight: 600;
+      font-size: 0.95em;
+    }
+
+    .section-header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mini-progress-track {
+      width: 80px;
+      height: 4px;
+      background: rgba(0,0,0,0.1);
+      border-radius: 2px;
+    }
+
+    .section-header.complete .mini-progress-track {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .mini-progress-fill {
+      height: 4px;
+      background: #2E7D52;
+      border-radius: 2px;
+      transition: width 300ms ease;
+      width: 0%;
+    }
+
+    .section-header.complete .mini-progress-fill {
+      background: #E3B089;
+    }
+
+    .section-count {
+      font-size: 0.8em;
+      color: #555;
+      white-space: nowrap;
+    }
+
+    .section-header.complete .section-count {
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* ── Section body ────────────────────────────────────────── */
+    .section-body {
+      padding: 0 12px;
+      max-height: 2000px;
+      overflow: hidden;
+      transition: max-height 300ms ease;
+    }
+
+    .section-body.collapsed {
+      max-height: 0;
+    }
+
+    /* ── Item rows ───────────────────────────────────────────── */
+    .item-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+
+    .item-row:hover {
+      background: #fafafa;
+    }
+
+    .item-row.checked {
+      background: #f9f9f9;
+    }
+
+    .item-cb {
+      accent-color: #2E7D52;
+      flex-shrink: 0;
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+    }
+
+    .tag {
+      font-family: monospace;
+      font-size: 0.75em;
+      padding: 1px 5px;
+      border-radius: 3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .tag.lxdune {
+      background: #E8F5EE;
+      color: #2E7D52;
+      border: 1px solid #b8dcc8;
+    }
+
+    .tag.moodle {
+      background: #E8F8FA;
+      color: #4FA9B5;
+      border: 1px solid #b8e8ee;
+    }
+
+    .item-label {
+      flex: 1;
+      font-size: 0.92em;
+      cursor: pointer;
+    }
+
+    .item-label.checked {
+      text-decoration: line-through;
+      color: #999;
+    }
+
+    .chip {
+      font-family: monospace;
+      font-size: 0.72em;
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: #666;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .note-btn {
+      background: none;
+      border: none;
+      color: #aaa;
+      cursor: pointer;
+      font-size: 1em;
+      padding: 0 4px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .note-btn.has-note {
+      color: #E3B089;
+    }
+
+    .note-row {
+      padding: 0 12px;
+    }
+
+    .note-input {
+      width: calc(100% - 32px);
+      margin: 2px 0 6px 32px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 0.85em;
+      font-family: inherit;
+    }
+
+    .note-input:focus {
+      outline: none;
+      border-color: #4FA9B5;
+    }
+  </style>
+</head>
+<body>
+  <header id="page-header"></header>
+  <div id="completion-banner" style="display:none">
+    🎉&nbsp; EDSE362 T2 2026 — all checks done. Good luck with the trimester.
+    <button onclick="this.parentElement.style.display='none'">×</button>
+  </div>
+  <main id="app"></main>
+
+  <span id="toast"></span>
+
+  <script>
+    const SECTIONS = [
+      {
+        id: 'A',
+        title: 'Section A — LXDUNE config',
+        items: [
+          { id: '1',  tag: 'LXDUNE', label: 'Set up T2 2026 Zoom meeting — add meetingId, password, url to config/units/EDSE362.json → trimesterConfig.T2-2026', chip: 'trimesterConfig.T2-2026.zoom' },
+          { id: '2',  tag: 'LXDUNE', label: 'Populate keyLinks URLs — Unit Outline, Learning Materials, Assessment Portal in EDSE362.json', chip: 'keyLinks[0/1/2].url' },
+          { id: '3',  tag: 'LXDUNE', label: 'Add lecturer name/email to contacts.lecturer once confirmed', chip: 'contacts.lecturer' },
+          { id: '4',  tag: 'LXDUNE', label: 'Record week 1–8 lecture videos — add YouTube IDs to config/units/EDSE362.json', chip: 'weeks[1-8].video' },
+          { id: '5',  tag: 'LXDUNE', label: 'Populate all week links as content is created — lecture, slides, recording, forum, materials, liveHub', chip: 'weeks[1-8].links.*' },
+          { id: '6',  tag: 'LXDUNE', label: 'Write AT1 full content — title, rationale, aim, parts, criteria, rubric descriptors', chip: 'assessmentTasks[AT1]' },
+          { id: '7',  tag: 'LXDUNE', label: 'Write AT2 full content — title, rationale, aim, parts, criteria, rubric descriptors', chip: 'assessmentTasks[AT2]' },
+          { id: '8',  tag: 'LXDUNE', label: 'Add assessment file links once tasks are uploaded to Moodle — discipline task and marking URLs', chip: 'trimesterConfig.T2-2026.assessmentFiles' },
+          { id: '9',  tag: 'LXDUNE', label: 'Confirm T2 2026 due dates — populate trimesterDates.T2-2026.due for AT1 and AT2', chip: 'trimesterDates.T2-2026.due' },
+          { id: '10', tag: 'LXDUNE', label: 'Apply alignment fields to weeks 1–8 — orientationNote, forumPrompts, workedExample, synthesisTemplate, guidanceNotes', chip: 'weeks[1-8].orientationNote etc' },
+          { id: '11', tag: 'LXDUNE', label: 'Generate T2 2026 Moodle shells from generate/index.html — forTri: T2, forYear: 2026', chip: 'generate/index.html' },
+          { id: '12', tag: 'LXDUNE', label: 'Verify all blocks render correctly in test harness before go-live', chip: 'test/index.html' },
+          { id: '13', tag: 'LXDUNE', label: 'Paste all generated shells into live EDSE362 Moodle course', chip: 'mylearn.une.edu.au' }
+        ]
+      },
+      {
+        id: 'B',
+        title: 'Section B — Moodle site: Learning Design team actions',
+        items: [
+          { id: '14', tag: 'MOODLE', label: 'Check Assessment tile — confirm all activities are in the right location, delete any no longer relevant' },
+          { id: '15', tag: 'MOODLE', label: 'Fill in Permitted Resources template for each Assurance Task' },
+          { id: '16', tag: 'MOODLE', label: 'Confirm assessment activity names match Handbook titles' },
+          { id: '17', tag: 'MOODLE', label: 'Check information callout inside each assessment activity — weighting, notes, learning outcomes' },
+          { id: '18', tag: 'MOODLE', label: 'If Maximum grade changes, update Grade to Pass to match correct proportion' }
+        ]
+      },
+      {
+        id: 'C',
+        title: 'Section C — Moodle site: myLearn setup checklist',
+        items: [
+          { id: '19', tag: 'MOODLE', label: 'Welcome video — record new or confirm existing video is current for T2 2026' },
+          { id: '20', tag: 'MOODLE', label: 'Contact preferences — confirm Unit Coordinator details in Unit Information and Resources tile' },
+          { id: '21', tag: 'MOODLE', label: 'Study schedule — update with T2 2026 dates and assessment due dates' },
+          { id: '22', tag: 'MOODLE', label: 'EchoVideo — confirm T2 2026 profile exists; roll over or record new lecture recordings' },
+          { id: '23', tag: 'MOODLE', label: 'Reading List — create or roll over and publish before 15 June 2026' },
+          { id: '24', tag: 'MOODLE', label: 'Zoom meetings — create new Zoom meeting as a Moodle activity in the course' },
+          { id: '25', tag: 'MOODLE', label: 'Assessment due dates — update all assignment and quiz due dates in Moodle' },
+          { id: '26', tag: 'MOODLE', label: 'Extension tool dates — update Group Override due dates for 3-day/7-day/Flexible Portal tools' },
+          { id: '27', tag: 'MOODLE', label: 'Assessment settings — check each task for correct details, format, instructions, word length' },
+          { id: '28', tag: 'MOODLE', label: 'Rubrics and marking criteria — update early; changes are visible to students immediately' },
+          { id: '29', tag: 'MOODLE', label: 'Enrol additional teaching staff — tutors, markers, admin support' }
+        ]
+      }
+    ];
+
+    const TOTAL = 29;
+
+    // ── State ──────────────────────────────────────────────────
+    let state = { items: {} };
+    let saveTimer = null;
+
+    async function loadState() {
+      try {
+        const res = await fetch('/state');
+        if (!res.ok) throw new Error('not ok');
+        state = await res.json();
+      } catch {
+        // Server not running — start with empty state, silently
+        state = { items: {} };
+      }
+      renderAll();
+    }
+
+    function scheduleSync() {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(saveState, 400);
+    }
+
+    async function saveState() {
+      try {
+        const res = await fetch('/state', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(state)
+        });
+        if (!res.ok) throw new Error();
+        showToast('saved');
+      } catch {
+        showToast('error');
+      }
+    }
+
+    // ── Toast ──────────────────────────────────────────────────
+    let errorToast = null;
+    let successTimer = null;
+
+    function showToast(type) {
+      const el = document.getElementById('toast');
+      if (type === 'saved') {
+        // Clear any lingering error
+        if (errorToast) {
+          errorToast = null;
+        }
+        clearTimeout(successTimer);
+        el.textContent = 'Saved ✓';
+        el.style.background = '#2E7D52';
+        el.style.display = 'block';
+        successTimer = setTimeout(() => {
+          el.style.display = 'none';
+        }, 1500);
+      } else if (type === 'error') {
+        clearTimeout(successTimer);
+        el.textContent = 'Save failed — is the server running?';
+        el.style.background = '#b45309';
+        el.style.display = 'block';
+        errorToast = el;
+      }
+    }
+
+    // ── Build UI ───────────────────────────────────────────────
+    function buildUI() {
+      // Header
+      const header = document.getElementById('page-header');
+      header.innerHTML = `
+        <div class="header-inner">
+          <span class="header-title">EDSE362 T2 2026 — Go-live Checklist</span>
+        </div>
+        <div class="header-sub">Site opens to students: 15 June 2026</div>
+        <div class="header-progress">
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="overall-fill"></div>
+          </div>
+          <div class="progress-text" id="overall-text">0 / ${TOTAL} complete</div>
+        </div>
+      `;
+
+      // Sections
+      const app = document.getElementById('app');
+      app.innerHTML = '';
+
+      SECTIONS.forEach(section => {
+        const card = document.createElement('div');
+        card.className = 'section-card';
+
+        // Section header
+        const secHeader = document.createElement('div');
+        secHeader.className = 'section-header';
+        secHeader.dataset.section = section.id;
+        secHeader.innerHTML = `
+          <div class="section-header-left">
+            <span class="chevron expanded">▶</span>
+            <span class="section-title">${section.title}</span>
+          </div>
+          <div class="section-header-right">
+            <div class="mini-progress-track"><div class="mini-progress-fill" id="fill-${section.id}"></div></div>
+            <span class="section-count" id="count-${section.id}">0/${section.items.length}</span>
+          </div>
+        `;
+        card.appendChild(secHeader);
+
+        // Section body
+        const body = document.createElement('div');
+        body.className = 'section-body';
+        body.id = 'body-' + section.id;
+
+        section.items.forEach(item => {
+          const tagClass = item.tag === 'LXDUNE' ? 'lxdune' : 'moodle';
+
+          // Item row
+          const row = document.createElement('div');
+          row.className = 'item-row';
+          row.id = 'row-' + item.id;
+          row.dataset.id = item.id;
+
+          const chipHtml = item.chip
+            ? `<span class="chip">${escHtml(item.chip)}</span>`
+            : '';
+
+          row.innerHTML = `
+            <input type="checkbox" id="cb-${item.id}" class="item-cb" data-id="${item.id}" />
+            <span class="tag ${tagClass}">${item.tag}</span>
+            <label class="item-label" for="cb-${item.id}">${escHtml(item.label)}</label>
+            ${chipHtml}
+            <button class="note-btn" data-id="${item.id}" title="Add note">✎</button>
+          `;
+          body.appendChild(row);
+
+          // Note row
+          const noteRow = document.createElement('div');
+          noteRow.className = 'note-row';
+          noteRow.id = 'note-row-' + item.id;
+          noteRow.style.display = 'none';
+          noteRow.innerHTML = `
+            <input type="text" class="note-input" id="note-${item.id}" placeholder="Add URL or note…" />
+          `;
+          body.appendChild(noteRow);
+        });
+
+        card.appendChild(body);
+        app.appendChild(card);
+      });
+    }
+
+    function escHtml(str) {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // ── Render all ─────────────────────────────────────────────
+    // Track per-section auto-collapse timers
+    const collapseTimers = {};
+
+    function renderAll() {
+      let totalChecked = 0;
+
+      SECTIONS.forEach(section => {
+        let secChecked = 0;
+
+        section.items.forEach(item => {
+          const itemState = state.items[item.id] || { checked: false, note: '' };
+          const cb = document.getElementById('cb-' + item.id);
+          const label = cb ? cb.parentElement.querySelector('.item-label') : null;
+          const noteBtn = cb ? cb.parentElement.querySelector('.note-btn') : null;
+          const noteInput = document.getElementById('note-' + item.id);
+          const row = document.getElementById('row-' + item.id);
+
+          if (cb) cb.checked = !!itemState.checked;
+          if (label) {
+            label.classList.toggle('checked', !!itemState.checked);
+          }
+          if (row) {
+            row.classList.toggle('checked', !!itemState.checked);
+          }
+          if (noteBtn) {
+            const hasNote = !!(itemState.note && itemState.note.trim());
+            noteBtn.classList.toggle('has-note', hasNote);
+            noteBtn.textContent = hasNote ? '●' : '✎';
+          }
+          if (noteInput && noteInput !== document.activeElement) {
+            noteInput.value = itemState.note || '';
+          }
+
+          if (itemState.checked) secChecked++;
+        });
+
+        totalChecked += secChecked;
+
+        // Update mini progress
+        const fill = document.getElementById('fill-' + section.id);
+        const countEl = document.getElementById('count-' + section.id);
+        const secHeader = document.querySelector(`.section-header[data-section="${section.id}"]`);
+        const secTitle = secHeader ? secHeader.querySelector('.section-title') : null;
+
+        const pct = section.items.length > 0
+          ? (secChecked / section.items.length) * 100
+          : 0;
+
+        if (fill) fill.style.width = pct + '%';
+        if (countEl) countEl.textContent = `${secChecked}/${section.items.length}`;
+
+        const isComplete = secChecked === section.items.length && section.items.length > 0;
+        const wasComplete = secHeader ? secHeader.classList.contains('complete') : false;
+
+        if (secHeader) secHeader.classList.toggle('complete', isComplete);
+        if (secTitle) {
+          if (isComplete) {
+            if (!secTitle.textContent.startsWith('✅')) {
+              secTitle.textContent = '✅ ' + section.title;
+            }
+          } else {
+            secTitle.textContent = section.title;
+          }
+        }
+
+        // Auto-collapse when section becomes complete
+        if (isComplete && !wasComplete) {
+          clearTimeout(collapseTimers[section.id]);
+          collapseTimers[section.id] = setTimeout(() => {
+            const body = document.getElementById('body-' + section.id);
+            const chevron = secHeader ? secHeader.querySelector('.chevron') : null;
+            if (body) body.classList.add('collapsed');
+            if (chevron) chevron.classList.remove('expanded');
+          }, 800);
+        }
+      });
+
+      // Overall progress
+      const overallFill = document.getElementById('overall-fill');
+      const overallText = document.getElementById('overall-text');
+      if (overallFill) overallFill.style.width = ((totalChecked / TOTAL) * 100) + '%';
+      if (overallText) overallText.textContent = `${totalChecked} / ${TOTAL} complete`;
+
+      // Completion banner
+      const banner = document.getElementById('completion-banner');
+      if (banner) {
+        if (totalChecked === TOTAL) {
+          banner.style.display = 'flex';
+        }
+        // Don't hide it if user already dismissed it
+      }
+    }
+
+    function updateNoteBtn(id) {
+      const itemState = state.items[id] || { checked: false, note: '' };
+      const row = document.getElementById('row-' + id);
+      const noteBtn = row ? row.querySelector('.note-btn') : null;
+      if (noteBtn) {
+        const hasNote = !!(itemState.note && itemState.note.trim());
+        noteBtn.classList.toggle('has-note', hasNote);
+        noteBtn.textContent = hasNote ? '●' : '✎';
+      }
+    }
+
+    // ── Event wiring ───────────────────────────────────────────
+
+    // Checkbox change
+    document.addEventListener('change', e => {
+      if (e.target.classList.contains('item-cb')) {
+        const id = e.target.dataset.id || e.target.id.replace('cb-', '');
+        state.items[id] = state.items[id] || { checked: false, note: '' };
+        state.items[id].checked = e.target.checked;
+        renderAll();
+        scheduleSync();
+      }
+    });
+
+    // Note input
+    document.addEventListener('input', e => {
+      if (e.target.classList.contains('note-input')) {
+        const id = e.target.id.replace('note-', '');
+        state.items[id] = state.items[id] || { checked: false, note: '' };
+        state.items[id].note = e.target.value;
+        updateNoteBtn(id);
+        scheduleSync();
+      }
+    });
+
+    // Note toggle button
+    document.addEventListener('click', e => {
+      if (e.target.classList.contains('note-btn')) {
+        const id = e.target.dataset.id;
+        const noteRow = document.getElementById('note-row-' + id);
+        if (noteRow) {
+          const visible = noteRow.style.display !== 'none';
+          noteRow.style.display = visible ? 'none' : 'block';
+          if (!visible) document.getElementById('note-' + id)?.focus();
+        }
+      }
+    });
+
+    // Section header click (toggle collapse)
+    document.addEventListener('click', e => {
+      const header = e.target.closest('.section-header');
+      if (header) {
+        const secId = header.dataset.section;
+        const body = document.getElementById('body-' + secId);
+        const chevron = header.querySelector('.chevron');
+        if (body) {
+          const isCollapsed = body.classList.contains('collapsed');
+          body.classList.toggle('collapsed', !isCollapsed);
+          chevron?.classList.toggle('expanded', isCollapsed);
+        }
+      }
+    });
+
+    // ── Init ───────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      buildUI();
+      loadState();
+    });
+  </script>
+</body>
+</html>
