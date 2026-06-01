@@ -2,3 +2,5 @@
 /jsPsych/projects/splitattncursor/archive
 /docs/*-shells.html
 /docs/*-shells-*.html
+scripts/t2-checklist-state.json
+node_modules/

@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "scripts": {
+    "checklist": "node scripts/t2-checklist.js"
+  },
+  "dependencies": {
+    "inquirer": "^9.3.8"
+  }
+}
