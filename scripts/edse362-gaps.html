@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EDSE362 — Config Gap Scanner</title>
+</head>
+<body style="margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f9fa;color:#333;">
+
+<div style="background:#2E7D52;color:white;padding:16px 24px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;">
+    <div>
+      <strong style="font-size:1.1em;">EDSE362 — T2 2026 Config Gap Scanner</strong>
+      <span id="toast" style="margin-left:16px;font-size:0.85em;opacity:0;transition:opacity 0.3s;"></span>
+    </div>
+    <a href="/" style="color:rgba(255,255,255,0.85);font-size:0.85em;text-decoration:none;">← Back to checklist</a>
+  </div>
+  <div style="font-size:0.8em;opacity:0.8;margin-top:2px;">config/units/EDSE362.json</div>
+  <div id="gap-summary" style="font-size:0.85em;margin-top:6px;"></div>
+</div>
+
+<div style="max-width:960px;margin:0 auto;padding:24px;">
+  <div id="panels"></div>
+</div>
+
+<script>
+const CONFIG_PATHS = {
+  panels: [
+    {
+      id: 'unit-details',
+      title: 'Unit details',
+      fields: [
+        { label: 'Zoom meeting URL',       path: 'trimesterConfig.T2-2026.zoom.url',                     type: 'url'   },
+        { label: 'Zoom meeting ID',         path: 'trimesterConfig.T2-2026.zoom.meetingId',               type: 'text'  },
+        { label: 'Zoom password',           path: 'trimesterConfig.T2-2026.zoom.password',                type: 'text'  },
+        { label: 'Unit Outline URL',        path: 'keyLinks.0.url',                                       type: 'url'   },
+        { label: 'Learning Materials URL',  path: 'keyLinks.1.url',                                       type: 'url'   },
+        { label: 'Assessment Portal URL',   path: 'keyLinks.2.url',                                       type: 'url'   },
+        { label: 'Lecturer name',           path: 'contacts.lecturer.name',                               type: 'text'  },
+        { label: 'Lecturer email',          path: 'contacts.lecturer.email',                              type: 'email' },
+        { label: 'AT1 due date (T2-2026)',  path: 'assessmentTasks.0.trimesterDates.T2-2026.due',         type: 'text', placeholder: 'YYYY-MM-DD' },
+        { label: 'AT2 due date (T2-2026)',  path: 'assessmentTasks.1.trimesterDates.T2-2026.due',         type: 'text', placeholder: 'YYYY-MM-DD' }
+      ]
+    }
+  ],
+  weekFields:       ['video', 'links.lecture', 'links.slides', 'links.recording', 'links.forum', 'links.materials', 'links.liveHub'],
+  weekFieldLabels:  ['Video (YouTube ID)', 'Lecture', 'Slides', 'Recording', 'Forum', 'Materials', 'Live Hub'],
+  assessmentFiles:  ['biology', 'chemistry', 'ees', 'investigatingScience', 'physics'],
+  assessmentFileLabels: ['Biology', 'Chemistry', 'EES', 'Investigating Science', 'Physics']
+};
+
+let config = null;
+let sessionFilled = 0;
+let toastTimer = null;
+
+// ── Path helpers ──────────────────────────────────────────────────────────────
+
+function getByPath(obj, pathStr) {
+  const segs = pathStr.split('.');
+  let cur = obj;
+  for (const seg of segs) {
+    if (cur === null || cur === undefined) return null;
+    cur = /^\d+$/.test(seg) ? cur[Number(seg)] : cur[seg];
+  }
+  return cur === undefined ? null : cur;
+}
+
+function setByPathLocal(obj, pathStr, value) {
+  const segs = pathStr.split('.');
+  let cur = obj;
+  for (let i = 0; i < segs.length - 1; i++) {
+    const seg = segs[i];
+    const next = /^\d+$/.test(seg) ? cur[Number(seg)] : cur[seg];
+    if (next === null || next === undefined) return false;
+    cur = next;
+  }
+  const last = segs[segs.length - 1];
+  const key  = /^\d+$/.test(last) ? Number(last) : last;
+  cur[key] = value;
+  return true;
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+
+function showToast(msg, color, persist) {
+  const el = document.getElementById('toast');
+  if (toastTimer) clearTimeout(toastTimer);
+  el.textContent = msg;
+  el.style.color   = color;
+  el.style.opacity = '1';
+  if (!persist) {
+    toastTimer = setTimeout(() => { el.style.opacity = '0'; }, 1500);
+  }
+}
+
+// ── Gap count ─────────────────────────────────────────────────────────────────
+
+function countGaps() {
+  let gaps = 0;
+
+  // Panel 1 fields
+  for (const field of CONFIG_PATHS.panels[0].fields) {
+    const v = getByPath(config, field.path);
+    if (v === null || v === '' || v === undefined) gaps++;
+  }
+
+  // Week fields (weeks 1–8)
+  for (let w = 1; w <= 8; w++) {
+    for (const f of CONFIG_PATHS.weekFields) {
+      const p = f.startsWith('links.') ? `weeks.${w}.${f}` : `weeks.${w}.${f}`;
+      const v = getByPath(config, p);
+      if (v === null || v === '' || v === undefined) gaps++;
+    }
+  }
+
+  // Assessment files
+  for (const key of CONFIG_PATHS.assessmentFiles) {
+    for (const col of ['task', 'marking']) {
+      const v = getByPath(config, `trimesterConfig.T2-2026.assessmentFiles.${key}.${col}`);
+      if (v === null || v === '' || v === undefined) gaps++;
+    }
+  }
+
+  return gaps;
+}
+
+function updateSummary() {
+  const gaps = countGaps();
+  document.getElementById('gap-summary').textContent =
+    `${gaps} gaps remaining — ${sessionFilled} filled this session`;
+}
+
+// ── Input border ──────────────────────────────────────────────────────────────
+
+function borderFor(value) {
+  return (value === null || value === '' || value === undefined)
+    ? '3px solid #E3B089'
+    : '3px solid #2E7D52';
+}
+
+// ── Save field ────────────────────────────────────────────────────────────────
+
+async function saveField(path, value, inputEl) {
+  try {
+    const res  = await fetch('/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ path, value }),
+    });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'Server error');
+    setByPathLocal(config, path, value);
+    if (inputEl) inputEl.style.borderLeft = borderFor(value);
+    sessionFilled++;
+    updateSummary();
+    showToast('Saved ✓', '#90EE90', false);
+  } catch {
+    showToast('Save failed — is the server running?', '#FFD700', true);
+  }
+}
+
+// ── Build input ───────────────────────────────────────────────────────────────
+
+function buildInput(path, type, placeholder) {
+  const value = getByPath(config, path);
+  const input = document.createElement('input');
+  input.type        = type || 'text';
+  input.value       = value ?? '';
+  input.placeholder = placeholder || '';
+  input.style.cssText = `width:100%;padding:6px 10px;border:1px solid #ddd;border-left:${borderFor(value)};border-radius:4px;font-size:0.9em;box-sizing:border-box;`;
+
+  let originalValue = input.value;
+  input.addEventListener('focus', () => { originalValue = input.value; });
+  input.addEventListener('blur', () => {
+    if (input.value !== originalValue) {
+      saveField(path, input.value || null, input);
+    }
+  });
+  return input;
+}
+
+// ── Build small input (week/assessment tables) ────────────────────────────────
+
+function buildSmallInput(path) {
+  const value = getByPath(config, path);
+  const input = document.createElement('input');
+  input.type  = 'text';
+  input.value = value ?? '';
+  input.style.cssText = `width:100%;padding:4px 6px;border:1px solid #eee;border-left:${borderFor(value)};border-radius:3px;font-size:0.8em;box-sizing:border-box;`;
+
+  let originalValue = input.value;
+  input.addEventListener('focus', () => { originalValue = input.value; });
+  input.addEventListener('blur', () => {
+    if (input.value !== originalValue) {
+      saveField(path, input.value || null, input);
+    }
+  });
+  return input;
+}
+
+// ── Heading helper ────────────────────────────────────────────────────────────
+
+function sectionHeading(text) {
+  const h = document.createElement('h3');
+  h.textContent = text;
+  h.style.cssText = 'font-weight:bold;color:#2E7D52;font-size:1em;margin:24px 0 12px;padding-bottom:6px;border-bottom:2px solid #E8F5EE;';
+  return h;
+}
+
+// ── Status chip ───────────────────────────────────────────────────────────────
+
+function chip(text, color) {
+  const styles = {
+    green: 'background:#d4edda;color:#155724;',
+    amber: 'background:#fff3cd;color:#856404;',
+    red:   'background:#f8d7da;color:#721c24;',
+  };
+  const el = document.createElement('span');
+  el.textContent = text;
+  el.style.cssText = `display:inline-block;padding:2px 8px;border-radius:10px;font-size:0.75em;font-weight:bold;${styles[color] || styles.amber}`;
+  return el;
+}
+
+// ── Render panels ─────────────────────────────────────────────────────────────
+
+function renderAll() {
+  const container = document.getElementById('panels');
+  container.innerHTML = '';
+
+  // ── Panel 1: Unit details ──────────────────────────────────────────────────
+  container.appendChild(sectionHeading(CONFIG_PATHS.panels[0].title));
+  const table1 = document.createElement('table');
+  table1.style.cssText = 'width:100%;border-collapse:collapse;';
+  for (const field of CONFIG_PATHS.panels[0].fields) {
+    const tr  = document.createElement('tr');
+    const tdL = document.createElement('td');
+    const tdR = document.createElement('td');
+    tdL.textContent = field.label;
+    tdL.style.cssText = 'width:200px;padding:6px 12px 6px 0;text-align:right;color:#555;font-size:0.9em;vertical-align:middle;white-space:nowrap;';
+    tdR.style.cssText = 'padding:4px 0;';
+    tdR.appendChild(buildInput(field.path, field.type, field.placeholder));
+    tr.appendChild(tdL);
+    tr.appendChild(tdR);
+    table1.appendChild(tr);
+  }
+  container.appendChild(table1);
+
+  // ── Panel 2: Week links ────────────────────────────────────────────────────
+  container.appendChild(sectionHeading('Week links — weeks 1–8'));
+  const tableWrap = document.createElement('div');
+  tableWrap.style.overflowX = 'auto';
+  const table2 = document.createElement('table');
+  table2.style.cssText = 'border-collapse:collapse;width:100%;';
+
+  // Header row
+  const thead = document.createElement('thead');
+  const headerRow = document.createElement('tr');
+  const thEmpty = document.createElement('th');
+  thEmpty.style.cssText = 'padding:4px 8px;text-align:left;font-size:0.8em;color:#555;white-space:nowrap;';
+  headerRow.appendChild(thEmpty);
+  for (const label of CONFIG_PATHS.weekFieldLabels) {
+    const th = document.createElement('th');
+    th.textContent = label;
+    th.style.cssText = 'padding:4px 8px;text-align:left;font-size:0.8em;color:#555;white-space:nowrap;';
+    headerRow.appendChild(th);
+  }
+  thead.appendChild(headerRow);
+  table2.appendChild(thead);
+
+  const tbody2 = document.createElement('tbody');
+  for (let w = 1; w <= 8; w++) {
+    const wKey = String(w);
+    const weekData = (config.weeks || {})[wKey] || {};
+    const title    = weekData.title || '';
+    const shortTitle = title.length > 25 ? title.slice(0, 25) + '…' : title;
+
+    // Count filled fields for row background
+    let filled = 0;
+    for (const f of CONFIG_PATHS.weekFields) {
+      const p = `weeks.${wKey}.${f}`;
+      const v = getByPath(config, p);
+      if (v !== null && v !== '' && v !== undefined) filled++;
+    }
+    const total7 = CONFIG_PATHS.weekFields.length;
+    const rowBg  = filled === total7 ? '#f0f9f4' : filled === 0 ? '#fffdf5' : '#ffffff';
+
+    const tr = document.createElement('tr');
+    tr.style.background = rowBg;
+    const tdLabel = document.createElement('td');
+    tdLabel.textContent = `${wKey} — ${shortTitle}`;
+    tdLabel.style.cssText = 'padding:4px 8px;font-size:0.8em;white-space:nowrap;color:#555;';
+    tr.appendChild(tdLabel);
+
+    for (const f of CONFIG_PATHS.weekFields) {
+      const p  = `weeks.${wKey}.${f}`;
+      const td = document.createElement('td');
+      td.style.padding = '4px';
+      td.appendChild(buildSmallInput(p));
+      tr.appendChild(td);
+    }
+    tbody2.appendChild(tr);
+  }
+  table2.appendChild(tbody2);
+  tableWrap.appendChild(table2);
+  container.appendChild(tableWrap);
+
+  // ── Panel 3: Assessment files ──────────────────────────────────────────────
+  container.appendChild(sectionHeading('Assessment files — trimesterConfig.T2-2026.assessmentFiles'));
+  const tableWrap3 = document.createElement('div');
+  tableWrap3.style.overflowX = 'auto';
+  const table3 = document.createElement('table');
+  table3.style.cssText = 'border-collapse:collapse;width:100%;';
+
+  const thead3 = document.createElement('thead');
+  const hr3 = document.createElement('tr');
+  ['Discipline', 'Task URL', 'Marking URL'].forEach(h => {
+    const th = document.createElement('th');
+    th.textContent = h;
+    th.style.cssText = 'padding:4px 8px;text-align:left;font-size:0.8em;color:#555;';
+    hr3.appendChild(th);
+  });
+  thead3.appendChild(hr3);
+  table3.appendChild(thead3);
+
+  const tbody3 = document.createElement('tbody');
+  CONFIG_PATHS.assessmentFiles.forEach((key, i) => {
+    const tr = document.createElement('tr');
+    const tdLabel = document.createElement('td');
+    tdLabel.textContent = CONFIG_PATHS.assessmentFileLabels[i];
+    tdLabel.style.cssText = 'padding:4px 8px;font-size:0.8em;white-space:nowrap;color:#555;';
+    tr.appendChild(tdLabel);
+    for (const col of ['task', 'marking']) {
+      const p  = `trimesterConfig.T2-2026.assessmentFiles.${key}.${col}`;
+      const td = document.createElement('td');
+      td.style.padding = '4px';
+      td.appendChild(buildSmallInput(p));
+      tr.appendChild(td);
+    }
+    tbody3.appendChild(tr);
+  });
+  table3.appendChild(tbody3);
+  tableWrap3.appendChild(table3);
+  container.appendChild(tableWrap3);
+
+  // ── Panel 4: Needs Claude Code ─────────────────────────────────────────────
+  container.appendChild(sectionHeading('Content requiring Claude Code'));
+  const cardStyle = 'border:1px solid #eee;border-radius:6px;padding:16px;margin-bottom:12px;';
+
+  // Card 1 — AT1
+  const at1 = (config.assessmentTasks || [])[0] || {};
+  let at1Color = 'red', at1Label = 'NOT STARTED';
+  if (at1.rubric && at1.rubric.length > 0) { at1Color = 'green'; at1Label = 'COMPLETE'; }
+  else if (at1.title !== null && at1.title !== undefined) { at1Color = 'amber'; at1Label = 'IN PROGRESS'; }
+  const card1 = document.createElement('div');
+  card1.style.cssText = cardStyle;
+  card1.innerHTML = `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><strong>AT1 full content</strong></div>`;
+  card1.querySelector('div').appendChild(chip(at1Label, at1Color));
+  const p1 = document.createElement('p');
+  p1.style.cssText = 'margin:0;font-size:0.88em;color:#555;';
+  p1.textContent = 'Title, rationale, aim, parts, criteria, rubric descriptors. See ACTION-PLAN.md item 17.';
+  card1.appendChild(p1);
+  container.appendChild(card1);
+
+  // Card 2 — AT2
+  const at2 = (config.assessmentTasks || [])[1] || {};
+  let at2Color = 'red', at2Label = 'NOT STARTED';
+  if (at2.rubric && at2.rubric.length > 0) { at2Color = 'green'; at2Label = 'COMPLETE'; }
+  else if (at2.title !== null && at2.title !== undefined) { at2Color = 'amber'; at2Label = 'IN PROGRESS'; }
+  const card2 = document.createElement('div');
+  card2.style.cssText = cardStyle;
+  card2.innerHTML = `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><strong>AT2 full content</strong></div>`;
+  card2.querySelector('div').appendChild(chip(at2Label, at2Color));
+  const p2 = document.createElement('p');
+  p2.style.cssText = 'margin:0;font-size:0.88em;color:#555;';
+  p2.textContent = 'Title, rationale, aim, parts, criteria, rubric descriptors. See ACTION-PLAN.md item 17.';
+  card2.appendChild(p2);
+  container.appendChild(card2);
+
+  // Card 3 — Alignment fields
+  let alignCount = 0;
+  for (let w = 1; w <= 8; w++) {
+    const wData = (config.weeks || {})[String(w)] || {};
+    if (wData.orientationNote !== null && wData.orientationNote !== undefined) alignCount++;
+  }
+  const alignColor = alignCount === 8 ? 'green' : alignCount > 0 ? 'amber' : 'red';
+  const card3 = document.createElement('div');
+  card3.style.cssText = cardStyle;
+  card3.innerHTML = `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><strong>Alignment fields (weeks 1–8)</strong></div>`;
+  card3.querySelector('div').appendChild(chip(`${alignCount}/8 complete`, alignColor));
+  const p3 = document.createElement('p');
+  p3.style.cssText = 'margin:0;font-size:0.88em;color:#555;';
+  p3.textContent = `${alignCount} / 8 weeks have orientationNote populated. orientationNote, forumPrompts, workedExample, synthesisTemplate, guidanceNotes. See ACTION-PLAN.md item 19.`;
+  card3.appendChild(p3);
+  container.appendChild(card3);
+
+  updateSummary();
+}
+
+// ── Bootstrap ─────────────────────────────────────────────────────────────────
+
+(async () => {
+  try {
+    const res = await fetch('/config');
+    config = await res.json();
+    renderAll();
+  } catch (e) {
+    document.getElementById('panels').innerHTML =
+      `<p style="color:#c0392b;font-weight:bold;">Could not load config — is the checklist server running on port 3001?<br><small>${e.message}</small></p>`;
+  }
+})();
+</script>
+</body>
+</html>

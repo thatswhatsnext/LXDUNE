@@ -6,8 +6,27 @@ import http from 'http';
 import { exec } from 'child_process';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
-const HTML_FILE = path.join(__dirname, 'checklist.html');
-const STATE_FILE = path.join(__dirname, 't2-checklist-state.json');
+const HTML_FILE   = path.join(__dirname, 'checklist.html');
+const GAPS_FILE   = fileURLToPath(new URL('./edse362-gaps.html',          import.meta.url));
+const CONFIG_FILE = fileURLToPath(new URL('../config/units/EDSE362.json', import.meta.url));
+const CONFIG_BAK  = CONFIG_FILE + '.bak';
+const STATE_FILE  = path.join(__dirname, 't2-checklist-state.json');
+
+function setByPath(obj, pathStr, value) {
+  const segs = pathStr.split('.');
+  let cur = obj;
+  for (let i = 0; i < segs.length - 1; i++) {
+    const seg = segs[i];
+    const next = /^\d+$/.test(seg) ? cur[Number(seg)] : cur[seg];
+    if (next === undefined || next === null || typeof next !== 'object') return false;
+    cur = next;
+  }
+  const last = segs[segs.length - 1];
+  const key  = /^\d+$/.test(last) ? Number(last) : last;
+  if (!(key in Object(cur))) return false;
+  cur[key] = value;
+  return true;
+}
 
 function defaultState() {
   const items = {};
@@ -77,6 +96,47 @@ async function handler(req, res) {
       } catch {
         res.writeHead(400, { 'Content-Type': 'application/json' });
         res.end('{"error":"invalid"}');
+      }
+    });
+  } else if (req.method === 'GET' && req.url === '/gaps') {
+    try {
+      const html = await readFile(GAPS_FILE, 'utf8');
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(html);
+    } catch (err) {
+      res.writeHead(err.code === 'ENOENT' ? 404 : 500);
+      res.end('edse362-gaps.html not found');
+    }
+  } else if (req.method === 'GET' && req.url === '/config') {
+    try {
+      const raw = await readFile(CONFIG_FILE, 'utf8');
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(raw);
+    } catch {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'could not read config' }));
+    }
+  } else if (req.method === 'POST' && req.url === '/config') {
+    const chunks = [];
+    req.on('data', c => chunks.push(c));
+    req.on('end', async () => {
+      try {
+        const { path: fieldPath, value } = JSON.parse(Buffer.concat(chunks).toString());
+        const raw    = await readFile(CONFIG_FILE, 'utf8');
+        const config = JSON.parse(raw);
+        const ok     = setByPath(config, fieldPath, value);
+        if (!ok) {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ ok: false, error: 'path not found' }));
+          return;
+        }
+        await writeFile(CONFIG_BAK, raw, 'utf8');
+        await writeFile(CONFIG_FILE, JSON.stringify(config, null, 2) + '\n', 'utf8');
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ok: true, path: fieldPath, value }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ok: false, error: err.message }));
       }
     });
   } else {
