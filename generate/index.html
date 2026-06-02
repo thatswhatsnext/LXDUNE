@@ -751,6 +751,17 @@
         `Shells for <strong>${unit}</strong> — <strong>${tri} ${year}</strong> (start: <strong>${startDate}</strong>)` +
       `</div>` + cards;
     output.style.display = 'block';
+
+    // Informational note for multi-topic weeks (EDSE362 only)
+    const weekKey = document.getElementById('sel-week').value;
+    const topics = (unitCfg?.weeks?.[weekKey]?.topics ?? []);
+    if (unit === 'EDSE362' && topics.length > 1 && ['announcement', 'orientation-note', 'forum-prompts'].includes(pageType)) {
+      const noteText = pageType === 'announcement'
+        ? 'This week has multiple topics — the announcement block will render one section per topic.'
+        : 'This week has multiple topics — content is combined across topics.';
+      output.insertAdjacentHTML('beforeend', `<p style="color:#666;font-size:0.85em;margin:8px 0 0 0;">ℹ️ ${noteText}</p>`);
+    }
+
     bindCopyButtons();
 
     btn.disabled = false;

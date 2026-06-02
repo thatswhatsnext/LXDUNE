@@ -253,6 +253,7 @@
       <select id="sel-week">
         <option value="auto">Auto</option>
       </select>
+      <p id="multi-topic-note" style="color:#666;font-size:0.85em;margin:4px 0 0 0;display:none;">Multi-topic week — the announcement block will show one section per topic.</p>
     </div>
     <div class="ctrl-group">
       <label>Date override</label>
@@ -701,6 +702,14 @@ async function renderAll() {
   const params = weekVal !== 'auto' ? { ...base, forWeek: Number(weekVal) }
     : dateVal                       ? { ...base, forDate: dateVal }
     :                                  base;
+
+  // Show multi-topic note when EDSE362 and the selected week has more than one topic
+  const multiNote = document.getElementById('multi-topic-note');
+  if (multiNote) {
+    const weekKey = weekVal !== 'auto' ? weekVal : String(effectiveWeek ?? '');
+    const topics = (unitConfig?.weeks?.[weekKey]?.topics ?? []);
+    multiNote.style.display = (forUnit === 'EDSE362' && topics.length > 1) ? '' : 'none';
+  }
 
   await Promise.all([
     renderAnnouncementBlock(params).catch(e => showErr('lxdune-announcement', e)),
