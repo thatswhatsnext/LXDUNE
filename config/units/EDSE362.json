@@ -807,20 +807,29 @@
         {
           "id": "1",
           "title": "The K–10 Continuum and Science Education",
-          "announcementBody": { "intro": null, "focus": null },
-          "orientationNote": null,
-          "forumPrompts": [],
+          "announcementBody": {
+            "intro": "Topic 1 sets up a foundational question you'll return to throughout EDSE362: what do your Year 7 students actually bring with them when they walk into your classroom? This week we explore the K-6 Science and Technology syllabus to understand what students could — and could not — have experienced before Stage 4.",
+            "focus": "The focus is on the structural differences between K-6 Science and Technology and the NSW 7-10 Science syllabus, and what those differences mean for your teaching in Term 1 Year 7. Pay particular attention to the Working Scientifically strand — the shift from one outcome per stage in K-6 to six outcomes in Stages 4 and 5 is significant, and you cannot assume students have developed those skills before they arrive."
+          },
+          "orientationNote": "Topic 1 connects directly to your work in Topic 6 (Planning and Assessing a Unit of Work), where you will need to sequence learning that accounts for prior knowledge variability in your cohort. The K-6 syllabus materials you engage with this week — particularly the strand continuums and the time allocation data — are the evidence base for the pedagogical decisions you will justify in your AT1 unit plan.",
+          "forumPrompts": [
+            "Read Chapter 4 in Skamp and Preston and choose one additional chapter from Chapters 5–13. Based on your reading, will students arrive at your Year 7 classroom with more or less prior knowledge than you expected? Post approximately 200 words describing one specific area of the K-6 syllabus — a strand, stage, or outcome — where you think the gap between what students should know and what they may actually know is greatest, and explain why you think that gap matters for your teaching. What would you do in Week 1 to find out?",
+            "Science and Technology is a non-core subject in K-6, receiving 6–10% of instructional time compared to 25–35% for English. What strategies would you use in your Year 7 classroom to establish a common starting point given the wide variation in prior science experience? Post one concrete strategy to the Topic 1 forum and explain how you would use it in the first two weeks of Term 1."
+          ],
           "live": null
         },
         {
           "id": "2",
           "title": "The Nature of Science and Science Teaching",
           "announcementBody": {
-            "intro": "Welcome to EDSE362. This week we begin by stepping back from Years 7–10 and examining the full K–10 science continuum — the foundation of prior knowledge and experience your students bring with them into Years 7–10.",
-            "focus": "Topic 1 examines how the NSW Science K–10 curriculum connects to the Years 7–10 syllabuses. You will trace the progression of key concepts, skills, and Working Scientifically strands from primary through to early secondary science, and consider how understanding this continuum helps you plan more responsive and connected Years 7–10 lessons."
+            "intro": "Topic 2 asks you to examine the philosophical and epistemological foundations of science — not as an abstract exercise, but because your answer to \"what is science?\" will directly shape how you design investigations, respond to student misconceptions, and frame assessment tasks.",
+            "focus": "This week we work through three interconnected ideas: what the Nature of Science (NOS) actually means in the context of the 7-10 syllabus; how the Working Scientifically outcomes across Stage 4 and 5 operationalise scientific inquiry in your classroom; and how socio-scientific issues (SSI) can be used as engagement strategies while carrying real risks if not handled carefully with diverse cohorts."
           },
-          "orientationNote": null,
-          "forumPrompts": [],
+          "orientationNote": "Your understanding of NOS sits at the core of EDSE362 — it underpins how you plan for inquiry in Topic 6 and how you think about resources in Topic 3. The key idea to carry forward is the distinction between science as a body of facts and science as a way of knowing: your lesson designs, your questioning strategies in Topic 4, and your analogies in Topic 7 will all reflect which of these you have internalised.",
+          "forumPrompts": [
+            "The Topic 2 materials define the Nature of Science as empirical, tentative, theory-laden, sociocultural, and creative. Choose one of these five characteristics and describe how you would make it visible to a Year 8 class during a practical investigation — not by telling students about NOS, but by designing the activity and debrief so that students experience it. Post approximately 100–150 words. What would you look for as evidence that students had engaged with that characteristic?",
+            "Look through either the ACARA v9 or NSW Science 7-10 syllabus and identify one socio-scientific issue that appears in the content. How would you introduce this issue to a Year 8 class in a way that is accessible regardless of students' socioeconomic background or prior familiarity with the topic? Post your approach to the Topic 2 forum — approximately 100–150 words — and name the specific syllabus content point you are working with."
+          ],
           "live": "🎤 Live Session"
         }
       ],
@@ -828,7 +837,7 @@
         "intro": "Welcome to EDSE362. This week we begin by stepping back from Years 7–10 and examining the full K–10 science continuum — the foundation of prior knowledge and experience your students bring with them into Years 7–10.",
         "focus": "Topic 1 examines how the NSW Science K–10 curriculum connects to the Years 7–10 syllabuses. You will trace the progression of key concepts, skills, and Working Scientifically strands from primary through to early secondary science, and consider how understanding this continuum helps you plan more responsive and connected Years 7–10 lessons."
       },
-      "liveSessionFocus": "In our first live session we introduce the unit and cover Topics 1 and 2 together — examining the K–10 learning continuum and the Nature of Science as connected foundations for planning responsive and conceptually honest Years 7–10 lessons.",
+      "liveSessionFocus": "In our first live session we introduce the unit and work through Topics 1 and 2 together — the K-6 to 7-10 transition and the Nature of Science. Come prepared to discuss what you observed about science teaching in your own K-6 schooling.",
       "liveSessionTasks": [
         "Before the session, review the Science K–10 syllabus outcomes for Stage 5 in your primary teaching area and identify two or three concepts that directly underpin Years 7–10 content.",
         "Consider: what assumptions do NSW Science Years 7–10 syllabus make about what students already know from K–10? Where might those assumptions break down?",
