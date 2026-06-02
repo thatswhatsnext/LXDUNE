@@ -4,3 +4,13 @@
 /docs/*-shells-*.html
 scripts/t2-checklist-state.json
 node_modules/
+
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Config backup files from gap scanner
+config/units/*.bak
+
+# Local generated docs
+docs/LXDUNE-presubmission-checklists.html
