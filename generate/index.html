@@ -412,11 +412,14 @@
       return;
     }
 
-    // Populate task dropdown from unit JSON
+    // Populate task dropdown from unit JSON — preserve current selection across rebuild
     const taskSel = document.getElementById('sel-task');
+    const prevTaskVal = taskSel.value;
     const atTasks = unitCfg.assessmentTasks ?? [];
     if (atTasks.length) {
-      taskSel.innerHTML = atTasks.map(t => `<option value="${t.id}">${t.id} — ${t.title}</option>`).join('');
+      taskSel.innerHTML = atTasks.map(t => `<option value="${t.id}">${t.id} — ${t.title}</option>`).join('')
+        + '<option value="all">All tasks (tabbed)</option>';
+      if ([...taskSel.options].some(o => o.value === prevTaskVal)) taskSel.value = prevTaskVal;
     }
 
     // Populate week dropdown from unit JSON (preserve user's selection across Generate clicks)
