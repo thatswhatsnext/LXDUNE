@@ -864,14 +864,12 @@
       "title": "Introduction to Teaching Differentiation",
       "live": "🎤 Live Session",
       "announcementBody": {
-        "intro": "This week we introduce one of the most important — and most misunderstood — practices in teaching: differentiation. We begin with the principles and theory before we turn to application in the science classroom next week.",
-        "focus": "Topic 4 establishes a clear conceptual foundation for differentiated instruction: what it is, what it is not, and why it matters for student learning in a Years 7–10 context. You will examine models of differentiation by content, process, product, and environment, and begin to consider how these apply to the practical realities of teaching science."
+        "intro": "This week we focus on questioning as a teaching tool — specifically how the questions you ask (and how you ask them) shape the quality of thinking in your science classroom.",
+        "focus": "We cover open and closed questions, levels of questioning from Bloom's Taxonomy, the Q-Matrix, Harvard Project Zero thinking routines, and the role of psychological safety in creating a classroom where students are willing to respond."
       },
-      "liveSessionFocus": "Session 3 focuses on the principles and theory of differentiated instruction, and what it looks like in practice in a Years 7–10 science classroom.",
+      "liveSessionFocus": "This session we will work through questioning frameworks hands-on — classifying question types, practising question stems from the Q-Matrix, and examining what makes a question genuinely open rather than a 'guess what I'm thinking' prompt.",
       "liveSessionTasks": [
-        "Read the introductory topic materials on differentiation and identify one model or framework that you find most useful for thinking about your teaching.",
-        "Consider a class or cohort you have worked with (or observed) and identify two or three ways in which students' learning needs varied — what would effective differentiation have looked like?",
-        "Come prepared to discuss one misconception about differentiation that you have encountered or hold yourself, and how the topic materials addressed it."
+        "Questioning is a core pedagogical skill for Stage 4 and 5 science — the transition from Stage 3 Science and Technology, where students are often told answers, to Stage 4 Science, where they are expected to investigate and reason, depends heavily on the quality of questions teachers ask. As you work through Bloom's Taxonomy and the Q-Matrix this week, think about how you would sequence questions across a Stage 4 lesson: what closed question establishes prior knowledge, what open question surfaces a misconception, and what higher-order question asks students to evaluate evidence or predict an outcome. This skill of deliberate question design sits at the heart of LO1 and will recur throughout your AT1 planning work."
       ],
       "links": {
         "lecture": null,
@@ -886,8 +884,12 @@
       "video": null,
       "loMapping": [
         "LO1",
-        "LO3",
-        "LO5"
+        "LO3"
+      ],
+      "orientationNote": "The questioning techniques in this topic are directly transferable to your AT1 lesson sequence — the questions you write into your lesson plans are evidence of your ability to target specific levels of student thinking (LO1, AITSL 2.1.1). As you work through Bloom's and the Q-Matrix this week, think about where in your planned sequence you would place LOTS versus HOTS questions, and where a Harvard Project Zero thinking routine could replace a teacher-directed question entirely.",
+      "forumPrompts": [
+        "Choose a NSW 7–10 science syllabus outcome for any Stage 4 or 5 topic. Write one closed question and one open question that target that outcome. Then write a third question using a stem from the Q-Matrix that moves students to a higher cognitive level. Post your three questions and briefly explain what mental operation each one requires. What does the difference in student response tell you as a teacher?",
+        "Read the Tofade et al. (2013) material on psychological safety or review the principles on the slide. Describe one specific teacher behaviour — from the list or from your own observation — that would undermine a student's willingness to answer a question in a science class. How would you avoid or correct that behaviour in your own practice? Connect your answer to the NSW Quality Teaching Framework's Quality Learning Environment dimension."
       ]
     },
     "4": {
