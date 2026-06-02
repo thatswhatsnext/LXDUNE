@@ -736,16 +736,16 @@
       "email": "sgrant39@une.edu.au"
     },
     "lecturer": {
-      "name": null,
-      "email": null
+      "name": "Steve Grant",
+      "email": "sgrant39@une.edu.au"
     }
   },
   "trimesterConfig": {
     "T2-2026": {
       "zoom": {
-        "meetingId": null,
-        "password": null,
-        "url": null
+        "meetingId": "854 3911 7847",
+        "password": "538444",
+        "url": "https://une-au.zoom.us/j/85439117847?pwd=7NmFmE65bSk709eBmBRUNp0TIpX5kF.1"
       },
       "assessmentFiles": {
         "AT1": {
@@ -814,12 +814,12 @@
       ],
       "links": {
         "lecture": null,
-        "slides": null,
+        "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458776",
         "zoom": null,
         "recording": null,
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458777",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458774",
+        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485767#module-3561674"
       },
       "resources": [],
       "video": null,
@@ -847,9 +847,9 @@
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/book/view.php?id=3458780",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458780",
+        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485768#module-3561675"
       },
       "resources": [],
       "video": null,
@@ -878,9 +878,9 @@
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458790",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458787",
+        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485769#module-3561678"
       },
       "resources": [],
       "video": null,
@@ -908,9 +908,9 @@
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458796",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458795",
+        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485770#module-3561679"
       },
       "resources": [],
       "video": null,
@@ -939,9 +939,9 @@
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458803",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458800",
+        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485771#module-3561681"
       },
       "resources": [],
       "video": null,
@@ -970,9 +970,9 @@
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458810",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458807",
+        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485772#module-3561682"
       },
       "resources": [],
       "video": null,
@@ -1003,9 +1003,9 @@
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458818",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458815",
+        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485773#module-3561683"
       },
       "resources": [],
       "video": null,
@@ -1034,9 +1034,9 @@
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458825",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458824",
+        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485774#module-3561684"
       },
       "resources": [],
       "video": null,
