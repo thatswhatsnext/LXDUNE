@@ -296,7 +296,7 @@ async function resolve({ forUnit, forTri, forYear, forWeek, forDate }) {
 
   const triKey = `${forTri}-${forYear}`;
 
-  let weekNum = forWeek != null ? Number(forWeek) : null;
+  let weekNum = forWeek != null ? (isNaN(Number(forWeek)) ? String(forWeek) : Number(forWeek)) : null;
   if (weekNum == null) {
     const today = forDate ? new Date(forDate) : new Date();
     today.setHours(0, 0, 0, 0);
