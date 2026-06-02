@@ -427,11 +427,15 @@ export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWee
     const reminders = buildAssessmentReminders(unitCfg, unitCfg.assessmentPortalUrl);
     if (reminders) sections.push(reminders);
 
-    if (week.links?.forum) {
+    const topicsPrompts = topics.flatMap(t => t.forumPrompts ?? []);
+    if (week.links?.forum || topicsPrompts.length) {
+      const promptList = topicsPrompts.length
+        ? `<ol style="margin:10px 0 0 18px;">${topicsPrompts.map(p => `<li style="margin:6px 0;">${esc(p)}</li>`).join('')}</ol>`
+        : `<p style="margin:8px 0 0;">After engaging with the materials, post a short reflection to the ${esc(week.item)} forum.</p>`;
       sections.push(`<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid var(--lx-accent,#25797F);border-radius:8px;background:#f4f6f8;">
         <h4 style="margin:0 0 6px 0;">Forum Discussion</h4>
-        <p style="margin:0;">After engaging with the materials, post a short reflection to the ${esc(week.item)} forum.</p>
-        <p style="margin:8px 0 0;"><a href="${esc(week.links.forum)}" target="_blank" style="color:var(--lx-primary,#1f6fb2);font-weight:600;">Go to Forum</a></p>
+        ${promptList}
+        ${week.links?.forum ? `<p style="margin:10px 0 0;"><a href="${esc(week.links.forum)}" target="_blank" style="color:var(--lx-primary,#1f6fb2);font-weight:600;">Go to Forum</a></p>` : ''}
       </div>`);
     }
 
@@ -467,11 +471,15 @@ export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWee
     const reminders = buildAssessmentReminders(unitCfg, unitCfg.assessmentPortalUrl);
     if (reminders) sections.push(reminders);
 
-    if (week.links?.forum) {
+    const flatPrompts = week.forumPrompts ?? [];
+    if (week.links?.forum || flatPrompts.length) {
+      const promptList = flatPrompts.length
+        ? `<ol style="margin:10px 0 0 18px;">${flatPrompts.map(p => `<li style="margin:6px 0;">${esc(p)}</li>`).join('')}</ol>`
+        : `<p style="margin:8px 0 0;">After engaging with the materials, post a short reflection to the ${esc(week.item)} forum.</p>`;
       sections.push(`<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid var(--lx-accent,#25797F);border-radius:8px;background:#f4f6f8;">
         <h4 style="margin:0 0 6px 0;">Forum Discussion</h4>
-        <p style="margin:0;">After engaging with the materials, post a short reflection to the ${esc(week.item)} forum.</p>
-        <p style="margin:8px 0 0;"><a href="${esc(week.links.forum)}" target="_blank" style="color:var(--lx-primary,#1f6fb2);font-weight:600;">Go to Forum</a></p>
+        ${promptList}
+        ${week.links?.forum ? `<p style="margin:10px 0 0;"><a href="${esc(week.links.forum)}" target="_blank" style="color:var(--lx-primary,#1f6fb2);font-weight:600;">Go to Forum</a></p>` : ''}
       </div>`);
     }
 
@@ -625,6 +633,13 @@ export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, 
     ? tasks.map(t => `<li style="margin:6px 0;">${esc(t)}</li>`).join('')
     : `<li style="margin:6px 0;">Review the lecture and readings before the session.</li>`;
 
+  const sessionPrompts = week.topics?.length
+    ? week.topics.flatMap(t => t.forumPrompts ?? [])
+    : (week.forumPrompts ?? []);
+  const afterSessionHtml = sessionPrompts.length
+    ? `<ol style="margin:10px 0 0 18px;">${sessionPrompts.map(p => `<li style="margin:6px 0;">${esc(p)}</li>`).join('')}</ol>`
+    : `<div>Post a short reflection in the forum.</div>`;
+
   const s = 'border:1px solid #dfe6ea;border-radius:14px;padding:18px;margin-bottom:16px;background:#fff;';
 
   el.innerHTML = `<div style="max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33;line-height:1.55;">
@@ -645,7 +660,7 @@ export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, 
     </div>
     <div style="${s}border-left:6px solid #6F7B84;background:#f4f6f8;">
       <h4 style="margin:0 0 8px;">After the Session</h4>
-      <div>Post a short reflection in the forum.</div>
+      ${afterSessionHtml}
       <div style="margin-top:10px;">${forumLink}</div>
     </div>
   </div>`;
