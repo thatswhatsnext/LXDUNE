@@ -318,8 +318,9 @@
   }
 
   function shellFullSection(unit, tri, year, weekNum) {
-    const W = Number(weekNum);
-    const sfx = `-w${W}`;
+    const W = isNaN(Number(weekNum)) ? weekNum : Number(weekNum);
+    const wLit = typeof W === 'string' ? `'${W}'` : W;
+    const sfx = `-w${String(weekNum).replace(/[^a-z0-9]/gi, '')}`;
     const fns = [
       ['renderOrientationNote', `lxdune-orientation-note${sfx}`],
       ['renderAnnouncementBlock', `lxdune-announcement${sfx}`],
@@ -340,7 +341,7 @@
       `<script type="module">\n` +
       `import { ${imports} }\n` +
       `  from '${PAGES_BASE}/moodle-blocks/blocks.js';\n` +
-      `const U='${unit}', T='${tri}', Y='${year}', W=${W};\n` +
+      `const U='${unit}', T='${tri}', Y='${year}', W=${wLit};\n` +
       calls + `\n` +
       `<\/script>\n\n` +
       divs
@@ -425,7 +426,11 @@
     // Populate week dropdown from unit JSON (preserve user's selection across Generate clicks)
     const weekSel = document.getElementById('sel-week');
     const prevWeekVal = weekSel.value;
-    const weekEntries = Object.entries(unitCfg.weeks ?? {}).sort(([a], [b]) => Number(a) - Number(b));
+    const weekEntries = Object.entries(unitCfg.weeks ?? {}).sort(([a], [b]) => {
+      const na = parseFloat(a), nb = parseFloat(b);
+      if (na !== nb) return na - nb;
+      return a.localeCompare(b);
+    });
     weekSel.innerHTML = weekEntries.map(([k, w]) => `<option value="${k}">Week ${k}${w.title ? ` — ${w.title}` : ''}</option>`).join('');
     const firstTeachingWeek = weekEntries.find(([k]) => Number(k) >= 1)?.[0] ?? weekEntries[0]?.[0] ?? '';
     weekSel.value = (prevWeekVal !== '' && [...weekSel.options].some(o => o.value === prevWeekVal)) ? prevWeekVal : firstTeachingWeek;
