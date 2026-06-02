@@ -800,9 +800,9 @@
       "loMapping": []
     },
     "1": {
-      "item": "Topic 1",
+      "item": "Topics 1 & 2",
       "title": "The K–10 Continuum and Science Education",
-      "live": "🎤 Live Session: Topic 1 & 2",
+      "live": "🎤 Live Session",
       "announcementBody": {
         "intro": "Welcome to EDSE362. This week we begin by stepping back from Years 7–10 and examining the full K–10 science continuum — the foundation of prior knowledge and experience your students bring with them into Years 7–10.",
         "focus": "Topic 1 examines how the NSW Science K–10 curriculum connects to the Years 7–10 syllabuses. You will trace the progression of key concepts, skills, and Working Scientifically strands from primary through to early secondary science, and consider how understanding this continuum helps you plan more responsive and connected Years 7–10 lessons."
@@ -827,37 +827,6 @@
       "loMapping": [
         "LO1",
         "LO2"
-      ]
-    },
-    "2": {
-      "item": "Topic 2",
-      "title": "The Nature of Science and Science Teaching",
-      "live": "🎤 Live Session: Topic 1 & 2",
-      "announcementBody": {
-        "intro": "This week we turn to the epistemological foundations of science itself — what science is, how it works, and what it means to teach it honestly and rigorously in a Years 7–10 context.",
-        "focus": "Topic 2 explores the Nature of Science (NOS) as a professional and pedagogical framework. You will examine the values, practices, and commitments that distinguish science as a way of knowing, and consider how a clear understanding of NOS shapes the way you select content, design investigations, and communicate the purpose of science to students."
-      },
-      "liveSessionFocus": "Session 1 covers Topics 1 and 2 together. We examine the K–10 continuum and the Nature of Science as connected foundations for planning responsive and conceptually honest Years 7–10 lessons.",
-      "liveSessionTasks": [
-        "Review the Nature and Development of Science strand (or equivalent) in your Years 7–10 syllabus and identify how NOS concepts are embedded in the content and outcomes.",
-        "Identify one aspect of the Nature of Science that you find genuinely challenging to communicate clearly to senior students.",
-        "Consider: how does your understanding of NOS influence the way you would design an investigation or respond to a student who says 'just give me the answer'?"
-      ],
-      "links": {
-        "lecture": null,
-        "slides": null,
-        "zoom": null,
-        "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/book/view.php?id=3458780",
-        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458780",
-        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485768#module-3561675"
-      },
-      "resources": [],
-      "video": null,
-      "loMapping": [
-        "LO1",
-        "LO2",
-        "LO3"
       ]
     },
     "3": {
@@ -1018,7 +987,7 @@
     "7": {
       "item": "Topic 7",
       "title": "Teaching and Learning Science Using Analogies",
-      "live": "🎤 Live Session: Topic 7 & 8",
+      "live": "🎤 Live Session",
       "announcementBody": {
         "intro": "This week we examine one of the most powerful — and most frequently misused — pedagogical tools available to science teachers: the analogy. Used well, analogies make abstract science concepts concrete and accessible. Used poorly, they embed misconceptions that are hard to shift.",
         "focus": "Topic 7 focuses on analogies as tools for conceptual change in science learning. You will examine the theory behind why analogies work, explore frameworks for selecting and presenting analogies effectively (including the Teaching-With-Analogies model), and critically evaluate common analogies used in Years 7–10 science for their accuracy, accessibility, and potential to mislead."
@@ -1047,7 +1016,7 @@
       ]
     },
     "8": {
-      "item": "Topic 8",
+      "item": "Topics 7 & 8",
       "title": "Developing Your Science Content Knowledge",
       "live": "🎤 Live Session: Topic 7 & 8",
       "announcementBody": {
