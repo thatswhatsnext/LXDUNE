@@ -1,6 +1,6 @@
 {
   "code": "EDSE362",
-  "name": "Science Education 11–12: Curriculum, Pedagogy and Inclusive Practice",
+  "name": "Science Education 7–10: Developing Professional Skills and Understanding",
   "itemLabel": "Topic",
   "liveDay": "Wednesday",
   "liveTime": "5:30–6:30pm",
@@ -354,7 +354,8 @@
             "Yellow highlight — Aboriginal and Torres Strait Islander perspectives, histories, and cultures.",
             "Green highlight — formative assessment tasks.",
             "At least two formative assessment tasks must be present and highlighted green.",
-            "Highlights must reflect genuine embedding, not retrospective addition."
+            "Highlights must reflect genuine embedding, not retrospective addition.",
+            "Note (LO4): The green formative assessment highlight is assessed separately under LO4 and carries its own criterion in the marking rubric. Each highlighted formative task should be purposefully connected to a learning goal and designed to inform future teaching decisions for the given cohort — not simply any activity that checks understanding."
           ],
           "bespoke": null,
           "loLinks": [
@@ -480,11 +481,11 @@
               "descriptor": "Exceptional range genuinely and effectively embedded. All elements highlighted throughout."
             },
             "D": {
-              "range": "3",
+              "range": "2–3",
               "descriptor": "Strong range effectively embedded. All elements highlighted."
             },
             "C": {
-              "range": "2–3",
+              "range": "2",
               "descriptor": "Sound embedding with appropriate strategies and perspectives. Elements highlighted."
             },
             "P": {
@@ -510,11 +511,11 @@
               "descriptor": "Barriers expertly identified and mitigated. Unit provides genuinely equitable access for all cohort groups."
             },
             "D": {
-              "range": "3",
+              "range": "2–3",
               "descriptor": "Barriers identified and mitigated. Unit provides clear access for all diverse learners."
             },
             "C": {
-              "range": "2–3",
+              "range": "2",
               "descriptor": "Some barriers identified. Unit is mostly accessible for diverse learners."
             },
             "P": {
@@ -801,15 +802,15 @@
     "1": {
       "item": "Topic 1",
       "title": "The K–10 Continuum and Science Education",
-      "live": "🎤 Live Session",
+      "live": "🎤 Live Session: Topic 1 & 2",
       "announcementBody": {
-        "intro": "Welcome to EDSE362. This week we begin by stepping back from Stage 6 and examining the full K–10 science continuum — the foundation of prior knowledge and experience your senior students bring with them into Stage 6.",
-        "focus": "Topic 1 examines how the NSW Science K–10 curriculum connects to the Stage 6 syllabuses. You will trace the progression of key concepts, skills, and Working Scientifically strands from primary through to early secondary science, and consider how understanding this continuum helps you plan more responsive and connected Stage 6 lessons."
+        "intro": "Welcome to EDSE362. This week we begin by stepping back from Years 7–10 and examining the full K–10 science continuum — the foundation of prior knowledge and experience your students bring with them into Years 7–10.",
+        "focus": "Topic 1 examines how the NSW Science K–10 curriculum connects to the Years 7–10 syllabuses. You will trace the progression of key concepts, skills, and Working Scientifically strands from primary through to early secondary science, and consider how understanding this continuum helps you plan more responsive and connected Years 7–10 lessons."
       },
-      "liveSessionFocus": "In our first live session, we introduce the unit, examine the K–10 to Stage 6 transition, and begin mapping how prior learning shapes what students bring to senior science.",
+      "liveSessionFocus": "In our first live session we introduce the unit and cover Topics 1 and 2 together — examining the K–10 learning continuum and the Nature of Science as connected foundations for planning responsive and conceptually honest Years 7–10 lessons.",
       "liveSessionTasks": [
-        "Before the session, review the Science K–10 syllabus outcomes for Stage 5 in your primary teaching area and identify two or three concepts that directly underpin Stage 6 content.",
-        "Consider: what assumptions do Stage 6 syllabuses make about what students already know from K–10? Where might those assumptions break down?",
+        "Before the session, review the Science K–10 syllabus outcomes for Stage 5 in your primary teaching area and identify two or three concepts that directly underpin Years 7–10 content.",
+        "Consider: what assumptions do NSW Science Years 7–10 syllabus make about what students already know from K–10? Where might those assumptions break down?",
         "Come prepared to share one example of a misconception or gap in prior knowledge you have observed (or anticipate) in senior science students."
       ],
       "links": {
@@ -833,12 +834,12 @@
       "title": "The Nature of Science and Science Teaching",
       "live": "🎤 Live Session: Topic 1 & 2",
       "announcementBody": {
-        "intro": "This week we turn to the epistemological foundations of science itself — what science is, how it works, and what it means to teach it honestly and rigorously in a senior secondary context.",
+        "intro": "This week we turn to the epistemological foundations of science itself — what science is, how it works, and what it means to teach it honestly and rigorously in a Years 7–10 context.",
         "focus": "Topic 2 explores the Nature of Science (NOS) as a professional and pedagogical framework. You will examine the values, practices, and commitments that distinguish science as a way of knowing, and consider how a clear understanding of NOS shapes the way you select content, design investigations, and communicate the purpose of science to students."
       },
-      "liveSessionFocus": "Session 2 covers Topics 1 and 2 together. We will examine the K–10 continuum and the Nature of Science as connected foundations for planning intellectually honest and engaging senior science lessons.",
+      "liveSessionFocus": "Session 1 covers Topics 1 and 2 together. We examine the K–10 continuum and the Nature of Science as connected foundations for planning responsive and conceptually honest Years 7–10 lessons.",
       "liveSessionTasks": [
-        "Review the Nature and Development of Science strand (or equivalent) in your Stage 6 syllabus and identify how NOS concepts are embedded in the content and outcomes.",
+        "Review the Nature and Development of Science strand (or equivalent) in your Years 7–10 syllabus and identify how NOS concepts are embedded in the content and outcomes.",
         "Identify one aspect of the Nature of Science that you find genuinely challenging to communicate clearly to senior students.",
         "Consider: how does your understanding of NOS influence the way you would design an investigation or respond to a student who says 'just give me the answer'?"
       ],
@@ -867,7 +868,7 @@
         "intro": "This week we develop your skills as a critical consumer and selector of teaching resources — a practical and ongoing professional responsibility that shapes the quality of every lesson you teach.",
         "focus": "Topic 3 examines how to evaluate resources systematically and critically across different formats: textbooks, digital tools, laboratory kits, online platforms, and teacher-created materials. You will develop a personal evaluation framework grounded in syllabus alignment, scientific accuracy, and pedagogical appropriateness, and begin building a curated resource library for your teaching area."
       },
-      "liveSessionFocus": "Session 3 focuses on resource evaluation frameworks and strategies for building a coherent, high-quality teaching toolkit across the Stage 6 science syllabuses.",
+      "liveSessionFocus": "Session 2 focuses on resource evaluation frameworks and strategies for building a coherent, high-quality teaching toolkit for Years 7–10 science.",
       "liveSessionTasks": [
         "Select one textbook or digital resource used in your primary teaching area and evaluate it against your own criteria for quality — consider syllabus alignment, scientific accuracy, and how it supports student thinking.",
         "Identify one specific strength and one clear weakness in the resource, and consider what you would do to address the weakness in practice.",
@@ -892,12 +893,12 @@
     "4": {
       "item": "Topic 4",
       "title": "Introduction to Teaching Differentiation",
-      "live": "🎤 Live Session: Topic 3 & 4",
+      "live": "🎤 Live Session",
       "announcementBody": {
-        "intro": "This week we introduce one of the most important — and most misunderstood — practices in teaching: differentiation. We begin with the principles and theory before we turn to application in the senior science classroom next week.",
-        "focus": "Topic 4 establishes a clear conceptual foundation for differentiated instruction: what it is, what it is not, and why it matters for student learning in a Stage 6 context. You will examine models of differentiation by content, process, product, and environment, and begin to consider how these apply to the practical realities of teaching senior science."
+        "intro": "This week we introduce one of the most important — and most misunderstood — practices in teaching: differentiation. We begin with the principles and theory before we turn to application in the science classroom next week.",
+        "focus": "Topic 4 establishes a clear conceptual foundation for differentiated instruction: what it is, what it is not, and why it matters for student learning in a Years 7–10 context. You will examine models of differentiation by content, process, product, and environment, and begin to consider how these apply to the practical realities of teaching science."
       },
-      "liveSessionFocus": "Session 4 covers Topics 3 and 4 together. We will examine resource evaluation and the principles of differentiation, and connect both to your planning responsibilities as a science teacher.",
+      "liveSessionFocus": "Session 3 focuses on the principles and theory of differentiated instruction, and what it looks like in practice in a Years 7–10 science classroom.",
       "liveSessionTasks": [
         "Read the introductory topic materials on differentiation and identify one model or framework that you find most useful for thinking about your teaching.",
         "Consider a class or cohort you have worked with (or observed) and identify two or three ways in which students' learning needs varied — what would effective differentiation have looked like?",
@@ -916,6 +917,7 @@
       "video": null,
       "loMapping": [
         "LO1",
+        "LO3",
         "LO5"
       ]
     },
@@ -924,16 +926,16 @@
       "title": "The Inclusive Science Classroom",
       "live": "🎤 Live Session",
       "announcementBody": {
-        "intro": "Building on Topic 4, this week we move from the theory of differentiation into the practical challenge of creating genuinely inclusive senior science classrooms — environments where every student can access, engage with, and be challenged by the curriculum.",
-        "focus": "Topic 5 examines inclusive teaching in the senior science context, with a focus on students with disability, students from diverse cultural and linguistic backgrounds, and students at both ends of the achievement spectrum. You will explore specific adjustments, design principles, and communication strategies, and consider how to maintain academic rigour while broadening access."
+        "intro": "Building on Topic 4, this week we move from the theory of differentiation into the practical challenge of creating genuinely inclusive Years 7–10 science classrooms — environments where every student can access, engage with, and be challenged by the curriculum.",
+        "focus": "Topic 5 examines inclusive teaching in the Years 7–10 science context, with a focus on students with disability, students from diverse cultural and linguistic backgrounds, and students at both ends of the achievement spectrum. You will explore specific adjustments, design principles, and communication strategies, and consider how to maintain academic rigour while broadening access."
       },
-      "liveSessionFocus": "Session 5 focuses on the practical design of inclusive learning experiences for senior science, including how to adapt tasks, resources, and assessment approaches without reducing the challenge of Stage 6 content.",
+      "liveSessionFocus": "Session 4 focuses on the practical design of inclusive learning experiences in Years 7–10 science, including how to adapt tasks, resources, and assessment approaches without reducing the challenge of the curriculum.",
       "liveSessionTasks": [
-        "Identify one adjustment or scaffolding strategy from the topic materials that you could apply immediately to a senior science lesson you are planning or have taught.",
-        "Consider how Stage 6 syllabus requirements interact with NESA access arrangements — where do they align well, and where do tensions arise?",
-        "Come prepared to discuss a specific scenario: a student with a particular learning need in your senior science class. What would an inclusive response look like?"
+        "Identify one adjustment or scaffolding strategy from the topic materials that you could apply immediately to a Years 7–10 science lesson you are planning or have taught.",
+        "Consider how Years 7–10 syllabus requirements interact with NESA access arrangements — where do they align well, and where do tensions arise?",
+        "Come prepared to discuss a specific scenario: a student with a particular learning need in your Years 7–10 science class. What would an inclusive response look like?"
       ],
-      "orientationNote": "Topic 5 moves from the principles of differentiation explored in Topic 4 into the practical challenge of designing genuinely inclusive senior science classrooms. The adjustment strategies, UDL principles, and equity frameworks you encounter this week are directly applicable to your work with diverse 7–10 science cohorts — and they also underpin the assessment design and unit planning you will engage with in Topic 6. As you work through the Topic 5 materials, pay attention to the reasoning behind specific adjustments: understanding why a particular strategy maintains access to the curriculum while preserving the integrity of the learning outcome will prepare you to make similar decisions in your own planning.",
+      "orientationNote": "Topic 5 moves from the principles of differentiation explored in Topic 4 into the practical challenge of designing genuinely inclusive Years 7–10 science classrooms. The adjustment strategies, UDL principles, and equity frameworks you encounter this week are directly applicable to your work with diverse 7–10 science cohorts — and they also underpin the assessment design and unit planning you will engage with in Topic 6. As you work through the Topic 5 materials, pay attention to the reasoning behind specific adjustments: understanding why a particular strategy maintains access to the curriculum while preserving the integrity of the learning outcome will prepare you to make similar decisions in your own planning.",
       "links": {
         "lecture": null,
         "slides": null,
@@ -951,20 +953,20 @@
       ]
     },
     "6": {
-      "item": "Topic 6",
-      "title": "Planning and Evaluating a Unit of Work",
-      "live": "🎤 Live Session: Topic 5 & 6",
+      "item": "Topic 6A",
+      "title": "Planning and Evaluating a Unit of Work — Part 1: The Planning Process",
+      "live": "🎤 Live Session",
       "announcementBody": {
-        "intro": "This week we bring together your curriculum knowledge, pedagogical understanding, and resource evaluation skills to focus on the discipline of unit planning — one of the most important and complex professional tasks you will undertake as a science teacher.",
-        "focus": "Topic 6 examines how to design, sequence, and evaluate a coherent unit of work for Stage 6 science. You will work through the key decisions involved in unit planning: establishing outcomes, selecting and sequencing content, designing assessments for and of learning, choosing resources, and building in opportunities for student reflection and feedback."
+        "intro": "This week we bring together your curriculum knowledge, pedagogical understanding, and resource evaluation skills to focus on the discipline of unit planning — one of the most important and complex professional tasks you will undertake as a Years 7–10 science teacher.",
+        "focus": "Topic 6A examines the planning process: how to establish outcomes, select and sequence content, embed formative assessment, choose resources, and make a constructivist pedagogical approach visible and coherent across a five-week unit. The decisions you practise this week are the same decisions Assessment Task 2 requires you to demonstrate."
       },
-      "liveSessionFocus": "Session 6 covers Topics 5 and 6 together. We will examine inclusive practice and unit planning as interconnected professional responsibilities, and work through the decisions that shape a coherent, accessible, and outcomes-aligned Stage 6 unit.",
+      "liveSessionFocus": "Session 5 focuses on Part 1 of unit planning — the planning process. We work through the decisions that shape a coherent, outcomes-aligned unit program: establishing outcomes, sequencing content, selecting resources, and embedding formative assessment.",
       "liveSessionTasks": [
-        "Select a topic or module from your Stage 6 syllabus and sketch a rough unit outline — identify the key outcomes, main content sequence, and at least one formative and one summative assessment task.",
-        "Evaluate your outline against the unit planning criteria in the topic materials: Is it coherent? Is it outcomes-focused? Does it build in opportunities for feedback?",
+        "Select a Knowledge and Understanding strand from the NSW Science Years 7–10 (2026) syllabus and sketch a rough five-week unit outline — identify the key outcomes, main content sequence, and at least two formative assessment opportunities.",
+        "Evaluate your outline against the unit planning principles in the topic materials: Is the constructivist approach visible? Is the sequence outcomes-focused? Does it build in opportunities for feedback?",
         "Come prepared to share your outline and receive peer feedback in the session — bring a willingness to revise."
       ],
-      "orientationNote": "Topic 6 is the most directly assessed topic in this unit. Assessment Task 1 requires you to plan a constructively aligned unit of work, and the unit planning principles, evaluation strategy frameworks, and feedback design approaches you study this week are the same principles the AT1 marking rubric assesses. AT1 is due 26 July. If you have not yet begun drafting your unit outline, this week is the right time to start. Work through Topic 6 with AT1 in mind: use the live session this week to get early peer feedback on your emerging unit design, and bring questions about alignment and evaluation strategy to the session.",
+      "orientationNote": "Topic 6A is the most directly assessed topic in this unit. Assessment Task 2 requires you to plan a five-week unit program using a named constructivist approach, embed formative and summative assessment, and design a summative task with an A–E rubric — and the unit planning principles you study this week are the same principles the AT2 marking rubric assesses. AT2 is due 6 September. If you have not yet begun drafting your unit outline, this week is the right time to start. Work through Topic 6A with AT2 Part A in mind: use the live session to get early peer feedback on your emerging unit design, and bring questions about constructive alignment and sequencing to the session.",
       "links": {
         "lecture": null,
         "slides": null,
@@ -983,17 +985,47 @@
         "LO4"
       ]
     },
+    "6b": {
+      "item": "Topic 6B",
+      "title": "Planning and Evaluating a Unit of Work — Part 2: The Role of Assessment and Evaluation",
+      "live": "🎤 Live Session",
+      "announcementBody": {
+        "intro": "This week we turn to the assessment and evaluation dimension of unit planning — the professional skill of designing assessment tasks that give all students a genuine opportunity to demonstrate their learning, and that give you reliable evidence to improve your teaching.",
+        "focus": "Topic 6B examines assessment design, formative and summative assessment practice, and program evaluation. You will work through the principles of constructive alignment, the design of A–E marking rubrics using NESA Performance Band Descriptors, and the role of formative assessment in informing teaching decisions for a diverse cohort. A scaffolded critique activity this week gives you practice at identifying alignment gaps and rubric weaknesses before Assessment Task 2 requires you to design your own."
+      },
+      "liveSessionFocus": "Session 6 focuses on Part 2 of unit planning — assessment and evaluation. We examine how to design assessment tasks that are aligned to outcomes, inclusive for all learners, and supported by marking rubrics that give students clear, usable guidance.",
+      "liveSessionTasks": [
+        "Before the session, complete the Topic 6B assessment critique activity: read the sample assessment task and post your analysis to the forum, identifying at least one alignment gap, two rubric problems, and one inclusion concern for the given cohort.",
+        "Read at least one peer’s forum post and note one point of agreement and one point you would push back on — bring this to the session.",
+        "Come prepared to discuss: what makes a summative assessment task genuinely inclusive without lowering the standard of the curriculum?"
+      ],
+      "orientationNote": "Topic 6B prepares you directly for Assessment Task 2 Part C, which requires you to design a summative assessment task with an A–E marking rubric aligned to your unit. The critique activity this week is the only scaffolded practice opportunity for this skill before it is assessed — take it seriously. Post to the forum before the live session so you can discuss your analysis with peers. Students who engage critically with the sample task this week consistently produce stronger rubrics in AT2 Part C. AT2 is due 6 September.",
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458810",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458807",
+        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485772#module-3561682"
+      },
+      "resources": [],
+      "video": null,
+      "loMapping": [
+        "LO4"
+      ]
+    },
     "7": {
       "item": "Topic 7",
       "title": "Teaching and Learning Science Using Analogies",
-      "live": "🎤 Live Session",
+      "live": "🎤 Live Session: Topic 7 & 8",
       "announcementBody": {
         "intro": "This week we examine one of the most powerful — and most frequently misused — pedagogical tools available to science teachers: the analogy. Used well, analogies make abstract science concepts concrete and accessible. Used poorly, they embed misconceptions that are hard to shift.",
-        "focus": "Topic 7 focuses on analogies as tools for conceptual change in science learning. You will examine the theory behind why analogies work, explore frameworks for selecting and presenting analogies effectively (including the Teaching-With-Analogies model), and critically evaluate common analogies used in senior science for their accuracy, accessibility, and potential to mislead."
+        "focus": "Topic 7 focuses on analogies as tools for conceptual change in science learning. You will examine the theory behind why analogies work, explore frameworks for selecting and presenting analogies effectively (including the Teaching-With-Analogies model), and critically evaluate common analogies used in Years 7–10 science for their accuracy, accessibility, and potential to mislead."
       },
-      "liveSessionFocus": "Session 7 examines analogies as pedagogical tools in depth — working through examples from across the senior science syllabuses and practising the skill of evaluating an analogy before using it with students.",
+      "liveSessionFocus": "Session 7 examines analogies as pedagogical tools in Years 7–10 science — working through examples from across the 7–10 syllabus and practising the skill of evaluating an analogy before using it with students.",
       "liveSessionTasks": [
-        "Identify one analogy commonly used in your Stage 6 teaching area — write down what concept it is meant to explain, what it maps correctly, and where the mapping breaks down.",
+        "Identify one analogy commonly used in your Years 7–10 science teaching area — write down what concept it is meant to explain, what it maps correctly, and where the mapping breaks down.",
         "Consider how you would introduce this analogy to a class while explicitly addressing its limitations, so students build accurate conceptual understanding rather than a flawed mental model.",
         "Come prepared to present your analogy briefly and receive feedback from peers on how they experience it as learners."
       ],
@@ -1020,15 +1052,15 @@
       "live": "🎤 Live Session: Topic 7 & 8",
       "announcementBody": {
         "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
-        "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your Stage 6 syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
+        "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your NSW Science Years 7–10 (2026) syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
       },
-      "liveSessionFocus": "Session 8 covers Topics 7 and 8 together. We will examine analogies and content knowledge development as complementary professional skills, and conclude the teaching program by looking ahead to the professional learning habits that will sustain your practice.",
+      "liveSessionFocus": "Session 8 covers Topics 7 and 8 together. We examine analogies and content knowledge development as complementary professional skills, and conclude the teaching program by looking ahead to the professional learning habits that will sustain your practice in Years 7–10 science.",
       "liveSessionTasks": [
-        "Complete a content knowledge audit for your primary Stage 6 teaching area: rate your confidence across the major content sections and identify your two or three priority gaps.",
+        "Complete a content knowledge audit for your primary Years 7–10 teaching area: rate your confidence across the major content sections and identify your two or three priority gaps.",
         "For each priority gap, identify at least one concrete resource or action you will take to address it — a specific book, online course, professional association, or peer with relevant expertise.",
         "Come prepared to briefly share your audit findings and your plan — and to give and receive constructive feedback with peers."
       ],
-      "orientationNote": "Topic 8 closes the teaching program by turning attention to your own science content knowledge — a professional responsibility that continues throughout your career. This connects directly to Assessment Task 2, due 6 September. AT2 requires you to demonstrate subject-matter knowledge in a specific assessment context, and students who have systematically audited their content knowledge against their Stage 6 syllabus are better positioned to demonstrate that knowledge with precision. Use this week's audit activity seriously: the content gaps you identify now are the preparation time you have before AT2 requires you to demonstrate confidence. Engage with the professional associations, specialist resources, and peer networks Topic 8 points you toward — they are the long-term approach to building and maintaining content knowledge as a science teacher.",
+      "orientationNote": "Topic 8 closes the teaching program by turning attention to your own science content knowledge — a professional responsibility that continues throughout your career. This connects directly to LO6 and Assessment Task 2 Part D, due 6 September. AT2 Part D requires you to name a specific external professional or community source that could improve your content knowledge or teaching, and to explain how you would access that support. Students who have genuinely engaged with the professional associations, subject-matter resources, and peer networks Topic 8 points you toward are able to name those sources with specificity and conviction in their reflection — not generically. Use this week’s audit activity seriously: the content gaps you identify now are the preparation time you have before AT2 requires you to demonstrate confidence and professional direction.",
       "links": {
         "lecture": null,
         "slides": null,
