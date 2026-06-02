@@ -88,6 +88,7 @@
         <option value="resource-directory">Resource directory</option>
         <option value="outcomes">Learning outcomes table</option>
         <option value="assessment-page">Assessment page</option>
+        <option value="assessment-hybrid">Assessment page (hybrid layout)</option>
         <option value="all-assessments">All assessments (tabbed)</option>
         <option value="assessment-nav">Assessment navigation</option>
         <option value="course-hub">Course hub</option>
@@ -107,6 +108,7 @@
       <select id="sel-task">
         <option value="AT1">AT1</option>
         <option value="AT2">AT2</option>
+        <option value="all">All tasks (tabbed)</option>
       </select>
     </div>
     <div class="form-row" id="week-row" style="display:none;">
@@ -156,7 +158,7 @@
     const taskRow = document.getElementById('task-row');
     const weekRow = document.getElementById('week-row');
     function syncSelectors() {
-      taskRow.style.display = ['assessment-page', 'presubmission-checklist'].includes(typeSel.value) ? '' : 'none';
+      taskRow.style.display = ['assessment-page', 'assessment-hybrid', 'presubmission-checklist'].includes(typeSel.value) ? '' : 'none';
       weekRow.style.display = ['synthesis-template', 'full-section', 'orientation-note', 'forum-prompts', 'worked-example'].includes(typeSel.value) ? '' : 'none';
     }
     typeSel.addEventListener('change', syncSelectors);
@@ -257,6 +259,22 @@
       `  });\n` +
       `<\/script>\n` +
       `<div id="lxdune-assessment-page"></div>`
+    );
+  }
+
+  function shellAssessmentHybrid(unit, tri, year, taskId) {
+    return (
+      `<script type="module">\n` +
+      `  import { renderAssessmentHybrid }\n` +
+      `  from "${PAGES_BASE}/moodle-blocks/blocks.js";\n` +
+      `  renderAssessmentHybrid({\n` +
+      `    forUnit: "${unit}",\n` +
+      `    forTri: "${tri}",\n` +
+      `    forYear: "${year}",\n` +
+      `    forTask: "${taskId}",\n` +
+      `  });\n` +
+      `<\/script>\n` +
+      `<div id="lxdune-assessment-hybrid"></div>`
     );
   }
 
@@ -394,11 +412,14 @@
       return;
     }
 
-    // Populate task dropdown from unit JSON
+    // Populate task dropdown from unit JSON — preserve current selection across rebuild
     const taskSel = document.getElementById('sel-task');
+    const prevTaskVal = taskSel.value;
     const atTasks = unitCfg.assessmentTasks ?? [];
     if (atTasks.length) {
-      taskSel.innerHTML = atTasks.map(t => `<option value="${t.id}">${t.id} — ${t.title}</option>`).join('');
+      taskSel.innerHTML = atTasks.map(t => `<option value="${t.id}">${t.id} — ${t.title}</option>`).join('')
+        + '<option value="all">All tasks (tabbed)</option>';
+      if ([...taskSel.options].some(o => o.value === prevTaskVal)) taskSel.value = prevTaskVal;
     }
 
     // Populate week dropdown from unit JSON (preserve user's selection across Generate clicks)
@@ -562,6 +583,27 @@
       });
       const output = document.getElementById('output');
       output.innerHTML = `<div class="result-banner">Shell for <strong>${unit}</strong> — <strong>${taskId}</strong></div>${cards}`;
+      output.style.display = 'block';
+      bindCopyButtons();
+      btn.disabled = false;
+      btn.textContent = 'Generate shell';
+      output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Assessment page (hybrid layout) — task-scoped
+    if (pageType === 'assessment-hybrid') {
+      const taskLabel = taskId === 'all' ? 'All tasks (tabbed)' : taskId;
+      const code = shellAssessmentHybrid(unit, tri, year, taskId);
+      const cards = snippetCard({
+        title: `Assessment page (hybrid) — ${taskLabel}`,
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code,
+        note: `Timeline + checklist hybrid layout. Milestone cards expand per part; includes pre-submission checklist as CL milestone. Container: <code>lxdune-assessment-hybrid</code>.`,
+        rows: 9,
+      });
+      const output = document.getElementById('output');
+      output.innerHTML = `<div class="result-banner">Shell for <strong>${unit}</strong> — <strong>${taskLabel}</strong></div>${cards}`;
       output.style.display = 'block';
       bindCopyButtons();
       btn.disabled = false;
