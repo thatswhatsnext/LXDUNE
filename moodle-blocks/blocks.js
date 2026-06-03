@@ -625,20 +625,9 @@ export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, 
     ? `<a style="display:inline-block;margin-top:10px;padding:8px 14px;background:var(--lx-primary,#1f6fb2);color:#fff;border-radius:8px;text-decoration:none;font-weight:800;" href="${esc(zoom.url)}" target="_blank" rel="noopener">Join Zoom Session</a>`
     : `<div style="margin-top:10px;">${CHIP}</div>`;
 
-  const forumLink = week.links?.forum
-    ? `<a style="color:var(--lx-primary,#1f6fb2);font-weight:700;text-decoration:none;" href="${esc(week.links.forum)}" target="_blank" rel="noopener">Go to Forum</a>`
-    : CHIP;
-
   const taskItems = tasks.length
     ? tasks.map(t => `<li style="margin:6px 0;">${esc(t)}</li>`).join('')
     : `<li style="margin:6px 0;">Review the lecture and readings before the session.</li>`;
-
-  const sessionPrompts = week.topics?.length
-    ? week.topics.flatMap(t => t.forumPrompts ?? [])
-    : (week.forumPrompts ?? []);
-  const afterSessionHtml = sessionPrompts.length
-    ? `<ol style="margin:10px 0 0 18px;">${sessionPrompts.map(p => `<li style="margin:6px 0;">${esc(p)}</li>`).join('')}</ol>`
-    : `<div>Post a short reflection in the forum.</div>`;
 
   const s = 'border:1px solid #dfe6ea;border-radius:14px;padding:18px;margin-bottom:16px;background:#fff;';
 
@@ -657,11 +646,6 @@ export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, 
       <h4 style="margin:0 0 8px;">Join the Live Session</h4>
       <div>${esc(unitCfg.liveDay)}s at ${esc(unitCfg.liveTime)}. Bring your notes and be prepared to discuss.</div>
       ${zoomBtn}
-    </div>
-    <div style="${s}border-left:6px solid #6F7B84;background:#f4f6f8;">
-      <h4 style="margin:0 0 8px;">After the Session</h4>
-      ${afterSessionHtml}
-      <div style="margin-top:10px;">${forumLink}</div>
     </div>
   </div>`;
 }
