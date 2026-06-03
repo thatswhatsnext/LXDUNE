@@ -383,6 +383,64 @@ export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWee
         ${unitCfg.assessmentPortalUrl ? `<p style="margin:8px 0 0;"><a href="${esc(unitCfg.assessmentPortalUrl)}" target="_blank" style="color:var(--lx-primary,#1f6fb2);font-weight:600;">Assessment Portal</a></p>` : ''}
       </div>
     </div>`;
+  } else if (week.topics?.length) {
+    // ── Multi-topic weeks: one <details>/<summary> per topic ──────────────────
+    const topics = week.topics;
+    const topicDetails = topics.map((topic, idx) => {
+      const hasIntro  = topic.announcementBody?.intro  != null;
+      const hasFocus  = topic.announcementBody?.focus  != null;
+      const hasContent = hasIntro || hasFocus;
+      const livePrefix = topic.live != null ? `🎤 ` : '';
+      const summaryLabel = `${livePrefix}${esc(topic.title)}`;
+      const bodyHtml = [
+        hasIntro ? `<p style="margin:0 0 10px;">${esc(topic.announcementBody.intro)}</p>` : '',
+        hasFocus ? `<div style="margin:10px 0 0;padding:12px 14px;border:1px solid #dfe6ea;border-left:4px solid var(--lx-accent,#25797F);border-radius:6px;background:#f9f9f9;">
+          <div style="font-size:.8em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--lx-accent,#25797F);margin-bottom:6px;">Focus</div>
+          <p style="margin:0;">${esc(topic.announcementBody.focus)}</p>
+        </div>` : '',
+      ].join('');
+      // Open the first topic that has content; collapse all if none do
+      const openAttr = (idx === 0 && hasContent) ? ' open' : '';
+      return `<details style="margin:10px 0;border:1px solid #dfe6ea;border-radius:8px;overflow:hidden;"${openAttr}>
+        <summary style="cursor:pointer;list-style:none;padding:12px 14px;font-weight:700;background:#f4f6f8;border-radius:8px;">${summaryLabel}</summary>
+        <div style="padding:14px 16px;">${bodyHtml}</div>
+      </details>`;
+    }).join('');
+
+    const sections = [];
+    sections.push(`<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid var(--lx-primary,#1f6fb2);border-radius:8px;background:#f4f6f8;">
+      <h3 style="margin:0 0 8px 0;">${esc(week.item)} — ${esc(week.title)}</h3>
+    </div>`);
+    sections.push(topicDetails);
+
+    sections.push(`<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid #6F7B84;border-radius:8px;background:#ffffff;">
+      <h4 style="margin:0 0 8px 0;">How to Approach ${esc(week.item)}</h4>
+      <ul style="margin:0 0 0 18px;">
+        <li>Read the ${esc(itemLabel.toLowerCase())} materials</li>
+        <li>Watch the lecture recording</li>
+        <li>Prepare for the live session and note down examples or questions</li>
+        <li>Join the live session and contribute your thinking</li>
+        <li>Post to the forum</li>
+      </ul>
+    </div>`);
+
+    const reminders = buildAssessmentReminders(unitCfg, unitCfg.assessmentPortalUrl);
+    if (reminders) sections.push(reminders);
+
+    const topicsPrompts = topics.flatMap(t => t.forumPrompts ?? []);
+    if (week.links?.forum || topicsPrompts.length) {
+      const promptList = topicsPrompts.length
+        ? `<ol style="margin:10px 0 0 18px;">${topicsPrompts.map(p => `<li style="margin:6px 0;">${esc(p)}</li>`).join('')}</ol>`
+        : `<p style="margin:8px 0 0;">After engaging with the materials, post a short reflection to the ${esc(week.item)} forum.</p>`;
+      sections.push(`<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid var(--lx-accent,#25797F);border-radius:8px;background:#f4f6f8;">
+        <h4 style="margin:0 0 6px 0;">Forum Discussion</h4>
+        ${promptList}
+        ${week.links?.forum ? `<p style="margin:10px 0 0;"><a href="${esc(week.links.forum)}" target="_blank" style="color:var(--lx-primary,#1f6fb2);font-weight:600;">Go to Forum</a></p>` : ''}
+      </div>`);
+    }
+
+    sections.push(`<p>I look forward to our discussion this week.</p>`);
+    html = `<div style="font-family:Arial,sans-serif;color:#1F2A33;line-height:1.5;max-width:800px;margin:0 auto;">${sections.join('\n')}</div>`;
   } else {
     const ab = week.announcementBody ?? {};
     const sections = [];
@@ -413,11 +471,15 @@ export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWee
     const reminders = buildAssessmentReminders(unitCfg, unitCfg.assessmentPortalUrl);
     if (reminders) sections.push(reminders);
 
-    if (week.links?.forum) {
+    const flatPrompts = week.forumPrompts ?? [];
+    if (week.links?.forum || flatPrompts.length) {
+      const promptList = flatPrompts.length
+        ? `<ol style="margin:10px 0 0 18px;">${flatPrompts.map(p => `<li style="margin:6px 0;">${esc(p)}</li>`).join('')}</ol>`
+        : `<p style="margin:8px 0 0;">After engaging with the materials, post a short reflection to the ${esc(week.item)} forum.</p>`;
       sections.push(`<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid var(--lx-accent,#25797F);border-radius:8px;background:#f4f6f8;">
         <h4 style="margin:0 0 6px 0;">Forum Discussion</h4>
-        <p style="margin:0;">After engaging with the materials, post a short reflection to the ${esc(week.item)} forum.</p>
-        <p style="margin:8px 0 0;"><a href="${esc(week.links.forum)}" target="_blank" style="color:var(--lx-primary,#1f6fb2);font-weight:600;">Go to Forum</a></p>
+        ${promptList}
+        ${week.links?.forum ? `<p style="margin:10px 0 0;"><a href="${esc(week.links.forum)}" target="_blank" style="color:var(--lx-primary,#1f6fb2);font-weight:600;">Go to Forum</a></p>` : ''}
       </div>`);
     }
 
@@ -571,6 +633,13 @@ export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, 
     ? tasks.map(t => `<li style="margin:6px 0;">${esc(t)}</li>`).join('')
     : `<li style="margin:6px 0;">Review the lecture and readings before the session.</li>`;
 
+  const sessionPrompts = week.topics?.length
+    ? week.topics.flatMap(t => t.forumPrompts ?? [])
+    : (week.forumPrompts ?? []);
+  const afterSessionHtml = sessionPrompts.length
+    ? `<ol style="margin:10px 0 0 18px;">${sessionPrompts.map(p => `<li style="margin:6px 0;">${esc(p)}</li>`).join('')}</ol>`
+    : `<div>Post a short reflection in the forum.</div>`;
+
   const s = 'border:1px solid #dfe6ea;border-radius:14px;padding:18px;margin-bottom:16px;background:#fff;';
 
   el.innerHTML = `<div style="max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33;line-height:1.55;">
@@ -591,7 +660,7 @@ export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, 
     </div>
     <div style="${s}border-left:6px solid #6F7B84;background:#f4f6f8;">
       <h4 style="margin:0 0 8px;">After the Session</h4>
-      <div>Post a short reflection in the forum.</div>
+      ${afterSessionHtml}
       <div style="margin-top:10px;">${forumLink}</div>
     </div>
   </div>`;
@@ -2016,6 +2085,32 @@ export async function renderOrientationNote({ forUnit, forTri, forYear, forWeek,
   try {
     const { unitCfg, week } = await resolve({ forUnit, forTri, forYear, forWeek, forDate });
     applyTheme(unitCfg);
+
+    if (week?.topics?.length) {
+      // ── topics[] path ──────────────────────────────────────────────────────
+      const topicsWithNote = week.topics.filter(t => t.orientationNote != null);
+      if (!topicsWithNote.length) { el.innerHTML = ''; return; }
+      injectStyles('lx-orientation-note', ORIENTATION_NOTE_CSS);
+      if (topicsWithNote.length === 1) {
+        // Single note — identical HTML structure to the flat path
+        el.innerHTML = `<div class="lx-on"><div class="lx-on-inner">
+          <div class="lx-on-label">Unit context</div>
+          <p class="lx-on-text">${esc(topicsWithNote[0].orientationNote)}</p>
+        </div></div>`;
+      } else {
+        // Multiple notes — prefix each with the topic title
+        const blocks = topicsWithNote.map(t =>
+          `<div class="lx-on"><div class="lx-on-inner">
+            <div class="lx-on-label">${esc(t.title)}</div>
+            <p class="lx-on-text">${esc(t.orientationNote)}</p>
+          </div></div>`
+        ).join('');
+        el.innerHTML = blocks;
+      }
+      return;
+    }
+
+    // ── flat path (backwards-compatible) ──────────────────────────────────────
     const note = week?.orientationNote;
     if (!note) { el.innerHTML = ''; return; }
     injectStyles('lx-orientation-note', ORIENTATION_NOTE_CSS);
@@ -2034,6 +2129,38 @@ export async function renderForumPrompts({ forUnit, forTri, forYear, forWeek, fo
   try {
     const { unitCfg, week } = await resolve({ forUnit, forTri, forYear, forWeek, forDate });
     applyTheme(unitCfg);
+
+    if (week?.topics?.length) {
+      // ── topics[] path ──────────────────────────────────────────────────────
+      const topicsWithPrompts = week.topics.filter(t => t.forumPrompts?.length);
+      if (!topicsWithPrompts.length) { el.innerHTML = ''; return; }
+      injectStyles('lx-forum-prompts', FORUM_PROMPTS_CSS);
+      if (topicsWithPrompts.length === 1) {
+        // Single group — identical HTML to the flat path
+        const items = topicsWithPrompts[0].forumPrompts.map((p, i) =>
+          `<li class="lx-fp-item"><span class="lx-fp-num">${i + 1}</span><span>${esc(p)}</span></li>`
+        ).join('');
+        el.innerHTML = `<div class="lx-fp"><div class="lx-fp-inner">
+          <div class="lx-fp-label">Forum discussion prompts</div>
+          <ul class="lx-fp-list">${items}</ul>
+        </div></div>`;
+      } else {
+        // Multiple groups — prefix each with the topic title; numbers restart per group
+        const groups = topicsWithPrompts.map(t => {
+          const items = t.forumPrompts.map((p, i) =>
+            `<li class="lx-fp-item"><span class="lx-fp-num">${i + 1}</span><span>${esc(p)}</span></li>`
+          ).join('');
+          return `<div class="lx-fp"><div class="lx-fp-inner">
+            <div class="lx-fp-label">${esc(t.title)}</div>
+            <ul class="lx-fp-list">${items}</ul>
+          </div></div>`;
+        }).join('');
+        el.innerHTML = groups;
+      }
+      return;
+    }
+
+    // ── flat path (backwards-compatible) ──────────────────────────────────────
     const prompts = week?.forumPrompts ?? [];
     if (!prompts.length) { el.innerHTML = ''; return; }
     injectStyles('lx-forum-prompts', FORUM_PROMPTS_CSS);
