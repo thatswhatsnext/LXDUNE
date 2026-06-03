@@ -800,14 +800,44 @@
       "loMapping": []
     },
     "1": {
-      "item": "Topic 1",
+      "item": "Topics 1 & 2",
       "title": "The K–10 Continuum and Science Education",
-      "live": "🎤 Live Session: Topic 1 & 2",
+      "live": "🎤 Live Session",
+      "topics": [
+        {
+          "id": "1",
+          "title": "The K–10 Continuum and Science Education",
+          "announcementBody": {
+            "intro": "Topic 1 sets up a foundational question you'll return to throughout EDSE362: what do your Year 7 students actually bring with them when they walk into your classroom? This week we explore the K-6 Science and Technology syllabus to understand what students could — and could not — have experienced before Stage 4.",
+            "focus": "The focus is on the structural differences between K-6 Science and Technology and the NSW 7-10 Science syllabus, and what those differences mean for your teaching in Term 1 Year 7. Pay particular attention to the Working Scientifically strand — the shift from one outcome per stage in K-6 to six outcomes in Stages 4 and 5 is significant, and you cannot assume students have developed those skills before they arrive."
+          },
+          "orientationNote": "Topic 1 connects directly to your work in Topic 6 (Planning and Assessing a Unit of Work), where you will need to sequence learning that accounts for prior knowledge variability in your cohort. The K-6 syllabus materials you engage with this week — particularly the strand continuums and the time allocation data — are the evidence base for the pedagogical decisions you will justify in your AT1 unit plan.",
+          "forumPrompts": [
+            "Read Chapter 4 in Skamp and Preston and choose one additional chapter from Chapters 5–13. Based on your reading, will students arrive at your Year 7 classroom with more or less prior knowledge than you expected? Post approximately 200 words describing one specific area of the K-6 syllabus — a strand, stage, or outcome — where you think the gap between what students should know and what they may actually know is greatest, and explain why you think that gap matters for your teaching. What would you do in Week 1 to find out?",
+            "Science and Technology is a non-core subject in K-6, receiving 6–10% of instructional time compared to 25–35% for English. What strategies would you use in your Year 7 classroom to establish a common starting point given the wide variation in prior science experience? Post one concrete strategy to the Topic 1 forum and explain how you would use it in the first two weeks of Term 1."
+          ],
+          "live": null
+        },
+        {
+          "id": "2",
+          "title": "The Nature of Science and Science Teaching",
+          "announcementBody": {
+            "intro": "Topic 2 asks you to examine the philosophical and epistemological foundations of science — not as an abstract exercise, but because your answer to \"what is science?\" will directly shape how you design investigations, respond to student misconceptions, and frame assessment tasks.",
+            "focus": "This week we work through three interconnected ideas: what the Nature of Science (NOS) actually means in the context of the 7-10 syllabus; how the Working Scientifically outcomes across Stage 4 and 5 operationalise scientific inquiry in your classroom; and how socio-scientific issues (SSI) can be used as engagement strategies while carrying real risks if not handled carefully with diverse cohorts."
+          },
+          "orientationNote": "Your understanding of NOS sits at the core of EDSE362 — it underpins how you plan for inquiry in Topic 6 and how you think about resources in Topic 3. The key idea to carry forward is the distinction between science as a body of facts and science as a way of knowing: your lesson designs, your questioning strategies in Topic 4, and your analogies in Topic 7 will all reflect which of these you have internalised.",
+          "forumPrompts": [
+            "The Topic 2 materials define the Nature of Science as empirical, tentative, theory-laden, sociocultural, and creative. Choose one of these five characteristics and describe how you would make it visible to a Year 8 class during a practical investigation — not by telling students about NOS, but by designing the activity and debrief so that students experience it. Post approximately 100–150 words. What would you look for as evidence that students had engaged with that characteristic?",
+            "Look through either the ACARA v9 or NSW Science 7-10 syllabus and identify one socio-scientific issue that appears in the content. How would you introduce this issue to a Year 8 class in a way that is accessible regardless of students' socioeconomic background or prior familiarity with the topic? Post your approach to the Topic 2 forum — approximately 100–150 words — and name the specific syllabus content point you are working with."
+          ],
+          "live": "🎤 Live Session"
+        }
+      ],
       "announcementBody": {
         "intro": "Welcome to EDSE362. This week we begin by stepping back from Years 7–10 and examining the full K–10 science continuum — the foundation of prior knowledge and experience your students bring with them into Years 7–10.",
         "focus": "Topic 1 examines how the NSW Science K–10 curriculum connects to the Years 7–10 syllabuses. You will trace the progression of key concepts, skills, and Working Scientifically strands from primary through to early secondary science, and consider how understanding this continuum helps you plan more responsive and connected Years 7–10 lessons."
       },
-      "liveSessionFocus": "In our first live session we introduce the unit and cover Topics 1 and 2 together — examining the K–10 learning continuum and the Nature of Science as connected foundations for planning responsive and conceptually honest Years 7–10 lessons.",
+      "liveSessionFocus": "In our first live session we introduce the unit and work through Topics 1 and 2 together — the K-6 to 7-10 transition and the Nature of Science. Come prepared to discuss what you observed about science teaching in your own K-6 schooling.",
       "liveSessionTasks": [
         "Before the session, review the Science K–10 syllabus outcomes for Stage 5 in your primary teaching area and identify two or three concepts that directly underpin Years 7–10 content.",
         "Consider: what assumptions do NSW Science Years 7–10 syllabus make about what students already know from K–10? Where might those assumptions break down?",
@@ -830,40 +860,22 @@
       ]
     },
     "2": {
-      "item": "Topic 2",
-      "title": "The Nature of Science and Science Teaching",
-      "live": "🎤 Live Session: Topic 1 & 2",
-      "announcementBody": {
-        "intro": "This week we turn to the epistemological foundations of science itself — what science is, how it works, and what it means to teach it honestly and rigorously in a Years 7–10 context.",
-        "focus": "Topic 2 explores the Nature of Science (NOS) as a professional and pedagogical framework. You will examine the values, practices, and commitments that distinguish science as a way of knowing, and consider how a clear understanding of NOS shapes the way you select content, design investigations, and communicate the purpose of science to students."
-      },
-      "liveSessionFocus": "Session 1 covers Topics 1 and 2 together. We examine the K–10 continuum and the Nature of Science as connected foundations for planning responsive and conceptually honest Years 7–10 lessons.",
-      "liveSessionTasks": [
-        "Review the Nature and Development of Science strand (or equivalent) in your Years 7–10 syllabus and identify how NOS concepts are embedded in the content and outcomes.",
-        "Identify one aspect of the Nature of Science that you find genuinely challenging to communicate clearly to senior students.",
-        "Consider: how does your understanding of NOS influence the way you would design an investigation or respond to a student who says 'just give me the answer'?"
-      ],
-      "links": {
-        "lecture": null,
-        "slides": null,
-        "zoom": null,
-        "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/book/view.php?id=3458780",
-        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458780",
-        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485768#module-3561675"
-      },
-      "resources": [],
-      "video": null,
-      "loMapping": [
-        "LO1",
-        "LO2",
-        "LO3"
-      ]
-    },
-    "3": {
       "item": "Topic 3",
       "title": "Selecting and Critically Evaluating Resources",
       "live": "🎤 Live Session",
+      "topics": [
+        {
+          "id": "3",
+          "title": "Selecting and Critically Evaluating Resources",
+          "announcementBody": {
+            "intro": "This week we develop your skills as a critical consumer and selector of teaching resources — a practical and ongoing professional responsibility that shapes the quality of every lesson you teach.",
+            "focus": "Topic 3 examines how to evaluate resources systematically and critically across different formats: textbooks, digital tools, laboratory kits, online platforms, and teacher-created materials. You will develop a personal evaluation framework grounded in syllabus alignment, scientific accuracy, and pedagogical appropriateness, and begin building a curated resource library for your teaching area."
+          },
+          "orientationNote": null,
+          "forumPrompts": [],
+          "live": "🎤 Live Session"
+        }
+      ],
       "announcementBody": {
         "intro": "This week we develop your skills as a critical consumer and selector of teaching resources — a practical and ongoing professional responsibility that shapes the quality of every lesson you teach.",
         "focus": "Topic 3 examines how to evaluate resources systematically and critically across different formats: textbooks, digital tools, laboratory kits, online platforms, and teacher-created materials. You will develop a personal evaluation framework grounded in syllabus alignment, scientific accuracy, and pedagogical appropriateness, and begin building a curated resource library for your teaching area."
@@ -890,19 +902,33 @@
         "LO3"
       ]
     },
-    "4": {
+    "3": {
       "item": "Topic 4",
       "title": "Introduction to Teaching Differentiation",
       "live": "🎤 Live Session",
+      "topics": [
+        {
+          "id": "4",
+          "title": "Introduction to Teaching Differentiation",
+          "announcementBody": {
+            "intro": "This week we focus on questioning as a teaching tool — specifically how the questions you ask (and how you ask them) shape the quality of thinking in your science classroom.",
+            "focus": "We cover open and closed questions, levels of questioning from Bloom's Taxonomy, the Q-Matrix, Harvard Project Zero thinking routines, and the role of psychological safety in creating a classroom where students are willing to respond."
+          },
+          "orientationNote": "The questioning techniques in this topic are directly transferable to your AT1 lesson sequence — the questions you write into your lesson plans are evidence of your ability to target specific levels of student thinking (LO1, AITSL 2.1.1). As you work through Bloom's and the Q-Matrix this week, think about where in your planned sequence you would place LOTS versus HOTS questions, and where a Harvard Project Zero thinking routine could replace a teacher-directed question entirely.",
+          "forumPrompts": [
+            "Choose a NSW 7–10 science syllabus outcome for any Stage 4 or 5 topic. Write one closed question and one open question that target that outcome. Then write a third question using a stem from the Q-Matrix that moves students to a higher cognitive level. Post your three questions and briefly explain what mental operation each one requires. What does the difference in student response tell you as a teacher?",
+            "Read the Tofade et al. (2013) material on psychological safety or review the principles on the slide. Describe one specific teacher behaviour — from the list or from your own observation — that would undermine a student's willingness to answer a question in a science class. How would you avoid or correct that behaviour in your own practice? Connect your answer to the NSW Quality Teaching Framework's Quality Learning Environment dimension."
+          ],
+          "live": "🎤 Live Session"
+        }
+      ],
       "announcementBody": {
-        "intro": "This week we introduce one of the most important — and most misunderstood — practices in teaching: differentiation. We begin with the principles and theory before we turn to application in the science classroom next week.",
-        "focus": "Topic 4 establishes a clear conceptual foundation for differentiated instruction: what it is, what it is not, and why it matters for student learning in a Years 7–10 context. You will examine models of differentiation by content, process, product, and environment, and begin to consider how these apply to the practical realities of teaching science."
+        "intro": "This week we focus on questioning as a teaching tool — specifically how the questions you ask (and how you ask them) shape the quality of thinking in your science classroom.",
+        "focus": "We cover open and closed questions, levels of questioning from Bloom's Taxonomy, the Q-Matrix, Harvard Project Zero thinking routines, and the role of psychological safety in creating a classroom where students are willing to respond."
       },
-      "liveSessionFocus": "Session 3 focuses on the principles and theory of differentiated instruction, and what it looks like in practice in a Years 7–10 science classroom.",
+      "liveSessionFocus": "This session we will work through questioning frameworks hands-on — classifying question types, practising question stems from the Q-Matrix, and examining what makes a question genuinely open rather than a 'guess what I'm thinking' prompt.",
       "liveSessionTasks": [
-        "Read the introductory topic materials on differentiation and identify one model or framework that you find most useful for thinking about your teaching.",
-        "Consider a class or cohort you have worked with (or observed) and identify two or three ways in which students' learning needs varied — what would effective differentiation have looked like?",
-        "Come prepared to discuss one misconception about differentiation that you have encountered or hold yourself, and how the topic materials addressed it."
+        "Questioning is a core pedagogical skill for Stage 4 and 5 science — the transition from Stage 3 Science and Technology, where students are often told answers, to Stage 4 Science, where they are expected to investigate and reason, depends heavily on the quality of questions teachers ask. As you work through Bloom's Taxonomy and the Q-Matrix this week, think about how you would sequence questions across a Stage 4 lesson: what closed question establishes prior knowledge, what open question surfaces a misconception, and what higher-order question asks students to evaluate evidence or predict an outcome. This skill of deliberate question design sits at the heart of LO1 and will recur throughout your AT1 planning work."
       ],
       "links": {
         "lecture": null,
@@ -917,14 +943,31 @@
       "video": null,
       "loMapping": [
         "LO1",
-        "LO3",
-        "LO5"
+        "LO3"
+      ],
+      "orientationNote": "The questioning techniques in this topic are directly transferable to your AT1 lesson sequence — the questions you write into your lesson plans are evidence of your ability to target specific levels of student thinking (LO1, AITSL 2.1.1). As you work through Bloom's and the Q-Matrix this week, think about where in your planned sequence you would place LOTS versus HOTS questions, and where a Harvard Project Zero thinking routine could replace a teacher-directed question entirely.",
+      "forumPrompts": [
+        "Choose a NSW 7–10 science syllabus outcome for any Stage 4 or 5 topic. Write one closed question and one open question that target that outcome. Then write a third question using a stem from the Q-Matrix that moves students to a higher cognitive level. Post your three questions and briefly explain what mental operation each one requires. What does the difference in student response tell you as a teacher?",
+        "Read the Tofade et al. (2013) material on psychological safety or review the principles on the slide. Describe one specific teacher behaviour — from the list or from your own observation — that would undermine a student's willingness to answer a question in a science class. How would you avoid or correct that behaviour in your own practice? Connect your answer to the NSW Quality Teaching Framework's Quality Learning Environment dimension."
       ]
     },
-    "5": {
+    "4": {
       "item": "Topic 5",
       "title": "The Inclusive Science Classroom",
       "live": "🎤 Live Session",
+      "topics": [
+        {
+          "id": "5",
+          "title": "The Inclusive Science Classroom",
+          "announcementBody": {
+            "intro": "Building on Topic 4, this week we move from the theory of differentiation into the practical challenge of creating genuinely inclusive Years 7–10 science classrooms — environments where every student can access, engage with, and be challenged by the curriculum.",
+            "focus": "Topic 5 examines inclusive teaching in the Years 7–10 science context, with a focus on students with disability, students from diverse cultural and linguistic backgrounds, and students at both ends of the achievement spectrum. You will explore specific adjustments, design principles, and communication strategies, and consider how to maintain academic rigour while broadening access."
+          },
+          "orientationNote": "Topic 5 moves from the principles of differentiation explored in Topic 4 into the practical challenge of designing genuinely inclusive Years 7–10 science classrooms. The adjustment strategies, UDL principles, and equity frameworks you encounter this week are directly applicable to your work with diverse 7–10 science cohorts — and they also underpin the assessment design and unit planning you will engage with in Topic 6. As you work through the Topic 5 materials, pay attention to the reasoning behind specific adjustments: understanding why a particular strategy maintains access to the curriculum while preserving the integrity of the learning outcome will prepare you to make similar decisions in your own planning.",
+          "forumPrompts": [],
+          "live": "🎤 Live Session"
+        }
+      ],
       "announcementBody": {
         "intro": "Building on Topic 4, this week we move from the theory of differentiation into the practical challenge of creating genuinely inclusive Years 7–10 science classrooms — environments where every student can access, engage with, and be challenged by the curriculum.",
         "focus": "Topic 5 examines inclusive teaching in the Years 7–10 science context, with a focus on students with disability, students from diverse cultural and linguistic backgrounds, and students at both ends of the achievement spectrum. You will explore specific adjustments, design principles, and communication strategies, and consider how to maintain academic rigour while broadening access."
@@ -952,10 +995,23 @@
         "LO5"
       ]
     },
-    "6": {
+    "5": {
       "item": "Topic 6A",
       "title": "Planning and Evaluating a Unit of Work — Part 1: The Planning Process",
       "live": "🎤 Live Session",
+      "topics": [
+        {
+          "id": "6A",
+          "title": "Planning and Evaluating a Unit of Work — Part 1: The Planning Process",
+          "announcementBody": {
+            "intro": "This week we bring together your curriculum knowledge, pedagogical understanding, and resource evaluation skills to focus on the discipline of unit planning — one of the most important and complex professional tasks you will undertake as a Years 7–10 science teacher.",
+            "focus": "Topic 6A examines the planning process: how to establish outcomes, select and sequence content, embed formative assessment, choose resources, and make a constructivist pedagogical approach visible and coherent across a five-week unit. The decisions you practise this week are the same decisions Assessment Task 2 requires you to demonstrate."
+          },
+          "orientationNote": "Topic 6A is the most directly assessed topic in this unit. Assessment Task 2 requires you to plan a five-week unit program using a named constructivist approach, embed formative and summative assessment, and design a summative task with an A–E rubric — and the unit planning principles you study this week are the same principles the AT2 marking rubric assesses. AT2 is due 6 September. If you have not yet begun drafting your unit outline, this week is the right time to start. Work through Topic 6A with AT2 Part A in mind: use the live session to get early peer feedback on your emerging unit design, and bring questions about constructive alignment and sequencing to the session.",
+          "forumPrompts": [],
+          "live": "🎤 Live Session"
+        }
+      ],
       "announcementBody": {
         "intro": "This week we bring together your curriculum knowledge, pedagogical understanding, and resource evaluation skills to focus on the discipline of unit planning — one of the most important and complex professional tasks you will undertake as a Years 7–10 science teacher.",
         "focus": "Topic 6A examines the planning process: how to establish outcomes, select and sequence content, embed formative assessment, choose resources, and make a constructivist pedagogical approach visible and coherent across a five-week unit. The decisions you practise this week are the same decisions Assessment Task 2 requires you to demonstrate."
@@ -985,10 +1041,23 @@
         "LO4"
       ]
     },
-    "6b": {
+    "6": {
       "item": "Topic 6B",
       "title": "Planning and Evaluating a Unit of Work — Part 2: The Role of Assessment and Evaluation",
       "live": "🎤 Live Session",
+      "topics": [
+        {
+          "id": "6B",
+          "title": "Planning and Evaluating a Unit of Work — Part 2: The Role of Assessment and Evaluation",
+          "announcementBody": {
+            "intro": "This week we turn to the assessment and evaluation dimension of unit planning — the professional skill of designing assessment tasks that give all students a genuine opportunity to demonstrate their learning, and that give you reliable evidence to improve your teaching.",
+            "focus": "Topic 6B examines assessment design, formative and summative assessment practice, and program evaluation. You will work through the principles of constructive alignment, the design of A–E marking rubrics using NESA Performance Band Descriptors, and the role of formative assessment in informing teaching decisions for a diverse cohort. A scaffolded critique activity this week gives you practice at identifying alignment gaps and rubric weaknesses before Assessment Task 2 requires you to design your own."
+          },
+          "orientationNote": "Topic 6B prepares you directly for Assessment Task 2 Part C, which requires you to design a summative assessment task with an A–E marking rubric aligned to your unit. The critique activity this week is the only scaffolded practice opportunity for this skill before it is assessed — take it seriously. Post to the forum before the live session so you can discuss your analysis with peers. Students who engage critically with the sample task this week consistently produce stronger rubrics in AT2 Part C. AT2 is due 6 September.",
+          "forumPrompts": [],
+          "live": "🎤 Live Session"
+        }
+      ],
       "announcementBody": {
         "intro": "This week we turn to the assessment and evaluation dimension of unit planning — the professional skill of designing assessment tasks that give all students a genuine opportunity to demonstrate their learning, and that give you reliable evidence to improve your teaching.",
         "focus": "Topic 6B examines assessment design, formative and summative assessment practice, and program evaluation. You will work through the principles of constructive alignment, the design of A–E marking rubrics using NESA Performance Band Descriptors, and the role of formative assessment in informing teaching decisions for a diverse cohort. A scaffolded critique activity this week gives you practice at identifying alignment gaps and rubric weaknesses before Assessment Task 2 requires you to design your own."
@@ -1018,7 +1087,20 @@
     "7": {
       "item": "Topic 7",
       "title": "Teaching and Learning Science Using Analogies",
-      "live": "🎤 Live Session: Topic 7 & 8",
+      "live": "🎤 Live Session",
+      "topics": [
+        {
+          "id": "7",
+          "title": "Teaching and Learning Science Using Analogies",
+          "announcementBody": {
+            "intro": "This week we examine one of the most powerful — and most frequently misused — pedagogical tools available to science teachers: the analogy. Used well, analogies make abstract science concepts concrete and accessible. Used poorly, they embed misconceptions that are hard to shift.",
+            "focus": "Topic 7 focuses on analogies as tools for conceptual change in science learning. You will examine the theory behind why analogies work, explore frameworks for selecting and presenting analogies effectively (including the Teaching-With-Analogies model), and critically evaluate common analogies used in Years 7–10 science for their accuracy, accessibility, and potential to mislead."
+          },
+          "orientationNote": "Topic 7 develops one of the most practically powerful pedagogical tools available to science teachers: the capacity to select, adapt, and critically evaluate analogies and models for specific science concepts. This connects directly to LO1 (Science Content and Laboratory Practice) and LO3 (Lesson Planning and Conceptual Development). A science teacher who understands where an analogy illuminates and where it breaks down is better equipped to address student misconceptions early and to make abstract concepts genuinely accessible for junior secondary learners. As you work through Topic 7, practise applying the Teaching-With-Analogies framework to concepts from your own teaching area — and notice where analogies you have encountered in textbooks or online resources may mislead students.",
+          "forumPrompts": [],
+          "live": "🎤 Live Session"
+        }
+      ],
       "announcementBody": {
         "intro": "This week we examine one of the most powerful — and most frequently misused — pedagogical tools available to science teachers: the analogy. Used well, analogies make abstract science concepts concrete and accessible. Used poorly, they embed misconceptions that are hard to shift.",
         "focus": "Topic 7 focuses on analogies as tools for conceptual change in science learning. You will examine the theory behind why analogies work, explore frameworks for selecting and presenting analogies effectively (including the Teaching-With-Analogies model), and critically evaluate common analogies used in Years 7–10 science for their accuracy, accessibility, and potential to mislead."
@@ -1047,9 +1129,22 @@
       ]
     },
     "8": {
-      "item": "Topic 8",
+      "item": "Topics 7 & 8",
       "title": "Developing Your Science Content Knowledge",
-      "live": "🎤 Live Session: Topic 7 & 8",
+      "live": "🎤 Live Session",
+      "topics": [
+        {
+          "id": "8",
+          "title": "Developing Your Science Content Knowledge",
+          "announcementBody": {
+            "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
+            "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your NSW Science Years 7–10 (2026) syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
+          },
+          "orientationNote": "Topic 8 closes the teaching program by turning attention to your own science content knowledge — a professional responsibility that continues throughout your career. This connects directly to LO6 and Assessment Task 2 Part D, due 6 September. AT2 Part D requires you to name a specific external professional or community source that could improve your content knowledge or teaching, and to explain how you would access that support. Students who have genuinely engaged with the professional associations, subject-matter resources, and peer networks Topic 8 points you toward are able to name those sources with specificity and conviction in their reflection — not generically. Use this week's audit activity seriously: the content gaps you identify now are the preparation time you have before AT2 requires you to demonstrate confidence and professional direction.",
+          "forumPrompts": [],
+          "live": "🎤 Live Session"
+        }
+      ],
       "announcementBody": {
         "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
         "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your NSW Science Years 7–10 (2026) syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."

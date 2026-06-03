@@ -61,7 +61,7 @@
       <select id="sel-unit">
         <option value="EDSE357">EDSE357 — Science Education 11–12: Curriculum and Pedagogy</option>
         <option value="EDSE358">EDSE358 — Science Education 11–12: Plan, Assess and Report</option>
-        <option value="EDSE362">EDSE362 — Science Education 11–12: Curriculum, Pedagogy and Inclusive Practice</option>
+        <option value="EDSE362">EDSE362 — Science Education 7–10: Developing Professional Skills and Understanding</option>
         <option value="EDIT426">EDIT426 — Digital Education (TBC)</option>
         <option value="EDIT521">EDIT521 — Digital Education (TBC)</option>
       </select>
@@ -751,6 +751,17 @@
         `Shells for <strong>${unit}</strong> — <strong>${tri} ${year}</strong> (start: <strong>${startDate}</strong>)` +
       `</div>` + cards;
     output.style.display = 'block';
+
+    // Informational note for multi-topic weeks (EDSE362 only)
+    const weekKey = document.getElementById('sel-week').value;
+    const topics = (unitCfg?.weeks?.[weekKey]?.topics ?? []);
+    if (unit === 'EDSE362' && topics.length > 1 && ['announcement', 'orientation-note', 'forum-prompts'].includes(pageType)) {
+      const noteText = pageType === 'announcement'
+        ? 'This week has multiple topics — the announcement block will render one section per topic.'
+        : 'This week has multiple topics — content is combined across topics.';
+      output.insertAdjacentHTML('beforeend', `<p style="color:#666;font-size:0.85em;margin:8px 0 0 0;">ℹ️ ${noteText}</p>`);
+    }
+
     bindCopyButtons();
 
     btn.disabled = false;
