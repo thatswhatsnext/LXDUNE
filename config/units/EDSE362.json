@@ -88,13 +88,19 @@
         "7.4.1"
       ],
       "rationale": "Secondary school science teachers need to recognise opportunities for practicals as often as possible. The syllabus mandates a minimum amount of practical work, which can always be exceeded. It is essential that teachers can provide instruction and practical opportunities such that students build their own understanding, working with what they already know and can do.",
-      "aim": "Design a coherent practical science learning sequence of at least 8–10 practicals for a chosen Stage 4 or Stage 5 NSW Science Years 7–10 (2026) Knowledge and Understanding strand, and justify your pedagogical, syllabus, safety, and cohort decisions. The given cohort is a class of 30 students including 2 EAL/D students, 2 advanced, 3 behind in science understanding, and 5 Aboriginal and Torres Strait Islander students with strong local community connections.",
+      "aim": "Design a coherent practical science learning sequence of at least 8–10 practicals for a chosen Stage 4 or Stage 5 NSW Science Years 7–10 (2023) Knowledge and Understanding strand, and justify your pedagogical, syllabus, safety, and cohort decisions. The given cohort is a class of 30 students including 2 EAL/D students, 2 advanced, 3 behind in science understanding, and 5 Aboriginal and Torres Strait Islander students with strong local community connections.",
       "links": {
-        "rubric": null,
-        "taskFiles": null,
-        "submit": null,
-        "forum": null,
-        "video": null
+        "rubric": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Rubric.pdf?forcedownload=1",
+        "taskFiles": "https://mylearn.une.edu.au/mod/folder/view.php?id=3458758",
+        "template": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Template.docx?forcedownload=1",
+        "submit": "https://mylearn.une.edu.au/mod/assign/view.php?id=3458759",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458760",
+        "video": "https://mylearn.une.edu.au/mod/page/view.php?id=3458757"
+      },
+      "assessmentFiles": {
+        "rubricUrl": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Rubric.pdf?forcedownload=1",
+        "taskUrl": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Task.pdf?forcedownload=1",
+        "templateUrl": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Template.docx?forcedownload=1"
       },
       "parts": [
         {
@@ -104,7 +110,7 @@
           "wordCount": "~1,100 word-equivalent",
           "description": "Construct a table of at least 8–10 practicals arranged in a logical learning progression for a chosen Stage 4 or Stage 5 Knowledge and Understanding strand.",
           "requirements": [
-            "Choose either Stage 4 (Year 7 & 8) or Stage 5 (Year 9 & 10) and any one Knowledge and Understanding strand from the NSW Science Years 7–10 syllabus (2026).",
+            "Choose either Stage 4 (Year 7 & 8) or Stage 5 (Year 9 & 10) and any one Knowledge and Understanding strand from the NSW Science Years 7–10 syllabus (2023).",
             "For each practical, include: chronological number; title; description (20 words maximum); NSW syllabus outcomes with specific outcome codes and content statements; prior knowledge and skills required; safety considerations for this practical and the given cohort; adjustments for the diverse learners in the class.",
             "The sequence must show a logical learning progression from foundational to more complex practicals."
           ],
@@ -157,101 +163,84 @@
       "rubric": [
         {
           "part": "A",
-          "criterion": "Holistic assessment of the practical learning sequence — syllabus accuracy and depth, logical progression, constructivist pedagogy and prior knowledge, safety and inclusion for the given cohort",
-          "marks": 26,
-          "loLinks": [
-            "LO1",
-            "LO2",
-            "LO3",
-            "LO5"
-          ],
+          "criterion": "Syllabus outcomes, content, and skills — correct NSW Science outcome codes matched to what each practical actually involves; Working Scientifically outcomes, General Capabilities, and Cross Curriculum Priorities included where genuinely relevant",
+          "marks": 5,
+          "loLinks": ["LO1"],
           "bands": {
-            "HD": {
-              "range": "26–23",
-              "descriptor": "Syllabus: Comprehensive, nuanced, accurate. Sequence: Expertly progressive; builds understanding from foundational to complex. Pedagogy: Constructivism deeply evident; prior knowledge insightfully identified; goals precise. Safety/inclusion: Proactive professional judgement; nuanced, specific adjustments for all cohort groups."
-            },
-            "D": {
-              "range": "22–19",
-              "descriptor": "Syllabus: Thorough and accurate. Sequence: Logical; builds understanding well. Pedagogy: Constructivism clearly evident; prior knowledge accurately identified; goals clear. Safety/inclusion: Consistently applied; accurate adjustments for the given cohort."
-            },
-            "C": {
-              "range": "18–16",
-              "descriptor": "Syllabus: Sound accuracy; minor gaps. Sequence: Mostly logical; some gaps. Pedagogy: Constructivism evident; prior knowledge noted; goals present. Safety/inclusion: Correctly applied; adjustments address most cohort needs."
-            },
-            "P": {
-              "range": "15–13",
-              "descriptor": "Syllabus: Adequate; some inaccuracies. Sequence: Adequate order; limited progression. Pedagogy: Limited evidence; prior knowledge partially identified. Safety/inclusion: Inconsistently applied; adjustments partial."
-            },
-            "N": {
-              "range": "12–0",
-              "descriptor": "Syllabus: Inaccurate or missing. Sequence: Illogical or absent. Pedagogy: Not evident; prior knowledge absent. Safety/inclusion: Inadequate or absent."
-            }
+            "HD": { "range": "5", "descriptor": "Outcome codes are correct throughout. Every practical is matched to specific content statements. Working Scientifically outcomes, General Capabilities, and Cross Curriculum Priorities appear where they are genuinely relevant — not added to every row by default." },
+            "D":  { "range": "4", "descriptor": "Outcome codes are correct. Each practical is matched to relevant content statements. Working Scientifically outcomes are included for most practicals." },
+            "C":  { "range": "3", "descriptor": "Outcome codes are mostly correct with minor errors. Practicals are matched to content statements, though some matches are imprecise. Working Scientifically outcomes appear for some practicals." },
+            "P":  { "range": "2.5", "descriptor": "Some outcome codes are present but may be incorrect or not clearly matched to what the practical involves. Working Scientifically outcomes are absent or largely missing." },
+            "N":  { "range": "< 2.5", "descriptor": "Outcome codes are missing, incorrect, or do not relate to the practicals listed." }
+          }
+        },
+        {
+          "part": "A",
+          "criterion": "Sequence — the order of practicals; earlier practicals introduce the concepts or skills that later ones require; progression is defensible and evident from the design itself",
+          "marks": 7,
+          "loLinks": ["LO2"],
+          "bands": {
+            "HD": { "range": "7", "descriptor": "Your sequence shows a clear, expert progression — earlier practicals introduce foundations that later ones build on. The rationale for the order is evident from the design itself." },
+            "D":  { "range": "6", "descriptor": "Your sequence is logical and progressive. A student could work through it without encountering content they are not yet prepared for." },
+            "C":  { "range": "5", "descriptor": "Your practicals are in a generally sensible order. A small number could be reordered without significant loss, but the overall direction is correct." },
+            "P":  { "range": "4", "descriptor": "Your practicals are listed but the order does not consistently reflect how student understanding builds. A student could encounter a practical before they have the prior knowledge it requires." },
+            "N":  { "range": "3", "descriptor": "Your practicals appear in an arbitrary or unclear order with no evidence that the sequence reflects how students learn." }
+          }
+        },
+        {
+          "part": "A",
+          "criterion": "Pedagogical approach and prior knowledge — a named constructivist model recognisable in how the practicals are sequenced; prior knowledge specific and accurate for each practical",
+          "marks": 6,
+          "loLinks": ["LO3"],
+          "bands": {
+            "HD": { "range": "6", "descriptor": "A named constructivist approach is clearly identifiable in the overall sequence design. Prior knowledge is specific and accurate for every practical, calibrated to the year group and NSW syllabus." },
+            "D":  { "range": "5", "descriptor": "A constructivist approach is recognisable in the sequence. Prior knowledge is identified for most practicals and is appropriate to the year group." },
+            "C":  { "range": "4", "descriptor": "Some evidence of constructivist thinking in the sequencing. Prior knowledge is identified for some practicals, though entries may be general rather than specific to each practical's content." },
+            "P":  { "range": "3", "descriptor": "Little evidence of a constructivist approach in the design. Prior knowledge entries are listed for few practicals or are too vague to be useful." },
+            "N":  { "range": "< 3", "descriptor": "No recognisable constructivist approach. Prior knowledge is absent or irrelevant to the practicals listed." }
+          }
+        },
+        {
+          "part": "A",
+          "criterion": "Safety and inclusion for the given cohort — safety requirements specific to each practical; practical, classroom-ready adjustments for all four cohort groups: EAL/D, advanced, behind in science understanding, Aboriginal and Torres Strait Islander students",
+          "marks": 8,
+          "loLinks": ["LO5"],
+          "bands": {
+            "HD": { "range": "8", "descriptor": "Safety information is accurate and specific to each practical. Adjustments are proposed for all four cohort groups and are practical, context-specific, and differentiated from each other — not generic strategies applied uniformly." },
+            "D":  { "range": "7", "descriptor": "Safety information is accurate across all practicals. Adjustments are proposed for the main cohort groups and are appropriate to the context." },
+            "C":  { "range": "6", "descriptor": "Safety information is present and mostly accurate. Adjustments address at least two of the four named cohort groups, though they may be generic rather than practical-specific." },
+            "P":  { "range": "4", "descriptor": "Safety information is present but incomplete or not specific to the practicals chosen. Adjustments attempt to address one cohort group, or are too general to be usable in a real classroom." },
+            "N":  { "range": "< 4", "descriptor": "Safety information is absent, incorrect, or references prohibited materials. No meaningful adjustments for the given cohort." }
           }
         },
         {
           "part": "B",
-          "criterion": "Cited justification — scholarly and syllabus sources accurately cited; argument justifies pedagogical decisions, syllabus choices, prior knowledge, safety decisions, and adjustments for the given cohort",
+          "criterion": "Cited justification — scholarly and/or syllabus sources cited for every claim; justification addresses all five required elements: pedagogical approach, cohort support, syllabus elements (Working Scientifically/GCs/CCPs), prior knowledge decisions, safety decisions",
           "marks": 10,
-          "loLinks": [
-            "LO1",
-            "LO3",
-            "LO5"
-          ],
+          "loLinks": ["LO1", "LO3", "LO5"],
           "bands": {
-            "HD": {
-              "range": "10–9",
-              "descriptor": "Evidence comprehensive and precisely cited. Justification demonstrates deep, integrated reasoning across all required elements: pedagogy, syllabus, safety, and cohort."
-            },
-            "D": {
-              "range": "8–7",
-              "descriptor": "Evidence thorough and well cited. Justification demonstrates strong reasoning across pedagogy, syllabus, safety, and cohort needs."
-            },
-            "C": {
-              "range": "7–6",
-              "descriptor": "Evidence sound and mostly cited. Justification addresses all required elements with sound reasoning."
-            },
-            "P": {
-              "range": "5",
-              "descriptor": "Evidence present but limited. Justification addresses some elements adequately."
-            },
-            "N": {
-              "range": "4–0",
-              "descriptor": "Evidence inadequate or absent. Justification does not address required elements."
-            }
+            "HD": { "range": "10", "descriptor": "Every claim is supported by a precisely cited source. All five elements are addressed with clear reasoning. You explain why each decision serves the given cohort specifically — not just what you decided." },
+            "D":  { "range": "8", "descriptor": "Most claims are cited. Four of the five elements are addressed with clear reasoning. The connection between your decisions and the given cohort is evident." },
+            "C":  { "range": "6", "descriptor": "Key claims are cited; some are not. At least three elements are addressed. Your reasoning describes what you did, though not always why it serves the cohort." },
+            "P":  { "range": "5", "descriptor": "Some citations are present but may be inaccurate or insufficient. Fewer than three elements are addressed, or coverage is too brief to constitute a real justification." },
+            "N":  { "range": "< 5", "descriptor": "Sources are absent or unrelated to what you are claiming. The justification does not address the required elements, or is description without reasoning." }
           }
         },
         {
           "part": "C",
-          "criterion": "Professional reflection and learning — reflects on new and prior knowledge from this task; names and justifies a specific professional learning source relevant to their teaching context and chosen strand",
+          "criterion": "Professional reflection and learning — genuine reflection on new versus prior knowledge; a named, specific professional learning source justified in relation to strand and teaching context",
           "marks": 4,
-          "loLinks": [
-            "LO6"
-          ],
+          "loLinks": ["LO6"],
           "bands": {
-            "HD": {
-              "range": "4",
-              "descriptor": "All prompt elements addressed with specificity and genuine professional reasoning. Professional learning source well-chosen and convincingly justified in relation to teaching context."
-            },
-            "D": {
-              "range": "3",
-              "descriptor": "All prompt elements addressed clearly. Source named and justified; connection to teaching context evident if not fully developed."
-            },
-            "C": {
-              "range": "3–2",
-              "descriptor": "Most prompt elements addressed. Source identified; justification limited or generic."
-            },
-            "P": {
-              "range": "2",
-              "descriptor": "Prompt elements addressed superficially. Source absent, unnamed, or unjustified."
-            },
-            "N": {
-              "range": "1–0",
-              "descriptor": "Not completed to an adequate standard or too generic to assess."
-            }
+            "HD": { "range": "4", "descriptor": "You identify what was genuinely new and what was already familiar. You name a specific professional learning source and explain exactly why it is relevant to your strand and your teaching context — not why professional learning in general is valuable." },
+            "D":  { "range": "3.5", "descriptor": "You name a specific professional learning source and connect it to your strand or teaching context, though the connection may be general. You note both new and prior knowledge." },
+            "C":  { "range": "3", "descriptor": "You identify a professional learning source, though it may be vague (e.g. 'NESA resources' without naming which). Some reflection on new and prior knowledge is present." },
+            "P":  { "range": "2", "descriptor": "Your reflection addresses the prompt superficially. A professional learning source is absent or too vague to be meaningful (e.g. 'research more' or 'ask a colleague')." },
+            "N":  { "range": "< 2", "descriptor": "Not submitted, too brief to assess, or does not address the prompt." }
           }
         }
       ],
-      "hdCallout": "HD work demonstrates comprehensive, nuanced syllabus accuracy across all practicals, expertly progressive sequencing, deeply evident constructivism with insightful prior knowledge identification, and proactive professional safety and inclusion judgement with specific adjustments for all cohort groups. Justification is precisely cited and integrates reasoning across all required elements. Reflection names a specific, well-chosen professional learning source convincingly justified in relation to teaching context.",
+      "hdCallout": "HD work demonstrates correct, nuanced syllabus outcome codes matched precisely to each practical's content, an expertly progressive sequence where earlier practicals build the foundations later ones require, a clearly identifiable constructivist approach with specific prior knowledge for every practical, and safety information and cohort adjustments that are practical, specific, and differentiated across all four groups. Justification cites every claim precisely and explains why each decision serves the given cohort. Reflection names a specific professional learning source and explains exactly why it is relevant to the strand and teaching context.",
       "checklist": [
         "Stage (4 or 5) and Knowledge and Understanding strand clearly named",
         "At least 8–10 practicals in the table",
@@ -282,7 +271,7 @@
     },
     {
       "id": "AT2",
-      "title": "Unit Program — Constructivist Science Teaching",
+      "title": "Unit Program",
       "weighting": 60,
       "length": "2,500 words (equivalent) ±10%",
       "learningOutcomes": [
@@ -310,14 +299,20 @@
         "6.4.1",
         "7.4.1"
       ],
-      "rationale": "Unit programming is a core professional responsibility of secondary science teachers. Effective programs make a constructivist pedagogical approach visible across five weeks, integrate practical work, embed literacy, numeracy, and Aboriginal and Torres Strait Islander perspectives authentically, and include formative and summative assessment that gives all learners equitable access to demonstrate achievement.",
-      "aim": "Develop a five-week unit program for a chosen Knowledge and Understanding strand using a named constructivist pedagogical approach, for the given cohort. Design a summative assessment task with an A–E marking rubric aligned to unit outcomes, and reflect on your learning and professional development needs. The given cohort is a class of 30 students including 2 EAL/D students, 2 advanced, 3 behind in science understanding, and 5 Aboriginal and Torres Strait Islander students with strong local community connections.",
+      "rationale": "Secondary school science teachers need skills to program a unit of work that can meet the learning needs of a diverse range of students and address syllabus outcomes, skills and content. Pedagogical decisions will be made on a daily basis, and these will be guided by your learning and teaching program.",
+      "aim": "The aims of this assessment task are for you to demonstrate your understanding of a constructivist pedagogical approach and your ability to interpret syllabus documents to write a unit program for Years 7–10 Science. You will also demonstrate your understanding and application of a range of embedded features including literacy, numeracy, Aboriginal and Torres Strait Islander histories, perspectives and cultures, formative and summative assessment, community engagement and practical lessons.",
       "links": {
-        "rubric": null,
-        "taskFiles": null,
-        "submit": null,
-        "forum": null,
-        "video": null
+        "rubric": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_AT2_RUBRIC.pdf?forcedownload=1",
+        "taskFiles": "https://mylearn.une.edu.au/mod/folder/view.php?id=3458764",
+        "template": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_A2_template.docx?forcedownload=1",
+        "submit": "https://mylearn.une.edu.au/mod/assign/view.php?id=3458765",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458766",
+        "video": "https://mylearn.une.edu.au/mod/page/view.php?id=3458763"
+      },
+      "assessmentFiles": {
+        "rubricUrl": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_AT2_RUBRIC.pdf?forcedownload=1",
+        "taskUrl": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_AT2_TASK.pdf?forcedownload=1",
+        "templateUrl": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_A2_template.docx?forcedownload=1"
       },
       "parts": [
         {
@@ -1018,7 +1013,7 @@
       },
       "liveSessionFocus": "Session 5 focuses on Part 1 of unit planning — the planning process. We work through the decisions that shape a coherent, outcomes-aligned unit program: establishing outcomes, sequencing content, selecting resources, and embedding formative assessment.",
       "liveSessionTasks": [
-        "Select a Knowledge and Understanding strand from the NSW Science Years 7–10 (2026) syllabus and sketch a rough five-week unit outline — identify the key outcomes, main content sequence, and at least two formative assessment opportunities.",
+        "Select a Knowledge and Understanding strand from the NSW Science Years 7–10 (2023) syllabus and sketch a rough five-week unit outline — identify the key outcomes, main content sequence, and at least two formative assessment opportunities.",
         "Evaluate your outline against the unit planning principles in the topic materials: Is the constructivist approach visible? Is the sequence outcomes-focused? Does it build in opportunities for feedback?",
         "Come prepared to share your outline and receive peer feedback in the session — bring a willingness to revise."
       ],
@@ -1138,7 +1133,7 @@
           "title": "Developing Your Science Content Knowledge",
           "announcementBody": {
             "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
-            "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your NSW Science Years 7–10 (2026) syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
+            "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your NSW Science Years 7–10 (2023) syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
           },
           "orientationNote": "Topic 8 closes the teaching program by turning attention to your own science content knowledge — a professional responsibility that continues throughout your career. This connects directly to LO6 and Assessment Task 2 Part D, due 6 September. AT2 Part D requires you to name a specific external professional or community source that could improve your content knowledge or teaching, and to explain how you would access that support. Students who have genuinely engaged with the professional associations, subject-matter resources, and peer networks Topic 8 points you toward are able to name those sources with specificity and conviction in their reflection — not generically. Use this week's audit activity seriously: the content gaps you identify now are the preparation time you have before AT2 requires you to demonstrate confidence and professional direction.",
           "forumPrompts": [],
@@ -1147,7 +1142,7 @@
       ],
       "announcementBody": {
         "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
-        "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your NSW Science Years 7–10 (2026) syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
+        "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your NSW Science Years 7–10 (2023) syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
       },
       "liveSessionFocus": "Session 8 covers Topics 7 and 8 together. We examine analogies and content knowledge development as complementary professional skills, and conclude the teaching program by looking ahead to the professional learning habits that will sustain your practice in Years 7–10 science.",
       "liveSessionTasks": [

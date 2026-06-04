@@ -9,8 +9,8 @@ node_modules/
 .DS_Store
 **/.DS_Store
 
-# Config backup files from gap scanner
-config/units/*.bak
+# Backup files
+*.bak
 
 # Local generated docs
 docs/LXDUNE-presubmission-checklists.html
