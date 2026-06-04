@@ -3,9 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>EDSE362 T2 2026 — Go-live Checklist</title>
+  <title>LXDUNE — Go-live Checklist</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --theme-primary: #2E7D52;
+      --theme-accent:  #E3B089;
+      --theme-pill:    #E8F5EE;
+    }
 
     body {
       font-family: system-ui, -apple-system, sans-serif;
@@ -13,11 +19,11 @@
       background: #f5f5f5;
     }
 
-    /* ── Header ─────────────────────────────────────────────── */
+    /* ── Header ───────────────────────────────────────────────── */
     #page-header {
-      background: #2E7D52;
+      background: var(--theme-primary);
       color: white;
-      padding: 16px 20px;
+      padding: 16px 20px 0;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -29,46 +35,41 @@
       justify-content: space-between;
     }
 
-    .header-title {
-      font-size: 1.05em;
-      font-weight: 600;
+    .header-title { font-size: 1.05em; font-weight: 600; }
+    .header-sub   { font-size: 0.82em; opacity: 0.85; margin-top: 4px; }
+
+    .header-progress { margin: 8px 0 0; }
+
+    .progress-bar-track { background: rgba(255,255,255,0.25); height: 6px; border-radius: 3px; }
+    .progress-bar-fill  { background: var(--theme-accent); height: 6px; border-radius: 3px; width: 0%; transition: width 300ms ease; }
+    .progress-text      { color: white; font-size: 0.85em; margin-top: 4px; }
+
+    /* ── Unit tab strip ───────────────────────────────────────── */
+    #unit-tabs {
+      display: flex;
+      gap: 4px;
+      padding: 8px 0 0;
     }
 
-    .header-sub {
+    .unit-tab {
+      padding: 5px 14px;
+      border: none;
+      border-radius: 6px 6px 0 0;
       font-size: 0.82em;
-      opacity: 0.85;
-      margin-top: 4px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      background: rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.8);
+      transition: background 150ms;
     }
+    .unit-tab:hover    { background: rgba(255,255,255,0.28); color: #fff; }
+    .unit-tab.active   { background: #f5f5f5; color: var(--theme-primary); }
 
-    .header-progress {
-      margin-top: 8px;
-    }
-
-    .progress-bar-track {
-      background: rgba(255,255,255,0.25);
-      height: 6px;
-      border-radius: 3px;
-    }
-
-    .progress-bar-fill {
-      background: #E3B089;
-      height: 6px;
-      border-radius: 3px;
-      width: 0%;
-      transition: width 300ms ease;
-    }
-
-    .progress-text {
-      color: white;
-      font-size: 0.85em;
-      margin-top: 4px;
-    }
-
-    /* ── Toast ───────────────────────────────────────────────── */
+    /* ── Toast ────────────────────────────────────────────────── */
     #toast {
       position: fixed;
-      top: 16px;
-      right: 16px;
+      top: 16px; right: 16px;
       z-index: 9999;
       padding: 8px 14px;
       border-radius: 6px;
@@ -78,9 +79,9 @@
       pointer-events: none;
     }
 
-    /* ── Completion banner ───────────────────────────────────── */
+    /* ── Completion banner ────────────────────────────────────── */
     #completion-banner {
-      background: #E3B089;
+      background: var(--theme-accent);
       color: #5a3a00;
       border-radius: 6px;
       padding: 12px 16px;
@@ -89,25 +90,16 @@
       align-items: center;
       justify-content: space-between;
     }
-
     #completion-banner button {
-      background: none;
-      border: none;
-      font-size: 1.1em;
-      cursor: pointer;
-      color: #5a3a00;
-      line-height: 1;
-      padding: 0 4px;
+      background: none; border: none;
+      font-size: 1.1em; cursor: pointer;
+      color: #5a3a00; line-height: 1; padding: 0 4px;
     }
 
-    /* ── Main container ──────────────────────────────────────── */
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+    /* ── Main container ───────────────────────────────────────── */
+    main { max-width: 900px; margin: 0 auto; padding: 20px; }
 
-    /* ── Section card ────────────────────────────────────────── */
+    /* ── Section card ─────────────────────────────────────────── */
     .section-card {
       background: white;
       border-radius: 10px;
@@ -116,9 +108,9 @@
       overflow: hidden;
     }
 
-    /* ── Section header ──────────────────────────────────────── */
+    /* ── Section header ───────────────────────────────────────── */
     .section-header {
-      background: #E8F5EE;
+      background: var(--theme-pill);
       padding: 12px 16px;
       border-radius: 8px;
       cursor: pointer;
@@ -128,261 +120,258 @@
       user-select: none;
       transition: background 300ms, color 300ms;
     }
+    .section-header.complete { background: var(--theme-primary); color: white; }
 
-    .section-header.complete {
-      background: #2E7D52;
-      color: white;
-    }
+    .section-header-left { display: flex; align-items: center; gap: 8px; }
 
-    .section-header-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .chevron { display: inline-block; transition: transform 200ms ease; font-size: 0.75em; }
+    .chevron.expanded { transform: rotate(90deg); }
 
-    .chevron {
-      display: inline-block;
-      transition: transform 200ms ease;
-      font-size: 0.75em;
-    }
+    .section-title { font-weight: 600; font-size: 0.95em; }
 
-    .chevron.expanded {
-      transform: rotate(90deg);
-    }
-
-    .section-title {
-      font-weight: 600;
-      font-size: 0.95em;
-    }
-
-    .section-header-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .section-header-right { display: flex; align-items: center; gap: 10px; }
 
     .mini-progress-track {
-      width: 80px;
-      height: 4px;
+      width: 80px; height: 4px;
       background: rgba(0,0,0,0.1);
       border-radius: 2px;
     }
-
-    .section-header.complete .mini-progress-track {
-      background: rgba(255,255,255,0.3);
-    }
+    .section-header.complete .mini-progress-track { background: rgba(255,255,255,0.3); }
 
     .mini-progress-fill {
-      height: 4px;
-      background: #2E7D52;
-      border-radius: 2px;
-      transition: width 300ms ease;
-      width: 0%;
+      height: 4px; background: var(--theme-primary);
+      border-radius: 2px; transition: width 300ms ease; width: 0%;
     }
+    .section-header.complete .mini-progress-fill { background: var(--theme-accent); }
 
-    .section-header.complete .mini-progress-fill {
-      background: #E3B089;
-    }
+    .section-count { font-size: 0.8em; color: #555; white-space: nowrap; }
+    .section-header.complete .section-count { color: rgba(255,255,255,0.9); }
 
-    .section-count {
-      font-size: 0.8em;
-      color: #555;
-      white-space: nowrap;
-    }
+    /* ── Section body ─────────────────────────────────────────── */
+    .section-body { padding: 0 12px; max-height: 2000px; overflow: hidden; transition: max-height 300ms ease; }
+    .section-body.collapsed { max-height: 0; }
 
-    .section-header.complete .section-count {
-      color: rgba(255,255,255,0.9);
-    }
+    /* ── Item rows ────────────────────────────────────────────── */
+    .item-row { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 4px; }
+    .item-row:hover { background: #fafafa; }
+    .item-row.checked { background: #f9f9f9; }
 
-    /* ── Section body ────────────────────────────────────────── */
-    .section-body {
-      padding: 0 12px;
-      max-height: 2000px;
-      overflow: hidden;
-      transition: max-height 300ms ease;
-    }
+    .item-cb { accent-color: var(--theme-primary); flex-shrink: 0; width: 15px; height: 15px; cursor: pointer; }
 
-    .section-body.collapsed {
-      max-height: 0;
-    }
+    .tag { font-family: monospace; font-size: 0.75em; padding: 1px 5px; border-radius: 3px; white-space: nowrap; flex-shrink: 0; }
+    .tag.lxdune { background: var(--theme-pill); color: var(--theme-primary); border: 1px solid rgba(0,0,0,0.1); }
+    .tag.moodle { background: #E8F8FA; color: #4FA9B5; border: 1px solid #b8e8ee; }
 
-    /* ── Item rows ───────────────────────────────────────────── */
-    .item-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 4px;
-    }
+    .item-label { flex: 1; font-size: 0.92em; cursor: pointer; }
+    .item-label.checked { text-decoration: line-through; color: #999; }
 
-    .item-row:hover {
-      background: #fafafa;
-    }
+    .chip { font-family: monospace; font-size: 0.72em; background: #f0f0f0; padding: 2px 6px; border-radius: 3px; color: #666; white-space: nowrap; flex-shrink: 0; }
 
-    .item-row.checked {
-      background: #f9f9f9;
-    }
+    .note-btn { background: none; border: none; color: #aaa; cursor: pointer; font-size: 1em; padding: 0 4px; flex-shrink: 0; line-height: 1; }
+    .note-btn.has-note { color: var(--theme-accent); }
 
-    .item-cb {
-      accent-color: #2E7D52;
-      flex-shrink: 0;
-      width: 15px;
-      height: 15px;
-      cursor: pointer;
-    }
-
-    .tag {
-      font-family: monospace;
-      font-size: 0.75em;
-      padding: 1px 5px;
-      border-radius: 3px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .tag.lxdune {
-      background: #E8F5EE;
-      color: #2E7D52;
-      border: 1px solid #b8dcc8;
-    }
-
-    .tag.moodle {
-      background: #E8F8FA;
-      color: #4FA9B5;
-      border: 1px solid #b8e8ee;
-    }
-
-    .item-label {
-      flex: 1;
-      font-size: 0.92em;
-      cursor: pointer;
-    }
-
-    .item-label.checked {
-      text-decoration: line-through;
-      color: #999;
-    }
-
-    .chip {
-      font-family: monospace;
-      font-size: 0.72em;
-      background: #f0f0f0;
-      padding: 2px 6px;
-      border-radius: 3px;
-      color: #666;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .note-btn {
-      background: none;
-      border: none;
-      color: #aaa;
-      cursor: pointer;
-      font-size: 1em;
-      padding: 0 4px;
-      flex-shrink: 0;
-      line-height: 1;
-    }
-
-    .note-btn.has-note {
-      color: #E3B089;
-    }
-
-    .note-row {
-      padding: 0 12px;
-    }
-
+    .note-row { padding: 0 12px; }
     .note-input {
-      width: calc(100% - 32px);
-      margin: 2px 0 6px 32px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 4px 8px;
-      font-size: 0.85em;
-      font-family: inherit;
+      width: calc(100% - 32px); margin: 2px 0 6px 32px;
+      border: 1px solid #ddd; border-radius: 4px;
+      padding: 4px 8px; font-size: 0.85em; font-family: inherit;
     }
-
-    .note-input:focus {
-      outline: none;
-      border-color: #4FA9B5;
-    }
+    .note-input:focus { outline: none; border-color: var(--theme-primary); }
   </style>
 </head>
 <body>
   <header id="page-header"></header>
   <div id="completion-banner" style="display:none">
-    🎉&nbsp; EDSE362 T2 2026 — all checks done. Good luck with the trimester.
+    <span id="completion-text">🎉 All checks done.</span>
     <button onclick="this.parentElement.style.display='none'">×</button>
   </div>
   <main id="app"></main>
-
   <span id="toast"></span>
 
   <script>
-    const SECTIONS = [
-      {
-        id: 'A',
-        title: 'Section A — LXDUNE config',
-        items: [
-          { id: '1',  tag: 'LXDUNE', label: 'Set up T2 2026 Zoom meeting — add meetingId, password, url to config/units/EDSE362.json → trimesterConfig.T2-2026', chip: 'trimesterConfig.T2-2026.zoom' },
-          { id: '2',  tag: 'LXDUNE', label: 'Populate keyLinks URLs — Unit Outline, Learning Materials, Assessment Portal in EDSE362.json', chip: 'keyLinks[0/1/2].url' },
-          { id: '3',  tag: 'LXDUNE', label: 'Add lecturer name/email to contacts.lecturer once confirmed', chip: 'contacts.lecturer' },
-          { id: '4',  tag: 'LXDUNE', label: 'Record week 1–8 lecture videos — add YouTube IDs to config/units/EDSE362.json', chip: 'weeks[1-8].video' },
-          { id: '5',  tag: 'LXDUNE', label: 'Populate all week links as content is created — lecture, slides, recording, forum, materials, liveHub', chip: 'weeks[1-8].links.*' },
-          { id: '6',  tag: 'LXDUNE', label: 'Write AT1 full content — title, rationale, aim, parts, criteria, rubric descriptors', chip: 'assessmentTasks[AT1]' },
-          { id: '7',  tag: 'LXDUNE', label: 'Write AT2 full content — title, rationale, aim, parts, criteria, rubric descriptors', chip: 'assessmentTasks[AT2]' },
-          { id: '8',  tag: 'LXDUNE', label: 'Add assessment file links once tasks are uploaded to Moodle — discipline task and marking URLs', chip: 'trimesterConfig.T2-2026.assessmentFiles' },
-          { id: '9',  tag: 'LXDUNE', label: 'Confirm T2 2026 due dates — populate trimesterDates.T2-2026.due for AT1 and AT2', chip: 'trimesterDates.T2-2026.due' },
-          { id: '10', tag: 'LXDUNE', label: 'Apply alignment fields to weeks 1–8 — orientationNote, forumPrompts, workedExample, synthesisTemplate, guidanceNotes', chip: 'weeks[1-8].orientationNote etc' },
-          { id: '11', tag: 'LXDUNE', label: 'Generate T2 2026 Moodle shells from generate/index.html — forTri: T2, forYear: 2026', chip: 'generate/index.html' },
-          { id: '12', tag: 'LXDUNE', label: 'Verify all blocks render correctly in test harness before go-live', chip: 'test/index.html' },
-          { id: '13', tag: 'LXDUNE', label: 'Paste all generated shells into live EDSE362 Moodle course', chip: 'mylearn.une.edu.au' }
-        ]
-      },
-      {
-        id: 'B',
-        title: 'Section B — Moodle site: Learning Design team actions',
-        items: [
-          { id: '14', tag: 'MOODLE', label: 'Check Assessment tile — confirm all activities are in the right location, delete any no longer relevant' },
-          { id: '15', tag: 'MOODLE', label: 'Fill in Permitted Resources template for each Assurance Task' },
-          { id: '16', tag: 'MOODLE', label: 'Confirm assessment activity names match Handbook titles' },
-          { id: '17', tag: 'MOODLE', label: 'Check information callout inside each assessment activity — weighting, notes, learning outcomes' },
-          { id: '18', tag: 'MOODLE', label: 'If Maximum grade changes, update Grade to Pass to match correct proportion' }
-        ]
-      },
-      {
-        id: 'C',
-        title: 'Section C — Moodle site: myLearn setup checklist',
-        items: [
-          { id: '19', tag: 'MOODLE', label: 'Welcome video — record new or confirm existing video is current for T2 2026' },
-          { id: '20', tag: 'MOODLE', label: 'Contact preferences — confirm Unit Coordinator details in Unit Information and Resources tile' },
-          { id: '21', tag: 'MOODLE', label: 'Study schedule — update with T2 2026 dates and assessment due dates' },
-          { id: '22', tag: 'MOODLE', label: 'EchoVideo — confirm T2 2026 profile exists; roll over or record new lecture recordings' },
-          { id: '23', tag: 'MOODLE', label: 'Reading List — create or roll over and publish before 15 June 2026' },
-          { id: '24', tag: 'MOODLE', label: 'Zoom meetings — create new Zoom meeting as a Moodle activity in the course' },
-          { id: '25', tag: 'MOODLE', label: 'Assessment due dates — update all assignment and quiz due dates in Moodle' },
-          { id: '26', tag: 'MOODLE', label: 'Extension tool dates — update Group Override due dates for 3-day/7-day/Flexible Portal tools' },
-          { id: '27', tag: 'MOODLE', label: 'Assessment settings — check each task for correct details, format, instructions, word length' },
-          { id: '28', tag: 'MOODLE', label: 'Rubrics and marking criteria — update early; changes are visible to students immediately' },
-          { id: '29', tag: 'MOODLE', label: 'Enrol additional teaching staff — tutors, markers, admin support' }
-        ]
-      }
-    ];
+    // ── Unit data ──────────────────────────────────────────────────────────────
+    const UNIT_THEMES = {
+      EDSE362: { primary: '#2E7D52', accent: '#E3B089', pill: '#E8F5EE', label: 'EDSE362 T2 2026', openDate: '15 June 2026' },
+      EDSE357: { primary: '#1f6fb2', accent: '#25797F', pill: '#DAF0F7', label: 'EDSE357 T2 Prep', openDate: 'T2 2026 go-live' },
+      EDSE358: { primary: '#7C5DB6', accent: '#4FA9B5', pill: '#EDE8FB', label: 'EDSE358 T2 Prep', openDate: 'T2 2026 go-live' },
+    };
 
-    const TOTAL = 29;
+    const ALL_SECTIONS = {
+      EDSE362: [
+        {
+          id: 'A',
+          title: 'Section A — LXDUNE config',
+          items: [
+            { id: '1',  tag: 'LXDUNE', label: 'Set up T2 2026 Zoom meeting — add meetingId, password, url to config/units/EDSE362.json → trimesterConfig.T2-2026', chip: 'trimesterConfig.T2-2026.zoom' },
+            { id: '2',  tag: 'LXDUNE', label: 'Populate keyLinks URLs — Unit Outline, Learning Materials, Assessment Portal in EDSE362.json', chip: 'keyLinks[0/1/2].url' },
+            { id: '3',  tag: 'LXDUNE', label: 'Add lecturer name/email to contacts.lecturer once confirmed', chip: 'contacts.lecturer' },
+            { id: '4',  tag: 'LXDUNE', label: 'Record week 1–8 lecture videos — add YouTube IDs to config/units/EDSE362.json', chip: 'weeks[1-8].video' },
+            { id: '5',  tag: 'LXDUNE', label: 'Populate all week links as content is created — lecture, slides, recording, forum, materials, liveHub', chip: 'weeks[1-8].links.*' },
+            { id: '6',  tag: 'LXDUNE', label: 'Write AT1 full content — title, rationale, aim, parts, criteria, rubric descriptors', chip: 'assessmentTasks[AT1]' },
+            { id: '7',  tag: 'LXDUNE', label: 'Write AT2 full content — title, rationale, aim, parts, criteria, rubric descriptors', chip: 'assessmentTasks[AT2]' },
+            { id: '8',  tag: 'LXDUNE', label: 'Add assessment file links once tasks are uploaded to Moodle — discipline task and marking URLs', chip: 'trimesterConfig.T2-2026.assessmentFiles' },
+            { id: '9',  tag: 'LXDUNE', label: 'Confirm T2 2026 due dates — populate trimesterDates.T2-2026.due for AT1 and AT2', chip: 'trimesterDates.T2-2026.due' },
+            { id: '10', tag: 'LXDUNE', label: 'Apply alignment fields to weeks 1–8 — orientationNote, forumPrompts, workedExample, synthesisTemplate, guidanceNotes', chip: 'weeks[1-8].orientationNote etc' },
+            { id: '11', tag: 'LXDUNE', label: 'Generate T2 2026 Moodle shells from generate/index.html — forTri: T2, forYear: 2026', chip: 'generate/index.html' },
+            { id: '12', tag: 'LXDUNE', label: 'Verify all blocks render correctly in test harness before go-live', chip: 'test/index.html' },
+            { id: '13', tag: 'LXDUNE', label: 'Paste all generated shells into live EDSE362 Moodle course', chip: 'mylearn.une.edu.au' }
+          ]
+        },
+        {
+          id: 'B',
+          title: 'Section B — Moodle site: Learning Design team actions',
+          items: [
+            { id: '14', tag: 'MOODLE', label: 'Check Assessment tile — confirm all activities are in the right location, delete any no longer relevant' },
+            { id: '15', tag: 'MOODLE', label: 'Fill in Permitted Resources template for each Assurance Task' },
+            { id: '16', tag: 'MOODLE', label: 'Confirm assessment activity names match Handbook titles' },
+            { id: '17', tag: 'MOODLE', label: 'Check information callout inside each assessment activity — weighting, notes, learning outcomes' },
+            { id: '18', tag: 'MOODLE', label: 'If Maximum grade changes, update Grade to Pass to match correct proportion' }
+          ]
+        },
+        {
+          id: 'C',
+          title: 'Section C — Moodle site: myLearn setup checklist',
+          items: [
+            { id: '19', tag: 'MOODLE', label: 'Welcome video — record new or confirm existing video is current for T2 2026' },
+            { id: '20', tag: 'MOODLE', label: 'Contact preferences — confirm Unit Coordinator details in Unit Information and Resources tile' },
+            { id: '21', tag: 'MOODLE', label: 'Study schedule — update with T2 2026 dates and assessment due dates' },
+            { id: '22', tag: 'MOODLE', label: 'EchoVideo — confirm T2 2026 profile exists; roll over or record new lecture recordings' },
+            { id: '23', tag: 'MOODLE', label: 'Reading List — create or roll over and publish before 15 June 2026' },
+            { id: '24', tag: 'MOODLE', label: 'Zoom meetings — create new Zoom meeting as a Moodle activity in the course' },
+            { id: '25', tag: 'MOODLE', label: 'Assessment due dates — update all assignment and quiz due dates in Moodle' },
+            { id: '26', tag: 'MOODLE', label: 'Extension tool dates — update Group Override due dates for 3-day/7-day/Flexible Portal tools' },
+            { id: '27', tag: 'MOODLE', label: 'Assessment settings — check each task for correct details, format, instructions, word length' },
+            { id: '28', tag: 'MOODLE', label: 'Rubrics and marking criteria — update early; changes are visible to students immediately' },
+            { id: '29', tag: 'MOODLE', label: 'Enrol additional teaching staff — tutors, markers, admin support' }
+          ]
+        }
+      ],
 
-    // ── State ──────────────────────────────────────────────────
+      EDSE357: [
+        {
+          id: 'A',
+          title: 'Section A — LXDUNE config: T2 2026 preparation',
+          items: [
+            { id: '1',  tag: 'LXDUNE', label: 'Add trimesterConfig.T2-2026 entry — create T2 Zoom meeting and populate meetingId, password, url', chip: 'trimesterConfig.T2-2026.zoom' },
+            { id: '2',  tag: 'LXDUNE', label: 'Confirm AT1 due date for T2-2026 — assessmentTasks[AT1].trimesterDates.T2-2026.due', chip: 'trimesterDates.T2-2026.due' },
+            { id: '3',  tag: 'LXDUNE', label: 'Confirm AT2 due date for T2-2026 — assessmentTasks[AT2].trimesterDates.T2-2026.due', chip: 'trimesterDates.T2-2026.due' },
+            { id: '4',  tag: 'LXDUNE', label: 'Add T2-2026 assessment files — AT1 rubric URL and all discipline task and marking URLs', chip: 'assessmentFiles.AT1' },
+            { id: '5',  tag: 'LXDUNE', label: 'Add T2-2026 assessment files — AT2 rubric URL and all discipline task and marking URLs', chip: 'assessmentFiles.AT2' },
+            { id: '6',  tag: 'LXDUNE', label: 'Confirm AT1 links — rubric, taskFiles, submit, forum in assessmentTasks[AT1].links', chip: 'links.rubric/taskFiles/submit' },
+            { id: '7',  tag: 'LXDUNE', label: 'Confirm AT2 links — rubric, taskFiles, submit, forum in assessmentTasks[AT2].links', chip: 'links.rubric/taskFiles/submit' },
+            { id: '8',  tag: 'LXDUNE', label: 'Confirm week links are current for T2 — lecture, slides, recording for all 8 weeks', chip: 'weeks[1-8].links.lecture/slides' },
+            { id: '9',  tag: 'LXDUNE', label: 'Confirm forum and materials links for all 8 teaching weeks', chip: 'weeks[1-8].links.forum/materials' },
+            { id: '10', tag: 'LXDUNE', label: 'Confirm liveHub links for all 8 teaching weeks', chip: 'weeks[1-8].links.liveHub' },
+            { id: '11', tag: 'LXDUNE', label: 'Review orientation notes — confirm content is appropriate for T2 cohort for all 8 weeks', chip: 'orientationNote' },
+            { id: '12', tag: 'LXDUNE', label: 'Confirm forum prompts present for weeks 3, 5, 7 and any other relevant weeks', chip: 'forumPrompts' }
+          ]
+        },
+        {
+          id: 'B',
+          title: 'Section B — Moodle shells: T2 2026 regeneration',
+          items: [
+            { id: '13', tag: 'LXDUNE', label: 'Generate AT1 assessment page shell for T2 2026 — forTri: T2, forYear: 2026', chip: 'generate/index.html' },
+            { id: '14', tag: 'LXDUNE', label: 'Generate AT2 assessment page shell for T2 2026 — forTri: T2, forYear: 2026', chip: 'generate/index.html' },
+            { id: '15', tag: 'LXDUNE', label: 'Deploy AT1 pre-submission checklist shell to Moodle', chip: 'checklist shell' },
+            { id: '16', tag: 'LXDUNE', label: 'Deploy AT2 pre-submission checklist shell to Moodle', chip: 'checklist shell' },
+            { id: '17', tag: 'LXDUNE', label: 'Confirm renderUnitKeyInfo and renderAssessmentStatus shells are current for T2', chip: 'unit key info' },
+            { id: '18', tag: 'LXDUNE', label: 'Run test harness — verify all blocks render before T2 go-live', chip: 'test/index.html' }
+          ]
+        },
+        {
+          id: 'C',
+          title: 'Section C — Moodle site: T2 2026 setup',
+          items: [
+            { id: '19', tag: 'MOODLE', label: 'Create T2 2026 Zoom meeting as Moodle activity in course' },
+            { id: '20', tag: 'MOODLE', label: 'Update T2 2026 due dates on all assignment activities in Moodle' },
+            { id: '21', tag: 'MOODLE', label: 'Update Reading List for T2 2026 — publish before T2 site open date' }
+          ]
+        }
+      ],
+
+      EDSE358: [
+        {
+          id: 'A',
+          title: 'Section A — LXDUNE config: T2 2026 preparation',
+          items: [
+            { id: '1',  tag: 'LXDUNE', label: 'Confirm T2-2026 Zoom meeting ID, password, and URL in trimesterConfig — check against live Zoom account', chip: 'trimesterConfig.T2-2026.zoom' },
+            { id: '2',  tag: 'LXDUNE', label: 'Confirm AT1 due date for T2-2026 — assessmentTasks[AT1].trimesterDates.T2-2026.due and duePartA', chip: 'trimesterDates.T2-2026.due' },
+            { id: '3',  tag: 'LXDUNE', label: 'Confirm AT2 due date for T2-2026 — assessmentTasks[AT2].trimesterDates.T2-2026.due', chip: 'trimesterDates.T2-2026.due' },
+            { id: '4',  tag: 'LXDUNE', label: 'Add T2-2026 assessment files — AT1 rubric URL and all discipline task and marking URLs', chip: 'assessmentFiles.AT1' },
+            { id: '5',  tag: 'LXDUNE', label: 'Add T2-2026 assessment files — AT2 rubric URL and all discipline task and marking URLs', chip: 'assessmentFiles.AT2' },
+            { id: '6',  tag: 'LXDUNE', label: 'Confirm AT1 links — rubric, taskFiles, submit, forum in assessmentTasks[AT1].links', chip: 'links.rubric/taskFiles/submit' },
+            { id: '7',  tag: 'LXDUNE', label: 'Confirm AT2 links — rubric, taskFiles, submit, forum in assessmentTasks[AT2].links', chip: 'links.rubric/taskFiles/submit' },
+            { id: '8',  tag: 'LXDUNE', label: 'Confirm week links are current for T2 — lecture, slides, recording for all 8 weeks', chip: 'weeks[1-8].links.lecture/slides' },
+            { id: '9',  tag: 'LXDUNE', label: 'Confirm forum and materials links for all 8 teaching weeks', chip: 'weeks[1-8].links.forum/materials' },
+            { id: '10', tag: 'LXDUNE', label: 'Confirm liveHub links for all 8 teaching weeks', chip: 'weeks[1-8].links.liveHub' },
+            { id: '11', tag: 'LXDUNE', label: 'Review orientation notes — confirm content is appropriate for T2 cohort for all 8 weeks', chip: 'orientationNote' },
+            { id: '12', tag: 'LXDUNE', label: 'Confirm forum prompts present for weeks 3–8 (synthesis templates also present for weeks 3, 6, 7, 8)', chip: 'forumPrompts / synthesisTemplate' }
+          ]
+        },
+        {
+          id: 'B',
+          title: 'Section B — Moodle shells: T2 2026 regeneration',
+          items: [
+            { id: '13', tag: 'LXDUNE', label: 'Generate AT1 assessment page shell for T2 2026 — forTri: T2, forYear: 2026', chip: 'generate/index.html' },
+            { id: '14', tag: 'LXDUNE', label: 'Generate AT2 assessment page shell for T2 2026 — forTri: T2, forYear: 2026', chip: 'generate/index.html' },
+            { id: '15', tag: 'LXDUNE', label: 'Deploy AT1 pre-submission checklist shell to Moodle', chip: 'checklist shell' },
+            { id: '16', tag: 'LXDUNE', label: 'Deploy AT2 pre-submission checklist shell to Moodle', chip: 'checklist shell' },
+            { id: '17', tag: 'LXDUNE', label: 'Confirm renderUnitKeyInfo and renderAssessmentStatus shells are current for T2', chip: 'unit key info' },
+            { id: '18', tag: 'LXDUNE', label: 'Run test harness — verify all blocks render before T2 go-live', chip: 'test/index.html' }
+          ]
+        },
+        {
+          id: 'C',
+          title: 'Section C — Moodle site: T2 2026 setup',
+          items: [
+            { id: '19', tag: 'MOODLE', label: 'Confirm T2 2026 Zoom meeting exists as Moodle activity in course' },
+            { id: '20', tag: 'MOODLE', label: 'Update T2 2026 due dates on all assignment activities in Moodle' },
+            { id: '21', tag: 'MOODLE', label: 'Update Reading List for T2 2026 — publish before T2 site open date' }
+          ]
+        }
+      ],
+    };
+
+    // ── Active unit ────────────────────────────────────────────────────────────
+    let activeUnit = 'EDSE362';
     let state = { items: {} };
     let saveTimer = null;
+    const collapseTimers = {};
 
+    function getSections() { return ALL_SECTIONS[activeUnit]; }
+    function getTotal()    { return getSections().reduce((s, sec) => s + sec.items.length, 0); }
+    function getTheme()    { return UNIT_THEMES[activeUnit]; }
+
+    function applyTheme() {
+      const t = getTheme();
+      document.documentElement.style.setProperty('--theme-primary', t.primary);
+      document.documentElement.style.setProperty('--theme-accent',  t.accent);
+      document.documentElement.style.setProperty('--theme-pill',    t.pill);
+      const hdr = document.getElementById('page-header');
+      if (hdr) hdr.style.background = t.primary;
+    }
+
+    function switchUnit(unit) {
+      if (unit === activeUnit) return;
+      activeUnit = unit;
+      // Clear collapse timers from old unit
+      for (const k of Object.keys(collapseTimers)) {
+        clearTimeout(collapseTimers[k]);
+        delete collapseTimers[k];
+      }
+      state = { items: {} };
+      applyTheme();
+      buildUI();
+      loadState();
+    }
+
+    // ── State ──────────────────────────────────────────────────────────────────
     async function loadState() {
       try {
-        const res = await fetch('/state');
+        const res = await fetch(`/state?unit=${activeUnit}`);
         if (!res.ok) throw new Error('not ok');
         state = await res.json();
       } catch {
-        // Server not running — start with empty state, silently
         state = { items: {} };
       }
       renderAll();
@@ -395,10 +384,10 @@
 
     async function saveState() {
       try {
-        const res = await fetch('/state', {
+        const res = await fetch(`/state?unit=${activeUnit}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(state)
+          body: JSON.stringify({ items: state.items })
         });
         if (!res.ok) throw new Error();
         showToast('saved');
@@ -407,67 +396,76 @@
       }
     }
 
-    // ── Toast ──────────────────────────────────────────────────
-    let errorToast = null;
+    // ── Toast ──────────────────────────────────────────────────────────────────
+    let errorToast  = null;
     let successTimer = null;
 
     function showToast(type) {
       const el = document.getElementById('toast');
       if (type === 'saved') {
-        // Clear any lingering error
-        if (errorToast) {
-          errorToast = null;
-        }
+        errorToast = null;
         clearTimeout(successTimer);
-        el.textContent = 'Saved ✓';
-        el.style.background = '#2E7D52';
+        el.textContent   = 'Saved ✓';
+        el.style.background = getTheme().primary;
         el.style.display = 'block';
-        successTimer = setTimeout(() => {
-          el.style.display = 'none';
-        }, 1500);
-      } else if (type === 'error') {
+        successTimer = setTimeout(() => { el.style.display = 'none'; }, 1500);
+      } else {
         clearTimeout(successTimer);
-        el.textContent = 'Save failed — is the server running?';
+        el.textContent   = 'Save failed — is the server running?';
         el.style.background = '#b45309';
         el.style.display = 'block';
         errorToast = el;
       }
     }
 
-    // ── Build UI ───────────────────────────────────────────────
+    // ── Build UI ───────────────────────────────────────────────────────────────
     function buildUI() {
+      const theme = getTheme();
+      const TOTAL = getTotal();
+
       // Header
       const header = document.getElementById('page-header');
+      header.style.background = theme.primary;
       header.innerHTML = `
         <div class="header-inner">
-          <span class="header-title">EDSE362 T2 2026 — Go-live Checklist</span>
-          <a href="/gaps" style="color:rgba(255,255,255,0.85);font-size:0.85em;text-decoration:none;margin-left:16px;">Config gaps →</a>
+          <span class="header-title">${escHtml(theme.label)} — Go-live Checklist</span>
+          <a href="/gaps?unit=${activeUnit}" style="color:rgba(255,255,255,0.85);font-size:0.85em;text-decoration:none;margin-left:16px;">Config gaps →</a>
         </div>
-        <div class="header-sub">Site opens to students: 15 June 2026</div>
+        <div class="header-sub">Target: ${escHtml(theme.openDate)}</div>
         <div class="header-progress">
           <div class="progress-bar-track">
             <div class="progress-bar-fill" id="overall-fill"></div>
           </div>
           <div class="progress-text" id="overall-text">0 / ${TOTAL} complete</div>
         </div>
+        <div id="unit-tabs">
+          ${Object.keys(UNIT_THEMES).map(u =>
+            `<button class="unit-tab${u === activeUnit ? ' active' : ''}" onclick="switchUnit('${u}')">${u}</button>`
+          ).join('')}
+        </div>
       `;
+
+      // Completion banner
+      const banner = document.getElementById('completion-banner');
+      const bannerText = document.getElementById('completion-text');
+      if (bannerText) bannerText.textContent = `🎉 ${theme.label} — all checks done.`;
+      if (banner) banner.style.display = 'none';
 
       // Sections
       const app = document.getElementById('app');
       app.innerHTML = '';
 
-      SECTIONS.forEach(section => {
+      getSections().forEach(section => {
         const card = document.createElement('div');
         card.className = 'section-card';
 
-        // Section header
         const secHeader = document.createElement('div');
         secHeader.className = 'section-header';
         secHeader.dataset.section = section.id;
         secHeader.innerHTML = `
           <div class="section-header-left">
             <span class="chevron expanded">▶</span>
-            <span class="section-title">${section.title}</span>
+            <span class="section-title">${escHtml(section.title)}</span>
           </div>
           <div class="section-header-right">
             <div class="mini-progress-track"><div class="mini-progress-fill" id="fill-${section.id}"></div></div>
@@ -476,24 +474,18 @@
         `;
         card.appendChild(secHeader);
 
-        // Section body
         const body = document.createElement('div');
         body.className = 'section-body';
         body.id = 'body-' + section.id;
 
         section.items.forEach(item => {
           const tagClass = item.tag === 'LXDUNE' ? 'lxdune' : 'moodle';
+          const chipHtml = item.chip ? `<span class="chip">${escHtml(item.chip)}</span>` : '';
 
-          // Item row
           const row = document.createElement('div');
           row.className = 'item-row';
           row.id = 'row-' + item.id;
           row.dataset.id = item.id;
-
-          const chipHtml = item.chip
-            ? `<span class="chip">${escHtml(item.chip)}</span>`
-            : '';
-
           row.innerHTML = `
             <input type="checkbox" id="cb-${item.id}" class="item-cb" data-id="${item.id}" />
             <span class="tag ${tagClass}">${item.tag}</span>
@@ -503,14 +495,11 @@
           `;
           body.appendChild(row);
 
-          // Note row
           const noteRow = document.createElement('div');
           noteRow.className = 'note-row';
           noteRow.id = 'note-row-' + item.id;
           noteRow.style.display = 'none';
-          noteRow.innerHTML = `
-            <input type="text" class="note-input" id="note-${item.id}" placeholder="Add URL or note…" />
-          `;
+          noteRow.innerHTML = `<input type="text" class="note-input" id="note-${item.id}" placeholder="Add URL or note…" />`;
           body.appendChild(noteRow);
         });
 
@@ -520,38 +509,30 @@
     }
 
     function escHtml(str) {
-      return str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
+      return String(str)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
 
-    // ── Render all ─────────────────────────────────────────────
-    // Track per-section auto-collapse timers
-    const collapseTimers = {};
-
+    // ── Render all ─────────────────────────────────────────────────────────────
     function renderAll() {
+      const TOTAL = getTotal();
       let totalChecked = 0;
 
-      SECTIONS.forEach(section => {
+      getSections().forEach(section => {
         let secChecked = 0;
 
         section.items.forEach(item => {
           const itemState = state.items[item.id] || { checked: false, note: '' };
-          const cb = document.getElementById('cb-' + item.id);
-          const label = cb ? cb.parentElement.querySelector('.item-label') : null;
-          const noteBtn = cb ? cb.parentElement.querySelector('.note-btn') : null;
+          const cb        = document.getElementById('cb-' + item.id);
+          const label     = cb ? cb.parentElement.querySelector('.item-label') : null;
+          const noteBtn   = cb ? cb.parentElement.querySelector('.note-btn')   : null;
           const noteInput = document.getElementById('note-' + item.id);
-          const row = document.getElementById('row-' + item.id);
+          const row       = document.getElementById('row-' + item.id);
 
-          if (cb) cb.checked = !!itemState.checked;
-          if (label) {
-            label.classList.toggle('checked', !!itemState.checked);
-          }
-          if (row) {
-            row.classList.toggle('checked', !!itemState.checked);
-          }
+          if (cb)        cb.checked = !!itemState.checked;
+          if (label)     label.classList.toggle('checked', !!itemState.checked);
+          if (row)       row.classList.toggle('checked',   !!itemState.checked);
           if (noteBtn) {
             const hasNote = !!(itemState.note && itemState.note.trim());
             noteBtn.classList.toggle('has-note', hasNote);
@@ -566,65 +547,49 @@
 
         totalChecked += secChecked;
 
-        // Update mini progress
-        const fill = document.getElementById('fill-' + section.id);
-        const countEl = document.getElementById('count-' + section.id);
+        const fill     = document.getElementById('fill-'  + section.id);
+        const countEl  = document.getElementById('count-' + section.id);
         const secHeader = document.querySelector(`.section-header[data-section="${section.id}"]`);
-        const secTitle = secHeader ? secHeader.querySelector('.section-title') : null;
+        const secTitle  = secHeader ? secHeader.querySelector('.section-title') : null;
+        const pct       = section.items.length > 0 ? (secChecked / section.items.length) * 100 : 0;
 
-        const pct = section.items.length > 0
-          ? (secChecked / section.items.length) * 100
-          : 0;
-
-        if (fill) fill.style.width = pct + '%';
+        if (fill)    fill.style.width = pct + '%';
         if (countEl) countEl.textContent = `${secChecked}/${section.items.length}`;
 
-        const isComplete = secChecked === section.items.length && section.items.length > 0;
-        const wasComplete = secHeader ? secHeader.classList.contains('complete') : false;
+        const isComplete  = secChecked === section.items.length && section.items.length > 0;
+        const wasComplete = secHeader  ? secHeader.classList.contains('complete') : false;
 
         if (secHeader) secHeader.classList.toggle('complete', isComplete);
         if (secTitle) {
-          if (isComplete) {
-            if (!secTitle.textContent.startsWith('✅')) {
-              secTitle.textContent = '✅ ' + section.title;
-            }
-          } else {
-            secTitle.textContent = section.title;
-          }
+          secTitle.textContent = isComplete
+            ? (secTitle.textContent.startsWith('✅') ? secTitle.textContent : '✅ ' + section.title)
+            : section.title;
         }
 
-        // Auto-collapse when section becomes complete
         if (isComplete && !wasComplete) {
           clearTimeout(collapseTimers[section.id]);
           collapseTimers[section.id] = setTimeout(() => {
-            const body = document.getElementById('body-' + section.id);
-            const chevron = secHeader ? secHeader.querySelector('.chevron') : null;
-            if (body) body.classList.add('collapsed');
-            if (chevron) chevron.classList.remove('expanded');
+            const b = document.getElementById('body-' + section.id);
+            const c = secHeader ? secHeader.querySelector('.chevron') : null;
+            if (b) b.classList.add('collapsed');
+            if (c) c.classList.remove('expanded');
           }, 800);
         }
       });
 
-      // Overall progress
       const overallFill = document.getElementById('overall-fill');
       const overallText = document.getElementById('overall-text');
       if (overallFill) overallFill.style.width = ((totalChecked / TOTAL) * 100) + '%';
-      if (overallText) overallText.textContent = `${totalChecked} / ${TOTAL} complete`;
+      if (overallText) overallText.textContent  = `${totalChecked} / ${TOTAL} complete`;
 
-      // Completion banner
       const banner = document.getElementById('completion-banner');
-      if (banner) {
-        if (totalChecked === TOTAL) {
-          banner.style.display = 'flex';
-        }
-        // Don't hide it if user already dismissed it
-      }
+      if (banner && totalChecked === TOTAL) banner.style.display = 'flex';
     }
 
     function updateNoteBtn(id) {
       const itemState = state.items[id] || { checked: false, note: '' };
-      const row = document.getElementById('row-' + id);
-      const noteBtn = row ? row.querySelector('.note-btn') : null;
+      const row       = document.getElementById('row-' + id);
+      const noteBtn   = row ? row.querySelector('.note-btn') : null;
       if (noteBtn) {
         const hasNote = !!(itemState.note && itemState.note.trim());
         noteBtn.classList.toggle('has-note', hasNote);
@@ -632,9 +597,7 @@
       }
     }
 
-    // ── Event wiring ───────────────────────────────────────────
-
-    // Checkbox change
+    // ── Event wiring ───────────────────────────────────────────────────────────
     document.addEventListener('change', e => {
       if (e.target.classList.contains('item-cb')) {
         const id = e.target.dataset.id || e.target.id.replace('cb-', '');
@@ -645,7 +608,6 @@
       }
     });
 
-    // Note input
     document.addEventListener('input', e => {
       if (e.target.classList.contains('note-input')) {
         const id = e.target.id.replace('note-', '');
@@ -656,10 +618,9 @@
       }
     });
 
-    // Note toggle button
     document.addEventListener('click', e => {
       if (e.target.classList.contains('note-btn')) {
-        const id = e.target.dataset.id;
+        const id      = e.target.dataset.id;
         const noteRow = document.getElementById('note-row-' + id);
         if (noteRow) {
           const visible = noteRow.style.display !== 'none';
@@ -669,12 +630,11 @@
       }
     });
 
-    // Section header click (toggle collapse)
     document.addEventListener('click', e => {
       const header = e.target.closest('.section-header');
-      if (header) {
-        const secId = header.dataset.section;
-        const body = document.getElementById('body-' + secId);
+      if (header && !e.target.classList.contains('unit-tab')) {
+        const secId   = header.dataset.section;
+        const body    = document.getElementById('body-' + secId);
         const chevron = header.querySelector('.chevron');
         if (body) {
           const isCollapsed = body.classList.contains('collapsed');
@@ -684,8 +644,9 @@
       }
     });
 
-    // ── Init ───────────────────────────────────────────────────
+    // ── Init ───────────────────────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
+      applyTheme();
       buildUI();
       loadState();
     });

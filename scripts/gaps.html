@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LXDUNE — Config Gap Scanner</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background: #f5f7fa; color: #222; }
+
+/* Nav bar */
+#lx-nav {
+  background: #1a2530;
+  color: #e0e8ee;
+  padding: 8px 20px;
+  font-size: 0.82em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+#lx-nav a { color: rgba(255,255,255,0.7); text-decoration: none; }
+#lx-nav a:hover { color: #fff; text-decoration: underline; }
+#lx-nav .sep { color: rgba(255,255,255,0.3); }
+#lx-nav .active-unit { color: #fff; font-weight: 700; cursor: default; }
+
+/* Unit header */
+#lx-unit-header {
+  padding: 14px 24px 12px;
+  border-bottom: 3px solid var(--theme-primary, #2E7D52);
+}
+.lx-header-inner { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.lx-unit-code { font-size: 1.3em; font-weight: 700; color: var(--theme-primary, #2E7D52); }
+.lx-unit-name { font-size: 0.88em; color: #555; }
+.lx-tri-chip {
+  display: inline-block; padding: 2px 10px; border-radius: 999px;
+  background: var(--theme-pill, #e8f5ee);
+  border: 1px solid var(--theme-pill-border, #b8dcc8);
+  font-size: 0.78em; font-weight: 700; color: var(--theme-primary, #2E7D52); margin-left: 6px;
+}
+.lx-gap-summary { font-size: 0.83em; color: #555; margin-top: 6px; }
+
+/* Toast */
+#lx-toast {
+  position: fixed; top: 14px; right: 18px; z-index: 9999;
+  padding: 7px 14px; border-radius: 6px; font-size: 0.82em;
+  color: #fff; display: none; pointer-events: none;
+}
+
+/* Main */
+#lx-panels { max-width: 980px; margin: 0 auto; padding: 20px 24px 60px; }
+
+/* Section heading */
+.lx-sh {
+  font-weight: 700; font-size: 0.95em; color: var(--theme-primary, #2E7D52);
+  margin: 28px 0 12px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--theme-pill, #e8f5ee);
+}
+.lx-sub-sh {
+  font-weight: 600; font-size: 0.85em; color: #555;
+  margin: 14px 0 8px; text-transform: uppercase; letter-spacing: 0.04em;
+}
+
+/* Field rows — Panel 1 */
+.lx-field-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.lx-field-label { width: 210px; min-width: 210px; text-align: right; font-size: 0.88em; color: #555; }
+.lx-field-input-wrap { flex: 1; }
+
+/* Input shared */
+input[type=text], input[type=url], input[type=email], textarea {
+  width: 100%; padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px; font-size: 0.88em; font-family: inherit;
+}
+input:focus, textarea:focus { outline: none; border-color: var(--theme-primary, #2E7D52); }
+textarea { resize: vertical; min-height: 64px; }
+
+/* Bordered inputs — amber = gap, green = set */
+.border-gap  { border-left: 3px solid #E3B089 !important; }
+.border-set  { border-left: 3px solid #2E7D52 !important; }
+
+/* Table */
+.lx-table { border-collapse: collapse; width: 100%; }
+.lx-table th {
+  text-align: left; font-size: 0.78em; color: #666; font-weight: 600;
+  padding: 4px 6px; white-space: nowrap;
+}
+.lx-table td { padding: 3px 4px; vertical-align: middle; }
+.lx-table tr:hover td { background: #fafafa; }
+.lx-table-wrap { overflow-x: auto; }
+.lx-row-label { font-size: 0.8em; color: #555; white-space: nowrap; padding: 4px 8px !important; }
+
+/* Chips */
+.chip-set  { display:inline-block;padding:2px 9px;border-radius:999px;font-size:0.75em;font-weight:700;background:#d4edda;color:#155724; }
+.chip-gap  { display:inline-block;padding:2px 9px;border-radius:999px;font-size:0.75em;font-weight:700;background:#fff3cd;color:#856404; }
+.chip-na   { display:inline-block;padding:2px 9px;border-radius:999px;font-size:0.75em;font-weight:700;background:#e9ecef;color:#6c757d; }
+.chip-count { display:inline-block;padding:2px 9px;border-radius:999px;font-size:0.75em;font-weight:700;cursor:pointer; }
+.chip-count:hover { opacity: 0.8; }
+
+/* Prompt textarea row */
+.prompt-ta { width: 100%; margin-top: 4px; font-size: 0.82em; min-height: 80px; display: none; }
+.notice { background: #fff3cd; border: 1px solid #f1c40f; border-radius: 6px; padding: 10px 14px; font-size: 0.88em; color: #5a4500; margin: 8px 0; }
+</style>
+</head>
+<body>
+
+<div id="lx-nav">Loading…</div>
+<div id="lx-unit-header"></div>
+<div id="lx-panels"><p style="color:#555;padding:20px;">Loading config…</p></div>
+<span id="lx-toast"></span>
+
+<script>
+// ── Active unit from URL ───────────────────────────────────────────────────────
+const _qp = new URLSearchParams(window.location.search);
+let activeUnit = (_qp.get('unit') || 'EDSE362').toUpperCase();
+if (!['EDSE357','EDSE358','EDSE362'].includes(activeUnit)) activeUnit = 'EDSE362';
+
+let config = null;
+let sessionFilled = 0;
+let toastTimer = null;
+
+const DISC_LABELS = {
+  biology: 'Biology', chemistry: 'Chemistry', ees: 'EES',
+  physics: 'Physics', investigatingScience: 'Investigating Science'
+};
+function discLabel(k) {
+  return DISC_LABELS[k] || k.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
+}
+
+// ── Path helpers ───────────────────────────────────────────────────────────────
+function getByPath(obj, pathStr) {
+  const segs = pathStr.split('.');
+  let cur = obj;
+  for (const seg of segs) {
+    if (cur === null || cur === undefined) return undefined;
+    cur = /^\d+$/.test(seg) ? cur[Number(seg)] : cur[seg];
+  }
+  return cur;
+}
+
+function setByPathLocal(obj, pathStr, value) {
+  const segs = pathStr.split('.');
+  let cur = obj;
+  for (let i = 0; i < segs.length - 1; i++) {
+    const seg  = segs[i];
+    const next = /^\d+$/.test(seg) ? cur[Number(seg)] : cur[seg];
+    if (next === null || next === undefined) return false;
+    cur = next;
+  }
+  const last = segs[segs.length - 1];
+  cur[/^\d+$/.test(last) ? Number(last) : last] = value;
+  return true;
+}
+
+function isGap(v) {
+  if (v === null || v === undefined || v === '') return true;
+  if (Array.isArray(v)) return v.length === 0;
+  if (typeof v === 'object') {
+    const vals = Object.values(v);
+    return vals.length === 0 || vals.every(x => x === null);
+  }
+  return false;
+}
+
+function borderClass(v) { return isGap(v) ? 'border-gap' : 'border-set'; }
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+function showToast(msg, color, persist) {
+  const el = document.getElementById('lx-toast');
+  if (toastTimer) clearTimeout(toastTimer);
+  el.textContent = msg;
+  el.style.background = color || '#2E7D52';
+  el.style.display = 'block';
+  if (!persist) toastTimer = setTimeout(() => { el.style.display = 'none'; }, 1600);
+}
+
+// ── Save field via POST /config/:unit ─────────────────────────────────────────
+async function saveField(fieldPath, value, inputEl, onSuccess) {
+  try {
+    const res  = await fetch(`/config/${activeUnit}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ path: fieldPath, value }),
+    });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'Server error');
+    setByPathLocal(config, fieldPath, value);
+    if (inputEl) {
+      inputEl.classList.remove('border-gap', 'border-set');
+      inputEl.classList.add(borderClass(value));
+    }
+    sessionFilled++;
+    updateSummary();
+    if (onSuccess) onSuccess(value);
+    showToast('Saved ✓', '#2E7D52', false);
+  } catch (err) {
+    const msg = err.message === 'path not found'
+      ? 'Path not found — cannot create new fields here'
+      : 'Save failed — is the server running?';
+    showToast(msg, '#b45309', true);
+  }
+}
+
+// ── Input builders ─────────────────────────────────────────────────────────────
+function buildInput(fieldPath, type) {
+  const value = getByPath(config, fieldPath);
+  const inp = document.createElement('input');
+  inp.type  = type || 'text';
+  inp.value = (value === null || value === undefined) ? '' : value;
+  inp.className = borderClass(value);
+  let orig = inp.value;
+  inp.addEventListener('focus', () => { orig = inp.value; });
+  inp.addEventListener('blur', () => {
+    if (inp.value !== orig) saveField(fieldPath, inp.value || null, inp);
+  });
+  return inp;
+}
+
+function buildSmallInput(fieldPath) {
+  const value = getByPath(config, fieldPath);
+  const inp = document.createElement('input');
+  inp.type  = 'text';
+  inp.value = (value === null || value === undefined) ? '' : value;
+  inp.style.cssText = 'width:100%;padding:3px 6px;border:1px solid #eee;border-radius:3px;font-size:0.78em;';
+  inp.className = borderClass(value);
+  let orig = inp.value;
+  inp.addEventListener('focus', () => { orig = inp.value; });
+  inp.addEventListener('blur', () => {
+    if (inp.value !== orig) saveField(fieldPath, inp.value || null, inp);
+  });
+  return inp;
+}
+
+function buildTextarea(fieldPath) {
+  const value = getByPath(config, fieldPath);
+  const ta = document.createElement('textarea');
+  ta.value = (value === null || value === undefined) ? '' : value;
+  ta.className = borderClass(value);
+  let orig = ta.value;
+  ta.addEventListener('focus', () => { orig = ta.value; });
+  ta.addEventListener('blur', () => {
+    if (ta.value !== orig) saveField(fieldPath, ta.value || null, ta);
+  });
+  return ta;
+}
+
+// ── UI helpers ─────────────────────────────────────────────────────────────────
+function sectionHeading(text) {
+  const h = document.createElement('div');
+  h.className = 'lx-sh';
+  h.textContent = text;
+  return h;
+}
+
+function subHeading(text) {
+  const h = document.createElement('div');
+  h.className = 'lx-sub-sh';
+  h.textContent = text;
+  return h;
+}
+
+function statusChip(value, naCondition) {
+  if (naCondition) { const s = document.createElement('span'); s.className = 'chip-na'; s.textContent = 'N/A'; return s; }
+  const s = document.createElement('span');
+  if (isGap(value)) { s.className = 'chip-gap'; s.textContent = 'Gap'; }
+  else               { s.className = 'chip-set'; s.textContent = 'Set'; }
+  return s;
+}
+
+// ── Gap count for summary ──────────────────────────────────────────────────────
+function countGaps() {
+  if (!config) return 0;
+  const activeTri = Object.keys(config.trimesterConfig || {}).at(-1) || '';
+  let gaps = 0;
+
+  // Panel 1
+  const p1fields = [
+    `trimesterConfig.${activeTri}.zoom.meetingId`,
+    `trimesterConfig.${activeTri}.zoom.password`,
+    `trimesterConfig.${activeTri}.zoom.url`,
+    'keyLinks.0.url', 'keyLinks.1.url', 'keyLinks.2.url',
+    'contacts.coordinator.name', 'contacts.coordinator.email',
+    'contacts.lecturer.name', 'contacts.lecturer.email',
+    'assessmentPortalUrl', 'bannerUrl',
+  ];
+  for (const p of p1fields) { if (isGap(getByPath(config, p))) gaps++; }
+
+  // Panel 2
+  for (let w = 1; w <= 8; w++) {
+    for (const f of ['video','links.lecture','links.slides','links.recording','links.forum','links.materials','links.liveHub']) {
+      if (isGap(getByPath(config, `weeks.${w}.${f}`))) gaps++;
+    }
+  }
+  return gaps;
+}
+
+function updateSummary() {
+  const el = document.querySelector('.lx-gap-summary');
+  if (el) el.textContent = `${countGaps()} gaps remaining — ${sessionFilled} filled this session`;
+}
+
+// ── Nav bar ────────────────────────────────────────────────────────────────────
+function renderNav() {
+  const nav = document.getElementById('lx-nav');
+  const units = ['EDSE357','EDSE358','EDSE362'];
+  const links = units.map(u =>
+    u === activeUnit
+      ? `<span class="active-unit">${u} gaps</span>`
+      : `<a href="/gaps?unit=${u}">${u} gaps</a>`
+  ).join('<span class="sep"> | </span>');
+  nav.innerHTML =
+    `<strong style="color:#e0e8ee;">LXDUNE Tools</strong>` +
+    `<span class="sep">·</span>` +
+    `<a href="/">Checklist</a>` +
+    `<span class="sep"> | </span>` +
+    links;
+}
+
+// ── Unit header ────────────────────────────────────────────────────────────────
+function renderUnitHeader(activeTri) {
+  const t = config.theme || {};
+  document.documentElement.style.setProperty('--theme-primary',      t.primary     || '#2E7D52');
+  document.documentElement.style.setProperty('--theme-accent',       t.accent      || '#E3B089');
+  document.documentElement.style.setProperty('--theme-pill',         t.pill        || '#E8F5EE');
+  document.documentElement.style.setProperty('--theme-pill-border',  t.pillBorder  || '#b8dcc8');
+
+  const hdr = document.getElementById('lx-unit-header');
+  hdr.style.borderBottomColor = t.primary || '#2E7D52';
+  hdr.innerHTML =
+    `<div class="lx-header-inner">` +
+    `<span class="lx-unit-code">${escHtml(config.code)}</span>` +
+    `<span class="lx-unit-name">${escHtml(config.name)}</span>` +
+    `<span class="lx-tri-chip">${escHtml(activeTri)}</span>` +
+    `</div>` +
+    `<div class="lx-gap-summary">${countGaps()} gaps remaining — 0 filled this session</div>`;
+}
+
+// ── Panel 1: Unit details ──────────────────────────────────────────────────────
+function renderPanel1(container, activeTri) {
+  container.appendChild(sectionHeading('Panel 1 — Unit details'));
+  const fields = [
+    { label: 'Zoom meeting ID',       path: `trimesterConfig.${activeTri}.zoom.meetingId`, type: 'text'  },
+    { label: 'Zoom password',         path: `trimesterConfig.${activeTri}.zoom.password`,  type: 'text'  },
+    { label: 'Zoom URL',              path: `trimesterConfig.${activeTri}.zoom.url`,        type: 'url'   },
+    { label: 'Key link 0 URL',        path: 'keyLinks.0.url',                               type: 'url'   },
+    { label: 'Key link 1 URL',        path: 'keyLinks.1.url',                               type: 'url'   },
+    { label: 'Key link 2 URL',        path: 'keyLinks.2.url',                               type: 'url'   },
+    { label: 'Coordinator name',      path: 'contacts.coordinator.name',                    type: 'text'  },
+    { label: 'Coordinator email',     path: 'contacts.coordinator.email',                   type: 'email' },
+    { label: 'Lecturer name',         path: 'contacts.lecturer.name',                       type: 'text'  },
+    { label: 'Lecturer email',        path: 'contacts.lecturer.email',                      type: 'email' },
+    { label: 'Assessment portal URL', path: 'assessmentPortalUrl',                          type: 'url'   },
+    { label: 'Banner URL',            path: 'bannerUrl',                                    type: 'url'   },
+  ];
+  const wrap = document.createElement('div');
+  for (const f of fields) {
+    const row   = document.createElement('div');
+    row.className = 'lx-field-row';
+    const lbl   = document.createElement('div');
+    lbl.className = 'lx-field-label';
+    lbl.textContent = f.label;
+    const wrap2 = document.createElement('div');
+    wrap2.className = 'lx-field-input-wrap';
+    wrap2.appendChild(buildInput(f.path, f.type));
+    row.appendChild(lbl);
+    row.appendChild(wrap2);
+    wrap.appendChild(row);
+  }
+  container.appendChild(wrap);
+}
+
+// ── Panel 2: Week links ────────────────────────────────────────────────────────
+function renderPanel2(container) {
+  container.appendChild(sectionHeading('Panel 2 — Week links'));
+  const cols    = ['video', 'links.lecture', 'links.slides', 'links.recording', 'links.forum', 'links.materials', 'links.liveHub'];
+  const colHdrs = ['Video', 'Lecture', 'Slides', 'Recording', 'Forum', 'Materials', 'Live Hub'];
+
+  const tableWrap = document.createElement('div');
+  tableWrap.className = 'lx-table-wrap';
+  const tbl = document.createElement('table');
+  tbl.className = 'lx-table';
+
+  const thead = document.createElement('thead');
+  const headerRow = document.createElement('tr');
+  const thWeek = document.createElement('th');
+  thWeek.textContent = 'Week';
+  thWeek.style.cssText = 'padding:4px 8px;';
+  headerRow.appendChild(thWeek);
+  for (const h of colHdrs) {
+    const th = document.createElement('th');
+    th.textContent = h;
+    headerRow.appendChild(th);
+  }
+  thead.appendChild(headerRow);
+  tbl.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  for (let w = 1; w <= 8; w++) {
+    const weekData = (config.weeks || {})[String(w)] || {};
+    const label    = weekData.item || weekData.title || `Week ${w}`;
+    const shortLbl = label.length > 28 ? label.slice(0, 28) + '…' : label;
+
+    const tr = document.createElement('tr');
+    const tdLbl = document.createElement('td');
+    tdLbl.className = 'lx-row-label';
+    tdLbl.textContent = `${w} — ${shortLbl}`;
+    tr.appendChild(tdLbl);
+
+    for (const col of cols) {
+      const path = `weeks.${w}.${col}`;
+      const td   = document.createElement('td');
+      td.style.padding = '3px 4px';
+      td.appendChild(buildSmallInput(path));
+      tr.appendChild(td);
+    }
+    tbody.appendChild(tr);
+  }
+  tbl.appendChild(tbody);
+  tableWrap.appendChild(tbl);
+  container.appendChild(tableWrap);
+}
+
+// ── Panel 3: Alignment fields ──────────────────────────────────────────────────
+function renderPanel3(container) {
+  container.appendChild(sectionHeading('Panel 3 — Alignment fields'));
+
+  const tableWrap = document.createElement('div');
+  tableWrap.className = 'lx-table-wrap';
+  const tbl = document.createElement('table');
+  tbl.className = 'lx-table';
+
+  const thead = document.createElement('thead');
+  const hr = document.createElement('tr');
+  for (const h of ['Week', 'orientationNote', 'forumPrompts', 'workedExample', 'synthesisTemplate']) {
+    const th = document.createElement('th');
+    th.textContent = h;
+    hr.appendChild(th);
+  }
+  thead.appendChild(hr);
+  tbl.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  for (let w = 1; w <= 8; w++) {
+    const weekData = (config.weeks || {})[String(w)] || {};
+    const label    = weekData.item || weekData.title || `Week ${w}`;
+    const shortLbl = label.length > 22 ? label.slice(0, 22) + '…' : label;
+
+    const tr = document.createElement('tr');
+
+    // Label cell
+    const tdLbl = document.createElement('td');
+    tdLbl.className = 'lx-row-label';
+    tdLbl.textContent = `${w} — ${shortLbl}`;
+    tr.appendChild(tdLbl);
+
+    // orientationNote — text input
+    const onPath = `weeks.${w}.orientationNote`;
+    const tdOn   = document.createElement('td');
+    tdOn.style.padding = '3px 4px'; tdOn.style.minWidth = '140px';
+    tdOn.appendChild(buildSmallInput(onPath));
+    tr.appendChild(tdOn);
+
+    // forumPrompts — chip toggle + textarea
+    const fpPath  = `weeks.${w}.forumPrompts`;
+    const fpValue = getByPath(config, fpPath);
+    const tdFp    = document.createElement('td');
+    tdFp.style.padding = '3px 6px';
+
+    const fpWrap = document.createElement('div');
+    const count  = Array.isArray(fpValue) ? fpValue.length : 0;
+    const fpGap  = isGap(fpValue);
+
+    const fpChip = document.createElement('span');
+    fpChip.className = 'chip-count ' + (fpGap ? 'chip-gap' : 'chip-set');
+    fpChip.textContent = fpGap ? 'No prompts' : `${count} prompt${count === 1 ? '' : 's'}`;
+
+    const fpTa = document.createElement('textarea');
+    fpTa.className = 'prompt-ta ' + borderClass(fpValue);
+    fpTa.placeholder = 'One prompt per line…';
+    fpTa.value = Array.isArray(fpValue) ? fpValue.join('\n') : '';
+
+    fpChip.addEventListener('click', () => {
+      fpTa.style.display = fpTa.style.display === 'none' ? 'block' : 'none';
+      if (fpTa.style.display !== 'none') fpTa.focus();
+    });
+
+    let fpOrig = fpTa.value;
+    fpTa.addEventListener('focus', () => { fpOrig = fpTa.value; });
+    fpTa.addEventListener('blur', () => {
+      if (fpTa.value === fpOrig) return;
+      const prompts = fpTa.value.split('\n').map(s => s.trim()).filter(Boolean);
+      saveField(fpPath, prompts, fpTa, newVal => {
+        fpChip.textContent = newVal.length === 0 ? 'No prompts' : `${newVal.length} prompt${newVal.length === 1 ? '' : 's'}`;
+        fpChip.className = 'chip-count ' + (newVal.length === 0 ? 'chip-gap' : 'chip-set');
+      });
+    });
+
+    fpWrap.appendChild(fpChip);
+    fpWrap.appendChild(fpTa);
+    tdFp.appendChild(fpWrap);
+    tr.appendChild(tdFp);
+
+    // workedExample — textarea
+    const wePath = `weeks.${w}.workedExample`;
+    const tdWe   = document.createElement('td');
+    tdWe.style.padding = '3px 4px'; tdWe.style.minWidth = '120px';
+    tdWe.appendChild(buildSmallInput(wePath));
+    tr.appendChild(tdWe);
+
+    // synthesisTemplate — textarea
+    const stPath = `weeks.${w}.synthesisTemplate`;
+    const tdSt   = document.createElement('td');
+    tdSt.style.padding = '3px 4px'; tdSt.style.minWidth = '120px';
+    tdSt.appendChild(buildSmallInput(stPath));
+    tr.appendChild(tdSt);
+
+    tbody.appendChild(tr);
+  }
+  tbl.appendChild(tbody);
+  tableWrap.appendChild(tbl);
+  container.appendChild(tableWrap);
+}
+
+// ── Panel 4: Assessment files ──────────────────────────────────────────────────
+function renderPanel4(container, activeTri) {
+  container.appendChild(sectionHeading('Panel 4 — Assessment files'));
+
+  const afRoot = getByPath(config, `trimesterConfig.${activeTri}.assessmentFiles`);
+
+  if (!afRoot || Object.keys(afRoot).length === 0) {
+    const notice = document.createElement('div');
+    notice.className = 'notice';
+    notice.textContent = `No assessment files configured in trimesterConfig.${activeTri}.assessmentFiles — add discipline entries via Claude Code.`;
+    container.appendChild(notice);
+    return;
+  }
+
+  for (const [taskId, taskData] of Object.entries(afRoot)) {
+    container.appendChild(subHeading(taskId));
+
+    // rubricUrl row
+    const rubricPath = `trimesterConfig.${activeTri}.assessmentFiles.${taskId}.rubricUrl`;
+    const rubricRow  = document.createElement('div');
+    rubricRow.className = 'lx-field-row';
+    rubricRow.style.marginBottom = '8px';
+    const rubricLbl = document.createElement('div');
+    rubricLbl.className = 'lx-field-label';
+    rubricLbl.textContent = 'Rubric URL';
+    const rubricWrap = document.createElement('div');
+    rubricWrap.className = 'lx-field-input-wrap';
+    rubricWrap.appendChild(buildInput(rubricPath, 'url'));
+    rubricRow.appendChild(rubricLbl);
+    rubricRow.appendChild(rubricWrap);
+    container.appendChild(rubricRow);
+
+    // Disciplines table
+    const disciplines = taskData.disciplines || {};
+    if (Object.keys(disciplines).length === 0) {
+      const n = document.createElement('div');
+      n.className = 'notice';
+      n.textContent = `No discipline entries in ${taskId}.disciplines.`;
+      container.appendChild(n);
+      continue;
+    }
+
+    const tableWrap = document.createElement('div');
+    tableWrap.className = 'lx-table-wrap';
+    tableWrap.style.marginBottom = '12px';
+    const tbl = document.createElement('table');
+    tbl.className = 'lx-table';
+
+    const thead = document.createElement('thead');
+    const hr    = document.createElement('tr');
+    for (const h of ['Discipline', 'Task URL', 'Marking URL']) {
+      const th = document.createElement('th'); th.textContent = h; hr.appendChild(th);
+    }
+    thead.appendChild(hr); tbl.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    for (const [discKey] of Object.entries(disciplines)) {
+      const tr = document.createElement('tr');
+      const tdLbl = document.createElement('td');
+      tdLbl.className = 'lx-row-label';
+      tdLbl.textContent = discLabel(discKey);
+      tr.appendChild(tdLbl);
+
+      for (const col of ['task', 'marking']) {
+        const p  = `trimesterConfig.${activeTri}.assessmentFiles.${taskId}.disciplines.${discKey}.${col}`;
+        const td = document.createElement('td');
+        td.style.padding = '3px 4px';
+        td.appendChild(buildSmallInput(p));
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    tbl.appendChild(tbody);
+    tableWrap.appendChild(tbl);
+    container.appendChild(tableWrap);
+  }
+}
+
+// ── Panel 5: Assessment content (read-only) ────────────────────────────────────
+function renderPanel5(container, activeTri) {
+  container.appendChild(sectionHeading('Panel 5 — Assessment content (read-only — edit via Claude Code)'));
+
+  const tasks = config.assessmentTasks || [];
+  if (!tasks.length) {
+    container.appendChild(Object.assign(document.createElement('p'), { textContent: 'No assessment tasks found.' }));
+    return;
+  }
+
+  for (const task of tasks) {
+    container.appendChild(subHeading(task.id + ' — ' + (task.title || '')));
+
+    const rows = [
+      ['Title',    task.title,    false],
+      ['Rationale',task.rationale,false],
+      ['Aim',      task.aim,      false],
+    ];
+
+    const triDates   = task.trimesterDates?.[activeTri] ?? null;
+    const hasDue     = triDates && ('due' in triDates);
+    const hasDuePartA= triDates && ('duePartA' in triDates);
+    const partsCount = Array.isArray(task.parts) ? task.parts.length : 0;
+    const rubricCount= Array.isArray(task.rubric) ? task.rubric.length : 0;
+    const links      = task.links || {};
+
+    // Table
+    const tbl = document.createElement('table');
+    tbl.className = 'lx-table';
+    tbl.style.marginBottom = '14px';
+
+    function addRow(label, chipEl) {
+      const tr  = document.createElement('tr');
+      const tdL = document.createElement('td');
+      tdL.style.cssText = 'padding:4px 10px 4px 0;font-size:0.84em;color:#555;width:180px;white-space:nowrap;';
+      tdL.textContent = label;
+      const tdR = document.createElement('td');
+      tdR.style.padding = '4px 0';
+      tdR.appendChild(chipEl);
+      tr.appendChild(tdL); tr.appendChild(tdR);
+      tbl.appendChild(tr);
+    }
+
+    // Basic fields
+    for (const [lbl, val] of rows) addRow(lbl, statusChip(val));
+
+    // Parts / rubric counts
+    const partsChip = document.createElement('span');
+    partsChip.className = partsCount > 0 ? 'chip-set' : 'chip-gap';
+    partsChip.textContent = partsCount > 0 ? `${partsCount} part${partsCount > 1 ? 's' : ''}` : 'empty';
+    addRow('Parts', partsChip);
+
+    const rubricChip = document.createElement('span');
+    rubricChip.className = rubricCount > 0 ? 'chip-set' : 'chip-gap';
+    rubricChip.textContent = rubricCount > 0 ? `${rubricCount} row${rubricCount > 1 ? 's' : ''}` : 'empty';
+    addRow('Rubric rows', rubricChip);
+
+    // Due dates
+    addRow(`Due (${activeTri})`,     statusChip(hasDue ? triDates.due : undefined, !hasDue));
+    addRow(`Due Part A (${activeTri})`, statusChip(hasDuePartA ? triDates.duePartA : undefined, !hasDuePartA));
+
+    // Links
+    for (const [lk, lv] of Object.entries(links)) {
+      addRow(`links.${lk}`, statusChip(lv));
+    }
+
+    container.appendChild(tbl);
+  }
+}
+
+// ── Render all panels ──────────────────────────────────────────────────────────
+function renderAll() {
+  const activeTri = Object.keys(config.trimesterConfig || {}).at(-1) || '';
+  renderNav();
+  renderUnitHeader(activeTri);
+
+  const panels = document.getElementById('lx-panels');
+  panels.innerHTML = '';
+  renderPanel1(panels, activeTri);
+  renderPanel2(panels);
+  renderPanel3(panels);
+  renderPanel4(panels, activeTri);
+  renderPanel5(panels, activeTri);
+}
+
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Bootstrap ─────────────────────────────────────────────────────────────────
+(async () => {
+  renderNav(); // show nav immediately with correct active unit
+  try {
+    const res = await fetch(`/config/${activeUnit}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    config = await res.json();
+    renderAll();
+  } catch (e) {
+    document.getElementById('lx-panels').innerHTML =
+      `<p style="color:#c0392b;font-weight:bold;padding:20px;">` +
+      `Could not load config for ${escHtml(activeUnit)} — is the server running on port 3001?<br>` +
+      `<small style="font-weight:normal;">${escHtml(e.message)}</small></p>`;
+  }
+})();
+</script>
+</body>
+</html>
