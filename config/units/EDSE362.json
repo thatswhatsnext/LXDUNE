@@ -96,6 +96,11 @@
         "forum": null,
         "video": null
       },
+      "assessmentFiles": {
+        "rubricUrl": null,
+        "taskUrl": null,
+        "templateUrl": null
+      },
       "parts": [
         {
           "id": "A",
@@ -318,6 +323,11 @@
         "submit": null,
         "forum": null,
         "video": null
+      },
+      "assessmentFiles": {
+        "rubricUrl": null,
+        "taskUrl": null,
+        "templateUrl": null
       },
       "parts": [
         {
