@@ -160,8 +160,9 @@ async function handler(req, res) {
   // GET /gaps[?unit=...] — legacy alias + query-string unit selector
   if (req.method === 'GET' && pathname === '/gaps') {
     try {
+      const html = await readFile(GAPS_FILE, 'utf8');
       res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.end(await readFile(GAPS_FILE, 'utf8'));
+      res.end(html);
     } catch (err) {
       res.writeHead(err.code === 'ENOENT' ? 404 : 500);
       res.end('gaps.html not found');
@@ -172,8 +173,9 @@ async function handler(req, res) {
   // GET /config — legacy EDSE362 alias
   if (req.method === 'GET' && pathname === '/config') {
     try {
+      const json = await readFile(configPath('EDSE362'), 'utf8');
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(await readFile(configPath('EDSE362'), 'utf8'));
+      res.end(json);
     } catch {
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: 'could not read config' }));
@@ -207,8 +209,9 @@ async function handler(req, res) {
     }
     if (req.method === 'GET') {
       try {
+        const json = await readFile(configPath(unit), 'utf8');
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(await readFile(configPath(unit), 'utf8'));
+        res.end(json);
       } catch {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ error: 'could not read config' }));
