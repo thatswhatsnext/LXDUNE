@@ -8,7 +8,7 @@
     "T1",
     "T2"
   ],
-  "assessmentPortalUrl": "https://mylearn.une.edu.au/course/section.php?id=477943",
+  "assessmentPortalUrl": "https://mylearn.une.edu.au/course/section.php?id=493801",
   "videoInterval": 1,
   "week0Message": "Have a look around at the first few tiles below and finish up the Week 0 section — we'll get started next week!",
   "theme": {
@@ -103,10 +103,12 @@
       "rationale": "The term 'model' appears in every science discipline syllabus document. Using models to explain phenomena is a fundamental principle of science.",
       "aim": "Plan and teach a unit culminating in students constructing a physical model to demonstrate their understanding. Demonstrate application of discipline content, syllabus knowledge, and pedagogical principles for a given cohort.",
       "links": {
-        "rubric": null,
-        "taskFiles": null,
-        "submit": null,
-        "forum": null,
+        "instructions": "https://mylearn.une.edu.au/mod/folder/view.php?id=3561989",
+        "resourceTable": null,
+        "rubric": "https://mylearn.une.edu.au/pluginfile.php/5385794/mod_folder/content/0/AT1%20EDSE358%20Rubric%202026.2.pdf?forcedownload=1",
+        "template": "https://mylearn.une.edu.au/pluginfile.php/5385794/mod_folder/content/0/AT1%20EDSE358%20Template%202026.2.docx?forcedownload=1",
+        "submit": "https://mylearn.une.edu.au/mod/assign/view.php?id=3538562",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3538560",
         "video": null
       },
       "parts": [
@@ -545,10 +547,12 @@
       "rationale": "Teachers must be able to critique, adapt and redesign assessment tasks to ensure they are valid, fair, syllabus-aligned, and responsive to the specific cohort they teach.",
       "aim": "Demonstrate knowledge of sound assessment principles including internal alignment, syllabus alignment, and differentiation to support diverse learners while maintaining intellectual rigour.",
       "links": {
-        "rubric": null,
-        "taskFiles": null,
-        "submit": null,
-        "forum": null,
+        "instructions": "https://mylearn.une.edu.au/pluginfile.php/5356188/mod_assign/introattachment/0/AT2%20EDSE358%20Instructions%202026.1.pdf?forcedownload=1",
+        "rubric": "https://mylearn.une.edu.au/pluginfile.php/5356188/mod_assign/introattachment/0/Assessment%20Task%202%20EDSE358%20Rubric.pdf?forcedownload=1",
+        "resourceTable": "https://mylearn.une.edu.au/course/section.php?id=493801#module-3538568",
+        "template": null,
+        "submit": "https://mylearn.une.edu.au/mod/assign/view.php?id=3538566",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3538569",
         "video": null
       },
       "parts": [
@@ -848,17 +852,17 @@
   "keyLinks": [
     {
       "label": "Unit Outline",
-      "url": "https://mylearn.une.edu.au/course/section.php?id=477942",
+      "url": "https://mylearn.une.edu.au/mod/book/view.php?id=3538524",
       "external": false
     },
     {
       "label": "Learning Materials",
-      "url": "https://mylearn.une.edu.au/course/section.php?id=477942#module-3381663",
+      "url": "https://mylearn.une.edu.au/course/section.php?id=493800#module-3538528",
       "external": false
     },
     {
       "label": "Assessment Portal",
-      "url": "https://mylearn.une.edu.au/course/section.php?id=477943",
+      "url": "https://mylearn.une.edu.au/course/section.php?id=493801",
       "external": false
     }
   ],
@@ -926,9 +930,9 @@
     },
     "T2-2026": {
       "zoom": {
-        "meetingId": "848 7032 4762",
-        "password": "288268",
-        "url": "https://une-au.zoom.us/j/84870324762?pwd=DvXqocLtuN5bcca538usdojL5ZzV3e.1"
+        "meetingId": "83215012138",
+        "password": "569842",
+        "url": "https://une-au.zoom.us/j/83215012138?pwd=X6b9QQJyB5R2Q3TLxCfGwE7UY9ZWyD.1"
       },
       "assessmentFiles": {}
     }
@@ -957,13 +961,13 @@
         "Come ready to share one thing that surprised you about the syllabus structure and one question you would like to discuss."
       ],
       "links": {
-        "lecture": null,
+        "lecture": "https://mylearn.une.edu.au/course/section.php?id=493802#module-3538581",
         "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3538583",
         "zoom": null,
-        "recording": "https://echo360.net.au/public/media/6228228f-fac3-415e-a8cf-32a18f1c4f7c?autoplay=false&amp;automute=false",
+        "recording": "<iframe allowfullscreen=\"\" frameborder=\"0\" src=\"https://echo360.net.au/public/media/6228228f-fac3-415e-a8cf-32a18f1c4f7c?autoplay=false&amp;automute=false\" style=\"position:absolute; top:0; left:0; width:100%; height:100%;\">                     </iframe>",
         "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3538586",
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538579",
-        "liveHub": null
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3563074"
       },
       "video": "twvP-4YOPWw",
       "loMapping": [
@@ -986,13 +990,13 @@
         "Consider: how does your teaching area's syllabus reflect or constrain a NOS-informed approach to teaching?"
       ],
       "links": {
-        "lecture": null,
-        "slides": null,
+        "lecture": "https://mylearn.une.edu.au/course/section.php?id=493803#module-3538590",
+        "slides": "https://mylearn.une.edu.au/pluginfile.php/5356217/mod_resource/content/1/Module%202_%20The%20Nature%20of%20Science%20Teaching%20_%20Lecture.pdf",
         "zoom": null,
-        "recording": null,
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen=\"\" frameborder=\"0\" src=\"https://echo360.net.au/media/b97b23ea-c2b9-48ce-b7d1-cd1b56748935/public?autoplay=false&amp;automute=false\"></iframe>",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3538598",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538594",
+        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=493803#module-3562851"
       },
       "forumPrompts": [
         "What does it mean to teach in the 21st century? Cite evidence to support your response.",
@@ -1030,13 +1034,13 @@
         "Post to the Forum (3A)"
       ],
       "links": {
-        "lecture": "https://mylearn.une.edu.au/course/section.php?id=493804#module-3538610",
+        "lecture": "https://mylearn.une.edu.au/course/view.php?id=32818&expandsection=5#module-3538607",
         "slides": "https://mylearn.une.edu.au/mod/folder/view.php?id=3538611",
         "zoom": null,
         "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381717",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3538609",
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538608",
-        "liveHub": "https://mylearn.une.edu.au/course/view.php?id=32818&expandsection=5#module-3562849"
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3563045"
       },
       "forumPrompts": [
         "Choose either the 5Es or IGASAR model and apply it to plan a brief learning sequence (three to five steps) for a specific topic in your Stage 6 science discipline. Briefly describe what students would do at each phase. Then identify: which phase of the model creates the greatest challenge for a beginning teacher, and why? Post your response to the Module 3A forum.",
@@ -1082,12 +1086,12 @@
         "Post to the Forum (3B)"
       ],
       "links": {
-        "lecture": "https://echo360.net.au/media/caea3e78-bbfb-4923-b8fc-a2ae90b1a7cd/public?autoplay=false&automute=false",
-        "slides": "https://mylearn.une.edu.au/pluginfile.php/5330397/mod_resource/content/1/Module%203B%20Lecture%20Slides.pdf",
+        "lecture": "https://mylearn.une.edu.au/course/view.php?id=32818&expandsection=5#module-3538612",
+        "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3538617",
         "zoom": null,
         "recording": "<iframe allowfullscreen=\"\" frameborder=\"0\" src=\"https://echo360.net.au/media/caea3e78-bbfb-4923-b8fc-a2ae90b1a7cd/public?autoplay=false&amp;automute=false\">                     </iframe>,                     <iframe allowfullscreen=\"\" frameborder=\"0\" src=\"https://echo360.net.au/media/caea3e78-bbfb-4923-b8fc-a2ae90b1a7cd/public?autoplay=false&amp;automute=false\">                     </iframe>",
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381720",
-        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3381719",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3538614",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538613",
         "liveHub": "https://mylearn.une.edu.au/course/section.php?id=477946#module-3517882"
       },
       "resources": [
@@ -1149,13 +1153,13 @@
         "Post to the Forum"
       ],
       "links": {
-        "lecture": "https://echo360.net.au/media/50aec677-a460-45e7-9ba4-1ee73feebb74/public?autoplay=false&automute=false",
-        "slides": null,
+        "lecture": "https://mylearn.une.edu.au/course/section.php?id=493805#module-3538621",
+        "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3538622",
         "zoom": null,
-        "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381725",
-        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3381723",
-        "liveHub": "https://mylearn.une.edu.au/course/view.php?id=31730&expandsection=6#module-3520942"
+        "recording": "<iframe src=\"https://echo360.net.au/media/50aec677-a460-45e7-9ba4-1ee73feebb74/public?autoplay=false&amp;automute=false\" allowfullscreen=\"\"></iframe>",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3538626",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538624",
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3563041"
       },
       "resources": [
         {
@@ -1208,13 +1212,13 @@
         "Post to the Forum"
       ],
       "links": {
-        "lecture": null,
-        "slides": null,
+        "lecture": "https://mylearn.une.edu.au/course/section.php?id=493805#module-3538621",
+        "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3538622",
         "zoom": null,
-        "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381728",
-        "materials": "https://mylearn.une.edu.au/course/section.php?id=477947#module-3381726",
-        "liveHub": null
+        "recording": "<iframe src=\"https://echo360.net.au/media/557ec6c4-20aa-445f-943b-c2c02478de36/public?autoplay=false&amp;automute=false\" allowfullscreen=\"\"></iframe>",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3538629",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538628",
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3563039"
       },
       "additionalLectures": [
         {
@@ -1268,13 +1272,13 @@
         "Post to the Forum"
       ],
       "links": {
-        "lecture": null,
-        "slides": null,
+        "lecture": "https://mylearn.une.edu.au/course/section.php?id=493805#module-3538621",
+        "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3538622",
         "zoom": null,
-        "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381731",
-        "materials": "https://mylearn.une.edu.au/course/section.php?id=477947#module-3381729",
-        "liveHub": null
+        "recording": "<iframe src=\"https://echo360.net.au/media/bc8d5c06-edf4-47ea-8490-caecd3566f06/public?autoplay=false&amp;automute=false\" allowfullscreen=\"\"></iframe>",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3538633",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538631",
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3563038"
       },
       "additionalLectures": [
         {
@@ -1445,13 +1449,13 @@
         "Post to the Module 4D forum"
       ],
       "links": {
-        "lecture": "https://echo360.net.au/media/fb30dee2-fc9e-40dd-9a5a-00b268b4984b/public?autoplay=false&automute=false",
-        "slides": null,
+        "lecture": "https:/https://mylearn.une.edu.au/course/section.php?id=493805#module-3538621/echo360.net.au/media/fb30dee2-fc9e-40dd-9a5a-00b268b4984b/public?autoplay=false&automute=false",
+        "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3538622",
         "zoom": null,
-        "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381734",
-        "materials": "https://mylearn.une.edu.au/course/section.php?id=477947#module-3381732",
-        "liveHub": null
+        "recording": "<iframe src=\"https://echo360.net.au/media/fb30dee2-fc9e-40dd-9a5a-00b268b4984b/public?autoplay=false&amp;automute=false\" allowfullscreen=\"\"></iframe>",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3538636",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538635",
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3563037"
       },
       "forumPrompts": [
         "What makes a rubric useful for both teachers and students?",
