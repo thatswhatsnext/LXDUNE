@@ -961,8 +961,8 @@
         "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3538583",
         "zoom": null,
         "recording": "https://echo360.net.au/public/media/6228228f-fac3-415e-a8cf-32a18f1c4f7c?autoplay=false&amp;automute=false",
-        "forum": null,
-        "materials": null,
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3538586",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538579",
         "liveHub": null
       },
       "video": "twvP-4YOPWw",
@@ -994,6 +994,11 @@
         "materials": null,
         "liveHub": null
       },
+      "forumPrompts": [
+        "What does it mean to teach in the 21st century? Cite evidence to support your response.",
+        "What does the science teacher know? Cite evidence to support your response.",
+        "What does the science teacher do? Cite evidence to support your response."
+      ],
       "video": "mHYoYi15J1Y",
       "loMapping": [
         "LO1",
@@ -1025,13 +1030,13 @@
         "Post to the Forum (3A)"
       ],
       "links": {
-        "lecture": null,
-        "slides": null,
+        "lecture": "https://mylearn.une.edu.au/course/section.php?id=493804#module-3538610",
+        "slides": "https://mylearn.une.edu.au/mod/folder/view.php?id=3538611",
         "zoom": null,
         "recording": null,
         "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381717",
-        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3381716",
-        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=477946#module-3516724"
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538608",
+        "liveHub": "https://mylearn.une.edu.au/course/view.php?id=32818&expandsection=5#module-3562849"
       },
       "forumPrompts": [
         "Choose either the 5Es or IGASAR model and apply it to plan a brief learning sequence (three to five steps) for a specific topic in your Stage 6 science discipline. Briefly describe what students would do at each phase. Then identify: which phase of the model creates the greatest challenge for a beginning teacher, and why? Post your response to the Module 3A forum.",
@@ -1078,9 +1083,9 @@
       ],
       "links": {
         "lecture": "https://echo360.net.au/media/caea3e78-bbfb-4923-b8fc-a2ae90b1a7cd/public?autoplay=false&automute=false",
-        "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3517881",
+        "slides": "https://mylearn.une.edu.au/pluginfile.php/5330397/mod_resource/content/1/Module%203B%20Lecture%20Slides.pdf",
         "zoom": null,
-        "recording": null,
+        "recording": "<iframe allowfullscreen=\"\" frameborder=\"0\" src=\"https://echo360.net.au/media/caea3e78-bbfb-4923-b8fc-a2ae90b1a7cd/public?autoplay=false&amp;automute=false\">                     </iframe>,                     <iframe allowfullscreen=\"\" frameborder=\"0\" src=\"https://echo360.net.au/media/caea3e78-bbfb-4923-b8fc-a2ae90b1a7cd/public?autoplay=false&amp;automute=false\">                     </iframe>",
         "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3381720",
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3381719",
         "liveHub": "https://mylearn.une.edu.au/course/section.php?id=477946#module-3517882"
