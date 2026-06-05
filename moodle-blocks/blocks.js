@@ -936,7 +936,7 @@ function buildTaskSections(task, loMap, triKey, bespokeCache) {
   const af = task.assessmentFiles ?? {};
   const btnDefs = [
     { label: '📝 Marking rubric',    cls: 'primary', url: lnk.rubric       ?? af.rubricUrl },
-    { label: 'Instructions',         cls: 'primary', url: lnk.instructions                },
+    { label: 'Task files',           cls: 'primary', url: lnk.instructions                },
     { label: 'Assessment resources', cls: 'primary', url: lnk.resourceTable               },
     { label: 'Template',             cls: 'primary', url: lnk.template                    },
     { label: '✅ Submit',             cls: 'submit',  url: lnk.submit                      },
@@ -1418,9 +1418,10 @@ function buildHybridTask(task, loMap, triKey, checklistHtml, unitCfg) {
     : '';
 
   const btnDefs = [
-    { label: '📝 Marking rubric',    type: 'primary', url: lnk.rubric    },
-    { label: '⬇ Task files',         type: 'primary', url: lnk.taskFiles },
-    { label: '📄 Download template', type: 'primary', url: lnk.template  },
+    { label: '📝 Marking rubric',    type: 'primary', url: lnk.rubric        },
+    { label: 'Task files',           type: 'primary', url: lnk.instructions  },
+    { label: 'Assessment resources', type: 'primary', url: lnk.resourceTable },
+    { label: '📄 Download template', type: 'primary', url: lnk.template      },
     { label: '✅ Submit',             type: 'submit',  url: lnk.submit    },
     { label: '💬 Q&A forum',         type: 'neutral', url: lnk.forum     },
     { label: '🎥 Unpacking video',    type: 'neutral', url: lnk.video     },
