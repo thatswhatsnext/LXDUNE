@@ -958,9 +958,9 @@
       ],
       "links": {
         "lecture": null,
-        "slides": null,
+        "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3538583",
         "zoom": null,
-        "recording": null,
+        "recording": "https://echo360.net.au/public/media/6228228f-fac3-415e-a8cf-32a18f1c4f7c?autoplay=false&amp;automute=false",
         "forum": null,
         "materials": null,
         "liveHub": null
@@ -1037,7 +1037,7 @@
         "Choose either the 5Es or IGASAR model and apply it to plan a brief learning sequence (three to five steps) for a specific topic in your Stage 6 science discipline. Briefly describe what students would do at each phase. Then identify: which phase of the model creates the greatest challenge for a beginning teacher, and why? Post your response to the Module 3A forum.",
         "Looking ahead to Assessment Task 1 Part A: you will need to justify your choice of assessment as learning task using constructivist principles. Identify one aspect of the constructivist approach you studied this week that you remain uncertain about. How might that uncertainty affect the quality of your reasoning in Part A? What would help you resolve it before the submission deadline?"
       ],
-      "synthesisTemplate": "Thanks everyone for your Module 3A forum contributions. Across the cohort, what stood out: [STRENGTH OBSERVED — e.g. clear identification of which phase of the constructivist model creates the most planning challenge, with specific reasoning about why beginning teachers find that phase difficult]. One area to strengthen before Assessment Task 1: [COMMON ISSUE — e.g. several posts described constructivism as 'student-centred learning' without explaining what that requires of the teacher's planning decisions — the AT1 Part C1 rubric rewards precision about what constructivist principles mean for the choices you make]. As you move into Module 3B this week, keep asking: what does a constructivist approach require me to design differently? More soon.",
+      "synthesisTemplate": null,
       "video": "dZiRQE7dgFA",
       "loMapping": [
         "LO1",
@@ -1227,7 +1227,7 @@
         "Find an assessment task used in a NSW Stage 6 science classroom. Analyse its alignment: do the outcomes, instructions, evidence students produce, and marking criteria all point to the same thing? Identify one strength and one gap. Then identify or suggest a feedback mechanism — how would a teacher respond to student work on this task in a way that moves learning forward?",
         "Looking at the sample unit as a whole, what is its evaluation strategy? How do the formative and summative tasks together tell the teacher whether students have achieved the targeted outcomes? Is this strategy coherent and sufficient?"
       ],
-      "synthesisTemplate": "Thanks everyone for your contributions to the Module 4B forum this week. A few things stood out across the cohort: [STRENGTH OBSERVED — e.g. strong identification of alignment between outcomes and task instructions]. One area worth revisiting before Assessment Task 1: [COMMON ISSUE — e.g. many tasks had marking criteria that rewarded completion rather than quality of reasoning]. Keep this in mind as you move into Module 4C — the same alignment thinking applies when you are designing differentiated assessment. More soon.",
+      "synthesisTemplate": null,
       "workedExample": "STRONG ALIGNMENT — Stage 6 Chemistry, Module 5: Equilibrium and Acid Reactions\n\nOutcome: CH12-6 — explains the relationship between the rate of a chemical reaction and the frequency of effective collisions.\n\nTask instruction: Design and conduct an investigation to determine how temperature affects the rate of the reaction between sodium thiosulfate and hydrochloric acid. Record your data, identify a trend, and explain it using collision theory.\n\nEvidence produced: A data table, a graph showing rate vs temperature, and a written explanation using collision theory.\n\nMarking criterion: Accurately explains the relationship between temperature, particle energy, collision frequency, and reaction rate using collected data.\n\nWhy this is strong: The outcome, instruction, evidence, and criterion all require the same thinking — applying collision theory to data. A student who understands the outcome knows exactly what to do and why.\n\nPARTIAL ALIGNMENT — Stage 6 Biology, Module 5: Heredity\n\nOutcome: BIO12-12 — analyses the relationship between inheritance patterns and molecular genetics.\n\nTask instruction: Research Mendel's experiments and write a 500-word report on his findings.\n\nEvidence produced: A descriptive written report.\n\nMarking criterion: Report is 400–600 words, uses correct terminology, and includes a bibliography.\n\nWhy this is partial: The outcome requires analysis of the relationship between inheritance patterns and molecular genetics. The task produces a descriptive report about historical experiments. The marking criterion rewards length and terminology — not analytical thinking. A student could score full marks without demonstrating the outcome.",
       "video": "JbvXUQJa9_g",
       "loMapping": [
@@ -1403,7 +1403,7 @@
         "Select one differentiation strategy from the Module 4C materials — a UDL principle, an access arrangement, or a specific adjustment approach — and explain how you would embed it in one week of your AT1 unit program. Be specific: name the cohort characteristic you are responding to, describe what you would adjust in your program, and explain how the adjustment maintains access to the syllabus outcome without changing what is being assessed. Post your response to the Module 4C forum.",
         "Open your AT1 unit program draft (or sketch a draft if you have not yet started). Find one place where differentiation is explicitly stated and one place where it is present but implied — described in general terms rather than specified for your cohort. For the implied differentiation: what specific language or detail would you need to add to make it explicit enough to satisfy the Part B marking rubric? Post your findings to the forum."
       ],
-      "synthesisTemplate": "Thanks everyone for your Module 4C forum contributions. What stood out across the cohort: [STRENGTH OBSERVED — e.g. specific naming of cohort characteristics and clear explanation of how the chosen adjustment maintains access to the outcome without changing what is assessed]. One pattern to address before AT1 submission: [COMMON ISSUE — e.g. several posts named a differentiation strategy without specifying which characteristic of the named cohort they were responding to — the Part B rubric rewards this specificity directly]. As you move into Module 4D and think about feedback planning, remember that inclusive practice extends to feedback: how you differentiate your feedback language for Aboriginal students and EAL/D learners is now an assessed component of AT1 D1. More soon.",
+      "synthesisTemplate": null,
       "video": "ZMXgRNeHBEw",
       "loMapping": [
         "LO2",
@@ -1453,7 +1453,7 @@
         "How can feedback be designed to promote improvement rather than just justify a mark?",
         "What challenges do you anticipate in providing effective feedback in senior science?"
       ],
-      "synthesisTemplate": "Thanks everyone for your Module 4D forum contributions — the feedback writing activity this week was the most direct rehearsal for AT1 Part D1. What the cohort did well: [STRENGTH OBSERVED — e.g. feedback that identified specific strengths linked to marking criteria and gave clear, actionable improvement guidance rather than general encouragement]. One pattern to address before AT1 D1 submission: [COMMON ISSUE — e.g. several responses described what the student had done rather than telling the student clearly where to go next — effective feedback is forward-looking and gives the student a specific action, not a summary of their work]. In Part D1, you are planning a feedback strategy for your unit, not writing feedback — so specify timing, form, and how your feedback language will be differentiated for your cohort. Submission closes 5 April. More soon.",
+      "synthesisTemplate": null,
       "extension": {
         "label": "Approaches to Assessment",
         "page": "https://mylearn.une.edu.au/mod/page/view.php?id=3510856",
