@@ -836,7 +836,7 @@
           }
         },
         "T2-2026": {
-          "due": null,
+          "due": "2026-09-06",
           "flexiblePortal": {
             "label": "Flexible submission portal",
             "url": null,
