@@ -935,12 +935,13 @@ function buildTaskSections(task, loMap, triKey, bespokeCache) {
 
   const af = task.assessmentFiles ?? {};
   const btnDefs = [
-    { label: '📝 Marking rubric',    cls: 'primary', url: lnk.rubric    ?? af.rubricUrl   },
-    { label: '⬇ Task files',         cls: 'primary', url: lnk.taskFiles ?? af.taskUrl     },
-    { label: '📄 Download template', cls: 'primary', url: lnk.template  ?? af.templateUrl },
-    { label: '✅ Submit',             cls: 'submit',  url: lnk.submit    },
-    { label: '💬 Q&A forum',         cls: '',        url: lnk.forum     },
-    { label: '🎥 Unpacking video',    cls: '',        url: lnk.video     },
+    { label: '📝 Marking rubric',    cls: 'primary', url: lnk.rubric       ?? af.rubricUrl },
+    { label: 'Instructions',         cls: 'primary', url: lnk.instructions                },
+    { label: 'Assessment resources', cls: 'primary', url: lnk.resourceTable               },
+    { label: 'Template',             cls: 'primary', url: lnk.template                    },
+    { label: '✅ Submit',             cls: 'submit',  url: lnk.submit                      },
+    { label: '💬 Q&A forum',         cls: '',        url: lnk.forum                       },
+    { label: '🎥 Unpacking video',    cls: '',        url: lnk.video                       },
   ];
   const btnsHtml = btnDefs.map(b =>
     b.url
