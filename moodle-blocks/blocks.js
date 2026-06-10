@@ -83,7 +83,14 @@ const WORKFLOW_CSS = `
 .lx-pill-link{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:var(--lx-primary,#1f6fb2);padding:6px 10px;border-radius:999px;font-weight:800;font-size:.88em;text-decoration:none;line-height:1.2}
 .lx-pill-link:hover{text-decoration:underline}
 .lx-pill-link.sec{background:#f4f6f8;color:var(--lx-accent,#25797F)}
-.lx-pill-link.warn{background:#fff8e6;color:#6F7B84}`;
+.lx-pill-link.warn{background:#fff8e6;color:#6F7B84}
+.lx-wf-extra{margin-top:0.5rem}
+.lx-wf-extra-label{display:block;font-size:0.8rem;color:var(--lx-accent,#25797F);margin-bottom:0.4rem;font-weight:600}
+.lx-pill-row{display:flex;flex-wrap:wrap;gap:0.4rem}
+.lx-pill{display:inline-block;padding:0.25rem 0.75rem;border-radius:999px;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:var(--lx-primary,#1f6fb2);font-size:0.8rem;font-weight:500;text-decoration:none}
+.lx-pill:hover{opacity:0.85}
+.lx-pill.lx-pill-secondary{background:#f0f0f0;border-color:#ccc;color:#444}
+.lx-pill.lx-pill-fun{background:#fff3cd;border-color:#ffc107;color:#856404}`;
 
 const LECTURE_CSS = `
 .lx-lec-wrap{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33}
@@ -513,8 +520,30 @@ export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek, fo
 
   injectStyles('lx-workflow-styles', WORKFLOW_CSS);
 
+  const materialLinks = week.materialLinks ?? [];
+  let materialsHtml;
+  if (materialLinks.length > 0) {
+    const pillsHtml = materialLinks.map(item => {
+      const typeClass = item.type === 'secondary' ? ' lx-pill-secondary'
+                      : item.type === 'fun'       ? ' lx-pill-fun'
+                      : '';
+      return `<a class="lx-pill${typeClass}" href="${esc(item.url)}" target="_blank"
+                 rel="noopener">${esc(item.label)}</a>`;
+    }).join('\n');
+    materialsHtml = `
+      <div class="lx-wf-extra">
+        <span class="lx-wf-extra-label">Use these in order:</span>
+        <div class="lx-pill-row">${pillsHtml}</div>
+      </div>`;
+  } else {
+    const mat = week.links?.materials;
+    materialsHtml = mat
+      ? `<a class="lx-btn" href="${esc(mat)}" target="_blank" rel="noopener">Read materials</a>`
+      : `<span class="lx-chip">Coming soon</span>`;
+  }
+
   const steps = [
-    { cls: 'lx-study',   num: 1, title: `Read the ${label} Materials`,      detail: `Work through the ${esc(week.item)} content with a focus on this week's key ideas.`, url: week.links?.materials, pillLabel: `${label} materials`,    pillCls: 'sec' },
+    { cls: 'lx-study',   num: 1, title: `Read the ${label} Materials`,      detail: `Work through the ${esc(week.item)} content with a focus on this week's key ideas.`, materialsHtml },
     { cls: 'lx-lecture', num: 2, title: 'Watch the Lecture Recording',        detail: 'Use the lecture to deepen your understanding of this week\'s content.',               url: week.links?.lecture,   pillLabel: 'Lecture recording',    pillCls: '' },
     { cls: 'lx-live',    num: 3, title: 'Prepare for the Live Session',        detail: 'Review the activities and prepare notes to bring to the session.',                   url: week.links?.liveHub,   pillLabel: 'Live session hub',     pillCls: '' },
     { cls: 'lx-live',    num: 4, title: 'Join the Live Session',               detail: `${esc(unitCfg.liveDay)}s, ${esc(unitCfg.liveTime)}. Bring your reflections to discuss with peers.`, url: zoom?.url, pillLabel: 'Join Zoom', pillCls: '' },
@@ -522,6 +551,9 @@ export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek, fo
   ];
 
   const cards = steps.map(s => {
+    if (s.materialsHtml !== undefined) {
+      return `<div class="lx-card ${s.cls}"><div class="lx-step">Step ${s.num}</div><h4>${esc(s.title)}</h4><div class="lx-extra">${s.detail}${s.materialsHtml}</div></div>`;
+    }
     const pill = s.url
       ? `<a href="${esc(s.url)}" target="_blank" rel="noopener" class="lx-pill-link ${s.pillCls}">${esc(s.pillLabel)}</a>`
       : CHIP;

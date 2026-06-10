@@ -969,6 +969,7 @@
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538579",
         "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3563074"
       },
+      "materialLinks": [],
       "forumPrompts": [
         "Think about an assessment task you've seen, done, or been given on placement. Was it clearly anchored to syllabus outcomes? Or did it feel like it was assessing something else — effort, neatness, general science knowledge? One example, one honest observation. No essays needed."
       ],
@@ -1001,6 +1002,13 @@
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538594",
         "liveHub": "https://mylearn.une.edu.au/course/section.php?id=493803#module-3562851"
       },
+      "materialLinks": [
+        { "label": "Book",                             "url": "https://mylearn.une.edu.au/mod/book/view.php?id=3538594",   "type": "secondary" },
+        { "label": "Brain & Learning",                 "url": "https://mylearn.une.edu.au/mod/page/view.php?id=3538593" },
+        { "label": "Evidence-Based Practices",         "url": "https://mylearn.une.edu.au/mod/page/view.php?id=3538591" },
+        { "label": "More on Evidence-Based Practices", "url": "https://mylearn.une.edu.au/mod/folder/view.php?id=3538592" },
+        { "label": "Optional Quiz",                    "url": "https://mylearn.une.edu.au/mod/quiz/view.php?id=3538597",  "type": "fun" }
+      ],
       "forumPrompts": [
         "What does it mean to teach in the 21st century? Cite evidence to support your response.",
         "What does the science teacher know? Cite evidence to support your response.",
@@ -1045,6 +1053,7 @@
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538608",
         "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3563045"
       },
+      "materialLinks": [],
       "forumPrompts": [
         "Choose either the 5Es or IGASAR model and apply it to plan a brief learning sequence (three to five steps) for a specific topic in your Stage 6 science discipline. Briefly describe what students would do at each phase. Then identify: which phase of the model creates the greatest challenge for a beginning teacher, and why? Post your response to the Module 3A forum.",
         "Looking ahead to Assessment Task 1 Part A: you will need to justify your choice of assessment as learning task using constructivist principles. Identify one aspect of the constructivist approach you studied this week that you remain uncertain about. How might that uncertainty affect the quality of your reasoning in Part A? What would help you resolve it before the submission deadline?"
@@ -1097,6 +1106,7 @@
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538613",
         "liveHub": "https://mylearn.une.edu.au/course/section.php?id=477946#module-3517882"
       },
+      "materialLinks": [],
       "resources": [
         {
           "label": "Effective Pedagogical Practice",
@@ -1164,6 +1174,7 @@
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538624",
         "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3563041"
       },
+      "materialLinks": [],
       "resources": [
         {
           "label": "NSW Portfolio example (Investigating Science)",
@@ -1223,6 +1234,7 @@
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538628",
         "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3563039"
       },
+      "materialLinks": [],
       "additionalLectures": [
         {
           "label": "Module 4B Assessment Design",
@@ -1283,6 +1295,7 @@
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538631",
         "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3563038"
       },
+      "materialLinks": [],
       "additionalLectures": [
         {
           "label": "NSW DoE Website resource guide",
@@ -1460,6 +1473,7 @@
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538635",
         "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3563037"
       },
+      "materialLinks": [],
       "forumPrompts": [
         "What makes a rubric useful for both teachers and students?",
         "How can feedback be designed to promote improvement rather than just justify a mark?",
