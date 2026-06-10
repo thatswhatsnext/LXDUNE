@@ -201,6 +201,48 @@
     .tab-btn:hover { color: #7ab8d8; }
     .tab-btn.active { color: #4fa9b5; border-bottom-color: #4fa9b5; }
 
+    /* ── Data inspector ──────────────────────────────────────────────────────── */
+    .inspector-section {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    }
+    .inspector-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: #1a2530;
+      border: 1px solid #243345;
+      padding: 8px 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .inspector-hdr:hover { background: #1e2d3d; }
+    .inspector-hdr-left { display: flex; align-items: baseline; gap: 10px; }
+    .inspector-label { font-family: 'Courier New', monospace; font-size: .8em; font-weight: 800; color: #4fa9b5; }
+    .inspector-sublabel { font-family: 'Courier New', monospace; font-size: .72em; color: #4a7090; }
+    .inspector-toggle { font-size: .75em; color: #4a7090; transition: transform .2s; }
+    .inspector-toggle.open { transform: rotate(180deg); }
+    .inspector-body {
+      background: #111c25;
+      border: 1px solid #243345;
+      border-top: none;
+      padding: 14px 18px;
+      display: none;
+    }
+    .inspector-body.open { display: block; }
+    .inspector-json {
+      font-family: 'Courier New', monospace;
+      font-size: .8em;
+      color: #a0d4b8;
+      white-space: pre-wrap;
+      word-break: break-all;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .inspector-empty { color: #4a7090; font-size: .82em; font-style: italic; }
+
     /* ── Assessment tab ───────────────────────────────────────────────────────── */
     .assess-page {
       max-width: 1020px;
@@ -285,6 +327,19 @@
       <span class="ctr-id">#lxdune-current-week</span>
     </div>
     <div class="block-output" id="lxdune-current-week"></div>
+  </div>
+
+  <div class="inspector-section" id="cw-inspector-section">
+    <div class="inspector-hdr" id="cw-inspector-toggle">
+      <div class="inspector-hdr-left">
+        <span class="inspector-label">renderCurrentWeek — resolved data</span>
+        <span class="inspector-sublabel">week object passed to render</span>
+      </div>
+      <span class="inspector-toggle" id="cw-inspector-chevron">▼</span>
+    </div>
+    <div class="inspector-body" id="cw-inspector-body">
+      <pre class="inspector-json" id="cw-inspector-json"><span class="inspector-empty">Render first to see data.</span></pre>
+    </div>
   </div>
 
   <div class="block-section">
@@ -694,6 +749,7 @@ async function renderAll() {
   const effectiveWeek = calcEffectiveWeek(forYear, forTri, weekVal, dateVal);
   syncDateOverrideState();
   renderStatus(forUnit, forTri, forYear, weekVal, dateVal, effectiveWeek);
+  if (effectiveWeek !== null) updateCwInspector(effectiveWeek);
   setLoading();
 
   // Build params object — pass exactly what the live shells would pass,
@@ -729,6 +785,26 @@ async function renderAll() {
 
   ['lxdune-workflow', 'lxdune-lecture', 'lxdune-live-hub', 'lxdune-resource-directory', 'lxdune-orientation-note', 'lxdune-forum-prompts', 'lxdune-worked-example', 'lxdune-current-week'].forEach(markEmptyIfBlank);
 }
+
+function updateCwInspector(weekNum) {
+  const pre = document.getElementById('cw-inspector-json');
+  if (!pre) return;
+  const week = unitConfig?.weeks?.[String(weekNum)] ?? null;
+  if (week === null) {
+    pre.innerHTML = `<span class="inspector-empty">No week object for week ${weekNum} in unit config.</span>`;
+    return;
+  }
+  const data = { weekNum, week };
+  pre.textContent = JSON.stringify(data, null, 2);
+}
+
+// Toggle open/close
+document.getElementById('cw-inspector-toggle').addEventListener('click', () => {
+  const body    = document.getElementById('cw-inspector-body');
+  const chevron = document.getElementById('cw-inspector-chevron');
+  body.classList.toggle('open');
+  chevron.classList.toggle('open');
+});
 
 function scheduleRender(delay = 150) {
   clearTimeout(renderTimer);
