@@ -968,7 +968,7 @@ function buildTaskSections(task, loMap, triKey, bespokeCache) {
   const af = task.assessmentFiles ?? {};
   const btnDefs = [
     { label: '📝 Marking rubric',    cls: 'primary', url: lnk.rubric       ?? af.rubricUrl },
-    { label: 'Task files',           cls: 'primary', url: lnk.instructions                },
+    { label: 'Task',                  cls: 'primary', url: lnk.instructions                },
     { label: 'Assessment resources', cls: 'primary', url: lnk.resourceTable               },
     { label: 'Template',             cls: 'primary', url: lnk.template                    },
     { label: '✅ Submit',             cls: 'submit',  url: lnk.submit                      },
@@ -1451,7 +1451,7 @@ function buildHybridTask(task, loMap, triKey, checklistHtml, unitCfg) {
 
   const btnDefs = [
     { label: '📝 Marking rubric',    type: 'primary', url: lnk.rubric        },
-    { label: 'Task files',           type: 'primary', url: lnk.instructions  },
+    { label: 'Task',                  type: 'primary', url: lnk.instructions  },
     { label: 'Assessment resources', type: 'primary', url: lnk.resourceTable },
     { label: '📄 Download template', type: 'primary', url: lnk.template      },
     { label: '✅ Submit',             type: 'submit',  url: lnk.submit    },
@@ -2069,7 +2069,7 @@ export async function renderAssessmentStatus({ forUnit, forTri, forYear, contain
     const lnk     = task.links ?? {};
     const actions  = [];
     if (lnk.rubric)    actions.push(`<a class="lx-as-action primary" href="${esc(lnk.rubric)}" target="_blank" rel="noopener">Rubric</a>`);
-    if (lnk.taskFiles) actions.push(`<a class="lx-as-action primary" href="${esc(lnk.taskFiles)}" target="_blank" rel="noopener">Task files</a>`);
+    if (lnk.taskFiles) actions.push(`<a class="lx-as-action primary" href="${esc(lnk.taskFiles)}" target="_blank" rel="noopener">Task</a>`);
     if (lnk.submit)    actions.push(`<a class="lx-as-action submit" href="${esc(lnk.submit)}" target="_blank" rel="noopener">Submit</a>`);
 
     const fpPortalVisible = fp?.url && (
