@@ -999,7 +999,13 @@
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3538594",
         "liveHub": "https://mylearn.une.edu.au/course/section.php?id=493803#module-3562851"
       },
-      "materialLinks": [],
+      "materialLinks": [
+        { "label": "Book",                             "url": "https://mylearn.une.edu.au/mod/book/view.php?id=3538594",   "type": "secondary" },
+        { "label": "Brain & Learning",                 "url": "https://mylearn.une.edu.au/mod/page/view.php?id=3538593" },
+        { "label": "Evidence-Based Practices",         "url": "https://mylearn.une.edu.au/mod/page/view.php?id=3538591" },
+        { "label": "More on Evidence-Based Practices", "url": "https://mylearn.une.edu.au/mod/folder/view.php?id=3538592" },
+        { "label": "Optional Quiz",                    "url": "https://mylearn.une.edu.au/mod/quiz/view.php?id=3538597",  "type": "fun" }
+      ],
       "forumPrompts": [
         "What does it mean to teach in the 21st century? Cite evidence to support your response.",
         "What does the science teacher know? Cite evidence to support your response.",
