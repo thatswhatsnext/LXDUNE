@@ -71,8 +71,10 @@
       "rationale": null,
       "aim": null,
       "links": {
-        "rubric": null,
-        "taskFiles": null,
+        "instructions": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Task.pdf?forcedownload=1",
+        "taskFiles": "https://mylearn.une.edu.au/mod/folder/view.php?id=3458758",
+        "rubric": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Rubric.pdf?forcedownload=1",
+        "template": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Template.docx?forcedownload=1",
         "submit": null,
         "forum": null,
         "video": null
@@ -104,8 +106,10 @@
       "rationale": null,
       "aim": null,
       "links": {
-        "rubric": null,
-        "taskFiles": null,
+        "instructions": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_AT2_TASK.pdf?forcedownload=1",
+        "taskFiles": "https://mylearn.une.edu.au/mod/folder/view.php?id=3458764",
+        "rubric": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_AT2_RUBRIC.pdf?forcedownload=1",
+        "template": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_A2_template.docx?forcedownload=1",
         "submit": null,
         "forum": null,
         "video": null
