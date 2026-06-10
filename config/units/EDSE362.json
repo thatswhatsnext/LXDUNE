@@ -1,15 +1,15 @@
 {
   "code": "EDSE362",
-  "name": "Science Education 7–10: Developing Professional Skills and Understanding",
+  "name": "Science Education 11\u201312: Curriculum, Pedagogy and Inclusive Practice",
   "itemLabel": "Topic",
-  "liveDay": "Wednesday",
-  "liveTime": "5:30–6:30pm",
+  "liveDay": "Thursday",
+  "liveTime": "5:30\u20136:30pm",
   "trimesters": [
     "T2"
   ],
   "assessmentPortalUrl": null,
   "videoInterval": 2,
-  "week0Message": "Have a look around at the first few tiles below — we'll get started next week!",
+  "week0Message": "Have a look around at the first few tiles below \u2014 we'll get started next week!",
   "theme": {
     "primary": "#2E7D52",
     "accent": "#E3B089",
@@ -21,14 +21,14 @@
       "id": "LO1",
       "color": "#2E7D52",
       "title": "Science Content & Laboratory Practice",
-      "description": "Demonstrate knowledge and understanding of the concepts, substance and structure of the content and teaching strategies of the 7–10 science syllabus by incorporating practical activities into the laboratory so that students are actively engaged in learning.",
+      "description": "Demonstrate knowledge and understanding of the concepts, substance and structure of the content and teaching strategies of the 7\u201310 science syllabus by incorporating practical activities into the laboratory so that students are actively engaged in learning.",
       "gtsd": "2.1.1"
     },
     {
       "id": "LO2",
       "color": "#E3B089",
       "title": "Curriculum Sequencing & Pedagogy",
-      "description": "Organise content into an effective learning and teaching sequence within the context of the 7–10 syllabus in logical, sequential and structured ways utilising appropriate pedagogy to address student learning outcomes.",
+      "description": "Organise content into an effective learning and teaching sequence within the context of the 7\u201310 syllabus in logical, sequential and structured ways utilising appropriate pedagogy to address student learning outcomes.",
       "gtsd": "2.2.1, 2.3.1"
     },
     {
@@ -63,9 +63,9 @@
   "assessmentTasks": [
     {
       "id": "AT1",
-      "title": "Design and Pedagogy — Practical Science Lessons",
+      "title": "Design and Pedagogy \u2014 Practical Science Lessons",
       "weighting": 40,
-      "length": "1,500 words (equivalent) ±10%",
+      "length": "1,500 words (equivalent) \u00b110%",
       "learningOutcomes": [
         "LO1",
         "LO2",
@@ -88,19 +88,13 @@
         "7.4.1"
       ],
       "rationale": "Secondary school science teachers need to recognise opportunities for practicals as often as possible. The syllabus mandates a minimum amount of practical work, which can always be exceeded. It is essential that teachers can provide instruction and practical opportunities such that students build their own understanding, working with what they already know and can do.",
-      "aim": "Design a coherent practical science learning sequence of at least 8–10 practicals for a chosen Stage 4 or Stage 5 NSW Science Years 7–10 (2023) Knowledge and Understanding strand, and justify your pedagogical, syllabus, safety, and cohort decisions. The given cohort is a class of 30 students including 2 EAL/D students, 2 advanced, 3 behind in science understanding, and 5 Aboriginal and Torres Strait Islander students with strong local community connections.",
+      "aim": "Design a coherent practical science learning sequence of at least 8\u201310 practicals for a chosen Stage 4 or Stage 5 NSW Science Years 7\u201310 (2026) Knowledge and Understanding strand, and justify your pedagogical, syllabus, safety, and cohort decisions. The given cohort is a class of 30 students including 2 EAL/D students, 2 advanced, 3 behind in science understanding, and 5 Aboriginal and Torres Strait Islander students with strong local community connections.",
       "links": {
-        "rubric": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Rubric.pdf?forcedownload=1",
-        "taskFiles": "https://mylearn.une.edu.au/mod/folder/view.php?id=3458758",
-        "template": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Template.docx?forcedownload=1",
-        "submit": "https://mylearn.une.edu.au/mod/assign/view.php?id=3458759",
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458760",
-        "video": "https://mylearn.une.edu.au/mod/page/view.php?id=3458757"
-      },
-      "assessmentFiles": {
-        "rubricUrl": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Rubric.pdf?forcedownload=1",
-        "taskUrl": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Task.pdf?forcedownload=1",
-        "templateUrl": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Template.docx?forcedownload=1"
+        "rubric": null,
+        "taskFiles": null,
+        "submit": null,
+        "forum": null,
+        "video": null
       },
       "parts": [
         {
@@ -108,9 +102,9 @@
           "title": "Practical science learning sequence",
           "marks": 26,
           "wordCount": "~1,100 word-equivalent",
-          "description": "Construct a table of at least 8–10 practicals arranged in a logical learning progression for a chosen Stage 4 or Stage 5 Knowledge and Understanding strand.",
+          "description": "Construct a table of at least 8\u201310 practicals arranged in a logical learning progression for a chosen Stage 4 or Stage 5 Knowledge and Understanding strand.",
           "requirements": [
-            "Choose either Stage 4 (Year 7 & 8) or Stage 5 (Year 9 & 10) and any one Knowledge and Understanding strand from the NSW Science Years 7–10 syllabus (2023).",
+            "Choose either Stage 4 (Year 7 & 8) or Stage 5 (Year 9 & 10) and any one Knowledge and Understanding strand from the NSW Science Years 7\u201310 syllabus (2026).",
             "For each practical, include: chronological number; title; description (20 words maximum); NSW syllabus outcomes with specific outcome codes and content statements; prior knowledge and skills required; safety considerations for this practical and the given cohort; adjustments for the diverse learners in the class.",
             "The sequence must show a logical learning progression from foundational to more complex practicals."
           ],
@@ -150,7 +144,7 @@
           "description": "Reflect on your learning journey for this task and identify one specific professional learning source.",
           "requirements": [
             "Reflect on what was new to you and what you already knew well.",
-            "Identify one specific professional learning source — such as a NESA resource, a professional association (e.g. ASTA), an experienced teacher, or a community representative — that could deepen your science content knowledge or teaching in your chosen strand.",
+            "Identify one specific professional learning source \u2014 such as a NESA resource, a professional association (e.g. ASTA), an experienced teacher, or a community representative \u2014 that could deepen your science content knowledge or teaching in your chosen strand.",
             "Briefly justify your choice and identify any changes to how you approach your own professional learning."
           ],
           "bespoke": null,
@@ -163,88 +157,105 @@
       "rubric": [
         {
           "part": "A",
-          "criterion": "Syllabus outcomes, content, and skills — correct NSW Science outcome codes matched to what each practical actually involves; Working Scientifically outcomes, General Capabilities, and Cross Curriculum Priorities included where genuinely relevant",
-          "marks": 5,
-          "loLinks": ["LO1"],
+          "criterion": "Holistic assessment of the practical learning sequence \u2014 syllabus accuracy and depth, logical progression, constructivist pedagogy and prior knowledge, safety and inclusion for the given cohort",
+          "marks": 26,
+          "loLinks": [
+            "LO1",
+            "LO2",
+            "LO3",
+            "LO5"
+          ],
           "bands": {
-            "HD": { "range": "5", "descriptor": "Outcome codes are correct throughout. Every practical is matched to specific content statements. Working Scientifically outcomes, General Capabilities, and Cross Curriculum Priorities appear where they are genuinely relevant — not added to every row by default." },
-            "D":  { "range": "4", "descriptor": "Outcome codes are correct. Each practical is matched to relevant content statements. Working Scientifically outcomes are included for most practicals." },
-            "C":  { "range": "3", "descriptor": "Outcome codes are mostly correct with minor errors. Practicals are matched to content statements, though some matches are imprecise. Working Scientifically outcomes appear for some practicals." },
-            "P":  { "range": "2.5", "descriptor": "Some outcome codes are present but may be incorrect or not clearly matched to what the practical involves. Working Scientifically outcomes are absent or largely missing." },
-            "N":  { "range": "< 2.5", "descriptor": "Outcome codes are missing, incorrect, or do not relate to the practicals listed." }
-          }
-        },
-        {
-          "part": "A",
-          "criterion": "Sequence — the order of practicals; earlier practicals introduce the concepts or skills that later ones require; progression is defensible and evident from the design itself",
-          "marks": 7,
-          "loLinks": ["LO2"],
-          "bands": {
-            "HD": { "range": "7", "descriptor": "Your sequence shows a clear, expert progression — earlier practicals introduce foundations that later ones build on. The rationale for the order is evident from the design itself." },
-            "D":  { "range": "6", "descriptor": "Your sequence is logical and progressive. A student could work through it without encountering content they are not yet prepared for." },
-            "C":  { "range": "5", "descriptor": "Your practicals are in a generally sensible order. A small number could be reordered without significant loss, but the overall direction is correct." },
-            "P":  { "range": "4", "descriptor": "Your practicals are listed but the order does not consistently reflect how student understanding builds. A student could encounter a practical before they have the prior knowledge it requires." },
-            "N":  { "range": "3", "descriptor": "Your practicals appear in an arbitrary or unclear order with no evidence that the sequence reflects how students learn." }
-          }
-        },
-        {
-          "part": "A",
-          "criterion": "Pedagogical approach and prior knowledge — a named constructivist model recognisable in how the practicals are sequenced; prior knowledge specific and accurate for each practical",
-          "marks": 6,
-          "loLinks": ["LO3"],
-          "bands": {
-            "HD": { "range": "6", "descriptor": "A named constructivist approach is clearly identifiable in the overall sequence design. Prior knowledge is specific and accurate for every practical, calibrated to the year group and NSW syllabus." },
-            "D":  { "range": "5", "descriptor": "A constructivist approach is recognisable in the sequence. Prior knowledge is identified for most practicals and is appropriate to the year group." },
-            "C":  { "range": "4", "descriptor": "Some evidence of constructivist thinking in the sequencing. Prior knowledge is identified for some practicals, though entries may be general rather than specific to each practical's content." },
-            "P":  { "range": "3", "descriptor": "Little evidence of a constructivist approach in the design. Prior knowledge entries are listed for few practicals or are too vague to be useful." },
-            "N":  { "range": "< 3", "descriptor": "No recognisable constructivist approach. Prior knowledge is absent or irrelevant to the practicals listed." }
-          }
-        },
-        {
-          "part": "A",
-          "criterion": "Safety and inclusion for the given cohort — safety requirements specific to each practical; practical, classroom-ready adjustments for all four cohort groups: EAL/D, advanced, behind in science understanding, Aboriginal and Torres Strait Islander students",
-          "marks": 8,
-          "loLinks": ["LO5"],
-          "bands": {
-            "HD": { "range": "8", "descriptor": "Safety information is accurate and specific to each practical. Adjustments are proposed for all four cohort groups and are practical, context-specific, and differentiated from each other — not generic strategies applied uniformly." },
-            "D":  { "range": "7", "descriptor": "Safety information is accurate across all practicals. Adjustments are proposed for the main cohort groups and are appropriate to the context." },
-            "C":  { "range": "6", "descriptor": "Safety information is present and mostly accurate. Adjustments address at least two of the four named cohort groups, though they may be generic rather than practical-specific." },
-            "P":  { "range": "4", "descriptor": "Safety information is present but incomplete or not specific to the practicals chosen. Adjustments attempt to address one cohort group, or are too general to be usable in a real classroom." },
-            "N":  { "range": "< 4", "descriptor": "Safety information is absent, incorrect, or references prohibited materials. No meaningful adjustments for the given cohort." }
+            "HD": {
+              "range": "26\u201323",
+              "descriptor": "Syllabus: Comprehensive, nuanced, accurate. Sequence: Expertly progressive; builds understanding from foundational to complex. Pedagogy: Constructivism deeply evident; prior knowledge insightfully identified; goals precise. Safety/inclusion: Proactive professional judgement; nuanced, specific adjustments for all cohort groups."
+            },
+            "D": {
+              "range": "22\u201319",
+              "descriptor": "Syllabus: Thorough and accurate. Sequence: Logical; builds understanding well. Pedagogy: Constructivism clearly evident; prior knowledge accurately identified; goals clear. Safety/inclusion: Consistently applied; accurate adjustments for the given cohort."
+            },
+            "C": {
+              "range": "18\u201316",
+              "descriptor": "Syllabus: Sound accuracy; minor gaps. Sequence: Mostly logical; some gaps. Pedagogy: Constructivism evident; prior knowledge noted; goals present. Safety/inclusion: Correctly applied; adjustments address most cohort needs."
+            },
+            "P": {
+              "range": "15\u201313",
+              "descriptor": "Syllabus: Adequate; some inaccuracies. Sequence: Adequate order; limited progression. Pedagogy: Limited evidence; prior knowledge partially identified. Safety/inclusion: Inconsistently applied; adjustments partial."
+            },
+            "N": {
+              "range": "12\u20130",
+              "descriptor": "Syllabus: Inaccurate or missing. Sequence: Illogical or absent. Pedagogy: Not evident; prior knowledge absent. Safety/inclusion: Inadequate or absent."
+            }
           }
         },
         {
           "part": "B",
-          "criterion": "Cited justification — scholarly and/or syllabus sources cited for every claim; justification addresses all five required elements: pedagogical approach, cohort support, syllabus elements (Working Scientifically/GCs/CCPs), prior knowledge decisions, safety decisions",
+          "criterion": "Cited justification \u2014 scholarly and syllabus sources accurately cited; argument justifies pedagogical decisions, syllabus choices, prior knowledge, safety decisions, and adjustments for the given cohort",
           "marks": 10,
-          "loLinks": ["LO1", "LO3", "LO5"],
+          "loLinks": [
+            "LO1",
+            "LO3",
+            "LO5"
+          ],
           "bands": {
-            "HD": { "range": "10", "descriptor": "Every claim is supported by a precisely cited source. All five elements are addressed with clear reasoning. You explain why each decision serves the given cohort specifically — not just what you decided." },
-            "D":  { "range": "8", "descriptor": "Most claims are cited. Four of the five elements are addressed with clear reasoning. The connection between your decisions and the given cohort is evident." },
-            "C":  { "range": "6", "descriptor": "Key claims are cited; some are not. At least three elements are addressed. Your reasoning describes what you did, though not always why it serves the cohort." },
-            "P":  { "range": "5", "descriptor": "Some citations are present but may be inaccurate or insufficient. Fewer than three elements are addressed, or coverage is too brief to constitute a real justification." },
-            "N":  { "range": "< 5", "descriptor": "Sources are absent or unrelated to what you are claiming. The justification does not address the required elements, or is description without reasoning." }
+            "HD": {
+              "range": "10\u20139",
+              "descriptor": "Evidence comprehensive and precisely cited. Justification demonstrates deep, integrated reasoning across all required elements: pedagogy, syllabus, safety, and cohort."
+            },
+            "D": {
+              "range": "8\u20137",
+              "descriptor": "Evidence thorough and well cited. Justification demonstrates strong reasoning across pedagogy, syllabus, safety, and cohort needs."
+            },
+            "C": {
+              "range": "7\u20136",
+              "descriptor": "Evidence sound and mostly cited. Justification addresses all required elements with sound reasoning."
+            },
+            "P": {
+              "range": "5",
+              "descriptor": "Evidence present but limited. Justification addresses some elements adequately."
+            },
+            "N": {
+              "range": "4\u20130",
+              "descriptor": "Evidence inadequate or absent. Justification does not address required elements."
+            }
           }
         },
         {
           "part": "C",
-          "criterion": "Professional reflection and learning — genuine reflection on new versus prior knowledge; a named, specific professional learning source justified in relation to strand and teaching context",
+          "criterion": "Professional reflection and learning \u2014 reflects on new and prior knowledge from this task; names and justifies a specific professional learning source relevant to their teaching context and chosen strand",
           "marks": 4,
-          "loLinks": ["LO6"],
+          "loLinks": [
+            "LO6"
+          ],
           "bands": {
-            "HD": { "range": "4", "descriptor": "You identify what was genuinely new and what was already familiar. You name a specific professional learning source and explain exactly why it is relevant to your strand and your teaching context — not why professional learning in general is valuable." },
-            "D":  { "range": "3.5", "descriptor": "You name a specific professional learning source and connect it to your strand or teaching context, though the connection may be general. You note both new and prior knowledge." },
-            "C":  { "range": "3", "descriptor": "You identify a professional learning source, though it may be vague (e.g. 'NESA resources' without naming which). Some reflection on new and prior knowledge is present." },
-            "P":  { "range": "2", "descriptor": "Your reflection addresses the prompt superficially. A professional learning source is absent or too vague to be meaningful (e.g. 'research more' or 'ask a colleague')." },
-            "N":  { "range": "< 2", "descriptor": "Not submitted, too brief to assess, or does not address the prompt." }
+            "HD": {
+              "range": "4",
+              "descriptor": "All prompt elements addressed with specificity and genuine professional reasoning. Professional learning source well-chosen and convincingly justified in relation to teaching context."
+            },
+            "D": {
+              "range": "3",
+              "descriptor": "All prompt elements addressed clearly. Source named and justified; connection to teaching context evident if not fully developed."
+            },
+            "C": {
+              "range": "3\u20132",
+              "descriptor": "Most prompt elements addressed. Source identified; justification limited or generic."
+            },
+            "P": {
+              "range": "2",
+              "descriptor": "Prompt elements addressed superficially. Source absent, unnamed, or unjustified."
+            },
+            "N": {
+              "range": "1\u20130",
+              "descriptor": "Not completed to an adequate standard or too generic to assess."
+            }
           }
         }
       ],
-      "hdCallout": "HD work demonstrates correct, nuanced syllabus outcome codes matched precisely to each practical's content, an expertly progressive sequence where earlier practicals build the foundations later ones require, a clearly identifiable constructivist approach with specific prior knowledge for every practical, and safety information and cohort adjustments that are practical, specific, and differentiated across all four groups. Justification cites every claim precisely and explains why each decision serves the given cohort. Reflection names a specific professional learning source and explains exactly why it is relevant to the strand and teaching context.",
+      "hdCallout": "HD work demonstrates comprehensive, nuanced syllabus accuracy across all practicals, expertly progressive sequencing, deeply evident constructivism with insightful prior knowledge identification, and proactive professional safety and inclusion judgement with specific adjustments for all cohort groups. Justification is precisely cited and integrates reasoning across all required elements. Reflection names a specific, well-chosen professional learning source convincingly justified in relation to teaching context.",
       "checklist": [
         "Stage (4 or 5) and Knowledge and Understanding strand clearly named",
-        "At least 8–10 practicals in the table",
-        "Each practical includes: number, title, description (≤20 words), NSW outcomes and content codes, prior knowledge, safety considerations, cohort adjustments",
+        "At least 8\u201310 practicals in the table",
+        "Each practical includes: number, title, description (\u226420 words), NSW outcomes and content codes, prior knowledge, safety considerations, cohort adjustments",
         "Practicals arranged in a logical learning progression (foundational to complex)",
         "Safety considerations are contemporary and specific to each practical",
         "Adjustments address all named cohort groups: EAL/D, advanced, behind in science, Aboriginal or Torres Strait Islander students",
@@ -271,9 +282,9 @@
     },
     {
       "id": "AT2",
-      "title": "Unit Program",
+      "title": "Unit Program \u2014 Constructivist Science Teaching",
       "weighting": 60,
-      "length": "2,500 words (equivalent) ±10%",
+      "length": "2,500 words (equivalent) \u00b110%",
       "learningOutcomes": [
         "LO1",
         "LO2",
@@ -299,20 +310,14 @@
         "6.4.1",
         "7.4.1"
       ],
-      "rationale": "Secondary school science teachers need skills to program a unit of work that can meet the learning needs of a diverse range of students and address syllabus outcomes, skills and content. Pedagogical decisions will be made on a daily basis, and these will be guided by your learning and teaching program.",
-      "aim": "The aims of this assessment task are for you to demonstrate your understanding of a constructivist pedagogical approach and your ability to interpret syllabus documents to write a unit program for Years 7–10 Science. You will also demonstrate your understanding and application of a range of embedded features including literacy, numeracy, Aboriginal and Torres Strait Islander histories, perspectives and cultures, formative and summative assessment, community engagement and practical lessons.",
+      "rationale": "Unit programming is a core professional responsibility of secondary science teachers. Effective programs make a constructivist pedagogical approach visible across five weeks, integrate practical work, embed literacy, numeracy, and Aboriginal and Torres Strait Islander perspectives authentically, and include formative and summative assessment that gives all learners equitable access to demonstrate achievement.",
+      "aim": "Develop a five-week unit program for a chosen Knowledge and Understanding strand using a named constructivist pedagogical approach, for the given cohort. Design a summative assessment task with an A\u2013E marking rubric aligned to unit outcomes, and reflect on your learning and professional development needs. The given cohort is a class of 30 students including 2 EAL/D students, 2 advanced, 3 behind in science understanding, and 5 Aboriginal and Torres Strait Islander students with strong local community connections.",
       "links": {
-        "rubric": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_AT2_RUBRIC.pdf?forcedownload=1",
-        "taskFiles": "https://mylearn.une.edu.au/mod/folder/view.php?id=3458764",
-        "template": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_A2_template.docx?forcedownload=1",
-        "submit": "https://mylearn.une.edu.au/mod/assign/view.php?id=3458765",
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458766",
-        "video": "https://mylearn.une.edu.au/mod/page/view.php?id=3458763"
-      },
-      "assessmentFiles": {
-        "rubricUrl": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_AT2_RUBRIC.pdf?forcedownload=1",
-        "taskUrl": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_AT2_TASK.pdf?forcedownload=1",
-        "templateUrl": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_A2_template.docx?forcedownload=1"
+        "rubric": null,
+        "taskFiles": null,
+        "submit": null,
+        "forum": null,
+        "video": null
       },
       "parts": [
         {
@@ -322,14 +327,14 @@
           "wordCount": "~1,500 word-equivalent",
           "description": "Develop a five-week unit program for the given cohort using a named constructivist pedagogical approach. Assume four 50-minute lessons per week, two of which are laboratory lessons (20 lessons total).",
           "requirements": [
-            "Clearly name your constructivist pedagogical approach — its key features must be recognisable throughout the program.",
+            "Clearly name your constructivist pedagogical approach \u2014 its key features must be recognisable throughout the program.",
             "Include syllabus outcomes, content, and Working Scientifically skills across the five weeks.",
             "Embed General Capabilities and Cross Curriculum Priorities.",
             "Include teaching strategies that engage the diverse cohort, with adjustments for each learner group.",
             "Include at least two formative assessment opportunities designed to inform future teaching.",
             "Include at least one practical per week conducted in a laboratory lesson."
           ],
-          "note": "Do NOT write 20 lesson plans. This is a high-level unit program. Word count excludes: in-text citations, reference list, syllabus extracts, and the unit program overview section (year group, strand, pedagogical approach, and rationale — typically before the weekly tables).",
+          "note": "Do NOT write 20 lesson plans. This is a high-level unit program. Word count excludes: in-text citations, reference list, syllabus extracts, and the unit program overview section (year group, strand, pedagogical approach, and rationale \u2014 typically before the weekly tables).",
           "bespoke": null,
           "loLinks": [
             "LO1",
@@ -345,12 +350,11 @@
           "wordCount": "~300 word-equivalent",
           "description": "Return to your Part A unit program and apply three sets of highlights reflecting genuine embedding.",
           "requirements": [
-            "Blue highlight — literacy and numeracy strategies.",
-            "Yellow highlight — Aboriginal and Torres Strait Islander perspectives, histories, and cultures.",
-            "Green highlight — formative assessment tasks.",
+            "Blue highlight \u2014 literacy and numeracy strategies.",
+            "Yellow highlight \u2014 Aboriginal and Torres Strait Islander perspectives, histories, and cultures.",
+            "Green highlight \u2014 formative assessment tasks.",
             "At least two formative assessment tasks must be present and highlighted green.",
-            "Highlights must reflect genuine embedding, not retrospective addition.",
-            "Note (LO4): The green formative assessment highlight is assessed separately under LO4 and carries its own criterion in the marking rubric. Each highlighted formative task should be purposefully connected to a learning goal and designed to inform future teaching decisions for the given cohort — not simply any activity that checks understanding."
+            "Highlights must reflect genuine embedding, not retrospective addition."
           ],
           "bespoke": null,
           "loLinks": [
@@ -366,13 +370,13 @@
           "title": "Summative assessment task with marking rubric",
           "marks": 18,
           "wordCount": "~550 word-equivalent",
-          "description": "Design a summative assessment task that captures student achievement at the end of your unit, with an A–E marking rubric.",
+          "description": "Design a summative assessment task that captures student achievement at the end of your unit, with an A\u2013E marking rubric.",
           "requirements": [
             "The task may be individual or collaborative, theory or practical.",
-            "Must be completed in class — not a take-home or extended task.",
-            "Must be inclusive for all learners — consider adjustments, access arrangements, and alternative response modes.",
+            "Must be completed in class \u2014 not a take-home or extended task.",
+            "Must be inclusive for all learners \u2014 consider adjustments, access arrangements, and alternative response modes.",
             "Must align to syllabus outcomes addressed in Parts A and B.",
-            "Must include an A–E marking rubric using language from the NESA Science Years 7–10 Performance Band Descriptors."
+            "Must include an A\u2013E marking rubric using language from the NESA Science Years 7\u201310 Performance Band Descriptors."
           ],
           "bespoke": null,
           "loLinks": [
@@ -388,7 +392,7 @@
           "requirements": [
             "Reflect on what was most and least familiar across unit programming, assessment design, and planning for diverse learners.",
             "Identify one aspect of your unit program you would evaluate or refine after teaching it, and describe what evidence you would use.",
-            "Name one external professional or community source — such as an Aboriginal and Torres Strait Islander community representative, a NESA consultant, or a science education professional association — whose input could improve your content knowledge or teaching.",
+            "Name one external professional or community source \u2014 such as an Aboriginal and Torres Strait Islander community representative, a NESA consultant, or a science education professional association \u2014 whose input could improve your content knowledge or teaching.",
             "Explain briefly how you would access that support."
           ],
           "bespoke": null,
@@ -401,7 +405,7 @@
       "rubric": [
         {
           "part": "A1",
-          "criterion": "Syllabus content, outcomes, skills, and practicals — accuracy and depth of syllabus outcomes, content, Working Scientifically skills mapped across the unit; practicals purposefully integrated at least once per week in lab lessons",
+          "criterion": "Syllabus content, outcomes, skills, and practicals \u2014 accuracy and depth of syllabus outcomes, content, Working Scientifically skills mapped across the unit; practicals purposefully integrated at least once per week in lab lessons",
           "marks": 14,
           "loLinks": [
             "LO1",
@@ -410,30 +414,30 @@
           ],
           "bands": {
             "HD": {
-              "range": "14–13",
+              "range": "14\u201313",
               "descriptor": "Nuanced, comprehensive syllabus outcomes, content, and skills across all five weeks. Practicals expertly integrated and purposefully matched to content. Exceptional science content knowledge evident."
             },
             "D": {
-              "range": "12–11",
+              "range": "12\u201311",
               "descriptor": "Accurate syllabus outcomes, content, and skills throughout. Practicals well-integrated and matched to content. Strong science content knowledge evident."
             },
             "C": {
-              "range": "10–9",
+              "range": "10\u20139",
               "descriptor": "Mostly accurate syllabus elements across the unit. Practicals present and appropriate. Sound science content knowledge."
             },
             "P": {
-              "range": "8–7",
+              "range": "8\u20137",
               "descriptor": "Some accurate syllabus elements. Practicals present with some gaps or mismatches. Adequate content knowledge."
             },
             "N": {
-              "range": "6–0",
+              "range": "6\u20130",
               "descriptor": "Syllabus elements inaccurate or missing. Practicals absent, inadequate, or poorly matched. Content knowledge not adequately demonstrated."
             }
           }
         },
         {
           "part": "A2",
-          "criterion": "Teaching sequence, strategies, and adjustments for the given cohort — constructivist approach named and evident; teaching strategies engage the diverse cohort; sequence builds understanding progressively; adjustments, General Capabilities, and Cross Curriculum Priorities embedded",
+          "criterion": "Teaching sequence, strategies, and adjustments for the given cohort \u2014 constructivist approach named and evident; teaching strategies engage the diverse cohort; sequence builds understanding progressively; adjustments, General Capabilities, and Cross Curriculum Priorities embedded",
           "marks": 13,
           "loLinks": [
             "LO2",
@@ -442,30 +446,30 @@
           ],
           "bands": {
             "HD": {
-              "range": "13–12",
+              "range": "13\u201312",
               "descriptor": "Constructivist approach expertly named and sustained throughout. Innovative, cohort-responsive strategies. Sequence builds understanding with clear, expert progression. Nuanced adjustments and purposeful embedding of General Capabilities and Cross Curriculum Priorities."
             },
             "D": {
-              "range": "11–10",
+              "range": "11\u201310",
               "descriptor": "Constructivist approach clearly named and well-applied. Effective, cohort-responsive strategies. Sequence builds understanding well. Accurate adjustments and embedding of General Capabilities and Cross Curriculum Priorities."
             },
             "C": {
-              "range": "9–8",
+              "range": "9\u20138",
               "descriptor": "Constructivist approach named and evident. Appropriate strategies. Sequence mostly progressive. Sound adjustments; General Capabilities and Cross Curriculum Priorities present."
             },
             "P": {
-              "range": "7–6",
+              "range": "7\u20136",
               "descriptor": "Constructivist approach referenced but partially evident. Some strategies appropriate. Adequate progression. Limited adjustments; General Capabilities or Cross Curriculum Priorities partially addressed."
             },
             "N": {
-              "range": "5–0",
+              "range": "5\u20130",
               "descriptor": "Constructivist approach not named or evident. Strategies limited or inappropriate. Sequence does not build understanding. Adjustments absent or inadequate."
             }
           }
         },
         {
           "part": "B1",
-          "criterion": "Literacy, numeracy, and Aboriginal and Torres Strait Islander embedding — blue (literacy/numeracy) and yellow (Aboriginal and Torres Strait Islander) highlights reflect genuine, effective embedding throughout the unit",
+          "criterion": "Literacy, numeracy, and Aboriginal and Torres Strait Islander embedding \u2014 blue (literacy/numeracy) and yellow (Aboriginal and Torres Strait Islander) highlights reflect genuine, effective embedding throughout the unit",
           "marks": 3,
           "loLinks": [
             "LO5"
@@ -476,11 +480,11 @@
               "descriptor": "Exceptional range genuinely and effectively embedded. All elements highlighted throughout."
             },
             "D": {
-              "range": "2–3",
+              "range": "3",
               "descriptor": "Strong range effectively embedded. All elements highlighted."
             },
             "C": {
-              "range": "2",
+              "range": "2\u20133",
               "descriptor": "Sound embedding with appropriate strategies and perspectives. Elements highlighted."
             },
             "P": {
@@ -488,14 +492,14 @@
               "descriptor": "Limited strategies embedded. Most elements highlighted."
             },
             "N": {
-              "range": "0–1",
+              "range": "0\u20131",
               "descriptor": "Strategies absent or not highlighted."
             }
           }
         },
         {
           "part": "B2",
-          "criterion": "Inclusion and cohort appropriateness — unit gives all learners in the given cohort equitable access; barriers to participation identified and mitigated",
+          "criterion": "Inclusion and cohort appropriateness \u2014 unit gives all learners in the given cohort equitable access; barriers to participation identified and mitigated",
           "marks": 3,
           "loLinks": [
             "LO5"
@@ -506,11 +510,11 @@
               "descriptor": "Barriers expertly identified and mitigated. Unit provides genuinely equitable access for all cohort groups."
             },
             "D": {
-              "range": "2–3",
+              "range": "3",
               "descriptor": "Barriers identified and mitigated. Unit provides clear access for all diverse learners."
             },
             "C": {
-              "range": "2",
+              "range": "2\u20133",
               "descriptor": "Some barriers identified. Unit is mostly accessible for diverse learners."
             },
             "P": {
@@ -518,14 +522,14 @@
               "descriptor": "Limited attention to barriers. Some adjustments present."
             },
             "N": {
-              "range": "0–1",
+              "range": "0\u20131",
               "descriptor": "Barriers not identified. Unit does not address diverse learner needs."
             }
           }
         },
         {
           "part": "B3",
-          "criterion": "Formative assessment tasks — at least two tasks present and highlighted green; purposefully designed to generate evidence that informs subsequent teaching for the given cohort",
+          "criterion": "Formative assessment tasks \u2014 at least two tasks present and highlighted green; purposefully designed to generate evidence that informs subsequent teaching for the given cohort",
           "marks": 3,
           "loLinks": [
             "LO4"
@@ -540,7 +544,7 @@
               "descriptor": "Two or more tasks present and highlighted. Well-chosen; connection to future teaching clearly evident."
             },
             "C": {
-              "range": "2–3",
+              "range": "2\u20133",
               "descriptor": "Two or more tasks present and highlighted. Appropriate; some indication of how they inform teaching."
             },
             "P": {
@@ -548,14 +552,14 @@
               "descriptor": "Two or more tasks present and highlighted. Generic or loosely connected to learning goals."
             },
             "N": {
-              "range": "0–1",
+              "range": "0\u20131",
               "descriptor": "Fewer than two tasks present or highlighted, or tasks would not inform teaching."
             }
           }
         },
         {
           "part": "C1",
-          "criterion": "Task design and syllabus alignment — task details accurate and appropriate for cohort; clearly aligned to unit syllabus outcomes; student-facing instructions unambiguous and appropriate for in-class completion",
+          "criterion": "Task design and syllabus alignment \u2014 task details accurate and appropriate for cohort; clearly aligned to unit syllabus outcomes; student-facing instructions unambiguous and appropriate for in-class completion",
           "marks": 6,
           "loLinks": [
             "LO4"
@@ -566,26 +570,26 @@
               "descriptor": "Task details accurate and clearly appropriate. Exceptional alignment to syllabus outcomes. Instructions unambiguous, precise, and inclusive."
             },
             "D": {
-              "range": "5–6",
+              "range": "5\u20136",
               "descriptor": "Task details accurate and appropriate. Strong syllabus alignment. Instructions clear and concise."
             },
             "C": {
-              "range": "4–5",
+              "range": "4\u20135",
               "descriptor": "Task details accurate. Sound alignment. Instructions mostly clear."
             },
             "P": {
-              "range": "3–4",
+              "range": "3\u20134",
               "descriptor": "Task details mostly accurate. Adequate alignment to some outcomes. Instructions present with room for improvement."
             },
             "N": {
-              "range": "0–3",
+              "range": "0\u20133",
               "descriptor": "Errors in task details. Inadequate alignment. Instructions ambiguous or absent."
             }
           }
         },
         {
           "part": "C2",
-          "criterion": "Internal alignment and appropriateness — task aligns to the unit program in Parts A and B; design gives all cohort members equitable opportunity to demonstrate achievement; inclusive for all learners",
+          "criterion": "Internal alignment and appropriateness \u2014 task aligns to the unit program in Parts A and B; design gives all cohort members equitable opportunity to demonstrate achievement; inclusive for all learners",
           "marks": 6,
           "loLinks": [
             "LO4"
@@ -596,26 +600,26 @@
               "descriptor": "Task aligns closely and purposefully to Parts A and B. All cohort members have a genuine, equitable opportunity to demonstrate achievement."
             },
             "D": {
-              "range": "5–6",
+              "range": "5\u20136",
               "descriptor": "Task aligns well. Cohort members have a clear opportunity to demonstrate achievement."
             },
             "C": {
-              "range": "4–5",
+              "range": "4\u20135",
               "descriptor": "Task aligns to Parts A and B. Most cohort members can demonstrate achievement; access for some may be limited."
             },
             "P": {
-              "range": "3–4",
+              "range": "3\u20134",
               "descriptor": "Task aligns adequately. May not fully reflect outcomes or provide equitable access for all learners."
             },
             "N": {
-              "range": "0–3",
+              "range": "0\u20133",
               "descriptor": "Task does not align to Parts A and B and/or does not provide adequate opportunity for all learners."
             }
           }
         },
         {
           "part": "C3",
-          "criterion": "Marking rubric quality — A–E rubric uses NESA Science Years 7–10 Performance Band Descriptor language; supports consistent teacher judgement and clear student understanding of expectations",
+          "criterion": "Marking rubric quality \u2014 A\u2013E rubric uses NESA Science Years 7\u201310 Performance Band Descriptor language; supports consistent teacher judgement and clear student understanding of expectations",
           "marks": 6,
           "loLinks": [
             "LO4"
@@ -626,26 +630,26 @@
               "descriptor": "Rubric strongly supports consistent marking and student understanding. Performance Band Descriptor language used very effectively across all five bands."
             },
             "D": {
-              "range": "5–6",
+              "range": "5\u20136",
               "descriptor": "Rubric supports consistent marking and student understanding. Performance Band Descriptor language used well."
             },
             "C": {
-              "range": "4–5",
+              "range": "4\u20135",
               "descriptor": "Rubric provides some support for consistent marking. Performance Band Descriptor language used soundly."
             },
             "P": {
-              "range": "3–4",
+              "range": "3\u20134",
               "descriptor": "Rubric present but may be poorly constructed. Performance Band Descriptor language attempted."
             },
             "N": {
-              "range": "0–3",
+              "range": "0\u20133",
               "descriptor": "Rubric absent, very poorly constructed, or Performance Band Descriptor language not used."
             }
           }
         },
         {
           "part": "D",
-          "criterion": "Professional reflection and learning — reflects on the learning journey; identifies an aspect for program evaluation with evidence; names and justifies an external professional or community source",
+          "criterion": "Professional reflection and learning \u2014 reflects on the learning journey; identifies an aspect for program evaluation with evidence; names and justifies an external professional or community source",
           "marks": 6,
           "loLinks": [
             "LO6"
@@ -656,19 +660,19 @@
               "descriptor": "Exceptional: specific evaluation aspect identified with precise evidence articulated. External source well-chosen and convincingly justified in relation to content knowledge or teaching of this unit."
             },
             "D": {
-              "range": "5–6",
+              "range": "5\u20136",
               "descriptor": "Critical reflection: evaluation aspect identified with evidence noted. External source named and justified; connection to practice evident."
             },
             "C": {
-              "range": "4–5",
+              "range": "4\u20135",
               "descriptor": "Some critical reflection: evaluation aspect noted. External source identified; justification present but limited."
             },
             "P": {
-              "range": "3–4",
+              "range": "3\u20134",
               "descriptor": "Surface reflection: evaluation aspect or external source absent or too vague to assess."
             },
             "N": {
-              "range": "0–3",
+              "range": "0\u20133",
               "descriptor": "Not completed to an adequate standard."
             }
           }
@@ -676,22 +680,22 @@
       ],
       "hdCallout": "HD work names a constructivist pedagogical approach and sustains it visibly across all five weeks, with expertly integrated practicals, nuanced cohort adjustments, and purposeful embedding of literacy, numeracy, Aboriginal and Torres Strait Islander perspectives, and formative assessment. The summative task is closely aligned to the unit program, inclusive for all cohort members, and accompanied by a rubric that uses Performance Band Descriptor language effectively. Reflection identifies a specific evaluation aspect with precise evidence and a well-chosen external source convincingly justified.",
       "checklist": [
-        "Constructivist approach named explicitly — its features are visible throughout the program",
+        "Constructivist approach named explicitly \u2014 its features are visible throughout the program",
         "Five weeks, four lessons per week (two lab lessons), 20 lessons total",
         "At least one practical per week in a laboratory lesson",
         "At least two formative assessment opportunities included",
         "Syllabus outcomes, content, Working Scientifically skills, GCs and CCPs included",
         "Adjustments included for all cohort groups: EAL/D, advanced, behind in science, Aboriginal or Torres Strait Islander students",
-        "Part B highlights: blue (literacy/numeracy), yellow (Aboriginal and Torres Strait Islander), green (formative assessment) — genuine, not retrospective",
+        "Part B highlights: blue (literacy/numeracy), yellow (Aboriginal and Torres Strait Islander), green (formative assessment) \u2014 genuine, not retrospective",
         "Part C summative task is in-class, inclusive, and aligned to unit outcomes",
-        "Part C rubric uses NESA Performance Band Descriptor language across all five bands (A–E)",
+        "Part C rubric uses NESA Performance Band Descriptor language across all five bands (A\u2013E)",
         "Part D names a specific external professional or community source with a concrete access plan",
         "Submitted on the template with APA 7th reference list"
       ],
       "submissionInstructions": [
         "Submit on the template provided via the Moodle assignment link.",
         "APA 7th reference list required. In-text citations, reference list, syllabus extracts, and the unit program overview section are excluded from the word count.",
-        "Do not write 20 lesson plans — this is a high-level unit program.",
+        "Do not write 20 lesson plans \u2014 this is a high-level unit program.",
         "Submissions exceeding the word count by more than 10% may be penalised."
       ],
       "trimesterDates": {
@@ -732,16 +736,16 @@
       "email": "sgrant39@une.edu.au"
     },
     "lecturer": {
-      "name": "Steve Grant",
-      "email": "sgrant39@une.edu.au"
+      "name": null,
+      "email": null
     }
   },
   "trimesterConfig": {
     "T2-2026": {
       "zoom": {
-        "meetingId": "854 3911 7847",
-        "password": "538444",
-        "url": "https://une-au.zoom.us/j/85439117847?pwd=7NmFmE65bSk709eBmBRUNp0TIpX5kF.1"
+        "meetingId": null,
+        "password": null,
+        "url": null
       },
       "assessmentFiles": {
         "AT1": {
@@ -796,99 +800,94 @@
     },
     "1": {
       "item": "Topics 1 & 2",
-      "title": "The K–10 Continuum and Science Education",
-      "live": "🎤 Live Session",
-      "topics": [
-        {
-          "id": "1",
-          "title": "The K–10 Continuum and Science Education",
-          "announcementBody": {
-            "intro": "Topic 1 sets up a foundational question you'll return to throughout EDSE362: what do your Year 7 students actually bring with them when they walk into your classroom? This week we explore the K-6 Science and Technology syllabus to understand what students could — and could not — have experienced before Stage 4.",
-            "focus": "The focus is on the structural differences between K-6 Science and Technology and the NSW 7-10 Science syllabus, and what those differences mean for your teaching in Term 1 Year 7. Pay particular attention to the Working Scientifically strand — the shift from one outcome per stage in K-6 to six outcomes in Stages 4 and 5 is significant, and you cannot assume students have developed those skills before they arrive."
-          },
-          "orientationNote": "Topic 1 connects directly to your work in Topic 6 (Planning and Assessing a Unit of Work), where you will need to sequence learning that accounts for prior knowledge variability in your cohort. The K-6 syllabus materials you engage with this week — particularly the strand continuums and the time allocation data — are the evidence base for the pedagogical decisions you will justify in your AT1 unit plan.",
-          "forumPrompts": [
-            "Read Chapter 4 in Skamp and Preston and choose one additional chapter from Chapters 5–13. Based on your reading, will students arrive at your Year 7 classroom with more or less prior knowledge than you expected? Post approximately 200 words describing one specific area of the K-6 syllabus — a strand, stage, or outcome — where you think the gap between what students should know and what they may actually know is greatest, and explain why you think that gap matters for your teaching. What would you do in Week 1 to find out?",
-            "Science and Technology is a non-core subject in K-6, receiving 6–10% of instructional time compared to 25–35% for English. What strategies would you use in your Year 7 classroom to establish a common starting point given the wide variation in prior science experience? Post one concrete strategy to the Topic 1 forum and explain how you would use it in the first two weeks of Term 1."
-          ],
-          "live": null
-        },
-        {
-          "id": "2",
-          "title": "The Nature of Science and Science Teaching",
-          "announcementBody": {
-            "intro": "Topic 2 asks you to examine the philosophical and epistemological foundations of science — not as an abstract exercise, but because your answer to \"what is science?\" will directly shape how you design investigations, respond to student misconceptions, and frame assessment tasks.",
-            "focus": "This week we work through three interconnected ideas: what the Nature of Science (NOS) actually means in the context of the 7-10 syllabus; how the Working Scientifically outcomes across Stage 4 and 5 operationalise scientific inquiry in your classroom; and how socio-scientific issues (SSI) can be used as engagement strategies while carrying real risks if not handled carefully with diverse cohorts."
-          },
-          "orientationNote": "Your understanding of NOS sits at the core of EDSE362 — it underpins how you plan for inquiry in Topic 6 and how you think about resources in Topic 3. The key idea to carry forward is the distinction between science as a body of facts and science as a way of knowing: your lesson designs, your questioning strategies in Topic 4, and your analogies in Topic 7 will all reflect which of these you have internalised.",
-          "forumPrompts": [
-            "The Topic 2 materials define the Nature of Science as empirical, tentative, theory-laden, sociocultural, and creative. Choose one of these five characteristics and describe how you would make it visible to a Year 8 class during a practical investigation — not by telling students about NOS, but by designing the activity and debrief so that students experience it. Post approximately 100–150 words. What would you look for as evidence that students had engaged with that characteristic?",
-            "Look through either the ACARA v9 or NSW Science 7-10 syllabus and identify one socio-scientific issue that appears in the content. How would you introduce this issue to a Year 8 class in a way that is accessible regardless of students' socioeconomic background or prior familiarity with the topic? Post your approach to the Topic 2 forum — approximately 100–150 words — and name the specific syllabus content point you are working with."
-          ],
-          "live": "🎤 Live Session"
-        }
-      ],
+      "title": "The K-10 learning continuum / The nature of science and scientific inquiry",
+      "live": "\ud83c\udfa4 Live Session",
       "announcementBody": {
-        "intro": "Welcome to EDSE362. This week we begin by stepping back from Years 7–10 and examining the full K–10 science continuum — the foundation of prior knowledge and experience your students bring with them into Years 7–10.",
-        "focus": "Topic 1 examines how the NSW Science K–10 curriculum connects to the Years 7–10 syllabuses. You will trace the progression of key concepts, skills, and Working Scientifically strands from primary through to early secondary science, and consider how understanding this continuum helps you plan more responsive and connected Years 7–10 lessons."
+        "intro": "Welcome to EDSE362. This week we begin by stepping back from Stage 6 and examining the full K\u201310 science continuum \u2014 the foundation of prior knowledge and experience your senior students bring with them into Stage 6.",
+        "focus": "Topic 1 examines how the NSW Science K\u201310 curriculum connects to the Stage 6 syllabuses. You will trace the progression of key concepts, skills, and Working Scientifically strands from primary through to early secondary science, and consider how understanding this continuum helps you plan more responsive and connected Stage 6 lessons."
       },
-      "liveSessionFocus": "In our first live session we introduce the unit and work through Topics 1 and 2 together — the K-6 to 7-10 transition and the Nature of Science. Come prepared to discuss what you observed about science teaching in your own K-6 schooling.",
+      "liveSessionFocus": "In our first live session, we introduce the unit, examine the K\u201310 to Stage 6 transition, and begin mapping how prior learning shapes what students bring to senior science.",
       "liveSessionTasks": [
-        "Before the session, review the Science K–10 syllabus outcomes for Stage 5 in your primary teaching area and identify two or three concepts that directly underpin Years 7–10 content.",
-        "Consider: what assumptions do NSW Science Years 7–10 syllabus make about what students already know from K–10? Where might those assumptions break down?",
+        "Before the session, review the Science K\u201310 syllabus outcomes for Stage 5 in your primary teaching area and identify two or three concepts that directly underpin Stage 6 content.",
+        "Consider: what assumptions do Stage 6 syllabuses make about what students already know from K\u201310? Where might those assumptions break down?",
         "Come prepared to share one example of a misconception or gap in prior knowledge you have observed (or anticipate) in senior science students."
-      ],
-      "links": {
-        "lecture": null,
-        "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458776",
-        "zoom": null,
-        "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458777",
-        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458774",
-        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485767#module-3561674"
-      },
-      "resources": [],
-      "video": null,
-      "loMapping": [
-        "LO1",
-        "LO2"
-      ]
-    },
-    "2": {
-      "item": "Topic 3",
-      "title": "Selecting and Critically Evaluating Resources",
-      "live": "🎤 Live Session",
-      "topics": [
-        {
-          "id": "3",
-          "title": "Selecting and Critically Evaluating Resources",
-          "announcementBody": {
-            "intro": "This week we develop your skills as a critical consumer and selector of teaching resources — a practical and ongoing professional responsibility that shapes the quality of every lesson you teach.",
-            "focus": "Topic 3 examines how to evaluate resources systematically and critically across different formats: textbooks, digital tools, laboratory kits, online platforms, and teacher-created materials. You will develop a personal evaluation framework grounded in syllabus alignment, scientific accuracy, and pedagogical appropriateness, and begin building a curated resource library for your teaching area."
-          },
-          "orientationNote": null,
-          "forumPrompts": [],
-          "live": "🎤 Live Session"
-        }
-      ],
-      "announcementBody": {
-        "intro": "This week we develop your skills as a critical consumer and selector of teaching resources — a practical and ongoing professional responsibility that shapes the quality of every lesson you teach.",
-        "focus": "Topic 3 examines how to evaluate resources systematically and critically across different formats: textbooks, digital tools, laboratory kits, online platforms, and teacher-created materials. You will develop a personal evaluation framework grounded in syllabus alignment, scientific accuracy, and pedagogical appropriateness, and begin building a curated resource library for your teaching area."
-      },
-      "liveSessionFocus": "Session 2 focuses on resource evaluation frameworks and strategies for building a coherent, high-quality teaching toolkit for Years 7–10 science.",
-      "liveSessionTasks": [
-        "Select one textbook or digital resource used in your primary teaching area and evaluate it against your own criteria for quality — consider syllabus alignment, scientific accuracy, and how it supports student thinking.",
-        "Identify one specific strength and one clear weakness in the resource, and consider what you would do to address the weakness in practice.",
-        "Come prepared to share your evaluation briefly — we will compare criteria and approaches across different teaching areas in the session."
       ],
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458790",
-        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458787",
-        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485769#module-3561678"
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "resources": [],
+      "video": null,
+      "loMapping": [
+        "LO1",
+        "LO2"
+      ],
+      "additionalLectures": [
+        {
+          "label": "Topic 2: The nature of science and scientific inquiry",
+          "recording": null,
+          "slides": null
+        }
+      ]
+    },
+    "2": {
+      "item": "Topic 3",
+      "title": "Selecting and critically evaluating resources",
+      "live": "\ud83c\udfa4 Live Session",
+      "announcementBody": {
+        "intro": "This week we turn to the epistemological foundations of science itself \u2014 what science is, how it works, and what it means to teach it honestly and rigorously in a senior secondary context.",
+        "focus": "Topic 2 explores the Nature of Science (NOS) as a professional and pedagogical framework. You will examine the values, practices, and commitments that distinguish science as a way of knowing, and consider how a clear understanding of NOS shapes the way you select content, design investigations, and communicate the purpose of science to students."
+      },
+      "liveSessionFocus": "Session 2 covers Topics 1 and 2 together. We will examine the K\u201310 continuum and the Nature of Science as connected foundations for planning intellectually honest and engaging senior science lessons.",
+      "liveSessionTasks": [
+        "Review the Nature and Development of Science strand (or equivalent) in your Stage 6 syllabus and identify how NOS concepts are embedded in the content and outcomes.",
+        "Identify one aspect of the Nature of Science that you find genuinely challenging to communicate clearly to senior students.",
+        "Consider: how does your understanding of NOS influence the way you would design an investigation or respond to a student who says 'just give me the answer'?"
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "resources": [],
+      "video": null,
+      "loMapping": [
+        "LO1",
+        "LO2",
+        "LO3"
+      ]
+    },
+    "3": {
+      "item": "Topic 4",
+      "title": "Introduction to teaching differently",
+      "live": "\ud83c\udfa4 Live Session",
+      "announcementBody": {
+        "intro": "This week we develop your skills as a critical consumer and selector of teaching resources \u2014 a practical and ongoing professional responsibility that shapes the quality of every lesson you teach.",
+        "focus": "Topic 3 examines how to evaluate resources systematically and critically across different formats: textbooks, digital tools, laboratory kits, online platforms, and teacher-created materials. You will develop a personal evaluation framework grounded in syllabus alignment, scientific accuracy, and pedagogical appropriateness, and begin building a curated resource library for your teaching area."
+      },
+      "liveSessionFocus": "Session 3 focuses on resource evaluation frameworks and strategies for building a coherent, high-quality teaching toolkit across the Stage 6 science syllabuses.",
+      "liveSessionTasks": [
+        "Select one textbook or digital resource used in your primary teaching area and evaluate it against your own criteria for quality \u2014 consider syllabus alignment, scientific accuracy, and how it supports student thinking.",
+        "Identify one specific strength and one clear weakness in the resource, and consider what you would do to address the weakness in practice.",
+        "Come prepared to share your evaluation briefly \u2014 we will compare criteria and approaches across different teaching areas in the session."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "resources": [],
       "video": null,
@@ -897,91 +896,28 @@
         "LO3"
       ]
     },
-    "3": {
-      "item": "Topic 4",
-      "title": "Introduction to Teaching Differentiation",
-      "live": "🎤 Live Session",
-      "topics": [
-        {
-          "id": "4",
-          "title": "Introduction to Teaching Differentiation",
-          "announcementBody": {
-            "intro": "This week we focus on questioning as a teaching tool — specifically how the questions you ask (and how you ask them) shape the quality of thinking in your science classroom.",
-            "focus": "We cover open and closed questions, levels of questioning from Bloom's Taxonomy, the Q-Matrix, Harvard Project Zero thinking routines, and the role of psychological safety in creating a classroom where students are willing to respond."
-          },
-          "orientationNote": "The questioning techniques in this topic are directly transferable to your AT1 lesson sequence — the questions you write into your lesson plans are evidence of your ability to target specific levels of student thinking (LO1, AITSL 2.1.1). As you work through Bloom's and the Q-Matrix this week, think about where in your planned sequence you would place LOTS versus HOTS questions, and where a Harvard Project Zero thinking routine could replace a teacher-directed question entirely.",
-          "forumPrompts": [
-            "Choose a NSW 7–10 science syllabus outcome for any Stage 4 or 5 topic. Write one closed question and one open question that target that outcome. Then write a third question using a stem from the Q-Matrix that moves students to a higher cognitive level. Post your three questions and briefly explain what mental operation each one requires. What does the difference in student response tell you as a teacher?",
-            "Read the Tofade et al. (2013) material on psychological safety or review the principles on the slide. Describe one specific teacher behaviour — from the list or from your own observation — that would undermine a student's willingness to answer a question in a science class. How would you avoid or correct that behaviour in your own practice? Connect your answer to the NSW Quality Teaching Framework's Quality Learning Environment dimension."
-          ],
-          "live": "🎤 Live Session"
-        }
-      ],
-      "announcementBody": {
-        "intro": "This week we focus on questioning as a teaching tool — specifically how the questions you ask (and how you ask them) shape the quality of thinking in your science classroom.",
-        "focus": "We cover open and closed questions, levels of questioning from Bloom's Taxonomy, the Q-Matrix, Harvard Project Zero thinking routines, and the role of psychological safety in creating a classroom where students are willing to respond."
-      },
-      "liveSessionFocus": "This session we will work through questioning frameworks hands-on — classifying question types, practising question stems from the Q-Matrix, and examining what makes a question genuinely open rather than a 'guess what I'm thinking' prompt.",
-      "liveSessionTasks": [
-        "Questioning is a core pedagogical skill for Stage 4 and 5 science — the transition from Stage 3 Science and Technology, where students are often told answers, to Stage 4 Science, where they are expected to investigate and reason, depends heavily on the quality of questions teachers ask. As you work through Bloom's Taxonomy and the Q-Matrix this week, think about how you would sequence questions across a Stage 4 lesson: what closed question establishes prior knowledge, what open question surfaces a misconception, and what higher-order question asks students to evaluate evidence or predict an outcome. This skill of deliberate question design sits at the heart of LO1 and will recur throughout your AT1 planning work."
-      ],
-      "links": {
-        "lecture": null,
-        "slides": null,
-        "zoom": null,
-        "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458796",
-        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458795",
-        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485770#module-3561679"
-      },
-      "resources": [],
-      "video": null,
-      "loMapping": [
-        "LO1",
-        "LO3"
-      ],
-      "orientationNote": "The questioning techniques in this topic are directly transferable to your AT1 lesson sequence — the questions you write into your lesson plans are evidence of your ability to target specific levels of student thinking (LO1, AITSL 2.1.1). As you work through Bloom's and the Q-Matrix this week, think about where in your planned sequence you would place LOTS versus HOTS questions, and where a Harvard Project Zero thinking routine could replace a teacher-directed question entirely.",
-      "forumPrompts": [
-        "Choose a NSW 7–10 science syllabus outcome for any Stage 4 or 5 topic. Write one closed question and one open question that target that outcome. Then write a third question using a stem from the Q-Matrix that moves students to a higher cognitive level. Post your three questions and briefly explain what mental operation each one requires. What does the difference in student response tell you as a teacher?",
-        "Read the Tofade et al. (2013) material on psychological safety or review the principles on the slide. Describe one specific teacher behaviour — from the list or from your own observation — that would undermine a student's willingness to answer a question in a science class. How would you avoid or correct that behaviour in your own practice? Connect your answer to the NSW Quality Teaching Framework's Quality Learning Environment dimension."
-      ]
-    },
     "4": {
       "item": "Topic 5",
-      "title": "The Inclusive Science Classroom",
-      "live": "🎤 Live Session",
-      "topics": [
-        {
-          "id": "5",
-          "title": "The Inclusive Science Classroom",
-          "announcementBody": {
-            "intro": "Building on Topic 4, this week we move from the theory of differentiation into the practical challenge of creating genuinely inclusive Years 7–10 science classrooms — environments where every student can access, engage with, and be challenged by the curriculum.",
-            "focus": "Topic 5 examines inclusive teaching in the Years 7–10 science context, with a focus on students with disability, students from diverse cultural and linguistic backgrounds, and students at both ends of the achievement spectrum. You will explore specific adjustments, design principles, and communication strategies, and consider how to maintain academic rigour while broadening access."
-          },
-          "orientationNote": "Topic 5 moves from the principles of differentiation explored in Topic 4 into the practical challenge of designing genuinely inclusive Years 7–10 science classrooms. The adjustment strategies, UDL principles, and equity frameworks you encounter this week are directly applicable to your work with diverse 7–10 science cohorts — and they also underpin the assessment design and unit planning you will engage with in Topic 6. As you work through the Topic 5 materials, pay attention to the reasoning behind specific adjustments: understanding why a particular strategy maintains access to the curriculum while preserving the integrity of the learning outcome will prepare you to make similar decisions in your own planning.",
-          "forumPrompts": [],
-          "live": "🎤 Live Session"
-        }
-      ],
+      "title": "The inclusive science classroom",
+      "live": "\ud83c\udfa4 Live Session",
       "announcementBody": {
-        "intro": "Building on Topic 4, this week we move from the theory of differentiation into the practical challenge of creating genuinely inclusive Years 7–10 science classrooms — environments where every student can access, engage with, and be challenged by the curriculum.",
-        "focus": "Topic 5 examines inclusive teaching in the Years 7–10 science context, with a focus on students with disability, students from diverse cultural and linguistic backgrounds, and students at both ends of the achievement spectrum. You will explore specific adjustments, design principles, and communication strategies, and consider how to maintain academic rigour while broadening access."
+        "intro": "This week we introduce one of the most important \u2014 and most misunderstood \u2014 practices in teaching: differentiation. We begin with the principles and theory before we turn to application in the senior science classroom next week.",
+        "focus": "Topic 4 establishes a clear conceptual foundation for differentiated instruction: what it is, what it is not, and why it matters for student learning in a Stage 4 & 5 context. You will examine models of differentiation by content, process, product, and environment, and begin to consider how these apply to the practical realities of teaching senior science."
       },
-      "liveSessionFocus": "Session 4 focuses on the practical design of inclusive learning experiences in Years 7–10 science, including how to adapt tasks, resources, and assessment approaches without reducing the challenge of the curriculum.",
+      "liveSessionFocus": "Session 4 covers Topics 3 and 4 together. We will examine resource evaluation and the principles of differentiation, and connect both to your planning responsibilities as a science teacher.",
       "liveSessionTasks": [
-        "Identify one adjustment or scaffolding strategy from the topic materials that you could apply immediately to a Years 7–10 science lesson you are planning or have taught.",
-        "Consider how Years 7–10 syllabus requirements interact with NESA access arrangements — where do they align well, and where do tensions arise?",
-        "Come prepared to discuss a specific scenario: a student with a particular learning need in your Years 7–10 science class. What would an inclusive response look like?"
+        "Read the introductory topic materials on differentiation and identify one model or framework that you find most useful for thinking about your teaching.",
+        "Consider a class or cohort you have worked with (or observed) and identify two or three ways in which students' learning needs varied \u2014 what would effective differentiation have looked like?",
+        "Come prepared to discuss one misconception about differentiation that you have encountered or hold yourself, and how the topic materials addressed it."
       ],
-      "orientationNote": "Topic 5 moves from the principles of differentiation explored in Topic 4 into the practical challenge of designing genuinely inclusive Years 7–10 science classrooms. The adjustment strategies, UDL principles, and equity frameworks you encounter this week are directly applicable to your work with diverse 7–10 science cohorts — and they also underpin the assessment design and unit planning you will engage with in Topic 6. As you work through the Topic 5 materials, pay attention to the reasoning behind specific adjustments: understanding why a particular strategy maintains access to the curriculum while preserving the integrity of the learning outcome will prepare you to make similar decisions in your own planning.",
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458803",
-        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458800",
-        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485771#module-3561681"
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "resources": [],
       "video": null,
@@ -991,41 +927,59 @@
       ]
     },
     "5": {
-      "item": "Topic 6A",
-      "title": "Planning and Evaluating a Unit of Work — Part 1: The Planning Process",
-      "live": "🎤 Live Session",
-      "topics": [
-        {
-          "id": "6A",
-          "title": "Planning and Evaluating a Unit of Work — Part 1: The Planning Process",
-          "announcementBody": {
-            "intro": "This week we bring together your curriculum knowledge, pedagogical understanding, and resource evaluation skills to focus on the discipline of unit planning — one of the most important and complex professional tasks you will undertake as a Years 7–10 science teacher.",
-            "focus": "Topic 6A examines the planning process: how to establish outcomes, select and sequence content, embed formative assessment, choose resources, and make a constructivist pedagogical approach visible and coherent across a five-week unit. The decisions you practise this week are the same decisions Assessment Task 2 requires you to demonstrate."
-          },
-          "orientationNote": "Topic 6A is the most directly assessed topic in this unit. Assessment Task 2 requires you to plan a five-week unit program using a named constructivist approach, embed formative and summative assessment, and design a summative task with an A–E rubric — and the unit planning principles you study this week are the same principles the AT2 marking rubric assesses. AT2 is due 6 September. If you have not yet begun drafting your unit outline, this week is the right time to start. Work through Topic 6A with AT2 Part A in mind: use the live session to get early peer feedback on your emerging unit design, and bring questions about constructive alignment and sequencing to the session.",
-          "forumPrompts": [],
-          "live": "🎤 Live Session"
-        }
-      ],
+      "item": "Topic 6",
+      "title": "Planning and evaluating a unit of work",
+      "live": "\ud83c\udfa4 Live Session",
       "announcementBody": {
-        "intro": "This week we bring together your curriculum knowledge, pedagogical understanding, and resource evaluation skills to focus on the discipline of unit planning — one of the most important and complex professional tasks you will undertake as a Years 7–10 science teacher.",
-        "focus": "Topic 6A examines the planning process: how to establish outcomes, select and sequence content, embed formative assessment, choose resources, and make a constructivist pedagogical approach visible and coherent across a five-week unit. The decisions you practise this week are the same decisions Assessment Task 2 requires you to demonstrate."
+        "intro": "Building on Topic 4, this week we move from the theory of differentiation into the practical challenge of creating genuinely inclusive senior science classrooms \u2014 environments where every student can access, engage with, and be challenged by the curriculum.",
+        "focus": "Topic 5 examines inclusive teaching in the senior science context, with a focus on students with disability, students from diverse cultural and linguistic backgrounds, and students at both ends of the achievement spectrum. You will explore specific adjustments, design principles, and communication strategies, and consider how to maintain academic rigour while broadening access."
       },
-      "liveSessionFocus": "Session 5 focuses on Part 1 of unit planning — the planning process. We work through the decisions that shape a coherent, outcomes-aligned unit program: establishing outcomes, sequencing content, selecting resources, and embedding formative assessment.",
+      "liveSessionFocus": "Session 5 focuses on the practical design of inclusive learning experiences for senior science, including how to adapt tasks, resources, and assessment approaches without reducing the challenge of Stage 6 content.",
       "liveSessionTasks": [
-        "Select a Knowledge and Understanding strand from the NSW Science Years 7–10 (2023) syllabus and sketch a rough five-week unit outline — identify the key outcomes, main content sequence, and at least two formative assessment opportunities.",
-        "Evaluate your outline against the unit planning principles in the topic materials: Is the constructivist approach visible? Is the sequence outcomes-focused? Does it build in opportunities for feedback?",
-        "Come prepared to share your outline and receive peer feedback in the session — bring a willingness to revise."
+        "Identify one adjustment or scaffolding strategy from the topic materials that you could apply immediately to a senior science lesson you are planning or have taught.",
+        "Consider how Stage 6 syllabus requirements interact with NESA access arrangements \u2014 where do they align well, and where do tensions arise?",
+        "Come prepared to discuss a specific scenario: a student with a particular learning need in your senior science class. What would an inclusive response look like?"
       ],
-      "orientationNote": "Topic 6A is the most directly assessed topic in this unit. Assessment Task 2 requires you to plan a five-week unit program using a named constructivist approach, embed formative and summative assessment, and design a summative task with an A–E rubric — and the unit planning principles you study this week are the same principles the AT2 marking rubric assesses. AT2 is due 6 September. If you have not yet begun drafting your unit outline, this week is the right time to start. Work through Topic 6A with AT2 Part A in mind: use the live session to get early peer feedback on your emerging unit design, and bring questions about constructive alignment and sequencing to the session.",
+      "orientationNote": "Topic 5 moves from the principles of differentiation explored in Topic 4 into the practical challenge of designing genuinely inclusive senior science classrooms. The adjustment strategies, UDL principles, and equity frameworks you encounter this week are directly applicable to your work with diverse 7\u201310 science cohorts \u2014 and they also underpin the assessment design and unit planning you will engage with in Topic 6. As you work through the Topic 5 materials, pay attention to the reasoning behind specific adjustments: understanding why a particular strategy maintains access to the curriculum while preserving the integrity of the learning outcome will prepare you to make similar decisions in your own planning.",
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458810",
-        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458807",
-        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485772#module-3561682"
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "resources": [],
+      "video": null,
+      "loMapping": [
+        "LO1",
+        "LO5"
+      ]
+    },
+    "6": {
+      "item": "Topic 6 (cont.)",
+      "title": "Planning and evaluating a unit of work (continued)",
+      "live": "\ud83c\udfa4 Live Session",
+      "announcementBody": {
+        "intro": "This week we bring together your curriculum knowledge, pedagogical understanding, and resource evaluation skills to focus on the discipline of unit planning \u2014 one of the most important and complex professional tasks you will undertake as a science teacher.",
+        "focus": "Topic 6 examines how to design, sequence, and evaluate a coherent unit of work for Stage 6 science. You will work through the key decisions involved in unit planning: establishing outcomes, selecting and sequencing content, designing assessments for and of learning, choosing resources, and building in opportunities for student reflection and feedback."
+      },
+      "liveSessionFocus": "Session 6 covers Topics 5 and 6 together. We will examine inclusive practice and unit planning as interconnected professional responsibilities, and work through the decisions that shape a coherent, accessible, and outcomes-aligned Stage 6 unit.",
+      "liveSessionTasks": [
+        "Select a topic or module from your Stage 6 syllabus and sketch a rough unit outline \u2014 identify the key outcomes, main content sequence, and at least one formative and one summative assessment task.",
+        "Evaluate your outline against the unit planning criteria in the topic materials: Is it coherent? Is it outcomes-focused? Does it build in opportunities for feedback?",
+        "Come prepared to share your outline and receive peer feedback in the session \u2014 bring a willingness to revise."
+      ],
+      "orientationNote": "Topic 6 is the most directly assessed topic in this unit. Assessment Task 1 requires you to plan a constructively aligned unit of work, and the unit planning principles, evaluation strategy frameworks, and feedback design approaches you study this week are the same principles the AT1 marking rubric assesses. AT1 is due 26 July. If you have not yet begun drafting your unit outline, this week is the right time to start. Work through Topic 6 with AT1 in mind: use the live session this week to get early peer feedback on your emerging unit design, and bring questions about alignment and evaluation strategy to the session.",
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": null,
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "resources": [],
       "video": null,
@@ -1036,85 +990,29 @@
         "LO4"
       ]
     },
-    "6": {
-      "item": "Topic 6B",
-      "title": "Planning and Evaluating a Unit of Work — Part 2: The Role of Assessment and Evaluation",
-      "live": "🎤 Live Session",
-      "topics": [
-        {
-          "id": "6B",
-          "title": "Planning and Evaluating a Unit of Work — Part 2: The Role of Assessment and Evaluation",
-          "announcementBody": {
-            "intro": "This week we turn to the assessment and evaluation dimension of unit planning — the professional skill of designing assessment tasks that give all students a genuine opportunity to demonstrate their learning, and that give you reliable evidence to improve your teaching.",
-            "focus": "Topic 6B examines assessment design, formative and summative assessment practice, and program evaluation. You will work through the principles of constructive alignment, the design of A–E marking rubrics using NESA Performance Band Descriptors, and the role of formative assessment in informing teaching decisions for a diverse cohort. A scaffolded critique activity this week gives you practice at identifying alignment gaps and rubric weaknesses before Assessment Task 2 requires you to design your own."
-          },
-          "orientationNote": "Topic 6B prepares you directly for Assessment Task 2 Part C, which requires you to design a summative assessment task with an A–E marking rubric aligned to your unit. The critique activity this week is the only scaffolded practice opportunity for this skill before it is assessed — take it seriously. Post to the forum before the live session so you can discuss your analysis with peers. Students who engage critically with the sample task this week consistently produce stronger rubrics in AT2 Part C. AT2 is due 6 September.",
-          "forumPrompts": [],
-          "live": "🎤 Live Session"
-        }
-      ],
-      "announcementBody": {
-        "intro": "This week we turn to the assessment and evaluation dimension of unit planning — the professional skill of designing assessment tasks that give all students a genuine opportunity to demonstrate their learning, and that give you reliable evidence to improve your teaching.",
-        "focus": "Topic 6B examines assessment design, formative and summative assessment practice, and program evaluation. You will work through the principles of constructive alignment, the design of A–E marking rubrics using NESA Performance Band Descriptors, and the role of formative assessment in informing teaching decisions for a diverse cohort. A scaffolded critique activity this week gives you practice at identifying alignment gaps and rubric weaknesses before Assessment Task 2 requires you to design your own."
-      },
-      "liveSessionFocus": "Session 6 focuses on Part 2 of unit planning — assessment and evaluation. We examine how to design assessment tasks that are aligned to outcomes, inclusive for all learners, and supported by marking rubrics that give students clear, usable guidance.",
-      "liveSessionTasks": [
-        "Before the session, complete the Topic 6B assessment critique activity: read the sample assessment task and post your analysis to the forum, identifying at least one alignment gap, two rubric problems, and one inclusion concern for the given cohort.",
-        "Read at least one peer’s forum post and note one point of agreement and one point you would push back on — bring this to the session.",
-        "Come prepared to discuss: what makes a summative assessment task genuinely inclusive without lowering the standard of the curriculum?"
-      ],
-      "orientationNote": "Topic 6B prepares you directly for Assessment Task 2 Part C, which requires you to design a summative assessment task with an A–E marking rubric aligned to your unit. The critique activity this week is the only scaffolded practice opportunity for this skill before it is assessed — take it seriously. Post to the forum before the live session so you can discuss your analysis with peers. Students who engage critically with the sample task this week consistently produce stronger rubrics in AT2 Part C. AT2 is due 6 September.",
-      "links": {
-        "lecture": null,
-        "slides": null,
-        "zoom": null,
-        "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458810",
-        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458807",
-        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485772#module-3561682"
-      },
-      "resources": [],
-      "video": null,
-      "loMapping": [
-        "LO4"
-      ]
-    },
     "7": {
       "item": "Topic 7",
-      "title": "Teaching and Learning Science Using Analogies",
-      "live": "🎤 Live Session",
-      "topics": [
-        {
-          "id": "7",
-          "title": "Teaching and Learning Science Using Analogies",
-          "announcementBody": {
-            "intro": "This week we examine one of the most powerful — and most frequently misused — pedagogical tools available to science teachers: the analogy. Used well, analogies make abstract science concepts concrete and accessible. Used poorly, they embed misconceptions that are hard to shift.",
-            "focus": "Topic 7 focuses on analogies as tools for conceptual change in science learning. You will examine the theory behind why analogies work, explore frameworks for selecting and presenting analogies effectively (including the Teaching-With-Analogies model), and critically evaluate common analogies used in Years 7–10 science for their accuracy, accessibility, and potential to mislead."
-          },
-          "orientationNote": "Topic 7 develops one of the most practically powerful pedagogical tools available to science teachers: the capacity to select, adapt, and critically evaluate analogies and models for specific science concepts. This connects directly to LO1 (Science Content and Laboratory Practice) and LO3 (Lesson Planning and Conceptual Development). A science teacher who understands where an analogy illuminates and where it breaks down is better equipped to address student misconceptions early and to make abstract concepts genuinely accessible for junior secondary learners. As you work through Topic 7, practise applying the Teaching-With-Analogies framework to concepts from your own teaching area — and notice where analogies you have encountered in textbooks or online resources may mislead students.",
-          "forumPrompts": [],
-          "live": "🎤 Live Session"
-        }
-      ],
+      "title": "Teaching and learning science using analogies and models",
+      "live": "\ud83c\udfa4 Live Session",
       "announcementBody": {
-        "intro": "This week we examine one of the most powerful — and most frequently misused — pedagogical tools available to science teachers: the analogy. Used well, analogies make abstract science concepts concrete and accessible. Used poorly, they embed misconceptions that are hard to shift.",
-        "focus": "Topic 7 focuses on analogies as tools for conceptual change in science learning. You will examine the theory behind why analogies work, explore frameworks for selecting and presenting analogies effectively (including the Teaching-With-Analogies model), and critically evaluate common analogies used in Years 7–10 science for their accuracy, accessibility, and potential to mislead."
+        "intro": "This week we examine one of the most powerful \u2014 and most frequently misused \u2014 pedagogical tools available to science teachers: the analogy. Used well, analogies make abstract science concepts concrete and accessible. Used poorly, they embed misconceptions that are hard to shift.",
+        "focus": "Topic 7 focuses on analogies as tools for conceptual change in science learning. You will examine the theory behind why analogies work, explore frameworks for selecting and presenting analogies effectively (including the Teaching-With-Analogies model), and critically evaluate common analogies used in senior science for their accuracy, accessibility, and potential to mislead."
       },
-      "liveSessionFocus": "Session 7 examines analogies as pedagogical tools in Years 7–10 science — working through examples from across the 7–10 syllabus and practising the skill of evaluating an analogy before using it with students.",
+      "liveSessionFocus": "Session 7 examines analogies as pedagogical tools in depth \u2014 working through examples from across the senior science syllabuses and practising the skill of evaluating an analogy before using it with students.",
       "liveSessionTasks": [
-        "Identify one analogy commonly used in your Years 7–10 science teaching area — write down what concept it is meant to explain, what it maps correctly, and where the mapping breaks down.",
+        "Identify one analogy commonly used in your Stage 6 teaching area \u2014 write down what concept it is meant to explain, what it maps correctly, and where the mapping breaks down.",
         "Consider how you would introduce this analogy to a class while explicitly addressing its limitations, so students build accurate conceptual understanding rather than a flawed mental model.",
         "Come prepared to present your analogy briefly and receive feedback from peers on how they experience it as learners."
       ],
-      "orientationNote": "Topic 7 develops one of the most practically powerful pedagogical tools available to science teachers: the capacity to select, adapt, and critically evaluate analogies and models for specific science concepts. This connects directly to LO1 (Science Content and Laboratory Practice) and LO3 (Lesson Planning and Conceptual Development). A science teacher who understands where an analogy illuminates and where it breaks down is better equipped to address student misconceptions early and to make abstract concepts genuinely accessible for junior secondary learners. As you work through Topic 7, practise applying the Teaching-With-Analogies framework to concepts from your own teaching area — and notice where analogies you have encountered in textbooks or online resources may mislead students.",
+      "orientationNote": "Topic 7 develops one of the most practically powerful pedagogical tools available to science teachers: the capacity to select, adapt, and critically evaluate analogies and models for specific science concepts. This connects directly to LO1 (Science Content and Laboratory Practice) and LO3 (Lesson Planning and Conceptual Development). A science teacher who understands where an analogy illuminates and where it breaks down is better equipped to address student misconceptions early and to make abstract concepts genuinely accessible for junior secondary learners. As you work through Topic 7, practise applying the Teaching-With-Analogies framework to concepts from your own teaching area \u2014 and notice where analogies you have encountered in textbooks or online resources may mislead students.",
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458818",
-        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458815",
-        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485773#module-3561683"
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "resources": [],
       "video": null,
@@ -1124,41 +1022,28 @@
       ]
     },
     "8": {
-      "item": "Topics 7 & 8",
-      "title": "Developing Your Science Content Knowledge",
-      "live": "🎤 Live Session",
-      "topics": [
-        {
-          "id": "8",
-          "title": "Developing Your Science Content Knowledge",
-          "announcementBody": {
-            "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
-            "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your NSW Science Years 7–10 (2023) syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
-          },
-          "orientationNote": "Topic 8 closes the teaching program by turning attention to your own science content knowledge — a professional responsibility that continues throughout your career. This connects directly to LO6 and Assessment Task 2 Part D, due 6 September. AT2 Part D requires you to name a specific external professional or community source that could improve your content knowledge or teaching, and to explain how you would access that support. Students who have genuinely engaged with the professional associations, subject-matter resources, and peer networks Topic 8 points you toward are able to name those sources with specificity and conviction in their reflection — not generically. Use this week's audit activity seriously: the content gaps you identify now are the preparation time you have before AT2 requires you to demonstrate confidence and professional direction.",
-          "forumPrompts": [],
-          "live": "🎤 Live Session"
-        }
-      ],
+      "item": "Topic 8",
+      "title": "Developing your science content knowledge",
+      "live": "\ud83c\udfa4 Live Session",
       "announcementBody": {
-        "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
-        "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your NSW Science Years 7–10 (2023) syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
+        "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point \u2014 it is something you actively build and deepen throughout your teaching career.",
+        "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your Stage 6 syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning \u2014 including professional associations, subject-matter resources, and peer networks that support science content development."
       },
-      "liveSessionFocus": "Session 8 covers Topics 7 and 8 together. We examine analogies and content knowledge development as complementary professional skills, and conclude the teaching program by looking ahead to the professional learning habits that will sustain your practice in Years 7–10 science.",
+      "liveSessionFocus": "Session 8 covers Topics 7 and 8 together. We will examine analogies and content knowledge development as complementary professional skills, and conclude the teaching program by looking ahead to the professional learning habits that will sustain your practice.",
       "liveSessionTasks": [
-        "Complete a content knowledge audit for your primary Years 7–10 teaching area: rate your confidence across the major content sections and identify your two or three priority gaps.",
-        "For each priority gap, identify at least one concrete resource or action you will take to address it — a specific book, online course, professional association, or peer with relevant expertise.",
-        "Come prepared to briefly share your audit findings and your plan — and to give and receive constructive feedback with peers."
+        "Complete a content knowledge audit for your primary Stage 6 teaching area: rate your confidence across the major content sections and identify your two or three priority gaps.",
+        "For each priority gap, identify at least one concrete resource or action you will take to address it \u2014 a specific book, online course, professional association, or peer with relevant expertise.",
+        "Come prepared to briefly share your audit findings and your plan \u2014 and to give and receive constructive feedback with peers."
       ],
-      "orientationNote": "Topic 8 closes the teaching program by turning attention to your own science content knowledge — a professional responsibility that continues throughout your career. This connects directly to LO6 and Assessment Task 2 Part D, due 6 September. AT2 Part D requires you to name a specific external professional or community source that could improve your content knowledge or teaching, and to explain how you would access that support. Students who have genuinely engaged with the professional associations, subject-matter resources, and peer networks Topic 8 points you toward are able to name those sources with specificity and conviction in their reflection — not generically. Use this week’s audit activity seriously: the content gaps you identify now are the preparation time you have before AT2 requires you to demonstrate confidence and professional direction.",
+      "orientationNote": "Topic 8 closes the teaching program by turning attention to your own science content knowledge \u2014 a professional responsibility that continues throughout your career. This connects directly to Assessment Task 2, due 6 September. AT2 requires you to demonstrate subject-matter knowledge in a specific assessment context, and students who have systematically audited their content knowledge against their Stage 6 syllabus are better positioned to demonstrate that knowledge with precision. Use this week's audit activity seriously: the content gaps you identify now are the preparation time you have before AT2 requires you to demonstrate confidence. Engage with the professional associations, specialist resources, and peer networks Topic 8 points you toward \u2014 they are the long-term approach to building and maintaining content knowledge as a science teacher.",
       "links": {
         "lecture": null,
         "slides": null,
         "zoom": null,
         "recording": null,
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458825",
-        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458824",
-        "liveHub": "https://mylearn.une.edu.au/course/section.php?id=485774#module-3561684"
+        "forum": null,
+        "materials": null,
+        "liveHub": null
       },
       "resources": [],
       "video": null,
