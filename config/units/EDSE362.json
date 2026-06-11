@@ -94,9 +94,9 @@
         "taskFiles": "https://mylearn.une.edu.au/mod/folder/view.php?id=3458758",
         "rubric": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Rubric.pdf?forcedownload=1",
         "template": "https://mylearn.une.edu.au/pluginfile.php/5235809/mod_folder/content/0/EDSE362_T2_2026_AT1_Template.docx?forcedownload=1",
-        "submit": null,
-        "forum": null,
-        "video": null
+        "submit": "https://mylearn.une.edu.au/mod/assign/view.php?id=3458759",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458760",
+        "video": "https://mylearn.une.edu.au/mod/page/view.php?id=3458757"
       },
       "parts": [
         {
@@ -396,9 +396,9 @@
         "taskFiles": "https://mylearn.une.edu.au/mod/folder/view.php?id=3458764",
         "rubric": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_AT2_RUBRIC.pdf?forcedownload=1",
         "template": "https://mylearn.une.edu.au/pluginfile.php/5235815/mod_folder/content/0/EDSE362_T2_2026_A2_template.docx?forcedownload=1",
-        "submit": null,
-        "forum": null,
-        "video": null
+        "submit": "https://mylearn.une.edu.au/mod/assign/view.php?id=3458765",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458766",
+        "video": "https://mylearn.une.edu.au/mod/page/view.php?id=3458763"
       },
       "parts": [
         {
@@ -861,55 +861,13 @@
       "loMapping": []
     },
     "1": {
-      "item": "Topic 1",
+      "item": "Topics 1 & 2",
       "title": "The K–10 Continuum and Science Education",
       "live": "🎤 Live Session",
-      "announcementBody": {
-        "intro": "Welcome to EDSE362. This week we begin by stepping back from Stage 6 and examining the full K–10 science continuum — the foundation of prior knowledge and experience your senior students bring with them into Stage 6.",
-        "focus": "Topic 1 examines how the NSW Science K–10 curriculum connects to the Stage 6 syllabuses. You will trace the progression of key concepts, skills, and Working Scientifically strands from primary through to early secondary science, and consider how understanding this continuum helps you plan more responsive and connected Stage 6 lessons."
-      },
-      "liveSessionFocus": "In our first live session, we introduce the unit, examine the K–10 to Stage 6 transition, and begin mapping how prior learning shapes what students bring to senior science.",
-      "liveSessionTasks": [
-        "Before the session, review the Science K–10 syllabus outcomes for Stage 5 in your primary teaching area and identify two or three concepts that directly underpin Stage 6 content.",
-        "Consider: what assumptions do Stage 6 syllabuses make about what students already know from K–10? Where might those assumptions break down?",
-        "Come prepared to share one example of a misconception or gap in prior knowledge you have observed (or anticipate) in senior science students."
-      ],
-      "links": {
-        "lecture": null,
-        "slides": null,
-        "zoom": null,
-        "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/media/3cc0f243-2ccc-4dc2-a008-a4769c7a8172/public?autoplay=false&automute=false\"></iframe>",
-        "forum": null,
-        "materials": null,
-        "liveHub": null
-      },
-      "resources": [],
-      "video": null,
       "loMapping": [
         "LO1",
-        "LO2"
-      ],
-      "orientationNote": "Topic 1 provides the syllabus literacy you need for both assessment tasks. In AT1 Part A, every row of your practical table requires you to identify specific NSW Science Years 7–10 (2023) outcome codes and content statements, and to articulate the prior knowledge students bring to each practical — both of which depend on your ability to read the continuum, not just the strand you have chosen. Quality work in AT1 Part A is distinguished by nuance in the prior knowledge column: not 'students know about forces' but a precise account of what Stage 4 students should be able to do before encountering Stage 5 content. Use this week to build that precision.",
-      "forumPrompts": [
-        "Open the NSW Science Years 7–10 (2023) syllabus and locate a Knowledge and Understanding strand you are considering for AT1. Choose one content point from that strand and trace its conceptual lineage back through the K–10 continuum — what would a student in Stage 3 have encountered that underpins it? What might they have misunderstood or only partially developed? Post the content point, your trace, and one specific prior knowledge assumption you would build into your AT1 Part A table for that practical.",
-        "The given cohort for AT1 includes students working at different points on the achievement spectrum — two advanced, three behind, two EAL/D. For one practical you are considering for AT1 Part A, identify what 'behind' might specifically look like for that practical: not a general deficit, but a particular gap in prior conceptual understanding or practical skill that would affect how that student engages with the investigation. What does this tell you about where that practical should sit in your sequence?"
-      ],
-      "workedExample": "The following examples show the difference between a strong and a partial prior knowledge entry in the AT1 Part A table. Both are for a Stage 5 practical on decomposition rates in soil.\n\nStrong (Earth and Space Science — Stage 5): 'Students can classify organisms by feeding relationships from Stage 4 Living World work (SC4-14LW). They should be able to represent energy flow in a simple food chain but may not yet distinguish decomposers from consumers — a common conflation from primary science. This practical assumes they can use a balance to 2 decimal places and record mass loss over time, skills developed in Stage 4 Working Scientifically.'\n\nPartial (Earth and Space Science — Stage 5): 'Students know about food chains and energy from Year 8. They have done experiments before.' The partial entry names prior knowledge in only the vaguest terms, does not reference specific Stage 4 outcomes, and does not identify the precise conceptual gap (decomposers vs consumers) that would affect engagement with the practical. It gives a marker no basis to judge whether the sequence is constructivist — it could describe any practical in any order.",
-      "synthesisTemplate": "Thanks everyone for your Topic 1 forum contributions. Some careful syllabus reading coming through — particularly in the prior knowledge traces. A pattern to note: [OBSERVATION — e.g. many entries named a Stage 4 concept correctly but didn't specify the outcome code or identify where the conceptual gap tends to sit for students at this transition]. One thing to take into the live session: [FOCUS — e.g. the difference between 'students know about X' and 'students can do Y with X' — the prior knowledge column is asking for the second one]. See you [DAY] at [TIME]."
-    },
-    "2": {
-      "item": "Topic 2",
-      "title": "The Nature of Science and Science Teaching",
-      "live": "🎤 Live Session: Topic 1 & 2",
-      "announcementBody": {
-        "intro": "This week we turn to the epistemological foundations of science itself — what science is, how it works, and what it means to teach it honestly and rigorously in a senior secondary context.",
-        "focus": "Topic 2 explores the Nature of Science (NOS) as a professional and pedagogical framework. You will examine the values, practices, and commitments that distinguish science as a way of knowing, and consider how a clear understanding of NOS shapes the way you select content, design investigations, and communicate the purpose of science to students."
-      },
-      "liveSessionFocus": "Session 2 covers Topics 1 and 2 together. We will examine the K–10 continuum and the Nature of Science as connected foundations for planning intellectually honest and engaging senior science lessons.",
-      "liveSessionTasks": [
-        "Review the Nature and Development of Science strand (or equivalent) in your Stage 6 syllabus and identify how NOS concepts are embedded in the content and outcomes.",
-        "Identify one aspect of the Nature of Science that you find genuinely challenging to communicate clearly to senior students.",
-        "Consider: how does your understanding of NOS influence the way you would design an investigation or respond to a student who says 'just give me the answer'?"
+        "LO2",
+        "LO3"
       ],
       "links": {
         "lecture": null,
@@ -922,20 +880,48 @@
       },
       "resources": [],
       "video": null,
-      "loMapping": [
-        "LO1",
-        "LO2",
-        "LO3"
+      "liveSessionFocus": "Session 2 covers Topics 1 and 2 together. We will examine the K–10 continuum and the Nature of Science as connected foundations for planning intellectually honest and engaging senior science lessons.",
+      "liveSessionTasks": [
+        "Review the Nature and Development of Science strand (or equivalent) in your Stage 6 syllabus and identify how NOS concepts are embedded in the content and outcomes.",
+        "Identify one aspect of the Nature of Science that you find genuinely challenging to communicate clearly to senior students.",
+        "Consider: how does your understanding of NOS influence the way you would design an investigation or respond to a student who says 'just give me the answer'?"
       ],
-      "orientationNote": "Topic 2 directly supports the justification you will write in AT1 Part B and the pedagogical framing of AT2 Part A. In Part B, you are asked to justify your practical sequence with reference to pedagogical principles — and the Working Scientifically strand is one of the most credible justificatory frameworks available, because it is built into the syllabus. A strong Part B does not cite inquiry-based learning in the abstract; it identifies specific Working Scientifically outcomes that your practicals address and explains why the sequence develops scientific thinking progressively. This week, practise mapping NOS concepts to specific content and skills — that habit of mind is exactly what distinguishes a DI justification from a CR one.",
-      "forumPrompts": [
-        "The NSW Science Years 7–10 (2023) syllabus embeds Working Scientifically outcomes across all strands. Choose one practical you are considering for AT1 Part A. Identify which Working Scientifically outcomes it addresses — be specific about the outcome code and the aspect of scientific inquiry the practical develops (e.g. designing investigations, processing data, communicating). Then identify one aspect of the Nature of Science this practical could make explicit to students if you chose to foreground it. Post your practical title, the WS outcomes, and your NOS connection.",
-        "A Year 9 student asks: 'Why do we have to keep doing experiments when the textbook already has the answers?' Write the response you would give — not a dismissive one, and not a lecture on epistemology, but a genuine answer grounded in your understanding of what science is and why the process matters. Your response should be something you could actually say to a 15-year-old. Post it, then identify which aspect of the Nature of Science your answer implicitly relies on."
-      ],
-      "synthesisTemplate": "Thanks for your Topic 2 posts this week. The NOS-to-WS mapping exercise surfaced some discipline-specific patterns worth discussing. A common thread: [OBSERVATION — e.g. most posts identified a WS outcome accurately but found it harder to name a specific NOS concept the practical makes explicit — that gap is worth sitting with]. One thing to bring to the live session: [FOCUS — e.g. the difference between a practical that uses scientific processes and one that makes the nature of those processes visible to students]. See you [DAY] at [TIME].",
-      "workedExample": "The following examples show the difference between a strong and a partial Working Scientifically outcome identification in AT1 Part A. Both are for a Stage 4 practical investigating the effect of distance on light intensity.\n\nStrong (Physics — Stage 4, light intensity practical): 'Working Scientifically outcomes: SC4-WS-01 (questioning and predicting — students design a prediction about the relationship between distance and brightness before collecting data); SC4-WS-04 (processing and analysing — students construct a graph and identify the inverse square pattern); SC4-WS-06 (communicating — students write a structured conclusion linking their data to the outcome). Knowledge & Understanding outcome: SC4-10PW (properties of visible light). NOS connection: this practical makes the provisional nature of scientific knowledge explicit — students' predictions are tested and revised, modelling how scientific understanding develops through evidence.'\n\nPartial (Physics — Stage 4, light intensity practical): 'Working Scientifically: students follow the method and record results. They learn about light.' The partial entry names a WS process (following a method) but does not identify specific outcome codes, does not differentiate between the WS strands the practical addresses, and provides no basis for a marker to assess whether the outcome mapping is accurate or complete. It also conflates doing science with knowing science — a distinction that matters for assessment alignment."
+      "topics": [
+        {
+          "id": "1",
+          "title": "The K–10 Continuum and Science Education",
+          "announcementBody": {
+            "intro": "Welcome to EDSE362. This week we begin by examining the full K–10 science continuum — the foundation of prior knowledge and experience your secondary students bring with them into Stage 4 & 5.",
+            "focus": "Topic 1 examines how the NSW Science K–6 Science and Technology syllabus connects to the Stage 4 & 5 Science syllabuses. You will trace the progression of key concepts, skills, and Working Scientifically strands from primary through to early secondary science, and consider how understanding this continuum helps you plan more responsive and connected Stage 6 lessons."
+          },
+          "orientationNote": "Topic 1 provides the syllabus literacy you need for both assessment tasks. In AT1 Part A, every row of your practical table requires you to identify specific NSW Science Years 7–10 (2023) outcome codes and content statements, and to articulate the prior knowledge students bring to each practical — both of which depend on your ability to read the continuum, not just the strand you have chosen. Quality work in AT1 Part A is distinguished by nuance in the prior knowledge column: not 'students know about forces' but a precise account of what Stage 4 students should be able to do before encountering Stage 5 content. Use this week to build that precision.",
+          "forumPrompts": [
+            "Open the NSW Science Years 7–10 (2023) syllabus and locate a Knowledge and Understanding strand you are considering for AT1. Choose one content point from that strand and trace its conceptual lineage back through the K–10 continuum — what would a student in Stage 3 have encountered that underpins it? What might they have misunderstood or only partially developed? Post the content point, your trace, and one specific prior knowledge assumption you would build into your AT1 Part A table for that practical.",
+            "The given cohort for AT1 includes students working at different points on the achievement spectrum — two advanced, three behind, two EAL/D. For one practical you are considering for AT1 Part A, identify what 'behind' might specifically look like for that practical: not a general deficit, but a particular gap in prior conceptual understanding or practical skill that would affect how that student engages with the investigation. What does this tell you about where that practical should sit in your sequence?"
+          ],
+          "workedExample": "The following examples show the difference between a strong and a partial prior knowledge entry in the AT1 Part A table. Both are for a Stage 4 practical investigating how changes to one component of an ecosystem affect a living system.Strong (Living systems – Stage 4):“Students should already understand from Stage 3 that living things depend on each other and on their environment for survival. They should be able to identify producers and consumers in simple food chains and recognise that changes in environmental conditions can affect living things. However, students commonly think ecosystems are stable and self-correcting rather than dynamic systems that change over time. This practical assumes students can make systematic observations, organise simple data tables and identify patterns from evidence using Working Scientifically skills developed in primary science and early Stage 4.”Partial (Living systems – Stage 4):“Students know about ecosystems and have done science experiments before.”The partial entry identifies prior learning only in general terms. It does not identify the specific conceptual understandings students should bring to the investigation, the misconceptions likely to affect learning, or the practical skills required for success.",
+          "synthesisTemplate": "Thanks everyone for your Topic 1 forum contributions. Some careful syllabus reading coming through — particularly in the prior knowledge traces. A pattern to note: [OBSERVATION — e.g. many entries named a Stage 4 concept correctly but didn't specify the outcome code or identify where the conceptual gap tends to sit for students at this transition]. One thing to take into the live session: [FOCUS — e.g. the difference between 'students know about X' and 'students can do Y with X' — the prior knowledge column is asking for the second one]. See you [DAY] at [TIME].",
+          "live": null
+        },
+        {
+          "id": "2",
+          "title": "The Nature of Science and Science Teaching",
+          "announcementBody": {
+            "intro": "This week we turn to the epistemological foundations of science itself — what science is, how it works, and what it means to teach it honestly and rigorously in a senior secondary context.",
+            "focus": "Topic 2 explores the Nature of Science (NOS) as a professional and pedagogical framework. You will examine the values, practices, and commitments that distinguish science as a way of knowing, and consider how a clear understanding of NOS shapes the way you select content, design investigations, and communicate the purpose of science to students."
+          },
+          "orientationNote": "Topic 2 directly supports the justification you will write in AT1 Part B and the pedagogical framing of AT2 Part A. In Part B, you are asked to justify your practical sequence with reference to pedagogical principles — and the Working Scientifically strand is one of the most credible justificatory frameworks available, because it is built into the syllabus. A strong Part B does not cite inquiry-based learning in the abstract; it identifies specific Working Scientifically outcomes that your practicals address and explains why the sequence develops scientific thinking progressively. This week, practise mapping NOS concepts to specific content and skills — that habit of mind is exactly what distinguishes a DI justification from a CR one.",
+          "forumPrompts": [
+            "The NSW Science Years 7–10 (2023) syllabus embeds Working Scientifically outcomes across all strands. Choose one practical you are considering for AT1 Part A. Identify which Working Scientifically outcomes it addresses — be specific about the outcome code and the aspect of scientific inquiry the practical develops (e.g. designing investigations, processing data, communicating). Then identify one aspect of the Nature of Science this practical could make explicit to students if you chose to foreground it. Post your practical title, the WS outcomes, and your NOS connection.",
+            "A Year 9 student asks: 'Why do we have to keep doing experiments when the textbook already has the answers?' Write the response you would give — not a dismissive one, and not a lecture on epistemology, but a genuine answer grounded in your understanding of what science is and why the process matters. Your response should be something you could actually say to a 15-year-old. Post it, then identify which aspect of the Nature of Science your answer implicitly relies on."
+          ],
+          "workedExample": "The following examples show the difference between a strong and a partial Working Scientifically outcome identification in AT1 Part A. Both are for a Stage 5 practical investigating how changing the frequency of a wave affects its behaviour.Strong (Waves and motion – Stage 5):“Working Scientifically outcomes: students develop a prediction about how changing frequency may affect wave behaviour before collecting evidence; they organise and analyse observations using tables and graphs; and they communicate evidence-based conclusions using appropriate scientific terminology. Knowledge and Understanding content: properties and behaviour of waves. Nature of Science connection: students compare their predictions with the evidence collected and refine their explanations, demonstrating how scientific knowledge develops through testing ideas against evidence.”Partial (Waves and motion – Stage 5):“Students follow the method, collect results and learn about waves.”The partial entry describes activities rather than outcomes. It does not identify the scientific thinking being developed or explain how the investigation contributes to students’ understanding of how science works.",
+          "synthesisTemplate": "Thanks for your Topic 2 posts this week. The NOS-to-WS mapping exercise surfaced some discipline-specific patterns worth discussing. A common thread: [OBSERVATION — e.g. most posts identified a WS outcome accurately but found it harder to name a specific NOS concept the practical makes explicit — that gap is worth sitting with]. One thing to bring to the live session: [FOCUS — e.g. the difference between a practical that uses scientific processes and one that makes the nature of those processes visible to students]. See you [DAY] at [TIME].",
+          "live": "🎤 Live Session: Topics 1 & 2"
+        }
+      ]
     },
-    "3": {
+    "2": {
       "item": "Topic 3",
       "title": "Selecting and Critically Evaluating Resources",
       "live": "🎤 Live Session",
@@ -951,7 +937,7 @@
       ],
       "links": {
         "lecture": null,
-        "slides": null,
+        "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458789",
         "zoom": null,
         "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/media/6bf672fc-9872-4e67-af3d-d6ececb43ad9/public?autoplay=false&automute=false\"></iframe>",
         "forum": null,
@@ -969,10 +955,10 @@
         "Locate one resource — textbook chapter, journal article, curriculum document, or online platform — that you could cite in AT1 Part B to justify either (a) your choice of constructivist pedagogical approach, or (b) a specific safety decision for one of your practicals. Evaluate it against these three criteria: syllabus alignment (does it engage with the NSW Science Years 7–10 context?), scientific accuracy (is the content reliable?), and pedagogical credibility (is the justification for the approach evidence-based?). Post the reference, your three-criterion evaluation, and a sentence showing how you would use it in Part B.",
         "You are reviewing a Year 8 Chemistry practical resource that instructs students to heat copper sulfate solution over a Bunsen burner without specifying eye protection requirements. Identify: (a) the specific safety gap; (b) the authoritative source you would consult to determine the correct requirement (e.g. CLEAPSS, RACI, your school's safety documents); (c) how you would record this in the safety column of your AT1 Part A table. What does this process tell you about the difference between a resource that is pedagogically useful and one that is safe to use?"
       ],
-      "workedExample": "The following examples show the difference between a strong and a partial citation in AT1 Part B. Both are justifying the placement of a density investigation early in a Stage 4 Physical World sequence.\n\nStrong (Physical World — Stage 4): 'The density investigation is positioned as the second practical in the sequence because students' prior knowledge of mass measurement (SC4-4WS) provides the procedural foundation, while density as a concept is not yet established — a deliberate decision aligned with Ausubel's (1968) principle of building new knowledge on existing cognitive structures. Bybee's (2014) 5E model informed the Explore phase design: students predict outcomes before measuring, surfacing misconceptions about whether size determines mass. Adjustments for EAL/D students follow the NESA EAL/D guidelines (NESA, 2023), with visual density columns and labelled diagrams replacing the standard written prediction task.'\n\nPartial (Physical World — Stage 4): 'The practicals are sequenced using constructivist principles (Vygotsky, 1978). Students learn better when they can build on prior knowledge. The density practical comes early because it is a foundational concept.' The partial response names a theorist but does not connect the citation to a specific decision, does not identify what prior knowledge is being built upon, and gives no basis for the sequencing claim beyond assertion.",
+      "workedExample": "The following examples show the difference between a strong and a partial citation in AT1 Part B. Both are justifying the placement of a Forces investigation early in a Stage 4 sequence.Strong (Forces – Stage 4):“The investigation examining balanced and unbalanced forces is positioned early in the sequence because students already possess everyday experiences of pushing, pulling and motion from primary science. Beginning with observable phenomena allows students to build scientific explanations from familiar experiences before introducing more abstract representations. The sequence is informed by Bybee’s (2014) 5E model, particularly the Explore phase, where students test their predictions and confront misconceptions such as ‘constant motion requires a constant force’. Visual prompts, annotated diagrams and structured discussion scaffolds are included to support EAL/D learners while maintaining the same conceptual expectations.”Partial (Forces – Stage 4):“The practicals are sequenced using constructivist learning principles. Students learn best when they build on prior knowledge. Forces is taught early because it is an important topic.”The partial response cites a general principle but does not connect the source to a specific teaching decision, identify the relevant prior knowledge, or explain why the investigation sits where it does in the sequence.",
       "synthesisTemplate": "Thanks for your Topic 3 forum posts this week. The resource evaluation activity is producing some strong critical thinking. A pattern worth noting: [OBSERVATION — e.g. most evaluations identified scientific accuracy and syllabus alignment well, but the pedagogical credibility criterion was often treated as 'does it look teachable' rather than 'is there evidence this approach supports learning']. One thing to bring to the live session: [FOCUS — e.g. the distinction between a resource that is convenient and one that is defensible — Part B of AT1 asks you to defend your decisions with sources, not just describe them]. See you [DAY] at [TIME]."
     },
-    "4": {
+    "3": {
       "item": "Topic 4",
       "title": "Introduction to Teaching Differentiation",
       "live": "🎤 Live Session: Topic 3 & 4",
@@ -995,7 +981,7 @@
       "synthesisTemplate": "Thanks everyone for your Topic 4 forum contributions this week. Some strong questioning sequences coming through. A few patterns worth noting across the cohort: [OBSERVATION — e.g. most sequences started well at recall level but the jump to analysis was sometimes abrupt — consider what bridging question sits in between]. One thing to take into the live session: [FOCUS — e.g. the distinction between an open question and a genuinely divergent question — open doesn't automatically mean high cognitive demand]. See you [DAY] at [TIME].",
       "links": {
         "lecture": null,
-        "slides": null,
+        "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458798",
         "zoom": null,
         "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/media/96b88d29-365d-4677-a0f1-04267b8610f5/public?autoplay=false&automute=false\"></iframe>",
         "forum": null,
@@ -1009,7 +995,7 @@
         "LO5"
       ]
     },
-    "5": {
+    "4": {
       "item": "Topic 5",
       "title": "The Inclusive Science Classroom",
       "live": "🎤 Live Session",
@@ -1043,10 +1029,10 @@
         "For one practical you are designing for AT1 Part A, identify adjustments for each of the four cohort groups: EAL/D students (2), advanced students (2), students working behind (3), and Aboriginal or Torres Strait Islander students (5). For each group, the adjustment must be specific to that practical — not a generic strategy that would apply to any science lesson. Post your practical title and your four adjustments, then identify which adjustment you found hardest to design and why.",
         "The AT2 Part B yellow highlight requires embedding Aboriginal and Torres Strait Islander perspectives, histories, and cultures into your unit program — not as an add-on activity, but woven into the learning sequence itself. Choose any science strand from the NSW Years 7–10 syllabus and identify one specific content point where a genuine connection to Aboriginal and Torres Strait Islander knowledge could be embedded in a way that strengthens the science learning, not just acknowledges it exists. Describe what that would look like in a lesson, and identify a source — ideally a community-connected or AIATSIS resource — that would inform your approach. What is the difference between embedding and tokenism in this context?"
       ],
-      "workedExample": "The following examples show the difference between strong and partial cohort adjustments in AT1 Part A. Both are for a Stage 5 Biology practical on microscopy and cell structure.\n\nStrong (Biology — Stage 5, microscopy practical): EAL/D adjustment — 'Provide a bilingual glossary of key terms (cell, nucleus, membrane, magnification) and a labelled diagram of the microscope with part names in both English and the student's home language where possible. Instructions are provided in short, numbered steps with accompanying photographs.' Advanced adjustment — 'Students extend the task by comparing cell structure across three tissue types using prepared slides, and write a paragraph explaining the relationship between cell structure and function using two peer-reviewed sources.' Behind adjustment — 'Pre-label the blank cell diagram with the first letter of each organelle as a scaffold. Students focus on identifying three structures (cell wall, nucleus, vacuole) rather than the full list, consolidating core understanding before extending.' Aboriginal and Torres Strait Islander adjustment — 'Investigate the cultural significance of a local plant species (sourced with community input) alongside its cellular biology — students examine the same specimen through a scientific and a cultural lens, with prior consultation with a community representative to confirm appropriateness.'\n\nPartial (Biology — Stage 5, microscopy practical): EAL/D — 'Provide a glossary.' Advanced — 'Give extension questions.' Behind — 'Simplify the task.' Aboriginal and Torres Strait Islander — 'Connect to Country.' The partial entries are generic to the point of being interchangeable with any practical in any unit — they demonstrate awareness of the cohort but not the applied professional knowledge the rubric is assessing.",
+      "workedExample": "The following examples show the difference between strong and partial cohort adjustments in AT1 Part A. Both are for a Stage 4 practical investigating cell structure using microscopy.Strong (Cells and classification – Stage 4):EAL/D adjustment – “Provide a visual glossary of microscope parts and cell structures, with labelled diagrams accompanying all written instructions. Procedural steps are presented as numbered images and short sentences.”Advanced adjustment – “Students compare specialised cell types and explain how structural differences support different biological functions, drawing on additional scientific sources.”Behind adjustment – “Students use partially labelled diagrams and focus initially on identifying a small number of key structures before progressing to more detailed observations.”Aboriginal and Torres Strait Islander adjustment – “Students investigate the microscopic structure of a locally significant plant species selected with appropriate community guidance, examining both biological characteristics and cultural significance.”Partial:EAL/D – “Provide a glossary.”Advanced – “Give extension questions.”Behind – “Simplify the activity.”Aboriginal and Torres Strait Islander – “Include Indigenous perspectives.”The partial adjustments are generic and could apply to almost any lesson. They demonstrate awareness that differentiation is required but do not show how barriers to participation are being addressed within the context of this specific practical investigation.",
       "synthesisTemplate": "Thanks for your Topic 5 contributions this week. The cohort adjustment activity is the most directly assessed skill in the unit — it shows up in AT1 Part A and across AT2 Parts A and B. A pattern in the posts: [OBSERVATION — e.g. adjustments for EAL/D students tended to be strong and specific, but the Aboriginal and Torres Strait Islander adjustments were often generic — 'connect to Country' without identifying a specific connection to the practical or a community source]. One thing to bring to the live session: [FOCUS — e.g. the difference between an adjustment that reduces barriers to participation and one that reduces the challenge — the rubric rewards the first; the second is a different problem]. See you [DAY] at [TIME]."
     },
-    "6": {
+    "5": {
       "item": "Topic 6",
       "title": "Planning and Evaluating a Unit of Work",
       "live": "🎤 Live Session: Topic 5 & 6",
@@ -1085,7 +1071,7 @@
       "workedExample": "The following examples show the difference between a strong and a partial A–E criterion for a Stage 5 Chemistry assessment task asking students to explain a chemical reaction using particle theory.\n\nStrong (Chemistry — Stage 5, particle theory task): 'A student working at the A standard provides a scientifically accurate and detailed explanation of the reaction at the particle level, correctly identifying the role of collision frequency, activation energy, and particle orientation. The explanation is coherent and uses appropriate chemical terminology throughout. Diagrams, where included, accurately represent particle arrangement and movement. The student draws explicit connections between the particle-level explanation and observable macroscopic properties (e.g. colour change, gas production, temperature change).'\n\nPartial (Chemistry — Stage 5, particle theory task): 'A: Excellent explanation of particle theory. Very detailed and uses correct terminology.' The partial criterion is evaluative but not descriptive — it tells a student they did well without explaining what 'excellent' or 'very detailed' means in terms of content. A student reading this cannot self-assess, and a second marker cannot apply it consistently. NESA Performance Band Descriptor language requires observable, content-specific descriptions of what the student can do — not adjectives about quality.",
       "synthesisTemplate": "Thanks for your Topic 6 posts — particularly the summative assessment design activity, which is direct preparation for AT2 Part C. Patterns worth noting: [OBSERVATION — e.g. most task designs were clearly connected to content, but the A-band descriptors in the rubrics tended to use adjectives ('thorough', 'detailed') rather than observable content-specific descriptions — NESA Performance Band Descriptor language asks for the second]. One thing to take into the live session: [FOCUS — e.g. ask yourself: could two markers independently arrive at the same grade using your rubric? If not, it needs more specificity]. See you [DAY] at [TIME]."
     },
-    "7": {
+    "6": {
       "item": "Topic 7",
       "title": "Teaching and Learning Science Using Analogies",
       "live": "🎤 Live Session",
@@ -1122,10 +1108,46 @@
       "workedExample": "The following examples show the difference between a strong and a partial analogy evaluation — the kind of critical thinking that distinguishes an HD Part B justification from a CR one.\n\nStrong (Physics — Stage 5, electric circuit analogy): 'The water-pipe analogy for electric circuits maps correctly onto voltage (water pressure), current (flow rate), and resistance (pipe diameter) at a qualitative level, and is consistent with Ohm's law relationships. It is a defensible starting point for Stage 5 students. However, the analogy breaks down at several points: water flows continuously in a closed loop, whereas electrons are already present throughout the conductor before the circuit is closed — the analogy misrepresents the mechanism of current initiation. The analogy also fails for series vs parallel circuits, where the water model produces incorrect predictions about current distribution. I would introduce this analogy explicitly with a 'what it gets right / what it gets wrong' table, asking students to identify limitations themselves before extending to circuit calculations.'\n\nPartial (Physics — Stage 5, electric circuit analogy): 'The water analogy is a good way to explain circuits to students because it makes the concept concrete. Students can understand voltage and current more easily this way.' The partial response identifies the analogy as useful but does not evaluate it — it cannot justify the decision to use it, cannot anticipate the misconceptions it might generate, and provides no basis for how a teacher would manage those misconceptions in practice.",
       "synthesisTemplate": "Thanks for your Topic 7 posts this week. The analogy evaluation exercise is producing some careful thinking. A common pattern: [OBSERVATION — e.g. most posts identified what the analogy maps correctly and where it breaks down, but the script for addressing limitations with students was often too abstract — 'I would tell them where it doesn't work' rather than a specific two-sentence approach]. One thing to bring to the live session: [FOCUS — e.g. the moment when a student over-extends an analogy into territory where it breaks down — how do you catch and correct that in real time without undermining the analogy's usefulness?]. See you [DAY] at [TIME]."
     },
-    "8": {
+    "7": {
       "item": "Topic 8",
       "title": "Developing Your Science Content Knowledge",
       "live": "🎤 Live Session: Topic 7 & 8",
+      "announcementBody": {
+        "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
+        "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your Stage 6 syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
+      },
+      "liveSessionFocus": "Session 8 covers Topics 7 and 8 together. We will examine analogies and content knowledge development as complementary professional skills, and conclude the teaching program by looking ahead to the professional learning habits that will sustain your practice.",
+      "liveSessionTasks": [
+        "Complete a content knowledge audit for your primary Stage 6 teaching area: rate your confidence across the major content sections and identify your two or three priority gaps.",
+        "For each priority gap, identify at least one concrete resource or action you will take to address it — a specific book, online course, professional association, or peer with relevant expertise.",
+        "Come prepared to briefly share your audit findings and your plan — and to give and receive constructive feedback with peers."
+      ],
+      "links": {
+        "lecture": null,
+        "slides": null,
+        "zoom": null,
+        "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/public/media/52926755-b53b-44ae-ab15-d5ad66082dce?autoplay=false&automute=false\"></iframe>",
+        "forum": null,
+        "materials": null,
+        "liveHub": null
+      },
+      "resources": [],
+      "video": null,
+      "loMapping": [
+        "LO1",
+        "LO6"
+      ],
+      "orientationNote": "Topic 8 is the direct preparation for AT1 Part C and AT2 Part D — both reflection tasks. A common mistake is treating these as summaries of what you learned. The rubric rewards something more specific: identifying a named external professional learning source (such as a NESA resource, ASTA, a professional association in your discipline, or a community representative) and explaining concretely why it is relevant to your teaching context and chosen strand. AT2 Part D also asks you to evaluate one aspect of your unit program with evidence. Use this week to audit your own content knowledge honestly and identify specific gaps — that audit is the raw material for a reflection that earns marks.",
+      "forumPrompts": [
+        "Conduct a content knowledge audit for the strand you have chosen for AT1 or AT2. Rate your confidence across the main content areas of that strand on a simple three-point scale (strong / developing / gap). For your two most significant gaps, identify: (a) one specific professional learning resource or action that would address it — a named book, online course, ASTA workshop, university contact, or community expert; (b) why that resource is the right one for your specific gap and teaching context, not just a general reference. Post your audit summary and your two gap-closure plans. What would you need to be confident enough to teach that content well?",
+        "AT2 Part D asks you to 'evaluate one aspect of your unit program with evidence and name an external professional or community source that supported your design.' Practise this now: identify one specific decision you made in a draft of your AT2 unit program (or a program you have seen on placement), evaluate whether it worked or would work using a piece of evidence (student data, feedback, a peer review, or a cited research finding), and name one external professional or community source you consulted or would consult to strengthen that aspect. Post your decision, your evidence-based evaluation, and your named source. Why does naming a source matter — what does it demonstrate that a general reference does not?"
+      ],
+      "synthesisTemplate": "Thanks for your Topic 8 posts — the content knowledge audit is the most personally honest piece of work in the unit, and it shows in the quality of reflection this week. Patterns worth noting: [OBSERVATION — e.g. most audits identified genuine gaps, but the gap-closure plans sometimes stayed at the category level — 'read more about genetics' rather than a specific resource, course, or person]. This matters for AT1 Part C and AT2 Part D: the rubric rewards naming a specific source and justifying why it is right for your strand and context, not naming a type of source. One thing to carry into your assessments: [FOCUS — e.g. the difference between 'ASTA' as a source and 'the ASTA Chemistry journal article on misconceptions about covalent bonding' — specificity is the point]. See you [DAY] at [TIME]."
+    },
+    "8": {
+      "item": "Topics 7 & 8",
+      "title": "Developing Your Science Content Knowledge",
+      "live": "🎤 Live Session: Topics 7 & 8",
       "announcementBody": {
         "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
         "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your Stage 6 syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
