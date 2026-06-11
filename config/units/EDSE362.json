@@ -1,6 +1,6 @@
 {
   "code": "EDSE362",
-  "name": "Science Education 11–12: Curriculum, Pedagogy and Inclusive Practice",
+  "name": "Science Education 7-10: Developing Professional Skills and Understanding",
   "itemLabel": "Topic",
   "liveDay": "Wednesday",
   "liveTime": "5:30–6:30pm",
@@ -873,17 +873,17 @@
         "lecture": null,
         "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458782",
         "zoom": null,
-        "recording": null,
+        "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=\"0\" src=\"https://echo360.net.au/public/media/3cc0f243-2ccc-4dc2-a008-a4769c7a8172?autoplay=false&automute=false\"></iframe>",
         "recordings": [
           {
             "id": "topic1",
             "label": "Topic 1 – The K–10 Continuum and Science Education",
-            "embed": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/media/717b16c5-eac1-44c3-ab2d-535f42f2dd25/public?autoplay=false&automute=false\"></iframe>"
+            "embed": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=\"0\" src=\"https://echo360.net.au/public/media/3cc0f243-2ccc-4dc2-a008-a4769c7a8172?autoplay=false&automute=false\"></iframe>"
           },
           {
             "id": "topic2",
             "label": "Topic 2 – The Nature of Science and Science Teaching",
-            "embed": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/media/6bf672fc-9872-4e67-af3d-d6ececb43ad9/public?autoplay=false&automute=false\"></iframe>"
+            "embed": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=\"0\" src=\"https://echo360.net.au/public/media/717b16c5-eac1-44c3-ab2d-535f42f2dd25?autoplay=false&automute=false\"></iframe>"
           }
         ],
         "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458783",
