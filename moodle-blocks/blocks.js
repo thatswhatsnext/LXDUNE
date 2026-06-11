@@ -292,7 +292,7 @@ function calcCurrentWeek(today, dateList) {
 
 // ── Shared config resolver ────────────────────────────────────────────────────
 
-async function resolve({ forUnit, forTri, forYear, forWeek, forDate }) {
+async function resolve({ forUnit, forTri, forYear, forWeek, forDate, forTopic }) {
   const [triCfg, unitCfg] = await Promise.all([
     fetchJson(`${BASE}config/trimester-config.json`),
     fetchJson(`${BASE}config/units/${forUnit}.json`),
@@ -310,12 +310,20 @@ async function resolve({ forUnit, forTri, forYear, forWeek, forDate }) {
     weekNum = calcCurrentWeek(today, buildDateList(new Date(startDate), forTri));
   }
 
+  let resolvedTopic = null;
+  if (forTopic != null) {
+    for (const [k, w] of Object.entries(unitCfg.weeks)) {
+      const t = (w.topics ?? []).find(t => String(t.id) === String(forTopic));
+      if (t) { weekNum = isNaN(Number(k)) ? k : Number(k); resolvedTopic = t; break; }
+    }
+  }
+
   const week = unitCfg.weeks[String(weekNum)] ?? null;
   const triZoom = unitCfg.trimesterConfig?.[triKey]?.zoom ?? null;
   const zoomUrl = triZoom?.url ?? week?.links?.zoom ?? null;
   const zoom = triZoom ? { ...triZoom, url: zoomUrl } : (zoomUrl ? { url: zoomUrl } : null);
 
-  return { unitCfg, triCfg, week, weekNum, triKey, startDate, zoom };
+  return { unitCfg, triCfg, week, weekNum, triKey, startDate, zoom, resolvedTopic };
 }
 
 // ── Assessment reminder builder (shared) ──────────────────────────────────────
@@ -361,14 +369,14 @@ function buildAssessmentReminders(unitCfg, portalUrl) {
 // Container: <div id="lxdune-announcement"></div>
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWeek, forDate, containerId = 'lxdune-announcement' } = {}) {
+export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWeek, forDate, forTopic, containerId = 'lxdune-announcement' } = {}) {
   const el = document.getElementById(containerId);
   if (!el) return;
   let ctx;
-  try { ctx = await resolve({ forUnit, forTri, forYear, forWeek, forDate }); }
+  try { ctx = await resolve({ forUnit, forTri, forYear, forWeek, forDate, forTopic }); }
   catch (e) { setError(el, `Could not load content: ${e.message}`); return; }
 
-  const { unitCfg, week, weekNum } = ctx;
+  const { unitCfg, week, weekNum, resolvedTopic } = ctx;
   applyTheme(unitCfg);
   const itemLabel = unitCfg.itemLabel ?? 'Module';
 
@@ -390,7 +398,7 @@ export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWee
         ${unitCfg.assessmentPortalUrl ? `<p style="margin:8px 0 0;"><a href="${esc(unitCfg.assessmentPortalUrl)}" target="_blank" style="color:var(--lx-primary,#1f6fb2);font-weight:600;">Assessment Portal</a></p>` : ''}
       </div>
     </div>`;
-  } else if (week.topics?.length) {
+  } else if (week.topics?.length && !resolvedTopic) {
     // ── Multi-topic weeks: one <details>/<summary> per topic ──────────────────
     const topics = week.topics;
     const topicDetails = topics.map((topic, idx) => {
@@ -449,7 +457,7 @@ export async function renderAnnouncementBlock({ forUnit, forTri, forYear, forWee
     sections.push(`<p>I look forward to our discussion this week.</p>`);
     html = `<div style="font-family:Arial,sans-serif;color:#1F2A33;line-height:1.5;max-width:800px;margin:0 auto;">${sections.join('\n')}</div>`;
   } else {
-    const ab = week.announcementBody ?? {};
+    const ab = (resolvedTopic?.announcementBody ?? week.announcementBody) ?? {};
     const sections = [];
 
     sections.push(`<div style="margin:16px 0;padding:16px;border:1px solid #dfe6ea;border-left:6px solid var(--lx-primary,#1f6fb2);border-radius:8px;background:#f4f6f8;">
@@ -591,8 +599,38 @@ export async function renderLectureBlock({ forUnit, forTri, forYear, forWeek, fo
 
   injectStyles('lx-lecture-styles', LECTURE_CSS);
 
-  const lectureCard = week.links?.lecture
-    ? `<div class="lx-lec-card lx-lec-lecture">
+  let lectureCard;
+  if (Array.isArray(week.links?.recordings) && week.links.recordings.length > 0) {
+    lectureCard = `
+      <div class="lx-lec-card lx-lec-lecture">
+        <div class="lx-lec-step">Step 1</div>
+        <h4>Watch the Lecture</h4>
+        <div class="lx-lec-extra">Click below to expand the lecture recordings.</div>
+        ${week.links.recordings.map((rec, index) => `
+        <details style="margin-top:10px;" ${index === 0 ? 'open' : ''}>
+          <summary style="cursor:pointer;font-weight:800;">
+            ${esc(rec.label || `Recording ${index + 1}`)}
+          </summary>
+          <div class="lx-video">
+            ${rec.embed}
+          </div>
+        </details>
+      `).join('')}
+      </div>
+    `;
+  } else if (week.links?.recording && typeof week.links.recording === 'string'
+             && week.links.recording.trim().startsWith('<')) {
+    lectureCard = `<div class="lx-lec-card lx-lec-lecture">
+        <div class="lx-lec-step">Step 1</div>
+        <h4>Watch the Lecture</h4>
+        <div class="lx-lec-extra">Click below to expand the lecture recording.</div>
+        <details style="margin-top:10px;">
+          <summary style="cursor:pointer;font-weight:800;">Open lecture recording</summary>
+          <div class="lx-video">${week.links.recording}</div>
+        </details>
+      </div>`;
+  } else if (week.links?.lecture) {
+    lectureCard = `<div class="lx-lec-card lx-lec-lecture">
         <div class="lx-lec-step">Step 1</div>
         <h4>Watch the Lecture</h4>
         <div class="lx-lec-extra">Click below to expand the lecture recording.</div>
@@ -602,13 +640,15 @@ export async function renderLectureBlock({ forUnit, forTri, forYear, forWeek, fo
             <iframe src="${esc(week.links.lecture)}" allowfullscreen="" frameborder="0"></iframe>
           </div>
         </details>
-      </div>`
-    : `<div class="lx-lec-card lx-lec-lecture">
+      </div>`;
+  } else {
+    lectureCard = `<div class="lx-lec-card lx-lec-lecture">
         <div class="lx-lec-step">Step 1</div>
         <h4>Watch the Lecture</h4>
         <div class="lx-lec-extra">The lecture recording will be available here when published.</div>
         <div style="margin-top:12px;">${CHIP}</div>
       </div>`;
+  }
 
   const slidesCard = week.links?.slides
     ? `<a href="${esc(week.links.slides)}" class="lx-lec-card lx-lec-slides" target="_blank" rel="noopener">
@@ -2101,13 +2141,13 @@ export async function renderAssessmentStatus({ forUnit, forTri, forYear, contain
 }
 
 // ── 13. renderOrientationNote ─────────────────────────────────────────────────
-export async function renderOrientationNote({ forUnit, forTri, forYear, forWeek, forDate, containerId = 'lxdune-orientation-note' } = {}) {
+export async function renderOrientationNote({ forUnit, forTri, forYear, forWeek, forDate, forTopic, containerId = 'lxdune-orientation-note' } = {}) {
   const el = document.getElementById(containerId); if (!el) return;
   try {
-    const { unitCfg, week } = await resolve({ forUnit, forTri, forYear, forWeek, forDate });
+    const { unitCfg, week, resolvedTopic } = await resolve({ forUnit, forTri, forYear, forWeek, forDate, forTopic });
     applyTheme(unitCfg);
 
-    if (week?.topics?.length) {
+    if (week?.topics?.length && !resolvedTopic) {
       // ── topics[] path ──────────────────────────────────────────────────────
       const topicsWithNote = week.topics.filter(t => t.orientationNote != null);
       if (!topicsWithNote.length) { el.innerHTML = ''; return; }
@@ -2132,7 +2172,7 @@ export async function renderOrientationNote({ forUnit, forTri, forYear, forWeek,
     }
 
     // ── flat path (backwards-compatible) ──────────────────────────────────────
-    const note = week?.orientationNote;
+    const note = resolvedTopic?.orientationNote ?? week?.orientationNote;
     if (!note) { el.innerHTML = ''; return; }
     injectStyles('lx-orientation-note', ORIENTATION_NOTE_CSS);
     el.innerHTML = `<div class="lx-on"><div class="lx-on-inner">
@@ -2145,13 +2185,13 @@ export async function renderOrientationNote({ forUnit, forTri, forYear, forWeek,
 }
 
 // ── 14. renderForumPrompts ────────────────────────────────────────────────────
-export async function renderForumPrompts({ forUnit, forTri, forYear, forWeek, forDate, containerId = 'lxdune-forum-prompts' } = {}) {
+export async function renderForumPrompts({ forUnit, forTri, forYear, forWeek, forDate, forTopic, containerId = 'lxdune-forum-prompts' } = {}) {
   const el = document.getElementById(containerId); if (!el) return;
   try {
-    const { unitCfg, week } = await resolve({ forUnit, forTri, forYear, forWeek, forDate });
+    const { unitCfg, week, resolvedTopic } = await resolve({ forUnit, forTri, forYear, forWeek, forDate, forTopic });
     applyTheme(unitCfg);
 
-    if (week?.topics?.length) {
+    if (week?.topics?.length && !resolvedTopic) {
       // ── topics[] path ──────────────────────────────────────────────────────
       const topicsWithPrompts = week.topics.filter(t => t.forumPrompts?.length);
       if (!topicsWithPrompts.length) { el.innerHTML = ''; return; }
@@ -2182,7 +2222,7 @@ export async function renderForumPrompts({ forUnit, forTri, forYear, forWeek, fo
     }
 
     // ── flat path (backwards-compatible) ──────────────────────────────────────
-    const prompts = week?.forumPrompts ?? [];
+    const prompts = resolvedTopic?.forumPrompts ?? week?.forumPrompts ?? [];
     if (!prompts.length) { el.innerHTML = ''; return; }
     injectStyles('lx-forum-prompts', FORUM_PROMPTS_CSS);
     const items = prompts.map((p, i) =>
@@ -2198,12 +2238,12 @@ export async function renderForumPrompts({ forUnit, forTri, forYear, forWeek, fo
 }
 
 // ── 15. renderWorkedExample ───────────────────────────────────────────────────
-export async function renderWorkedExample({ forUnit, forTri, forYear, forWeek, forDate, containerId = 'lxdune-worked-example' } = {}) {
+export async function renderWorkedExample({ forUnit, forTri, forYear, forWeek, forDate, forTopic, containerId = 'lxdune-worked-example' } = {}) {
   const el = document.getElementById(containerId); if (!el) return;
   try {
-    const { unitCfg, week } = await resolve({ forUnit, forTri, forYear, forWeek, forDate });
+    const { unitCfg, week, resolvedTopic } = await resolve({ forUnit, forTri, forYear, forWeek, forDate, forTopic });
     applyTheme(unitCfg);
-    const example = week?.workedExample;
+    const example = resolvedTopic?.workedExample ?? week?.workedExample;
     if (!example) { el.innerHTML = ''; return; }
     injectStyles('lx-worked-example', WORKED_EXAMPLE_CSS);
     const paras = example.split('\n').filter(Boolean).map(s => `<p>${esc(s)}</p>`).join('');

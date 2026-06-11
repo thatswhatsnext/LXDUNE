@@ -101,6 +101,7 @@
         <option value="synthesis-template">Post-forum synthesis (lecturer)</option>
         <option value="current-week">Current week spotlight</option>
         <option value="full-section">Full section (all blocks)</option>
+        <option value="topic-section">Topic section (announcement + orientation + forum prompts + worked example)</option>
       </select>
     </div>
     <div class="form-row" id="task-row" style="display:none;">
@@ -114,6 +115,10 @@
     <div class="form-row" id="week-row" style="display:none;">
       <label for="sel-week">Week</label>
       <select id="sel-week"></select>
+    </div>
+    <div class="form-row" id="topic-row" style="display:none;">
+      <label for="sel-topic">Topic</label>
+      <select id="sel-topic"></select>
     </div>
     <button class="btn" id="gen-btn">Generate shell</button>
   </div>
@@ -160,6 +165,7 @@
     function syncSelectors() {
       taskRow.style.display = ['assessment-page', 'assessment-hybrid', 'presubmission-checklist'].includes(typeSel.value) ? '' : 'none';
       weekRow.style.display = ['synthesis-template', 'full-section', 'orientation-note', 'forum-prompts', 'worked-example'].includes(typeSel.value) ? '' : 'none';
+      document.getElementById('topic-row').style.display = typeSel.value === 'topic-section' ? '' : 'none';
     }
     typeSel.addEventListener('change', syncSelectors);
     syncSelectors();
@@ -317,6 +323,32 @@
     );
   }
 
+  function shellTopicSection(unit, tri, year, topicId) {
+    const tpLit = `'${topicId}'`;
+    const fns = [
+      ['renderAnnouncementBlock', 'lxdune-announcement'],
+      ['renderOrientationNote', 'lxdune-orientation-note'],
+      ['renderForumPrompts', 'lxdune-forum-prompts'],
+      ['renderWorkedExample', 'lxdune-worked-example'],
+    ];
+    const imports = fns.map(([fn]) => fn).join(', ');
+    const calls = fns.map(([fn, id]) =>
+      `  ${fn}({ forUnit:U, forTri:T, forYear:Y, forTopic:TP, containerId:'${id}' });`
+    ).join('\n');
+    const divs = fns.map(([, id]) => `<div id='${id}'></div>`).join('\n');
+    return (
+      `<!-- ${unit} ${tri} ${year} — Topic ${topicId}: topic section -->\n` +
+      `<!-- Paste the script tag anywhere; place each div where you want that block -->\n\n` +
+      `<script type="module">\n` +
+      `import { ${imports} }\n` +
+      `  from '${PAGES_BASE}/moodle-blocks/blocks.js';\n` +
+      `const U='${unit}', T='${tri}', Y='${year}', TP=${tpLit};\n` +
+      calls + `\n` +
+      `<\/script>\n\n` +
+      divs
+    );
+  }
+
   function shellFullSection(unit, tri, year, weekNum) {
     const W = isNaN(Number(weekNum)) ? weekNum : Number(weekNum);
     const wLit = typeof W === 'string' ? `'${W}'` : W;
@@ -434,6 +466,24 @@
     weekSel.innerHTML = weekEntries.map(([k, w]) => `<option value="${k}">Week ${k}${w.title ? ` — ${w.title}` : ''}</option>`).join('');
     const firstTeachingWeek = weekEntries.find(([k]) => Number(k) >= 1)?.[0] ?? weekEntries[0]?.[0] ?? '';
     weekSel.value = (prevWeekVal !== '' && [...weekSel.options].some(o => o.value === prevWeekVal)) ? prevWeekVal : firstTeachingWeek;
+
+    // Populate topic dropdown from unit JSON
+    const topicSel = document.getElementById('sel-topic');
+    const prevTopicVal = topicSel.value;
+    const topicEntries = [];
+    for (const [k, w] of weekEntries) {
+      if (w.topics?.length) {
+        for (const t of w.topics) {
+          topicEntries.push({ value: String(t.id), label: `Topic ${t.id}: ${t.title}` });
+        }
+      } else {
+        const v = w.item ?? k;
+        const label = w.item && w.title ? `${w.item}: ${w.title}` : (w.title ?? `Week ${k}`);
+        topicEntries.push({ value: String(v), label });
+      }
+    }
+    topicSel.innerHTML = topicEntries.map(e => `<option value="${e.value}">${e.label}</option>`).join('');
+    if ([...topicSel.options].some(o => o.value === prevTopicVal)) topicSel.value = prevTopicVal;
 
     const triKey = `${tri}-${year}`;
     const zoom = unitCfg.trimesterConfig?.[triKey]?.zoom;
@@ -675,6 +725,26 @@
         code,
         note: `Single <code>&lt;script&gt;</code> imports all functions once. Place each <code>&lt;div&gt;</code> where that block should appear. Scoped container IDs prevent conflicts on single-page Moodle layouts.`,
         rows: 18,
+      });
+      output.style.display = 'block';
+      bindCopyButtons();
+      btn.disabled = false;
+      btn.textContent = 'Generate shell';
+      output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Topic section (forTopic-scoped single-import shell)
+    if (pageType === 'topic-section') {
+      const topicId = document.getElementById('sel-topic').value;
+      const code = shellTopicSection(unit, tri, year, topicId);
+      const output = document.getElementById('output');
+      output.innerHTML = `<div class="result-banner">Topic section shell for <strong>${unit}</strong> — Topic <strong>${topicId}</strong></div>` + snippetCard({
+        title: `Topic section — Topic ${topicId}`,
+        badge: 'blocks.js', badgeClass: 'badge-ready',
+        code,
+        note: `Paste the <code>&lt;script&gt;</code> tag anywhere; place each <code>&lt;div&gt;</code> where that block should appear. Uses <code>forTopic</code> to resolve topic-level content, falling back to week-level fields.`,
+        rows: 16,
       });
       output.style.display = 'block';
       bindCopyButtons();
