@@ -599,24 +599,45 @@ export async function renderLectureBlock({ forUnit, forTri, forYear, forWeek, fo
 
   injectStyles('lx-lecture-styles', LECTURE_CSS);
 
-  const lectureCard = week.links?.lecture
-    ? `<div class="lx-lec-card lx-lec-lecture">
+  let lectureCard;
+  if (Array.isArray(week.links?.recordings) && week.links.recordings.length > 0) {
+    lectureCard = `
+      <div class="lx-lec-card lx-lec-lecture">
         <div class="lx-lec-step">Step 1</div>
         <h4>Watch the Lecture</h4>
-        <div class="lx-lec-extra">Click below to expand the lecture recording.</div>
-        <details style="margin-top:10px;">
-          <summary style="cursor:pointer;font-weight:800;">Open lecture recording</summary>
+        <div class="lx-lec-extra">Click below to expand the lecture recordings.</div>
+        ${week.links.recordings.map((rec, index) => `
+        <details style="margin-top:10px;" ${index === 0 ? 'open' : ''}>
+          <summary style="cursor:pointer;font-weight:800;">
+            ${esc(rec.label || `Recording ${index + 1}`)}
+          </summary>
           <div class="lx-video">
-            <iframe src="${esc(week.links.lecture)}" allowfullscreen="" frameborder="0"></iframe>
+            ${rec.embed}
           </div>
         </details>
-      </div>`
-    : `<div class="lx-lec-card lx-lec-lecture">
-        <div class="lx-lec-step">Step 1</div>
-        <h4>Watch the Lecture</h4>
-        <div class="lx-lec-extra">The lecture recording will be available here when published.</div>
-        <div style="margin-top:12px;">${CHIP}</div>
-      </div>`;
+      `).join('')}
+      </div>
+    `;
+  } else {
+    lectureCard = week.links?.lecture
+      ? `<div class="lx-lec-card lx-lec-lecture">
+          <div class="lx-lec-step">Step 1</div>
+          <h4>Watch the Lecture</h4>
+          <div class="lx-lec-extra">Click below to expand the lecture recording.</div>
+          <details style="margin-top:10px;">
+            <summary style="cursor:pointer;font-weight:800;">Open lecture recording</summary>
+            <div class="lx-video">
+              <iframe src="${esc(week.links.lecture)}" allowfullscreen="" frameborder="0"></iframe>
+            </div>
+          </details>
+        </div>`
+      : `<div class="lx-lec-card lx-lec-lecture">
+          <div class="lx-lec-step">Step 1</div>
+          <h4>Watch the Lecture</h4>
+          <div class="lx-lec-extra">The lecture recording will be available here when published.</div>
+          <div style="margin-top:12px;">${CHIP}</div>
+        </div>`;
+  }
 
   const slidesCard = week.links?.slides
     ? `<a href="${esc(week.links.slides)}" class="lx-lec-card lx-lec-slides" target="_blank" rel="noopener">
