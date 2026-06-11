@@ -618,25 +618,36 @@ export async function renderLectureBlock({ forUnit, forTri, forYear, forWeek, fo
       `).join('')}
       </div>
     `;
+  } else if (week.links?.recording && typeof week.links.recording === 'string'
+             && week.links.recording.trim().startsWith('<')) {
+    lectureCard = `<div class="lx-lec-card lx-lec-lecture">
+        <div class="lx-lec-step">Step 1</div>
+        <h4>Watch the Lecture</h4>
+        <div class="lx-lec-extra">Click below to expand the lecture recording.</div>
+        <details style="margin-top:10px;">
+          <summary style="cursor:pointer;font-weight:800;">Open lecture recording</summary>
+          <div class="lx-video">${week.links.recording}</div>
+        </details>
+      </div>`;
+  } else if (week.links?.lecture) {
+    lectureCard = `<div class="lx-lec-card lx-lec-lecture">
+        <div class="lx-lec-step">Step 1</div>
+        <h4>Watch the Lecture</h4>
+        <div class="lx-lec-extra">Click below to expand the lecture recording.</div>
+        <details style="margin-top:10px;">
+          <summary style="cursor:pointer;font-weight:800;">Open lecture recording</summary>
+          <div class="lx-video">
+            <iframe src="${esc(week.links.lecture)}" allowfullscreen="" frameborder="0"></iframe>
+          </div>
+        </details>
+      </div>`;
   } else {
-    lectureCard = week.links?.lecture
-      ? `<div class="lx-lec-card lx-lec-lecture">
-          <div class="lx-lec-step">Step 1</div>
-          <h4>Watch the Lecture</h4>
-          <div class="lx-lec-extra">Click below to expand the lecture recording.</div>
-          <details style="margin-top:10px;">
-            <summary style="cursor:pointer;font-weight:800;">Open lecture recording</summary>
-            <div class="lx-video">
-              <iframe src="${esc(week.links.lecture)}" allowfullscreen="" frameborder="0"></iframe>
-            </div>
-          </details>
-        </div>`
-      : `<div class="lx-lec-card lx-lec-lecture">
-          <div class="lx-lec-step">Step 1</div>
-          <h4>Watch the Lecture</h4>
-          <div class="lx-lec-extra">The lecture recording will be available here when published.</div>
-          <div style="margin-top:12px;">${CHIP}</div>
-        </div>`;
+    lectureCard = `<div class="lx-lec-card lx-lec-lecture">
+        <div class="lx-lec-step">Step 1</div>
+        <h4>Watch the Lecture</h4>
+        <div class="lx-lec-extra">The lecture recording will be available here when published.</div>
+        <div style="margin-top:12px;">${CHIP}</div>
+      </div>`;
   }
 
   const slidesCard = week.links?.slides
