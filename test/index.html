@@ -43,7 +43,8 @@
       color: #6a96b4;
     }
     .ctrl-group select,
-    .ctrl-group input[type="date"] {
+    .ctrl-group input[type="date"],
+    .ctrl-group input[type="text"] {
       font-family: Arial, sans-serif;
       font-size: .875em;
       padding: 5px 9px;
@@ -301,6 +302,10 @@
       <label>Date override</label>
       <input type="date" id="date-override" title="Active when Week = Auto">
       <div class="date-hint" id="date-hint"></div>
+    </div>
+    <div class="ctrl-group">
+      <label>forTopic</label>
+      <input type="text" id="inp-topic" placeholder="topic ID e.g. 6A">
     </div>
     <div class="ctrl-group" style="justify-content:flex-end;">
       <button class="rerender-btn" id="rerender-btn">Re-render</button>
@@ -754,10 +759,13 @@ async function renderAll() {
 
   // Build params object — pass exactly what the live shells would pass,
   // plus forWeek or forDate when explicitly set.
+  const forTopic = document.getElementById('inp-topic').value.trim() || undefined;
+
   const base = { forUnit, forTri, forYear };
   const params = weekVal !== 'auto' ? { ...base, forWeek: Number(weekVal) }
     : dateVal                       ? { ...base, forDate: dateVal }
     :                                  base;
+  if (forTopic) params.forTopic = forTopic;
 
   // Show multi-topic note when EDSE362 and the selected week has more than one topic
   const multiNote = document.getElementById('multi-topic-note');
@@ -819,6 +827,7 @@ function scheduleRender(delay = 150) {
 // ── Event wiring ──────────────────────────────────────────────────────────────
 
 document.getElementById('sel-unit').addEventListener('change', async () => {
+  document.getElementById('inp-topic').value = '';
   await refreshUnitConfig();
   scheduleRender();
 });
@@ -827,6 +836,7 @@ document.getElementById('sel-week').addEventListener('change', () => {
   scheduleRender();
 });
 document.getElementById('date-override').addEventListener('change', scheduleRender);
+document.getElementById('inp-topic').addEventListener('input', () => scheduleRender());
 document.getElementById('rerender-btn').addEventListener('click', () => scheduleRender(0));
 
 // ── Boot ──────────────────────────────────────────────────────────────────────

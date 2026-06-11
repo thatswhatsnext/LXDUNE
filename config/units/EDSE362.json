@@ -873,7 +873,19 @@
         "lecture": null,
         "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458782",
         "zoom": null,
-        "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/media/717b16c5-eac1-44c3-ab2d-535f42f2dd25/public?autoplay=false&automute=false\"></iframe>",
+        "recording": null,
+        "recordings": [
+          {
+            "id": "topic1",
+            "label": "Topic 1 – The K–10 Continuum and Science Education",
+            "embed": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/media/717b16c5-eac1-44c3-ab2d-535f42f2dd25/public?autoplay=false&automute=false\"></iframe>"
+          },
+          {
+            "id": "topic2",
+            "label": "Topic 2 – The Nature of Science and Science Teaching",
+            "embed": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/media/6bf672fc-9872-4e67-af3d-d6ececb43ad9/public?autoplay=false&automute=false\"></iframe>"
+          }
+        ],
         "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458783",
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458780",
         "liveHub": null
@@ -924,7 +936,7 @@
     "2": {
       "item": "Topic 3",
       "title": "Selecting and Critically Evaluating Resources",
-      "live": "🎤 Live Session",
+      "live": "🎤 Live Session: Topic 3",
       "announcementBody": {
         "intro": "This week we develop your skills as a critical consumer and selector of teaching resources — a practical and ongoing professional responsibility that shapes the quality of every lesson you teach.",
         "focus": "Topic 3 examines how to evaluate resources systematically and critically across different formats: textbooks, digital tools, laboratory kits, online platforms, and teacher-created materials. You will develop a personal evaluation framework grounded in syllabus alignment, scientific accuracy, and pedagogical appropriateness, and begin building a curated resource library for your teaching area."
@@ -960,8 +972,8 @@
     },
     "3": {
       "item": "Topic 4",
-      "title": "Introduction to Teaching Differentiation",
-      "live": "🎤 Live Session: Topic 3 & 4",
+      "title": "Introduction to Teaching Differently",
+      "live": "🎤 Live Session: Topic 4",
       "announcementBody": {
         "intro": "This week we turn our attention to one of the most powerful tools in any teacher's repertoire — questioning. Not just asking questions, but designing them deliberately to do different cognitive work. We look at why open questions reveal thinking while closed questions shut it down, how Bloom's Taxonomy and the Q-Matrix can sharpen your questions across different levels of cognitive demand, and what psychological safety has to do with whether students answer at all. The central idea this week, from Eddie Woo: the person doing the talking is the person doing the learning."
       },
@@ -998,7 +1010,7 @@
     "4": {
       "item": "Topic 5",
       "title": "The Inclusive Science Classroom",
-      "live": "🎤 Live Session",
+      "live": "🎤 Live Session: Topic 5",
       "announcementBody": {
         "intro": "Building on Topic 4, this week we move from the theory of differentiation into the practical challenge of creating genuinely inclusive senior science classrooms — environments where every student can access, engage with, and be challenged by the curriculum.",
         "focus": "Topic 5 examines inclusive teaching in the senior science context, with a focus on students with disability, students from diverse cultural and linguistic backgrounds, and students at both ends of the achievement spectrum. You will explore specific adjustments, design principles, and communication strategies, and consider how to maintain academic rigour while broadening access."
@@ -1033,9 +1045,9 @@
       "synthesisTemplate": "Thanks for your Topic 5 contributions this week. The cohort adjustment activity is the most directly assessed skill in the unit — it shows up in AT1 Part A and across AT2 Parts A and B. A pattern in the posts: [OBSERVATION — e.g. adjustments for EAL/D students tended to be strong and specific, but the Aboriginal and Torres Strait Islander adjustments were often generic — 'connect to Country' without identifying a specific connection to the practical or a community source]. One thing to bring to the live session: [FOCUS — e.g. the difference between an adjustment that reduces barriers to participation and one that reduces the challenge — the rubric rewards the first; the second is a different problem]. See you [DAY] at [TIME]."
     },
     "5": {
-      "item": "Topic 6",
-      "title": "Planning and Evaluating a Unit of Work",
-      "live": "🎤 Live Session: Topic 5 & 6",
+      "item": "Topic 6A",
+      "title": "Planning and Evaluating a Unit of Work — Part 1: The Planning Process",
+      "live": "🎤 Live Session: Topic 6A",
       "announcementBody": {
         "intro": "This week we bring together your curriculum knowledge, pedagogical understanding, and resource evaluation skills to focus on the discipline of unit planning — one of the most important and complex professional tasks you will undertake as a science teacher.",
         "focus": "Topic 6 examines how to design, sequence, and evaluate a coherent unit of work for Stage 6 science. You will work through the key decisions involved in unit planning: establishing outcomes, selecting and sequencing content, designing assessments for and of learning, choosing resources, and building in opportunities for student reflection and feedback."
@@ -1072,9 +1084,9 @@
       "synthesisTemplate": "Thanks for your Topic 6 posts — particularly the summative assessment design activity, which is direct preparation for AT2 Part C. Patterns worth noting: [OBSERVATION — e.g. most task designs were clearly connected to content, but the A-band descriptors in the rubrics tended to use adjectives ('thorough', 'detailed') rather than observable content-specific descriptions — NESA Performance Band Descriptor language asks for the second]. One thing to take into the live session: [FOCUS — e.g. ask yourself: could two markers independently arrive at the same grade using your rubric? If not, it needs more specificity]. See you [DAY] at [TIME]."
     },
     "6": {
-      "item": "Topic 7",
-      "title": "Teaching and Learning Science Using Analogies",
-      "live": "🎤 Live Session",
+      "item": "Topic 6B",
+      "title": "Planning and Evaluating a Unit of Work — Part 2: The Role of Assessment and Evaluation",
+      "live": "🎤 Live Session: Topic 6B",
       "announcementBody": {
         "intro": "This week we examine one of the most powerful — and most frequently misused — pedagogical tools available to science teachers: the analogy. Used well, analogies make abstract science concepts concrete and accessible. Used poorly, they embed misconceptions that are hard to shift.",
         "focus": "Topic 7 focuses on analogies as tools for conceptual change in science learning. You will examine the theory behind why analogies work, explore frameworks for selecting and presenting analogies effectively (including the Teaching-With-Analogies model), and critically evaluate common analogies used in senior science for their accuracy, accessibility, and potential to mislead."
@@ -1109,9 +1121,9 @@
       "synthesisTemplate": "Thanks for your Topic 7 posts this week. The analogy evaluation exercise is producing some careful thinking. A common pattern: [OBSERVATION — e.g. most posts identified what the analogy maps correctly and where it breaks down, but the script for addressing limitations with students was often too abstract — 'I would tell them where it doesn't work' rather than a specific two-sentence approach]. One thing to bring to the live session: [FOCUS — e.g. the moment when a student over-extends an analogy into territory where it breaks down — how do you catch and correct that in real time without undermining the analogy's usefulness?]. See you [DAY] at [TIME]."
     },
     "7": {
-      "item": "Topic 8",
-      "title": "Developing Your Science Content Knowledge",
-      "live": "🎤 Live Session: Topic 7 & 8",
+      "item": "Topic 7",
+      "title": "Teaching and Learning Science Using Analogies",
+      "live": "🎤 Live Session: Topic 7",
       "announcementBody": {
         "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
         "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your Stage 6 syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
@@ -1145,9 +1157,9 @@
       "synthesisTemplate": "Thanks for your Topic 8 posts — the content knowledge audit is the most personally honest piece of work in the unit, and it shows in the quality of reflection this week. Patterns worth noting: [OBSERVATION — e.g. most audits identified genuine gaps, but the gap-closure plans sometimes stayed at the category level — 'read more about genetics' rather than a specific resource, course, or person]. This matters for AT1 Part C and AT2 Part D: the rubric rewards naming a specific source and justifying why it is right for your strand and context, not naming a type of source. One thing to carry into your assessments: [FOCUS — e.g. the difference between 'ASTA' as a source and 'the ASTA Chemistry journal article on misconceptions about covalent bonding' — specificity is the point]. See you [DAY] at [TIME]."
     },
     "8": {
-      "item": "Topics 7 & 8",
+      "item": "Topic 8",
       "title": "Developing Your Science Content Knowledge",
-      "live": "🎤 Live Session: Topics 7 & 8",
+      "live": "🎤 Live Session: Topic 8",
       "announcementBody": {
         "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
         "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your Stage 6 syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
