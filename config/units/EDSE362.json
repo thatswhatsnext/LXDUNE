@@ -1,6 +1,6 @@
 {
   "code": "EDSE362",
-  "name": "Science Education 7–10: Developing Professional Skills and Understanding",
+  "name": "Science Education 11–12: Curriculum, Pedagogy and Inclusive Practice",
   "itemLabel": "Topic",
   "liveDay": "Wednesday",
   "liveTime": "5:30–6:30pm",
@@ -870,7 +870,7 @@
         "LO3"
       ],
       "links": {
-        "lecture": null,
+        "lecture": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458776",
         "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458782",
         "zoom": null,
         "recording": null,
@@ -886,13 +886,13 @@
             "embed": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/media/6bf672fc-9872-4e67-af3d-d6ececb43ad9/public?autoplay=false&automute=false\"></iframe>"
           }
         ],
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458783",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458777",
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458780",
-        "liveHub": null
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3564975"
       },
       "resources": [],
       "video": null,
-      "liveSessionFocus": "Session 2 covers Topics 1 and 2 together. We will examine the K–10 continuum and the Nature of Science as connected foundations for planning intellectually honest and engaging senior science lessons.",
+      "liveSessionFocus": "Session 1 covers Topics 1 and 2 together. We will examine the K–10 continuum and the Nature of Science as connected foundations for planning intellectually honest and engaging senior science lessons.",
       "liveSessionTasks": [
         "Review the Nature and Development of Science strand (or equivalent) in your Stage 6 syllabus and identify how NOS concepts are embedded in the content and outcomes.",
         "Identify one aspect of the Nature of Science that you find genuinely challenging to communicate clearly to senior students.",
@@ -948,13 +948,13 @@
         "Come prepared to share your evaluation briefly — we will compare criteria and approaches across different teaching areas in the session."
       ],
       "links": {
-        "lecture": null,
+        "lecture": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458792",
         "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458789",
         "zoom": null,
         "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/media/6bf672fc-9872-4e67-af3d-d6ececb43ad9/public?autoplay=false&automute=false\"></iframe>",
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458790",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458787",
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3564981"
       },
       "resources": [],
       "video": null,
@@ -992,13 +992,13 @@
       ],
       "synthesisTemplate": "Thanks everyone for your Topic 4 forum contributions this week. Some strong questioning sequences coming through. A few patterns worth noting across the cohort: [OBSERVATION — e.g. most sequences started well at recall level but the jump to analysis was sometimes abrupt — consider what bridging question sits in between]. One thing to take into the live session: [FOCUS — e.g. the distinction between an open question and a genuinely divergent question — open doesn't automatically mean high cognitive demand]. See you [DAY] at [TIME].",
       "links": {
-        "lecture": null,
+        "lecture": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458798",
         "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458798",
         "zoom": null,
         "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/media/96b88d29-365d-4677-a0f1-04267b8610f5/public?autoplay=false&automute=false\"></iframe>",
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458796",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458795",
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3564980"
       },
       "resources": [],
       "video": null,
@@ -1022,13 +1022,13 @@
         "Come prepared to discuss a specific scenario: a student with a particular learning need in your senior science class. What would an inclusive response look like?"
       ],
       "links": {
-        "lecture": null,
-        "slides": null,
+        "lecture": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458802",
+        "slides": "https://mylearn.une.edu.au/pluginfile.php/5235853/mod_resource/content/4/Topic%205%20Lecture%20The%20inclusive%20Science%20classroom.pdf",
         "zoom": null,
         "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/public/media/1afa00a4-9d9e-4ed1-9f03-8a6dd12f206a?autoplay=false&automute=false\"></iframe>",
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458803",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458800",
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3564979"
       },
       "resources": [],
       "video": null,
@@ -1059,13 +1059,13 @@
         "Come prepared to share your outline and receive peer feedback in the session — bring a willingness to revise."
       ],
       "links": {
-        "lecture": null,
-        "slides": null,
+        "lecture": "https://mylearn.une.edu.au/mod/folder/view.php?id=3458808",
+        "slides": "https://mylearn.une.edu.au/pluginfile.php/5235859/mod_folder/intro/TOPIC6.1.1.pdf",
         "zoom": null,
         "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/public/media/155de72c-f50e-47e1-bdef-2033daa54ee9?autoplay=false&automute=false\"></iframe>",
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/page/view.php?id=3564978",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458807",
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3564978"
       },
       "resources": [],
       "video": null,
@@ -1075,12 +1075,11 @@
         "LO3",
         "LO4"
       ],
-      "orientationNote": "Topic 6 is the direct preparation week for AT2, due 6 September. Parts A and B of AT2 require you to design a five-week unit program with embedded literacy, numeracy, Aboriginal and Torres Strait Islander perspectives, and formative assessment — all decisions that must be made coherently, not applied retrospectively. Part C requires you to design a summative assessment task with an A–E rubric using NESA Performance Band Descriptor language: this is the LO4 assessment task, and it is worth 30 marks. Many students encounter rubric design for the first time in Part C — use this week's forum activity to practise it before it is graded.",
+      "orientationNote": "Topic 6A is the direct preparation week for Parts A and B of AT2. These sections require you to design a coherent five-week unit program that aligns syllabus outcomes, Working Scientifically skills, practical investigations, differentiation, literacy, numeracy, Aboriginal and Torres Strait Islander perspectives, and formative assessment. The strongest submissions use backwards design principles: beginning with outcomes and constructing a logical sequence of learning rather than assembling disconnected activities. This week focuses on the professional craft of programming and provides the foundation upon which the remainder of AT2 is built.",
       "forumPrompts": [
-        "Design a single summative assessment task for a five-week Stage 4 or 5 science unit of your choice. The task should be completable in one lesson or as a short take-home piece, and should assess at least two syllabus outcomes. Post: the task prompt (as you would give it to students), the outcomes it assesses, and one marking criterion written in A–E NESA Performance Band Descriptor language. For your A-band criterion, what does 'extensive knowledge and understanding' actually look like for this task — in concrete, observable terms?",
-        "A colleague shows you a unit program for Stage 4 Earth and Space Science. The program has five weeks of content, a test at the end, and a note that says 'literacy: students read from textbook each lesson.' Identify three specific improvements you would make to strengthen the program's alignment with AT2 requirements — name the change, the AT2 part it addresses, and the principle behind it. What is the difference between a program that includes formative assessment and one that uses it to inform future teaching?"
+        "A colleague shows you a unit program for Stage 4 Earth and Space Science. The program has five weeks of content, a test at the end, and a note that says 'literacy: students read from textbook each lesson.' Identify three specific improvements you would make to strengthen the program's alignment with AT2 requirements — name the change, the AT2 part it addresses, and the principle behind it."
       ],
-      "workedExample": "The following examples show the difference between a strong and a partial A–E criterion for a Stage 5 Chemistry assessment task asking students to explain a chemical reaction using particle theory.\n\nStrong (Chemistry — Stage 5, particle theory task): 'A student working at the A standard provides a scientifically accurate and detailed explanation of the reaction at the particle level, correctly identifying the role of collision frequency, activation energy, and particle orientation. The explanation is coherent and uses appropriate chemical terminology throughout. Diagrams, where included, accurately represent particle arrangement and movement. The student draws explicit connections between the particle-level explanation and observable macroscopic properties (e.g. colour change, gas production, temperature change).'\n\nPartial (Chemistry — Stage 5, particle theory task): 'A: Excellent explanation of particle theory. Very detailed and uses correct terminology.' The partial criterion is evaluative but not descriptive — it tells a student they did well without explaining what 'excellent' or 'very detailed' means in terms of content. A student reading this cannot self-assess, and a second marker cannot apply it consistently. NESA Performance Band Descriptor language requires observable, content-specific descriptions of what the student can do — not adjectives about quality.",
+      "workedExample": "An improvement would be to strengthen the literacy component. Instead of simply reading from the textbook each lesson, students could analyse scientific texts, interpret diagrams, construct evidence-based explanations, and explicitly learn Earth and Space Science vocabulary. This addresses AT2 Part A (teaching and learning sequence design) because literacy strategies are intentionally embedded within learning activities rather than treated as an add-on. The principle behind this change is that literacy development occurs through meaningful engagement with disciplinary knowledge and practices.",
       "synthesisTemplate": "Thanks for your Topic 6 posts — particularly the summative assessment design activity, which is direct preparation for AT2 Part C. Patterns worth noting: [OBSERVATION — e.g. most task designs were clearly connected to content, but the A-band descriptors in the rubrics tended to use adjectives ('thorough', 'detailed') rather than observable content-specific descriptions — NESA Performance Band Descriptor language asks for the second]. One thing to take into the live session: [FOCUS — e.g. ask yourself: could two markers independently arrive at the same grade using your rubric? If not, it needs more specificity]. See you [DAY] at [TIME]."
     },
     "6": {
@@ -1098,13 +1097,13 @@
         "Come prepared to present your analogy briefly and receive feedback from peers on how they experience it as learners."
       ],
       "links": {
-        "lecture": null,
-        "slides": null,
+        "lecture": "https://mylearn.une.edu.au/mod/folder/view.php?id=3458808",
+        "slides": "https://mylearn.une.edu.au/pluginfile.php/5235859/mod_folder/intro/TOPIC6.2.1.pdf",
         "zoom": null,
         "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/public/media/3a658c01-56b3-4228-83d2-57b18e9cb618?autoplay=false&automute=false\"></iframe>",
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3565120",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458807",
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3564977"
       },
       "resources": [],
       "video": null,
@@ -1112,12 +1111,12 @@
         "LO1",
         "LO3"
       ],
-      "orientationNote": "Topic 7 builds directly on the pedagogical justification skills you need for AT1 Part B and the teaching strategy decisions in AT2 Part A. In AT1 Part B, you are asked to justify your choice of pedagogical approach — and the Teaching-With-Analogies model is one framework that can legitimately ground that justification, provided you use it precisely. In AT2 Part A, you are designing five weeks of lessons with named teaching strategies; analogies and models are among the most powerful conceptual-change strategies available in science, but only if their limitations are explicitly addressed. This week, practise the critical evaluation of an analogy before you use it — a habit that will distinguish your AT2 unit program from one that simply lists activities.",
+      "orientationNote": "Topic 6B is the direct preparation week for Parts C and D of AT2. Part C requires you to design a summative assessment task and A–E marking rubric that align directly with the learning experiences and outcomes developed in your unit program. Part D requires you to evaluate aspects of your teaching program and identify professional sources of support that could improve future practice. Use this week’s materials to think about assessment as evidence for learning, not simply grading, and about evaluation as an ongoing process of refining teaching to improve student outcomes.",
       "forumPrompts": [
-        "Identify one analogy commonly used in a 7–10 science classroom in your discipline (e.g. 'the atom is like a solar system', 'the cell membrane is like a security guard', 'electric current is like water in a pipe'). For each of these three criteria, evaluate your chosen analogy: (a) What does the analogy map correctly — where is the structural correspondence genuinely accurate? (b) Where does the mapping break down — what misconception could it embed if not explicitly addressed? (c) How would you introduce the analogy with its limitations foregrounded, so students build accurate conceptual understanding? Post your analogy, your three-criterion evaluation, and a two-sentence script for how you would address its limitations with students.",
-        "For AT2 Part A, you need to select a constructivist pedagogical approach and make it visible in your unit design. The 5E model (Engage–Explore–Explain–Elaborate–Evaluate), Predict-Observe-Explain (POE), and the Teaching-With-Analogies (TWA) model are three options. Choose one approach and identify a specific five-lesson sequence from any 7–10 strand where you could make each phase of the model recognisable in the lesson activities. Post your approach, the five-lesson sketch, and the phase label for each lesson. Which phase is hardest to design well, and why?"
+        "Design a single summative assessment task for a five-week Stage 4 or 5 science unit of your choice. The task should be completable in one lesson or as a short take-home piece, and should assess at least two syllabus outcomes. Post: the task prompt (as you would give it to students), the outcomes it assesses, and one marking criterion written in A–E NESA Performance Band Descriptor language. For your A-band criterion, what does 'extensive knowledge and understanding' actually look like for this task — in concrete, observable terms?",
+        "What is the difference between a program that includes formative assessment and one that uses it to inform future teaching?"
       ],
-      "workedExample": "The following examples show the difference between a strong and a partial analogy evaluation — the kind of critical thinking that distinguishes an HD Part B justification from a CR one.\n\nStrong (Physics — Stage 5, electric circuit analogy): 'The water-pipe analogy for electric circuits maps correctly onto voltage (water pressure), current (flow rate), and resistance (pipe diameter) at a qualitative level, and is consistent with Ohm's law relationships. It is a defensible starting point for Stage 5 students. However, the analogy breaks down at several points: water flows continuously in a closed loop, whereas electrons are already present throughout the conductor before the circuit is closed — the analogy misrepresents the mechanism of current initiation. The analogy also fails for series vs parallel circuits, where the water model produces incorrect predictions about current distribution. I would introduce this analogy explicitly with a 'what it gets right / what it gets wrong' table, asking students to identify limitations themselves before extending to circuit calculations.'\n\nPartial (Physics — Stage 5, electric circuit analogy): 'The water analogy is a good way to explain circuits to students because it makes the concept concrete. Students can understand voltage and current more easily this way.' The partial response identifies the analogy as useful but does not evaluate it — it cannot justify the decision to use it, cannot anticipate the misconceptions it might generate, and provides no basis for how a teacher would manage those misconceptions in practice.",
+      "workedExample": "The following examples show the difference between a strong and a partial A–E criterion for a Stage 5 Chemistry assessment task asking students to explain a chemical reaction using particle theory.Strong (Chemistry — Stage 5, particle theory task): 'A student working at the A standard provides a scientifically accurate and detailed explanation of the reaction at the particle level, correctly identifying the role of collision frequency, activation energy, and particle orientation. The explanation is coherent and uses appropriate chemical terminology throughout. Diagrams, where included, accurately represent particle arrangement and movement. The student draws explicit connections between the particle-level explanation and observable macroscopic properties (e.g. colour change, gas production, temperature change).'Partial (Chemistry — Stage 5, particle theory task): 'A: Excellent explanation of particle theory. Very detailed and uses correct terminology.' The partial criterion is evaluative but not descriptive — it tells a student they did well without explaining what 'excellent' or 'very detailed' means in terms of content. A student reading this cannot self-assess, and a second marker cannot apply it consistently. NESA Performance Band Descriptor language requires observable, content-specific descriptions of what the student can do — not adjectives about quality.",
       "synthesisTemplate": "Thanks for your Topic 7 posts this week. The analogy evaluation exercise is producing some careful thinking. A common pattern: [OBSERVATION — e.g. most posts identified what the analogy maps correctly and where it breaks down, but the script for addressing limitations with students was often too abstract — 'I would tell them where it doesn't work' rather than a specific two-sentence approach]. One thing to bring to the live session: [FOCUS — e.g. the moment when a student over-extends an analogy into territory where it breaks down — how do you catch and correct that in real time without undermining the analogy's usefulness?]. See you [DAY] at [TIME]."
     },
     "7": {
@@ -1135,13 +1134,13 @@
         "Come prepared to briefly share your audit findings and your plan — and to give and receive constructive feedback with peers."
       ],
       "links": {
-        "lecture": null,
-        "slides": null,
+        "lecture": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458817",
+        "slides": "https://mylearn.une.edu.au/pluginfile.php/5235868/mod_resource/content/6/Topic%207%20Teaching%20and%20Learning%20using%20Science%20and%20Analogies%20Lecture.pdf",
         "zoom": null,
         "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/public/media/52926755-b53b-44ae-ab15-d5ad66082dce?autoplay=false&automute=false\"></iframe>",
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458818",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458815",
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3564984"
       },
       "resources": [],
       "video": null,
@@ -1149,11 +1148,12 @@
         "LO1",
         "LO6"
       ],
-      "orientationNote": "Topic 8 is the direct preparation for AT1 Part C and AT2 Part D — both reflection tasks. A common mistake is treating these as summaries of what you learned. The rubric rewards something more specific: identifying a named external professional learning source (such as a NESA resource, ASTA, a professional association in your discipline, or a community representative) and explaining concretely why it is relevant to your teaching context and chosen strand. AT2 Part D also asks you to evaluate one aspect of your unit program with evidence. Use this week to audit your own content knowledge honestly and identify specific gaps — that audit is the raw material for a reflection that earns marks.",
+      "orientationNote": "Topic 7 builds directly on the pedagogical justification skills you need for AT1 Part B and the teaching strategy decisions in AT2 Part A. In AT1 Part B, you are asked to justify your choice of pedagogical approach — and the Teaching-With-Analogies model is one framework that can legitimately ground that justification, provided you use it precisely. In AT2 Part A, you are designing five weeks of lessons with named teaching strategies; analogies and models are among the most powerful conceptual-change strategies available in science, but only if their limitations are explicitly addressed. This week, practise the critical evaluation of an analogy before you use it — a habit that will distinguish your AT2 unit program from one that simply lists activities.",
       "forumPrompts": [
-        "Conduct a content knowledge audit for the strand you have chosen for AT1 or AT2. Rate your confidence across the main content areas of that strand on a simple three-point scale (strong / developing / gap). For your two most significant gaps, identify: (a) one specific professional learning resource or action that would address it — a named book, online course, ASTA workshop, university contact, or community expert; (b) why that resource is the right one for your specific gap and teaching context, not just a general reference. Post your audit summary and your two gap-closure plans. What would you need to be confident enough to teach that content well?",
-        "AT2 Part D asks you to 'evaluate one aspect of your unit program with evidence and name an external professional or community source that supported your design.' Practise this now: identify one specific decision you made in a draft of your AT2 unit program (or a program you have seen on placement), evaluate whether it worked or would work using a piece of evidence (student data, feedback, a peer review, or a cited research finding), and name one external professional or community source you consulted or would consult to strengthen that aspect. Post your decision, your evidence-based evaluation, and your named source. Why does naming a source matter — what does it demonstrate that a general reference does not?"
+        "Identify one analogy commonly used in a 7–10 science classroom in your discipline (e.g. 'the atom is like a solar system', 'the cell membrane is like a security guard', 'electric current is like water in a pipe'). For each of these three criteria, evaluate your chosen analogy: (a) What does the analogy map correctly — where is the structural correspondence genuinely accurate? (b) Where does the mapping break down — what misconception could it embed if not explicitly addressed? (c) How would you introduce the analogy with its limitations foregrounded, so students build accurate conceptual understanding? Post your analogy, your three-criterion evaluation, and a two-sentence script for how you would address its limitations with students.",
+        "For AT2 Part A, you need to select a constructivist pedagogical approach and make it visible in your unit design. The 5E model (Engage–Explore–Explain–Elaborate–Evaluate), Predict-Observe-Explain (POE), and the Teaching-With-Analogies (TWA) model are three options. Choose one approach and identify a specific five-lesson sequence from any 7–10 strand where you could make each phase of the model recognisable in the lesson activities. Post your approach, the five-lesson sketch, and the phase label for each lesson. Which phase is hardest to design well, and why?"
       ],
+      "workedExample": null,
       "synthesisTemplate": "Thanks for your Topic 8 posts — the content knowledge audit is the most personally honest piece of work in the unit, and it shows in the quality of reflection this week. Patterns worth noting: [OBSERVATION — e.g. most audits identified genuine gaps, but the gap-closure plans sometimes stayed at the category level — 'read more about genetics' rather than a specific resource, course, or person]. This matters for AT1 Part C and AT2 Part D: the rubric rewards naming a specific source and justifying why it is right for your strand and context, not naming a type of source. One thing to carry into your assessments: [FOCUS — e.g. the difference between 'ASTA' as a source and 'the ASTA Chemistry journal article on misconceptions about covalent bonding' — specificity is the point]. See you [DAY] at [TIME]."
     },
     "8": {
@@ -1171,13 +1171,13 @@
         "Come prepared to briefly share your audit findings and your plan — and to give and receive constructive feedback with peers."
       ],
       "links": {
-        "lecture": null,
-        "slides": null,
+        "lecture": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458826",
+        "slides": "https://mylearn.une.edu.au/pluginfile.php/5235877/mod_resource/content/2/Topic_8_Developing_your_science_content_knowledge.pdf",
         "zoom": null,
         "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/public/media/52926755-b53b-44ae-ab15-d5ad66082dce?autoplay=false&automute=false\"></iframe>",
-        "forum": null,
-        "materials": null,
-        "liveHub": null
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458825",
+        "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458824",
+        "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3564985"
       },
       "resources": [],
       "video": null,
@@ -1190,6 +1190,7 @@
         "Conduct a content knowledge audit for the strand you have chosen for AT1 or AT2. Rate your confidence across the main content areas of that strand on a simple three-point scale (strong / developing / gap). For your two most significant gaps, identify: (a) one specific professional learning resource or action that would address it — a named book, online course, ASTA workshop, university contact, or community expert; (b) why that resource is the right one for your specific gap and teaching context, not just a general reference. Post your audit summary and your two gap-closure plans. What would you need to be confident enough to teach that content well?",
         "AT2 Part D asks you to 'evaluate one aspect of your unit program with evidence and name an external professional or community source that supported your design.' Practise this now: identify one specific decision you made in a draft of your AT2 unit program (or a program you have seen on placement), evaluate whether it worked or would work using a piece of evidence (student data, feedback, a peer review, or a cited research finding), and name one external professional or community source you consulted or would consult to strengthen that aspect. Post your decision, your evidence-based evaluation, and your named source. Why does naming a source matter — what does it demonstrate that a general reference does not?"
       ],
+      "workedExample": null,
       "synthesisTemplate": "Thanks for your Topic 8 posts — the content knowledge audit is the most personally honest piece of work in the unit, and it shows in the quality of reflection this week. Patterns worth noting: [OBSERVATION — e.g. most audits identified genuine gaps, but the gap-closure plans sometimes stayed at the category level — 'read more about genetics' rather than a specific resource, course, or person]. This matters for AT1 Part C and AT2 Part D: the rubric rewards naming a specific source and justifying why it is right for your strand and context, not naming a type of source. One thing to carry into your assessments: [FOCUS — e.g. the difference between 'ASTA' as a source and 'the ASTA Chemistry journal article on misconceptions about covalent bonding' — specificity is the point]. See you [DAY] at [TIME]."
     },
     "9": {
