@@ -285,12 +285,50 @@ function countGaps() {
   ];
   for (const p of p1fields) { if (isGap(getByPath(config, p))) gaps++; }
 
-  // Panel 2
-  for (let w = 1; w <= 8; w++) {
-    for (const f of ['video','links.lecture','links.slides','links.recording','links.forum','links.materials','links.liveHub']) {
-      if (isGap(getByPath(config, `weeks.${w}.${f}`))) gaps++;
+  // Panel 2 — schema-aware week link gaps
+  const weeks = config.weeks || {};
+  for (const [, weekData] of Object.entries(weeks)) {
+    if (!weekData.announcementBody && !weekData.topics) continue;
+    const links  = weekData.links || {};
+    const topics = weekData.topics;
+
+    // recordings/lecture
+    const recs = links.recordings;
+    const hasRecording =
+      (Array.isArray(recs) && recs.length > 0) ||
+      (links.lecture !== null && links.lecture !== undefined) ||
+      (typeof links.recording === 'string' && links.recording.length > 0);
+    if (!hasRecording) gaps++;
+
+    // slides
+    if (isGap(links.slides)) gaps++;
+
+    // forum — link OR topic forumPrompts substitute
+    const hasForum = links.forum !== null && links.forum !== undefined;
+    const hasTopicForum = Array.isArray(topics) &&
+      topics.some(t => Array.isArray(t.forumPrompts) && t.forumPrompts.length > 0);
+    if (!hasForum && !hasTopicForum) gaps++;
+
+    // materials, liveHub
+    if (isGap(links.materials)) gaps++;
+    if (isGap(links.liveHub))   gaps++;
+
+    // Panel 3 alignment fields
+    if (Array.isArray(topics) && topics.length > 0) {
+      // orientationNote: gap if not ALL topics have it
+      if (!topics.every(t => t.orientationNote !== null && t.orientationNote !== undefined)) gaps++;
+      // forumPrompts, workedExample: gap per topic
+      for (const t of topics) {
+        if (isGap(t.forumPrompts))  gaps++;
+        if (isGap(t.workedExample)) gaps++;
+      }
+    } else {
+      if (isGap(weekData.orientationNote)) gaps++;
+      if (isGap(weekData.forumPrompts))    gaps++;
+      if (isGap(weekData.workedExample))   gaps++;
     }
   }
+
   return gaps;
 }
 
@@ -372,8 +410,6 @@ function renderPanel1(container, activeTri) {
 // ── Panel 2: Week links ────────────────────────────────────────────────────────
 function renderPanel2(container) {
   container.appendChild(sectionHeading('Panel 2 — Week links'));
-  const cols    = ['video', 'links.lecture', 'links.slides', 'links.recording', 'links.forum', 'links.materials', 'links.liveHub'];
-  const colHdrs = ['Video', 'Lecture', 'Slides', 'Recording', 'Forum', 'Materials', 'Live Hub'];
 
   const tableWrap = document.createElement('div');
   tableWrap.className = 'lx-table-wrap';
@@ -386,7 +422,7 @@ function renderPanel2(container) {
   thWeek.textContent = 'Week';
   thWeek.style.cssText = 'padding:4px 8px;';
   headerRow.appendChild(thWeek);
-  for (const h of colHdrs) {
+  for (const h of ['Recording/s', 'Lecture (Moodle page)', 'Slides', 'Forum', 'Materials', 'Live Hub']) {
     const th = document.createElement('th');
     th.textContent = h;
     headerRow.appendChild(th);
@@ -406,11 +442,37 @@ function renderPanel2(container) {
     tdLbl.textContent = `${w} — ${shortLbl}`;
     tr.appendChild(tdLbl);
 
-    for (const col of cols) {
-      const path = `weeks.${w}.${col}`;
-      const td   = document.createElement('td');
+    // Recording/s column
+    const tdRec = document.createElement('td');
+    tdRec.style.padding = '3px 4px';
+    const recs   = (weekData.links || {}).recordings;
+    const recVal = (weekData.links || {}).recording;
+    if (Array.isArray(recs) && recs.length > 0) {
+      const chip = document.createElement('span');
+      chip.className = 'chip-set';
+      chip.textContent = `${recs.length} recording${recs.length > 1 ? 's' : ''}`;
+      tdRec.appendChild(chip);
+    } else if (typeof recVal === 'string' && recVal.length > 0) {
+      const chip = document.createElement('span');
+      chip.className = 'chip-set';
+      chip.textContent = 'Recording set';
+      tdRec.appendChild(chip);
+    } else {
+      tdRec.appendChild(buildSmallInput(`weeks.${w}.links.recording`));
+    }
+    tr.appendChild(tdRec);
+
+    // Lecture (Moodle page) column
+    const tdLec = document.createElement('td');
+    tdLec.style.padding = '3px 4px';
+    tdLec.appendChild(buildSmallInput(`weeks.${w}.links.lecture`));
+    tr.appendChild(tdLec);
+
+    // Slides, Forum, Materials, Live Hub
+    for (const col of ['links.slides', 'links.forum', 'links.materials', 'links.liveHub']) {
+      const td = document.createElement('td');
       td.style.padding = '3px 4px';
-      td.appendChild(buildSmallInput(path));
+      td.appendChild(buildSmallInput(`weeks.${w}.${col}`));
       tr.appendChild(td);
     }
     tbody.appendChild(tr);
@@ -439,51 +501,24 @@ function renderPanel3(container) {
   thead.appendChild(hr);
   tbl.appendChild(thead);
 
-  const tbody = document.createElement('tbody');
-  for (let w = 1; w <= 8; w++) {
-    const weekData = (config.weeks || {})[String(w)] || {};
-    const label    = weekData.item || weekData.title || `Week ${w}`;
-    const shortLbl = label.length > 22 ? label.slice(0, 22) + '…' : label;
-
-    const tr = document.createElement('tr');
-
-    // Label cell
-    const tdLbl = document.createElement('td');
-    tdLbl.className = 'lx-row-label';
-    tdLbl.textContent = `${w} — ${shortLbl}`;
-    tr.appendChild(tdLbl);
-
-    // orientationNote — text input
-    const onPath = `weeks.${w}.orientationNote`;
-    const tdOn   = document.createElement('td');
-    tdOn.style.padding = '3px 4px'; tdOn.style.minWidth = '140px';
-    tdOn.appendChild(buildSmallInput(onPath));
-    tr.appendChild(tdOn);
-
-    // forumPrompts — chip toggle + textarea
-    const fpPath  = `weeks.${w}.forumPrompts`;
+  function buildFpCell(fpPath) {
     const fpValue = getByPath(config, fpPath);
     const tdFp    = document.createElement('td');
     tdFp.style.padding = '3px 6px';
-
-    const fpWrap = document.createElement('div');
-    const count  = Array.isArray(fpValue) ? fpValue.length : 0;
-    const fpGap  = isGap(fpValue);
-
-    const fpChip = document.createElement('span');
+    const fpWrap  = document.createElement('div');
+    const count   = Array.isArray(fpValue) ? fpValue.length : 0;
+    const fpGap   = isGap(fpValue);
+    const fpChip  = document.createElement('span');
     fpChip.className = 'chip-count ' + (fpGap ? 'chip-gap' : 'chip-set');
     fpChip.textContent = fpGap ? 'No prompts' : `${count} prompt${count === 1 ? '' : 's'}`;
-
     const fpTa = document.createElement('textarea');
     fpTa.className = 'prompt-ta ' + borderClass(fpValue);
     fpTa.placeholder = 'One prompt per line…';
     fpTa.value = Array.isArray(fpValue) ? fpValue.join('\n') : '';
-
     fpChip.addEventListener('click', () => {
       fpTa.style.display = fpTa.style.display === 'none' ? 'block' : 'none';
       if (fpTa.style.display !== 'none') fpTa.focus();
     });
-
     let fpOrig = fpTa.value;
     fpTa.addEventListener('focus', () => { fpOrig = fpTa.value; });
     fpTa.addEventListener('blur', () => {
@@ -494,27 +529,85 @@ function renderPanel3(container) {
         fpChip.className = 'chip-count ' + (newVal.length === 0 ? 'chip-gap' : 'chip-set');
       });
     });
-
     fpWrap.appendChild(fpChip);
     fpWrap.appendChild(fpTa);
     tdFp.appendChild(fpWrap);
-    tr.appendChild(tdFp);
+    return tdFp;
+  }
 
-    // workedExample — textarea
-    const wePath = `weeks.${w}.workedExample`;
-    const tdWe   = document.createElement('td');
-    tdWe.style.padding = '3px 4px'; tdWe.style.minWidth = '120px';
-    tdWe.appendChild(buildSmallInput(wePath));
-    tr.appendChild(tdWe);
+  const tbody = document.createElement('tbody');
+  for (let w = 1; w <= 8; w++) {
+    const weekData  = (config.weeks || {})[String(w)] || {};
+    const weekLabel = weekData.item || weekData.title || `Week ${w}`;
+    const topics    = Array.isArray(weekData.topics) && weekData.topics.length > 0
+      ? weekData.topics : null;
 
-    // synthesisTemplate — textarea
-    const stPath = `weeks.${w}.synthesisTemplate`;
-    const tdSt   = document.createElement('td');
-    tdSt.style.padding = '3px 4px'; tdSt.style.minWidth = '120px';
-    tdSt.appendChild(buildSmallInput(stPath));
-    tr.appendChild(tdSt);
+    if (topics) {
+      topics.forEach((topic, tIdx) => {
+        const tr     = document.createElement('tr');
+        const wShort = weekLabel.length > 18 ? weekLabel.slice(0, 18) + '…' : weekLabel;
 
-    tbody.appendChild(tr);
+        const tdLbl = document.createElement('td');
+        tdLbl.className = 'lx-row-label';
+        tdLbl.textContent = `${w} — ${wShort} (Topic ${topic.id})`;
+        tr.appendChild(tdLbl);
+
+        // orientationNote — topic-level
+        const tdOn = document.createElement('td');
+        tdOn.style.padding = '3px 4px'; tdOn.style.minWidth = '140px';
+        tdOn.appendChild(buildSmallInput(`weeks.${w}.topics.${tIdx}.orientationNote`));
+        tr.appendChild(tdOn);
+
+        // forumPrompts — topic-level
+        tr.appendChild(buildFpCell(`weeks.${w}.topics.${tIdx}.forumPrompts`));
+
+        // workedExample — topic-level
+        const tdWe = document.createElement('td');
+        tdWe.style.padding = '3px 4px'; tdWe.style.minWidth = '120px';
+        tdWe.appendChild(buildSmallInput(`weeks.${w}.topics.${tIdx}.workedExample`));
+        tr.appendChild(tdWe);
+
+        // synthesisTemplate — week-level
+        const tdSt = document.createElement('td');
+        tdSt.style.padding = '3px 4px'; tdSt.style.minWidth = '120px';
+        tdSt.appendChild(buildSmallInput(`weeks.${w}.synthesisTemplate`));
+        tr.appendChild(tdSt);
+
+        tbody.appendChild(tr);
+      });
+    } else {
+      const tr     = document.createElement('tr');
+      const wShort = weekLabel.length > 22 ? weekLabel.slice(0, 22) + '…' : weekLabel;
+
+      // Label cell
+      const tdLbl = document.createElement('td');
+      tdLbl.className = 'lx-row-label';
+      tdLbl.textContent = `${w} — ${wShort}`;
+      tr.appendChild(tdLbl);
+
+      // orientationNote — week-level
+      const tdOn = document.createElement('td');
+      tdOn.style.padding = '3px 4px'; tdOn.style.minWidth = '140px';
+      tdOn.appendChild(buildSmallInput(`weeks.${w}.orientationNote`));
+      tr.appendChild(tdOn);
+
+      // forumPrompts — week-level
+      tr.appendChild(buildFpCell(`weeks.${w}.forumPrompts`));
+
+      // workedExample — week-level
+      const tdWe = document.createElement('td');
+      tdWe.style.padding = '3px 4px'; tdWe.style.minWidth = '120px';
+      tdWe.appendChild(buildSmallInput(`weeks.${w}.workedExample`));
+      tr.appendChild(tdWe);
+
+      // synthesisTemplate — week-level
+      const tdSt = document.createElement('td');
+      tdSt.style.padding = '3px 4px'; tdSt.style.minWidth = '120px';
+      tdSt.appendChild(buildSmallInput(`weeks.${w}.synthesisTemplate`));
+      tr.appendChild(tdSt);
+
+      tbody.appendChild(tr);
+    }
   }
   tbl.appendChild(tbody);
   tableWrap.appendChild(tbl);
@@ -662,7 +755,14 @@ function renderPanel5(container, activeTri) {
 
     // Links
     for (const [lk, lv] of Object.entries(links)) {
-      addRow(`links.${lk}`, statusChip(lv));
+      if (lk === 'recordings' && Array.isArray(lv)) {
+        const chip = document.createElement('span');
+        chip.className = lv.length > 0 ? 'chip-set' : 'chip-gap';
+        chip.textContent = lv.length > 0 ? `${lv.length} recording${lv.length > 1 ? 's' : ''}` : 'empty';
+        addRow(`links.${lk}`, chip);
+      } else {
+        addRow(`links.${lk}`, statusChip(lv));
+      }
     }
 
     container.appendChild(tbl);
