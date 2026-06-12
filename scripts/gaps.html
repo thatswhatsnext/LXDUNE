@@ -449,14 +449,37 @@ function renderPanel2(container) {
     const recVal = (weekData.links || {}).recording;
     if (Array.isArray(recs) && recs.length > 0) {
       const chip = document.createElement('span');
-      chip.className = 'chip-set';
+      chip.className = 'chip-count chip-set';
+      chip.style.cursor = 'pointer';
       chip.textContent = `${recs.length} recording${recs.length > 1 ? 's' : ''}`;
+      const recDetail = document.createElement('div');
+      recDetail.style.cssText = 'display:none;margin-top:4px;';
+      recs.forEach((rec, idx) => {
+        const recLbl = document.createElement('div');
+        recLbl.style.cssText = 'font-size:0.72em;color:#555;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;';
+        recLbl.textContent = rec.label || `Recording ${idx + 1}`;
+        recLbl.title = rec.label || '';
+        recDetail.appendChild(recLbl);
+        recDetail.appendChild(buildSmallInput(`weeks.${w}.links.recordings.${idx}.embed`));
+      });
+      chip.addEventListener('click', () => {
+        recDetail.style.display = recDetail.style.display === 'none' ? 'block' : 'none';
+      });
       tdRec.appendChild(chip);
+      tdRec.appendChild(recDetail);
     } else if (typeof recVal === 'string' && recVal.length > 0) {
       const chip = document.createElement('span');
-      chip.className = 'chip-set';
+      chip.className = 'chip-count chip-set';
+      chip.style.cursor = 'pointer';
       chip.textContent = 'Recording set';
+      const recDetail = document.createElement('div');
+      recDetail.style.cssText = 'display:none;margin-top:4px;';
+      recDetail.appendChild(buildSmallInput(`weeks.${w}.links.recording`));
+      chip.addEventListener('click', () => {
+        recDetail.style.display = recDetail.style.display === 'none' ? 'block' : 'none';
+      });
       tdRec.appendChild(chip);
+      tdRec.appendChild(recDetail);
     } else {
       tdRec.appendChild(buildSmallInput(`weeks.${w}.links.recording`));
     }
