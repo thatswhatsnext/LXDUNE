@@ -292,6 +292,9 @@ function countGaps() {
     const links  = weekData.links || {};
     const topics = weekData.topics;
 
+    // video (YouTube ID)
+    if (isGap(weekData.video)) gaps++;
+
     // recordings/lecture
     const recs = links.recordings;
     const hasRecording =
@@ -422,7 +425,7 @@ function renderPanel2(container) {
   thWeek.textContent = 'Week';
   thWeek.style.cssText = 'padding:4px 8px;';
   headerRow.appendChild(thWeek);
-  for (const h of ['Recording/s', 'Lecture (Moodle page)', 'Slides', 'Forum', 'Materials', 'Live Hub']) {
+  for (const h of ['Video (YouTube ID)', 'Recording/s', 'Lecture (Moodle page)', 'Slides', 'Forum', 'Materials', 'Live Hub']) {
     const th = document.createElement('th');
     th.textContent = h;
     headerRow.appendChild(th);
@@ -441,6 +444,12 @@ function renderPanel2(container) {
     tdLbl.className = 'lx-row-label';
     tdLbl.textContent = `${w} — ${shortLbl}`;
     tr.appendChild(tdLbl);
+
+    // Video (YouTube ID) column
+    const tdVid = document.createElement('td');
+    tdVid.style.padding = '3px 4px';
+    tdVid.appendChild(buildSmallInput(`weeks.${w}.video`));
+    tr.appendChild(tdVid);
 
     // Recording/s column
     const tdRec = document.createElement('td');
