@@ -549,7 +549,7 @@
       "aim": "Demonstrate knowledge of sound assessment principles including internal alignment, syllabus alignment, and differentiation to support diverse learners while maintaining intellectual rigour.",
       "links": {
         "instructions": "https://mylearn.une.edu.au/pluginfile.php/5356188/mod_assign/introattachment/0/AT2%20EDSE358%20Instructions%202026.2.pdf?forcedownload=1",
-        "taskFiles": null,
+        "taskFiles": "https://mylearn.une.edu.au/course/section.php?id=493801#module-3538568",
         "rubric": "https://mylearn.une.edu.au/pluginfile.php/5356188/mod_assign/introattachment/0/AT2%20EDSE358%20Rubric%202026.2.pdf?forcedownload=1",
         "resourceTable": "https://mylearn.une.edu.au/course/section.php?id=493801#module-3538568",
         "template": null,
@@ -838,7 +838,7 @@
           }
         },
         "T2-2026": {
-          "due": null,
+          "due": "2026-09-06",
           "flexiblePortal": {
             "label": "Flexible submission portal",
             "url": "https://mylearn.une.edu.au/mod/groupselect/view.php?id=3538574",
