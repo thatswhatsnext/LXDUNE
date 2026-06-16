@@ -89,10 +89,10 @@ const WORKFLOW_CSS = `
 .lx-wf-extra{margin-top:0.5rem}
 .lx-wf-extra-label{display:block;font-size:0.8rem;color:var(--lx-accent,#25797F);margin-bottom:0.4rem;font-weight:600}
 .lx-pill-row{display:flex;flex-wrap:wrap;gap:0.4rem}
-.lx-pill{display:inline-block;padding:0.25rem 0.75rem;border-radius:999px;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:var(--lx-primary,#1f6fb2);font-size:0.8rem;font-weight:500;text-decoration:none}
-.lx-pill:hover{opacity:0.85}
-.lx-pill.lx-pill-secondary{background:#f0f0f0;border-color:#ccc;color:#444}
-.lx-pill.lx-pill-fun{background:#fff3cd;border-color:#ffc107;color:#856404}`;
+.lx-pill-tag{display:inline-block;padding:0.25rem 0.75rem;border-radius:999px;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:var(--lx-primary,#1f6fb2);font-size:0.8rem;font-weight:500;text-decoration:none}
+.lx-pill-tag:hover{opacity:0.85}
+.lx-pill-tag.lx-pill-secondary{background:#f0f0f0;border-color:#ccc;color:#444}
+.lx-pill-tag.lx-pill-fun{background:#fff3cd;border-color:#ffc107;color:#856404}`;
 
 const LECTURE_CSS = `
 .lx-lec-wrap{max-width:950px;margin:30px auto;font-family:Arial,sans-serif;color:#1F2A33}
@@ -537,7 +537,7 @@ export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek, fo
       const typeClass = item.type === 'secondary' ? ' lx-pill-secondary'
                       : item.type === 'fun'       ? ' lx-pill-fun'
                       : '';
-      return `<a class="lx-pill${typeClass}" href="${esc(item.url)}" target="_blank"
+      return `<a class="lx-pill-tag${typeClass}" href="${esc(item.url)}" target="_blank"
                  rel="noopener">${esc(item.label)}</a>`;
     }).join('\n');
     materialsHtml = `
