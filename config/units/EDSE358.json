@@ -549,7 +549,7 @@
       "aim": "Demonstrate knowledge of sound assessment principles including internal alignment, syllabus alignment, and differentiation to support diverse learners while maintaining intellectual rigour.",
       "links": {
         "instructions": "https://mylearn.une.edu.au/pluginfile.php/5356188/mod_assign/introattachment/0/AT2%20EDSE358%20Instructions%202026.2.pdf?forcedownload=1",
-        "taskFiles": "https://mylearn.une.edu.au/course/section.php?id=493801#module-3538568",
+        "taskFiles": "https://mylearn.une.edu.au/pluginfile.php/5356188/mod_assign/introattachment/0/AT2%20EDSE358%20Instructions%202026.2.pdf?forcedownload=1",
         "rubric": "https://mylearn.une.edu.au/pluginfile.php/5356188/mod_assign/introattachment/0/AT2%20EDSE358%20Rubric%202026.2.pdf?forcedownload=1",
         "resourceTable": "https://mylearn.une.edu.au/course/section.php?id=493801#module-3538568",
         "template": null,
@@ -941,7 +941,7 @@
   },
   "weeks": {
     "0": {
-      "video": "vOe6VqwXMk0",
+      "video": "0DNpOAw5_oA",
       "loMapping": [],
       "announcementBody": {
         "intro": "Welcome to EDSE358. This unit develops your capacity to plan, assess, and report in senior science — the three responsibilities that sit at the centre of a science teacher's professional work. Over the trimester you will move from reading the syllabus as a governing document to designing and justifying your own teaching, assessment, and feedback decisions against it.",
@@ -1009,11 +1009,28 @@
         "liveHub": "https://mylearn.une.edu.au/course/section.php?id=493803#module-3562851"
       },
       "materialLinks": [
-        { "label": "Book",                             "url": "https://mylearn.une.edu.au/mod/book/view.php?id=3538594",   "type": "secondary" },
-        { "label": "Brain & Learning",                 "url": "https://mylearn.une.edu.au/mod/page/view.php?id=3538593" },
-        { "label": "Evidence-Based Practices",         "url": "https://mylearn.une.edu.au/mod/page/view.php?id=3538591" },
-        { "label": "More on Evidence-Based Practices", "url": "https://mylearn.une.edu.au/mod/folder/view.php?id=3538592" },
-        { "label": "Optional Quiz",                    "url": "https://mylearn.une.edu.au/mod/quiz/view.php?id=3538597",  "type": "fun" }
+        {
+          "label": "Book",
+          "url": "https://mylearn.une.edu.au/mod/book/view.php?id=3538594",
+          "type": "secondary"
+        },
+        {
+          "label": "Brain & Learning",
+          "url": "https://mylearn.une.edu.au/mod/page/view.php?id=3538593"
+        },
+        {
+          "label": "Evidence-Based Practices",
+          "url": "https://mylearn.une.edu.au/mod/page/view.php?id=3538591"
+        },
+        {
+          "label": "More on Evidence-Based Practices",
+          "url": "https://mylearn.une.edu.au/mod/folder/view.php?id=3538592"
+        },
+        {
+          "label": "Optional Quiz",
+          "url": "https://mylearn.une.edu.au/mod/quiz/view.php?id=3538597",
+          "type": "fun"
+        }
       ],
       "forumPrompts": [
         "What does it mean to teach in the 21st century? Cite evidence to support your response.",
