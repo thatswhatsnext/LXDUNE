@@ -65,9 +65,10 @@ const WORKFLOW_CSS = `
 .lx-pill{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:#1F2A33;padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px}
 .lx-dashboard h2{margin:0 0 14px;color:#1F2A33}
 .lx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.lx-wf-grid{display:flex;gap:16px;align-items:flex-start}
-.lx-wf-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:16px}
-@media(max-width:560px){.lx-wf-grid{flex-direction:column}}
+.lx-wf-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start}
+.lx-c1{grid-column:1}.lx-c2{grid-column:2}
+.lx-r1{grid-row:1}.lx-r2{grid-row:2}.lx-r3{grid-row:3}
+@media(max-width:560px){.lx-wf-grid .lx-c1,.lx-wf-grid .lx-c2{grid-column:auto}.lx-wf-grid .lx-r1,.lx-wf-grid .lx-r2,.lx-wf-grid .lx-r3{grid-row:auto}}
 .lx-card{padding:22px;border-radius:16px;text-decoration:none;color:#1F2A33;border:1px solid #dfe6ea;transition:transform .2s,box-shadow .2s;background:#fff;display:block;position:relative}
 .lx-card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(0,0,0,.08)}
 .lx-step{font-size:.75em;font-weight:900;text-transform:uppercase;margin-bottom:6px;opacity:.82;letter-spacing:.5px}
@@ -558,25 +559,25 @@ export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek, fo
     { cls: 'lx-forum',   num: 5, title: 'Post to the Forum',                   detail: 'Share a reflection and respond to at least one peer.',                              url: week.links?.forum,     pillLabel: 'Forum',                pillCls: 'warn' },
   ];
 
-  const cards = steps.map(s => {
+  const POS = [{c:1,r:1},{c:2,r:1},{c:1,r:2},{c:2,r:2},{c:1,r:3}];
+
+  const cards = steps.map((s, i) => {
+    const pos = `lx-c${POS[i].c} lx-r${POS[i].r}`;
     if (s.materialsHtml !== undefined) {
-      return `<div class="lx-card ${s.cls}"><div class="lx-step">Step ${s.num}</div><h4>${esc(s.title)}</h4><div class="lx-extra">${s.detail}${s.materialsHtml}</div></div>`;
+      return `<div class="lx-card ${s.cls} ${pos}"><div class="lx-step">Step ${s.num}</div><h4>${esc(s.title)}</h4><div class="lx-extra">${s.detail}${s.materialsHtml}</div></div>`;
     }
     const pill = s.url
       ? `<a href="${esc(s.url)}" target="_blank" rel="noopener" class="lx-pill-link ${s.pillCls}">${esc(s.pillLabel)}</a>`
       : CHIP;
-    const open  = s.url ? `<a class="lx-card ${s.cls}" href="${esc(s.url)}" target="_blank" rel="noopener">` : `<div class="lx-card ${s.cls}">`;
+    const open  = s.url ? `<a class="lx-card ${s.cls} ${pos}" href="${esc(s.url)}" target="_blank" rel="noopener">` : `<div class="lx-card ${s.cls} ${pos}">`;
     const close = s.url ? `</a>` : `</div>`;
     return `${open}<div class="lx-step">Step ${s.num}</div><h4>${esc(s.title)}</h4><div class="lx-extra">${s.detail}<div class="lx-pills">${pill}</div></div>${close}`;
-  });
-
-  const col1 = cards.filter((_, i) => i % 2 === 0).join('');
-  const col2 = cards.filter((_, i) => i % 2 !== 0).join('');
+  }).join('');
 
   el.innerHTML = `<div class="lx-dashboard">
     <div class="lx-pill">${esc(unitCfg.code)} • ${esc(week.item)}</div>
     <h2>How to Approach ${esc(week.item)}: ${esc(week.title)}</h2>
-    <div class="lx-wf-grid"><div class="lx-wf-col">${col1}</div><div class="lx-wf-col">${col2}</div></div>
+    <div class="lx-wf-grid">${cards}</div>
   </div>`;
 }
 
