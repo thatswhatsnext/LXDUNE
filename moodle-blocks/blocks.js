@@ -65,7 +65,7 @@ const WORKFLOW_CSS = `
 .lx-pill{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:#1F2A33;padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px}
 .lx-dashboard h2{margin:0 0 14px;color:#1F2A33}
 .lx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.lx-wf-grid{grid-template-columns:repeat(2,1fr)}
+.lx-wf-grid{grid-template-columns:repeat(2,1fr);align-items:start}
 .lx-wf-grid>*:nth-child(odd){grid-column:1}
 .lx-wf-grid>*:nth-child(even){grid-column:2}
 @media(max-width:560px){.lx-wf-grid{grid-template-columns:1fr}.lx-wf-grid>*{grid-column:auto}}
