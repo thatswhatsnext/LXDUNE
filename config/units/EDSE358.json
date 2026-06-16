@@ -942,7 +942,11 @@
   "weeks": {
     "0": {
       "video": "vOe6VqwXMk0",
-      "loMapping": []
+      "loMapping": [],
+      "announcementBody": {
+        "intro": "Welcome to EDSE358. This unit develops your capacity to plan, assess, and report in senior science — the three responsibilities that sit at the centre of a science teacher's professional work. Over the trimester you will move from reading the syllabus as a governing document to designing and justifying your own teaching, assessment, and feedback decisions against it.",
+        "focus": "Before Module 1 begins next week, take time to explore how the unit fits together. Open the Unit Outline and read the assessment overview, find the Learning Materials and Assessment Portal in the navigation block, and note the day and time of your weekly live session. Check the two assessment tasks and their due dates now — both shape how you should pace your work from the first week."
+      }
     },
     "1": {
       "item": "Module 1",
