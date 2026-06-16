@@ -858,7 +858,11 @@
   "weeks": {
     "0": {
       "video": "vOe6VqwXMk0",
-      "loMapping": []
+      "loMapping": [],
+      "announcementBody": {
+        "intro": "Welcome to EDSE362. This unit develops your capacity to design curriculum, choose pedagogy, and teach inclusively across senior science — building the professional judgement you will draw on every time you plan for a real and diverse classroom. Over the trimester you will move from examining what the syllabus asks of you to making and defending your own decisions about how to teach it well for every student.",
+        "focus": "Before Topic 1 begins next week, take time to explore how the unit fits together. Open the Unit Outline and read the assessment overview, find the Learning Materials and Assessment Portal in the navigation block, and note the day and time of your weekly live session. Look ahead to the two assessment tasks now — AT1 is due 26 July and AT2 on 6 September, and both reward work that begins early rather than late in the trimester."
+      }
     },
     "1": {
       "item": "Topics 1 & 2",
