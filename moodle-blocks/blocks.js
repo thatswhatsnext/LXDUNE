@@ -40,12 +40,9 @@ function setError(el, msg) {
 }
 
 function injectStyles(id, css) {
-  if (!document.getElementById(id)) {
-    const s = document.createElement('style');
-    s.id = id;
-    s.textContent = css;
-    document.head.appendChild(s);
-  }
+  let s = document.getElementById(id);
+  if (!s) { s = document.createElement('style'); s.id = id; document.head.appendChild(s); }
+  s.textContent = css;
 }
 
 // Writes/replaces the :root theme variables so switching units in the test
@@ -68,8 +65,10 @@ const WORKFLOW_CSS = `
 .lx-pill{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:#1F2A33;padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:800;margin-bottom:12px}
 .lx-dashboard h2{margin:0 0 14px;color:#1F2A33}
 .lx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.lx-wf-grid{grid-template-columns:repeat(2,1fr);align-items:stretch}
-@media(max-width:560px){.lx-wf-grid{grid-template-columns:1fr}}
+.lx-wf-grid{grid-template-columns:repeat(2,1fr)}
+.lx-wf-grid>*:nth-child(odd){grid-column:1}
+.lx-wf-grid>*:nth-child(even){grid-column:2}
+@media(max-width:560px){.lx-wf-grid{grid-template-columns:1fr}.lx-wf-grid>*{grid-column:auto}}
 .lx-card{padding:22px;border-radius:16px;text-decoration:none;color:#1F2A33;border:1px solid #dfe6ea;transition:transform .2s,box-shadow .2s;background:#fff;display:block;position:relative}
 .lx-card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(0,0,0,.08)}
 .lx-step{font-size:.75em;font-weight:900;text-transform:uppercase;margin-bottom:6px;opacity:.82;letter-spacing:.5px}
