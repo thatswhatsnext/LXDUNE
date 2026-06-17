@@ -103,36 +103,57 @@
           "id": "A",
           "title": "Practical Science Learning Sequence",
           "marks": 26,
-          "wordEquiv": "~1100 words equivalent",
-          "los": [
+          "wordCount": "~1100 words equivalent",
+          "loLinks": [
             "LO1",
             "LO2",
             "LO3",
             "LO5"
           ],
-          "description": "Design a table of 8–10 practicals in a logical learning sequence for a Knowledge and Understanding strand of your choice. For each practical include: chronological number, title, description (20 words max), NSW syllabus outcome codes, prior knowledge and skills, safety considerations, and adjustments for the given cohort."
+          "description": "Design a table of 8–10 practicals in a logical learning sequence for a Knowledge and Understanding strand of your choice.",
+          "requirements": [
+            "Chronological number",
+            "Title",
+            "Description (20 words max)",
+            "NSW syllabus outcome codes",
+            "Prior knowledge and skills",
+            "Safety considerations",
+            "Adjustments for the given cohort"
+          ]
         },
         {
           "id": "B",
           "title": "Justification",
           "marks": 10,
-          "wordEquiv": "~300 words",
-          "los": [
+          "wordCount": "~300 words",
+          "loLinks": [
             "LO1",
             "LO3",
             "LO5"
           ],
-          "description": "Citing scholarly and/or syllabus sources, justify the decisions made in Part A. Address all five required elements: (1) your pedagogical approach and why you chose it; (2) how the sequence supports the given cohort specifically; (3) relevant syllabus elements — Working Scientifically, General Capabilities, Cross Curriculum Priorities; (4) your prior knowledge decisions; (5) your safety decisions. Explain why each decision serves the cohort — not just what you decided."
+          "description": "Citing scholarly and/or syllabus sources, justify the decisions made in Part A. Address all five required elements.",
+          "requirements": [
+            "Your pedagogical approach and why you chose it",
+            "How the sequence supports the given cohort specifically",
+            "Relevant syllabus elements — Working Scientifically, General Capabilities, Cross Curriculum Priorities",
+            "Your prior knowledge decisions",
+            "Your safety decisions",
+            "Explain why each decision serves the cohort — not just what you decided"
+          ]
         },
         {
           "id": "C",
           "title": "Reflection",
           "marks": 4,
-          "wordEquiv": "~100 words",
-          "los": [
+          "wordCount": "~100 words",
+          "loLinks": [
             "LO6"
           ],
-          "description": "Reflect on what was new to you in this task versus what you already knew well. Name one specific professional learning source — not a category, but a specific resource, association, or person — and explain why it is relevant to your strand and your teaching context."
+          "description": "Reflect on what was new to you in this task versus what you already knew well.",
+          "requirements": [
+            "Name one specific professional learning source — not a category, but a specific resource, association, or person",
+            "Explain why it is relevant to your strand and your teaching context"
+          ]
         }
       ],
       "criteria": [
@@ -201,141 +222,185 @@
       ],
       "rubric": [
         {
-          "criterionId": "A1",
-          "hd": {
-            "marks": 5,
-            "descriptor": "Outcome codes are correct throughout. Every practical is matched to specific content statements. Working Scientifically outcomes, General Capabilities, and Cross Curriculum Priorities appear where they are genuinely relevant — not added to every row by default."
-          },
-          "di": {
-            "marks": 4,
-            "descriptor": "Outcome codes are correct. Each practical is matched to relevant content statements. Working Scientifically outcomes are included for most practicals."
-          },
-          "cr": {
-            "marks": 3,
-            "descriptor": "Outcome codes are mostly correct with minor errors. Practicals are matched to content statements, though some matches are imprecise. Working Scientifically outcomes appear for some practicals."
-          },
-          "ps": {
-            "marks": 2.5,
-            "descriptor": "Some outcome codes are present but may be incorrect or not clearly matched to what the practical involves. Working Scientifically outcomes are absent or largely missing."
-          },
-          "n": {
-            "marks": "<2.5",
-            "descriptor": "Outcome codes are missing, incorrect, or do not relate to the practicals listed."
+          "criterion": "Syllabus outcomes, content, and skills",
+          "part": "A",
+          "marks": 5,
+          "loLinks": [
+            "LO1"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Outcome codes are correct throughout. Every practical is matched to specific content statements. Working Scientifically outcomes, General Capabilities, and Cross Curriculum Priorities appear where they are genuinely relevant — not added to every row by default."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Outcome codes are correct. Each practical is matched to relevant content statements. Working Scientifically outcomes are included for most practicals."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Outcome codes are mostly correct with minor errors. Practicals are matched to content statements, though some matches are imprecise. Working Scientifically outcomes appear for some practicals."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Some outcome codes are present but may be incorrect or not clearly matched to what the practical involves. Working Scientifically outcomes are absent or largely missing."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Outcome codes are missing, incorrect, or do not relate to the practicals listed."
+            }
           }
         },
         {
-          "criterionId": "A2",
-          "hd": {
-            "marks": 7,
-            "descriptor": "Your sequence shows a clear, expert progression — earlier practicals introduce foundations that later ones build on. The rationale for the order is evident from the design itself."
-          },
-          "di": {
-            "marks": 6,
-            "descriptor": "Your sequence is logical and progressive. A student could work through it without encountering content they are not yet prepared for."
-          },
-          "cr": {
-            "marks": 5,
-            "descriptor": "Your practicals are in a generally sensible order. A small number could be reordered without significant loss, but the overall direction is correct."
-          },
-          "ps": {
-            "marks": 4,
-            "descriptor": "Your practicals are listed but the order does not consistently reflect how student understanding builds. A student could encounter a practical before they have the prior knowledge it requires."
-          },
-          "n": {
-            "marks": 3,
-            "descriptor": "Your practicals appear in an arbitrary or unclear order with no evidence that the sequence reflects how students learn."
+          "criterion": "Sequence — the order of your practicals",
+          "part": "A",
+          "marks": 7,
+          "loLinks": [
+            "LO2"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Your sequence shows a clear, expert progression — earlier practicals introduce foundations that later ones build on. The rationale for the order is evident from the design itself."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Your sequence is logical and progressive. A student could work through it without encountering content they are not yet prepared for."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Your practicals are in a generally sensible order. A small number could be reordered without significant loss, but the overall direction is correct."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Your practicals are listed but the order does not consistently reflect how student understanding builds. A student could encounter a practical before they have the prior knowledge it requires."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Your practicals appear in an arbitrary or unclear order with no evidence that the sequence reflects how students learn."
+            }
           }
         },
         {
-          "criterionId": "A3",
-          "hd": {
-            "marks": 6,
-            "descriptor": "A named constructivist approach is clearly identifiable in the overall sequence design. Prior knowledge is specific and accurate for every practical, calibrated to the year group and NSW syllabus."
-          },
-          "di": {
-            "marks": 5,
-            "descriptor": "A constructivist approach is recognisable in the sequence. Prior knowledge is identified for most practicals and is appropriate to the year group."
-          },
-          "cr": {
-            "marks": 4,
-            "descriptor": "Some evidence of constructivist thinking in the sequencing. Prior knowledge is identified for some practicals, though entries may be general rather than specific to each practical's content."
-          },
-          "ps": {
-            "marks": 3,
-            "descriptor": "Little evidence of a constructivist approach in the design. Prior knowledge entries are listed for few practicals or are too vague to be useful."
-          },
-          "n": {
-            "marks": "<3",
-            "descriptor": "No recognisable constructivist approach. Prior knowledge is absent or irrelevant to the practicals listed."
+          "criterion": "Pedagogical approach and prior knowledge",
+          "part": "A",
+          "marks": 6,
+          "loLinks": [
+            "LO3"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "A named constructivist approach is clearly identifiable in the overall sequence design. Prior knowledge is specific and accurate for every practical, calibrated to the year group and NSW syllabus."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "A constructivist approach is recognisable in the sequence. Prior knowledge is identified for most practicals and is appropriate to the year group."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Some evidence of constructivist thinking in the sequencing. Prior knowledge is identified for some practicals, though entries may be general rather than specific to each practical's content."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Little evidence of a constructivist approach in the design. Prior knowledge entries are listed for few practicals or are too vague to be useful."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "No recognisable constructivist approach. Prior knowledge is absent or irrelevant to the practicals listed."
+            }
           }
         },
         {
-          "criterionId": "A4",
-          "hd": {
-            "marks": 8,
-            "descriptor": "Safety information is accurate and specific to each practical. Adjustments are proposed for all four cohort groups and are practical, context-specific, and differentiated from each other — not generic strategies applied uniformly."
-          },
-          "di": {
-            "marks": 7,
-            "descriptor": "Safety information is accurate across all practicals. Adjustments are proposed for the main cohort groups and are appropriate to the context."
-          },
-          "cr": {
-            "marks": 6,
-            "descriptor": "Safety information is present and mostly accurate. Adjustments address at least two of the four named cohort groups, though they may be generic rather than practical-specific."
-          },
-          "ps": {
-            "marks": 4,
-            "descriptor": "Safety information is present but incomplete or not specific to the practicals chosen. Adjustments attempt to address one cohort group, or are too general to be usable in a real classroom."
-          },
-          "n": {
-            "marks": "<4",
-            "descriptor": "Safety information is absent, incorrect, or references prohibited materials. No meaningful adjustments for the given cohort."
+          "criterion": "Safety and inclusion for the given cohort",
+          "part": "A",
+          "marks": 8,
+          "loLinks": [
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Safety information is accurate and specific to each practical. Adjustments are proposed for all four cohort groups and are practical, context-specific, and differentiated from each other — not generic strategies applied uniformly."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Safety information is accurate across all practicals. Adjustments are proposed for the main cohort groups and are appropriate to the context."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Safety information is present and mostly accurate. Adjustments address at least two of the four named cohort groups, though they may be generic rather than practical-specific."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Safety information is present but incomplete or not specific to the practicals chosen. Adjustments attempt to address one cohort group, or are too general to be usable in a real classroom."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Safety information is absent, incorrect, or references prohibited materials. No meaningful adjustments for the given cohort."
+            }
           }
         },
         {
-          "criterionId": "B1",
-          "hd": {
-            "marks": 10,
-            "descriptor": "Every claim is supported by a precisely cited source. All five elements are addressed with clear reasoning. You explain why each decision serves the given cohort specifically — not just what you decided."
-          },
-          "di": {
-            "marks": 8,
-            "descriptor": "Most claims are cited. Four of the five elements are addressed with clear reasoning. The connection between your decisions and the given cohort is evident."
-          },
-          "cr": {
-            "marks": 6,
-            "descriptor": "Key claims are cited; some are not. At least three elements are addressed. Your reasoning describes what you did, though not always why it serves the cohort."
-          },
-          "ps": {
-            "marks": 5,
-            "descriptor": "Some citations are present but may be inaccurate or insufficient. Fewer than three elements are addressed, or coverage is too brief to constitute a real justification."
-          },
-          "n": {
-            "marks": "<5",
-            "descriptor": "Sources are absent or unrelated to what you are claiming. The justification does not address the required elements, or is description without reasoning."
+          "criterion": "Justification",
+          "part": "B",
+          "marks": 10,
+          "loLinks": [
+            "LO1",
+            "LO3",
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Every claim is supported by a precisely cited source. All five elements are addressed with clear reasoning. You explain why each decision serves the given cohort specifically — not just what you decided."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Most claims are cited. Four of the five elements are addressed with clear reasoning. The connection between your decisions and the given cohort is evident."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Key claims are cited; some are not. At least three elements are addressed. Your reasoning describes what you did, though not always why it serves the cohort."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Some citations are present but may be inaccurate or insufficient. Fewer than three elements are addressed, or coverage is too brief to constitute a real justification."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Sources are absent or unrelated to what you are claiming. The justification does not address the required elements, or is description without reasoning."
+            }
           }
         },
         {
-          "criterionId": "C1",
-          "hd": {
-            "marks": 4,
-            "descriptor": "You identify what was genuinely new and what was already familiar. You name a specific professional learning source and explain exactly why it is relevant to your strand and your teaching context — not why professional learning in general is valuable."
-          },
-          "di": {
-            "marks": 3.5,
-            "descriptor": "You name a specific professional learning source and connect it to your strand or teaching context, though the connection may be general. You note both new and prior knowledge."
-          },
-          "cr": {
-            "marks": 3,
-            "descriptor": "You identify a professional learning source, though it may be vague (e.g. 'NESA resources' without naming which). Some reflection on new and prior knowledge is present."
-          },
-          "ps": {
-            "marks": 2,
-            "descriptor": "Your reflection addresses the prompt superficially. A professional learning source is absent or too vague to be meaningful (e.g. 'research more' or 'ask a colleague')."
-          },
-          "n": {
-            "marks": "<2",
-            "descriptor": "Not submitted, too brief to assess, or does not address the prompt."
+          "criterion": "Professional reflection and learning",
+          "part": "C",
+          "marks": 4,
+          "loLinks": [
+            "LO6"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "You identify what was genuinely new and what was already familiar. You name a specific professional learning source and explain exactly why it is relevant to your strand and your teaching context — not why professional learning in general is valuable."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "You name a specific professional learning source and connect it to your strand or teaching context, though the connection may be general. You note both new and prior knowledge."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "You identify a professional learning source, though it may be vague (e.g. 'NESA resources' without naming which). Some reflection on new and prior knowledge is present."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Your reflection addresses the prompt superficially. A professional learning source is absent or too vague to be meaningful (e.g. 'research more' or 'ask a colleague')."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Not submitted, too brief to assess, or does not address the prompt."
+            }
           }
         }
       ],
@@ -405,45 +470,73 @@
           "id": "A",
           "title": "Unit Program",
           "marks": 27,
-          "wordEquiv": "~1500 words equivalent",
-          "los": [
+          "wordCount": "~1500 words equivalent",
+          "loLinks": [
             "LO1",
             "LO2",
             "LO3",
             "LO5"
           ],
-          "description": "Develop a five-week unit program for the given cohort using a Knowledge and Understanding strand and constructivist pedagogical approach of your choice. Clearly name your approach — its key features must be recognisable throughout the program. Assume four 50-minute lessons per week, two of which are laboratory lessons (20 lessons total). Include: syllabus outcomes, content, and skills (Working Scientifically); General Capabilities and Cross Curriculum Priorities; teaching strategies that engage the diverse cohort; adjustments for the given cohort; at least two formative assessment opportunities to inform future teaching; at least one practical per week conducted in a laboratory lesson."
+          "description": "Develop a five-week unit program for the given cohort using a Knowledge and Understanding strand and constructivist pedagogical approach of your choice. Assume four 50-minute lessons per week, two of which are laboratory lessons (20 lessons total).",
+          "requirements": [
+            "Clearly name your constructivist approach — its key features must be recognisable throughout the program",
+            "Syllabus outcomes, content, and skills (Working Scientifically)",
+            "General Capabilities and Cross Curriculum Priorities",
+            "Teaching strategies that engage the diverse cohort",
+            "Adjustments for the given cohort",
+            "At least two formative assessment opportunities to inform future teaching",
+            "At least one practical per week conducted in a laboratory lesson"
+          ]
         },
         {
           "id": "B",
           "title": "Highlight and Embed",
           "marks": 9,
-          "wordEquiv": "~300 words equivalent",
-          "los": [
+          "wordCount": "~300 words equivalent",
+          "loLinks": [
             "LO4",
             "LO5"
           ],
-          "description": "Go back through your Part A unit program and apply the following highlights: Blue — literacy and numeracy strategies; Yellow — Aboriginal and Torres Strait Islander perspectives, histories and cultures; Green — formative assessment tasks. Highlights must reflect genuine embedding in Part A — retrospective addition will be evident to a marker. At least two formative assessment tasks must be present and highlighted."
+          "description": "Go back through your Part A unit program and apply the following highlights.",
+          "requirements": [
+            "Blue — literacy and numeracy strategies",
+            "Yellow — Aboriginal and Torres Strait Islander perspectives, histories and cultures",
+            "Green — formative assessment tasks",
+            "Highlights must reflect genuine embedding in Part A — retrospective addition will be evident to a marker",
+            "At least two formative assessment tasks must be present and highlighted"
+          ]
         },
         {
           "id": "C",
           "title": "Summative Assessment Task with A–E Marking Rubric",
           "marks": 18,
-          "wordEquiv": "~550 words equivalent",
-          "los": [
+          "wordCount": "~550 words equivalent",
+          "loLinks": [
             "LO4"
           ],
-          "description": "Design a summative assessment task that appropriately captures student achievement at the end of your unit. The task may be individual or collaborative, theory or practical. It must be completed in class (not take-home), must be inclusive for all learners, must align to syllabus outcomes addressed in Parts A and B, and must include an A–E marking rubric using language from the NESA Science Years 7–10 Performance Band Descriptors."
+          "description": "Design a summative assessment task that appropriately captures student achievement at the end of your unit.",
+          "requirements": [
+            "The task may be individual or collaborative, theory or practical",
+            "Must be completed in class (not take-home)",
+            "Must be inclusive for all learners",
+            "Must align to syllabus outcomes addressed in Parts A and B",
+            "Must include an A–E marking rubric using language from the NESA Science Years 7–10 Performance Band Descriptors"
+          ]
         },
         {
           "id": "D",
           "title": "Reflection",
           "marks": 6,
-          "wordEquiv": "~150 words",
-          "los": [
+          "wordCount": "~150 words",
+          "loLinks": [
             "LO6"
           ],
-          "description": "Reflect on what was most and least familiar across unit programming, assessment design, and planning for diverse learners. Identify one aspect of your unit program you would evaluate or refine after teaching it, and describe what evidence you would use. Name one external professional or community source — such as a First Nations Australian community representative, a NESA consultant, or a science education professional association — whose input could improve your content knowledge or teaching. Explain briefly how you would access that support."
+          "description": "Reflect on what was most and least familiar across unit programming, assessment design, and planning for diverse learners.",
+          "requirements": [
+            "Identify one aspect of your unit program you would evaluate or refine after teaching it, and describe what evidence you would use",
+            "Name one external professional or community source — such as a First Nations Australian community representative, a NESA consultant, or a science education professional association — whose input could improve your content knowledge or teaching",
+            "Explain briefly how you would access that support"
+          ]
         }
       ],
       "criteria": [
@@ -544,210 +637,277 @@
       ],
       "rubric": [
         {
-          "criterionId": "A1",
-          "hd": {
-            "marks": 14,
-            "descriptor": "Outcome codes are correct throughout all five weeks. Every lesson and practical is matched to specific content statements. Working Scientifically outcomes, General Capabilities, and Cross Curriculum Priorities are included where genuinely relevant. Practicals are expertly integrated and purposefully matched to what is being taught."
-          },
-          "di": {
-            "marks": 12,
-            "descriptor": "Outcome codes are correct. Content, skills, and practicals are well-matched throughout. Working Scientifically outcomes are included for most weeks. Practicals are well-integrated."
-          },
-          "cr": {
-            "marks": 10,
-            "descriptor": "Outcome codes are mostly correct with minor errors. Practicals are present and appropriate. Working Scientifically outcomes appear for some weeks. Sound content knowledge overall."
-          },
-          "ps": {
-            "marks": 8,
-            "descriptor": "Some outcome codes are present but may be incorrect or mismatched to lesson content. Practicals are present but may not align to the content being taught. Adequate content knowledge with some gaps."
-          },
-          "n": {
-            "marks": "<8",
-            "descriptor": "Syllabus elements are inaccurate or largely missing. Practicals are absent, inadequate, or poorly matched. Content knowledge is not adequately demonstrated."
+          "criterion": "Syllabus outcomes, content, skills, and practicals",
+          "part": "A",
+          "marks": 14,
+          "loLinks": [
+            "LO1",
+            "LO2",
+            "LO3"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Outcome codes are correct throughout all five weeks. Every lesson and practical is matched to specific content statements. Working Scientifically outcomes, General Capabilities, and Cross Curriculum Priorities are included where genuinely relevant. Practicals are expertly integrated and purposefully matched to what is being taught."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Outcome codes are correct. Content, skills, and practicals are well-matched throughout. Working Scientifically outcomes are included for most weeks. Practicals are well-integrated."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Outcome codes are mostly correct with minor errors. Practicals are present and appropriate. Working Scientifically outcomes appear for some weeks. Sound content knowledge overall."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Some outcome codes are present but may be incorrect or mismatched to lesson content. Practicals are present but may not align to the content being taught. Adequate content knowledge with some gaps."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Syllabus elements are inaccurate or largely missing. Practicals are absent, inadequate, or poorly matched. Content knowledge is not adequately demonstrated."
+            }
           }
         },
         {
-          "criterionId": "A2",
-          "hd": {
-            "marks": 13,
-            "descriptor": "Constructivist approach is named and its key features are sustained and clearly recognisable across all five weeks. Teaching strategies are innovative and specifically responsive to the given cohort. The sequence builds conceptual understanding with expert progression. Adjustments are nuanced, specific, and differentiated for all four cohort groups. GCs and CCPs are purposefully embedded."
-          },
-          "di": {
-            "marks": 11,
-            "descriptor": "Constructivist approach is named and well-applied throughout. Teaching strategies are effective and cohort-responsive. The sequence builds understanding well. Accurate adjustments for the main cohort groups. GCs and CCPs are embedded."
-          },
-          "cr": {
-            "marks": 9,
-            "descriptor": "Constructivist approach is named and evident. Teaching strategies are appropriate. The sequence is mostly progressive. Sound adjustments for most cohort groups. GCs and CCPs are present."
-          },
-          "ps": {
-            "marks": 7,
-            "descriptor": "Constructivist approach is referenced but only partially evident in the sequence. Some strategies are appropriate. Progression is adequate. Limited adjustments; GCs and CCPs are partially addressed."
-          },
-          "n": {
-            "marks": "<7",
-            "descriptor": "Constructivist approach is not named or not evident in the sequence design. Strategies are limited or inappropriate for the cohort. The sequence does not build understanding. Adjustments are absent or inadequate."
+          "criterion": "Teaching sequence, strategies, and adjustments for the given cohort",
+          "part": "A",
+          "marks": 13,
+          "loLinks": [
+            "LO2",
+            "LO3",
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Constructivist approach is named and its key features are sustained and clearly recognisable across all five weeks. Teaching strategies are innovative and specifically responsive to the given cohort. The sequence builds conceptual understanding with expert progression. Adjustments are nuanced, specific, and differentiated for all four cohort groups. GCs and CCPs are purposefully embedded."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Constructivist approach is named and well-applied throughout. Teaching strategies are effective and cohort-responsive. The sequence builds understanding well. Accurate adjustments for the main cohort groups. GCs and CCPs are embedded."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Constructivist approach is named and evident. Teaching strategies are appropriate. The sequence is mostly progressive. Sound adjustments for most cohort groups. GCs and CCPs are present."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Constructivist approach is referenced but only partially evident in the sequence. Some strategies are appropriate. Progression is adequate. Limited adjustments; GCs and CCPs are partially addressed."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Constructivist approach is not named or not evident in the sequence design. Strategies are limited or inappropriate for the cohort. The sequence does not build understanding. Adjustments are absent or inadequate."
+            }
           }
         },
         {
-          "criterionId": "B1",
-          "hd": {
-            "marks": 3,
-            "descriptor": "An exceptional range of literacy and numeracy strategies and Aboriginal and Torres Strait Islander perspectives genuinely and effectively embedded throughout. All elements highlighted."
-          },
-          "di": {
-            "marks": 2.5,
-            "descriptor": "A strong range effectively embedded throughout the unit. All elements highlighted."
-          },
-          "cr": {
-            "marks": 2,
-            "descriptor": "Sound embedding with appropriate strategies and perspectives across the unit. All elements are highlighted."
-          },
-          "ps": {
-            "marks": 1.5,
-            "descriptor": "Limited strategies embedded. Most elements are highlighted but coverage is thin."
-          },
-          "n": {
-            "marks": "<1.5",
-            "descriptor": "Strategies are absent or not highlighted."
+          "criterion": "Literacy, numeracy, and Aboriginal and Torres Strait Islander embedding",
+          "part": "B",
+          "marks": 3,
+          "loLinks": [
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "An exceptional range of literacy and numeracy strategies and Aboriginal and Torres Strait Islander perspectives genuinely and effectively embedded throughout. All elements highlighted."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "A strong range effectively embedded throughout the unit. All elements highlighted."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Sound embedding with appropriate strategies and perspectives across the unit. All elements are highlighted."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Limited strategies embedded. Most elements are highlighted but coverage is thin."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Strategies are absent or not highlighted."
+            }
           }
         },
         {
-          "criterionId": "B2",
-          "hd": {
-            "marks": 3,
-            "descriptor": "Barriers to participation are expertly identified and mitigated for all cohort groups. The unit provides genuinely equitable access and challenge for every learner."
-          },
-          "di": {
-            "marks": 2.5,
-            "descriptor": "Barriers are identified and mitigated. The unit provides clear access for all diverse learners."
-          },
-          "cr": {
-            "marks": 2,
-            "descriptor": "Some barriers are identified. The unit is mostly accessible for diverse learners."
-          },
-          "ps": {
-            "marks": 1.5,
-            "descriptor": "Limited attention to barriers. Some adjustments are present but coverage is thin."
-          },
-          "n": {
-            "marks": "<1.5",
-            "descriptor": "Barriers are not identified. The unit does not address the diverse learner needs of the given cohort."
+          "criterion": "Inclusion and cohort appropriateness",
+          "part": "B",
+          "marks": 3,
+          "loLinks": [
+            "LO5"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Barriers to participation are expertly identified and mitigated for all cohort groups. The unit provides genuinely equitable access and challenge for every learner."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Barriers are identified and mitigated. The unit provides clear access for all diverse learners."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Some barriers are identified. The unit is mostly accessible for diverse learners."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Limited attention to barriers. Some adjustments are present but coverage is thin."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Barriers are not identified. The unit does not address the diverse learner needs of the given cohort."
+            }
           }
         },
         {
-          "criterionId": "B3",
-          "hd": {
-            "marks": 3,
-            "descriptor": "Two or more tasks present and highlighted. Each is purposefully designed with an explicit connection to learning goals and a clear link to how the evidence would inform subsequent teaching for the given cohort."
-          },
-          "di": {
-            "marks": 2.5,
-            "descriptor": "Two or more tasks present and highlighted. Well-chosen; the connection to future teaching is clearly evident."
-          },
-          "cr": {
-            "marks": 2,
-            "descriptor": "Two or more tasks present and highlighted. Appropriate; some indication of how they inform teaching."
-          },
-          "ps": {
-            "marks": 1.5,
-            "descriptor": "Two or more tasks present and highlighted, but they are generic or loosely connected to learning goals."
-          },
-          "n": {
-            "marks": "<1.5",
-            "descriptor": "Fewer than two tasks present or highlighted, or the tasks identified would not generate meaningful evidence to inform teaching."
+          "criterion": "Formative assessment tasks",
+          "part": "B",
+          "marks": 3,
+          "loLinks": [
+            "LO4"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Two or more tasks present and highlighted. Each is purposefully designed with an explicit connection to learning goals and a clear link to how the evidence would inform subsequent teaching for the given cohort."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Two or more tasks present and highlighted. Well-chosen; the connection to future teaching is clearly evident."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Two or more tasks present and highlighted. Appropriate; some indication of how they inform teaching."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Two or more tasks present and highlighted, but they are generic or loosely connected to learning goals."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Fewer than two tasks present or highlighted, or the tasks identified would not generate meaningful evidence to inform teaching."
+            }
           }
         },
         {
-          "criterionId": "C1",
-          "hd": {
-            "marks": 6,
-            "descriptor": "Task details are accurate and clearly appropriate for the cohort. Alignment to syllabus outcomes from the unit is exceptional. Instructions are unambiguous, precise, and inclusive — a student could begin working immediately."
-          },
-          "di": {
-            "marks": 5,
-            "descriptor": "Task details are accurate and appropriate. Alignment to syllabus outcomes is strong. Instructions are clear and concise."
-          },
-          "cr": {
-            "marks": 4,
-            "descriptor": "Task details are accurate. Alignment to syllabus outcomes is sound. Instructions are mostly clear."
-          },
-          "ps": {
-            "marks": 3,
-            "descriptor": "Task details are mostly accurate. Alignment to some outcomes is adequate. Instructions are present but have room for improvement."
-          },
-          "n": {
-            "marks": "<3",
-            "descriptor": "Errors in task details. Alignment is inadequate. Instructions are ambiguous or absent."
+          "criterion": "Task design and syllabus alignment",
+          "part": "C",
+          "marks": 6,
+          "loLinks": [
+            "LO4"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Task details are accurate and clearly appropriate for the cohort. Alignment to syllabus outcomes from the unit is exceptional. Instructions are unambiguous, precise, and inclusive — a student could begin working immediately."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Task details are accurate and appropriate. Alignment to syllabus outcomes is strong. Instructions are clear and concise."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Task details are accurate. Alignment to syllabus outcomes is sound. Instructions are mostly clear."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Task details are mostly accurate. Alignment to some outcomes is adequate. Instructions are present but have room for improvement."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Errors in task details. Alignment is inadequate. Instructions are ambiguous or absent."
+            }
           }
         },
         {
-          "criterionId": "C2",
-          "hd": {
-            "marks": 6,
-            "descriptor": "The task aligns closely and purposefully to the unit program in Parts A and B. All cohort members have a genuine, equitable opportunity to demonstrate achievement. Inclusion is central to the task design."
-          },
-          "di": {
-            "marks": 5,
-            "descriptor": "The task aligns well to Parts A and B. Cohort members have a clear opportunity to demonstrate achievement."
-          },
-          "cr": {
-            "marks": 4,
-            "descriptor": "The task aligns to Parts A and B. Most cohort members can demonstrate achievement, though access for some learners may be limited."
-          },
-          "ps": {
-            "marks": 3,
-            "descriptor": "The task aligns adequately to Parts A and B but may not fully reflect the outcomes taught, or may not provide equitable access for all cohort members."
-          },
-          "n": {
-            "marks": "<3",
-            "descriptor": "The task does not align to the unit program in Parts A and B, and/or does not provide an adequate opportunity for the given cohort to demonstrate their learning."
+          "criterion": "Internal alignment and appropriateness",
+          "part": "C",
+          "marks": 6,
+          "loLinks": [
+            "LO4"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "The task aligns closely and purposefully to the unit program in Parts A and B. All cohort members have a genuine, equitable opportunity to demonstrate achievement. Inclusion is central to the task design."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "The task aligns well to Parts A and B. Cohort members have a clear opportunity to demonstrate achievement."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "The task aligns to Parts A and B. Most cohort members can demonstrate achievement, though access for some learners may be limited."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "The task aligns adequately to Parts A and B but may not fully reflect the outcomes taught, or may not provide equitable access for all cohort members."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "The task does not align to the unit program in Parts A and B, and/or does not provide an adequate opportunity for the given cohort to demonstrate their learning."
+            }
           }
         },
         {
-          "criterionId": "C3",
-          "hd": {
-            "marks": 6,
-            "descriptor": "The rubric strongly supports consistent marking and clear student understanding. NESA Performance Band Descriptor language is used very effectively across all five bands. The distinction between adjacent bands is precise and observable."
-          },
-          "di": {
-            "marks": 5,
-            "descriptor": "The rubric supports consistent marking and student understanding. NESA Performance Band Descriptor language is used well across the five bands."
-          },
-          "cr": {
-            "marks": 4,
-            "descriptor": "The rubric provides some support for consistent marking. NESA Performance Band Descriptor language is used soundly."
-          },
-          "ps": {
-            "marks": 3,
-            "descriptor": "The rubric is present but may be poorly constructed. NESA Performance Band Descriptor language is attempted."
-          },
-          "n": {
-            "marks": "<3",
-            "descriptor": "The rubric is absent, very poorly constructed, or NESA Performance Band Descriptor language has not been used."
+          "criterion": "Marking rubric quality",
+          "part": "C",
+          "marks": 6,
+          "loLinks": [
+            "LO4"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "The rubric strongly supports consistent marking and clear student understanding. NESA Performance Band Descriptor language is used very effectively across all five bands. The distinction between adjacent bands is precise and observable."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "The rubric supports consistent marking and student understanding. NESA Performance Band Descriptor language is used well across the five bands."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "The rubric provides some support for consistent marking. NESA Performance Band Descriptor language is used soundly."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "The rubric is present but may be poorly constructed. NESA Performance Band Descriptor language is attempted."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "The rubric is absent, very poorly constructed, or NESA Performance Band Descriptor language has not been used."
+            }
           }
         },
         {
-          "criterionId": "D1",
-          "hd": {
-            "marks": 6,
-            "descriptor": "Exceptional reflection: a specific evaluation aspect is identified with precise evidence articulated. The external source is well-chosen, named specifically, and convincingly justified in relation to your content knowledge or teaching of this unit. Access is explained concretely."
-          },
-          "di": {
-            "marks": 5,
-            "descriptor": "Critical reflection: an evaluation aspect is identified with evidence noted. An external source is named and justified; the connection to your teaching of this unit is evident."
-          },
-          "cr": {
-            "marks": 4,
-            "descriptor": "Some critical reflection: an evaluation aspect is noted. An external source is identified with some justification, though it may be general rather than specific to your unit or strand."
-          },
-          "ps": {
-            "marks": 3,
-            "descriptor": "Surface reflection: an evaluation aspect or external source is absent, or both are too vague to assess — for example, 'I would reflect on my teaching' or 'I would consult colleagues'."
-          },
-          "n": {
-            "marks": "<3",
-            "descriptor": "Not submitted, too brief to assess, or does not address the prompt."
+          "criterion": "Professional reflection and learning",
+          "part": "D",
+          "marks": 6,
+          "loLinks": [
+            "LO6"
+          ],
+          "bands": {
+            "HD": {
+              "range": "",
+              "descriptor": "Exceptional reflection: a specific evaluation aspect is identified with precise evidence articulated. The external source is well-chosen, named specifically, and convincingly justified in relation to your content knowledge or teaching of this unit. Access is explained concretely."
+            },
+            "D": {
+              "range": "",
+              "descriptor": "Critical reflection: an evaluation aspect is identified with evidence noted. An external source is named and justified; the connection to your teaching of this unit is evident."
+            },
+            "C": {
+              "range": "",
+              "descriptor": "Some critical reflection: an evaluation aspect is noted. An external source is identified with some justification, though it may be general rather than specific to your unit or strand."
+            },
+            "P": {
+              "range": "",
+              "descriptor": "Surface reflection: an evaluation aspect or external source is absent, or both are too vague to assess — for example, 'I would reflect on my teaching' or 'I would consult colleagues'."
+            },
+            "N": {
+              "range": "",
+              "descriptor": "Not submitted, too brief to assess, or does not address the prompt."
+            }
           }
         }
       ],
