@@ -272,7 +272,10 @@ function buildDateList(startDate, trimester) {
   week0.setDate(week0.getDate() - 7);
   week0.setHours(0, 0, 0, 0);
   list.push({ week: 0, date: week0 });
-  list.push({ week: 1, date: new Date(startDate) });
+  // setHours normalises to local midnight — ISO strings parse as UTC midnight, causing week-0 on the start date in UTC+ timezones without this.
+  const week1 = new Date(startDate);
+  week1.setHours(0, 0, 0, 0);
+  list.push({ week: 1, date: week1 });
   for (let w = 2; w <= 14; w++) {
     const d = new Date(week0);
     d.setDate(week0.getDate() + w * 7);
