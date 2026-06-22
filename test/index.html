@@ -589,7 +589,9 @@ function buildDateList(startDateStr, tri) {
   const week0 = new Date(startDateStr);
   week0.setDate(week0.getDate() - 7);
   week0.setHours(0, 0, 0, 0);
-  const list = [{ week: 0, date: new Date(week0) }, { week: 1, date: new Date(startDateStr) }];
+  const week1 = new Date(startDateStr);
+  week1.setHours(0, 0, 0, 0);
+  const list = [{ week: 0, date: new Date(week0) }, { week: 1, date: week1 }];
   for (let w = 2; w <= 14; w++) {
     const d = new Date(week0);
     d.setDate(week0.getDate() + w * 7);
