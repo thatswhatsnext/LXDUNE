@@ -983,7 +983,75 @@
       "loMapping": [
         "LO1",
         "LO3"
-      ]
+      ],
+      "liveSessionRecording": "https://echo360.net.au/media/275a62e3-d702-4beb-8e58-62f8955c21af/public?autoplay=false&automute=false",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Key Outcomes",
+            "items": [
+              "This session introduced EDSE358's two assessment tasks and clarified expectations for both.",
+              "Students received guidance on unit program scope, word count, syllabus selection, and the concept of scientific modelling.",
+              "Key questions from students shaped a practical understanding of what each task requires."
+            ]
+          },
+          {
+            "heading": "Decisions Made",
+            "items": [
+              "AT1: Use the 2017 NSW syllabus — not the 2025 version, despite the upcoming transition.",
+              "AT1 scope: Covers 5 weeks of a teaching and learning program (part-module, not a full module).",
+              "AT1 weighting: 60%; AT2 weighting: 40%.",
+              "Formative assessment: Minimum two pieces per week required = 8–10 total across the program.",
+              "Model complexity: A model of an atom alone is likely too simple for Stage 6; models must reflect deeper content (e.g., SPDF notation, electron configuration).",
+              "Teaching area: Students should design AT1 around their primary science subject (e.g., biology graduates teach Biology Stage 6 only; cross-subject flexibility applies only to Years 7–10)."
+            ]
+          },
+          {
+            "heading": "Assignment Clarifications",
+            "items": [
+              "AT1 structure: Backwards-design a 5-week learning program leading to a student model-construction task; include learning activities, outcomes, and formative assessment.",
+              "Unit plan vs. lesson plan: Unit plans are week-level overviews — not minute-by-minute; aim for the midpoint between a year plan and a lesson plan.",
+              "Word count — \"2,500 words equivalent\": Excludes syllabus codes and content descriptors; budget ~500 words per week across 5 weeks.",
+              "Going over word count: Stephen will request trimming; efficiency of expression is an assessed skill.",
+              "AT2: Critique a Queensland assessment task, identify misalignment to NSW syllabus, then redesign the task and marking key.",
+              "Portfolio (AT1): A collection of student work artifacts across the 5 weeks — can include worksheets, design templates, experiment photos, or structured classwork; not limited to model construction only.",
+              "Model construction time: Up to 10 hours; recommended to stagger and ramp up across weeks rather than concentrating at the end."
+            ]
+          },
+          {
+            "heading": "What Is a \"Model\" in Science",
+            "items": [
+              "A model is an abstraction — strips away detail to highlight key components and their relationships.",
+              "Examples: Bohr atom, SPDF electron configuration, coal seam software models, weather charts, collision theory, acid-base models (Lewis, Arrhenius).",
+              "Students should also understand limitations of models, not just construct them.",
+              "The quality of AT1 is judged by how well the learning program prepares students to build a meaningful, conceptually deep model."
+            ]
+          },
+          {
+            "heading": "Pending Confirmation",
+            "items": [
+              "Detailed unpacking videos for AT1 and AT2 still to be published.",
+              "Stephen to source and post a good example of a teaching and learning program at the appropriate scale.",
+              "Stephen to follow up with Sue regarding her draft feedback request.",
+              "Whether AITSL standards will be required in the unit program template — Stephen flagged this as under review."
+            ]
+          },
+          {
+            "heading": "Action Items",
+            "items": [
+              "Stephen: Post example teaching and learning program alongside session summary.",
+              "Stephen: Publish detailed unpacking videos for AT1 and AT2.",
+              "Stephen: Follow up with Sue on draft review request.",
+              "Students: Begin AT1 after completing Module 3 / 3B.",
+              "Students: Download the Word template to understand expected detail level per week.",
+              "Students (optional): Submit a draft of Week 1 for early directional feedback — Stephen will review partial drafts, not full submissions.",
+              "Extensions & Logistics: Flexible portal opens one week before the AT1 due date; grants an additional 7 days.",
+              "Use the Assignment 1 and Assignment 2 forums for questions between sessions — Stephen will respond and address in live sessions.",
+              "Constructive alignment map available in the study schedule showing how modules, activities, and assessments align."
+            ]
+          }
+        ]
+      }
     },
     "2": {
       "item": "Module 2",
