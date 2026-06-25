@@ -644,6 +644,7 @@ T2 2026 start `2026-06-22` is confirmed. ⚠️ 2027 dates are estimates — con
 17. **EDSE362 assessmentFiles — all null:** discipline-specific task and marking files not yet uploaded. Populate when available.
 18. **EDSE362 workedExample absent on weeks 3, 7, 8:** `workedExample` is null on these weeks. The renderer silently omits the block when absent — no error. Add content when available.
 19. **EDSE362 shells not yet generated:** No Moodle shell snippets exist for EDSE362 T2-2026. Generate using the shell generator after feature/for-topic-param is merged to main.
+20. **`buildDateList` is duplicated in `blocks.js` and `test/index.html`** — any change to week resolution math (boundary logic, NO_TEACHING handling, T3 offset) must be applied to both files. The harness copy drives the status bar week display; the blocks.js copy drives all block renders. They must stay in sync.
 
 ---
 
@@ -974,3 +975,4 @@ New schema fields added and populated:
 - **Zoom is resolved from `trimesterConfig`, not week-level `links.zoom`** — do not add Zoom URLs to individual week `links` objects. Keep them null.
 - **`recordings[].embed` is raw HTML, not a URL** — inject directly; never escape. Contrast with `links.lecture` which is a URL and must be `esc()`-wrapped.
 - **Always use `Object.entries()` when iterating `unitCfg.weeks`** — it is a plain object, not an array. `.map()` will throw.
+- **Week resolution is Monday-anchored in code, not in data.** Trimester start dates in `trimester-config.json` are the true calendar Monday that begins week 1; weeks run Mon–Sun. The start date resolves to week 1, dates before it to week 0. Never shift a start date off its real Monday to compensate for a rendering bug — it moves every week boundary and breaks all date-driven blocks for every unit sharing that date. ISO date-only strings (`new Date('2026-06-22')`) parse as UTC midnight; always normalise to local midnight with `setHours(0,0,0,0)` before differencing dates in week math. Original cause of the start-date 'week 0' bug, fixed commit b75b84b.

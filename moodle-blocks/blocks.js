@@ -727,6 +727,43 @@ export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, 
       ${zoomBtn}
     </div>
   </div>`;
+
+  const recapRecording = week.liveSessionRecording ?? null;
+  const recapSections  = week.liveSessionRecap?.sections ?? [];
+
+  if (recapRecording || recapSections.length) {
+    injectStyles('lx-lecture-styles', LECTURE_CSS);
+
+    const recUrl = recapRecording
+      ? (recapRecording.includes('?') ? recapRecording : `${recapRecording}?autoplay=false&automute=false`)
+      : null;
+
+    const recordingHtml = recUrl
+      ? `<details open style="margin-bottom:16px;">
+           <summary style="cursor:pointer;font-weight:800;font-size:1em;padding:4px 0;">Watch the Session Recording</summary>
+           <div class="lx-video"><iframe src="${esc(recUrl)}" allowfullscreen frameborder="0"></iframe></div>
+         </details>`
+      : '';
+
+    const sectionsHtml = recapSections.map(sec => `
+      <div style="${s}border-left:6px solid var(--lx-accent,#25797F);">
+        <h4 style="margin:0 0 8px;">${esc(sec.heading)}</h4>
+        <ul style="margin:8px 0 0 18px;padding:0;">
+          ${sec.items.map(item => `<li style="margin:6px 0;">${esc(item)}</li>`).join('')}
+        </ul>
+      </div>`).join('');
+
+    const wrap = el.querySelector('div');
+    wrap.insertAdjacentHTML('beforeend', `
+      <hr style="border:none;border-top:1px solid #dfe6ea;margin:8px 0 20px;">
+      <div style="${s}border-left:8px solid var(--lx-primary,#1f6fb2);background:#f4f6f8;">
+        <div style="display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);padding:3px 10px;border-radius:999px;font-size:.78em;font-weight:800;margin-bottom:8px;">SESSION RECAP</div>
+        <h3 style="margin:0 0 4px;">${esc(week.item)} — Session Recap</h3>
+        <div style="font-size:.9em;color:#6F7B84;">Recording and key points from the live session.</div>
+      </div>
+      ${recordingHtml}
+      ${sectionsHtml}`);
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

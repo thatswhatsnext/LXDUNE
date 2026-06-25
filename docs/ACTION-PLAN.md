@@ -27,6 +27,13 @@ Confirm whatson and autovideos render correctly in production Moodle for both ED
 - [x] Settings → Pages → confirm source is `main`
 - [x] Verify: `curl https://thatswhatsnext.github.io/LXDUNE/moodle-blocks/blocks.js` returns 200
 
+### Fix week resolution — Monday anchor ✅ — 2026-06-22
+Timezone parse bug: blocks.js buildDateList() week-1 entry parsed ISO date string as UTC
+midnight while all other entries used local midnight, resolving the trimester start date to
+week 0 in UTC+ timezones. Fixed commit b75b84b (blocks.js) + 4c29261 (test/index.html twin
+copy). A prior workaround that shifted start dates to Sundays was reverted — it had moved
+every week boundary from Mon–Sun to Sun–Sat. Merged dev → main 1e82b3a.
+
 ---
 
 ## 🟡 Do this week — set up live unit pages
