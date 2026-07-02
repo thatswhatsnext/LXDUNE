@@ -2,7 +2,8 @@
   "type": "module",
   "scripts": {
     "checklist": "node scripts/t2-checklist.js",
-    "checklist-ui": "node scripts/checklist-server.js"
+    "checklist-ui": "node scripts/checklist-server.js",
+    "test-harness": "python3 -m http.server 8000 & sleep 1 && open http://localhost:8000/test/"
   },
   "dependencies": {
     "inquirer": "^9.3.8"
