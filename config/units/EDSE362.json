@@ -1166,6 +1166,90 @@
         "Identify one specific strength and one clear weakness in the resource, and consider what you would do to address the weakness in practice.",
         "Come prepared to share your evaluation briefly — we will compare criteria and approaches across different teaching areas in the session."
       ],
+      "liveSessionRecording": "https://echo360.net.au/media/d0563c66-1fd7-460f-88ce-7ab12e31848c/public?autoplay=false&automute=false",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Summary",
+            "items": [
+              "The session clarified requirements for Assessment Task 1 (sequencing science practicals) and introduced frameworks for evaluating and selecting resources.",
+              "Key guidance covered syllabus alignment, safety documentation, constructivist sequencing, differentiation strategies, and support for diverse learners including EALD students."
+            ]
+          },
+          {
+            "heading": "Key Points for AT1",
+            "items": [
+              "Assessment Task 1 scope: Choose Stage 4 or 5, select one focus area from the NSW Science 7–10 (2023) syllabus, and sequence 8–10 first-hand/fieldwork practicals over ~5 weeks.",
+              "Secondhand investigations are excluded from AT1.",
+              "Format: Preamble plus table structure (practical number, name, brief description ~20–50 words, safety, outcomes alignment); clearly separate Part A and Part B (justification).",
+              "References: In-text APA 7 citations with a reference list are required for practical sources.",
+              "Resourcing constraints (equipment, timetabling) are not a required consideration for AT1 — cohort is the primary constraint."
+            ]
+          },
+          {
+            "heading": "Sequencing & Constructivism",
+            "items": [
+              "Sequence must show logical skill-building; a \"laundry list\" of disconnected practicals is insufficient.",
+              "Include prior knowledge statements at unit level and between individual practicals (e.g., explicit teaching on data recording before a data-focused prac).",
+              "Social constructivism can be demonstrated through embedded group work strategies."
+            ]
+          },
+          {
+            "heading": "Safety",
+            "items": [
+              "General safety statement at top (PPE, eyewear, gloves, MSDS/chemical requirements); call out specific deviations per practical (e.g., unfamiliar glassware, specific risk assessments)."
+            ]
+          },
+          {
+            "heading": "Working Scientifically Outcomes",
+            "items": [
+              "Each focus area has closely related WS outcomes — use these to reduce complexity; not all WS outcomes need to be covered.",
+              "Practicals can address multiple WS skills, but avoid all skills appearing simultaneously in every prac."
+            ]
+          },
+          {
+            "heading": "Resource Evaluation Criteria",
+            "items": [
+              "Syllabus alignment (NSW vs. QLD vs. NGSS — note differences).",
+              "Scientific accuracy and currency.",
+              "Cognitive demand — check verbs match Stage level; tools include Bloom's revised taxonomy, SOLO taxonomy, Webb's Depth of Knowledge.",
+              "Multimedia affordances — apply Mayer's multimedia principles (2008); avoid information overload.",
+              "Practical feasibility — equipment, space, timetabling constraints are real-world evaluation factors."
+            ]
+          },
+          {
+            "heading": "Differentiation & Inclusion",
+            "items": [
+              "EALD supports: Visuals/pictures with labels, sentence starters, peer grouping, glossary building; level of support depends on the student's English proficiency stage.",
+              "General EALD supports can be stated once in a preamble rather than repeated per practical, but specific modifications per prac strengthen the response.",
+              "Extension learners: Avoid \"more work = more demand\"; instead use transfer to new contexts, student choice of difficulty level, or open-ended investigation questions.",
+              "Tomlinson's framework (content, process, product, environment) is the primary differentiation lens; references to Tomlinson and Gibbons remain acceptable despite age.",
+              "Grading: Use the NSW Common Grade Scale (extensive → basic knowledge) to make on-balance judgments against outcomes rather than raw marks."
+            ]
+          },
+          {
+            "heading": "Things to Work Towards",
+            "items": [
+              "AT2 (programming task) not yet reviewed by most participants — further questions expected in coming days.",
+              "Specific examples for extending gifted students in materials/forces contexts to be posted to the forum."
+            ]
+          },
+          {
+            "heading": "Action Items",
+            "items": [
+              "Stephen: Post link to NSW Common Grade Scale and ACARA/NSW Student Diversity resources in forum chat (see links below).",
+              "Stephen: Share extension differentiation example to forum.",
+              "All students: Review AT1 cohort details; incorporate EALD and extension adjustments into practical descriptions and justification.",
+              "All students: Use the NSW Science 7–10 (2023) syllabus link provided in the AT1 task to identify focus area and related WS outcomes."
+            ],
+            "links": [
+              { "label": "NSW Common Grade Scale", "url": "https://curriculum.nsw.edu.au/assessment-and-reporting/reporting-and-using-grades#common-grade-scale-years-1-to-10" },
+              { "label": "ACARA Diversity of Learners", "url": "https://curriculum.nsw.edu.au/diversity-of-learners" },
+              { "label": "NESA Diversity of Learners", "url": "https://www.nsw.gov.au/education-and-training/nesa/diversity-of-learners" }
+            ]
+          }
+        ]
+      },
       "links": {
         "lecture": "https://mylearn.une.edu.au/course/section.php?id=485769#module-3561678",
         "slides": "https://mylearn.une.edu.au/mod/resource/view.php?id=3458789",
