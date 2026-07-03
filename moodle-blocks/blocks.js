@@ -741,13 +741,22 @@ export async function renderLiveSessionHub({ forUnit, forTri, forYear, forWeek, 
          </details>`
       : '';
 
-    const sectionsHtml = recapSections.map(sec => `
+    const pillLink = 'display:inline-block;margin:8px 8px 0 0;padding:6px 12px;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);border-radius:999px;font-size:.85em;font-weight:700;text-decoration:none;color:var(--lx-primary,#1f6fb2);';
+
+    const sectionsHtml = recapSections.map(sec => {
+      const links = sec.links ?? [];
+      const linksHtml = links.length
+        ? `<div style="margin-top:10px;">${links.map(l => `<a style="${pillLink}" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('')}</div>`
+        : '';
+      return `
       <div style="${s}border-left:6px solid var(--lx-accent,#25797F);">
         <h4 style="margin:0 0 8px;">${esc(sec.heading)}</h4>
         <ul style="margin:8px 0 0 18px;padding:0;">
           ${sec.items.map(item => `<li style="margin:6px 0;">${esc(item)}</li>`).join('')}
         </ul>
-      </div>`).join('');
+        ${linksHtml}
+      </div>`;
+    }).join('');
 
     const wrap = el.querySelector('div');
     wrap.insertAdjacentHTML('beforeend', `
