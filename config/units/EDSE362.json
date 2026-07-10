@@ -1308,7 +1308,80 @@
       "loMapping": [
         "LO1",
         "LO5"
-      ]
+      ],
+      "liveSessionRecording": "https://echo360.net.au/media/cadb1a37-b3c5-410c-ace6-6a6be4e31401/public",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Key Outcomes",
+            "items": [
+              "The session focused on effective questioning strategies in science classrooms, emphasizing the shift from low-level recall questions to higher-order thinking.",
+              "Participants explored how to balance closed and open questions, apply frameworks like Bloom's Taxonomy and the SOLO Taxonomy, and adapt questioning for EAL/D students.",
+              "Practical strategies for managing diverse classrooms through collaborative and differentiated questioning were shared."
+            ]
+          },
+          {
+            "heading": "Key Points",
+            "items": [
+              "IRE framework (Initiate, Respond, Evaluate) should be extended with follow-up probes such as \"How do you know?\" rather than stopping at evaluation.",
+              "Closed questions have a valid role as foundational recall but must be complemented by open questions to raise cognitive demand.",
+              "Differentiated questioning via a \"menu of questions\" is preferred over publicly singling out students with different difficulty levels.",
+              "Student-generated rules/protocols (e.g., lab safety) increase ownership and compliance more than teacher-imposed rules."
+            ]
+          },
+          {
+            "heading": "Key Frameworks Discussed",
+            "items": [
+              "Bloom's Taxonomy — categorizes cognitive demand from remembering to creating; a diagnostic tool was shared to classify question types.",
+              "SOLO Taxonomy — organizes thinking by sophistication of connections: pre-structural → uni-structural → multistructural → relational → extended abstract.",
+              "Understanding by Design (Wiggins & McTighe) — backwards design starting with goals; six facets of understanding (explain, interpret, apply, perspective, empathize, self-knowledge) guide question design.",
+              "Q Matrix — sentence-starter grid crossing who/what/when/where/how with event/means/reason to scaffold open question generation."
+            ]
+          },
+          {
+            "heading": "Practical Strategies Highlighted",
+            "items": [
+              "Think-pair-share + group consolidation: Ask students to observe, write five things, discuss in pairs, then merge pairs — reduces on-the-spot anxiety and builds confidence.",
+              "Answer-first questioning: Provide an answer and have students generate the question — useful for EAL/D students to practice question structure.",
+              "\"What if\" questions applied to factual content (e.g., cell organelles): \"What if this organelle stopped functioning? Predict what would happen.\"",
+              "No-hands-up / paddle pop sticks (Dylan Wiliam): Direct specific questions to specific students to broaden participation beyond vocal students.",
+              "Question walls: Students submit questions or observations; teacher addresses them throughout the lesson."
+            ]
+          },
+          {
+            "heading": "EAL/D-Specific Considerations",
+            "items": [
+              "Higher-order questions are harder for EAL/D students who may lack vocabulary to express understanding even when they conceptually grasp the content.",
+              "Concept-check and instruction-check questions are essential and frequent in EAL/D contexts.",
+              "Peer discussion before whole-class sharing lowers language pressure and surfaces understanding."
+            ]
+          },
+          {
+            "heading": "Open Questions / Unresolved",
+            "items": [
+              "How to best manage a mixed class of EAL/D and fluent English speakers when asking higher-order questions simultaneously.",
+              "Whether asking differentiated questions to specific students constitutes discriminatory practice — flagged as context-dependent and feeling-sensitive."
+            ]
+          },
+          {
+            "heading": "Assignment / Resource Notes",
+            "items": [
+              "Scaff & Preston textbook: recommended purchase; not fully accessible digitally through the library but readings available.",
+              "Field excursion practical (Jackie): acceptable in assessment task if it logically fits the constructivist sequence, addresses working scientifically outcomes, and includes prior knowledge context; search term \"ecotones\" suggested for finding relevant resources.",
+              "Missing article link — Art of Questioning (Kofeda, Manicou & Scaife) — to be shared after the session.",
+              "NSW Department of Education Effective Teacher Questioning resource recommended as a practical, teacher-focused reference."
+            ]
+          },
+          {
+            "heading": "Action Items",
+            "items": [
+              "Stephen: Share link to Art of Questioning paper (Kofeda, Manicou & Scaife) via ResearchGate after the session (https://www.researchgate.net/publication/234743405_Teachers'_Questions--Types_and_Significance_in_Science_Education).",
+              "Participants: Review NSW DoE Effective Teacher Questioning resource and consider auditing own open vs. closed question ratio in lessons.",
+              "Jackie: Locate field excursion examples (e.g., Mount Kosciuszko trips), adapt for Tasmanian altitude/adaptation context, and reference them comparatively in assessment task."
+            ]
+          }
+        ]
+      }
     },
     "4": {
       "item": "Topic 5",

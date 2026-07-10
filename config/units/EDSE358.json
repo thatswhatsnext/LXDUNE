@@ -1210,7 +1210,64 @@
       "loMapping": [
         "LO1",
         "LO3"
-      ]
+      ],
+      "liveSessionRecording": "https://echo360.net.au/media/f190b967-ebdc-421b-a9b3-977559ac3f8e/public",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Key Outcomes",
+            "items": [
+              "The session focused on clarifying Assignment 1 (unit plan) requirements across several areas: the AITSL registration column, formative assessment structure, resource detail level, differentiation approach, and pedagogical alignment.",
+              "Stephen committed to creating a dedicated assessment question forum.",
+              "The broader discussion reinforced backwards design — aligning outcomes, assessment, and learning activities — as the core planning framework."
+            ]
+          },
+          {
+            "heading": "Key Points",
+            "items": [
+              "Separate Q&A forum for assessment questions: Stephen created one during the session (named \"Assessment Task 2 Forum\").",
+              "AITSL registration column: Enter graduate-level standard codes only (e.g., 4.1.1 — always ending in .1 for graduate); include 1–2 sentences of justification in the justification section.",
+              "Relevant AITSL standards: Focus on Standards 1, 2, 3, 5, and possibly 6.",
+              "Strategies/Activities section: Dot points are acceptable if sufficiently elaborated for a peer/new-grad audience.",
+              "References: Include in the justification section (e.g., syllabus, pedagogical literature); only include in the unit program if directly citing a specific resource used.",
+              "Formative assessment: List and number formative assessments in the dedicated section; reference by number within weekly lesson sequencing.",
+              "Resource detail: High-level resources only (e.g., Geoscience Australia, textbook chapters, DoE practicals) — no granular materials lists (e.g., paper mache quantities).",
+              "Differentiation: Acceptable to consolidate repeated strategies in an overview section at the top of the unit plan; flag week-specific adjustments inline where they differ.",
+              "Prior learning: Add a brief introductory insert before the table noting what students have already covered."
+            ]
+          },
+          {
+            "heading": "Separate forum for just questions",
+            "items": [
+              "Rima raised the need for a dedicated forum where students can post questions about the assignment and learn from peers' queries.",
+              "Stephen actioned this immediately during the session."
+            ]
+          },
+          {
+            "heading": "Key Pedagogical Points",
+            "items": [
+              "Backwards design: Start with outcomes → design assessment → sequence learning activities.",
+              "Constructivism vs. transmission: Avoid content-driven, lecture-heavy sequences; foreground learner agency and prior knowledge.",
+              "5Es model: Can be applied at both lesson and program level; nested 5E cycles are valid.",
+              "Differentiation as design: Treat inclusion strategies as upfront design decisions, not afterthoughts.",
+              "Outcomes in context: Broad outcomes (e.g., primary/secondary data collection) can be partially assessed across multiple activities — not all elements need to be covered in one task."
+            ]
+          },
+          {
+            "heading": "Action Items",
+            "items": [
+              "All students: Post remaining assessment questions to the newly created forum.",
+              "All students: Review optional readings on effective pedagogy, classroom management, and enabling factors for teaching ahead of Module 3B."
+            ]
+          },
+          {
+            "heading": "Next Session",
+            "items": [
+              "Module 3B focus: Programming in detail — applying planning principles with worked examples; includes discussion of Backwards by Design / Understanding by Design (Wiggins & McTighe)."
+            ]
+          }
+        ]
+      }
     },
     "4": {
       "item": "Module 3B",
