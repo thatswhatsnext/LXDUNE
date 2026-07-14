@@ -69,11 +69,11 @@ const WORKFLOW_CSS = `
 .lx-c1{grid-column:1}.lx-c2{grid-column:2}
 .lx-r1{grid-row:1}.lx-r2{grid-row:2}.lx-r3{grid-row:3}
 @media(max-width:560px){.lx-wf-grid .lx-c1,.lx-wf-grid .lx-c2{grid-column:auto}.lx-wf-grid .lx-r1,.lx-wf-grid .lx-r2,.lx-wf-grid .lx-r3{grid-row:auto}}
-.lx-card{padding:22px;border-radius:16px;text-decoration:none;color:#1F2A33;border:1px solid #dfe6ea;transition:transform .2s,box-shadow .2s;background:#fff;display:block;position:relative}
+.lx-card{padding:22px;border-radius:16px;text-decoration:none !important;color:#1F2A33;border:1px solid #dfe6ea;transition:transform .2s,box-shadow .2s;background:#fff;display:block;position:relative}
 .lx-card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(0,0,0,.08)}
 .lx-card-link{display:block;text-decoration:none !important;color:inherit}
 .lx-step{font-size:.75em;font-weight:900;text-transform:uppercase;margin-bottom:6px;opacity:.82;letter-spacing:.5px}
-.lx-card h4{margin:0}
+.lx-card h4{margin:0;text-decoration:none !important}
 .lx-extra{margin-top:12px;border-radius:12px;padding:0 12px;border:1px solid #dfe6ea;opacity:0;max-height:0;overflow:hidden;transform:translateY(-4px);transition:max-height .28s,opacity .22s,transform .22s,padding .28s;font-size:.92em;color:#444;line-height:1.55}
 .lx-card:hover .lx-extra{opacity:1;max-height:260px;transform:translateY(0);padding:12px}
 @media(hover:none){.lx-extra{opacity:1;max-height:none;padding:12px;transform:none}}
