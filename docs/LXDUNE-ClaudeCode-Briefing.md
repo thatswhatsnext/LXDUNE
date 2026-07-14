@@ -683,11 +683,11 @@ attempted):**
   browser/device early, before chasing a single-browser hypothesis.**
 
 **Two real, confirmed bugs found:**
-1. **Host-theme underline override (item 24).** The Moodle theme forces
+1. **Host-theme underline override (item 25).** The Moodle theme forces
    `a{text-decoration:underline !important}` site-wide. `.lx-card`'s own
    `text-decoration:none` had no `!important`, so it lost the cascade on any card rendered
    as an anchor. Fixed by adding `!important`.
-2. **Invalid nested anchors (item 25).** `renderWorkflowCard` nested
+2. **Invalid nested anchors (item 26).** `renderWorkflowCard` nested
    `<a class="lx-pill-link">` inside `<a class="lx-card">` for any step with a link —
    invalid HTML. Browsers auto-recover from invalid nesting by splitting the structure; on
    iPad Safari/Edge this produced a **visible empty phantom pill capsule** next to the real
@@ -697,7 +697,7 @@ attempted):**
    the pill as an independent sibling anchor — no anchor nests inside another anywhere in
    the output.
 
-**A cascade contradiction surfaced mid-fix (item 26):** giving `.lx-pill-link`'s resting
+**A cascade contradiction surfaced mid-fix (item 27):** giving `.lx-pill-link`'s resting
 state `!important` (to resist the host rule) silently broke its `:hover{underline}` state,
 because a non-`!important` `:hover` cannot beat an `!important` base rule regardless of
 specificity. Resolved by making both `!important`. **Key lesson: when adding `!important`
