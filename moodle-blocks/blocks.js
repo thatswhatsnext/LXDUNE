@@ -71,6 +71,7 @@ const WORKFLOW_CSS = `
 @media(max-width:560px){.lx-wf-grid .lx-c1,.lx-wf-grid .lx-c2{grid-column:auto}.lx-wf-grid .lx-r1,.lx-wf-grid .lx-r2,.lx-wf-grid .lx-r3{grid-row:auto}}
 .lx-card{padding:22px;border-radius:16px;text-decoration:none;color:#1F2A33;border:1px solid #dfe6ea;transition:transform .2s,box-shadow .2s;background:#fff;display:block;position:relative}
 .lx-card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(0,0,0,.08)}
+.lx-card-link{display:block;text-decoration:none !important;color:inherit}
 .lx-step{font-size:.75em;font-weight:900;text-transform:uppercase;margin-bottom:6px;opacity:.82;letter-spacing:.5px}
 .lx-card h4{margin:0}
 .lx-extra{margin-top:12px;border-radius:12px;padding:0 12px;border:1px solid #dfe6ea;opacity:0;max-height:0;overflow:hidden;transform:translateY(-4px);transition:max-height .28s,opacity .22s,transform .22s,padding .28s;font-size:.92em;color:#444;line-height:1.55}
@@ -572,10 +573,18 @@ export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek, fo
     const pill = s.url
       ? `<a href="${esc(s.url)}" target="_blank" rel="noopener" class="lx-pill-link ${s.pillCls}">${esc(s.pillLabel)}</a>`
       : CHIP;
-    // Card wrapper is always a <div> so the inner pill <a> is never nested inside an
-    // outer <a> (invalid HTML — browsers split it, producing an empty phantom pill on
-    // iPad Safari). The pill link is the sole clickable element for the step.
-    return `<div class="lx-card ${s.cls} ${pos}"><div class="lx-step">Step ${s.num}</div><h4>${esc(s.title)}</h4><div class="lx-extra">${s.detail}<div class="lx-pills">${pill}</div></div></div>`;
+    // Card wrapper is always a <div>, never an <a> — that keeps the inner pill <a>
+    // (inside .lx-extra) from being nested in an outer <a> (invalid HTML that browsers
+    // split into an empty phantom pill on iPad Safari). Whole-card clickability is
+    // restored via a separate inner <a class="lx-card-link"> around the step label +
+    // title only; the pill stays a SIBLING inside .lx-extra, so no anchor nests in an
+    // anchor. lx-card-link is a distinct class (not .lx-card) with its own
+    // text-decoration:none !important, so it doesn't depend on the .lx-card underline fix.
+    const head = `<div class="lx-step">Step ${s.num}</div><h4>${esc(s.title)}</h4>`;
+    const headHtml = s.url
+      ? `<a class="lx-card-link" href="${esc(s.url)}" target="_blank" rel="noopener">${head}</a>`
+      : head;
+    return `<div class="lx-card ${s.cls} ${pos}">${headHtml}<div class="lx-extra">${s.detail}<div class="lx-pills">${pill}</div></div></div>`;
   }).join('');
 
   el.innerHTML = `<div class="lx-dashboard">
