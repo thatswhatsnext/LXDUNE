@@ -572,9 +572,10 @@ export async function renderWorkflowCard({ forUnit, forTri, forYear, forWeek, fo
     const pill = s.url
       ? `<a href="${esc(s.url)}" target="_blank" rel="noopener" class="lx-pill-link ${s.pillCls}">${esc(s.pillLabel)}</a>`
       : CHIP;
-    const open  = s.url ? `<a class="lx-card ${s.cls} ${pos}" href="${esc(s.url)}" target="_blank" rel="noopener">` : `<div class="lx-card ${s.cls} ${pos}">`;
-    const close = s.url ? `</a>` : `</div>`;
-    return `${open}<div class="lx-step">Step ${s.num}</div><h4>${esc(s.title)}</h4><div class="lx-extra">${s.detail}<div class="lx-pills">${pill}</div></div>${close}`;
+    // Card wrapper is always a <div> so the inner pill <a> is never nested inside an
+    // outer <a> (invalid HTML — browsers split it, producing an empty phantom pill on
+    // iPad Safari). The pill link is the sole clickable element for the step.
+    return `<div class="lx-card ${s.cls} ${pos}"><div class="lx-step">Step ${s.num}</div><h4>${esc(s.title)}</h4><div class="lx-extra">${s.detail}<div class="lx-pills">${pill}</div></div></div>`;
   }).join('');
 
   el.innerHTML = `<div class="lx-dashboard">
