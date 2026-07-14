@@ -82,10 +82,11 @@ const WORKFLOW_CSS = `
 .lx-live{border-left:6px solid #f1c40f;background:#fff}
 .lx-forum{border-left:6px solid var(--lx-accent,#25797F);background:#f4f6f8}
 .lx-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.lx-pill-link{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:var(--lx-primary,#1f6fb2);padding:6px 10px;border-radius:999px;font-weight:800;font-size:.88em;text-decoration:none;line-height:1.2}
-.lx-pill-link:hover{text-decoration:underline}
+.lx-pill-link{display:inline-block;background:var(--lx-pill,#DAF0F7);border:1px solid var(--lx-pill-border,#cbe6ee);color:var(--lx-primary,#1f6fb2);padding:6px 10px;border-radius:999px;font-weight:800;font-size:.88em;text-decoration:none !important;line-height:1.2}
+.lx-pill-link:hover{text-decoration:underline !important}
 .lx-pill-link.sec{background:#f4f6f8;color:var(--lx-accent,#25797F)}
 .lx-pill-link.warn{background:#fff8e6;color:#6F7B84}
+.lx-btn{text-decoration:none !important;color:inherit}
 .lx-wf-extra{margin-top:0.5rem}
 .lx-wf-extra-label{display:block;font-size:0.8rem;color:var(--lx-accent,#25797F);margin-bottom:0.4rem;font-weight:600}
 .lx-pill-row{display:flex;flex-wrap:wrap;gap:0.4rem}
