@@ -295,6 +295,29 @@ replaces two, students see AT1/AT2 in a tab switcher. Also deploy
 
 ## ✅ Completed
 
+### 25. Fix workflow card underline under host theme rule ✅ — 2026-07-14
+- [x] Root cause: host Moodle theme forces a{text-decoration:underline !important};
+  .lx-card's own text-decoration:none had no !important and lost the cascade
+- [x] Added !important to .lx-card and .lx-card h4
+- [x] Live on main
+
+### 26. Fix nested anchor markup in renderWorkflowCard ✅ — 2026-07-14
+- [x] Removed invalid nested <a> (lx-pill-link inside lx-card) causing duplicate phantom
+  pill elements on iPad Safari/Edge (WebKit parser error-recovery split the invalid
+  nesting into visible empty clones)
+- [x] Restored whole-card click via new `.lx-card-link` sibling anchor (not nested)
+- [x] Verified: 0 nested anchors, 0 phantom clones across EDSE362/358/357, live on main
+
+### 27. Fix .lx-pill-link and .lx-btn underline under host theme rule ✅ — 2026-07-14
+- [x] Host Moodle theme forces `a{text-decoration:underline !important}`, which the
+  original .lx-card rule (no !important) couldn't resist — separately fixed as item 25
+- [x] .lx-pill-link and .lx-btn had the same exposure; fixed with matching !important
+  resting-state rules
+- [x] Required also making :hover !important (cascade requires it — a non-!important
+  :hover cannot beat an !important base rule regardless of specificity) — verified hover
+  underline preserved in production
+- [x] Live on main — no Moodle re-paste required (unchanged export signature/container ID)
+
 - [x] renderAssessmentPage updated to support multi-task tabbed rendering (`forTask: 'all'` or array). Tab switcher scoped to container element — multiple instances on one page don't conflict. `renderAssessmentNav` added as 17th render function (unit home navigation card — one button per task, due date + weighting + LO pills). Both added to generator (shell types: 'All assessments (tabbed)', 'Assessment navigation') and test harness (view mode selector: Single task / All tasks tabbed / Navigation buttons).
 
 - [x] Phase 1 — Config layer (trimester-config.json, all unit JSONs)
