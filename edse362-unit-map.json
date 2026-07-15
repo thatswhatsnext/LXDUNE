@@ -1,0 +1,118 @@
+{
+  "unit": "EDSE362",
+  "title": "Science Education 11–12: Curriculum, Pedagogy and Inclusive Practice",
+  "week1": "2026-06-22",
+  "weeks": 13,
+  "cohort": null,
+  "staff": [
+    "Steve Grant",
+    "Admin User"
+  ],
+  "assessments": [
+    {
+      "name": "AT1 — Design and Pedagogy: Practical Science Lessons",
+      "due": "2026-07-26"
+    },
+    {
+      "name": "AT2 — Unit Program",
+      "due": "2026-09-06"
+    }
+  ],
+  "mandatory": [],
+  "modules": [
+    {
+      "name": "Orientation",
+      "week": 1,
+      "activities": [
+        "Book: Unit Outline"
+      ]
+    },
+    {
+      "name": "Topics 1 & 2: The K–10 Continuum, and the Nature of Science and Science Teaching",
+      "week": 1,
+      "activities": [
+        "Book: Topic 1",
+        "Forum: Topic 1"
+      ]
+    },
+    {
+      "name": "Topic 3: Selecting and Critically Evaluating Resources",
+      "week": 2,
+      "activities": [
+        "Book: Topic 3",
+        "Forum: Topic 3"
+      ]
+    },
+    {
+      "name": "Topic 4: Introduction to Teaching Differently",
+      "week": 3,
+      "activities": [
+        "Book: Topic 4",
+        "Forum: Topic 4"
+      ]
+    },
+    {
+      "name": "Topic 5: The Inclusive Science Classroom",
+      "week": 4,
+      "activities": [
+        "Book: Topic 5",
+        "Forum: Topic 5"
+      ]
+    },
+    {
+      "name": "Topic 6A: Planning and Evaluating a Unit of Work — Part 1: The Planning Process",
+      "week": 5,
+      "activities": [
+        "Book: Topic 6"
+      ]
+    },
+    {
+      "name": "Topic 6B: Planning and Evaluating a Unit of Work — Part 2: The Role of Assessment and Evaluation",
+      "week": 6,
+      "activities": [
+        "Book: Topic 6",
+        "Forum: Topic 6"
+      ]
+    },
+    {
+      "name": "Topic 7: Teaching and Learning Science Using Analogies",
+      "week": 7,
+      "activities": [
+        "Book: Topic 7",
+        "Forum: Topic 7"
+      ]
+    },
+    {
+      "name": "Topic 8: Developing Your Science Content Knowledge",
+      "week": 8,
+      "activities": [
+        "Book: Topic 8",
+        "Forum: Topic 8"
+      ]
+    },
+    {
+      "name": "Professional Experience (flexible window)",
+      "week": 9,
+      "activities": []
+    },
+    {
+      "name": "Assessment 1 support — Design and Pedagogy",
+      "week": 1,
+      "activities": [
+        "Assignment: Assessment 1",
+        "Forum: Assessment 1",
+        "Folder: Assessment 1"
+      ]
+    },
+    {
+      "name": "Assessment 2 support — Unit Program",
+      "week": 1,
+      "activities": [
+        "Assignment: Assessment 2",
+        "Forum: Assessment 2",
+        "Folder: Assessment 2"
+      ]
+    }
+  ],
+  "_notes": "Generated from config/units/EDSE362.json for T2-2026. ASSUMPTIONS & THINGS TO VERIFY BY HAND: (1) week1 = 2026-06-22 is the prompt's default — the config does not state the Monday of Teaching Week 1; verify against the UNE T2-2026 calendar. The week-0 announcement ('Topic 1 begins next week', 'AT1 due 26 July, AT2 on 6 September') is consistent with a T2-2026 start. (2) weeks = 13: the config `weeks` object runs 0–14; week 0 is orientation, weeks 1–13 are teaching/Professional-Experience, week 14 is the assessment period. (3) cohort = null: the config has no enrolment figure, so the dashboard should infer it from the logs. The detailed cohort in the assessment tasks (2 EAL/D, 2 advanced, 3 behind, 5 Aboriginal and Torres Strait Islander students) is the FICTIONAL classroom scenario students design for — NOT unit enrolment; do not use it as cohort size. (4) staff = Steve Grant + Admin User only; config contacts list Steve Grant as coordinator and lecturer = null, no other markers/tutors named. (5) Assessment dates from assessmentTasks[].trimesterDates.'T2-2026': AT1 (Design and Pedagogy — Practical Science Lessons) due 2026-07-26; AT2 (Unit Program) due 2026-09-06. (6) mandatory = [] : EDSE362's AT1 is a single submission (Parts A/B/C) with no separate mandatory/hurdle forum post in the config, and AT2 has none either — no required-participation task was identified. Verify there is no mandatory forum you expect to track. (7) Module sequence follows the config `item` field (authoritative). NOTE a content-drift bug in the source config: the week-6 (Topic 6B) `announcementBody`/`liveSessionFocus`/`forumPrompts` actually describe Topic 7 (analogies), and the week-7 (Topic 7) announcement describes Topic 8 — the module NAMES here follow the correct `item`/`title` fields, but you may want to fix that drift in the config. Topics 6A and 6B share the same materials Book (mod/book id 3458807). Topic 6A's 'forum' link is actually a mod/page (liveHub id 3564978), so no discrete discussion forum is listed for 6A. (8) Week 1 combines Topics 1 & 2 into one teaching block (config item 'Topics 1 & 2'); its single materials Book is id 3458780 and forum id 3458777. CRITICAL — ACTIVITY NAMING IS UNVERIFIED: no Moodle log exports (*.csv / logs_*.json) and no engagement-dashboard-v2.html exist anywhere in this repo, so validation step 1 (cross-checking each activity string against distinct 'Event context' values) COULD NOT BE RUN. The config stores design-side titles and Moodle URLs (component type inferred from the mod/* path) but NOT the exact Moodle 'Component: Display name' strings. Every `activity` string here is a best-effort distinctive substring built from the topic label (e.g. 'Book: Topic 3', 'Forum: Topic 3') that RELIES on substring matching — confirm each against the log's Event context column. The unit itemLabel is 'Topic', so books/forums are assumed to be titled with a 'Topic N' prefix; if the live Book is titled e.g. 'The Inclusive Science Classroom' without a 'Topic 5' prefix, these strings will NOT match. The assessment-support Assignment/Forum/Folder names are guesses — the config only provides URLs (AT1: mod/assign 3458759, mod/forum 3458760, mod/folder 3458758; AT2: mod/assign 3458765, mod/forum 3458766, mod/folder 3458764). (9) Orientation: only the Unit Outline (Book, id 3458733) was found; no study-schedule book or introduce-yourself forum in the config. (10) Professional Experience weeks 9–13 have no discrete Moodle activities — one week-9 block with an empty activities list. (11) Assessment-support blocks placed at week 1 (available from the start); adjust if you prefer them anchored to due weeks."
+}

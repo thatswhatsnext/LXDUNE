@@ -8,6 +8,9 @@
     "T1",
     "T2"
   ],
+  "week1": {
+    "T2-2026": "2026-06-22"
+  },
   "assessmentPortalUrl": "https://mylearn.une.edu.au/course/section.php?id=493801",
   "videoInterval": 1,
   "week0Message": "Have a look around at the first few tiles below and finish up the Week 0 section — we'll get started next week!",
@@ -1083,15 +1086,15 @@
           "type": "secondary"
         },
         {
-          "label": "Brain & Learning",
+          "label": "The brain and how it learns",
           "url": "https://mylearn.une.edu.au/mod/page/view.php?id=3538593"
         },
         {
-          "label": "Evidence-Based Practices",
+          "label": "Evidence-based teaching practice",
           "url": "https://mylearn.une.edu.au/mod/page/view.php?id=3538591"
         },
         {
-          "label": "More on Evidence-Based Practices",
+          "label": "PDF files for Evidence-based teaching practices",
           "url": "https://mylearn.une.edu.au/mod/folder/view.php?id=3538592"
         },
         {

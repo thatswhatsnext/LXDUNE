@@ -1,0 +1,134 @@
+{
+  "unit": "EDSE358",
+  "title": "Science Education 11–12: Plan, Assess and Report",
+  "week1": "2026-06-22",
+  "weeks": 13,
+  "cohort": null,
+  "staff": [
+    "Steve Grant",
+    "Admin User"
+  ],
+  "assessments": [
+    {
+      "name": "AT1 Part A forum post",
+      "due": "2026-07-05"
+    },
+    {
+      "name": "AT1 — Teaching and Learning Program (Model Construction Unit)",
+      "due": "2026-07-26"
+    },
+    {
+      "name": "AT2 — Assessment Design: Critique, Redesign and Reflection",
+      "due": "2026-09-06"
+    }
+  ],
+  "mandatory": [
+    {
+      "name": "Assessment 1 Part A — mandatory forum post",
+      "activity": "Forum: Mandatory Post forum for Part A - Due on or before 5 JULY 2026",
+      "due": "2026-07-05",
+      "requires": "contribution"
+    }
+  ],
+  "modules": [
+    {
+      "name": "Orientation",
+      "week": 1,
+      "activities": [
+        "Book: Unit Outline"
+      ]
+    },
+    {
+      "name": "Module 1: The Senior Science Syllabus",
+      "week": 1,
+      "activities": [
+        "Book: Module 1",
+        "Forum: Module 1"
+      ]
+    },
+    {
+      "name": "Module 2: The Nature of Science Teaching",
+      "week": 2,
+      "activities": [
+        "Book: Module 2",
+        "Forum: Module 2",
+        "Page: Brain & Learning",
+        "Page: Evidence-Based Practices",
+        "Folder: More on Evidence-Based Practices",
+        "Quiz: Optional Quiz"
+      ]
+    },
+    {
+      "name": "Module 3A: Planning and Assessing Learning Models and Constructivist Teaching",
+      "week": 3,
+      "activities": [
+        "Book: Module 3A",
+        "Forum: Module 3A",
+        "Folder: Module 3A"
+      ]
+    },
+    {
+      "name": "Module 3B: Planning and Assessing Programs and Lesson Plans",
+      "week": 4,
+      "activities": [
+        "Book: Module 3B",
+        "Forum: Module 3B"
+      ]
+    },
+    {
+      "name": "Module 4A: Assessing and Reporting — Assessment for learning",
+      "week": 5,
+      "activities": [
+        "Book: Module 4A",
+        "Forum: Module 4A"
+      ]
+    },
+    {
+      "name": "Module 4B: Assessing and Reporting — Designing assessment instruments",
+      "week": 6,
+      "activities": [
+        "Book: Module 4B",
+        "Forum: Module 4B"
+      ]
+    },
+    {
+      "name": "Module 4C: Assessing and Reporting — Designing differentiated assessment",
+      "week": 7,
+      "activities": [
+        "Book: Module 4C",
+        "Forum: Module 4C"
+      ]
+    },
+    {
+      "name": "Module 4D: Assessing and Reporting — Developing rubrics and providing feedback",
+      "week": 8,
+      "activities": [
+        "Book: Module 4D",
+        "Forum: Module 4D"
+      ]
+    },
+    {
+      "name": "Professional Experience (flexible window)",
+      "week": 9,
+      "activities": []
+    },
+    {
+      "name": "Assessment 1 support — Teaching and Learning Program",
+      "week": 1,
+      "activities": [
+        "Assignment: Assessment 1",
+        "Forum: Assessment 1",
+        "Folder: Assessment 1"
+      ]
+    },
+    {
+      "name": "Assessment 2 support — Assessment Design",
+      "week": 1,
+      "activities": [
+        "Assignment: Assessment 2",
+        "Forum: Assessment 2"
+      ]
+    }
+  ],
+  "_notes": "Generated from config/units/EDSE358.json for T2-2026. ASSUMPTIONS & THINGS TO VERIFY BY HAND: (1) week1 = 2026-06-22 is the prompt's default — the config does not state the Monday of Teaching Week 1; verify against the UNE T2-2026 calendar. (2) weeks = 13: the config `weeks` object runs 0–14; week 0 is orientation, weeks 1–13 are teaching/Professional-Experience, week 14 is the assessment period. Standard UNE trimester = 13 teaching weeks. (3) cohort = null: the config has no enrolment figure, so the dashboard should infer it from the logs. NOTE: the prompt's own schema example showed cohort 53 for EDSE358 — if that is the real enrolment you know, set it manually. (The 'given cohort' described in the assessment tasks — Aboriginal/EAL/D/advanced/behind students — is the fictional classroom scenario for the assignment, NOT unit enrolment.) (4) staff = Steve Grant + Admin User only; config contacts list Steve Grant as coordinator and lecturer = null, no other markers/tutors named. 'Stephen' in the live-session recaps is Steve Grant. (5) Assessment dates taken from assessmentTasks[].trimesterDates.'T2-2026': AT1 Part A duePartA 2026-07-05, AT1 due 2026-07-26, AT2 due 2026-09-06. The per-week `assessments` entries inside the weeks object (2026-03-22, 2026-04-05, 2026-05-04) are LEFTOVER T1-2026 dates and were NOT used. (6) mandatory: AT1 Part A requires a 100-word forum post (requires 'contribution'). The `activity` string 'Forum: Mandatory Post forum for Part A - Due on or before 5 JULY 2026' is taken verbatim from the prompt's schema example (which is EDSE358-specific) — VERIFY it matches the live Moodle forum display name. CRITICAL — ACTIVITY NAMING IS UNVERIFIED: no Moodle log exports (*.csv / logs_*.json) and no engagement-dashboard-v2.html exist anywhere in this repo, so validation step 1 (cross-checking each activity string against distinct 'Event context' values) COULD NOT BE RUN. The config stores design-side titles and Moodle URLs (component type inferred from the mod/* path) but NOT the exact Moodle 'Component: Display name' strings. Every `activity` string here is therefore a best-effort distinctive substring built from the module's item label (e.g. 'Book: Module 1', 'Forum: Module 1') and RELIES on substring matching. Confirm each against the log's Event context column before trusting the dashboard's matching. In particular: book/forum display names may carry a longer title (the prompt example implies Module 1's book is 'Module 1: Introduction to Senior Science Syllabuses' and its forum is 'Module 1 forum'); Module 2's Page/Folder/Quiz names ('Brain & Learning', 'Evidence-Based Practices', 'More on Evidence-Based Practices', 'Optional Quiz') are the config's link LABELS, not confirmed Moodle titles; the assessment-support Assignment/Forum/Folder names ('Assignment: Assessment 1', etc.) are guesses — the config only provides submission URLs (mod/assign 3538562 & 3538566, mod/forum 3538560 & 3538569, mod/folder 3561989). (7) Orientation module: only the Unit Outline (Book, id 3538524) was found; no separate study-schedule book or introduce-yourself forum exists in the config. (8) Professional Experience weeks 9–13 (item 'Professional Experience') have no discrete Moodle activities in the config — represented as one week-9 block with an empty activities list. (9) Assessment-support blocks are placed at week 1 (available from the start of the trimester); adjust if you want them anchored to their due weeks instead."
+}
