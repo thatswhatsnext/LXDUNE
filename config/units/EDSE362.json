@@ -7,6 +7,9 @@
   "trimesters": [
     "T2"
   ],
+  "week1": {
+    "T2-2026": "2026-06-22"
+  },
   "assessmentPortalUrl": "https://mylearn.une.edu.au/course/section.php?id=485764",
   "videoInterval": 1,
   "week0Message": "Have a look around at the first few tiles below — we'll get started next week!",
@@ -1463,14 +1466,14 @@
       "title": "Planning and Evaluating a Unit of Work — Part 2: The Role of Assessment and Evaluation",
       "live": "🎤 Live Session: Topic 6B",
       "announcementBody": {
-        "intro": "This week we examine one of the most powerful — and most frequently misused — pedagogical tools available to science teachers: the analogy. Used well, analogies make abstract science concepts concrete and accessible. Used poorly, they embed misconceptions that are hard to shift.",
-        "focus": "Topic 7 focuses on analogies as tools for conceptual change in science learning. You will examine the theory behind why analogies work, explore frameworks for selecting and presenting analogies effectively (including the Teaching-With-Analogies model), and critically evaluate common analogies used in senior science for their accuracy, accessibility, and potential to mislead."
+        "intro": "This week we turn from designing a unit of work to evaluating it. Having built a coherent sequence in Topic 6A, we now ask the questions that complete the planning cycle: how do you assess it validly, and how do you know — with evidence — whether it actually worked?",
+        "focus": "Topic 6B focuses on assessment and evaluation as the second half of unit planning. You will work through designing a summative assessment task that provides valid evidence of student learning, building an A–E marking rubric using NESA Performance Band Descriptor language, and treating evaluation as an ongoing professional practice for refining a program — not a one-off judgement made after teaching ends."
       },
-      "liveSessionFocus": "Session 7 examines analogies as pedagogical tools in depth — working through examples from across the senior science syllabuses and practising the skill of evaluating an analogy before using it with students.",
+      "liveSessionFocus": "This session focuses on assessment and evaluation as the completion of the unit-planning sequence — designing a summative task that aligns to what was actually taught, building a marking rubric a second marker could apply consistently, and evaluating a program with evidence rather than instinct.",
       "liveSessionTasks": [
-        "Identify one analogy commonly used in your Stage 6 teaching area — write down what concept it is meant to explain, what it maps correctly, and where the mapping breaks down.",
-        "Consider how you would introduce this analogy to a class while explicitly addressing its limitations, so students build accurate conceptual understanding rather than a flawed mental model.",
-        "Come prepared to present your analogy briefly and receive feedback from peers on how they experience it as learners."
+        "Bring your AT2 Part A unit program draft (or a rough outline if it isn't finished yet) and identify where a summative assessment task would sit at the end of the sequence.",
+        "Draft one A–E criterion for that task in NESA Performance Band Descriptor language — descriptive of what a student can do at each band, not evaluative adjectives like 'excellent' or 'thorough'.",
+        "Come prepared to swap criteria with a peer and test whether you could apply each other's A-band descriptor consistently without seeing the original student work."
       ],
       "links": {
         "lecture": "https://mylearn.une.edu.au/course/section.php?id=485772#module-3561682",
@@ -1493,21 +1496,21 @@
         "What is the difference between a program that includes formative assessment and one that uses it to inform future teaching?"
       ],
       "workedExample": "The following examples show the difference between a strong and a partial A–E criterion for a Stage 5 Chemistry assessment task asking students to explain a chemical reaction using particle theory.Strong (Chemistry — Stage 5, particle theory task): 'A student working at the A standard provides a scientifically accurate and detailed explanation of the reaction at the particle level, correctly identifying the role of collision frequency, activation energy, and particle orientation. The explanation is coherent and uses appropriate chemical terminology throughout. Diagrams, where included, accurately represent particle arrangement and movement. The student draws explicit connections between the particle-level explanation and observable macroscopic properties (e.g. colour change, gas production, temperature change).'Partial (Chemistry — Stage 5, particle theory task): 'A: Excellent explanation of particle theory. Very detailed and uses correct terminology.' The partial criterion is evaluative but not descriptive — it tells a student they did well without explaining what 'excellent' or 'very detailed' means in terms of content. A student reading this cannot self-assess, and a second marker cannot apply it consistently. NESA Performance Band Descriptor language requires observable, content-specific descriptions of what the student can do — not adjectives about quality.",
-      "synthesisTemplate": "Thanks for your Topic 7 posts this week. The analogy evaluation exercise is producing some careful thinking. A common pattern: [OBSERVATION — e.g. most posts identified what the analogy maps correctly and where it breaks down, but the script for addressing limitations with students was often too abstract — 'I would tell them where it doesn't work' rather than a specific two-sentence approach]. One thing to bring to the live session: [FOCUS — e.g. the moment when a student over-extends an analogy into territory where it breaks down — how do you catch and correct that in real time without undermining the analogy's usefulness?]. See you [DAY] at [TIME]."
+      "synthesisTemplate": "Thanks for your Topic 6B posts this week. The summative task and A–E criterion design work is close to what AT2 Part C actually asks for. A pattern in the posts: [OBSERVATION — e.g. most tasks were clearly aligned to two or more outcomes, but A-band criteria sometimes stayed evaluative ('excellent understanding') rather than descriptive of what excellent work actually contains]. One thing to bring to the live session: [FOCUS — e.g. test your own A-band criterion against the worked example in the topic materials — could a second marker apply it consistently without seeing the original response?]. See you [DAY] at [TIME]."
     },
     "7": {
       "item": "Topic 7",
       "title": "Teaching and Learning Science Using Analogies",
       "live": "🎤 Live Session: Topic 7",
       "announcementBody": {
-        "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
-        "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your Stage 6 syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
+        "intro": "This week we examine one of the most powerful — and most frequently misused — pedagogical tools available to science teachers: the analogy. Used well, analogies make abstract science concepts concrete and accessible. Used poorly, they embed misconceptions that are hard to shift.",
+        "focus": "Topic 7 focuses on analogies as tools for conceptual change in science learning. You will examine the theory behind why analogies work, explore frameworks for selecting and presenting analogies effectively (including the Teaching-With-Analogies model), and critically evaluate common analogies used in senior science for their accuracy, accessibility, and potential to mislead."
       },
-      "liveSessionFocus": "Session 8 covers Topics 7 and 8 together. We will examine analogies and content knowledge development as complementary professional skills, and conclude the teaching program by looking ahead to the professional learning habits that will sustain your practice.",
+      "liveSessionFocus": "Session 7 examines analogies as pedagogical tools in depth — working through examples from across the senior science syllabuses and practising the skill of evaluating an analogy before using it with students.",
       "liveSessionTasks": [
-        "Complete a content knowledge audit for your primary Stage 6 teaching area: rate your confidence across the major content sections and identify your two or three priority gaps.",
-        "For each priority gap, identify at least one concrete resource or action you will take to address it — a specific book, online course, professional association, or peer with relevant expertise.",
-        "Come prepared to briefly share your audit findings and your plan — and to give and receive constructive feedback with peers."
+        "Identify one analogy commonly used in your Stage 6 teaching area — write down what concept it is meant to explain, what it maps correctly, and where the mapping breaks down.",
+        "Consider how you would introduce this analogy to a class while explicitly addressing its limitations, so students build accurate conceptual understanding rather than a flawed mental model.",
+        "Come prepared to present your analogy briefly and receive feedback from peers on how they experience it as learners."
       ],
       "links": {
         "lecture": "https://mylearn.une.edu.au/course/section.php?id=485773#module-3561683",
@@ -1530,7 +1533,7 @@
         "For AT2 Part A, you need to select a constructivist pedagogical approach and make it visible in your unit design. The 5E model (Engage–Explore–Explain–Elaborate–Evaluate), Predict-Observe-Explain (POE), and the Teaching-With-Analogies (TWA) model are three options. Choose one approach and identify a specific five-lesson sequence from any 7–10 strand where you could make each phase of the model recognisable in the lesson activities. Post your approach, the five-lesson sketch, and the phase label for each lesson. Which phase is hardest to design well, and why?"
       ],
       "workedExample": null,
-      "synthesisTemplate": "Thanks for your Topic 8 posts — the content knowledge audit is the most personally honest piece of work in the unit, and it shows in the quality of reflection this week. Patterns worth noting: [OBSERVATION — e.g. most audits identified genuine gaps, but the gap-closure plans sometimes stayed at the category level — 'read more about genetics' rather than a specific resource, course, or person]. This matters for AT1 Part C and AT2 Part D: the rubric rewards naming a specific source and justifying why it is right for your strand and context, not naming a type of source. One thing to carry into your assessments: [FOCUS — e.g. the difference between 'ASTA' as a source and 'the ASTA Chemistry journal article on misconceptions about covalent bonding' — specificity is the point]. See you [DAY] at [TIME]."
+      "synthesisTemplate": "Thanks for your Topic 7 posts this week. The analogy evaluation exercise is producing some careful thinking. A common pattern: [OBSERVATION — e.g. most posts identified what the analogy maps correctly and where it breaks down, but the script for addressing limitations with students was often too abstract — 'I would tell them where it doesn't work' rather than a specific two-sentence approach]. One thing to bring to the live session: [FOCUS — e.g. the moment when a student over-extends an analogy into territory where it breaks down — how do you catch and correct that in real time without undermining the analogy's usefulness?]. See you [DAY] at [TIME]."
     },
     "8": {
       "item": "Topic 8",
@@ -1540,7 +1543,7 @@
         "intro": "In our final teaching week, we return to a foundational professional responsibility: the ongoing development of your own science content knowledge. Strong content knowledge is not just a starting point — it is something you actively build and deepen throughout your teaching career.",
         "focus": "Topic 8 focuses on content knowledge development as a professional discipline. You will conduct a systematic audit of your content knowledge against your Stage 6 syllabus, identify specific gaps and priorities, and build a realistic plan for ongoing learning — including professional associations, subject-matter resources, and peer networks that support science content development."
       },
-      "liveSessionFocus": "Session 8 covers Topics 7 and 8 together. We will examine analogies and content knowledge development as complementary professional skills, and conclude the teaching program by looking ahead to the professional learning habits that will sustain your practice.",
+      "liveSessionFocus": "This session focuses on content knowledge development as an ongoing professional discipline — auditing your own confidence against the syllabus, naming specific gaps, and building a realistic, actionable plan to close them.",
       "liveSessionTasks": [
         "Complete a content knowledge audit for your primary Stage 6 teaching area: rate your confidence across the major content sections and identify your two or three priority gaps.",
         "For each priority gap, identify at least one concrete resource or action you will take to address it — a specific book, online course, professional association, or peer with relevant expertise.",
