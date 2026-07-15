@@ -1,6 +1,6 @@
 {
   "code": "EDSE362",
-  "name": "Science Education 11–12: Curriculum, Pedagogy and Inclusive Practice",
+  "name": "Science Education 7-10: Developing Professional Skills and Understanding",
   "itemLabel": "Topic",
   "liveDay": "Thursday",
   "liveTime": "5:30–6:30pm",
@@ -1153,7 +1153,14 @@
           "synthesisTemplate": "Thanks for your Topic 2 posts this week. The NOS-to-WS mapping exercise surfaced some discipline-specific patterns worth discussing. A common thread: [OBSERVATION — e.g. most posts identified a WS outcome accurately but found it harder to name a specific NOS concept the practical makes explicit — that gap is worth sitting with]. One thing to bring to the live session: [FOCUS — e.g. the difference between a practical that uses scientific processes and one that makes the nature of those processes visible to students]. See you [DAY] at [TIME].",
           "live": "🎤 Live Session: Topics 1 & 2"
         }
-      ]
+      ],
+      "moodleTitles": {
+        "lecture": "Text and media area: The K–10 continuum and Science education",
+        "slides": "File: LECTURE Slides - Topic 2",
+        "forum": "Forum: FORUM - Topic 1",
+        "materials": "Book: READINGS - Topic 2: The nature of science and scientific inquiry",
+        "liveHub": "Page: LIVE HUB - Topic 1"
+      }
     },
     "2": {
       "item": "Topic 3",
@@ -1246,9 +1253,18 @@
               "All students: Use the NSW Science 7–10 (2023) syllabus link provided in the AT1 task to identify focus area and related WS outcomes."
             ],
             "links": [
-              { "label": "NSW Common Grade Scale", "url": "https://curriculum.nsw.edu.au/assessment-and-reporting/reporting-and-using-grades#common-grade-scale-years-1-to-10" },
-              { "label": "ACARA Diversity of Learners", "url": "https://curriculum.nsw.edu.au/diversity-of-learners" },
-              { "label": "NESA Diversity of Learners", "url": "https://www.nsw.gov.au/education-and-training/nesa/diversity-of-learners" }
+              {
+                "label": "NSW Common Grade Scale",
+                "url": "https://curriculum.nsw.edu.au/assessment-and-reporting/reporting-and-using-grades#common-grade-scale-years-1-to-10"
+              },
+              {
+                "label": "ACARA Diversity of Learners",
+                "url": "https://curriculum.nsw.edu.au/diversity-of-learners"
+              },
+              {
+                "label": "NESA Diversity of Learners",
+                "url": "https://www.nsw.gov.au/education-and-training/nesa/diversity-of-learners"
+              }
             ]
           }
         ]
@@ -1274,7 +1290,14 @@
         "You are reviewing a Year 8 Chemistry practical resource that instructs students to heat copper sulfate solution over a Bunsen burner without specifying eye protection requirements. Identify: (a) the specific safety gap; (b) the authoritative source you would consult to determine the correct requirement (e.g. CLEAPSS, RACI, your school's safety documents); (c) how you would record this in the safety column of your AT1 Part A table. What does this process tell you about the difference between a resource that is pedagogically useful and one that is safe to use?"
       ],
       "workedExample": "The following examples show the difference between a strong and a partial citation in AT1 Part B. Both are justifying the placement of a Forces investigation early in a Stage 4 sequence.Strong (Forces – Stage 4):“The investigation examining balanced and unbalanced forces is positioned early in the sequence because students already possess everyday experiences of pushing, pulling and motion from primary science. Beginning with observable phenomena allows students to build scientific explanations from familiar experiences before introducing more abstract representations. The sequence is informed by Bybee’s (2014) 5E model, particularly the Explore phase, where students test their predictions and confront misconceptions such as ‘constant motion requires a constant force’. Visual prompts, annotated diagrams and structured discussion scaffolds are included to support EAL/D learners while maintaining the same conceptual expectations.”Partial (Forces – Stage 4):“The practicals are sequenced using constructivist learning principles. Students learn best when they build on prior knowledge. Forces is taught early because it is an important topic.”The partial response cites a general principle but does not connect the source to a specific teaching decision, identify the relevant prior knowledge, or explain why the investigation sits where it does in the sequence.",
-      "synthesisTemplate": "Thanks for your Topic 3 forum posts this week. The resource evaluation activity is producing some strong critical thinking. A pattern worth noting: [OBSERVATION — e.g. most evaluations identified scientific accuracy and syllabus alignment well, but the pedagogical credibility criterion was often treated as 'does it look teachable' rather than 'is there evidence this approach supports learning']. One thing to bring to the live session: [FOCUS — e.g. the distinction between a resource that is convenient and one that is defensible — Part B of AT1 asks you to defend your decisions with sources, not just describe them]. See you [DAY] at [TIME]."
+      "synthesisTemplate": "Thanks for your Topic 3 forum posts this week. The resource evaluation activity is producing some strong critical thinking. A pattern worth noting: [OBSERVATION — e.g. most evaluations identified scientific accuracy and syllabus alignment well, but the pedagogical credibility criterion was often treated as 'does it look teachable' rather than 'is there evidence this approach supports learning']. One thing to bring to the live session: [FOCUS — e.g. the distinction between a resource that is convenient and one that is defensible — Part B of AT1 asks you to defend your decisions with sources, not just describe them]. See you [DAY] at [TIME].",
+      "moodleTitles": {
+        "lecture": "Text and media area: Selecting and Critically Evaluating Resources",
+        "slides": "File: BB LECTURE Slides - Topic 3: Selecting and critically evaluating resources",
+        "forum": "Forum: FORUM - Topic 3: Selecting and critically evaluating resources",
+        "materials": "Book: READINGS - Topic 3: Selecting and critically evaluating resources",
+        "liveHub": "Page: LIVE HUB - Topic 3"
+      }
     },
     "3": {
       "item": "Topic 4",
@@ -1384,6 +1407,13 @@
             ]
           }
         ]
+      },
+      "moodleTitles": {
+        "lecture": "Text and media area: Introduction to teaching differently",
+        "slides": "File: LECTURE Slides - Topic 4: Introduction to teaching differently",
+        "forum": "Forum: FORUM - Topic 4: Introduction to teaching differently",
+        "materials": "Book: READINGS - Topic 4: Introduction to teaching differently",
+        "liveHub": "Page: LIVE HUB - Topic 4"
       }
     },
     "4": {
@@ -1421,7 +1451,13 @@
         "The AT2 Part B yellow highlight requires embedding Aboriginal and Torres Strait Islander perspectives, histories, and cultures into your unit program — not as an add-on activity, but woven into the learning sequence itself. Choose any science strand from the NSW Years 7–10 syllabus and identify one specific content point where a genuine connection to Aboriginal and Torres Strait Islander knowledge could be embedded in a way that strengthens the science learning, not just acknowledges it exists. Describe what that would look like in a lesson, and identify a source — ideally a community-connected or AIATSIS resource — that would inform your approach. What is the difference between embedding and tokenism in this context?"
       ],
       "workedExample": "The following examples show the difference between strong and partial cohort adjustments in AT1 Part A. Both are for a Stage 4 practical investigating cell structure using microscopy.Strong (Cells and classification – Stage 4):EAL/D adjustment – “Provide a visual glossary of microscope parts and cell structures, with labelled diagrams accompanying all written instructions. Procedural steps are presented as numbered images and short sentences.”Advanced adjustment – “Students compare specialised cell types and explain how structural differences support different biological functions, drawing on additional scientific sources.”Behind adjustment – “Students use partially labelled diagrams and focus initially on identifying a small number of key structures before progressing to more detailed observations.”Aboriginal and Torres Strait Islander adjustment – “Students investigate the microscopic structure of a locally significant plant species selected with appropriate community guidance, examining both biological characteristics and cultural significance.”Partial:EAL/D – “Provide a glossary.”Advanced – “Give extension questions.”Behind – “Simplify the activity.”Aboriginal and Torres Strait Islander – “Include Indigenous perspectives.”The partial adjustments are generic and could apply to almost any lesson. They demonstrate awareness that differentiation is required but do not show how barriers to participation are being addressed within the context of this specific practical investigation.",
-      "synthesisTemplate": "Thanks for your Topic 5 contributions this week. The cohort adjustment activity is the most directly assessed skill in the unit — it shows up in AT1 Part A and across AT2 Parts A and B. A pattern in the posts: [OBSERVATION — e.g. adjustments for EAL/D students tended to be strong and specific, but the Aboriginal and Torres Strait Islander adjustments were often generic — 'connect to Country' without identifying a specific connection to the practical or a community source]. One thing to bring to the live session: [FOCUS — e.g. the difference between an adjustment that reduces barriers to participation and one that reduces the challenge — the rubric rewards the first; the second is a different problem]. See you [DAY] at [TIME]."
+      "synthesisTemplate": "Thanks for your Topic 5 contributions this week. The cohort adjustment activity is the most directly assessed skill in the unit — it shows up in AT1 Part A and across AT2 Parts A and B. A pattern in the posts: [OBSERVATION — e.g. adjustments for EAL/D students tended to be strong and specific, but the Aboriginal and Torres Strait Islander adjustments were often generic — 'connect to Country' without identifying a specific connection to the practical or a community source]. One thing to bring to the live session: [FOCUS — e.g. the difference between an adjustment that reduces barriers to participation and one that reduces the challenge — the rubric rewards the first; the second is a different problem]. See you [DAY] at [TIME].",
+      "moodleTitles": {
+        "lecture": "Text and media area: The inclusive science classroom",
+        "forum": "Forum: FORUM - Topic 5: The inclusive science classroom",
+        "materials": "Book: READINGS - Topic 5: The Inclusive science classroom",
+        "liveHub": "Page: LIVE HUB - Topic 5: The inclusive science classroom"
+      }
     },
     "5": {
       "item": "Topic 6A",
@@ -1459,7 +1495,13 @@
         "A colleague shows you a unit program for Stage 4 Earth and Space Science. The program has five weeks of content, a test at the end, and a note that says 'literacy: students read from textbook each lesson.' Identify three specific improvements you would make to strengthen the program's alignment with AT2 requirements — name the change, the AT2 part it addresses, and the principle behind it."
       ],
       "workedExample": "An improvement would be to strengthen the literacy component. Instead of simply reading from the textbook each lesson, students could analyse scientific texts, interpret diagrams, construct evidence-based explanations, and explicitly learn Earth and Space Science vocabulary. This addresses AT2 Part A (teaching and learning sequence design) because literacy strategies are intentionally embedded within learning activities rather than treated as an add-on. The principle behind this change is that literacy development occurs through meaningful engagement with disciplinary knowledge and practices.",
-      "synthesisTemplate": "Thanks for your Topic 6 posts — particularly the summative assessment design activity, which is direct preparation for AT2 Part C. Patterns worth noting: [OBSERVATION — e.g. most task designs were clearly connected to content, but the A-band descriptors in the rubrics tended to use adjectives ('thorough', 'detailed') rather than observable content-specific descriptions — NESA Performance Band Descriptor language asks for the second]. One thing to take into the live session: [FOCUS — e.g. ask yourself: could two markers independently arrive at the same grade using your rubric? If not, it needs more specificity]. See you [DAY] at [TIME]."
+      "synthesisTemplate": "Thanks for your Topic 6 posts — particularly the summative assessment design activity, which is direct preparation for AT2 Part C. Patterns worth noting: [OBSERVATION — e.g. most task designs were clearly connected to content, but the A-band descriptors in the rubrics tended to use adjectives ('thorough', 'detailed') rather than observable content-specific descriptions — NESA Performance Band Descriptor language asks for the second]. One thing to take into the live session: [FOCUS — e.g. ask yourself: could two markers independently arrive at the same grade using your rubric? If not, it needs more specificity]. See you [DAY] at [TIME].",
+      "moodleTitles": {
+        "lecture": "Text and media area: Planning and evaluating a unit of work",
+        "forum": "Page: LIVE HUB - Topic 6A",
+        "materials": "Book: READINGS - Topic 6: Planning and evaluating a unit of work",
+        "liveHub": "Page: LIVE HUB - Topic 6A"
+      }
     },
     "6": {
       "item": "Topic 6B",
@@ -1496,7 +1538,13 @@
         "What is the difference between a program that includes formative assessment and one that uses it to inform future teaching?"
       ],
       "workedExample": "The following examples show the difference between a strong and a partial A–E criterion for a Stage 5 Chemistry assessment task asking students to explain a chemical reaction using particle theory.Strong (Chemistry — Stage 5, particle theory task): 'A student working at the A standard provides a scientifically accurate and detailed explanation of the reaction at the particle level, correctly identifying the role of collision frequency, activation energy, and particle orientation. The explanation is coherent and uses appropriate chemical terminology throughout. Diagrams, where included, accurately represent particle arrangement and movement. The student draws explicit connections between the particle-level explanation and observable macroscopic properties (e.g. colour change, gas production, temperature change).'Partial (Chemistry — Stage 5, particle theory task): 'A: Excellent explanation of particle theory. Very detailed and uses correct terminology.' The partial criterion is evaluative but not descriptive — it tells a student they did well without explaining what 'excellent' or 'very detailed' means in terms of content. A student reading this cannot self-assess, and a second marker cannot apply it consistently. NESA Performance Band Descriptor language requires observable, content-specific descriptions of what the student can do — not adjectives about quality.",
-      "synthesisTemplate": "Thanks for your Topic 6B posts this week. The summative task and A–E criterion design work is close to what AT2 Part C actually asks for. A pattern in the posts: [OBSERVATION — e.g. most tasks were clearly aligned to two or more outcomes, but A-band criteria sometimes stayed evaluative ('excellent understanding') rather than descriptive of what excellent work actually contains]. One thing to bring to the live session: [FOCUS — e.g. test your own A-band criterion against the worked example in the topic materials — could a second marker apply it consistently without seeing the original response?]. See you [DAY] at [TIME]."
+      "synthesisTemplate": "Thanks for your Topic 6B posts this week. The summative task and A–E criterion design work is close to what AT2 Part C actually asks for. A pattern in the posts: [OBSERVATION — e.g. most tasks were clearly aligned to two or more outcomes, but A-band criteria sometimes stayed evaluative ('excellent understanding') rather than descriptive of what excellent work actually contains]. One thing to bring to the live session: [FOCUS — e.g. test your own A-band criterion against the worked example in the topic materials — could a second marker apply it consistently without seeing the original response?]. See you [DAY] at [TIME].",
+      "moodleTitles": {
+        "lecture": "Text and media area: Planning and evaluating a unit of work",
+        "forum": "Forum: FORUM - Topic 6B Assessing and evaluating a unit of work",
+        "materials": "Book: READINGS - Topic 6: Planning and evaluating a unit of work",
+        "liveHub": "Page: LIVE HUB - Topic 6B"
+      }
     },
     "7": {
       "item": "Topic 7",
@@ -1533,7 +1581,13 @@
         "For AT2 Part A, you need to select a constructivist pedagogical approach and make it visible in your unit design. The 5E model (Engage–Explore–Explain–Elaborate–Evaluate), Predict-Observe-Explain (POE), and the Teaching-With-Analogies (TWA) model are three options. Choose one approach and identify a specific five-lesson sequence from any 7–10 strand where you could make each phase of the model recognisable in the lesson activities. Post your approach, the five-lesson sketch, and the phase label for each lesson. Which phase is hardest to design well, and why?"
       ],
       "workedExample": null,
-      "synthesisTemplate": "Thanks for your Topic 7 posts this week. The analogy evaluation exercise is producing some careful thinking. A common pattern: [OBSERVATION — e.g. most posts identified what the analogy maps correctly and where it breaks down, but the script for addressing limitations with students was often too abstract — 'I would tell them where it doesn't work' rather than a specific two-sentence approach]. One thing to bring to the live session: [FOCUS — e.g. the moment when a student over-extends an analogy into territory where it breaks down — how do you catch and correct that in real time without undermining the analogy's usefulness?]. See you [DAY] at [TIME]."
+      "synthesisTemplate": "Thanks for your Topic 7 posts this week. The analogy evaluation exercise is producing some careful thinking. A common pattern: [OBSERVATION — e.g. most posts identified what the analogy maps correctly and where it breaks down, but the script for addressing limitations with students was often too abstract — 'I would tell them where it doesn't work' rather than a specific two-sentence approach]. One thing to bring to the live session: [FOCUS — e.g. the moment when a student over-extends an analogy into territory where it breaks down — how do you catch and correct that in real time without undermining the analogy's usefulness?]. See you [DAY] at [TIME].",
+      "moodleTitles": {
+        "lecture": "Text and media area: Teaching and learning science using analogies",
+        "forum": "Forum: FORUM - Topic 7: Teaching and learning science using analogies and models",
+        "materials": "Book: READINGS - Topic 7: Teaching and learning science using analogies and models",
+        "liveHub": "Page: LIVE HUB - Topic 7"
+      }
     },
     "8": {
       "item": "Topic 8",
@@ -1570,7 +1624,13 @@
         "AT2 Part D asks you to 'evaluate one aspect of your unit program with evidence and name an external professional or community source that supported your design.' Practise this now: identify one specific decision you made in a draft of your AT2 unit program (or a program you have seen on placement), evaluate whether it worked or would work using a piece of evidence (student data, feedback, a peer review, or a cited research finding), and name one external professional or community source you consulted or would consult to strengthen that aspect. Post your decision, your evidence-based evaluation, and your named source. Why does naming a source matter — what does it demonstrate that a general reference does not?"
       ],
       "workedExample": null,
-      "synthesisTemplate": "Thanks for your Topic 8 posts — the content knowledge audit is the most personally honest piece of work in the unit, and it shows in the quality of reflection this week. Patterns worth noting: [OBSERVATION — e.g. most audits identified genuine gaps, but the gap-closure plans sometimes stayed at the category level — 'read more about genetics' rather than a specific resource, course, or person]. This matters for AT1 Part C and AT2 Part D: the rubric rewards naming a specific source and justifying why it is right for your strand and context, not naming a type of source. One thing to carry into your assessments: [FOCUS — e.g. the difference between 'ASTA' as a source and 'the ASTA Chemistry journal article on misconceptions about covalent bonding' — specificity is the point]. See you [DAY] at [TIME]."
+      "synthesisTemplate": "Thanks for your Topic 8 posts — the content knowledge audit is the most personally honest piece of work in the unit, and it shows in the quality of reflection this week. Patterns worth noting: [OBSERVATION — e.g. most audits identified genuine gaps, but the gap-closure plans sometimes stayed at the category level — 'read more about genetics' rather than a specific resource, course, or person]. This matters for AT1 Part C and AT2 Part D: the rubric rewards naming a specific source and justifying why it is right for your strand and context, not naming a type of source. One thing to carry into your assessments: [FOCUS — e.g. the difference between 'ASTA' as a source and 'the ASTA Chemistry journal article on misconceptions about covalent bonding' — specificity is the point]. See you [DAY] at [TIME].",
+      "moodleTitles": {
+        "lecture": "Text and media area: Developing your own science content knowledge",
+        "forum": "Forum: FORUM - Topic 8",
+        "materials": "Book: READINGS - Topic 8: Developing your science content knowledge",
+        "liveHub": "Page: LIVE HUB - Topic 8"
+      }
     },
     "9": {
       "item": "Professional Experience",
