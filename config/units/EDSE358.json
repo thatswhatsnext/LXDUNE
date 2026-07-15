@@ -557,7 +557,7 @@
         "resourceTable": "https://mylearn.une.edu.au/course/section.php?id=493801#module-3538568",
         "template": null,
         "submit": "https://mylearn.une.edu.au/mod/assign/view.php?id=3538566",
-        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3538569",
+        "forum": null,
         "video": null
       },
       "parts": [
@@ -1054,6 +1054,13 @@
             ]
           }
         ]
+      },
+      "moodleTitles": {
+        "lecture": "Text and media area: Module 1 Lecture",
+        "slides": "File: Module 1 Lecture Presentation",
+        "forum": "Forum: Module 1 forum",
+        "materials": "Book: READINGS - Module 1: Introduction to Senior Science Syllabuses",
+        "liveHub": "Page: Live Hub - Module 1"
       }
     },
     "2": {
@@ -1167,7 +1174,13 @@
       "loMapping": [
         "LO1",
         "LO3"
-      ]
+      ],
+      "moodleTitles": {
+        "lecture": "Text and media area: LECTURE Module 2",
+        "forum": "Forum: FORUM: Module 2 - 21st Century teaching",
+        "materials": "Book: READINGS - Module 2: The Nature of Science Teaching",
+        "liveHub": "Text and media area: LIVE HUB - Module 2"
+      }
     },
     "3": {
       "item": "Module 3A",
@@ -1270,6 +1283,13 @@
             ]
           }
         ]
+      },
+      "moodleTitles": {
+        "lecture": "Text and media area: Module 3: Part A",
+        "slides": "Folder: Lecture Slides Module 3A",
+        "forum": "Forum: Module 3A forum - Post a short learning reflection",
+        "materials": "Book: READINGS - Module 3A: Learning models and constructivist teaching",
+        "liveHub": "Page: LIVE HUB: Module 3A"
       }
     },
     "4": {
@@ -1341,7 +1361,65 @@
         "LO1",
         "LO2",
         "LO3"
-      ]
+      ],
+      "liveSessionRecording": "https://echo360.net.au/media/27cd3501-58fc-4892-ab01-b50fce78aae5/public",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Summary",
+            "items": [
+              "The session focused on resolving student questions about Assessment Task 1 (AT1) before reviewing Module 3B planning resources.",
+              "Key clarifications were made on Part A resubmission, resource ordering, essay structure, word count, and syllabus content coverage.",
+              "The tutor also walked through NESA sample scope and sequence documents and unit programs to illustrate constructive alignment between teaching, learning, and assessment design."
+            ]
+          },
+          {
+            "heading": "Key Points",
+            "items": [
+              "Repost Part A: Students should resubmit Part A incorporating prior feedback; no need to invest excessive time.",
+              "Unit plan resources – in order they appear: Resources in the unit plan should be listed in the order they appear (matching activities), not alphabetically; a repeated resource (e.g., textbook) can be cited as \"Resource 1, page X\" each time.",
+              "Essay – all as one, not two separate: Part C justification essay should be written as a single integrated piece covering both pedagogical decisions and resource choices, not split into two separate sections.",
+              "Pre-submission checklist: Treat the rubric and assessment task as the primary reference; the checklist is a supplementary guide and may have minor misalignments.",
+              "Part D reflection: Write to the four prompts in Part D2 only (what worked, what to change, engagement moments); Part D1 guidance can be disregarded.",
+              "Working Scientifically outcomes: Include all outcomes used in the unit plan header; narrow to specific ones at the week/lesson level.",
+              "Syllabus content coverage: All dot-point content under an outcome must be addressed across the unit (not necessarily in one lesson); completeness is expected.",
+              "Pedagogy justification: Pedagogical reasoning belongs in the justification essay, not in the unit plan table.",
+              "Resources column: Resources can be listed in a separate column without repeating them in the teaching and learning strategy text, to manage word count."
+            ]
+          },
+          {
+            "heading": "Open Questions",
+            "items": [
+              "How to handle word count on the cover sheet when the document includes non-prose elements (tables, outcomes, headings, syllabus codes): students advised to break down the count and flag if over limit.",
+              "Word count exclusions confirmed: in-text references, outcomes, headings, and syllabus codes are not counted."
+            ]
+          },
+          {
+            "heading": "Key Content: Planning Hierarchy & Alignment (Module 3B)",
+            "items": [
+              "Scope and sequence = high-level plan on a page; shows modules, terms, outcomes, and assessment across the year.",
+              "Unit program = week-by-week detail within a module; specifies teaching and learning activities, outcomes, and formative feedback.",
+              "NESA sample programs use inquiry question structure rather than strict week-by-week rows; AT1 requires week-by-week sequencing.",
+              "Sample programs reviewed lacked detail on cognitive demand and feedback specificity; AT1 requires deeper detail in both areas.",
+              "Constructive alignment is the key HD differentiator: content, skills, learning activities, and assessment must clearly connect.",
+              "Primary data = student-collected via experiment; secondary data = any external dataset or researched source, including datasets provided for analysis."
+            ]
+          },
+          {
+            "heading": "Action Items",
+            "items": [
+              "All students: Resubmit Part A with feedback applied before final AT1 submission.",
+              "All students: Review linked [Earth and Environmental Science unit plan](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Feducation.nsw.gov.au%2Fcontent%2Fdam%2Fmain-education%2Fteaching-and-learning%2Fcurriculum%2Fkey-learning-areas%2Fscience%2Fs-6%2Fearth-and-environmental-science%2FModule_3_Energy_transformations.docx&wdOrigin=BROWSELINK) + assessment task side-by-side."
+            ]
+          }
+        ]
+      },
+      "moodleTitles": {
+        "lecture": "Text and media area: Module 3: Part B",
+        "slides": "File: Lecture 3B slides",
+        "forum": "Forum: Module 3B Forum - Comment on a program",
+        "materials": "Book: READINGS - Module 3B: Programs and Lesson Plans"
+      }
     },
     "5": {
       "item": "Module 4A",
@@ -1397,7 +1475,14 @@
       "loMapping": [
         "LO3",
         "LO4"
-      ]
+      ],
+      "moodleTitles": {
+        "lecture": "Text and media area: Module 4 Lecture Recordings",
+        "slides": "File: Module 4 Lecture Material",
+        "forum": "Forum: FORUM - Module 4A: Generating feedback",
+        "materials": "Book: READINGS - Module 4A: Assessment for Learning",
+        "liveHub": "Page: LIVE HUB - Module 4A: Assessment for learning"
+      }
     },
     "6": {
       "item": "Module 4B",
@@ -1464,7 +1549,14 @@
       "loMapping": [
         "LO3",
         "LO4"
-      ]
+      ],
+      "moodleTitles": {
+        "lecture": "Text and media area: Module 4 Lecture Recordings",
+        "slides": "File: Module 4 Lecture Material",
+        "forum": "Forum: FORUM - Module 4B: Designing assessment instruments",
+        "materials": "Book: READINGS - Module 4B: Designing Assessment Instruments",
+        "liveHub": "Page: LIVE HUB - Module 4B: Designing assessment instruments"
+      }
     },
     "7": {
       "item": "Module 4C",
@@ -1640,7 +1732,14 @@
       "loMapping": [
         "LO2",
         "LO3"
-      ]
+      ],
+      "moodleTitles": {
+        "lecture": "Text and media area: Module 4 Lecture Recordings",
+        "slides": "File: Module 4 Lecture Material",
+        "forum": "Forum: FORUM - Module 4C: Differentiation and inclusion",
+        "materials": "Book: READINGS - Module 4C: Designing Differentiated Assessment",
+        "liveHub": "Page: LIVE HUB - Module 4C: Differentiated assessment"
+      }
     },
     "8": {
       "item": "Module 4D",
@@ -1718,7 +1817,14 @@
       "loMapping": [
         "LO3",
         "LO4"
-      ]
+      ],
+      "moodleTitles": {
+        "lecture": "Text and media area: Module 4 Lecture Recordings",
+        "slides": "File: Module 4 Lecture Material",
+        "forum": "Forum: FORUM - Module 4D: Judgement and communication",
+        "materials": "Book: READINGS - Module 4D: Developing Rubrics and Providing Feedback",
+        "liveHub": "Page: LIVE HUB - Module 4D: Judgement and communication"
+      }
     },
     "9": {
       "item": "Professional Experience",
