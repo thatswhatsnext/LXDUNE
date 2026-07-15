@@ -1,6 +1,6 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-06-12 (forTopic param; recordings[] in renderLectureBlock; EDSE362 recording migration; EDSE362 fully populated; EDSE358 T2 due dates set)
+**Last updated:** 2026-07-14 (workflow card fixes: host-theme underline override, invalid nested anchors, pill/btn underline — all live on main)
 **Repo:** `https://github.com/thatswhatsnext/LXDUNE`
 **GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
@@ -665,6 +665,62 @@ T2 2026 start `2026-06-22` is confirmed. ⚠️ 2027 dates are estimates — con
 ---
 
 ## Session notes
+
+### 2026-07-14 — Workflow card rendering investigation: three real bugs behind one iPad report
+
+**What started this:** a screenshot from Edge on iPad showing broken-looking workflow cards
+(underlined titles, apparent duplicate pill elements) was initially suspected to be a WebKit
+CSS-compatibility issue (native nesting, `:has()`, dropped rule blocks).
+
+**Dead ends, ruled out in order (all confirmed via read-only diagnostics before any fix was
+attempted):**
+- CSS incompatibility — `WORKFLOW_CSS` contains zero nesting, zero `:has()`/`:is()`/`:where()`,
+  nothing WebKit would drop. Confirmed via full-file grep.
+- ES module cache staleness — ruled out after clearing iPad site data and reproducing the bug
+  fresh.
+- Edge-specific browser behavior — ruled out once the same rendering was confirmed identical in
+  Safari (Mac), Safari (iPad), and Chrome. **Key lesson: get a screenshot from a second
+  browser/device early, before chasing a single-browser hypothesis.**
+
+**Two real, confirmed bugs found:**
+1. **Host-theme underline override (item 25).** The Moodle theme forces
+   `a{text-decoration:underline !important}` site-wide. `.lx-card`'s own
+   `text-decoration:none` had no `!important`, so it lost the cascade on any card rendered
+   as an anchor. Fixed by adding `!important`.
+2. **Invalid nested anchors (item 26).** `renderWorkflowCard` nested
+   `<a class="lx-pill-link">` inside `<a class="lx-card">` for any step with a link —
+   invalid HTML. Browsers auto-recover from invalid nesting by splitting the structure; on
+   iPad Safari/Edge this produced a **visible empty phantom pill capsule** next to the real
+   one (on desktop Chrome it produced an invisible empty clone, which is why it wasn't
+   caught earlier). Fixed by making the card wrapper always a `<div>`, with a new sibling
+   anchor `.lx-card-link` covering the label+title (restoring whole-card clickability) and
+   the pill as an independent sibling anchor — no anchor nests inside another anywhere in
+   the output.
+
+**A cascade contradiction surfaced mid-fix (item 27):** giving `.lx-pill-link`'s resting
+state `!important` (to resist the host rule) silently broke its `:hover{underline}` state,
+because a non-`!important` `:hover` cannot beat an `!important` base rule regardless of
+specificity. Resolved by making both `!important`. **Key lesson: when adding `!important`
+to a resting-state rule, always check for a corresponding non-`!important`
+`:hover`/`:focus` variant on the same selector — it will silently stop working.**
+
+**Verification method used throughout:** rather than trusting visual screenshots
+(unreliable — the harness's screenshot capture repeatedly returned blank panes for this
+page), verification relied on live DOM probes (`getComputedStyle`, nested-anchor counts,
+phantom-clone counts) and the accessibility tree, cross-checked against a simulated host
+`a{underline !important}` rule injected at runtime (never written to the repo) to
+reproduce the actual failure condition. Confirmed against three different unit/week
+configs with different link-population patterns (EDSE362 wk4, EDSE358 wk1, EDSE357 wk2)
+to rule out config-specific coincidence.
+
+**Process lesson:** check `git branch -a` for existing local/remote branches with the same
+name before creating a new feature branch — a prior unrelated merge (an EDSE362 content
+commit) had already used and retired the name
+`feature/workflow-card-pill-btn-underline`, causing a collision that required a rename and
+upstream reset before push.
+
+Commits: nested-anchor-fix (`3211d56`, `2c431a0`), underline-fix (`bcd4e2d`), item-26 fix
+(`2560fed`). Merged to dev (`c659326`, `0d1b7a3`, `41608ad`) then main (`a10c43d`).
 
 ### 2026-06-12 — forTopic param; recordings[] in renderLectureBlock; EDSE362 recording migration
 
