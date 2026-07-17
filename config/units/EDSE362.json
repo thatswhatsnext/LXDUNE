@@ -1445,6 +1445,92 @@
         "LO1",
         "LO5"
       ],
+      "liveSessionRecording": "https://echo360.net.au/media/93bc279c-9e88-4751-a8bc-f2f5ea6d0482/public",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Summary",
+            "items": [
+              "The session focused on designing inclusive science classrooms for Years 7–10, centering on removing barriers to learning rather than categorizing learners.",
+              "The 8 Ways Aboriginal pedagogical framework was explored as an authentic, embedded approach to inclusion—not a tokenistic add-on.",
+              "Discussion reinforced that many inclusive strategies benefit multiple cohorts simultaneously, and that differentiation improves with experience, reflection, and relationship-building with students."
+            ]
+          },
+          {
+            "heading": "Key Points",
+            "items": [
+              "Shift framing from labeling learner types (e.g., learning styles) to identifying and removing barriers in learning design.",
+              "Treat inclusion as a proactive design choice, not a bolt-on after lesson planning.",
+              "Use 8 Ways as an embedded framework rather than a standalone \"Indigenous lesson\"."
+            ]
+          },
+          {
+            "heading": "Key Discussion Points — 8 Ways Framework",
+            "items": [
+              "Non-linear learning in 8 Ways parallels Bruner's spiral curriculum—revisiting ideas through networked, systems-based connections rather than linear causality.",
+              "Practical example: ecosystems as a topic suits non-linear exploration of interconnected parts.",
+              "Framework originates from Tyson Yunkaporta's Sand Talk; NSW Department links further PD resources.",
+              "Strategies like yarning circles map directly onto existing reflection practices—same activity, reframed."
+            ]
+          },
+          {
+            "heading": "Overlap Across Cohorts",
+            "items": [
+              "Single strategies often address multiple groups: hands-on practicals support kinesthetic learning, Aboriginal learners, and EALD students simultaneously.",
+              "Particle diagrams, symbols, and images align with 8 Ways and also reduce language barriers for EALD students.",
+              "Graphic step-by-step guides and video modeling help behind-level students, twice-gifted, and Aboriginal and Torres Strait Islander students alike."
+            ]
+          },
+          {
+            "heading": "Managing Diversity in Practice",
+            "items": [
+              "Risk of over-segmenting cohorts makes workload feel unmanageable—normal for pre-service teachers.",
+              "Offering student choice in task format reduces singling out while maintaining differentiation.",
+              "Relationship-first approach: talking directly with students about their learning needs is powerful and transformative.",
+              "Greta's real classroom example: one anxious student in a public speaking class prompted immediate plan revision and a direct conversation with the student."
+            ]
+          },
+          {
+            "heading": "Priority Learner Groups (NSW Department)",
+            "items": [
+              "Aboriginal and Torres Strait Islander students — may be multilingual (up to 4 languages); inclusion enriches all learners.",
+              "EALD students — visual/graphic supports reduce text-heavy barriers.",
+              "Gifted and talented — watch for perfectionism when praising high marks/accuracy.",
+              "Rural and remote students — out-of-field teaching impacts are amplified in these settings."
+            ]
+          },
+          {
+            "heading": "Assessment Clarifications",
+            "items": [
+              "Word count: Template titles, syllabus codes, and structural labels do not count toward the word limit.",
+              "Syllabus codes: Write the code only (e.g., SC4-WS-01)—no need to reproduce full syllabus text.",
+              "Table format: Flexible—one large table or multiple smaller tables both acceptable; target audience is a peer teacher.",
+              "Feedback approach: Stephen looks for clarity of sequencing and articulation of adjustments, not penalizing formatting choices."
+            ]
+          },
+          {
+            "heading": "Open Questions",
+            "items": [
+              "How to balance focused support for one student without losing engagement of the rest of the class.",
+              "How inclusion strategies translate from theory to practice without placement experience—acknowledged as a \"thought experiment\" at this stage."
+            ]
+          },
+          {
+            "heading": "Action Items",
+            "items": [
+              "All students: Review NSW Department's Diversity of Learners resource (link shared in chat) for strategies across EALD, gifted, Aboriginal, and disability cohorts.",
+              "All students: Read assigned articles — unconscious bias piece (~3–4 pages) and Science Education Success in Rural Australian Schools (~12 pages).",
+              "All students: Continue Assessment 1 with focus on describing practicals, adjustments, and safety considerations."
+            ]
+          },
+          {
+            "heading": "Other Notes",
+            "items": [
+              "readings - 8 ways of learning: pedagogical practices - what does it look like in the classroom"
+            ]
+          }
+        ]
+      },
       "orientationNote": "Topic 5 is directly assessed across AT1 Part A and AT2 Parts A and B — and it is where the majority of students lose marks. The given cohort is specified precisely: 2 EAL/D, 2 advanced, 3 behind, 5 Aboriginal or Torres Strait Islander students with strong local community connections. In AT1 Part A, each practical requires specific adjustments for this cohort — not generic strategies, but modifications that respond to the actual demands of that practical. In AT2 Part B, the yellow highlight requires genuine embedding of Aboriginal and Torres Strait Islander perspectives, not retrospective addition. This week, practise designing adjustments that preserve the scientific rigour of the task while genuinely broadening access.",
       "forumPrompts": [
         "For one practical you are designing for AT1 Part A, identify adjustments for each of the four cohort groups: EAL/D students (2), advanced students (2), students working behind (3), and Aboriginal or Torres Strait Islander students (5). For each group, the adjustment must be specific to that practical — not a generic strategy that would apply to any science lesson. Post your practical title and your four adjustments, then identify which adjustment you found hardest to design and why.",
@@ -1478,7 +1564,7 @@
         "slides": "https://mylearn.une.edu.au/pluginfile.php/5235859/mod_folder/intro/TOPIC6.1.1.pdf",
         "zoom": null,
         "recording": "<iframe height=\"420\" width=\"640\" allowfullscreen frameborder=0 src=\"https://echo360.net.au/public/media/155de72c-f50e-47e1-bdef-2033daa54ee9?autoplay=false&automute=false\"></iframe>",
-        "forum": "https://mylearn.une.edu.au/mod/page/view.php?id=3564978",
+        "forum": "https://mylearn.une.edu.au/mod/forum/view.php?id=3458810",
         "materials": "https://mylearn.une.edu.au/mod/book/view.php?id=3458807",
         "liveHub": "https://mylearn.une.edu.au/mod/page/view.php?id=3564978"
       },
@@ -1498,7 +1584,7 @@
       "synthesisTemplate": "Thanks for your Topic 6 posts — particularly the summative assessment design activity, which is direct preparation for AT2 Part C. Patterns worth noting: [OBSERVATION — e.g. most task designs were clearly connected to content, but the A-band descriptors in the rubrics tended to use adjectives ('thorough', 'detailed') rather than observable content-specific descriptions — NESA Performance Band Descriptor language asks for the second]. One thing to take into the live session: [FOCUS — e.g. ask yourself: could two markers independently arrive at the same grade using your rubric? If not, it needs more specificity]. See you [DAY] at [TIME].",
       "moodleTitles": {
         "lecture": "Text and media area: Planning and evaluating a unit of work",
-        "forum": "Page: LIVE HUB - Topic 6A",
+        "forum": "Forum: FORUM - Topic 6A Planning a unit of work",
         "materials": "Book: READINGS - Topic 6: Planning and evaluating a unit of work",
         "liveHub": "Page: LIVE HUB - Topic 6A"
       }
