@@ -1576,6 +1576,62 @@
         "LO3",
         "LO4"
       ],
+      "liveSessionRecording": "https://echo360.net.au/media/d67323b2-57eb-40f6-9f8c-7b92388dbad7/public",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Summary",
+            "items": [
+              "The session covered two main areas: (1) metacognitive strategies applied to the science classroom, and (2) the shift from lesson planning to unit programming.",
+              "Stephen introduced an interactive tool mapping metacognitive habits to NSW science syllabus contexts.",
+              "The group also explored how assessment, outcomes, and teaching sequences must remain tightly aligned to avoid instructional disconnects."
+            ]
+          },
+          {
+            "heading": "Key Points",
+            "items": [
+              "Metacognition resource: Interactive tool built on NSW Department of Education (2020) guidance will be made available for EDSE 362 (7–10 context) and EDSE 358 students.",
+              "Textbook use: Textbooks should be engaged with critically as supplementary resources — teachers are not mandated to follow them and must exercise professional judgment.",
+              "Cross-curriculum priorities (assessment): Students should briefly identify the relevant numeracy/literacy sub-element (e.g., graphing, proportional reasoning) rather than providing extended descriptions; band/level detail is not required.",
+              "Unit planning approach: Strike a balance between over-detailed and high-level planning — identify key destinations by week/stage rather than scripting every lesson."
+            ]
+          },
+          {
+            "heading": "Key Concepts Covered",
+            "items": [
+              "Metacognition = \"thinking about thinking\"; builds student ownership, intrinsic motivation, and proactive learning dispositions.",
+              "[Nine teaching habits](https://education.nsw.gov.au/content/dam/main-education/teaching-and-learning/education-for-a-changing-world/media/documents/Metacognition_key_messages.pdf) from NSW Department advice: asking questions, being explicit, planning ahead, modeling thinking, challenging students, evaluating progress, promoting collaboration, keep practicing, regular check-ins.",
+              "Unit plan vs. lesson plan: Lesson plans are bite-sized; unit plans sequence learning across weeks (5–10 weeks), working backwards from outcomes using Wiggins & McTighe's Understanding by Design (click here for an [introduction and overview of UbD](https://files.ascd.org/staticfiles/ascd/pdf/siteASCD/publications/UbD_WhitePaper0312.pdf)).",
+              "Assessment alignment: Teaching → assessment task → syllabus outcomes must form a coherent triangle; misalignment occurs when pet tasks persist through syllabus changes or planning is siloed.",
+              "Transfer of learning: Valid assessment tests application to unfamiliar contexts, not just recall — open-note tests may only assess note-taking quality if recall-based."
+            ]
+          },
+          {
+            "heading": "Open Questions",
+            "items": [
+              "Whether students asking \"Is this on the test?\" signals a breakdown in clearly communicated learning sequences rather than a student problem.",
+              "How to balance flexibility in unit pacing when some topics take more or less time than planned."
+            ]
+          },
+          {
+            "heading": "Resource Note",
+            "items": [
+              "Interactive metacognition tool to be confirmed available for the 7–10 subject page: [Developing metacognition in science](https://mylearn.une.edu.au/mod/page/view.php?id=3593608)."
+            ]
+          },
+          {
+            "heading": "Action Items",
+            "items": [
+              "Steve: Add HITS link to session/unit page:",
+              "Link to VIC DoE HITS: https://www.education.vic.gov.au/Documents/school/teachers/support/high-impact-teaching-strategies.pdf",
+              "[Professional Practice: Using High Impact Teaching Strategies to support literacy](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.education.vic.gov.au%2FDocuments%2Fschool%2Fteachers%2Fteachingresources%2Fpractice%2FProfessional_Practice_Note_9_HITS.docx&wdOrigin=BROWSELINK)",
+              "Evidence For Learning: profile of [VIC HITS strategies](https://evidenceforlearning.org.au/education-evidence/aligned-evidence/hits) (Vic site no longer working) — clickable 'evaluation' of each strategy (high level detail).",
+              "Steve: Confirm interactive metacognition tool access for EDSE 362 (7–10) students.",
+              "All students: Access the Flexible Portal for a 7-day no-questions-asked extension (Assessment page → Extensions); further extensions available via formal request."
+            ]
+          }
+        ]
+      },
       "orientationNote": "Topic 6A is the direct preparation week for Parts A and B of AT2. These sections require you to design a coherent five-week unit program that aligns syllabus outcomes, Working Scientifically skills, practical investigations, differentiation, literacy, numeracy, Aboriginal and Torres Strait Islander perspectives, and formative assessment. The strongest submissions use backwards design principles: beginning with outcomes and constructing a logical sequence of learning rather than assembling disconnected activities. This week focuses on the professional craft of programming and provides the foundation upon which the remainder of AT2 is built.",
       "forumPrompts": [
         "A colleague shows you a unit program for Stage 4 Earth and Space Science. The program has five weeks of content, a test at the end, and a note that says 'literacy: students read from textbook each lesson.' Identify three specific improvements you would make to strengthen the program's alignment with AT2 requirements — name the change, the AT2 part it addresses, and the principle behind it."
