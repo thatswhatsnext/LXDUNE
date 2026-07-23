@@ -1476,6 +1476,60 @@
         "LO3",
         "LO4"
       ],
+      "liveSessionRecording": "https://echo360.net.au/media/a9e7bdcf-f7a6-4b03-8bd6-55a5210704f1/public",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Summary",
+            "items": [
+              "The session focused primarily on clarifying the upcoming assessment task (learning sequence with model-based assessment), differentiation strategies per Tomlinson's framework, and assessment for learning principles drawing on Dylan Wiliam's work.",
+              "Key concepts of low-floor/high-ceiling design, metacognition, and effective questioning were discussed.",
+              "Students also raised practical questions about formatting, cohort adjustments, and prac workload."
+            ]
+          },
+          {
+            "heading": "Key Points",
+            "items": [
+              "Assessment scope: The model is the sole summative task for the five-week sequence; no additional exam required within this assignment context.",
+              "Differentiation approach: Extensions should raise complexity within the same task (low floor, high ceiling), not add extra questions — consistent with Tomlinson's four elements: process, product, content, environment.",
+              "Extension availability: Advanced options should be open to all students, not assigned to specific learners, to preserve inclusion.",
+              "Cohort focus: Adjustments need only address the specified cohort (24 students: 4 Aboriginal, 2 EALD, equal gender split); gender can be treated as neutral or briefly justified if addressed.",
+              "Feedback on Aboriginal pedagogy: Applying Eight Ways of Learning is acceptable; authentic community connections should be noted in the justification where possible.",
+              "Formatting: 1.5 line spacing preferred; resource list does not require full APA formatting; repeat table headers across pages if needed.",
+              "D1 reflection criterion removed from the assessment template.",
+              "Summative assessment beyond the model (e.g., an exam) exists in real practice but is out of scope for this assignment."
+            ]
+          },
+          {
+            "heading": "Key Concepts Discussed",
+            "items": [
+              "Low floor / high ceiling: All students access the task; advanced learners extend depth (e.g., modeling cell transport processes rather than just cell structure).",
+              "Comment-only feedback (Wiliam): Removes emotional response to marks; feedback should cause thinking and provide actionable guidance.",
+              "Peer feedback strategy: Students match anonymised comments to work samples, reinforcing self-evaluation.",
+              "Metacognition: Students consciously monitor their own learning processes — planning, noticing, adjusting strategies, evaluating outcomes. Thinking routines (e.g., Project Zero) and rubrics support this.",
+              "Whiteboard check: Useful for quick lower-order checks; most effective when paired with a follow-up contradictory question to surface misconceptions."
+            ]
+          },
+          {
+            "heading": "Questioning Strategies (Wiliam / Prac Observations)",
+            "items": [
+              "Same students repeatedly answer hands-up questions — does not confirm whole-class understanding.",
+              "Sequence questions from low-floor (prior knowledge check) to higher-order; reduce hands-up as difficulty increases.",
+              "Use small-group discussion before whole-class response to build confidence and surface more diverse thinking.",
+              "Closed check-for-understanding questions dominate observed prac classrooms; teachers asking few questions overall.",
+              "Dylan Wiliam's presentations model effective questioning — recommended for re-watching."
+            ]
+          },
+          {
+            "heading": "Action Items",
+            "items": [
+              "All students: Review Module 4A (Assessment for Learning) and re-watch Dylan Wiliam videos.",
+              "ADJUSTMENTS: Consider how to address adjustments for First Nations students (e.g., add justification noting Eight Ways of Learning alignment and any community connection attempts; optionally address gender).",
+              "ALL: Experiment with questioning sequences and grouping strategies during upcoming prac teaching week."
+            ]
+          }
+        ]
+      },
       "moodleTitles": {
         "lecture": "Text and media area: Module 4 Lecture Recordings",
         "slides": "File: Module 4 Lecture Material",
