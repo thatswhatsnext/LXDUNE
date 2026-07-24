@@ -1,6 +1,6 @@
 # LXDUNE — Claude Code Briefing
 
-**Last updated:** 2026-07-14 (workflow card fixes: host-theme underline override, invalid nested anchors, pill/btn underline — all live on main)
+**Last updated:** 2026-07-24 (Phase 5 — Framework Explorer shipped: HITS + Metacognition, live on main; EDSE362 framework-explorer page shells added)
 **Repo:** `https://github.com/thatswhatsnext/LXDUNE`
 **GitHub Pages base:** `https://thatswhatsnext.github.io/LXDUNE/`
 **Owner:** Steve Grant — UNE lecturer, unit coordinator, edtech consultant
@@ -31,9 +31,25 @@ assets/
 
 moodle-blocks/
   blocks.js                   ← ES module, 18 exported render functions
+  framework-explorer.js       ← ES module, config-driven teaching-framework renderer (Phase 5)
   bespoke/                    ← static HTML fragments injected by renderAssessmentPage
     discipline-tab-switcher.html
     riskassess-callout.html
+
+frameworks/                   ← Framework Explorer data + tooling (Phase 5)
+  _schema/
+    framework.schema.json     ← JSON Schema (draft 2020-12) for both view types
+    curriculum.vocab.json     ← controlled NSW syllabus vocabulary (stages, focus areas, modules, themes)
+  hits-nsw-science/           ← deep-dive view: framework.json + items/*.json (10) + CHANGELOG
+  metacognition-nsw-science/  ← matrix view: framework.json + habits/contexts/cells.json (117) + CHANGELOG
+  README.md                   ← authoring + testing guide
+  preview.html                ← local test harness (framework switcher, width toggles, version stamp)
+
+scripts/
+  validate-frameworks.js      ← ajv validation gate (npm run validate); also runs in CI
+
+.github/workflows/
+  validate-frameworks.yml     ← CI: runs npm run validate on frameworks/** changes
 
 generate/
   index.html                  ← admin tool: generates copyable Moodle shell snippets
@@ -102,31 +118,24 @@ Pasted once into Moodle, never edited again. The script fetches config on every 
 ## Current branch status
 
 ### `main` (GitHub Pages source — production ✅)
-Last commit: `f46b2bf` (chore: briefing update).
+Last commit: `2ba7690` (Merge PR #2 from dev — Framework Explorer to production).
 
-Recent main history includes:
-- `f46b2bf` — chore: briefing update
-- `2301a3d` — merge: update EDSE358 AT2 T2-2026 due date
-- `03c0f15` — content: update EDSE358 AT2 T2-2026 due date to 2026-09-06
-- `ba0c6c8` — merge: update EDSE358 AT2 due date
-- `f2531dd` — content: update EDSE358 AT2 due date to 2026-09-06
+Recent main history:
+- `2ba7690` — Merge pull request #2 from thatswhatsnext/dev (Framework Explorer → main)
+- `6f15376` — Merge pull request #1 (feature/framework-explorer → dev)
+- `ed6f361` — feat(framework-explorer): version stamp, preview harness, testing docs
+- `82da235` — docs(framework-explorer): authoring README, CHANGELOGs, CI gate
+- `267d642` — fix(framework-explorer): replace metacognition with correct artefact
+- `ec9ffe8`, `52017ff` — matrix view + HITS port
 
-Live scripts serving from main:
-- `https://thatswhatsnext.github.io/LXDUNE/whatson/whatson.js` → 200
-- `https://thatswhatsnext.github.io/LXDUNE/autovideos/autovideos.js` → 200
-- `https://thatswhatsnext.github.io/LXDUNE/moodle-blocks/blocks.js` → 200
-- `https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE357-banner.svg` → 200
-- `https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE358-banner.svg` → 200
-- `https://thatswhatsnext.github.io/LXDUNE/assets/banners/EDSE362-banner.svg` → 200
+Live scripts/assets serving from main (all verified 200, 2026-07-24):
+- `.../moodle-blocks/blocks.js`, `.../moodle-blocks/framework-explorer.js` **(NEW)**
+- `.../whatson/whatson.js`, `.../autovideos/autovideos.js`
+- `.../frameworks/hits-nsw-science/framework.json`, `.../frameworks/metacognition-nsw-science/cells.json` **(NEW)**
+- `.../assets/banners/EDSE357|358|362-banner.svg`
 
-### `dev` (1 commit ahead of main)
-Contains `defd43f` — EDSE362 week item/title/live corrections (Topic 4 title, 6A/6B split, live session labels). Not yet merged to main.
-
-### `feature/for-topic-param` (3 commits ahead of dev)
-All EDSE362 go-live work is here. Must merge to dev → main before EDSE362 starts 2026-06-22.
-- `5295df5` — feat: forTopic param — topic-level content resolution; topic-section shell type; test harness input
-- `fb4c176` — feat: renderLectureBlock — multi-recording support via recordings[] array; backwards compatible
-- `dd8d275` — fix: EDSE362 migrate links.recording to links.lecture (weeks 2–8) and links.recordings[] (week 1)
+### `dev`
+In sync with `main` — 0 commits ahead (`main` carries the PR #2 merge commit on top). No open feature branches; `feature/framework-explorer` was merged (PRs #1, #2) and deleted.
 
 ---
 
@@ -346,6 +355,30 @@ All EDSE362 go-live work is here. Must merge to dev → main before EDSE362 star
 
 Both live scripts refactored to read from `config/units/*.json` instead of embedded static data. Sandpit-tested and merged to `main` 2026-05-17 (merge commit `449164f`). In production.
 
+### Phase 5 — Framework Explorer ✅ COMPLETE (live on main 2026-07-24)
+
+A separate, config-driven capability from `blocks.js`: standalone teaching-framework artefacts ported into validated JSON + one shared renderer. **Not unit-scoped** — frameworks are general NSW-science teaching resources embeddable on any Moodle page.
+
+- **Delivery:** `moodle-blocks/framework-explorer.js` — ES module in the `blocks.js` live-served pattern (no build step, no `dist/`). Exports `renderFrameworkExplorer({ framework, mount })`. Two view types behind a `VIEWS` registry: **deep-dive** (HITS) and **matrix** (Metacognition).
+- **Data:** `frameworks/<id>/` — `framework.json` wrapper + per-view data files. HITS: 10 items · 43 phases · 140 indicators · 40 continuum cells. Metacognition: 3 stages → 9 areas → 13 topics × 9 habits = 117 cells.
+- **Vocabulary:** `frameworks/_schema/curriculum.vocab.json` — NEW controlled NSW syllabus vocabulary (stages, Stage 4/5 focus areas, Stage 6 modules, cross-cutting themes) with `activeFrom`/`supersededBy`. Every curriculum reference in a framework must resolve here.
+- **Validation gate:** `scripts/validate-frameworks.js` (`npm run validate`) — ajv (structure) + code (cross-file: unique/contiguous ids, `related` resolution, vocab membership + supersession, matrix completeness, manifest consistency). Wired into CI (`.github/workflows/validate-frameworks.yml`). `ajv` added to `dependencies`.
+- **Moodle-safe (§7):** all output scoped under `.lxd-fx` (custom props on the root, not `:root`); no Google Fonts (inherits theme stack); no localStorage/sessionStorage; inline colour fallbacks incl. the runtime `--pc` phase colour; keyboard/focus/AA/reduced-motion preserved. Each mount stamped with `data-fx-framework`/`data-fx-version`/`data-fx-content-hash`.
+- **Testing:** `frameworks/preview.html` (local harness) + real-Moodle steps in `frameworks/README.md`. Local verified; **real-Moodle test still pending** (see Known issues).
+
+**Decisions (override the source handoff's own proposals):** repo-native live JS+JSON (no `dist/` build); ajv gate; both frameworks under one renderer; inherit Moodle theme fonts for v1.
+
+**Moodle shell (paste into a Page):**
+```html
+<div id="lxd-framework-explorer"></div>
+<script type="module">
+  import { renderFrameworkExplorer }
+    from "https://thatswhatsnext.github.io/LXDUNE/moodle-blocks/framework-explorer.js";
+  renderFrameworkExplorer({ framework: "hits-nsw-science" });
+</script>
+```
+Swap `framework` for `"metacognition-nsw-science"`; pass `mount:"id"` to target a specific div (needed for two on one page).
+
 **`autovideos/autovideos.js` — production state (main @ `bfba196`):**
 - Optional `containerId` parameter added: if provided, uses `getElementById(containerId)`; if absent, falls back to `getElementsByClassName('embed-container')[0]` for backwards compatibility with all existing live Moodle shells. **This parameter is sandpit-only** — generated production shells do not include it.
 - `setUpVideos` is `async`; fetches `${BASE}config/units/${unit}.json`
@@ -385,6 +418,7 @@ Pre-generated copyable Moodle shell snippets. Open in a browser — each shell h
 | `docs/EDSE357-navigation-shells.html` | 2 | — | 2026-05-19 (rev 2) | Current |
 | `docs/EDSE358-new-shells-may2026.html` | 7 | — | 2026-05-21 | **Use this for EDSE358 AT1 + new week blocks** |
 | `docs/EDSE357-new-shells-may2026.html` | 6 | — | 2026-05-21 | Orientation notes + forum prompts for Topics 3, 5, 7 |
+| `docs/EDSE362-framework-explorer-shells.html` | 3 | — | 2026-07-24 | **Framework Explorer page for EDSE362** — HITS, Metacognition, and both-on-one-page snippets + live production preview |
 
 **`EDSE358-new-shells-may2026.html` contains (7 shells):**
 - Section 1: Updated AT1 assessment page — **replace** existing Moodle shell (reflects D1/D2 split + guidanceNotes)
@@ -645,13 +679,16 @@ T2 2026 start `2026-06-22` is confirmed. ⚠️ 2027 dates are estimates — con
 18. **EDSE362 workedExample absent on weeks 3, 7, 8:** `workedExample` is null on these weeks. The renderer silently omits the block when absent — no error. Add content when available.
 19. **EDSE362 shells not yet generated:** No Moodle shell snippets exist for EDSE362 T2-2026. Generate using the shell generator after feature/for-topic-param is merged to main.
 20. **`buildDateList` is duplicated in `blocks.js` and `test/index.html`** — any change to week resolution math (boundary logic, NO_TEACHING handling, T3 offset) must be applied to both files. The harness copy drives the status bar week display; the blocks.js copy drives all block renders. They must stay in sync.
+21. **Framework Explorer — real-Moodle test still pending:** verified locally (`frameworks/preview.html`) and confirmed live/200 on GitHub Pages, but not yet pasted into a real myLearn page. The §7 theme-interaction check (scoping, fonts, contrast, dark mode) can only be confirmed inside actual Moodle at desktop + mobile. Steve to run per `frameworks/README.md`.
+22. **EDSE362 Framework Explorer page not yet in Moodle:** shells are ready in `docs/EDSE362-framework-explorer-shells.html` (git-ignored). Steve to add a Page in EDSE362 and paste the "both on one page" snippet. Note: Moodle's Atto/TinyMCE editors may strip `<script>` on save unless raw HTML is permitted — same constraint as all `blocks.js` shells.
+23. **Framework Explorer — `data-science-1` focus-area content:** the metacognition matrix uses `data-science-1` (Stage 4) for the graph-anomaly topic; the vocab has `data-science-1`/`data-science-2` but no framework yet references Stage-6 Investigating Science modules by id (only the syllabus). Extend the vocab's `investigating-science-stage6-2017` modules if a future framework needs them (currently `modulesEnumerated:false`).
 
 ---
 
 ## Next tasks in priority order
 
-1. **Merge feature/for-topic-param → dev → main** — recordings[] support is required for EDSE362 week 1. Must be done before EDSE362 go-live 2026-06-22 (~10 days away as of 2026-06-12). Sandpit-test first.
-2. **Generate EDSE362 T2-2026 Moodle shells** — after the merge, run the generator for EDSE362 / T2 / 2026. Generate: announcement, workflow, lecture, live-hub, course-hub, unit-key-info, assessment-status, assessment-page (AT1 and AT2), and topic-section shells for each topic. Paste into Moodle before 2026-06-22.
+1. **Framework Explorer — real-Moodle verification** — paste a snippet into a myLearn Page and confirm both frameworks render inside the theme at desktop + mobile (known issue 21). This is the last open item on Phase 5; everything else is live and validated.
+2. **Add the EDSE362 Framework Explorer page** — create a Page in EDSE362 and paste the "both on one page" snippet from `docs/EDSE362-framework-explorer-shells.html` (known issue 22).
 3. **EDSE362 lecturer name** — confirm and populate `contacts.lecturer` when assigned.
 4. **EDSE362 remaining week links** — add slides (weeks 2–8), forum (weeks 2–8), materials (weeks 2–8), liveHub as content is published during T2 2026.
 5. **EDSE362 video IDs** — add YouTube video IDs to weeks 1–8 when recordings are available.
@@ -665,6 +702,35 @@ T2 2026 start `2026-06-22` is confirmed. ⚠️ 2027 dates are estimates — con
 ---
 
 ## Session notes
+
+### 2026-07-24 — Phase 5: Framework Explorer (HITS + Metacognition) built, shipped to main
+
+**What this was:** porting two standalone hard-coded HTML teaching-framework artefacts (built in a claude.ai session) into a config-driven repo capability, from a written handoff spec. Delivered as a general **Framework Explorer** — pedagogy in validated JSON, one shared renderer, two view types — not a one-off "port the HITS page".
+
+**Process (the handoff mandated a hard gate):**
+- **Phase 0 discovery first, then stop.** Reconciled the handoff's proposed paths against the actual repo before writing code. Key finding that reshaped everything: the repo serves **live JS+JSON** (like `blocks.js`), it has **no build step / no `dist/`** — so the handoff's TS-build→single-file model was dropped in favour of the repo-native pattern.
+- Four decisions taken (Steve): repo-native live JS+JSON; ajv validation gate; both frameworks under one renderer; inherit Moodle theme fonts for v1.
+
+**Two source-file mix-ups worth remembering:**
+- The **metacognition** artefact was first ported from the wrong file (`Science_Teaching_Metacognition_Explorer.html`, a simpler 36-cell variant). The correct file is **`Metacognition_in_Science_Explorer.html`** (nested stage→area→topic × 9 habits = 117 cells). Replaced in commit `267d642`. If revisiting, use the 117-cell nested version.
+- HITS came from `HITS_in_NSW_Science.html`; counts verified against source: 10/43/140/40.
+
+**Key technical decisions:**
+- **Schema vs validator split:** JSON Schema enforces per-file *structure*; `scripts/validate-frameworks.js` enforces *cross-file* rules (unique/contiguous ids, `related` resolution, curriculum-vocab membership + supersession, matrix completeness, manifest consistency). This split is the boundary of what a JSON Schema can express — keep it.
+- **Curriculum vocabulary is the activity-string problem again:** free-text `"focus":"Disease"` either matches a real NESA focus area or doesn't, and nothing checked it (the ~60% unit-map mismatch failure mode). `curriculum.vocab.json` makes it a build-failing gate. 2017 Stage 6 syllabuses carry `supersededBy` (2025 rollout from 2027); content authored against them sets `acknowledgedSuperseded: true`.
+- **Dual-mode exemplar context (HITS):** ~half the HITS exemplars are deliberately cross-context (whole-year, faculty-wide, spanning modules), so `context` is either single (`stage`+`syllabus`+`focusArea`) or cross-context (`scope`+`spans[]`+`label`). Forcing them into a single focus area would misrepresent the pedagogy.
+- **117-cell extraction:** the metacognition cells were extracted programmatically from the artefact's own JS object model rather than hand-transcribed — one-off script, not committed.
+- **View seam:** core does fetch+mount+styles+error; each view (`deep-dive`, `matrix`) owns its `load`/`render` behind a `VIEWS` registry. Adding the matrix view required no change to the core — the abstraction holds.
+- **Per-view style injection:** each view injects its own scoped `<style>` (`.lxd-fx` deep-dive, `.lxd-fx-mx` matrix) so both can coexist on one page.
+- **Version stamp:** `stampVersion()` writes `data-fx-*` attributes + an HTML comment; content hash is djb2 over the loaded data — deterministic, so identical data stamps identically.
+
+**Attribution (licence obligation, do not trim):** HITS is CC BY 4.0 (State of Victoria) — requires attribution + indication of changes; Metacognition habits are NSW DoE (2020). The `attribution` string in each `framework.json` is not decoration.
+
+**Shipped:** 6 commits on `feature/framework-explorer` → PR #1 to `dev` (merged) → PR #2 to `main` (merged, `2ba7690`). Live on Pages, verified 200. Branch deleted. `gh` was installed this session (Homebrew) and authenticated via git's stored token passed through `GH_TOKEN` (the token lacked `read:org` so `gh auth login` was bypassed).
+
+**Still open:** real-Moodle verification (the one thing not doable from here) and pasting the EDSE362 page — shells ready in `docs/EDSE362-framework-explorer-shells.html`.
+
+**Process lesson:** the browser-pane screenshot tool repeatedly returned blank captures after programmatic scroll on these pages — verification leaned on live DOM probes + accessibility tree instead, with a taller viewport (resize_window) to bring content into the initial view for the few screenshots needed.
 
 ### 2026-07-14 — Workflow card rendering investigation: three real bugs behind one iPad report
 
