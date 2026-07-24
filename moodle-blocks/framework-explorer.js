@@ -73,10 +73,31 @@ export async function renderFrameworkExplorer({ framework, mount = 'lxd-framewor
     if (!view) throw new Error(`unknown viewType "${fw.viewType}"`);
     const data = await view.load(dir, fw);
     view.render(el, fw, data);
+    stampVersion(el, fw, data);
   } catch (e) {
     setError(el, e.message);
     console.error('[framework-explorer]', e);
   }
+}
+
+// Stamp the rendered output with the framework id, version and a content hash
+// (handoff §10) — so a deployed page is traceable to an exact data revision.
+// Set after render(): innerHTML replaces content but leaves dataset intact.
+function stampVersion(el, fw, data) {
+  const payload = data.items ? data.items : [data.habits, data.stages, data.cells];
+  const hash = djb2(JSON.stringify(payload) + '|' + fw.version);
+  el.dataset.fxFramework = fw.id;
+  el.dataset.fxVersion = fw.version;
+  el.dataset.fxContentHash = hash;
+  el.insertAdjacentHTML('afterbegin', `<!-- Framework Explorer · ${fw.id} · v${fw.version} · ${hash} -->`);
+}
+
+// djb2, hashing to 8 hex chars. Not cryptographic — just a stable content
+// fingerprint so two builds of the same data stamp identically.
+function djb2(str) {
+  let h = 5381;
+  for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) >>> 0;
+  return h.toString(16).padStart(8, '0');
 }
 
 // ── view registry ──────────────────────────────────────────────────────────────

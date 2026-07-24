@@ -40,6 +40,41 @@ Paste a one-line loader into a Moodle page (a container div + module import):
 Change `framework` to the framework id. Everything is scoped under `.lxd-fx`,
 loads no external fonts, and uses no browser storage (handoff §7).
 
+Each rendered mount is stamped with its data revision — inspect the container
+element for `data-fx-framework`, `data-fx-version`, and `data-fx-content-hash`
+(also emitted as an HTML comment), so any deployed page is traceable to an exact
+framework version + content fingerprint.
+
+## Testing / previewing
+
+**Locally (before it's live on GitHub Pages).** Start the repo's static server
+and open the preview harness — a switcher for every framework, width toggles
+(mobile/tablet/desktop), and a live version-stamp readout:
+
+```bash
+python3 -m http.server 8000        # from the repo root
+# then open http://localhost:8000/frameworks/preview.html
+```
+
+Check: it renders without console errors, the selector/phase/topic interactions
+work, and the width toggles behave down to mobile.
+
+**In a real Moodle page (the deployment test that matters).** The loader points
+at GitHub Pages, so the module and data must be live there first — i.e. this
+branch merged through to whatever branch Pages serves (`main`). Once live:
+
+1. In a myLearn page, add the loader snippet above (HTML editor / source view).
+2. Save and view the page as a student would.
+3. Confirm: it renders inside the Moodle theme (no clashes with theme
+   headings/footers), fonts inherit sensibly, colours are legible, and it works
+   at desktop **and** mobile widths. Toggle the page/theme if your Moodle has a
+   dark option.
+4. Check the browser console for errors and confirm no external font/network
+   requests are blocked.
+
+If anything looks off against the theme, that's the §7 scoping to check first —
+report it rather than editing in Moodle.
+
 ## Validating
 
 ```bash
