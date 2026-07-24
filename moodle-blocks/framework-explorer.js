@@ -22,7 +22,6 @@
 //     prefers-reduced-motion respected, AA contrast.
 
 const BASE = new URL('..', import.meta.url).href;
-const STYLE_ID = 'lxd-fx-styles';
 const PHASE_COLOURS = ['#2C5F73', '#37776A', '#8A7A24', '#8C4E2E', '#6B3F63'];
 
 // ── utilities ───────────────────────────────────────────────────────────────
@@ -50,11 +49,11 @@ function setError(mount, msg) {
     `Framework Explorer: ${esc(msg)}</div>`;
 }
 
-function injectStyles() {
-  if (document.getElementById(STYLE_ID)) return;
+function injectStyles(id, css) {
+  if (document.getElementById(id)) return;
   const s = document.createElement('style');
-  s.id = STYLE_ID;
-  s.textContent = STYLES;
+  s.id = id;
+  s.textContent = css;
   document.head.appendChild(s);
 }
 
@@ -68,7 +67,6 @@ export async function renderFrameworkExplorer({ framework, mount = 'lxd-framewor
   if (!framework) return setError(el, 'no framework id supplied');
 
   try {
-    injectStyles();
     const dir = `${BASE}frameworks/${framework}/`;
     const fw = await fetchJson(`${dir}framework.json`);
     const view = VIEWS[fw.viewType];
@@ -87,12 +85,7 @@ export async function renderFrameworkExplorer({ framework, mount = 'lxd-framewor
 // require changes above this line — that is the seam the port is proving.
 const VIEWS = {
   'deep-dive': { load: loadDeepDive, render: renderDeepDive },
-  matrix: {
-    load: async () => {
-      throw new Error('matrix view not yet implemented (metacognition port — handoff §9 step 6)');
-    },
-    render: () => {},
-  },
+  matrix: { load: loadMatrix, render: renderMatrix },
 };
 
 // ── deep-dive view (HITS shape) ─────────────────────────────────────────────────
@@ -128,6 +121,7 @@ async function loadVocabLabels(dir, fw) {
 }
 
 function renderDeepDive(mount, fw, { items, labels }) {
+  injectStyles('lxd-fx-dd-styles', DEEPDIVE_STYLES);
   mount.className = 'lxd-fx';
   mount.innerHTML = SHELL(fw);
   const $ = (sel) => mount.querySelector(sel);
@@ -418,7 +412,7 @@ function SHELL(fw) {
 // Every selector is prefixed .lxd-fx; every custom property is defined on
 // .lxd-fx (not :root) and used with an inline fallback so a theme that strips
 // or overrides variables still degrades to legible colour.
-const STYLES = `
+const DEEPDIVE_STYLES = `
 .lxd-fx{
   --fx-bg:#E7EBEE; --fx-card:#FFFFFF; --fx-card-sunk:#F4F6F8;
   --fx-ink:#111A21; --fx-body:#38454E; --fx-muted:#6B7A85;
@@ -572,4 +566,286 @@ const STYLES = `
   .lxd-fx .lxd-fx-rseg{font-size:9px;}
 }
 @media(prefers-reduced-motion:reduce){.lxd-fx *{transition:none !important;scroll-behavior:auto !important;}}
+`;
+
+// ── matrix view (metacognition shape) ────────────────────────────────────────────
+// Two axes (science contexts × teaching habits) resolving to a cell of three
+// fields. Adding this view required no change to the core above the VIEWS
+// registry — the seam holds (handoff §9 step 6).
+async function loadMatrix(dir, fw) {
+  if (!fw.matrix) throw new Error('framework has no matrix manifest');
+  const [habits, contexts, cells] = await Promise.all([
+    fetchJson(dir + fw.matrix.habits),
+    fetchJson(dir + fw.matrix.contexts),
+    fetchJson(dir + fw.matrix.cells),
+  ]);
+  return { habits, contexts, cells };
+}
+
+function renderMatrix(mount, fw, { habits, contexts, cells }) {
+  injectStyles('lxd-fx-mx-styles', MATRIX_STYLES);
+  mount.className = 'lxd-fx lxd-fx-mx';
+  mount.innerHTML = MATRIX_SHELL(fw);
+  const $ = (sel) => mount.querySelector(sel);
+
+  const cellOf = new Map(cells.map((c) => [`${c.contextId}×${c.habitId}`, c]));
+  const state = { context: contexts[0]?.id, habit: habits[0]?.id, scanOpen: false }; // in-memory only
+
+  function renderContexts() {
+    const grid = $('.lxd-fx-mx-contexts');
+    grid.innerHTML = '';
+    contexts.forEach((c) => {
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'lxd-fx-mx-ctx' + (c.id === state.context ? ' active' : '');
+      card.setAttribute('aria-pressed', String(c.id === state.context));
+      const typeLabel = c.type === 'concept' ? 'Content concept' : 'Science skill';
+      card.innerHTML =
+        `<div class="lxd-fx-mx-badges"><span class="lxd-fx-mx-badge type">${esc(typeLabel)}</span>` +
+        `<span class="lxd-fx-mx-badge stage">${esc(c.label || c.stage)}</span></div>` +
+        `<h3>${esc(c.name)}</h3><p class="lxd-fx-mx-blurb">${esc(c.blurb)}</p>` +
+        `<details><summary></summary><p class="lxd-fx-mx-why">${esc(c.whyHard)}</p></details>`;
+      card.querySelector('summary').addEventListener('click', (e) => e.stopPropagation());
+      card.addEventListener('click', () => {
+        state.context = c.id;
+        closeScan();
+        renderAll();
+      });
+      grid.appendChild(card);
+    });
+  }
+
+  function renderHabits() {
+    const wrap = $('.lxd-fx-mx-habits');
+    wrap.innerHTML = '';
+    habits.forEach((h) => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'lxd-fx-mx-chip' + (h.id === state.habit ? ' active' : '');
+      chip.setAttribute('aria-pressed', String(h.id === state.habit));
+      chip.textContent = h.name;
+      chip.addEventListener('mouseenter', () => showHabitHelper(h));
+      chip.addEventListener('mouseleave', () => showHabitHelper(byHabit(state.habit)));
+      chip.addEventListener('click', () => {
+        state.habit = h.id;
+        closeScan();
+        renderAll();
+      });
+      wrap.appendChild(chip);
+    });
+    showHabitHelper(byHabit(state.habit));
+  }
+
+  const byHabit = (id) => habits.find((h) => h.id === id);
+  const byContext = (id) => contexts.find((c) => c.id === id);
+
+  function showHabitHelper(h) {
+    if (h) $('.lxd-fx-mx-habithelper').innerHTML = `<b>${esc(h.name)}</b> — ${esc(h.definition)}`;
+  }
+
+  function renderDetail() {
+    const c = byContext(state.context);
+    const h = byHabit(state.habit);
+    const cell = cellOf.get(`${state.context}×${state.habit}`);
+    $('.lxd-fx-mx-eq-context').textContent = c ? c.name : '—';
+    $('.lxd-fx-mx-eq-habit').textContent = h ? h.name : '—';
+    $('.lxd-fx-mx-science').textContent = cell ? cell.science : '';
+    $('.lxd-fx-mx-meta').textContent = cell ? cell.meta : '';
+    $('.lxd-fx-mx-vignette').textContent = cell ? cell.vignette : '';
+    $('.lxd-fx-mx-scanbtn').textContent = `See all ${habits.length} habits applied to ${c ? c.name : 'this context'} →`;
+  }
+
+  function closeScan() {
+    state.scanOpen = false;
+    const list = $('.lxd-fx-mx-scanlist');
+    list.hidden = true;
+    list.innerHTML = '';
+  }
+
+  function renderScan() {
+    const list = $('.lxd-fx-mx-scanlist');
+    if (state.scanOpen) return closeScan();
+    list.innerHTML = '';
+    habits.forEach((h) => {
+      const cell = cellOf.get(`${state.context}×${h.id}`);
+      if (!cell) return;
+      const row = document.createElement('div');
+      row.className = 'lxd-fx-mx-scanrow';
+      row.innerHTML =
+        `<span class="lxd-fx-mx-scanname">${esc(h.name)}</span>` +
+        `<span class="lxd-fx-mx-scantext"><b>${esc(cell.meta)}</b> — ${esc(cell.vignette)}</span>`;
+      list.appendChild(row);
+    });
+    list.hidden = false;
+    state.scanOpen = true;
+  }
+
+  function renderAll() {
+    renderContexts();
+    renderHabits();
+    renderDetail();
+  }
+
+  $('.lxd-fx-mx-scanbtn').addEventListener('click', renderScan);
+  renderAll();
+}
+
+function MATRIX_SHELL(fw) {
+  const sources = (fw.sources || []).map((s) => `<li>${s}</li>`).join('');
+  return `
+  <div class="lxd-fx-mx-page">
+    ${fw.kicker ? `<p class="lxd-fx-mx-eyebrow">${fw.kicker}</p>` : ''}
+    <h1 class="lxd-fx-mx-h1">${esc(fw.title)}</h1>
+    ${fw.subtitle ? `<p class="lxd-fx-mx-thesis">${fw.subtitle}</p>` : ''}
+    ${
+      fw.usageNote
+        ? `<details class="lxd-fx-mx-howto"><summary>How to read this tool</summary>
+             <div class="lxd-fx-mx-howto-body">${fw.usageNote}</div></details>`
+        : ''
+    }
+
+    <p class="lxd-fx-mx-section">1 — Choose a science teaching context</p>
+    <div class="lxd-fx-mx-contexts" role="group" aria-label="Choose a science context"></div>
+
+    <p class="lxd-fx-mx-section">2 — Choose a teaching habit</p>
+    ${fw.helperText ? `<p class="lxd-fx-mx-helper">${esc(fw.helperText)}</p>` : ''}
+    <div class="lxd-fx-mx-habits" role="group" aria-label="Choose a teaching habit"></div>
+    <p class="lxd-fx-mx-habithelper" aria-live="polite"></p>
+
+    <div class="lxd-fx-mx-eqbar">
+      <span class="lxd-fx-mx-eqchip context lxd-fx-mx-eq-context">—</span>
+      <span class="lxd-fx-mx-eqop">+</span>
+      <span class="lxd-fx-mx-eqchip habit lxd-fx-mx-eq-habit">—</span>
+    </div>
+
+    <div class="lxd-fx-mx-panel">
+      <div class="lxd-fx-mx-cols">
+        <div class="lxd-fx-mx-col science">
+          <span class="lxd-fx-mx-colbadge">The science (context)</span>
+          <p class="lxd-fx-mx-science"></p>
+        </div>
+        <div class="lxd-fx-mx-col meta">
+          <span class="lxd-fx-mx-colbadge">The metacognitive move (goal)</span>
+          <p class="lxd-fx-mx-meta"></p>
+        </div>
+      </div>
+      <div class="lxd-fx-mx-vignettebox">
+        <span class="lxd-fx-mx-vlabel">What this looks like in the classroom</span>
+        <p class="lxd-fx-mx-vignette"></p>
+      </div>
+    </div>
+
+    <div class="lxd-fx-mx-scan">
+      <button class="lxd-fx-mx-scanbtn" type="button">See all habits applied to this context →</button>
+      <div class="lxd-fx-mx-scanlist" hidden></div>
+    </div>
+
+    <div class="lxd-fx-mx-footer">
+      <ul>${sources}</ul>
+      ${fw.attribution ? `<p>${esc(fw.attribution)}</p>` : ''}
+    </div>
+  </div>`;
+}
+
+// Scoped matrix styles. Same §7 rules as deep-dive: everything under .lxd-fx,
+// custom properties on the root, inline colour fallbacks, no external fonts,
+// no storage, focus + reduced-motion preserved.
+const MATRIX_STYLES = `
+.lxd-fx.lxd-fx-mx{
+  --mx-bg:#F5F4EF; --mx-card:#FFFFFF; --mx-border:#DEDAD0;
+  --mx-ink:#1E2A35; --mx-body:#3C4750; --mx-muted:#74808A;
+  --mx-science:#2F6B60; --mx-science-bg:#E4EEEA; --mx-science-line:#BFD6CE;
+  --mx-meta:#9A5B18; --mx-meta-bg:#F4E7D3; --mx-meta-line:#E2C89C;
+  --mx-gold:#B08A2E;
+  --mx-shadow:0 1px 2px rgba(30,42,53,0.04), 0 6px 16px rgba(30,42,53,0.05);
+  --mx-r:14px;
+  --mx-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  color:var(--mx-body,#3C4750); line-height:1.5; box-sizing:border-box;
+}
+.lxd-fx.lxd-fx-mx *,.lxd-fx.lxd-fx-mx *::before,.lxd-fx.lxd-fx-mx *::after{box-sizing:border-box;}
+.lxd-fx-mx .lxd-fx-mx-page{max-width:980px;margin:0 auto;padding:8px 4px 40px;}
+
+.lxd-fx-mx .lxd-fx-mx-eyebrow{font-family:var(--mx-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mx-gold,#B08A2E);margin:0 0 10px;font-weight:600;}
+.lxd-fx-mx .lxd-fx-mx-h1{font-weight:700;font-size:clamp(26px,4vw,38px);line-height:1.15;color:var(--mx-ink,#1E2A35);margin:0 0 16px;max-width:20ch;}
+.lxd-fx-mx .lxd-fx-mx-thesis{font-size:17px;max-width:62ch;color:var(--mx-body,#3C4750);margin:0 0 6px;}
+.lxd-fx-mx .lxd-fx-mx-thesis strong{color:var(--mx-ink,#1E2A35);}
+
+.lxd-fx-mx .lxd-fx-mx-howto{margin-top:18px;background:var(--mx-card,#FFFFFF);border:1px solid var(--mx-border,#DEDAD0);border-radius:var(--mx-r,14px);padding:4px 18px;box-shadow:var(--mx-shadow);}
+.lxd-fx-mx .lxd-fx-mx-howto summary{cursor:pointer;font-weight:600;color:var(--mx-ink,#1E2A35);padding:14px 0;list-style:none;display:flex;align-items:center;gap:8px;font-size:15px;}
+.lxd-fx-mx .lxd-fx-mx-howto summary::-webkit-details-marker{display:none;}
+.lxd-fx-mx .lxd-fx-mx-howto summary::before{content:"+";display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:var(--mx-meta-bg,#F4E7D3);color:var(--mx-meta,#9A5B18);font-weight:700;font-size:15px;flex-shrink:0;}
+.lxd-fx-mx .lxd-fx-mx-howto[open] summary::before{content:"\\2212";}
+.lxd-fx-mx .lxd-fx-mx-howto-body{padding:0 0 18px 28px;font-size:15px;color:var(--mx-body,#3C4750);}
+.lxd-fx-mx .lxd-fx-mx-howto-body p{margin:0 0 10px;}
+.lxd-fx-mx .lxd-fx-mx-howto-body p:last-child{margin-bottom:0;}
+
+.lxd-fx-mx .lxd-fx-mx-section{font-family:var(--mx-mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mx-muted,#74808A);font-weight:600;margin:44px 0 4px;}
+.lxd-fx-mx .lxd-fx-mx-helper{font-size:14.5px;color:var(--mx-muted,#74808A);margin:0 0 16px;max-width:62ch;}
+
+.lxd-fx-mx .lxd-fx-mx-contexts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.lxd-fx-mx .lxd-fx-mx-ctx{text-align:left;background:var(--mx-card,#FFFFFF);border:1.5px solid var(--mx-border,#DEDAD0);border-radius:var(--mx-r,14px);padding:16px 18px 14px;cursor:pointer;box-shadow:var(--mx-shadow);transition:border-color .15s ease;color:inherit;font:inherit;}
+.lxd-fx-mx .lxd-fx-mx-ctx:hover{border-color:var(--mx-science-line,#BFD6CE);}
+.lxd-fx-mx .lxd-fx-mx-ctx.active{border-color:var(--mx-science,#2F6B60);box-shadow:0 0 0 3px var(--mx-science-bg,#E4EEEA),var(--mx-shadow);}
+.lxd-fx-mx .lxd-fx-mx-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.lxd-fx-mx .lxd-fx-mx-badge{font-family:var(--mx-mono);font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;display:inline-block;letter-spacing:.02em;}
+.lxd-fx-mx .lxd-fx-mx-badge.type{background:#EDEBE3;color:#6B6355;}
+.lxd-fx-mx .lxd-fx-mx-badge.stage{background:#E9ECEF;color:#4A5560;}
+.lxd-fx-mx .lxd-fx-mx-ctx h3{font-size:18px;font-weight:700;color:var(--mx-ink,#1E2A35);margin:0 0 6px;}
+.lxd-fx-mx .lxd-fx-mx-blurb{font-size:14px;color:var(--mx-body,#3C4750);margin:0 0 8px;}
+.lxd-fx-mx .lxd-fx-mx-ctx details{margin-top:6px;}
+.lxd-fx-mx .lxd-fx-mx-ctx summary{cursor:pointer;font-size:13px;color:var(--mx-gold,#B08A2E);font-weight:600;list-style:none;}
+.lxd-fx-mx .lxd-fx-mx-ctx summary::-webkit-details-marker{display:none;}
+.lxd-fx-mx .lxd-fx-mx-ctx summary::after{content:" why this is hard \\25BE";}
+.lxd-fx-mx .lxd-fx-mx-ctx details[open] summary::after{content:" why this is hard \\25B4";}
+.lxd-fx-mx .lxd-fx-mx-why{font-size:13.5px;color:var(--mx-body,#3C4750);margin:8px 0 0;padding-top:8px;border-top:1px dashed var(--mx-border,#DEDAD0);}
+
+.lxd-fx-mx .lxd-fx-mx-habits{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.lxd-fx-mx .lxd-fx-mx-chip{font-size:14px;font-weight:600;color:var(--mx-ink,#1E2A35);background:var(--mx-card,#FFFFFF);border:1.5px solid var(--mx-border,#DEDAD0);border-radius:999px;padding:8px 16px;cursor:pointer;box-shadow:var(--mx-shadow);transition:border-color .15s ease,background .15s ease;}
+.lxd-fx-mx .lxd-fx-mx-chip:hover{border-color:var(--mx-meta-line,#E2C89C);}
+.lxd-fx-mx .lxd-fx-mx-chip.active{border-color:var(--mx-meta,#9A5B18);background:var(--mx-meta-bg,#F4E7D3);color:var(--mx-meta,#9A5B18);}
+.lxd-fx-mx .lxd-fx-mx-habithelper{font-size:13.5px;color:var(--mx-muted,#74808A);min-height:20px;margin:6px 0 0;}
+.lxd-fx-mx .lxd-fx-mx-habithelper b{color:var(--mx-ink,#1E2A35);}
+
+.lxd-fx-mx .lxd-fx-mx-eqbar{margin-top:40px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:18px;background:linear-gradient(180deg,#FBFAF7,#F3F1EA);border:1px solid var(--mx-border,#DEDAD0);border-radius:var(--mx-r,14px);}
+.lxd-fx-mx .lxd-fx-mx-eqchip{font-size:19px;font-weight:700;padding:8px 18px;border-radius:10px;}
+.lxd-fx-mx .lxd-fx-mx-eqchip.context{background:var(--mx-science-bg,#E4EEEA);color:var(--mx-science,#2F6B60);}
+.lxd-fx-mx .lxd-fx-mx-eqchip.habit{background:var(--mx-meta-bg,#F4E7D3);color:var(--mx-meta,#9A5B18);}
+.lxd-fx-mx .lxd-fx-mx-eqop{font-size:22px;color:var(--mx-muted,#74808A);}
+
+.lxd-fx-mx .lxd-fx-mx-panel{margin-top:18px;background:var(--mx-card,#FFFFFF);border:1px solid var(--mx-border,#DEDAD0);border-radius:var(--mx-r,14px);box-shadow:var(--mx-shadow);overflow:hidden;}
+.lxd-fx-mx .lxd-fx-mx-cols{display:grid;grid-template-columns:1fr 1fr;}
+.lxd-fx-mx .lxd-fx-mx-col{padding:22px 24px;}
+.lxd-fx-mx .lxd-fx-mx-col.science{background:var(--mx-science-bg,#E4EEEA);border-right:1px solid var(--mx-border,#DEDAD0);}
+.lxd-fx-mx .lxd-fx-mx-col.meta{background:var(--mx-meta-bg,#F4E7D3);}
+.lxd-fx-mx .lxd-fx-mx-colbadge{font-family:var(--mx-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:8px;}
+.lxd-fx-mx .lxd-fx-mx-col.science .lxd-fx-mx-colbadge{color:var(--mx-science,#2F6B60);}
+.lxd-fx-mx .lxd-fx-mx-col.meta .lxd-fx-mx-colbadge{color:var(--mx-meta,#9A5B18);}
+.lxd-fx-mx .lxd-fx-mx-col p{margin:0;font-size:15.5px;font-weight:600;color:var(--mx-ink,#1E2A35);line-height:1.4;}
+.lxd-fx-mx .lxd-fx-mx-vignettebox{padding:24px 26px 26px;}
+.lxd-fx-mx .lxd-fx-mx-vlabel{font-family:var(--mx-mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mx-muted,#74808A);display:block;margin-bottom:10px;}
+.lxd-fx-mx .lxd-fx-mx-vignette{font-size:16px;color:var(--mx-body,#3C4750);margin:0;}
+
+.lxd-fx-mx .lxd-fx-mx-scan{margin-top:26px;text-align:center;}
+.lxd-fx-mx .lxd-fx-mx-scanbtn{font-size:14px;font-weight:600;color:var(--mx-science,#2F6B60);background:none;border:1.5px solid var(--mx-science-line,#BFD6CE);border-radius:999px;padding:10px 20px;cursor:pointer;}
+.lxd-fx-mx .lxd-fx-mx-scanbtn:hover{background:var(--mx-science-bg,#E4EEEA);}
+.lxd-fx-mx .lxd-fx-mx-scanlist{margin-top:18px;text-align:left;display:grid;gap:10px;}
+.lxd-fx-mx .lxd-fx-mx-scanrow{display:grid;grid-template-columns:170px 1fr;gap:16px;background:var(--mx-card,#FFFFFF);border:1px solid var(--mx-border,#DEDAD0);border-radius:10px;padding:14px 16px;align-items:baseline;}
+.lxd-fx-mx .lxd-fx-mx-scanname{font-weight:700;color:var(--mx-meta,#9A5B18);font-size:14px;}
+.lxd-fx-mx .lxd-fx-mx-scantext{font-size:14px;color:var(--mx-body,#3C4750);}
+.lxd-fx-mx .lxd-fx-mx-scantext b{color:var(--mx-ink,#1E2A35);}
+
+.lxd-fx-mx .lxd-fx-mx-footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--mx-border,#DEDAD0);font-size:13px;color:var(--mx-muted,#74808A);}
+.lxd-fx-mx .lxd-fx-mx-footer ul{margin:0 0 10px;padding-left:18px;}
+.lxd-fx-mx .lxd-fx-mx-footer li{margin-bottom:5px;}
+.lxd-fx-mx .lxd-fx-mx-footer p{margin:0;}
+
+.lxd-fx-mx button:focus-visible,.lxd-fx-mx summary:focus-visible{outline:2.5px solid var(--mx-gold,#B08A2E);outline-offset:2px;}
+
+@media(max-width:720px){
+  .lxd-fx-mx .lxd-fx-mx-contexts{grid-template-columns:1fr;}
+  .lxd-fx-mx .lxd-fx-mx-cols,.lxd-fx-mx .lxd-fx-mx-cols{grid-template-columns:1fr;}
+  .lxd-fx-mx .lxd-fx-mx-col.science{border-right:none;border-bottom:1px solid var(--mx-border,#DEDAD0);}
+  .lxd-fx-mx .lxd-fx-mx-scanrow{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){.lxd-fx-mx *{transition:none !important;}}
 `;

@@ -58,8 +58,8 @@ const schema = readJson(SCHEMA_PATH);
 ajv.addSchema(schema, 'framework.schema.json');
 const validateFramework = ajv.getSchema('framework.schema.json#/$defs/framework');
 const validateDeepDive = ajv.getSchema('framework.schema.json#/$defs/deepDiveItem');
-const validateMatrixRow = ajv.getSchema('framework.schema.json#/$defs/matrixRow');
-const validateMatrixCol = ajv.getSchema('framework.schema.json#/$defs/matrixCol');
+const validateMatrixHabit = ajv.getSchema('framework.schema.json#/$defs/matrixHabit');
+const validateMatrixContext = ajv.getSchema('framework.schema.json#/$defs/matrixContext');
 const validateMatrixCell = ajv.getSchema('framework.schema.json#/$defs/matrixCell');
 
 const fmtAjv = (label, errors) =>
@@ -152,41 +152,55 @@ function validateDeepDiveFramework(dir, name, vocab, fw) {
 }
 
 // ── validate one matrix framework ──────────────────────────────────────────────
-function validateMatrixFramework(dir, name, vocab) {
-  const load = (sub) => {
-    const d = join(dir, sub);
-    if (!existsSync(d)) return [];
-    return readdirSync(d)
-      .filter((f) => f.endsWith('.json'))
-      .map((f) => ({ rel: `${name}/${sub}/${f}`, data: readJson(join(d, f)) }));
+function validateMatrixFramework(dir, name, vocab, fw) {
+  if (!fw.matrix) {
+    err(name, 'framework.json has no "matrix" source manifest (habits/contexts/cells)');
+    return 'no matrix';
+  }
+  const loadArr = (key) => {
+    const p = fw.matrix[key];
+    const rel = `${name}/${p}`;
+    if (!p || !existsSync(join(dir, p))) {
+      err(name, `matrix.${key} file "${p}" not found`);
+      return { rel, arr: [] };
+    }
+    const arr = readJson(join(dir, p));
+    if (!Array.isArray(arr)) {
+      err(rel, `expected a JSON array`);
+      return { rel, arr: [] };
+    }
+    return { rel, arr };
   };
-  const rows = load('habits');
-  const cols = load('contexts');
-  const cells = load('cells');
+  const { rel: habitsRel, arr: habits } = loadArr('habits');
+  const { rel: contextsRel, arr: contexts } = loadArr('contexts');
+  const { rel: cellsRel, arr: cells } = loadArr('cells');
 
-  rows.forEach(({ rel, data }) => {
-    if (!validateMatrixRow(data)) fmtAjv('', validateMatrixRow.errors).forEach((m) => err(rel, m));
+  habits.forEach((h) => {
+    if (!validateMatrixHabit(h)) fmtAjv(`[${h.id || '?'}]`, validateMatrixHabit.errors).forEach((m) => err(habitsRel, m));
   });
-  cols.forEach(({ rel, data }) => {
-    if (!validateMatrixCol(data)) fmtAjv('', validateMatrixCol.errors).forEach((m) => err(rel, m));
-    checkRefs(rel, { stage: data.stage, syllabus: data.syllabusArea }, vocab, false);
+  contexts.forEach((c) => {
+    if (!validateMatrixContext(c)) fmtAjv(`[${c.id || '?'}]`, validateMatrixContext.errors).forEach((m) => err(contextsRel, m));
+    checkRefs(contextsRel, { stage: c.stage, focusArea: c.syllabusArea }, vocab, false);
   });
 
-  const habitIds = rows.map((r) => r.data.id);
-  const topicIds = cols.flatMap((c) => (c.data.topics || []).map((t) => t.id));
+  const habitIds = habits.map((h) => h.id);
+  const contextIds = contexts.map((c) => c.id);
   const present = new Set();
-  cells.forEach(({ rel, data }) => {
-    if (!validateMatrixCell(data)) fmtAjv('', validateMatrixCell.errors).forEach((m) => err(rel, m));
-    if (!habitIds.includes(data.habitId)) err(rel, `cell habitId "${data.habitId}" is not a defined habit`);
-    if (!topicIds.includes(data.topicId)) err(rel, `cell topicId "${data.topicId}" is not a defined topic`);
-    present.add(`${data.topicId}×${data.habitId}`);
+  cells.forEach((cell, i) => {
+    if (!validateMatrixCell(cell))
+      fmtAjv(`[${cell.contextId || '?'}×${cell.habitId || '?'}]`, validateMatrixCell.errors).forEach((m) => err(cellsRel, m));
+    if (!contextIds.includes(cell.contextId)) err(cellsRel, `cell[${i}] contextId "${cell.contextId}" is not a defined context`);
+    if (!habitIds.includes(cell.habitId)) err(cellsRel, `cell[${i}] habitId "${cell.habitId}" is not a defined habit`);
+    const key = `${cell.contextId}×${cell.habitId}`;
+    if (present.has(key)) err(cellsRel, `duplicate cell ${key}`);
+    present.add(key);
   });
-  // completeness: every topic × habit must exist
-  for (const t of topicIds)
+  // completeness: every context × habit must exist
+  for (const c of contextIds)
     for (const h of habitIds)
-      if (!present.has(`${t}×${h}`)) err(name, `matrix incomplete — missing cell ${t}×${h}`);
+      if (!present.has(`${c}×${h}`)) err(name, `matrix incomplete — missing cell ${c}×${h}`);
 
-  return `${topicIds.length}×${habitIds.length}`;
+  return `${contextIds.length}×${habitIds.length} = ${contextIds.length * habitIds.length} cells`;
 }
 
 // ── main ────────────────────────────────────────────────────────────────────────
@@ -215,7 +229,7 @@ for (const d of dirs) {
 
   let summary = '';
   if (fw.viewType === 'deep-dive') summary = `${validateDeepDiveFramework(dir, d, vocab, fw)} items`;
-  else if (fw.viewType === 'matrix') summary = `${validateMatrixFramework(dir, d, vocab)} matrix`;
+  else if (fw.viewType === 'matrix') summary = `${validateMatrixFramework(dir, d, vocab, fw)}`;
 
   const bad = report.errors.some((e) => e.file.startsWith(d));
   console.log(`${bad ? '✗' : '✓'} ${d} (${fw.viewType}, v${fw.version}) — ${summary}`);

@@ -33,6 +33,17 @@
           "type": "array",
           "items": { "type": "string", "pattern": "\\.json$" }
         },
+        "matrix": {
+          "description": "Source file paths for the matrix view (relative to the framework dir). Required when viewType is matrix.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["habits", "contexts", "cells"],
+          "properties": {
+            "habits": { "type": "string", "pattern": "\\.json$" },
+            "contexts": { "type": "string", "pattern": "\\.json$" },
+            "cells": { "type": "string", "pattern": "\\.json$" }
+          }
+        },
         "vocabulary": {
           "description": "Relative path to the controlled-vocabulary file this framework validates against.",
           "type": "string"
@@ -49,6 +60,7 @@
         },
         "kicker": { "type": "string" },
         "thesis": { "type": "string" },
+        "helperText": { "type": "string", "description": "Short caption under a picker (matrix view: the habit chips)." },
         "usageNote": { "type": "string", "description": "Constrained HTML — the 'how to use / jurisdictions' panel." }
       }
     },
@@ -196,60 +208,46 @@
       }
     },
 
-    "matrixRow": {
+    "matrixHabit": {
       "type": "object",
-      "description": "A teaching habit (matrix view row).",
+      "description": "A teaching habit (matrix row). Shape matches the supplied artefact — no `category`; the handoff's planning/monitoring/evaluating grouping was not present and is not invented.",
       "additionalProperties": false,
-      "required": ["id", "name", "definition", "category"],
+      "required": ["id", "name", "definition"],
       "properties": {
         "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
         "name": { "type": "string", "minLength": 1 },
-        "definition": { "type": "string", "minLength": 1 },
-        "category": { "enum": ["planning", "monitoring", "evaluating"] }
+        "definition": { "type": "string", "minLength": 1 }
       }
     },
 
-    "matrixTopic": {
+    "matrixContext": {
       "type": "object",
+      "description": "A science context (matrix column). Flat, one per column — the artefact has no nested topics. `stage`/`syllabusArea` are vocab-controlled where they map cleanly; `label` is the human-facing chip string.",
       "additionalProperties": false,
-      "required": ["id", "name", "type", "whyHard"],
+      "required": ["id", "name", "type", "stage", "blurb", "whyHard"],
       "properties": {
         "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
         "name": { "type": "string", "minLength": 1 },
         "type": { "enum": ["concept", "skill"] },
-        "whyHard": { "type": "string", "minLength": 1 }
-      }
-    },
-
-    "matrixCol": {
-      "type": "object",
-      "description": "A context column: stage → syllabusArea → topics (matrix view).",
-      "additionalProperties": false,
-      "required": ["stage", "syllabusArea", "topics"],
-      "properties": {
         "stage": { "$ref": "#/$defs/vocabRef" },
         "syllabusArea": { "$ref": "#/$defs/vocabRef" },
-        "topics": {
-          "type": "array",
-          "minItems": 1,
-          "items": { "$ref": "#/$defs/matrixTopic" }
-        }
+        "blurb": { "type": "string", "minLength": 1 },
+        "whyHard": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "description": "Display string for the context chip, e.g. 'Stage 4 · Living systems'." }
       }
     },
 
     "matrixCell": {
       "type": "object",
-      "description": "One {topicId}×{habitId} cell. Validator enforces full matrix completeness (every row × col topic).",
+      "description": "One {contextId}×{habitId} cell. Three fields, matching the artefact. Validator enforces full matrix completeness (every context × habit).",
       "additionalProperties": false,
-      "required": ["topicId", "habitId", "science", "goal", "script", "why", "evidence"],
+      "required": ["contextId", "habitId", "science", "meta", "vignette"],
       "properties": {
-        "topicId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "contextId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
         "habitId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
-        "science": { "type": "string", "minLength": 1 },
-        "goal": { "type": "string", "minLength": 1 },
-        "script": { "type": "string", "minLength": 1 },
-        "why": { "type": "string", "minLength": 1 },
-        "evidence": { "type": "string", "minLength": 1 }
+        "science": { "type": "string", "minLength": 1, "description": "The science (context) — what disciplinary thing is in play." },
+        "meta": { "type": "string", "minLength": 1, "description": "The metacognitive move (goal)." },
+        "vignette": { "type": "string", "minLength": 1, "description": "What this looks like in the classroom." }
       }
     }
   },
