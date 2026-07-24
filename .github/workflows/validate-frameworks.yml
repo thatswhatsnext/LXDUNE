@@ -1,0 +1,29 @@
+name: Validate frameworks
+
+# The Framework Explorer validation gate (handoff §8). Fails the build on any
+# invalid framework data: schema violations, broken cross-references, unknown
+# or superseded curriculum vocabulary, or an incomplete matrix.
+on:
+  push:
+    paths:
+      - 'frameworks/**'
+      - 'scripts/validate-frameworks.js'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/validate-frameworks.yml'
+  pull_request:
+    paths:
+      - 'frameworks/**'
+      - 'scripts/validate-frameworks.js'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run validate

@@ -1,0 +1,88 @@
+{
+  "id": "worked",
+  "ordinal": 4,
+  "name": "Worked Examples",
+  "acknowledgedSuperseded": true,
+  "headline": "Effective teachers use worked examples to reduce cognitive load, so students can focus on understanding the process that leads to an answer rather than the answer itself.",
+  "badges": [
+    { "label": "Worked examples", "value": "0.57", "kind": "effectSize" },
+    { "label": "Spaced practice", "value": "0.60", "kind": "effectSize" }
+  ],
+  "inContext": "The failure mode with worked examples in senior science is not that teachers don't use them — it's that reliance on them never decreases. Students copy the exemplar faithfully and cannot begin an unfamiliar problem. The research has a clear answer to this, and it is the reason this strategy has to be run across a term rather than a lesson: <b>worked examples must be systematically faded</b>. Steps are progressively removed until students are completing rather than copying, and eventually generating. The HITS document names this directly, and adds the expertise-reversal point — for students who have become proficient, continued worked examples stop helping.",
+  "exemplar": {
+    "context": {
+      "stage": "stage-6",
+      "syllabus": "physics-stage6-2017",
+      "scope": "spans-areas",
+      "spans": ["phys-m1", "phys-m5"],
+      "duration": "Full term, deliberately faded",
+      "label": "Stage 6 Physics (2017) · Module 1 Kinematics → Module 5 Advanced Mechanics"
+    },
+    "problem": "Students produced immaculate notebooks full of teacher-worked solutions and froze on any problem that did not match one. Asked to start, they would say 'which example is this one like?' — a sign they were pattern-matching rather than reasoning.",
+    "phases": [
+      {
+        "label": "Fully worked, annotated with reasons",
+        "weekLabel": "Weeks 1–2",
+        "span": { "start": 0, "end": 2 },
+        "what": "Every step is annotated with why it was taken, not what was done — and students self-explain each step aloud.",
+        "detail": "'Here I resolve into components <i>because</i> the horizontal and vertical motions are independent' is a different artefact from 'v = u + at'. The reason-annotation is what students later have to generate for themselves. Pairs then take turns explaining a step to each other, which is the <b>self-explanation effect</b> — the HITS document notes worked examples are most effective when learners self-explain the steps to themselves and others."
+      },
+      {
+        "label": "Backward fading",
+        "weekLabel": "Weeks 3–4",
+        "span": { "start": 2, "end": 4 },
+        "what": "The final step is removed and students complete it; then the final two.",
+        "detail": "Backward fading is the right direction because the last steps are the ones that depend on everything preceding them, and because a student who completes the last step has still seen the reasoning for all the earlier ones. Earlier steps stay fully annotated. Nothing about the problems gets harder in these two weeks — the only variable changing is how much of the example is missing."
+      },
+      {
+        "label": "Completion problems",
+        "weekLabel": "Weeks 5–7",
+        "span": { "start": 4, "end": 7 },
+        "what": "Only the setup and the final answer are given; students construct the middle.",
+        "detail": "This is the phase where the load genuinely shifts. Students who still need it retain access to a <b>bank of the fully annotated earlier examples</b> — which also gives the teacher usable data, because the number of students accessing the bank each week is a direct measure of whether the fade is going too fast. If the bank use isn't falling, the fade has outrun the class."
+      },
+      {
+        "label": "Students generate, and the scaffold is withdrawn",
+        "weekLabel": "Weeks 8–10",
+        "span": { "start": 7, "end": 11 },
+        "what": "Students author an annotated worked example for a peer; proficient students move to problems with no example at all.",
+        "detail": "Writing an example forces the reason-annotations to be generated rather than read, and the peer critique uses the same criteria the teacher used in Week 1. At the same time the expertise-reversal effect is honoured: for students now working fluently, worked examples are withdrawn entirely and replaced with problem sets, because continuing to provide them would add load rather than reduce it."
+      }
+    ],
+    "impact": "Two simple measures. First, weekly access counts on the annotated bank — the expectation is a declining curve, and a flat one means the fade is mistimed. Second, <b>start rate</b> on an unfamiliar problem: how many students write anything meaningful in the first two minutes, sampled at Weeks 1, 5 and 10. Start rate is a better proxy for transfer than accuracy, because it measures whether a student has a way in."
+  },
+  "transfer": {
+    "label": "Stage 5 · scientific report writing",
+    "text": "The same fading logic applies to writing, not just calculation. A fully annotated exemplar conclusion — with the reasons marked, not just the features — is faded across a semester: first the evaluation sentence is removed, then the link back to the hypothesis, until students are producing the whole paragraph and annotating a peer's."
+  },
+  "indicators": {
+    "teacher": [
+      "Annotates worked examples with the reasoning behind each step, not just the operation",
+      "Has a planned fading sequence across the term rather than using the same example type all year",
+      "Requires students to self-explain steps to a partner",
+      "Keeps a bank of fully annotated examples available and monitors who still needs it",
+      "Withdraws worked examples from students who have become proficient"
+    ],
+    "notDemonstrated": [
+      "The same fully worked format is used from Week 1 to Week 10",
+      "Examples are too complex or contain unexplained leaps students cannot follow",
+      "Every learner receives the same example regardless of proficiency",
+      "Students copy examples into books but are never asked to explain a step",
+      "Fading happens by accident, when the teacher runs out of preparation time"
+    ],
+    "student": [
+      "Are engaged because the example is pitched at the right level of challenge",
+      "Understand the focus is the process, not the answer",
+      "Can complete a partially worked example without needing the missing steps supplied",
+      "Move with confidence from worked examples to independent problems"
+    ]
+  },
+  "continuum": [
+    { "level": 1, "label": "Emerging", "text": "Teachers sometimes use worked examples to introduce new knowledge and skills." },
+    { "level": 2, "label": "Evolving", "text": "Worked examples are used regularly to present new knowledge and scaffold learning, and are shared and developed collaboratively." },
+    { "level": 3, "label": "Embedding", "text": "Faculties develop and share examples, use them to scaffold and to foster metacognition, and analyse data including student feedback on their effectiveness." },
+    { "level": 4, "label": "Excelling", "text": "Worked examples are used deliberately and systematically, embedded in unit structures, faded on a planned sequence, and withdrawn as proficiency increases." }
+  ],
+  "related": ["explicit", "meta", "diff"],
+  "evidence": "Hattie (2009): worked examples 0.57, spaced practice 0.60. Sweller (2006) on the worked example effect and cognitive load; Atkinson et al. (2000); Clark, Nguyen and Sweller (2006). The HITS resource explicitly notes that gradually omitting steps supports the transition to problem solving and metacognition, and that reliance decreases as proficiency increases."
+}

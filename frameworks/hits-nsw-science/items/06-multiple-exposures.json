@@ -1,0 +1,95 @@
+{
+  "id": "exposures",
+  "ordinal": 6,
+  "name": "Multiple Exposures",
+  "headline": "Deep learning develops over time through multiple, spaced interactions with new knowledge — not through repetition or drill.",
+  "badges": [
+    { "label": "Spaced practice", "value": "0.71", "kind": "effectSize" },
+    { "label": "Time on task", "value": "0.62", "kind": "effectSize" },
+    { "label": "Massed practice", "value": "0.41", "kind": "effectSize" },
+    { "label": "+5 months", "kind": "monthsProgress" }
+  ],
+  "inContext": "This is the only strategy on the list that <b>cannot</b> be implemented by an individual teacher inside a unit, because the exposures have to be spaced across the year and therefore across units. That makes it a scope-and-sequence intervention and a faculty decision. Science has an obvious target: a small number of threshold ideas that everything else depends on and that quietly decay. The particle model is the standard example — taught in Year 7, assumed forever afterwards, and reliably reverted by Year 9 to a continuous model of matter. The contrast in the evidence is stark and worth naming to a faculty: spaced practice 0.71, massed practice 0.41.",
+  "exemplar": {
+    "context": {
+      "syllabus": "science-7-10-2023",
+      "scope": "whole-year",
+      "spans": ["stage-4", "stage-5", "particle-model", "conservation-of-matter"],
+      "duration": "Full year, faculty scope-and-sequence intervention",
+      "label": "Particle model & conservation of matter across the year (Stage 4 → Stage 5)"
+    },
+    "problem": "A Year 9 diagnostic before the Reactions focus area found a large proportion of students explaining dissolving as the sugar 'disappearing' and predicting mass loss when a gas was produced. The particle model had been taught well in Year 7 and had not survived.",
+    "phases": [
+      {
+        "label": "Identify what must survive",
+        "weekLabel": "Planning",
+        "span": { "start": 0, "end": 1 },
+        "what": "The faculty names three threshold ideas and maps every point in the year where each is encountered.",
+        "detail": "Particle model, conservation of matter, and energy transfer. The mapping exercise usually reveals the problem immediately: each idea is taught intensively once and then assumed. The faculty schedules three to four <b>spaced re-encounters</b> for each, deliberately placed in different focus areas — and writes them into the scope and sequence, because anything not written into the program does not survive a busy term."
+      },
+      {
+        "label": "First encounter, taught to a model",
+        "weekLabel": "Term 1",
+        "span": { "start": 1, "end": 4 },
+        "what": "The particle model is taught explicitly, with students drawing and defending their own model.",
+        "detail": "Within Solutions and mixtures and the Periodic table and atomic structure focus areas. The artefact that matters is the student's own drawn model, because it can be returned to later in the year and compared — giving students visible evidence of their own conceptual change, which is worth more than a mark."
+      },
+      {
+        "label": "Re-encounter in a new context",
+        "weekLabel": "Term 2",
+        "span": { "start": 4, "end": 7 },
+        "what": "The same idea does new work in a different focus area — not revision, and not the same task again.",
+        "detail": "This is the distinction the HITS document insists on: multiple exposures are <b>not repetition</b>. The exposure must vary the interaction. Dissolving and diffusion require the particle model to explain something new, and a low-stakes retrieval quiz deliberately mixes current content with the threshold ideas from Term 1 rather than testing only the current unit."
+      },
+      {
+        "label": "Two further spaced encounters",
+        "weekLabel": "Terms 3–4",
+        "span": { "start": 7, "end": 11 },
+        "what": "The ideas reappear in Reactions and in a physical context, and every Retrieve routine samples them.",
+        "detail": "By Stage 5 Reactions the particle model must carry conservation of mass in a chemical change; in Waves and motion and Energy it carries energy transfer. The faculty also changes a small habit with large consequences: the daily retrieval routine samples the threshold ideas from earlier in the year, not just the previous lesson."
+      },
+      {
+        "label": "Measure the decay curve",
+        "weekLabel": "Across",
+        "span": { "start": 0, "end": 11 },
+        "what": "A short common item set on the threshold ideas is administered at four points across the year.",
+        "detail": "Four data points on the same items make retention visible rather than assumed. The faculty can see <b>which idea decays fastest</b> and where to add an exposure next year. This is the phase that converts a good intention into an evidence-based scope and sequence, and it takes about ten minutes of class time four times a year."
+      }
+    ],
+    "impact": "The four-point common item set gives an actual retention curve rather than an impression. In the exemplar the useful finding was counter-intuitive: the particle model held reasonably well, while conservation of matter in a chemical change decayed sharply between Terms 2 and 3, which told the faculty exactly where the missing exposure belonged."
+  },
+  "transfer": {
+    "label": "Stage 6 · any science course",
+    "text": "The same structure applied to Year 11 content revisited during Year 12, rather than left until a pre-HSC cram. Year 11 ideas are deliberately re-encountered inside Year 12 modules where they do genuine work — Year 11 quantitative chemistry inside Module 5 equilibrium calculations, for instance — rather than being 'revised' as a separate block in Term 3."
+  },
+  "indicators": {
+    "teacher": [
+      "Plans exposures across the year, in the scope and sequence, not within a single unit",
+      "Varies the interaction at each exposure rather than repeating the task",
+      "Links each exposure explicitly to the learning goal so repetition is meaningful",
+      "Samples earlier threshold ideas in routine retrieval, not just last lesson's content",
+      "Uses common items at several points to make retention visible"
+    ],
+    "notDemonstrated": [
+      "The same activity is repeated with no variation in context, producing dull repetition",
+      "Threshold ideas are taught once and thereafter assumed",
+      "'Revision' is a block at the end rather than distributed encounters throughout",
+      "No timely feedback, so students repeat the same mistake at each exposure",
+      "Spacing happens by accident rather than by design"
+    ],
+    "student": [
+      "Consolidate learning through re-engagement with content over a period of time",
+      "Recognise a familiar idea doing new work in an unfamiliar context",
+      "Can compare their current model with one they drew earlier in the year",
+      "Feel supported and confident meeting content they have met before"
+    ]
+  },
+  "continuum": [
+    { "level": 1, "label": "Emerging", "text": "The teacher uses repetition to review and reinforce new learning, particularly when introducing new concepts." },
+    { "level": 2, "label": "Evolving", "text": "Repetition is planned and each exposure is explicitly linked to the learning goals, with timely feedback to remediate misunderstandings." },
+    { "level": 3, "label": "Embedding", "text": "The faculty plans exposures collaboratively across units and analyses data, including student feedback, to measure the impact on learning." },
+    { "level": 4, "label": "Excelling", "text": "Multiple exposures are deliberate, systematic and embedded in the scope and sequence, with retention monitored across the year and the sequence revised in response." }
+  ],
+  "related": ["structure", "explicit", "goals"],
+  "evidence": "Hattie (2009): spaced practice 0.71 against massed practice 0.41. Nuthall (2000) found it takes three or four experiences interacting with relevant information for a new knowledge construct to be created in working memory and transferred to long-term memory — research conducted, notably, in science and social studies units. Distributed practice and interleaving: CBE–Life Sciences Education evidence-based teaching guide (2021)."
+}

@@ -1,0 +1,89 @@
+{
+  "id": "collab",
+  "ordinal": 5,
+  "name": "Collaborative Learning",
+  "acknowledgedSuperseded": true,
+  "headline": "Effective teachers provide opportunities for students to work in flexible groups on meaningful tasks that require collaboration to complete.",
+  "badges": [
+    { "label": "Cooperative vs individual", "value": "0.59", "kind": "effectSize" },
+    { "label": "Reciprocal teaching", "value": "0.74", "kind": "effectSize" },
+    { "label": "Peer tutoring", "value": "0.55", "kind": "effectSize" },
+    { "label": "+5 months", "kind": "monthsProgress" }
+  ],
+  "inContext": "Every science teacher has watched the default practical group: one student manipulating, one recording, two watching. Naming roles does not fix this, because the roles have not been <b>taught</b>. The second problem is task design — most science group work can be completed by one capable student, so collaboration is optional and therefore doesn't happen. Sustained practice here means teaching collaboration explicitly as a skill, rotating roles on a published schedule, and designing at least one task per module where <b>no individual holds all the information</b>. It also means preserving individual accountability, or the strategy quietly becomes a way for some students to disappear.",
+  "exemplar": {
+    "context": {
+      "stage": "stage-6",
+      "syllabus": "biology-stage6-2017",
+      "focusArea": "bio-m7",
+      "scope": "single",
+      "duration": "7-week module"
+    },
+    "problem": "An observation tally across three practicals showed two students in each group of four handling equipment for over 80% of the time. Group tasks were being completed to a reasonable standard by one or two students while the others were present but not learning.",
+    "phases": [
+      {
+        "label": "Teach the collaboration",
+        "weekLabel": "Week 1",
+        "span": { "start": 0, "end": 1 },
+        "what": "Roles are explicitly taught before any content depends on them, and ground rules are co-written.",
+        "detail": "Four roles for practical work — manipulator, recorder, safety and timing, and <b>questioner</b>. The questioner is the metacognitive role: their job is to ask the group why they are doing what they are doing, and it is the role students find hardest and benefit from most. Roles rotate on a published schedule so nobody occupies one all module. This week costs content time and buys back the remaining six."
+      },
+      {
+        "label": "Jigsaw what genuinely divides",
+        "weekLabel": "Weeks 2–4",
+        "span": { "start": 1, "end": 4 },
+        "what": "Expert groups take one pathogen class each and become the only source of that knowledge.",
+        "detail": "Home groups form; expert groups take bacterial, viral, fungal, protozoan and macroparasitic disease respectively, each responsible for transmission, host response and control. Because the module's content divides naturally into parallel cases, <b>positive interdependence is real rather than manufactured</b> — no home group can answer the module's questions without every member reporting back. Reciprocal teaching, at 0.74, is the highest-value structure in this cluster and this is where it lives."
+      },
+      {
+        "label": "Reciprocal teaching on sources",
+        "weekLabel": "Weeks 4–6",
+        "span": { "start": 4, "end": 6 },
+        "what": "The same protocol is applied to reading epidemiological sources, with leadership rotating.",
+        "detail": "Predict, question, clarify, summarise — applied to secondary-source material on a real outbreak, with a different student leading each round. This addresses the Working Scientifically demand of the module directly, and it moves collaboration out of the practical, which is where most science faculties leave it stranded."
+      },
+      {
+        "label": "A task that cannot be done alone — assessed individually",
+        "weekLabel": "Weeks 6–7",
+        "span": { "start": 6, "end": 8 },
+        "what": "Groups produce a public health recommendation requiring evidence from every expert; each student writes their own justification.",
+        "detail": "The task is deliberately designed so that a single capable student cannot complete it. But the assessable product is an <b>individual</b> written justification, which must cite evidence originating from at least two other students' expertise. This is the design detail that stops collaborative learning becoming a shelter: interdependence in the process, accountability in the product."
+      }
+    ],
+    "impact": "The same observation tally, repeated in Week 6 — the measure was the distribution of equipment handling and talk across group members, not whether the practical worked. Alongside it, the individual justifications were read for whether students drew on evidence they could only have got from a peer, which is direct evidence that the jigsaw functioned rather than being performed."
+  },
+  "transfer": {
+    "label": "Stage 4 · Living systems",
+    "text": "The same jigsaw logic with lower content demand: expert groups take producers, primary consumers, decomposers and abiotic factors, then reassemble to model a whole ecosystem's response to a disturbance. Younger students need the roles taught more slowly and rotated more often, but the interdependence works identically."
+  },
+  "indicators": {
+    "teacher": [
+      "Explicitly teaches roles and collaboration skills before content depends on them",
+      "Rotates roles on a published schedule so students do not occupy one all term",
+      "Designs at least one task per module that no single student could complete alone",
+      "Preserves individual accountability within collaborative tasks",
+      "Uses observation data on participation, not just the quality of the group product"
+    ],
+    "notDemonstrated": [
+      "Roles are named on a worksheet but never taught or rotated",
+      "The group task could be completed by one capable student",
+      "A few students dominate while others are present but not participating",
+      "The teacher dominates the discussion the collaboration was meant to generate",
+      "Group marks conceal individual non-participation"
+    ],
+    "student": [
+      "Understand the protocols for working collaboratively and can name their current role",
+      "Accept individual responsibility for a part the group depends on",
+      "Are skilled at giving each other feedback rather than only dividing labour",
+      "Draw on evidence they could only have obtained from another student"
+    ]
+  },
+  "continuum": [
+    { "level": 1, "label": "Emerging", "text": "Teachers allow students to share ideas with peers and occasionally structure small group activities." },
+    { "level": 2, "label": "Evolving", "text": "Teachers collaborate to design group tasks tied to specific learning goals, and implement protocols that build student understanding of how effective groups work." },
+    { "level": 3, "label": "Embedding", "text": "Learning is consistently structured around differentiated group tasks that require collaboration, and students give each other feedback using taught protocols." },
+    { "level": 4, "label": "Excelling", "text": "Cooperative learning is embedded. Students are skilled at considered feedback, design challenging tasks themselves, and the faculty uses participation data to evaluate impact." }
+  ],
+  "related": ["questioning", "meta", "feedback"],
+  "evidence": "Hattie (2009): cooperative vs individual 0.59, vs competitive 0.54; reciprocal teaching 0.74; peer tutoring 0.55. Evidence for Learning: collaborative learning and peer tutoring both +5 months. Nunnery et al. (2013) report stronger effects for adolescents than younger children. Social metacognition in group work: CBE–Life Sciences Education evidence-based teaching guide (2021)."
+}

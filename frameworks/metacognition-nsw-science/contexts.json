@@ -1,0 +1,181 @@
+[
+  {
+    "stage": "stage-4",
+    "label": "Stage 4",
+    "sub": "Years 7–8 · Science 7–10 Syllabus (2023)",
+    "areas": [
+      {
+        "id": "living-systems",
+        "label": "Living systems",
+        "sub": "Ecosystems, interdependence, matter & energy flow",
+        "topics": [
+          {
+            "id": "food-webs",
+            "name": "Food webs & interdependence",
+            "tag": "Living systems",
+            "type": "concept",
+            "sci": "Energy and matter flow between organisms; removing one species has flow-on effects through a network, not a single chain."
+          },
+          {
+            "id": "sampling-ecosystem",
+            "name": "Sampling a local ecosystem",
+            "tag": "Living systems",
+            "type": "skill",
+            "sci": "Using quadrats/transects to estimate abundance; deciding sample size and placement to get representative, reliable data."
+          }
+        ]
+      },
+      {
+        "id": "forces",
+        "label": "Forces",
+        "sub": "Balanced/unbalanced forces, motion",
+        "topics": [
+          {
+            "id": "balanced-unbalanced-forces",
+            "name": "Balanced vs unbalanced forces",
+            "tag": "Forces",
+            "type": "concept",
+            "sci": "Net force determines change in motion; a common misconception is that constant motion needs a constant force ('force implies moving')."
+          }
+        ]
+      },
+      {
+        "id": "data-science-1",
+        "label": "Data science 1",
+        "sub": "Reading, representing & questioning data",
+        "topics": [
+          {
+            "id": "graph-anomaly",
+            "name": "Interpreting a graph with an anomaly",
+            "tag": "Data science 1",
+            "type": "skill",
+            "sci": "Reading trends from a graph; deciding whether an off-trend point is a real signal or a measurement error before drawing a conclusion."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "stage": "stage-5",
+    "label": "Stage 5",
+    "sub": "Years 9–10 · Science 7–10 Syllabus (2023)",
+    "areas": [
+      {
+        "id": "disease",
+        "label": "Disease",
+        "sub": "Infectious disease, immunity, epidemiology",
+        "topics": [
+          {
+            "id": "designing-investigation",
+            "name": "Designing a first-hand investigation",
+            "tag": "Disease",
+            "type": "skill",
+            "sci": "Building a fair, valid, reliable method — e.g. testing which surface harbours more microbes — by isolating variables and controlling confounds."
+          },
+          {
+            "id": "evaluating-health-evidence",
+            "name": "Evaluating evidence on a health claim",
+            "tag": "Disease",
+            "type": "skill",
+            "sci": "Weighing sample size, methodology, replication and conflict of interest; separating correlation from causation in a media health claim."
+          }
+        ]
+      },
+      {
+        "id": "reactions",
+        "label": "Reactions",
+        "sub": "Chemical reactions, conservation of mass",
+        "topics": [
+          {
+            "id": "conservation-of-mass",
+            "name": "Conservation of mass",
+            "tag": "Reactions",
+            "type": "concept",
+            "sci": "Mass is conserved in a chemical reaction; a common misconception is that mass is 'lost' when gas is produced or a candle burns away."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "stage": "stage-6",
+    "label": "Stage 6",
+    "sub": "Years 11–12 · 2017 syllabuses (2025 rollout noted)",
+    "areas": [
+      {
+        "id": "biology-stage6-2017",
+        "label": "Biology (2017)",
+        "sub": "Modules 1–8 · new Biology 11–12 from 2027",
+        "acknowledgedSuperseded": true,
+        "topics": [
+          {
+            "id": "punnett-squares",
+            "name": "Punnett squares & inheritance",
+            "tag": "Module 5 Heredity",
+            "type": "skill",
+            "sci": "Predicting offspring ratios from genotypes; a common error is confusing genotype with phenotype and misreading probabilities as certainties."
+          },
+          {
+            "id": "immunity-extended-response",
+            "name": "Extended response on immunity",
+            "tag": "Module 7 Infectious Disease",
+            "type": "skill",
+            "sci": "Writing a mark-worthy extended response — e.g. explaining the immune response — structured to the marking criteria and the question's verb."
+          }
+        ]
+      },
+      {
+        "id": "chemistry-stage6-2017",
+        "label": "Chemistry (2017)",
+        "sub": "Modules 1–8 · new Chemistry 11–12 from 2028",
+        "acknowledgedSuperseded": true,
+        "topics": [
+          {
+            "id": "chemical-equilibrium",
+            "name": "Chemical equilibrium",
+            "tag": "Module 5 Equilibrium",
+            "type": "concept",
+            "sci": "Dynamic equilibrium and Le Châtelier's principle; the classic misconception is picturing equilibrium as a reaction that has stopped rather than running both ways at equal rates."
+          },
+          {
+            "id": "titration-calculations",
+            "name": "Titration calculations",
+            "tag": "Module 6 Acid/Base",
+            "type": "skill",
+            "sci": "Multi-step quantitative problem-solving (moles, concentration, stoichiometry); errors often come from unmonitored unit-tracking and not sense-checking the final figure."
+          }
+        ]
+      },
+      {
+        "id": "physics-stage6-2017",
+        "label": "Physics (2017)",
+        "sub": "Modules 1–8 · new Physics 11–12 from 2027",
+        "acknowledgedSuperseded": true,
+        "topics": [
+          {
+            "id": "projectile-motion",
+            "name": "Projectile motion",
+            "tag": "Module 1 Kinematics",
+            "type": "concept",
+            "sci": "Independence of horizontal and vertical motion; students commonly (and wrongly) treat the two components as linked, or think a faster horizontal launch delays the fall."
+          }
+        ]
+      },
+      {
+        "id": "investigating-science-stage6-2017",
+        "label": "Investigating Science (2017)",
+        "sub": "Nature & practice of science · depth study",
+        "acknowledgedSuperseded": true,
+        "topics": [
+          {
+            "id": "depth-study",
+            "name": "Depth study across a term",
+            "tag": "Depth study",
+            "type": "skill",
+            "sci": "A multi-week self-directed investigation: forming a question, planning, monitoring progress, and evaluating the whole process — the ideal home for sustained metacognition."
+          }
+        ]
+      }
+    ]
+  }
+]

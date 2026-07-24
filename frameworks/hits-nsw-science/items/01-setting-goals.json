@@ -1,0 +1,86 @@
+{
+  "id": "goals",
+  "ordinal": 1,
+  "name": "Setting Goals",
+  "headline": "Effective teachers set and communicate clear lesson goals so students understand the success criteria, commit to the learning, and get the right mix of success and challenge.",
+  "badges": [
+    { "label": "Goals", "value": "0.56", "kind": "effectSize" },
+    { "label": "Teacher clarity", "value": "0.75", "kind": "effectSize" }
+  ],
+  "inContext": "In science the hard part is that there are always <b>two</b> things being learned at once: the conceptual content, and the Working Scientifically capability. Faculties routinely goal-set the first and quietly assess the second. A goal like 'understand the immune response' tells a student nothing about what a good scientific explanation actually looks like, so feedback conversations keep circling back to 'but what do you want?'. The move that makes this strategy sustained rather than decorative is building a <b>two-strand proficiency scale</b> — content and Working Scientifically running in parallel — and then using the same language in the intention, the feedback and the assessment criteria.",
+  "exemplar": {
+    "context": {
+      "stage": "stage-5",
+      "syllabus": "science-7-10-2023",
+      "focusArea": "disease",
+      "scope": "single",
+      "duration": "10-week unit + faculty pre-work"
+    },
+    "problem": "Students could recite the learning intention from the board but could not say what would make their explanation better. Marking showed strong recall and weak explanation, and the faculty realised it had been assessing analysing data and communicating for two years without ever making them a goal.",
+    "phases": [
+      {
+        "label": "Build the scale",
+        "weekLabel": "Pre-term",
+        "span": { "start": 0, "end": 1 },
+        "what": "The faculty writes a two-strand proficiency scale for the whole unit before anyone teaches it.",
+        "detail": "Strand one is content: pathogens → modes of transmission → immune response → population-level prevention and control. Strand two is Working Scientifically: <b>describes</b> what the data shows → <b>identifies</b> a trend → <b>explains</b> the trend using biological mechanism → <b>evaluates</b> the reliability of the source. Every band is written in language a Year 9 student can read without the teacher translating. This is a faculty task, not a solo one — the value comes from the argument about where the band boundaries sit."
+      },
+      {
+        "label": "Place, then stretch",
+        "weekLabel": "Weeks 1–2",
+        "span": { "start": 1, "end": 3 },
+        "what": "A short diagnostic positions each student on both strands; goals are then set deliberately one band above.",
+        "detail": "The diagnostic is a single outbreak data set with three questions, one per Working Scientifically band. Students place themselves, the teacher moderates the placement, and each student records one content goal and one Working Scientifically goal. The critical move here is <b>challenge</b>: the HITS evidence is clear that specific challenging goals outperform 'do your best', so goals are pitched one band up, not at comfort level, and the teacher says why that band matters."
+      },
+      {
+        "label": "Teach along the scale",
+        "weekLabel": "Weeks 3–7",
+        "span": { "start": 3, "end": 8 },
+        "what": "Every lesson intention is written as a step along the scale rather than a restatement of the topic.",
+        "detail": "Not 'today we are learning about vaccination' but 'today we move from <i>identifying</i> the trend in the vaccination data to <i>explaining</i> it using herd immunity'. Around Week 5 students re-place themselves — but only with evidence, meaning they must annotate a specific piece of their own work against the band descriptor. Students who cannot find the evidence have located their own next step, which is the point."
+      },
+      {
+        "label": "Close the loop and carry forward",
+        "weekLabel": "Weeks 8–10",
+        "span": { "start": 8, "end": 11 },
+        "what": "The assessment criteria are the scale, so self-assessment is possible before submission — and the goal survives the unit.",
+        "detail": "Because the marking criteria use identical wording, students self-assess against the same descriptors they have used for eight weeks, and the gap between their judgement and the teacher's becomes the feedback conversation. The unit ends with a <b>carry-forward goal</b> written into the front of the book for the next focus area, so goal-setting is continuous rather than something that restarts from zero each term."
+      }
+    ],
+    "impact": "The faculty compared the specificity of students' written self-assessments in Week 2 against Week 9 — the shift they were looking for was from 'I need to write more' to 'I describe the trend but I don't link it to a mechanism'. They also tracked how many students could name their own next step unprompted at three points, and moderated a sample of the final task to check that the scale actually discriminated between bands rather than collapsing into two."
+  },
+  "transfer": {
+    "label": "Stage 6 Chemistry · Module 2 Introduction to Quantitative Chemistry",
+    "text": "The same two-strand structure transfers, with the second strand becoming procedural rather than conceptual: 'records working so another person could follow it → tracks units through every line → sense-checks the magnitude of the answer → identifies which relationship is needed before calculating'. Students who are strong at arithmetic but weak at selection can see, for the first time, that the second strand is where their marks are going."
+  },
+  "indicators": {
+    "teacher": [
+      "Uses a diagnostic to set goals from assessed need, rather than assuming a starting point from the year level",
+      "Writes both a content goal and a Working Scientifically goal, and treats the second as equally assessable",
+      "Sets goals a band above current placement and explains why that band matters",
+      "Uses identical language in the lesson intention, the verbal feedback and the assessment criteria",
+      "Requires students to evidence a self-placement with a specific piece of their own work"
+    ],
+    "notDemonstrated": [
+      "The learning intention is the syllabus dot point copied onto the board",
+      "Every student receives the same goal regardless of what the diagnostic showed",
+      "Working Scientifically outcomes are assessed in the task but never appear in a goal",
+      "Goals are written in Week 1 and never revisited",
+      "Marking criteria use different vocabulary from the one students have been taught with"
+    ],
+    "student": [
+      "Can say where they sit on both strands and what the next band requires of them",
+      "Bring a specific annotated piece of their own work when re-placing themselves",
+      "Self-assess against the criteria before submitting, not after receiving a mark",
+      "Carry a goal from one focus area into the next without being asked"
+    ]
+  },
+  "continuum": [
+    { "level": 1, "label": "Emerging", "text": "Teachers write clear learning intentions for each science lesson and explain what students must know and be able to do." },
+    { "level": 2, "label": "Evolving", "text": "Intentions cover both content and Working Scientifically, and are informed by a diagnostic rather than by the unit outline alone." },
+    { "level": 3, "label": "Embedding", "text": "A shared proficiency scale runs across the unit. Students use it to place themselves and name a next step, and the same wording appears in the assessment criteria." },
+    { "level": 4, "label": "Excelling", "text": "Scales are moderated across the faculty and refined using student work. Students routinely set, evidence and revise their own goals across units, and the faculty uses goal data to judge whether challenge is well pitched." }
+  ],
+  "related": ["feedback", "meta", "diff"],
+  "evidence": "Hattie (2009): goals 0.56, teacher clarity 0.75. HITS notes the importance of challenging rather than 'do your best' goals. Aligns with the NSW What Works Best themes of high expectations and assessment; NESA Science 7–10 (2023) Working Scientifically outcomes."
+}
