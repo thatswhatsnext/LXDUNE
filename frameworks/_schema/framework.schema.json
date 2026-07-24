@@ -210,44 +210,81 @@
 
     "matrixHabit": {
       "type": "object",
-      "description": "A teaching habit (matrix row). Shape matches the supplied artefact — no `category`; the handoff's planning/monitoring/evaluating grouping was not present and is not invented.",
+      "description": "A teaching habit (matrix row). `category` is the phase of self-regulated thinking the habit mainly serves.",
       "additionalProperties": false,
-      "required": ["id", "name", "definition"],
+      "required": ["id", "name", "category", "definition"],
       "properties": {
         "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
         "name": { "type": "string", "minLength": 1 },
+        "category": { "enum": ["planning", "monitoring", "evaluating"] },
         "definition": { "type": "string", "minLength": 1 }
       }
     },
 
-    "matrixContext": {
+    "matrixTopic": {
       "type": "object",
-      "description": "A science context (matrix column). Flat, one per column — the artefact has no nested topics. `stage`/`syllabusArea` are vocab-controlled where they map cleanly; `label` is the human-facing chip string.",
+      "description": "A teachable topic (matrix column). `sci` is the shared science summary for all habit cells on this topic.",
       "additionalProperties": false,
-      "required": ["id", "name", "type", "stage", "blurb", "whyHard"],
+      "required": ["id", "name", "type", "sci"],
       "properties": {
         "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
         "name": { "type": "string", "minLength": 1 },
+        "tag": { "type": "string", "description": "Display tag, e.g. the focus area or 'Module 5 Heredity'." },
         "type": { "enum": ["concept", "skill"] },
+        "sci": { "type": "string", "minLength": 1 }
+      }
+    },
+
+    "matrixArea": {
+      "type": "object",
+      "description": "A syllabus area (focus area for Stage 4/5; subject/syllabus for Stage 6). `id` is vocab-controlled.",
+      "additionalProperties": false,
+      "required": ["id", "label", "topics"],
+      "properties": {
+        "id": { "$ref": "#/$defs/vocabRef" },
+        "label": { "type": "string", "minLength": 1 },
+        "sub": { "type": "string" },
+        "acknowledgedSuperseded": {
+          "type": "boolean",
+          "description": "Set true when the area maps to a superseded syllabus deliberately (e.g. the 2017 Stage 6 modules)."
+        },
+        "topics": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/matrixTopic" }
+        }
+      }
+    },
+
+    "matrixStage": {
+      "type": "object",
+      "description": "A stage grouping in the matrix column tree: stage → areas → topics.",
+      "additionalProperties": false,
+      "required": ["stage", "label", "areas"],
+      "properties": {
         "stage": { "$ref": "#/$defs/vocabRef" },
-        "syllabusArea": { "$ref": "#/$defs/vocabRef" },
-        "blurb": { "type": "string", "minLength": 1 },
-        "whyHard": { "type": "string", "minLength": 1 },
-        "label": { "type": "string", "description": "Display string for the context chip, e.g. 'Stage 4 · Living systems'." }
+        "label": { "type": "string", "minLength": 1 },
+        "sub": { "type": "string" },
+        "areas": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/matrixArea" }
+        }
       }
     },
 
     "matrixCell": {
       "type": "object",
-      "description": "One {contextId}×{habitId} cell. Three fields, matching the artefact. Validator enforces full matrix completeness (every context × habit).",
+      "description": "One {topicId}×{habitId} cell. Validator enforces full matrix completeness (every topic × habit).",
       "additionalProperties": false,
-      "required": ["contextId", "habitId", "science", "meta", "vignette"],
+      "required": ["topicId", "habitId", "goal", "script", "why", "evidence"],
       "properties": {
-        "contextId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "topicId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
         "habitId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
-        "science": { "type": "string", "minLength": 1, "description": "The science (context) — what disciplinary thing is in play." },
-        "meta": { "type": "string", "minLength": 1, "description": "The metacognitive move (goal)." },
-        "vignette": { "type": "string", "minLength": 1, "description": "What this looks like in the classroom." }
+        "goal": { "type": "string", "minLength": 1, "description": "The metacognitive goal." },
+        "script": { "type": "string", "minLength": 1, "description": "What the teacher says/does in this lesson." },
+        "why": { "type": "string", "minLength": 1, "description": "The rationale — why this move builds the habit." },
+        "evidence": { "type": "string", "minLength": 1, "description": "Evidence-base citation." }
       }
     }
   },

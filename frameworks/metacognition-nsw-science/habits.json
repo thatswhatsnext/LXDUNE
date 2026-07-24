@@ -1,11 +1,56 @@
 [
-  { "id": "ask", "name": "Ask questions", "definition": "Open-ended questions that probe thinking — including questions students learn to ask of themselves." },
-  { "id": "explicit", "name": "Be explicit", "definition": "Naming the learning intention and the thinking strategy directly, rather than leaving either implicit." },
-  { "id": "plan", "name": "Plan ahead", "definition": "Using a checklist, organiser or planned sequence of steps before starting, not while starting." },
-  { "id": "model", "name": "Model your thinking", "definition": "Thinking aloud — including the moment of getting stuck, and what you do about it." },
-  { "id": "challenge", "name": "Challenge students", "definition": "Introducing a harder or unfamiliar task once confidence is established, to test whether thinking transfers." },
-  { "id": "evaluate", "name": "Evaluate progress", "definition": "Reflecting on and rating the thinking process itself, separately from whether the answer was right." },
-  { "id": "collaborate", "name": "Promote collaboration", "definition": "Comparing how different people reasoned through the same problem." },
-  { "id": "practise", "name": "Keep practising", "definition": "Repeating the same thinking routine across different content until it becomes durable." },
-  { "id": "checkin", "name": "Regularly check in", "definition": "Periodically checking whether a thinking habit is becoming independent, not just present when prompted." }
+  {
+    "id": "ask",
+    "name": "Ask questions",
+    "category": "monitoring",
+    "definition": "Open-ended and self-directed questions that probe thinking."
+  },
+  {
+    "id": "explicit",
+    "name": "Be explicit",
+    "category": "planning",
+    "definition": "Naming the learning intention and the thinking strategy out loud."
+  },
+  {
+    "id": "plan",
+    "name": "Plan ahead",
+    "category": "planning",
+    "definition": "A checklist, organiser or planned sequence used before starting."
+  },
+  {
+    "id": "model",
+    "name": "Model your thinking",
+    "category": "monitoring",
+    "definition": "Thinking aloud, including the moment of getting stuck."
+  },
+  {
+    "id": "challenge",
+    "name": "Challenge students",
+    "category": "evaluating",
+    "definition": "A harder or novel task that tests whether thinking transfers."
+  },
+  {
+    "id": "evaluate",
+    "name": "Evaluate progress",
+    "category": "evaluating",
+    "definition": "Reflecting on the thinking process, not just the answer."
+  },
+  {
+    "id": "collab",
+    "name": "Promote collaboration",
+    "category": "monitoring",
+    "definition": "Comparing how different people reasoned through the same problem."
+  },
+  {
+    "id": "practise",
+    "name": "Keep practising",
+    "category": "evaluating",
+    "definition": "Repeating a thinking routine across content until it's durable."
+  },
+  {
+    "id": "checkin",
+    "name": "Regularly check in",
+    "category": "planning",
+    "definition": "Checking whether a habit is becoming independent, not just prompted."
+  }
 ]

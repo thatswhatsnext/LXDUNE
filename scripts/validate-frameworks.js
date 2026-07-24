@@ -59,7 +59,7 @@ ajv.addSchema(schema, 'framework.schema.json');
 const validateFramework = ajv.getSchema('framework.schema.json#/$defs/framework');
 const validateDeepDive = ajv.getSchema('framework.schema.json#/$defs/deepDiveItem');
 const validateMatrixHabit = ajv.getSchema('framework.schema.json#/$defs/matrixHabit');
-const validateMatrixContext = ajv.getSchema('framework.schema.json#/$defs/matrixContext');
+const validateMatrixStage = ajv.getSchema('framework.schema.json#/$defs/matrixStage');
 const validateMatrixCell = ajv.getSchema('framework.schema.json#/$defs/matrixCell');
 
 const fmtAjv = (label, errors) =>
@@ -178,29 +178,39 @@ function validateMatrixFramework(dir, name, vocab, fw) {
   habits.forEach((h) => {
     if (!validateMatrixHabit(h)) fmtAjv(`[${h.id || '?'}]`, validateMatrixHabit.errors).forEach((m) => err(habitsRel, m));
   });
-  contexts.forEach((c) => {
-    if (!validateMatrixContext(c)) fmtAjv(`[${c.id || '?'}]`, validateMatrixContext.errors).forEach((m) => err(contextsRel, m));
-    checkRefs(contextsRel, { stage: c.stage, focusArea: c.syllabusArea }, vocab, false);
+
+  // walk the stage → area → topic tree
+  const topicIds = [];
+  contexts.forEach((stage) => {
+    if (!validateMatrixStage(stage))
+      fmtAjv(`[${stage.stage || '?'}]`, validateMatrixStage.errors).forEach((m) => err(contextsRel, m));
+    checkRefs(contextsRel, { stage: stage.stage }, vocab, true); // stage ids are never superseded
+    (stage.areas || []).forEach((area) => {
+      checkRefs(contextsRel, { focusArea: area.id }, vocab, area.acknowledgedSuperseded === true);
+      (area.topics || []).forEach((t) => {
+        if (topicIds.includes(t.id)) err(contextsRel, `duplicate topic id "${t.id}"`);
+        topicIds.push(t.id);
+      });
+    });
   });
 
   const habitIds = habits.map((h) => h.id);
-  const contextIds = contexts.map((c) => c.id);
   const present = new Set();
   cells.forEach((cell, i) => {
     if (!validateMatrixCell(cell))
-      fmtAjv(`[${cell.contextId || '?'}×${cell.habitId || '?'}]`, validateMatrixCell.errors).forEach((m) => err(cellsRel, m));
-    if (!contextIds.includes(cell.contextId)) err(cellsRel, `cell[${i}] contextId "${cell.contextId}" is not a defined context`);
+      fmtAjv(`[${cell.topicId || '?'}×${cell.habitId || '?'}]`, validateMatrixCell.errors).forEach((m) => err(cellsRel, m));
+    if (!topicIds.includes(cell.topicId)) err(cellsRel, `cell[${i}] topicId "${cell.topicId}" is not a defined topic`);
     if (!habitIds.includes(cell.habitId)) err(cellsRel, `cell[${i}] habitId "${cell.habitId}" is not a defined habit`);
-    const key = `${cell.contextId}×${cell.habitId}`;
+    const key = `${cell.topicId}×${cell.habitId}`;
     if (present.has(key)) err(cellsRel, `duplicate cell ${key}`);
     present.add(key);
   });
-  // completeness: every context × habit must exist
-  for (const c of contextIds)
+  // completeness: every topic × habit must exist
+  for (const t of topicIds)
     for (const h of habitIds)
-      if (!present.has(`${c}×${h}`)) err(name, `matrix incomplete — missing cell ${c}×${h}`);
+      if (!present.has(`${t}×${h}`)) err(name, `matrix incomplete — missing cell ${t}×${h}`);
 
-  return `${contextIds.length}×${habitIds.length} = ${contextIds.length * habitIds.length} cells`;
+  return `${topicIds.length} topics × ${habitIds.length} habits = ${topicIds.length * habitIds.length} cells`;
 }
 
 // ── main ────────────────────────────────────────────────────────────────────────

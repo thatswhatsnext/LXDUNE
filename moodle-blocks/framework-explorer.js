@@ -568,122 +568,169 @@ const DEEPDIVE_STYLES = `
 @media(prefers-reduced-motion:reduce){.lxd-fx *{transition:none !important;scroll-behavior:auto !important;}}
 `;
 
+
 // ── matrix view (metacognition shape) ────────────────────────────────────────────
-// Two axes (science contexts × teaching habits) resolving to a cell of three
-// fields. Adding this view required no change to the core above the VIEWS
-// registry — the seam holds (handoff §9 step 6).
+// Column tree: stage → syllabus area → topic; rows: teaching habits grouped by
+// self-regulation phase. A topic × habit resolves to a cell (goal/script/why/
+// evidence) over the topic's shared science summary. Adding this view required
+// no change to the core above the VIEWS registry — the seam holds (§9 step 6).
 async function loadMatrix(dir, fw) {
   if (!fw.matrix) throw new Error('framework has no matrix manifest');
-  const [habits, contexts, cells] = await Promise.all([
+  const [habits, stages, cells] = await Promise.all([
     fetchJson(dir + fw.matrix.habits),
     fetchJson(dir + fw.matrix.contexts),
     fetchJson(dir + fw.matrix.cells),
   ]);
-  return { habits, contexts, cells };
+  return { habits, stages, cells };
 }
 
-function renderMatrix(mount, fw, { habits, contexts, cells }) {
+function renderMatrix(mount, fw, { habits, stages, cells }) {
   injectStyles('lxd-fx-mx-styles', MATRIX_STYLES);
   mount.className = 'lxd-fx lxd-fx-mx';
   mount.innerHTML = MATRIX_SHELL(fw);
   const $ = (sel) => mount.querySelector(sel);
 
-  const cellOf = new Map(cells.map((c) => [`${c.contextId}×${c.habitId}`, c]));
-  const state = { context: contexts[0]?.id, habit: habits[0]?.id, scanOpen: false }; // in-memory only
+  const cellOf = new Map(cells.map((c) => [`${c.topicId}×${c.habitId}`, c]));
+  const habitById = new Map(habits.map((h) => [h.id, h]));
+  const state = { s: 0, a: 0, t: 0, habit: habits[0] && habits[0].id, scanOpen: false }; // in-memory only
 
-  function renderContexts() {
-    const grid = $('.lxd-fx-mx-contexts');
-    grid.innerHTML = '';
-    contexts.forEach((c) => {
-      const card = document.createElement('button');
-      card.type = 'button';
-      card.className = 'lxd-fx-mx-ctx' + (c.id === state.context ? ' active' : '');
-      card.setAttribute('aria-pressed', String(c.id === state.context));
-      const typeLabel = c.type === 'concept' ? 'Content concept' : 'Science skill';
-      card.innerHTML =
-        `<div class="lxd-fx-mx-badges"><span class="lxd-fx-mx-badge type">${esc(typeLabel)}</span>` +
-        `<span class="lxd-fx-mx-badge stage">${esc(c.label || c.stage)}</span></div>` +
-        `<h3>${esc(c.name)}</h3><p class="lxd-fx-mx-blurb">${esc(c.blurb)}</p>` +
-        `<details><summary></summary><p class="lxd-fx-mx-why">${esc(c.whyHard)}</p></details>`;
-      card.querySelector('summary').addEventListener('click', (e) => e.stopPropagation());
-      card.addEventListener('click', () => {
-        state.context = c.id;
-        closeScan();
+  const curStage = () => stages[state.s];
+  const curArea = () => curStage().areas[state.a];
+  const curTopic = () => curArea().topics[state.t];
+
+  function segBtn(label, sub, on) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'lxd-fx-mx-seg' + (on ? ' on' : '');
+    b.setAttribute('aria-pressed', String(on));
+    b.innerHTML = esc(label) + (sub ? `<span class="sub">${esc(sub)}</span>` : '');
+    return b;
+  }
+
+  function renderStages() {
+    const seg = $('.lxd-fx-mx-stages');
+    seg.innerHTML = '';
+    stages.forEach((st, i) => {
+      const b = segBtn(st.label, st.sub, i === state.s);
+      b.addEventListener('click', () => {
+        state.s = i;
+        state.a = 0;
+        state.t = 0;
         renderAll();
       });
-      grid.appendChild(card);
+      seg.appendChild(b);
+    });
+  }
+
+  function renderAreas() {
+    const seg = $('.lxd-fx-mx-areas');
+    seg.innerHTML = '';
+    curStage().areas.forEach((a, i) => {
+      const b = segBtn(a.label, a.sub, i === state.a);
+      b.addEventListener('click', () => {
+        state.a = i;
+        state.t = 0;
+        renderAll();
+      });
+      seg.appendChild(b);
+    });
+  }
+
+  function renderTopics() {
+    const grid = $('.lxd-fx-mx-topics');
+    grid.innerHTML = '';
+    curArea().topics.forEach((t, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'lxd-fx-mx-topic' + (i === state.t ? ' on' : '');
+      b.setAttribute('aria-pressed', String(i === state.t));
+      const typeClass = t.type === 'skill' ? 'type-skill' : 'type-concept';
+      const typeLabel = t.type === 'skill' ? 'Science skill' : 'Content concept';
+      b.innerHTML =
+        `<div class="lxd-fx-mx-tname">${esc(t.name)}</div>` +
+        (t.tag ? `<div class="lxd-fx-mx-ttag">${esc(t.tag)}</div>` : '') +
+        `<span class="lxd-fx-mx-ttype ${typeClass}">${typeLabel}</span>`;
+      b.addEventListener('click', () => {
+        state.t = i;
+        renderResult();
+        closeScan();
+      });
+      grid.appendChild(b);
     });
   }
 
   function renderHabits() {
-    const wrap = $('.lxd-fx-mx-habits');
-    wrap.innerHTML = '';
+    const rail = $('.lxd-fx-mx-habits');
+    rail.innerHTML = '';
     habits.forEach((h) => {
-      const chip = document.createElement('button');
-      chip.type = 'button';
-      chip.className = 'lxd-fx-mx-chip' + (h.id === state.habit ? ' active' : '');
-      chip.setAttribute('aria-pressed', String(h.id === state.habit));
-      chip.textContent = h.name;
-      chip.addEventListener('mouseenter', () => showHabitHelper(h));
-      chip.addEventListener('mouseleave', () => showHabitHelper(byHabit(state.habit)));
-      chip.addEventListener('click', () => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'lxd-fx-mx-habit' + (h.id === state.habit ? ' on' : '');
+      b.setAttribute('aria-pressed', String(h.id === state.habit));
+      b.title = h.definition;
+      b.innerHTML = `<span class="lxd-fx-mx-pip pip-${esc(h.category)}"></span>${esc(h.name)}`;
+      b.addEventListener('click', () => {
         state.habit = h.id;
+        renderHabits();
+        renderResult();
         closeScan();
-        renderAll();
       });
-      wrap.appendChild(chip);
+      rail.appendChild(b);
     });
-    showHabitHelper(byHabit(state.habit));
   }
 
-  const byHabit = (id) => habits.find((h) => h.id === id);
-  const byContext = (id) => contexts.find((c) => c.id === id);
-
-  function showHabitHelper(h) {
-    if (h) $('.lxd-fx-mx-habithelper').innerHTML = `<b>${esc(h.name)}</b> — ${esc(h.definition)}`;
-  }
-
-  function renderDetail() {
-    const c = byContext(state.context);
-    const h = byHabit(state.habit);
-    const cell = cellOf.get(`${state.context}×${state.habit}`);
-    $('.lxd-fx-mx-eq-context').textContent = c ? c.name : '—';
-    $('.lxd-fx-mx-eq-habit').textContent = h ? h.name : '—';
-    $('.lxd-fx-mx-science').textContent = cell ? cell.science : '';
-    $('.lxd-fx-mx-meta').textContent = cell ? cell.meta : '';
-    $('.lxd-fx-mx-vignette').textContent = cell ? cell.vignette : '';
-    $('.lxd-fx-mx-scanbtn').textContent = `See all ${habits.length} habits applied to ${c ? c.name : 'this context'} →`;
+  function renderResult() {
+    const t = curTopic();
+    const h = habitById.get(state.habit);
+    const cell = cellOf.get(`${t.id}×${state.habit}`);
+    $('.lxd-fx-mx-crumb').innerHTML =
+      `${esc(curStage().label)} › ${esc(curArea().label)} › <b>${esc(t.name)}</b>`;
+    $('.lxd-fx-mx-combo').innerHTML =
+      `Teaching <b>${esc(t.name)}</b> — embedding <span class="hl">“${esc(h.name)}”</span>`;
+    $('.lxd-fx-mx-sci').innerHTML = t.sci;
+    $('.lxd-fx-mx-goal').innerHTML = cell ? cell.goal : '';
+    $('.lxd-fx-mx-script').innerHTML = cell ? cell.script : '';
+    $('.lxd-fx-mx-why').innerHTML = cell ? cell.why : '';
+    $('.lxd-fx-mx-ev').innerHTML = cell ? cell.evidence : '';
+    $('.lxd-fx-mx-scanbtn').textContent = `See all ${habits.length} habits for “${t.name}” →`;
   }
 
   function closeScan() {
+    const l = $('.lxd-fx-mx-scanlist');
+    l.hidden = true;
+    l.innerHTML = '';
     state.scanOpen = false;
-    const list = $('.lxd-fx-mx-scanlist');
-    list.hidden = true;
-    list.innerHTML = '';
   }
 
   function renderScan() {
-    const list = $('.lxd-fx-mx-scanlist');
+    const l = $('.lxd-fx-mx-scanlist');
     if (state.scanOpen) return closeScan();
-    list.innerHTML = '';
+    const t = curTopic();
+    l.innerHTML = '';
     habits.forEach((h) => {
-      const cell = cellOf.get(`${state.context}×${h.id}`);
+      const cell = cellOf.get(`${t.id}×${h.id}`);
       if (!cell) return;
       const row = document.createElement('div');
       row.className = 'lxd-fx-mx-scanrow';
       row.innerHTML =
-        `<span class="lxd-fx-mx-scanname">${esc(h.name)}</span>` +
-        `<span class="lxd-fx-mx-scantext"><b>${esc(cell.meta)}</b> — ${esc(cell.vignette)}</span>`;
-      list.appendChild(row);
+        `<div class="lxd-fx-mx-scanhead"><span class="n">${esc(h.name)}</span>` +
+        `<span class="c">${esc(h.category)} · goal</span>` +
+        `<span class="g">${esc(cell.goal)}</span></div>` +
+        `<div class="lxd-fx-mx-scanbody"><span class="say">“${esc(cell.script)}”</span>` +
+        `<div class="w">${cell.why}</div></div>`;
+      l.appendChild(row);
     });
-    list.hidden = false;
+    l.hidden = false;
     state.scanOpen = true;
   }
 
   function renderAll() {
-    renderContexts();
+    renderStages();
+    renderAreas();
+    renderTopics();
     renderHabits();
-    renderDetail();
+    renderResult();
+    closeScan();
   }
 
   $('.lxd-fx-mx-scanbtn').addEventListener('click', renderScan);
@@ -692,55 +739,75 @@ function renderMatrix(mount, fw, { habits, contexts, cells }) {
 
 function MATRIX_SHELL(fw) {
   const sources = (fw.sources || []).map((s) => `<li>${s}</li>`).join('');
+  const step = (n, title, sub) =>
+    `<div class="lxd-fx-mx-stephead"><span class="lxd-fx-mx-stepnum">${n}</span>` +
+    `<span class="lxd-fx-mx-steptitle">${esc(title)}</span></div>` +
+    (sub ? `<p class="lxd-fx-mx-stepsub">${sub}</p>` : '');
   return `
   <div class="lxd-fx-mx-page">
-    ${fw.kicker ? `<p class="lxd-fx-mx-eyebrow">${fw.kicker}</p>` : ''}
+    ${fw.kicker ? `<p class="lxd-fx-mx-kicker">${fw.kicker}</p>` : ''}
     <h1 class="lxd-fx-mx-h1">${esc(fw.title)}</h1>
-    ${fw.subtitle ? `<p class="lxd-fx-mx-thesis">${fw.subtitle}</p>` : ''}
+    ${fw.subtitle ? `<p class="lxd-fx-mx-lede">${fw.subtitle}</p>` : ''}
+    <div class="lxd-fx-mx-legend">
+      <span><span class="lxd-fx-mx-dot sci"></span> The science being taught</span>
+      <span><span class="lxd-fx-mx-dot meta"></span> The thinking habit being built</span>
+    </div>
     ${
       fw.usageNote
-        ? `<details class="lxd-fx-mx-howto"><summary>How to read this tool</summary>
-             <div class="lxd-fx-mx-howto-body">${fw.usageNote}</div></details>`
+        ? `<details class="lxd-fx-mx-about"><summary>Why keep these two things separate?</summary>
+             <div class="lxd-fx-mx-about-body">${fw.usageNote}</div></details>`
         : ''
     }
 
-    <p class="lxd-fx-mx-section">1 — Choose a science teaching context</p>
-    <div class="lxd-fx-mx-contexts" role="group" aria-label="Choose a science context"></div>
+    ${step('1', 'Choose a stage', '')}
+    <div class="lxd-fx-mx-seg-wrap"><div class="lxd-fx-mx-stages" role="group" aria-label="Choose a stage"></div></div>
 
-    <p class="lxd-fx-mx-section">2 — Choose a teaching habit</p>
-    ${fw.helperText ? `<p class="lxd-fx-mx-helper">${esc(fw.helperText)}</p>` : ''}
-    <div class="lxd-fx-mx-habits" role="group" aria-label="Choose a teaching habit"></div>
-    <p class="lxd-fx-mx-habithelper" aria-live="polite"></p>
+    ${step('2', 'Choose a syllabus area', 'Pick the focus area or module you’re planning.')}
+    <div class="lxd-fx-mx-seg-wrap"><div class="lxd-fx-mx-areas" role="group" aria-label="Choose a syllabus area"></div></div>
 
-    <div class="lxd-fx-mx-eqbar">
-      <span class="lxd-fx-mx-eqchip context lxd-fx-mx-eq-context">—</span>
-      <span class="lxd-fx-mx-eqop">+</span>
-      <span class="lxd-fx-mx-eqchip habit lxd-fx-mx-eq-habit">—</span>
+    ${step('3', 'Choose a topic', 'Two kinds appear: <b>content concepts</b> and <b>science skills</b>. Metacognition can be built on either.')}
+    <div class="lxd-fx-mx-topics-wrap"><div class="lxd-fx-mx-topics"></div></div>
+
+    ${step('4', 'Choose a teaching habit', fw.helperText ? esc(fw.helperText) : '')}
+    <div class="lxd-fx-mx-habits-wrap">
+      <div class="lxd-fx-mx-habits" role="group" aria-label="Choose a teaching habit"></div>
+      <div class="lxd-fx-mx-catkey">
+        <span><span class="lxd-fx-mx-pip pip-planning"></span> Planning</span>
+        <span><span class="lxd-fx-mx-pip pip-monitoring"></span> Monitoring</span>
+        <span><span class="lxd-fx-mx-pip pip-evaluating"></span> Evaluating</span>
+      </div>
     </div>
 
-    <div class="lxd-fx-mx-panel">
-      <div class="lxd-fx-mx-cols">
-        <div class="lxd-fx-mx-col science">
-          <span class="lxd-fx-mx-colbadge">The science (context)</span>
-          <p class="lxd-fx-mx-science"></p>
+    <div class="lxd-fx-mx-result">
+      <div class="lxd-fx-mx-result-head">
+        <div class="lxd-fx-mx-crumb"></div>
+        <div class="lxd-fx-mx-combo"></div>
+      </div>
+      <div class="lxd-fx-mx-split">
+        <div class="lxd-fx-mx-cell sci">
+          <span class="lxd-fx-mx-celllabel">The science</span>
+          <p class="lxd-fx-mx-sci"></p>
         </div>
-        <div class="lxd-fx-mx-col meta">
-          <span class="lxd-fx-mx-colbadge">The metacognitive move (goal)</span>
-          <p class="lxd-fx-mx-meta"></p>
+        <div class="lxd-fx-mx-cell meta">
+          <span class="lxd-fx-mx-celllabel">The metacognitive goal</span>
+          <p class="lxd-fx-mx-goal"></p>
         </div>
       </div>
-      <div class="lxd-fx-mx-vignettebox">
-        <span class="lxd-fx-mx-vlabel">What this looks like in the classroom</span>
-        <p class="lxd-fx-mx-vignette"></p>
+      <div class="lxd-fx-mx-move">
+        <span class="lxd-fx-mx-movelabel">The teaching move in this lesson</span>
+        <div class="lxd-fx-mx-scriptbox"><span class="lxd-fx-mx-script"></span></div>
+        <p class="lxd-fx-mx-why"></p>
+        <p class="lxd-fx-mx-ev"></p>
       </div>
     </div>
 
     <div class="lxd-fx-mx-scan">
-      <button class="lxd-fx-mx-scanbtn" type="button">See all habits applied to this context →</button>
+      <button class="lxd-fx-mx-scanbtn" type="button">See all habits for this topic →</button>
       <div class="lxd-fx-mx-scanlist" hidden></div>
     </div>
 
     <div class="lxd-fx-mx-footer">
+      <h4>Sources</h4>
       <ul>${sources}</ul>
       ${fw.attribution ? `<p>${esc(fw.attribution)}</p>` : ''}
     </div>
@@ -752,100 +819,122 @@ function MATRIX_SHELL(fw) {
 // no storage, focus + reduced-motion preserved.
 const MATRIX_STYLES = `
 .lxd-fx.lxd-fx-mx{
-  --mx-bg:#F5F4EF; --mx-card:#FFFFFF; --mx-border:#DEDAD0;
-  --mx-ink:#1E2A35; --mx-body:#3C4750; --mx-muted:#74808A;
-  --mx-science:#2F6B60; --mx-science-bg:#E4EEEA; --mx-science-line:#BFD6CE;
-  --mx-meta:#9A5B18; --mx-meta-bg:#F4E7D3; --mx-meta-line:#E2C89C;
-  --mx-gold:#B08A2E;
-  --mx-shadow:0 1px 2px rgba(30,42,53,0.04), 0 6px 16px rgba(30,42,53,0.05);
-  --mx-r:14px;
+  --mx-bg:#F3F1EC; --mx-panel:#FFFFFF; --mx-ink:#182028; --mx-body:#3A454E; --mx-muted:#79838C;
+  --mx-border:#E1DCD1; --mx-border-strong:#CFC7B7;
+  --mx-sci:#215E56; --mx-sci-bg:#E4EEEB; --mx-sci-line:#B6D2CA;
+  --mx-meta:#8A4A12; --mx-meta-bg:#F5E7D5; --mx-meta-line:#E3C79E;
+  --mx-plan:#3C6E8F; --mx-monitor:#8A6D1F; --mx-evaluate:#7A4477;
+  --mx-gold:#A9842B;
+  --mx-shadow:0 1px 2px rgba(24,32,40,.05), 0 8px 24px rgba(24,32,40,.06);
+  --mx-r:16px;
   --mx-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
-  color:var(--mx-body,#3C4750); line-height:1.5; box-sizing:border-box;
+  color:var(--mx-body,#3A454E); line-height:1.55; box-sizing:border-box;
 }
 .lxd-fx.lxd-fx-mx *,.lxd-fx.lxd-fx-mx *::before,.lxd-fx.lxd-fx-mx *::after{box-sizing:border-box;}
-.lxd-fx-mx .lxd-fx-mx-page{max-width:980px;margin:0 auto;padding:8px 4px 40px;}
+.lxd-fx-mx .lxd-fx-mx-page{max-width:1080px;margin:0 auto;padding:8px 4px 40px;}
 
-.lxd-fx-mx .lxd-fx-mx-eyebrow{font-family:var(--mx-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mx-gold,#B08A2E);margin:0 0 10px;font-weight:600;}
-.lxd-fx-mx .lxd-fx-mx-h1{font-weight:700;font-size:clamp(26px,4vw,38px);line-height:1.15;color:var(--mx-ink,#1E2A35);margin:0 0 16px;max-width:20ch;}
-.lxd-fx-mx .lxd-fx-mx-thesis{font-size:17px;max-width:62ch;color:var(--mx-body,#3C4750);margin:0 0 6px;}
-.lxd-fx-mx .lxd-fx-mx-thesis strong{color:var(--mx-ink,#1E2A35);}
+.lxd-fx-mx .lxd-fx-mx-kicker{font-family:var(--mx-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mx-gold,#A9842B);font-weight:600;margin:0 0 14px;}
+.lxd-fx-mx .lxd-fx-mx-h1{font-weight:700;font-size:clamp(28px,4.6vw,44px);line-height:1.08;color:var(--mx-ink,#182028);margin:0 0 18px;letter-spacing:-.01em;max-width:20ch;}
+.lxd-fx-mx .lxd-fx-mx-lede{font-size:18px;max-width:66ch;color:var(--mx-body,#3A454E);margin:0 0 8px;}
+.lxd-fx-mx .lxd-fx-mx-lede b{color:var(--mx-ink,#182028);font-weight:600;}
+.lxd-fx-mx .lxd-fx-mx-legend{display:flex;gap:22px;flex-wrap:wrap;margin:22px 0 0;font-size:14px;}
+.lxd-fx-mx .lxd-fx-mx-legend span{display:inline-flex;align-items:center;gap:8px;font-weight:500;}
+.lxd-fx-mx .lxd-fx-mx-dot{width:11px;height:11px;border-radius:3px;display:inline-block;}
+.lxd-fx-mx .lxd-fx-mx-dot.sci{background:var(--mx-sci,#215E56);}
+.lxd-fx-mx .lxd-fx-mx-dot.meta{background:var(--mx-meta,#8A4A12);}
 
-.lxd-fx-mx .lxd-fx-mx-howto{margin-top:18px;background:var(--mx-card,#FFFFFF);border:1px solid var(--mx-border,#DEDAD0);border-radius:var(--mx-r,14px);padding:4px 18px;box-shadow:var(--mx-shadow);}
-.lxd-fx-mx .lxd-fx-mx-howto summary{cursor:pointer;font-weight:600;color:var(--mx-ink,#1E2A35);padding:14px 0;list-style:none;display:flex;align-items:center;gap:8px;font-size:15px;}
-.lxd-fx-mx .lxd-fx-mx-howto summary::-webkit-details-marker{display:none;}
-.lxd-fx-mx .lxd-fx-mx-howto summary::before{content:"+";display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:var(--mx-meta-bg,#F4E7D3);color:var(--mx-meta,#9A5B18);font-weight:700;font-size:15px;flex-shrink:0;}
-.lxd-fx-mx .lxd-fx-mx-howto[open] summary::before{content:"\\2212";}
-.lxd-fx-mx .lxd-fx-mx-howto-body{padding:0 0 18px 28px;font-size:15px;color:var(--mx-body,#3C4750);}
-.lxd-fx-mx .lxd-fx-mx-howto-body p{margin:0 0 10px;}
-.lxd-fx-mx .lxd-fx-mx-howto-body p:last-child{margin-bottom:0;}
+.lxd-fx-mx .lxd-fx-mx-about{margin:20px 0 0;background:var(--mx-panel,#FFFFFF);border:1px solid var(--mx-border,#E1DCD1);border-radius:var(--mx-r,16px);box-shadow:var(--mx-shadow);padding:2px 20px;}
+.lxd-fx-mx .lxd-fx-mx-about summary{cursor:pointer;font-weight:600;color:var(--mx-ink,#182028);padding:15px 0;list-style:none;display:flex;align-items:center;gap:10px;font-size:15px;}
+.lxd-fx-mx .lxd-fx-mx-about summary::-webkit-details-marker{display:none;}
+.lxd-fx-mx .lxd-fx-mx-about summary::before{content:"+";width:20px;height:20px;border-radius:6px;background:var(--mx-meta-bg,#F5E7D5);color:var(--mx-meta,#8A4A12);font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.lxd-fx-mx .lxd-fx-mx-about[open] summary::before{content:"\\2212";}
+.lxd-fx-mx .lxd-fx-mx-about-body{padding:0 0 18px 30px;font-size:15px;}
+.lxd-fx-mx .lxd-fx-mx-about-body p{margin:0 0 11px;}
+.lxd-fx-mx .lxd-fx-mx-about-body b{color:var(--mx-ink,#182028);}
 
-.lxd-fx-mx .lxd-fx-mx-section{font-family:var(--mx-mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mx-muted,#74808A);font-weight:600;margin:44px 0 4px;}
-.lxd-fx-mx .lxd-fx-mx-helper{font-size:14.5px;color:var(--mx-muted,#74808A);margin:0 0 16px;max-width:62ch;}
+.lxd-fx-mx .lxd-fx-mx-stephead{display:flex;align-items:baseline;gap:12px;margin:44px 0 6px;}
+.lxd-fx-mx .lxd-fx-mx-stepnum{font-family:var(--mx-mono);font-size:13px;font-weight:600;color:var(--mx-panel,#FFFFFF);background:var(--mx-ink,#182028);width:26px;height:26px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transform:translateY(3px);}
+.lxd-fx-mx .lxd-fx-mx-steptitle{font-size:22px;font-weight:700;color:var(--mx-ink,#182028);}
+.lxd-fx-mx .lxd-fx-mx-stepsub{font-size:14.5px;color:var(--mx-muted,#79838C);margin:2px 0 16px 38px;max-width:64ch;}
+.lxd-fx-mx .lxd-fx-mx-stepsub b{color:var(--mx-body,#3A454E);}
+.lxd-fx-mx .lxd-fx-mx-seg-wrap,.lxd-fx-mx .lxd-fx-mx-topics-wrap,.lxd-fx-mx .lxd-fx-mx-habits-wrap{margin-left:38px;}
 
-.lxd-fx-mx .lxd-fx-mx-contexts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-.lxd-fx-mx .lxd-fx-mx-ctx{text-align:left;background:var(--mx-card,#FFFFFF);border:1.5px solid var(--mx-border,#DEDAD0);border-radius:var(--mx-r,14px);padding:16px 18px 14px;cursor:pointer;box-shadow:var(--mx-shadow);transition:border-color .15s ease;color:inherit;font:inherit;}
-.lxd-fx-mx .lxd-fx-mx-ctx:hover{border-color:var(--mx-science-line,#BFD6CE);}
-.lxd-fx-mx .lxd-fx-mx-ctx.active{border-color:var(--mx-science,#2F6B60);box-shadow:0 0 0 3px var(--mx-science-bg,#E4EEEA),var(--mx-shadow);}
-.lxd-fx-mx .lxd-fx-mx-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
-.lxd-fx-mx .lxd-fx-mx-badge{font-family:var(--mx-mono);font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;display:inline-block;letter-spacing:.02em;}
-.lxd-fx-mx .lxd-fx-mx-badge.type{background:#EDEBE3;color:#6B6355;}
-.lxd-fx-mx .lxd-fx-mx-badge.stage{background:#E9ECEF;color:#4A5560;}
-.lxd-fx-mx .lxd-fx-mx-ctx h3{font-size:18px;font-weight:700;color:var(--mx-ink,#1E2A35);margin:0 0 6px;}
-.lxd-fx-mx .lxd-fx-mx-blurb{font-size:14px;color:var(--mx-body,#3C4750);margin:0 0 8px;}
-.lxd-fx-mx .lxd-fx-mx-ctx details{margin-top:6px;}
-.lxd-fx-mx .lxd-fx-mx-ctx summary{cursor:pointer;font-size:13px;color:var(--mx-gold,#B08A2E);font-weight:600;list-style:none;}
-.lxd-fx-mx .lxd-fx-mx-ctx summary::-webkit-details-marker{display:none;}
-.lxd-fx-mx .lxd-fx-mx-ctx summary::after{content:" why this is hard \\25BE";}
-.lxd-fx-mx .lxd-fx-mx-ctx details[open] summary::after{content:" why this is hard \\25B4";}
-.lxd-fx-mx .lxd-fx-mx-why{font-size:13.5px;color:var(--mx-body,#3C4750);margin:8px 0 0;padding-top:8px;border-top:1px dashed var(--mx-border,#DEDAD0);}
+.lxd-fx-mx .lxd-fx-mx-stages,.lxd-fx-mx .lxd-fx-mx-areas{display:flex;gap:8px;flex-wrap:wrap;}
+.lxd-fx-mx .lxd-fx-mx-seg{font-size:14.5px;font-weight:600;color:var(--mx-body,#3A454E);background:var(--mx-panel,#FFFFFF);border:1.5px solid var(--mx-border,#E1DCD1);border-radius:11px;padding:11px 18px;cursor:pointer;box-shadow:var(--mx-shadow);transition:.14s;text-align:left;}
+.lxd-fx-mx .lxd-fx-mx-seg .sub{display:block;font-weight:400;font-size:12px;color:var(--mx-muted,#79838C);margin-top:2px;font-family:var(--mx-mono);letter-spacing:.02em;}
+.lxd-fx-mx .lxd-fx-mx-seg:hover{border-color:var(--mx-sci-line,#B6D2CA);}
+.lxd-fx-mx .lxd-fx-mx-seg.on{border-color:var(--mx-sci,#215E56);background:var(--mx-sci-bg,#E4EEEB);color:var(--mx-sci,#215E56);}
+.lxd-fx-mx .lxd-fx-mx-seg.on .sub{color:var(--mx-sci,#215E56);}
 
-.lxd-fx-mx .lxd-fx-mx-habits{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
-.lxd-fx-mx .lxd-fx-mx-chip{font-size:14px;font-weight:600;color:var(--mx-ink,#1E2A35);background:var(--mx-card,#FFFFFF);border:1.5px solid var(--mx-border,#DEDAD0);border-radius:999px;padding:8px 16px;cursor:pointer;box-shadow:var(--mx-shadow);transition:border-color .15s ease,background .15s ease;}
-.lxd-fx-mx .lxd-fx-mx-chip:hover{border-color:var(--mx-meta-line,#E2C89C);}
-.lxd-fx-mx .lxd-fx-mx-chip.active{border-color:var(--mx-meta,#9A5B18);background:var(--mx-meta-bg,#F4E7D3);color:var(--mx-meta,#9A5B18);}
-.lxd-fx-mx .lxd-fx-mx-habithelper{font-size:13.5px;color:var(--mx-muted,#74808A);min-height:20px;margin:6px 0 0;}
-.lxd-fx-mx .lxd-fx-mx-habithelper b{color:var(--mx-ink,#1E2A35);}
+.lxd-fx-mx .lxd-fx-mx-topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px;}
+.lxd-fx-mx .lxd-fx-mx-topic{text-align:left;background:var(--mx-panel,#FFFFFF);border:1.5px solid var(--mx-border,#E1DCD1);border-radius:12px;padding:13px 15px;cursor:pointer;box-shadow:var(--mx-shadow);transition:.14s;color:inherit;font:inherit;}
+.lxd-fx-mx .lxd-fx-mx-topic:hover{border-color:var(--mx-sci-line,#B6D2CA);}
+.lxd-fx-mx .lxd-fx-mx-topic.on{border-color:var(--mx-sci,#215E56);box-shadow:0 0 0 3px var(--mx-sci-bg,#E4EEEB),var(--mx-shadow);}
+.lxd-fx-mx .lxd-fx-mx-tname{font-weight:600;color:var(--mx-ink,#182028);font-size:15px;line-height:1.25;}
+.lxd-fx-mx .lxd-fx-mx-ttag{font-family:var(--mx-mono);font-size:11px;color:var(--mx-muted,#79838C);margin-top:5px;letter-spacing:.02em;}
+.lxd-fx-mx .lxd-fx-mx-ttype{display:inline-block;font-size:10.5px;font-weight:600;font-family:var(--mx-mono);text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:999px;margin-top:8px;}
+.lxd-fx-mx .lxd-fx-mx-ttype.type-concept{background:#EBE7DD;color:#6E6552;}
+.lxd-fx-mx .lxd-fx-mx-ttype.type-skill{background:#E5EDEA;color:var(--mx-sci,#215E56);}
 
-.lxd-fx-mx .lxd-fx-mx-eqbar{margin-top:40px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:18px;background:linear-gradient(180deg,#FBFAF7,#F3F1EA);border:1px solid var(--mx-border,#DEDAD0);border-radius:var(--mx-r,14px);}
-.lxd-fx-mx .lxd-fx-mx-eqchip{font-size:19px;font-weight:700;padding:8px 18px;border-radius:10px;}
-.lxd-fx-mx .lxd-fx-mx-eqchip.context{background:var(--mx-science-bg,#E4EEEA);color:var(--mx-science,#2F6B60);}
-.lxd-fx-mx .lxd-fx-mx-eqchip.habit{background:var(--mx-meta-bg,#F4E7D3);color:var(--mx-meta,#9A5B18);}
-.lxd-fx-mx .lxd-fx-mx-eqop{font-size:22px;color:var(--mx-muted,#74808A);}
+.lxd-fx-mx .lxd-fx-mx-habits{display:flex;gap:8px;flex-wrap:wrap;}
+.lxd-fx-mx .lxd-fx-mx-habit{font-size:14px;font-weight:600;color:var(--mx-ink,#182028);background:var(--mx-panel,#FFFFFF);border:1.5px solid var(--mx-border,#E1DCD1);border-radius:999px;padding:9px 16px;cursor:pointer;box-shadow:var(--mx-shadow);transition:.14s;display:flex;align-items:center;gap:8px;}
+.lxd-fx-mx .lxd-fx-mx-habit:hover{border-color:var(--mx-meta-line,#E3C79E);}
+.lxd-fx-mx .lxd-fx-mx-habit.on{border-color:var(--mx-meta,#8A4A12);background:var(--mx-meta-bg,#F5E7D5);color:var(--mx-meta,#8A4A12);}
+.lxd-fx-mx .lxd-fx-mx-pip{width:8px;height:8px;border-radius:999px;flex-shrink:0;display:inline-block;}
+.lxd-fx-mx .lxd-fx-mx-pip.pip-planning{background:var(--mx-plan,#3C6E8F);}
+.lxd-fx-mx .lxd-fx-mx-pip.pip-monitoring{background:var(--mx-monitor,#8A6D1F);}
+.lxd-fx-mx .lxd-fx-mx-pip.pip-evaluating{background:var(--mx-evaluate,#7A4477);}
+.lxd-fx-mx .lxd-fx-mx-catkey{display:flex;gap:18px;flex-wrap:wrap;margin:12px 0 0;font-size:12.5px;color:var(--mx-muted,#79838C);font-family:var(--mx-mono);}
+.lxd-fx-mx .lxd-fx-mx-catkey span{display:inline-flex;align-items:center;gap:6px;}
 
-.lxd-fx-mx .lxd-fx-mx-panel{margin-top:18px;background:var(--mx-card,#FFFFFF);border:1px solid var(--mx-border,#DEDAD0);border-radius:var(--mx-r,14px);box-shadow:var(--mx-shadow);overflow:hidden;}
-.lxd-fx-mx .lxd-fx-mx-cols{display:grid;grid-template-columns:1fr 1fr;}
-.lxd-fx-mx .lxd-fx-mx-col{padding:22px 24px;}
-.lxd-fx-mx .lxd-fx-mx-col.science{background:var(--mx-science-bg,#E4EEEA);border-right:1px solid var(--mx-border,#DEDAD0);}
-.lxd-fx-mx .lxd-fx-mx-col.meta{background:var(--mx-meta-bg,#F4E7D3);}
-.lxd-fx-mx .lxd-fx-mx-colbadge{font-family:var(--mx-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:8px;}
-.lxd-fx-mx .lxd-fx-mx-col.science .lxd-fx-mx-colbadge{color:var(--mx-science,#2F6B60);}
-.lxd-fx-mx .lxd-fx-mx-col.meta .lxd-fx-mx-colbadge{color:var(--mx-meta,#9A5B18);}
-.lxd-fx-mx .lxd-fx-mx-col p{margin:0;font-size:15.5px;font-weight:600;color:var(--mx-ink,#1E2A35);line-height:1.4;}
-.lxd-fx-mx .lxd-fx-mx-vignettebox{padding:24px 26px 26px;}
-.lxd-fx-mx .lxd-fx-mx-vlabel{font-family:var(--mx-mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mx-muted,#74808A);display:block;margin-bottom:10px;}
-.lxd-fx-mx .lxd-fx-mx-vignette{font-size:16px;color:var(--mx-body,#3C4750);margin:0;}
+.lxd-fx-mx .lxd-fx-mx-result{margin:26px 0 0;background:var(--mx-panel,#FFFFFF);border:1px solid var(--mx-border,#E1DCD1);border-radius:var(--mx-r,16px);box-shadow:var(--mx-shadow);overflow:hidden;}
+.lxd-fx-mx .lxd-fx-mx-result-head{padding:20px 26px 16px;border-bottom:1px solid var(--mx-border,#E1DCD1);background:linear-gradient(180deg,#FCFBF8,#F6F4EF);}
+.lxd-fx-mx .lxd-fx-mx-crumb{font-family:var(--mx-mono);font-size:12px;color:var(--mx-muted,#79838C);letter-spacing:.03em;margin-bottom:10px;}
+.lxd-fx-mx .lxd-fx-mx-crumb b{color:var(--mx-sci,#215E56);font-weight:600;}
+.lxd-fx-mx .lxd-fx-mx-combo{font-size:20px;font-weight:700;color:var(--mx-ink,#182028);line-height:1.25;}
+.lxd-fx-mx .lxd-fx-mx-combo .hl{color:var(--mx-meta,#8A4A12);}
+.lxd-fx-mx .lxd-fx-mx-split{display:grid;grid-template-columns:1fr 1fr;}
+.lxd-fx-mx .lxd-fx-mx-cell{padding:20px 26px;}
+.lxd-fx-mx .lxd-fx-mx-cell.sci{background:var(--mx-sci-bg,#E4EEEB);border-right:1px solid var(--mx-border,#E1DCD1);}
+.lxd-fx-mx .lxd-fx-mx-cell.meta{background:var(--mx-meta-bg,#F5E7D5);}
+.lxd-fx-mx .lxd-fx-mx-celllabel{font-family:var(--mx-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:8px;}
+.lxd-fx-mx .lxd-fx-mx-cell.sci .lxd-fx-mx-celllabel{color:var(--mx-sci,#215E56);}
+.lxd-fx-mx .lxd-fx-mx-cell.meta .lxd-fx-mx-celllabel{color:var(--mx-meta,#8A4A12);}
+.lxd-fx-mx .lxd-fx-mx-cell p{margin:0;font-size:15.5px;color:var(--mx-ink,#182028);font-weight:500;line-height:1.45;}
+.lxd-fx-mx .lxd-fx-mx-move{padding:22px 26px;border-top:1px solid var(--mx-border,#E1DCD1);}
+.lxd-fx-mx .lxd-fx-mx-movelabel{font-family:var(--mx-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mx-muted,#79838C);display:block;margin-bottom:12px;}
+.lxd-fx-mx .lxd-fx-mx-scriptbox{background:#FBF9F4;border-left:3px solid var(--mx-meta-line,#E3C79E);border-radius:0 10px 10px 0;padding:14px 18px;margin:0 0 16px;font-size:15.5px;color:var(--mx-ink,#182028);}
+.lxd-fx-mx .lxd-fx-mx-script{font-style:italic;font-size:16px;}
+.lxd-fx-mx .lxd-fx-mx-why{margin:0;font-size:14.5px;color:var(--mx-body,#3A454E);}
+.lxd-fx-mx .lxd-fx-mx-why b{color:var(--mx-ink,#182028);font-weight:600;}
+.lxd-fx-mx .lxd-fx-mx-ev{margin-top:14px;font-size:12.5px;color:var(--mx-muted,#79838C);font-family:var(--mx-mono);letter-spacing:.01em;padding-top:12px;border-top:1px dashed var(--mx-border,#E1DCD1);}
 
-.lxd-fx-mx .lxd-fx-mx-scan{margin-top:26px;text-align:center;}
-.lxd-fx-mx .lxd-fx-mx-scanbtn{font-size:14px;font-weight:600;color:var(--mx-science,#2F6B60);background:none;border:1.5px solid var(--mx-science-line,#BFD6CE);border-radius:999px;padding:10px 20px;cursor:pointer;}
-.lxd-fx-mx .lxd-fx-mx-scanbtn:hover{background:var(--mx-science-bg,#E4EEEA);}
-.lxd-fx-mx .lxd-fx-mx-scanlist{margin-top:18px;text-align:left;display:grid;gap:10px;}
-.lxd-fx-mx .lxd-fx-mx-scanrow{display:grid;grid-template-columns:170px 1fr;gap:16px;background:var(--mx-card,#FFFFFF);border:1px solid var(--mx-border,#DEDAD0);border-radius:10px;padding:14px 16px;align-items:baseline;}
-.lxd-fx-mx .lxd-fx-mx-scanname{font-weight:700;color:var(--mx-meta,#9A5B18);font-size:14px;}
-.lxd-fx-mx .lxd-fx-mx-scantext{font-size:14px;color:var(--mx-body,#3C4750);}
-.lxd-fx-mx .lxd-fx-mx-scantext b{color:var(--mx-ink,#1E2A35);}
+.lxd-fx-mx .lxd-fx-mx-scan{margin:22px 0 0;text-align:center;}
+.lxd-fx-mx .lxd-fx-mx-scanbtn{font-size:14px;font-weight:600;color:var(--mx-meta,#8A4A12);background:none;border:1.5px solid var(--mx-meta-line,#E3C79E);border-radius:999px;padding:11px 22px;cursor:pointer;transition:.14s;}
+.lxd-fx-mx .lxd-fx-mx-scanbtn:hover{background:var(--mx-meta-bg,#F5E7D5);}
+.lxd-fx-mx .lxd-fx-mx-scanlist{margin-top:16px;display:grid;gap:9px;text-align:left;}
+.lxd-fx-mx .lxd-fx-mx-scanrow{background:var(--mx-panel,#FFFFFF);border:1px solid var(--mx-border,#E1DCD1);border-radius:12px;padding:14px 18px;display:grid;grid-template-columns:190px 1fr;gap:18px;align-items:start;}
+.lxd-fx-mx .lxd-fx-mx-scanhead{display:flex;flex-direction:column;gap:5px;}
+.lxd-fx-mx .lxd-fx-mx-scanhead .n{font-weight:700;color:var(--mx-meta,#8A4A12);font-size:14px;}
+.lxd-fx-mx .lxd-fx-mx-scanhead .c{font-family:var(--mx-mono);font-size:11px;color:var(--mx-muted,#79838C);}
+.lxd-fx-mx .lxd-fx-mx-scanhead .g{font-size:13px;color:var(--mx-body,#3A454E);}
+.lxd-fx-mx .lxd-fx-mx-scanbody{font-size:14px;color:var(--mx-body,#3A454E);}
+.lxd-fx-mx .lxd-fx-mx-scanbody .say{font-style:italic;color:var(--mx-ink,#182028);}
+.lxd-fx-mx .lxd-fx-mx-scanbody .w{margin-top:8px;}
 
-.lxd-fx-mx .lxd-fx-mx-footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--mx-border,#DEDAD0);font-size:13px;color:var(--mx-muted,#74808A);}
-.lxd-fx-mx .lxd-fx-mx-footer ul{margin:0 0 10px;padding-left:18px;}
+.lxd-fx-mx .lxd-fx-mx-footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--mx-border-strong,#CFC7B7);font-size:13px;color:var(--mx-muted,#79838C);}
+.lxd-fx-mx .lxd-fx-mx-footer h4{font-family:var(--mx-mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mx-body,#3A454E);margin:0 0 10px;}
+.lxd-fx-mx .lxd-fx-mx-footer ul{margin:0 0 12px;padding-left:18px;}
 .lxd-fx-mx .lxd-fx-mx-footer li{margin-bottom:5px;}
 .lxd-fx-mx .lxd-fx-mx-footer p{margin:0;}
 
-.lxd-fx-mx button:focus-visible,.lxd-fx-mx summary:focus-visible{outline:2.5px solid var(--mx-gold,#B08A2E);outline-offset:2px;}
+.lxd-fx-mx button:focus-visible,.lxd-fx-mx summary:focus-visible{outline:2.5px solid var(--mx-gold,#A9842B);outline-offset:2px;}
 
-@media(max-width:720px){
-  .lxd-fx-mx .lxd-fx-mx-contexts{grid-template-columns:1fr;}
-  .lxd-fx-mx .lxd-fx-mx-cols,.lxd-fx-mx .lxd-fx-mx-cols{grid-template-columns:1fr;}
-  .lxd-fx-mx .lxd-fx-mx-col.science{border-right:none;border-bottom:1px solid var(--mx-border,#DEDAD0);}
-  .lxd-fx-mx .lxd-fx-mx-scanrow{grid-template-columns:1fr;}
+@media(max-width:760px){
+  .lxd-fx-mx .lxd-fx-mx-split{grid-template-columns:1fr;}
+  .lxd-fx-mx .lxd-fx-mx-cell.sci{border-right:none;border-bottom:1px solid var(--mx-border,#E1DCD1);}
+  .lxd-fx-mx .lxd-fx-mx-scanrow{grid-template-columns:1fr;gap:8px;}
+  .lxd-fx-mx .lxd-fx-mx-stepsub,.lxd-fx-mx .lxd-fx-mx-seg-wrap,.lxd-fx-mx .lxd-fx-mx-topics-wrap,.lxd-fx-mx .lxd-fx-mx-habits-wrap{margin-left:0;}
 }
 @media(prefers-reduced-motion:reduce){.lxd-fx-mx *{transition:none !important;}}
 `;

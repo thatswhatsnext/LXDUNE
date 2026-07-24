@@ -1,41 +1,938 @@
 [
-  { "contextId": "ecosystems", "habitId": "ask", "science": "Tracing indirect feeding relationships in a food web.", "meta": "Noticing when you've only followed one link of a chain.", "vignette": "Instead of only asking what happens to rabbits if foxes disappear, add a second question: “How confident are you that you've traced every connection, not just the first one? What made you stop looking — ran out of ideas, or unsure how to check?” The second question isn't about ecosystems at all; it asks the student to inspect their own reasoning." },
-  { "contextId": "ecosystems", "habitId": "explicit", "science": "Ecosystems as networks, not chains.", "meta": "Naming systems thinking as a specific, learnable habit.", "vignette": "Tell the class directly: “Today isn't just about ecosystems — we're practising systems thinking, where you deliberately look for effects more than one step away. You'll use this again outside science.” Post two learning intentions side by side: the content one and the thinking one, so neither is left implicit." },
-  { "contextId": "ecosystems", "habitId": "plan", "science": "Predicting flow-on effects of removing a species.", "meta": "Planning a reasoning strategy before diving in.", "vignette": "Before a ‘what if’ scenario, give students a two-column planner: Direct effects / Indirect effects (one step removed). Frame it as a general strategy for any rippling-change question, not an ecosystems worksheet. Ask: “What's your plan for not stopping at the first effect?”" },
-  { "contextId": "ecosystems", "habitId": "model", "science": "Working through a food-web disturbance.", "meta": "Making the 'getting stuck and re-checking' moment visible.", "vignette": "Think aloud through an unfamiliar web: “Remove the small fish … algae grows … wait, that also changes what the larger fish eat — I need to go back and check that.” The pause at ‘wait’ is the point, not the final correct answer." },
-  { "contextId": "ecosystems", "habitId": "challenge", "science": "A food web with a non-obvious keystone species.", "meta": "Self-testing whether first-instinct reasoning holds up.", "vignette": "Once simple chains are secure, give a scenario where the obvious answer is wrong — a species that seems minor but supports several others. Students write their first-instinct answer, then revisit it: “Has anything changed your mind? What made you look again?”" },
-  { "contextId": "ecosystems", "habitId": "evaluate", "science": "Explaining energy flow and interdependence.", "meta": "Judging your own reasoning, not just the science answer.", "vignette": "Give a two-line self-rating: “I can identify producers, consumers and decomposers” (content) and “I checked for indirect effects before I finished” (thinking). Most students have never been asked to grade the second kind of statement." },
-  { "contextId": "ecosystems", "habitId": "collaborate", "science": "Comparing food-web predictions in groups.", "meta": "Noticing other people's reasoning strategies differ from your own.", "vignette": "After individual predictions, ask groups: “Did anyone think about this differently to you? What did they check that you didn't?” The goal isn't consensus on the ecosystem question — it's seeing an unfamiliar strategy in action." },
-  { "contextId": "ecosystems", "habitId": "practise", "science": "Repeated disturbance scenarios across a unit.", "meta": "Building a reusable habit of checking for indirect effects.", "vignette": "Reuse the direct/indirect planner across unrelated food webs — grassland, then rainforest, then marine — so the thinking habit gets rehearsed, not just memory of one system." },
-  { "contextId": "ecosystems", "habitId": "checkin", "science": "Progress through the Living Systems focus area.", "meta": "Checking whether the habit is becoming automatic.", "vignette": "Ask periodically: “When you saw a new food web today, did you automatically check for indirect effects, or did you have to remind yourself?” The shift from reminded to automatic is your evidence, more than any single quiz mark." },
-
-  { "contextId": "investigation", "habitId": "ask", "science": "Identifying independent, dependent and controlled variables.", "meta": "Interrogating your own draft plan before anyone else does.", "vignette": "Before a method is submitted, require three self-directed questions: “What exactly am I changing? What exactly am I measuring? What am I deliberately keeping the same?” Some students can define ‘variable’ correctly yet never turn that definition into a question about their own plan." },
-  { "contextId": "investigation", "habitId": "explicit", "science": "The structure of a fair test.", "meta": "Naming planning discipline as a transferable habit, not a one-off worksheet.", "vignette": "Say directly: “This variable-identification skill is what you'll use in every practical this year, and in your depth study. The topic changes; the habit of asking these three questions first doesn't.”" },
-  { "contextId": "investigation", "habitId": "plan", "science": "Drafting a method for a chosen investigation.", "meta": "Using a reusable scaffold instead of starting from a blank page.", "vignette": "Provide one content-free planning template — question / variables / equipment / steps / safety / expected pattern — reused for every investigation all year. The template's familiarity, not its content, is what carries the metacognitive value." },
-  { "contextId": "investigation", "habitId": "model", "science": "Spotting an uncontrolled variable in a draft method.", "meta": "Verbalising the checking process, not just presenting the fix.", "vignette": "Draft a flawed method on the board and think aloud: “I said I'm testing temperature’s effect on rate … but I haven't fixed the concentration each time. If I don't control that, I won't know which variable caused the change. Let me add that.” Students see the catch, not only the corrected version." },
-  { "contextId": "investigation", "habitId": "challenge", "science": "Designing for a genuinely open question, no single obvious variable.", "meta": "Testing whether the planning routine survives without heavy scaffolding.", "vignette": "Once students use the template confidently on a familiar topic, hand them an unfamiliar everyday question with no template, and ask them to reconstruct the three planning questions from memory." },
-  { "contextId": "investigation", "habitId": "evaluate", "science": "A completed investigation method.", "meta": "Grading your own planning process, separately from your results.", "vignette": "Before conducting the investigation, students self-check: “Did I identify all three variable types? Did I check for a fair test?” Doing this before results arrive keeps the self-assessment about the plan, not about whether the experiment ‘worked’." },
-  { "contextId": "investigation", "habitId": "collaborate", "science": "Peer review of a draft method.", "meta": "Recognising other students catch different planning gaps than you do.", "vignette": "Swap draft plans in pairs; each partner finds one thing the writer missed using the three-question routine. Not for marking — for noticing which question each of them defaults to, and which they forget." },
-  { "contextId": "investigation", "habitId": "practise", "science": "Repeated investigations across topics and stages.", "meta": "Reducing reliance on the template over time.", "vignette": "Informally track how much of the template a class still needs written in front of them versus generated unprompted by mid-year. The goal is visible scaffolding withdrawal, not a new skill each time." },
-  { "contextId": "investigation", "habitId": "checkin", "science": "Investigation design across a term.", "meta": "Checking whether the routine has become a default habit.", "vignette": "Before planning starts, ask: “Without me saying anything — what are your first three questions?” If the class can recite the routine unprompted, that's evidence it's a genuine habit, not a compliance step." },
-
-  { "contextId": "evidence", "habitId": "ask", "science": "Judging a study's quality — sample size, method, conflicts of interest.", "meta": "Asking why a claim feels convincing, before asking if it's true.", "vignette": "Before evaluating whether a claim is right, ask: “What about this source made you want to believe it — and is that a good reason?” This separates a persuasive source from a reliable one, and turns the inspection back onto the student's own reaction." },
-  { "contextId": "evidence", "habitId": "explicit", "science": "Criteria for reliable evidence — sample size, replication, source.", "meta": "Naming source evaluation as a specific, nameable habit of mind.", "vignette": "State directly: “We're building one particular skill today — noticing when a claim outruns its evidence. This isn't about memorising these examples; it's a habit for every science headline you'll ever read.”" },
-  { "contextId": "evidence", "habitId": "plan", "science": "Comparing two conflicting sources on the same claim.", "meta": "Deciding what to check before reading, not while being persuaded.", "vignette": "Before reading either source, students write three questions they'll ask of each — who funded it, sample size, has it been repeated — fixing the criteria before the content of either source can sway them." },
-  { "contextId": "evidence", "habitId": "model", "science": "A credible-sounding source with a methodological flaw.", "meta": "Narrating the moment of nearly being persuaded too quickly.", "vignette": "Read a claim aloud and think aloud: “That sounds convincing … wait, it says ‘a study found’ but not how many people. I nearly accepted that without checking. Let me look for that detail first.” The catch is the modelled behaviour, not the final verdict." },
-  { "contextId": "evidence", "habitId": "challenge", "science": "A well-evidenced claim that conflicts with a common student belief.", "meta": "Noticing when you're grading evidence differently because you dislike the conclusion.", "vignette": "Deliberately include one well-supported claim that cuts against a common assumption, then ask: “Are you using the same standard of evidence as last time — or is this one harder to accept because you didn't expect it?”" },
-  { "contextId": "evidence", "habitId": "evaluate", "science": "A completed evidence-evaluation task.", "meta": "Checking your conclusion against your own criteria, not your gut.", "vignette": "Students revisit their own planned questions and tick off whether they actually used each one, or fell back to gut feeling under time pressure." },
-  { "contextId": "evidence", "habitId": "collaborate", "science": "Comparing verdicts on the same source in groups.", "meta": "Seeing that people can weigh identical evidence differently.", "vignette": "Groups compare verdicts on the same source, not to reach one correct answer, but to ask: “What did someone else in your group notice that you missed?”" },
-  { "contextId": "evidence", "habitId": "practise", "science": "Repeated tasks across health, environment and technology claims.", "meta": "Building a durable habit that isn't topic-specific.", "vignette": "Vary the subject matter deliberately across the term so students rehearse the underlying evaluative habit, rather than becoming expert judges of one particular topic." },
-  { "contextId": "evidence", "habitId": "checkin", "science": "Evidence evaluation across a unit.", "meta": "Checking whether the habit triggers outside the classroom.", "vignette": "Ask periodically: “Has anyone caught themselves asking these questions about an ad or a social media claim outside class?” Self-reported transfer is a strong sign the habit, not just the content, has stuck." },
-
-  { "contextId": "equilibrium", "habitId": "ask", "science": "Distinguishing 'stopped' from 'still moving both ways at equal rates'.", "meta": "Noticing which mental picture you're actually using.", "vignette": "After a correct-sounding answer, ask: “When you pictured that just then, was anything still moving, or had it gone still?” Many students give textbook wording while still picturing a static system — the question targets the picture, not the vocabulary." },
-  { "contextId": "equilibrium", "habitId": "explicit", "science": "Dynamic equilibrium and Le Chatelier's principle.", "meta": "Naming the exact misconception being replaced.", "vignette": "State the misconception before the correct model: “Almost everyone starts out picturing equilibrium as ‘stopped’. That's specifically what we're replacing today, not adding on top of.” Naming it gives students something concrete to check their own thinking against." },
-  { "contextId": "equilibrium", "habitId": "plan", "science": "Predicting a Le Chatelier shift for an unfamiliar stress.", "meta": "Using a deliberate step-by-step check instead of pattern-matching.", "vignette": "Fix a sequence before answering: “1) What's the stress? 2) Which direction relieves it? 3) Does that match my first guess?” Planning the steps first catches a wrong instinct instead of locking it in." },
-  { "contextId": "equilibrium", "habitId": "model", "science": "A Kc calculation next to a conceptual shift question.", "meta": "Showing that each calls for a different kind of checking.", "vignette": "Switch between the two aloud: “For the calculation I'm checking units and my ICE table. For the shift question I'm checking my mental model, not a formula — a completely different mistake to look for.” Naming the difference stops quantitative habits leaking into conceptual reasoning." },
-  { "contextId": "equilibrium", "habitId": "challenge", "science": "A scenario with two simultaneous stresses.", "meta": "Self-testing whether understanding holds when more than one variable moves.", "vignette": "Once single-variable shifts are secure, present two simultaneous stresses and ask students to predict, then name which part of their reasoning they were least sure of — uncertainty as diagnostic information, not something to hide." },
-  { "contextId": "equilibrium", "habitId": "evaluate", "science": "Understanding of dynamic equilibrium after a block of lessons.", "meta": "Telling apart 'I can define it' from 'I've stopped picturing it as static'.", "vignette": "Self-rate against two separate lines: “I can define dynamic equilibrium” and “If I'm honest, I still sometimes picture the reaction as stopped.” The second line targets the actual misconception, not recall of the definition." },
-  { "contextId": "equilibrium", "habitId": "collaborate", "science": "Comparing predicted shifts in pairs.", "meta": "Explaining your reasoning aloud as a check on your own understanding.", "vignette": "Students explain a prediction to a partner using only “the system responds by …” — if they can't finish the sentence without falling back to “it just goes that way”, both partners now know the reasoning isn't secure yet." },
-  { "contextId": "equilibrium", "habitId": "practise", "science": "Repeated shift predictions across different reaction systems.", "meta": "Rehearsing the step-by-step check until it's automatic.", "vignette": "Reuse the three-step check — stress / direction / match my instinct — across several unrelated reactions over consecutive lessons, so it stops needing re-teaching every time a new reaction appears." },
-  { "contextId": "equilibrium", "habitId": "checkin", "science": "Understanding of equilibrium in the lead-up to assessment.", "meta": "Checking whether the misconception has gone, not just gone quiet.", "vignette": "A few lessons out from assessment, ask directly: “If you had to bet — is any part of you still tempted by ‘equilibrium means stopped’?” Misconceptions often go underground rather than disappearing; a direct check surfaces them while there's time to act." }
+  {
+    "topicId": "food-webs",
+    "habitId": "ask",
+    "goal": "Notice when you've only followed one link of a chain",
+    "script": "Before you finish — how confident are you that you've traced every connection, not just the first one? What made you stop looking: ran out of ideas, or unsure how to check?",
+    "why": "The second question isn't about food webs at all. It asks students to <b>inspect their own reasoning</b> for completeness — a monitoring move they can reuse on any 'what happens if…' problem.",
+    "evidence": "Self-questioning to probe understanding — NSW DoE (2020)."
+  },
+  {
+    "topicId": "food-webs",
+    "habitId": "explicit",
+    "goal": "Name systems thinking as a learnable, transferable habit",
+    "script": "Today isn't only about ecosystems — we're practising systems thinking: deliberately looking for effects more than one step away. You'll use this in geography and in life, not just here.",
+    "why": "Posting the <b>thinking</b> intention beside the content intention makes the strategy visible, which the guide identifies as what helps a strategy transfer beyond the lesson it was learned in.",
+    "evidence": "'Be explicit' about strategies, not just content — NSW DoE (2020)."
+  },
+  {
+    "topicId": "food-webs",
+    "habitId": "plan",
+    "goal": "Plan a reasoning approach before diving in",
+    "script": "Before your prediction, set up two columns: direct effects, and indirect effects one step removed. What's your plan for not stopping at the first effect?",
+    "why": "A graphic organiser used <b>before</b> the task is a classic planning strategy; here it externalises the very step (looking past the obvious) students usually skip.",
+    "evidence": "Planning strategies incl. graphic organisers — NSW DoE (2020)."
+  },
+  {
+    "topicId": "food-webs",
+    "habitId": "model",
+    "goal": "Make the 'getting stuck and re-checking' moment visible",
+    "script": "Remove the small fish… algae grows… wait — that also changes what the big fish eat. I need to go back and re-check that branch.",
+    "why": "Thinking aloud through an unfamiliar web, and pausing audibly at <b>'wait'</b>, gives students a script for their own internal monologue when a prediction unravels.",
+    "evidence": "Think-aloud modelling; Predict–Observe–Explain revision — White & Frederiksen (1998)."
+  },
+  {
+    "topicId": "food-webs",
+    "habitId": "challenge",
+    "goal": "Self-test whether first-instinct reasoning holds",
+    "script": "Here's a web where the obvious answer is wrong — a species that looks minor but props up three others. Write your first instinct, then look again. Did anything change your mind?",
+    "why": "Introducing a non-obvious keystone species once basic chains are secure forces students to <b>test their own model</b> against a counter-example rather than pattern-match.",
+    "evidence": "Challenge with novel tasks once confident — NSW DoE (2020)."
+  },
+  {
+    "topicId": "food-webs",
+    "habitId": "evaluate",
+    "goal": "Grade your reasoning, not just the science answer",
+    "script": "Two lines to rate yourself: 'I can identify producers, consumers, decomposers' — and separately — 'I checked for indirect effects before I finished.'",
+    "why": "Most students have never been asked to grade the <b>second</b> kind of statement. Splitting content-mastery from thinking-process is the heart of the evaluate phase.",
+    "evidence": "Evaluating: self-testing of the process — NSW DoE (2020)."
+  },
+  {
+    "topicId": "food-webs",
+    "habitId": "collab",
+    "goal": "See that others reason differently on the same web",
+    "script": "Compare predictions in your group. Did anyone check something you didn't? Not who's right — whose <i>method</i> was different from yours?",
+    "why": "Social metacognition: students learn about their own thinking by seeing an unfamiliar strategy enacted by a peer, then can adopt it.",
+    "evidence": "Social metacognition in group work — CBE–LSE evidence guide (2021)."
+  },
+  {
+    "topicId": "food-webs",
+    "habitId": "practise",
+    "goal": "Build a reusable habit of checking indirect effects",
+    "script": "Grassland last week, rainforest today, a coral reef on Friday — same two-column check each time. The system changes; the thinking move stays the same.",
+    "why": "Reusing one routine across varied content (interleaving) is what turns a one-off worksheet into a durable, transferable habit.",
+    "evidence": "Interleaving & distributed practice — CBE–LSE evidence guide (2021)."
+  },
+  {
+    "topicId": "food-webs",
+    "habitId": "checkin",
+    "goal": "Check whether the habit is becoming automatic",
+    "script": "When you saw a brand-new web today, did you automatically look for indirect effects, or did you have to remind yourself?",
+    "why": "The shift from <b>reminded</b> to <b>automatic</b> is your real evidence the habit is forming — more informative than any single quiz mark.",
+    "evidence": "Assessing metacognition during task performance — NSW DoE (2020)."
+  },
+  {
+    "topicId": "sampling-ecosystem",
+    "habitId": "ask",
+    "goal": "Question whether a sample really represents the whole",
+    "script": "Before you scale up your quadrat count — ask yourself: is the patch I sampled typical of the whole oval, or did I pick the easy spot?",
+    "why": "Turns an unspoken shortcut (sampling convenient ground) into a <b>conscious check</b> students perform on their own method.",
+    "evidence": "Self-questioning during investigation — NSW DoE (2020)."
+  },
+  {
+    "topicId": "sampling-ecosystem",
+    "habitId": "explicit",
+    "goal": "Name 'checking representativeness' as a skill for life",
+    "script": "The thing we're really practising is judging whether a sample represents a bigger group — you'll meet this in every poll, survey and news headline you ever read.",
+    "why": "Explicitly framing sampling as a general reasoning habit lifts it above this one fieldwork lesson.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "sampling-ecosystem",
+    "habitId": "plan",
+    "goal": "Decide the checks before collecting data",
+    "script": "On your planning sheet, write the two questions you'll ask of your own results: is my sample big enough, and is it placed fairly?",
+    "why": "Front-loading the monitoring questions means students judge their method <b>as they work</b>, not only when results look odd.",
+    "evidence": "Investigation planning sheet — NSW DoE science resources."
+  },
+  {
+    "topicId": "sampling-ecosystem",
+    "habitId": "model",
+    "goal": "Show the moment of doubting your own data",
+    "script": "My first three quadrats all landed on bare dirt — that's making me doubt my placement was random. Let me talk through how I'd fix that before I trust these numbers.",
+    "why": "Modelling <b>productive doubt</b> about one's own data normalises revision instead of pushing on with a flawed sample.",
+    "evidence": "Think-aloud modelling — NSW DoE (2020)."
+  },
+  {
+    "topicId": "sampling-ecosystem",
+    "habitId": "challenge",
+    "goal": "Transfer the method to a messier site",
+    "script": "Now design a sample for a site with a creek down one side. The even-grid plan won't work — talk me through what you'll change and why.",
+    "why": "A site that breaks the default method tests whether students' planning survives without the scaffold.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "sampling-ecosystem",
+    "habitId": "evaluate",
+    "goal": "Reflect on the method, separately from the result",
+    "script": "Two-part reflection: what did your data show, and — separately — how much do you trust your own sampling, and why?",
+    "why": "Splitting 'what I found' from 'how good my method was' builds the habit of evaluating the <b>process</b>.",
+    "evidence": "Student reflection on investigations — NSW DoE science resources."
+  },
+  {
+    "topicId": "sampling-ecosystem",
+    "habitId": "collab",
+    "goal": "Compare sampling choices across groups",
+    "script": "Each group used the same oval but different placements. Whose sample do you trust most, and what does that tell you about your own choice?",
+    "why": "Comparing methods surfaces trade-offs no single group would notice alone.",
+    "evidence": "Social metacognition — CBE–LSE evidence guide (2021)."
+  },
+  {
+    "topicId": "sampling-ecosystem",
+    "habitId": "practise",
+    "goal": "Reuse the representativeness check across contexts",
+    "script": "Same two questions — big enough? placed fairly? — when we survey the schoolyard, then a data set I hand you, then a news poll.",
+    "why": "Repeating one check across very different data sources makes the habit content-independent.",
+    "evidence": "Interleaving — CBE–LSE evidence guide (2021)."
+  },
+  {
+    "topicId": "sampling-ecosystem",
+    "habitId": "checkin",
+    "goal": "Check whether the check has become automatic",
+    "script": "Without me prompting — what's the first thing you now ask when someone shows you a survey result?",
+    "why": "An unprompted reflex is the evidence the monitoring habit has taken hold.",
+    "evidence": "Assessing metacognition in performance — NSW DoE (2020)."
+  },
+  {
+    "topicId": "balanced-unbalanced-forces",
+    "habitId": "ask",
+    "goal": "Surface the mental picture behind an answer",
+    "script": "You said the puck keeps moving — in your head just then, was something still pushing it, or nothing? Describe the picture, not the rule.",
+    "why": "Targets the <b>image</b> a student is using, where the misconception actually lives, rather than the memorised rule.",
+    "evidence": "Self-questioning to reveal misconceptions — NSW DoE (2020)."
+  },
+  {
+    "topicId": "balanced-unbalanced-forces",
+    "habitId": "explicit",
+    "goal": "Name the exact misconception being replaced",
+    "script": "Almost everyone starts out believing motion needs a constant push. That specific idea is what we're rebuilding today — watch for it in your own thinking.",
+    "why": "Naming the misconception gives students a concrete thing to <b>catch themselves</b> doing.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "balanced-unbalanced-forces",
+    "habitId": "plan",
+    "goal": "Plan a force-diagram routine before predicting",
+    "script": "Before you predict, draw every force as an arrow, then decide if they cancel. Predict the motion only after the diagram, never before.",
+    "why": "A fixed 'diagram-first' sequence stops students answering from intuition and then rationalising.",
+    "evidence": "Planning strategies incl. diagrams — NSW DoE (2020)."
+  },
+  {
+    "topicId": "balanced-unbalanced-forces",
+    "habitId": "model",
+    "goal": "Show catching your own wrong intuition",
+    "script": "My gut says it slows because nothing's pushing… but my diagram shows zero net force. My gut's wrong here — the diagram wins. Let me say why.",
+    "why": "Modelling the teacher's own intuition being overruled by evidence is powerful permission for students to do the same.",
+    "evidence": "Think-aloud; confronting intuition — White & Frederiksen (1998)."
+  },
+  {
+    "topicId": "balanced-unbalanced-forces",
+    "habitId": "challenge",
+    "goal": "Test the idea in a frictionless/space context",
+    "script": "Now the same puck in deep space, no friction. Predict, then tell me which part of your reasoning you were least sure about.",
+    "why": "A context that strips away friction tests whether the corrected model holds, and naming uncertainty is itself a monitoring act.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "balanced-unbalanced-forces",
+    "habitId": "evaluate",
+    "goal": "Separate 'I can define it' from 'I still picture it wrong'",
+    "script": "Rate two things: 'I can state Newton's first law' and, honestly, 'I still sometimes picture motion as needing a push.'",
+    "why": "The second line targets the misconception directly, which recall of the definition can hide.",
+    "evidence": "Evaluating understanding, self-testing — NSW DoE (2020)."
+  },
+  {
+    "topicId": "balanced-unbalanced-forces",
+    "habitId": "collab",
+    "goal": "Compare force diagrams and reasoning aloud",
+    "script": "Compare arrows with your partner. Where you disagree, whoever explains their diagram out loud is the one who learns the most — so take turns.",
+    "why": "Explaining a diagram aloud is self-explanation; disagreement forces both partners to check their own reasoning.",
+    "evidence": "Self-explanation & social metacognition — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "balanced-unbalanced-forces",
+    "habitId": "practise",
+    "goal": "Rehearse diagram-first across many scenarios",
+    "script": "Trolley, lift, falling coffee filter, hockey puck — every one starts with the force diagram. The scenario changes; the routine doesn't.",
+    "why": "Repeating the routine across varied scenarios makes 'diagram first' automatic rather than reminded.",
+    "evidence": "Distributed & interleaved practice — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "balanced-unbalanced-forces",
+    "habitId": "checkin",
+    "goal": "Check whether the misconception has gone quiet or gone",
+    "script": "Be honest — if you had to bet, is any part of you still tempted by 'moving means something's pushing'?",
+    "why": "Misconceptions often go underground rather than disappearing; a direct check surfaces them while there's time to act.",
+    "evidence": "Monitoring misconceptions over time — NSW DoE (2020)."
+  },
+  {
+    "topicId": "graph-anomaly",
+    "habitId": "ask",
+    "goal": "Ask what a surprising point means before explaining it",
+    "script": "That point breaks the trend. Before you explain it away — ask yourself: is this telling me something real, or is it a measurement slip? How would you tell the difference?",
+    "why": "Converts the reflex to 'smooth over' anomalies into a deliberate <b>monitoring question</b>.",
+    "evidence": "Self-questioning; monitoring surprising data — NSW DoE (2020)."
+  },
+  {
+    "topicId": "graph-anomaly",
+    "habitId": "explicit",
+    "goal": "Name 'reading data critically' as the day's thinking goal",
+    "script": "The science is the graph. The thinking skill is not taking a data point at face value — that's what we're really building.",
+    "why": "Distinguishes the content (this graph) from the transferable habit (scepticism about data).",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "graph-anomaly",
+    "habitId": "plan",
+    "goal": "Set the questions you'll ask of any graph",
+    "script": "Write your three-question graph routine now: what's the overall trend, does any point break it, and what could explain that?",
+    "why": "A pre-set reading routine means students <b>arrive</b> at a graph with a plan rather than staring at it.",
+    "evidence": "Planning strategies — NSW DoE (2020)."
+  },
+  {
+    "topicId": "graph-anomaly",
+    "habitId": "model",
+    "goal": "Think aloud reading a graph, including the stuck moment",
+    "script": "First the overall trend… hmm, this point doesn't fit. I'm stuck — so I check the units, then I check if it's a single reading or an average.",
+    "why": "Naming the <b>stuck</b> moment and the recovery strategy gives students a template for their own.",
+    "evidence": "Think-aloud data interpretation — NSW DoE (2020)."
+  },
+  {
+    "topicId": "graph-anomaly",
+    "habitId": "challenge",
+    "goal": "Give a graph where the anomaly IS the finding",
+    "script": "Here's one where the odd point is the whole story, not an error. Does your usual 'ignore the outlier' instinct serve you here?",
+    "why": "Breaking the default rule tests whether students are thinking or applying a script.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "graph-anomaly",
+    "habitId": "evaluate",
+    "goal": "Rate your interpretation process",
+    "script": "Did you decide about the anomaly on evidence, or on a gut 'that looks wrong'? Rate your own process, not just your conclusion.",
+    "why": "Focuses evaluation on <b>how</b> the judgement was made.",
+    "evidence": "Evaluating the process — NSW DoE (2020)."
+  },
+  {
+    "topicId": "graph-anomaly",
+    "habitId": "collab",
+    "goal": "Compare verdicts on the same anomaly",
+    "script": "Same graph, compare verdicts. What did someone else notice about that point that you missed?",
+    "why": "Peers surface features and interpretations an individual misses.",
+    "evidence": "Social metacognition — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "graph-anomaly",
+    "habitId": "practise",
+    "goal": "Reuse the three-question routine on new graphs",
+    "script": "New data set each lesson, same three questions. The topic changes; your reading routine gets stronger.",
+    "why": "Repetition across content builds a durable reading habit.",
+    "evidence": "Interleaving — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "graph-anomaly",
+    "habitId": "checkin",
+    "goal": "Check for unprompted critical reading",
+    "script": "Has anyone caught themselves questioning a graph in an ad or on social media this week?",
+    "why": "Self-reported transfer outside class is strong evidence the habit has stuck.",
+    "evidence": "Assessing metacognition in natural settings — NSW DoE (2020)."
+  },
+  {
+    "topicId": "designing-investigation",
+    "habitId": "ask",
+    "goal": "Turn variable-control into a self-check",
+    "script": "Before you submit this method, answer three questions in writing: what am I changing, what am I measuring, and what am I keeping the same?",
+    "why": "Students can define 'variable' on a test yet never turn it into a <b>question about their own plan</b>. This routine forces that.",
+    "evidence": "Self-questioning; investigation planning — NSW DoE (2020)."
+  },
+  {
+    "topicId": "designing-investigation",
+    "habitId": "explicit",
+    "goal": "Name fair-test design as a habit for every prac",
+    "script": "These three questions aren't for this experiment — they're for every practical this year and your depth study. The topic changes; the questions don't.",
+    "why": "Frames the routine as transferable disciplinary method, not a one-off.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "designing-investigation",
+    "habitId": "plan",
+    "goal": "Use one reusable planning scaffold",
+    "script": "Same planning template every time: question, variables, method, controls, safety, expected pattern. Its familiarity is the point.",
+    "why": "A content-free scaffold reused all year is what carries the metacognitive value.",
+    "evidence": "Investigation planning sheet — NSW DoE science resources."
+  },
+  {
+    "topicId": "designing-investigation",
+    "habitId": "model",
+    "goal": "Think aloud spotting your own uncontrolled variable",
+    "script": "I said I'm testing surface type… but I swabbed the door at lunch and the desk at 9am. Time is now a second variable I didn't control. Let me fix that.",
+    "why": "Modelling the <b>catch</b>, not just the corrected method, teaches the monitoring move.",
+    "evidence": "Think-aloud modelling — NSW DoE (2020)."
+  },
+  {
+    "topicId": "designing-investigation",
+    "habitId": "challenge",
+    "goal": "Design for an open question with no obvious variable",
+    "script": "Now an open question with no single obvious variable to change. Rebuild the three planning questions from memory — no template this time.",
+    "why": "Removing the scaffold tests whether the routine has been internalised.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "designing-investigation",
+    "habitId": "evaluate",
+    "goal": "Self-mark the plan before results arrive",
+    "script": "Before you run it, self-check: did I identify all three variable types? Is it genuinely a fair test? Mark your plan, then I'll mark it.",
+    "why": "Judging the plan <b>before</b> results keeps the reflection about method, not about whether it 'worked'.",
+    "evidence": "Self-assessment; evaluating the process — NSW DoE (2020)."
+  },
+  {
+    "topicId": "designing-investigation",
+    "habitId": "collab",
+    "goal": "Peer-review draft methods",
+    "script": "Swap plans. Each partner finds one thing the writer missed using the three questions. Notice which question you keep forgetting.",
+    "why": "Peers catch different gaps; noticing your own blind spot is metacognitive knowledge.",
+    "evidence": "Social metacognition — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "designing-investigation",
+    "habitId": "practise",
+    "goal": "Withdraw the scaffold over the year",
+    "script": "By mid-year I want those three questions coming from you, not the template. We'll track how much scaffold you still need.",
+    "why": "Visible fading of support is the goal, not a new skill each time.",
+    "evidence": "Gradual release; distributed practice — NSW DoE (2020)."
+  },
+  {
+    "topicId": "designing-investigation",
+    "habitId": "checkin",
+    "goal": "Check for the routine as a default",
+    "script": "Without me saying anything — what are your first three questions when you start planning any investigation?",
+    "why": "Reciting the routine unprompted is evidence it's a habit, not compliance.",
+    "evidence": "Assessing metacognition in performance — NSW DoE (2020)."
+  },
+  {
+    "topicId": "evaluating-health-evidence",
+    "habitId": "ask",
+    "goal": "Ask why a claim feels convincing before asking if it's true",
+    "script": "What about this source made you want to believe it — and is that a good scientific reason?",
+    "why": "Separates a <b>persuasive</b> source from a <b>reliable</b> one, and turns inspection back onto the student's own reaction.",
+    "evidence": "Self-questioning; evaluating sources — NSW DoE (2020)."
+  },
+  {
+    "topicId": "evaluating-health-evidence",
+    "habitId": "explicit",
+    "goal": "Name 'evidence quality' as the transferable target",
+    "script": "We're building one skill: noticing when a claim outruns its evidence. This is for every health headline you'll ever read, not just this one.",
+    "why": "Makes the habit, not the example, the point.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "evaluating-health-evidence",
+    "habitId": "plan",
+    "goal": "Fix your criteria before reading either source",
+    "script": "Before you read, write the questions you'll ask of each source — sample size, who funded it, has it been repeated — so the content can't sway your standards.",
+    "why": "Setting criteria first guards against being persuaded and then rationalising.",
+    "evidence": "Planning strategies — NSW DoE (2020)."
+  },
+  {
+    "topicId": "evaluating-health-evidence",
+    "habitId": "model",
+    "goal": "Narrate nearly being persuaded too fast",
+    "script": "'A study found…' — that sounds solid… wait, it doesn't say how many people. I nearly accepted that. Let me find the sample size first.",
+    "why": "The near-miss, modelled aloud, is the behaviour worth copying.",
+    "evidence": "Think-aloud; evaluating scientific data — NSW DoE resources."
+  },
+  {
+    "topicId": "evaluating-health-evidence",
+    "habitId": "challenge",
+    "goal": "Test evenhandedness against a disliked conclusion",
+    "script": "Here's a well-evidenced claim that cuts against what most of us assume. Are you using the same evidence standard as before, or is this one harder to accept?",
+    "why": "Reveals motivated reasoning — a hard, high-value monitoring skill.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "evaluating-health-evidence",
+    "habitId": "evaluate",
+    "goal": "Check your verdict against your own criteria",
+    "script": "Go back to the questions you planned. Did you actually use each one, or fall back on gut feeling under time pressure?",
+    "why": "Evaluates the process against the student's own stated standard.",
+    "evidence": "Evaluating the process — NSW DoE (2020)."
+  },
+  {
+    "topicId": "evaluating-health-evidence",
+    "habitId": "collab",
+    "goal": "Compare verdicts on identical evidence",
+    "script": "Same source, compare verdicts. People can weigh identical evidence differently — what did your group weigh more heavily than you did?",
+    "why": "Shows evaluation is a judgement with visible reasoning, not a lookup.",
+    "evidence": "Social metacognition — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "evaluating-health-evidence",
+    "habitId": "practise",
+    "goal": "Rehearse across health, climate, tech claims",
+    "script": "Different topic every time — vaccine, diet, phone radiation — same evaluative questions. You're building the habit, not becoming an expert in one topic.",
+    "why": "Varying content isolates the transferable skill.",
+    "evidence": "Interleaving — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "evaluating-health-evidence",
+    "habitId": "checkin",
+    "goal": "Check for transfer beyond the classroom",
+    "script": "Anyone catch themselves asking these questions about something on their feed this week?",
+    "why": "Out-of-class transfer is the strongest evidence the habit is real.",
+    "evidence": "Assessing metacognition in natural settings — NSW DoE (2020)."
+  },
+  {
+    "topicId": "conservation-of-mass",
+    "habitId": "ask",
+    "goal": "Probe where the 'missing' mass went",
+    "script": "You said mass was lost when the candle burned. Where exactly did it go — and how could we check whether it's really gone or just moved?",
+    "why": "Turns a stated misconception into an investigable question the student poses to themselves.",
+    "evidence": "Self-questioning to surface misconceptions — NSW DoE (2020)."
+  },
+  {
+    "topicId": "conservation-of-mass",
+    "habitId": "explicit",
+    "goal": "Name the 'mass can hide as gas' idea directly",
+    "script": "The trap today is thinking mass disappears when we can't see it. That exact idea is what we're testing and replacing.",
+    "why": "Gives students the misconception by name so they can catch it in themselves.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "conservation-of-mass",
+    "habitId": "plan",
+    "goal": "Predict-then-weigh as a planned routine",
+    "script": "Predict the mass change in writing and why, before you weigh anything. We're checking your reasoning against the balance.",
+    "why": "Committing a reasoned prediction first is Predict–Observe–Explain: the mismatch becomes data about thinking.",
+    "evidence": "Predict–Observe–Explain — White & Frederiksen (1998)."
+  },
+  {
+    "topicId": "conservation-of-mass",
+    "habitId": "model",
+    "goal": "Show revising a belief when the balance disagrees",
+    "script": "I expected the sealed flask to get lighter… it didn't. So my 'gas escapes = mass lost' idea can't be right when nothing escapes. Let me rebuild it.",
+    "why": "Modelling belief revision in response to evidence is the target thinking move.",
+    "evidence": "Think-aloud; conceptual change — White & Frederiksen (1998)."
+  },
+  {
+    "topicId": "conservation-of-mass",
+    "habitId": "challenge",
+    "goal": "Apply it to an open vs sealed system",
+    "script": "Same reaction, once sealed and once open. Predict both, then say which prediction you trust less and why.",
+    "why": "The open/closed contrast tests whether the corrected model generalises; naming lower confidence is a monitoring act.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "conservation-of-mass",
+    "habitId": "evaluate",
+    "goal": "Separate stating the law from believing it",
+    "script": "Rate both: 'I can state that mass is conserved' and 'I honestly still expect burning things to lose mass.'",
+    "why": "The second line targets the surviving misconception the definition can mask.",
+    "evidence": "Evaluating understanding — NSW DoE (2020)."
+  },
+  {
+    "topicId": "conservation-of-mass",
+    "habitId": "collab",
+    "goal": "Reconcile conflicting predictions in pairs",
+    "script": "You predicted lighter, your partner predicted the same — the balance says no change. Talk out where your shared reasoning went wrong.",
+    "why": "Explaining a wrong shared prediction aloud is high-value self-explanation.",
+    "evidence": "Self-explanation; social metacognition — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "conservation-of-mass",
+    "habitId": "practise",
+    "goal": "Reuse predict-then-weigh across reactions",
+    "script": "Precipitation, effervescence, combustion — predict the mass change and reason first, every time.",
+    "why": "Repetition builds the predict-first habit across reaction types.",
+    "evidence": "Distributed practice — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "conservation-of-mass",
+    "habitId": "checkin",
+    "goal": "Check whether the misconception resurfaces",
+    "script": "New reaction, no warning — what does your gut say about the mass, and do you still trust it?",
+    "why": "An unprompted check reveals whether the old idea has truly gone.",
+    "evidence": "Monitoring misconceptions over time — NSW DoE (2020)."
+  },
+  {
+    "topicId": "punnett-squares",
+    "habitId": "ask",
+    "goal": "Distinguish a probability from a guarantee, out loud",
+    "script": "You wrote '3 will be tall'. Ask yourself: does the square predict exactly three, or the probability of each? What's the difference for a litter of four?",
+    "why": "Forces students to inspect whether they're reasoning in <b>probabilities</b> or slipping into certainties.",
+    "evidence": "Self-questioning — NSW DoE (2020)."
+  },
+  {
+    "topicId": "punnett-squares",
+    "habitId": "explicit",
+    "goal": "Name probabilistic reasoning as the real skill",
+    "script": "The genetics is the cross. The thinking skill is reading a ratio as a probability, not a promise — and that trips people up in stats and risk everywhere.",
+    "why": "Lifts the transferable reasoning above the specific cross.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "punnett-squares",
+    "habitId": "plan",
+    "goal": "Fix a genotype-then-phenotype sequence",
+    "script": "Plan the steps before you fill anything in: parental genotypes, gametes, grid, genotype ratio, then phenotype ratio. Don't jump to phenotype.",
+    "why": "A planned sequence prevents the common genotype/phenotype conflation.",
+    "evidence": "Planning strategies — NSW DoE (2020)."
+  },
+  {
+    "topicId": "punnett-squares",
+    "habitId": "model",
+    "goal": "Show catching a genotype/phenotype slip",
+    "script": "I've got 1:2:1 genotypes… wait, the question asked phenotype, that's 3:1. I nearly answered the wrong ratio — always re-read which one they want.",
+    "why": "Modelling the self-catch teaches the checking move directly.",
+    "evidence": "Think-aloud modelling — NSW DoE (2020)."
+  },
+  {
+    "topicId": "punnett-squares",
+    "habitId": "challenge",
+    "goal": "Move to a dihybrid or linked-gene case",
+    "script": "Now two genes at once. Predict, then tell me which step you're least confident about before you commit.",
+    "why": "A harder cross tests whether the routine transfers; naming the shaky step is monitoring.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "punnett-squares",
+    "habitId": "evaluate",
+    "goal": "Grade reasoning, not just the ratio",
+    "script": "Did you get 3:1 by understanding, or by copying the pattern from last question? Rate how well you understood, separately from the answer.",
+    "why": "Separates a correct answer from secure reasoning.",
+    "evidence": "Evaluating the process — NSW DoE (2020)."
+  },
+  {
+    "topicId": "punnett-squares",
+    "habitId": "collab",
+    "goal": "Explain a cross to a partner as a check",
+    "script": "Explain your cross to your partner using only 'because'. If you can't finish a 'because', that's exactly where to look again.",
+    "why": "Self-explanation exposes gaps a correct grid can hide.",
+    "evidence": "Self-explanation — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "punnett-squares",
+    "habitId": "practise",
+    "goal": "Interleave inheritance types",
+    "script": "Mix them deliberately — autosomal, sex-linked, codominant — in one set, so you have to decide the type, not just apply one.",
+    "why": "Interleaving forces discrimination between problem types, which blocked practice hides.",
+    "evidence": "Interleaving — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "punnett-squares",
+    "habitId": "checkin",
+    "goal": "Check the re-read habit is automatic",
+    "script": "Quick show of hands — who now automatically re-reads whether a question wants genotype or phenotype?",
+    "why": "An automatic re-read reflex is the sign the habit has formed.",
+    "evidence": "Assessing metacognition in performance — NSW DoE (2020)."
+  },
+  {
+    "topicId": "immunity-extended-response",
+    "habitId": "ask",
+    "goal": "Interrogate the verb before writing",
+    "script": "Before you write — what is 'assess' actually asking you to do here, and how is that different from 'describe'? Answer that first.",
+    "why": "Unpacking the directive verb is a planning-level monitoring move most students skip.",
+    "evidence": "Self-questioning; scientific thinking scaffold — NSW DoE resources."
+  },
+  {
+    "topicId": "immunity-extended-response",
+    "habitId": "explicit",
+    "goal": "Name criteria-reading as a transferable skill",
+    "script": "We're practising turning marking criteria into a checklist you write against — a skill for every extended response and your depth study report.",
+    "why": "Frames exam technique as a durable self-regulation habit.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "immunity-extended-response",
+    "habitId": "plan",
+    "goal": "Translate the criteria into self-questions first",
+    "script": "Turn the marking rubric into three questions in your own words — e.g. 'have I linked innate and adaptive, not just listed them?' — and plan against those.",
+    "why": "Generating the questions themselves forces students to internalise the standard.",
+    "evidence": "Planning; exam wrappers — self-regulated learning research."
+  },
+  {
+    "topicId": "immunity-extended-response",
+    "habitId": "model",
+    "goal": "Think aloud drafting against the criteria",
+    "script": "The rubric wants 'links between components'. My first sentence just lists them — that's a 'describe', not 'assess'. Let me add the link I'm missing.",
+    "why": "Modelling the criteria-check mid-draft shows monitoring in action.",
+    "evidence": "Think-aloud modelling — NSW DoE (2020)."
+  },
+  {
+    "topicId": "immunity-extended-response",
+    "habitId": "challenge",
+    "goal": "Apply to an unfamiliar cross-module prompt",
+    "script": "Here's a question blending immunity and non-infectious disease. Which criteria still apply, and which parts of your plan need changing?",
+    "why": "A novel synthesis prompt tests whether the criteria-routine transfers.",
+    "evidence": "Challenge with novel tasks; cross-module — NSW DoE resources."
+  },
+  {
+    "topicId": "immunity-extended-response",
+    "habitId": "evaluate",
+    "goal": "Self-mark before the teacher marks",
+    "script": "Mark your own draft against the rubric first — annotate where you think you did and didn't meet each criterion. Then compare with my marking.",
+    "why": "The gap between self-mark and teacher-mark becomes the feedback conversation.",
+    "evidence": "Self-assessment; exam wrappers — SRL research."
+  },
+  {
+    "topicId": "immunity-extended-response",
+    "habitId": "collab",
+    "goal": "Peer-mark using the same rubric",
+    "script": "Swap responses and mark each other with the rubric. Where you and your partner disagree on a mark, that's the criterion to discuss.",
+    "why": "Peer-marking builds shared understanding of the standard.",
+    "evidence": "Social metacognition — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "immunity-extended-response",
+    "habitId": "practise",
+    "goal": "Repeat criteria-first across modules",
+    "script": "Every extended response this term starts by turning the criteria into your own questions — immunity now, homeostasis next.",
+    "why": "Repetition across modules builds a durable writing routine.",
+    "evidence": "Distributed practice — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "immunity-extended-response",
+    "habitId": "checkin",
+    "goal": "Check whether criteria-reading is now automatic",
+    "script": "Before assessment week — do you now read the rubric before you start writing, without me telling you?",
+    "why": "An unprompted rubric-first habit is the evidence sought.",
+    "evidence": "Assessing metacognition — NSW DoE (2020)."
+  },
+  {
+    "topicId": "chemical-equilibrium",
+    "habitId": "ask",
+    "goal": "Check which mental picture is really in play",
+    "script": "When you pictured equilibrium just then — was anything still moving, or had it gone still? Describe the picture, not the definition.",
+    "why": "Students can give textbook wording while still picturing a static system; the question targets the <b>picture</b>.",
+    "evidence": "Self-questioning to surface misconceptions — NSW DoE (2020)."
+  },
+  {
+    "topicId": "chemical-equilibrium",
+    "habitId": "explicit",
+    "goal": "Name the 'stopped' misconception directly",
+    "script": "Almost everyone starts by picturing equilibrium as stopped. That specific idea is what we're replacing today — not adding on top of.",
+    "why": "Naming it gives students a concrete thing to catch in their own thinking.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "chemical-equilibrium",
+    "habitId": "plan",
+    "goal": "Use a deliberate three-step Le Châtelier check",
+    "script": "Fix the sequence before answering: what's the stress, which direction relieves it, and does that match my first guess?",
+    "why": "Planning the steps catches a wrong instinct instead of locking it in.",
+    "evidence": "Planning strategies — NSW DoE (2020)."
+  },
+  {
+    "topicId": "chemical-equilibrium",
+    "habitId": "model",
+    "goal": "Show a conceptual check differs from a calculation check",
+    "script": "For the Kc calculation I'm checking units and my ICE table. For this shift question I'm checking my mental model — a totally different kind of mistake to look for.",
+    "why": "Naming the difference stops quantitative habits leaking into conceptual reasoning.",
+    "evidence": "Think-aloud modelling — NSW DoE (2020)."
+  },
+  {
+    "topicId": "chemical-equilibrium",
+    "habitId": "challenge",
+    "goal": "Predict for two simultaneous stresses",
+    "script": "Two stresses at once now. Predict, then name the part of your reasoning you're least sure of.",
+    "why": "A multi-variable case tests robustness; naming uncertainty is diagnostic.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "chemical-equilibrium",
+    "habitId": "evaluate",
+    "goal": "Separate defining from truly picturing it",
+    "script": "Rate two lines: 'I can define dynamic equilibrium' and 'if I'm honest, I still sometimes picture it as stopped.'",
+    "why": "The second line targets the actual misconception, not recall.",
+    "evidence": "Evaluating understanding — NSW DoE (2020)."
+  },
+  {
+    "topicId": "chemical-equilibrium",
+    "habitId": "collab",
+    "goal": "Explain a predicted shift to a partner",
+    "script": "Explain your shift to your partner using only 'the system responds by…'. Can't finish it without 'it just goes that way'? Then it's not secure yet.",
+    "why": "Self-explanation reveals whether reasoning is genuine.",
+    "evidence": "Self-explanation — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "chemical-equilibrium",
+    "habitId": "practise",
+    "goal": "Reuse the three-step check across reactions",
+    "script": "Stress / direction / match-my-instinct — same check on Haber, on esterification, on a solubility equilibrium.",
+    "why": "Repetition across systems makes the check automatic.",
+    "evidence": "Interleaving — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "chemical-equilibrium",
+    "habitId": "checkin",
+    "goal": "Check the misconception is gone, not just quiet",
+    "script": "A few lessons from assessment — if you had to bet, is any part of you still tempted by 'equilibrium means stopped'?",
+    "why": "Misconceptions go underground; a direct check surfaces them in time.",
+    "evidence": "Monitoring misconceptions over time — NSW DoE (2020)."
+  },
+  {
+    "topicId": "titration-calculations",
+    "habitId": "ask",
+    "goal": "Build a running sense-check into the working",
+    "script": "At each line, ask: are my units still consistent, and is this number a sensible size for a titration? Don't wait until the end.",
+    "why": "Converts silent calculation into <b>monitored</b> calculation.",
+    "evidence": "Self-questioning; problem-solving — NSW DoE (2020)."
+  },
+  {
+    "topicId": "titration-calculations",
+    "habitId": "explicit",
+    "goal": "Name self-monitoring as the calculation skill",
+    "script": "The chemistry is the stoichiometry. The thinking skill is catching your own slip before the final line — that's what separates reliable problem-solvers.",
+    "why": "Makes the monitoring habit, not just the maths, explicit.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "titration-calculations",
+    "habitId": "plan",
+    "goal": "Use a four-stage problem card",
+    "script": "Understand, plan, solve, check — name what each line is doing before you write it. What's given, what's asked, which relationship links them?",
+    "why": "A staged card externalises the planning most students do implicitly (or skip).",
+    "evidence": "Planning strategies incl. checklists — NSW DoE (2020)."
+  },
+  {
+    "topicId": "titration-calculations",
+    "habitId": "model",
+    "goal": "Think aloud through a stuck point",
+    "script": "I've got moles of acid but the question wants concentration of base… I'm stuck. So I go back to the balanced equation for the mole ratio.",
+    "why": "Naming the stuck point and the recovery strategy gives students a template.",
+    "evidence": "Think-aloud modelling — NSW DoE (2020)."
+  },
+  {
+    "topicId": "titration-calculations",
+    "habitId": "challenge",
+    "goal": "Give a problem with a distractor number",
+    "script": "This one has an extra value you don't need. Which of your four stages catches that — and did it?",
+    "why": "A distractor tests whether students are monitoring, not just plugging numbers.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "titration-calculations",
+    "habitId": "evaluate",
+    "goal": "Reflect on which stage you skipped",
+    "script": "Which of understand-plan-solve-check did you rush or skip today? That's usually where the error is.",
+    "why": "Evaluating one's own process pinpoints the habit to strengthen.",
+    "evidence": "Evaluating the process — NSW DoE (2020)."
+  },
+  {
+    "topicId": "titration-calculations",
+    "habitId": "collab",
+    "goal": "Trade error-spotting on worked solutions",
+    "script": "Swap solutions and find each other's slip using the four stages. Which stage does your partner skip that you don't?",
+    "why": "Peers reveal characteristic error patterns.",
+    "evidence": "Social metacognition — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "titration-calculations",
+    "habitId": "practise",
+    "goal": "Retire the card as it internalises",
+    "script": "Once the four stages are automatic, I stop giving the card — you just ask 'which stage am I in?' The scaffold fades, the habit stays.",
+    "why": "Deliberate scaffold withdrawal is the aim.",
+    "evidence": "Gradual release; distributed practice — NSW DoE (2020)."
+  },
+  {
+    "topicId": "titration-calculations",
+    "habitId": "checkin",
+    "goal": "Check the sense-check is automatic",
+    "script": "Without prompting — what's the last thing you now do before writing a final answer?",
+    "why": "An unprompted final sense-check is the evidence the habit holds.",
+    "evidence": "Assessing metacognition — NSW DoE (2020)."
+  },
+  {
+    "topicId": "projectile-motion",
+    "habitId": "ask",
+    "goal": "Test whether the two components are being kept separate",
+    "script": "You said the faster ball hits later. Ask yourself: what decides the fall time — the horizontal speed, or only the vertical drop? Which am I actually using?",
+    "why": "Surfaces whether the student is treating the components as <b>independent</b>, where the misconception lives.",
+    "evidence": "Self-questioning — NSW DoE (2020)."
+  },
+  {
+    "topicId": "projectile-motion",
+    "habitId": "explicit",
+    "goal": "Name component-independence as the key idea to watch",
+    "script": "The trap is letting horizontal speed leak into your vertical thinking. That's the exact habit of mind we're building resistance to today.",
+    "why": "Names the misconception so students can self-monitor for it.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "projectile-motion",
+    "habitId": "plan",
+    "goal": "Separate-the-axes as a planned first step",
+    "script": "Before any numbers, split the problem into two columns — horizontal and vertical — and list what's constant in each. Always before, never during.",
+    "why": "A planned separation stops the components being tangled from the start.",
+    "evidence": "Planning strategies — NSW DoE (2020)."
+  },
+  {
+    "topicId": "projectile-motion",
+    "habitId": "model",
+    "goal": "Show catching the components leaking together",
+    "script": "I'm about to use horizontal speed to find fall time… no — that's the mistake. Fall time comes from vertical only. Let me catch that and reset.",
+    "why": "Modelling the self-catch is the core teaching move.",
+    "evidence": "Think-aloud modelling — NSW DoE (2020)."
+  },
+  {
+    "topicId": "projectile-motion",
+    "habitId": "challenge",
+    "goal": "Use a launch at an angle",
+    "script": "Now a launch at 30°, not horizontal. Predict, then say which of your two columns you're less sure about.",
+    "why": "An angled launch tests whether independence still holds under a harder case.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "projectile-motion",
+    "habitId": "evaluate",
+    "goal": "Separate getting the answer from believing the model",
+    "script": "Rate: 'I can calculate the range' and 'I honestly still half-expect a faster ball to stay up longer.'",
+    "why": "The second line targets the surviving intuition the calculation can mask.",
+    "evidence": "Evaluating understanding — NSW DoE (2020)."
+  },
+  {
+    "topicId": "projectile-motion",
+    "habitId": "collab",
+    "goal": "Reconcile predictions with the demo",
+    "script": "Groups predict for the drop-vs-launch demo. When the two balls land together, talk through whose reasoning that surprises and why.",
+    "why": "The shared surprise, discussed, drives conceptual change.",
+    "evidence": "Social metacognition; conceptual change — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "projectile-motion",
+    "habitId": "practise",
+    "goal": "Reuse split-the-axes across scenarios",
+    "script": "Thrown ball, dropped package from a plane, water jet — split the axes first every time.",
+    "why": "Repetition makes 'separate the components' automatic.",
+    "evidence": "Distributed practice — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "projectile-motion",
+    "habitId": "checkin",
+    "goal": "Check the intuition has actually shifted",
+    "script": "New projectile, no warning — what does your gut say about fall time, and do you trust it yet?",
+    "why": "An unprompted check reveals whether the misconception has truly gone.",
+    "evidence": "Monitoring misconceptions over time — NSW DoE (2020)."
+  },
+  {
+    "topicId": "depth-study",
+    "habitId": "ask",
+    "goal": "Build in recurring self-directed questions",
+    "script": "At each checkpoint, ask yourself the same three: is my question still answerable, is my method still working, and what would I change now?",
+    "why": "Recurring self-questions turn a long project into a monitored one.",
+    "evidence": "Self-questioning; open-ended prompts — NSW DoE (2020)."
+  },
+  {
+    "topicId": "depth-study",
+    "habitId": "explicit",
+    "goal": "Name the study as a metacognition vehicle",
+    "script": "Your depth study isn't only assessed on findings — it's where you show you can plan, monitor and evaluate your own thinking over weeks. That's the real skill.",
+    "why": "Makes the self-regulation goal of the task explicit from the start.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "depth-study",
+    "habitId": "plan",
+    "goal": "Set personal learning goals alongside the question",
+    "script": "Alongside your research question, write one or two personal goals — e.g. 'get better at spotting confounds' — in your log-book on day one.",
+    "why": "Personal goals give the evaluate phase something concrete to revisit.",
+    "evidence": "Thinking process log-book — NSW DoE (2020)."
+  },
+  {
+    "topicId": "depth-study",
+    "habitId": "model",
+    "goal": "Model a mid-project pivot honestly",
+    "script": "Here's a study where my first method wasn't giving reliable data, so at week three I changed it — and here's exactly how I reasoned about that pivot.",
+    "why": "Modelling a real pivot normalises revising a plan mid-stream.",
+    "evidence": "Think-aloud modelling — NSW DoE (2020)."
+  },
+  {
+    "topicId": "depth-study",
+    "habitId": "challenge",
+    "goal": "Push toward a genuinely open question",
+    "script": "Once your method's secure, extend to a sub-question you don't already know the answer to. Where does your confidence drop, and why?",
+    "why": "A truly open extension tests independent inquiry, the point of a depth study.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "depth-study",
+    "habitId": "evaluate",
+    "goal": "Revisit day-one goals at the end",
+    "script": "Back to your original goals — did you achieve them? What would you plan differently if you started again? And: what do I think I've learned about how I work?",
+    "why": "Closing the loop on personal goals is the fullest form of the evaluate phase.",
+    "evidence": "Evaluating; open-ended reflection prompts — NSW DoE (2020)."
+  },
+  {
+    "topicId": "depth-study",
+    "habitId": "collab",
+    "goal": "Peer-consult at checkpoints",
+    "script": "At each checkpoint, one peer asks you the three monitoring questions. Hearing how they'd approach it often shows a method you hadn't considered.",
+    "why": "Peer consultation surfaces alternative strategies.",
+    "evidence": "Social metacognition — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "depth-study",
+    "habitId": "practise",
+    "goal": "Keep short, scheduled log entries",
+    "script": "Two or three sentences at fixed points — not open-ended. The log-book supports the study; it shouldn't become a second assignment.",
+    "why": "Short, spaced entries build the habit without adding burden.",
+    "evidence": "Distributed reflection — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "depth-study",
+    "habitId": "checkin",
+    "goal": "Check self-regulation is becoming independent",
+    "script": "By the final weeks — are you running these checks yourself, or still waiting for me to prompt them?",
+    "why": "Independent self-regulation is the ultimate goal of the depth study.",
+    "evidence": "Assessing metacognition in performance — NSW DoE (2020)."
+  }
 ]
