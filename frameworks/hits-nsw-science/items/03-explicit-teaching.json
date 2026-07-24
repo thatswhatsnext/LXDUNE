@@ -1,0 +1,88 @@
+{
+  "id": "explicit",
+  "ordinal": 3,
+  "name": "Explicit Teaching",
+  "acknowledgedSuperseded": true,
+  "headline": "Effective teachers show students what to do and how to do it, then create opportunities for students to demonstrate understanding and apply the learning.",
+  "badges": [
+    { "label": "Direct instruction", "value": "0.59", "kind": "effectSize" },
+    { "label": "Time on task", "value": "0.62", "kind": "effectSize" },
+    { "label": "Teacher clarity", "value": "0.75", "kind": "effectSize" }
+  ],
+  "inContext": "Science has a long tradition of discovery-oriented teaching, and the evidence is not that discovery is worthless but that it fails when students have no prior knowledge to construct from. The mole is the clearest case in the NSW senior curriculum: it is an abstract quantity with no everyday analogue, and students who 'discover' it typically end up with a template they can run and cannot adapt. Explicit teaching here means <b>separating the sub-concepts that are habitually collapsed</b>, teaching each to mastery, modelling the decision rather than only the arithmetic, and then interleaving so students must select rather than apply.",
+  "exemplar": {
+    "context": {
+      "stage": "stage-6",
+      "syllabus": "chemistry-stage6-2017",
+      "focusArea": "chem-m2",
+      "scope": "single",
+      "duration": "6-week module"
+    },
+    "problem": "Students could complete mole calculations that matched the worked example on the board and fail entirely when the same chemistry was phrased differently. Error analysis showed the failures were almost never arithmetic — they were failures to work out which relationship the question required.",
+    "phases": [
+      {
+        "label": "Separate what gets collapsed",
+        "weekLabel": "Weeks 1–2",
+        "span": { "start": 0, "end": 2 },
+        "what": "The five relationships that students habitually merge are named, sequenced and taught one at a time.",
+        "detail": "Mass ↔ mole, mole ↔ number of particles, mole ↔ concentration, mole ↔ volume of gas, and mole ratio from a balanced equation. Each is taught and modelled as a distinct relationship <b>before</b> any multi-step problem is attempted. Success criteria state exactly what students must be able to do with each. This front-loading feels slow and is the reason the later weeks are not."
+      },
+      {
+        "label": "I do – we do – you do, with a gate",
+        "weekLabel": "Weeks 2–4",
+        "span": { "start": 2, "end": 5 },
+        "what": "Every relationship goes through modelling, guided practice and independent practice — with a checking gate before release.",
+        "detail": "The gate matters: mini-whiteboards or a cold-call sample before students are released to work alone, so nobody practises an error for twenty minutes. The teacher deliberately models the <b>decision</b> aloud — 'what am I given, what am I asked, which relationship connects them?' — because that is the step students cannot see when only the arithmetic is demonstrated."
+      },
+      {
+        "label": "Interleave so they must select",
+        "weekLabel": "Weeks 4–5",
+        "span": { "start": 5, "end": 7 },
+        "what": "Practice sets deliberately mix relationships, and pre-planned questions target known misconceptions.",
+        "detail": "Blocked practice — twenty questions all using the same relationship — lets students switch off the selection step entirely, which is the very step that was failing. Mixed sets force it back on. Alongside this, the teacher pre-plans misconception probes: mole ratio versus mass ratio, and concentration as an intensive property that does not change when you take a smaller sample."
+      },
+      {
+        "label": "Re-teach from the data, then tie together",
+        "weekLabel": "Week 6",
+        "span": { "start": 7, "end": 8 },
+        "what": "The two weakest relationships in the class check data are re-taught, and the whole map is connected in one multi-step problem.",
+        "detail": "This phase is conditional by design — the teacher does not know in Week 1 which relationships will need re-teaching, and plans time for it anyway. The HITS document's closing move, revisiting what was covered and tying it together, is done here with a single problem that requires four of the five relationships in sequence."
+      }
+    ],
+    "impact": "A common item set given before and after the module, with errors coded as either <b>selection</b> errors or <b>execution</b> errors. The shift the teacher wanted was not simply more correct answers but a change in the composition of the remaining errors — from choosing the wrong relationship to slipping in the arithmetic, which is a far more tractable problem."
+  },
+  "transfer": {
+    "label": "Stage 5 · Reactions",
+    "text": "Balancing equations is a rule-governed procedure and is routinely taught as a puzzle to be intuited. Explicitly teaching it — the conservation principle first, then the procedure, then the checking step — before asking students to interpret or write equations, produces far fewer students who balance by trial and error and cannot say why the answer is right."
+  },
+  "indicators": {
+    "teacher": [
+      "Sequences sub-concepts and teaches each to mastery before combining them",
+      "Models the decision-making aloud, not only the procedure",
+      "Checks for understanding at a defined gate before releasing to independent practice",
+      "Plans time to re-teach from check data rather than moving on regardless",
+      "Interleaves practice so students must select a method rather than repeat one"
+    ],
+    "notDemonstrated": [
+      "Uninterrupted teacher monologue with no checking for understanding",
+      "Multi-step problems set before each single step is secure",
+      "A concept is 'discovered' that students have no prior knowledge to construct from",
+      "Errors are treated as carelessness rather than as diagnostic information",
+      "Class discussion and student input are discouraged in the name of coverage"
+    ],
+    "student": [
+      "Can state what they must be able to do by the end of the sequence",
+      "Have seen several worked examples before attempting problems independently",
+      "Can explain why they selected a relationship, not just that it produced a number",
+      "Master each step before moving on, rather than accumulating gaps"
+    ]
+  },
+  "continuum": [
+    { "level": 1, "label": "Emerging", "text": "Teachers know what students should know and be able to do, and explain new knowledge and skills clearly." },
+    { "level": 2, "label": "Evolving", "text": "Teachers make intentions clear before the task, model how to apply new knowledge, and plan activities that let students practise." },
+    { "level": 3, "label": "Embedding", "text": "Teachers provide worked examples and check understanding before independent practice, monitor individuals and give feedback." },
+    { "level": 4, "label": "Excelling", "text": "Students can articulate the intentions and criteria. Teachers check before release, re-teach from data, and support students to apply learning in new contexts." }
+  ],
+  "related": ["worked", "structure", "exposures"],
+  "evidence": "Hattie (2009): direct instruction 0.59, time on task 0.62, teacher clarity 0.75. Archer and Hughes (2011) on explicit instruction. Explicit teaching is also one of the eight CESE What Works Best themes and is described in the 2025 edition as the thread running through the others."
+}

@@ -1,0 +1,86 @@
+{
+  "id": "questioning",
+  "ordinal": 7,
+  "name": "Questioning",
+  "headline": "Effective teachers use questioning to engage and challenge students, to check understanding, and to evaluate the effectiveness of their own teaching.",
+  "badges": [
+    { "label": "Questioning", "value": "0.46", "kind": "effectSize" },
+    { "label": "Classroom discussion", "value": "0.82", "kind": "effectSize" }
+  ],
+  "inContext": "Science questioning defaults to recall because so much of the subject has correct answers, and because the vocabulary load is high enough that checking terminology feels like checking understanding. It isn't. The two changes with the largest return are the least technical: <b>wait time</b>, and who is accountable for answering. Under a second of wait time selects for students who already know; five seconds changes who can participate. This is also the strategy that most obviously belongs to a faculty rather than an individual, because it is very hard to see your own questioning without someone else observing it.",
+  "exemplar": {
+    "context": {
+      "syllabus": "science-7-10-2023",
+      "scope": "faculty-wide",
+      "spans": ["stage-4", "stage-5", "living-systems", "energy"],
+      "duration": "One term, professional learning cycle",
+      "label": "Faculty-wide, anchored in Living systems & Energy (Stage 4–5)"
+    },
+    "problem": "Coded peer observation across six science lessons found more than 80% of teacher questions were closed recall, mean wait time under one second, and the same six or seven students producing nearly all the answers in a class of 28.",
+    "phases": [
+      {
+        "label": "Build the conditions first",
+        "weekLabel": "Weeks 1–2",
+        "span": { "start": 0, "end": 2 },
+        "what": "Protocols and wait time are established before any change to question type.",
+        "detail": "Questioning only works in a room where being wrong in public is survivable, so the faculty co-writes discussion protocols with students first. Two non-negotiables: a <b>five-second wait</b> after every question, including after a student's answer, and no hands up — strategic sampling instead, so every student is plausibly accountable. Teachers report the five seconds as physically uncomfortable for about a fortnight."
+      },
+      {
+        "label": "Plan questions rather than improvise",
+        "weekLabel": "Weeks 3–5",
+        "span": { "start": 2, "end": 5 },
+        "what": "Three questions per lesson are written in advance, each doing a different job.",
+        "detail": "One <b>diagnostic</b> question targeting a known misconception for that topic; one <b>probing</b> question that requires justification ('what evidence would change your mind?'); one <b>extension</b>. Concept cartoons and paired competing explanations are used as stimulus, because a question with two defensible answers generates argument where a question with one generates recall."
+      },
+      {
+        "label": "Move the questioning to students",
+        "weekLabel": "Weeks 5–8",
+        "span": { "start": 5, "end": 8 },
+        "what": "Students generate the questions, and disagreement must take the form of a question.",
+        "detail": "Students write the questions they would ask of a data set or a claim, and the faculty adopts an <b>active sceptic</b> norm: anyone who disagrees with a presented explanation must frame a follow-up question rather than simply assert a counter-claim. This is where teacher talk starts to fall, and where questioning begins to serve metacognition rather than only assessment."
+      },
+      {
+        "label": "Observe, code, evaluate",
+        "weekLabel": "Weeks 8–10",
+        "span": { "start": 8, "end": 11 },
+        "what": "Peer observation rounds focus only on question quality and response depth, and the faculty reads its own data.",
+        "detail": "Observation is narrow on purpose — one observer, four measures, no general judgements about the lesson. The faculty then compares against the Week 1 baseline and decides what to keep. The evaluation phase is the part most professional learning cycles skip, and without it the wait time reverts within a term."
+      }
+    ],
+    "impact": "Four coded measures, taken at Week 1 and Week 10: ratio of open to closed questions, mean wait time, number of distinct students contributing, and mean length of student response. Mean response length is the most informative of the four — it moves only when students are genuinely reasoning aloud rather than supplying a term."
+  },
+  "transfer": {
+    "label": "Stage 6 · any science course",
+    "text": "In senior science the highest-value version is questioning that targets the gap between a correct answer and a secure one: 'you've got the right shift — what would have to be true for that to be wrong?' Wait time matters more, not less, with senior students, because the reasoning being requested takes longer to assemble."
+  },
+  "indicators": {
+    "teacher": [
+      "Plans questions in advance for probing, extending, revising and reflecting",
+      "Holds a deliberate wait time after both teacher and student questions",
+      "Uses cold call and strategic sampling so all students are accountable",
+      "Provides stimulus that challenges ideas and supports more than one defensible answer",
+      "Supports students to generate and ask questions of each other"
+    ],
+    "notDemonstrated": [
+      "Questions are mainly closed, recall-focused, with a single right answer",
+      "Insufficient wait time for students to think about the question",
+      "The same few students respond consistently and the rest are not engaged",
+      "Discussion wanders without focus, or the teacher dominates it",
+      "Terminology checks are mistaken for checks of understanding"
+    ],
+    "student": [
+      "Feel confident to ask questions, speculate and hypothesise",
+      "Understand how different question types identify and clarify information",
+      "Build on and challenge one another's ideas rather than only answering the teacher",
+      "Frame a follow-up question when they disagree, rather than asserting"
+    ]
+  },
+  "continuum": [
+    { "level": 1, "label": "Emerging", "text": "Teachers use questioning to identify prior learning and gauge levels of understanding." },
+    { "level": 2, "label": "Evolving", "text": "Teachers work in teams on questioning skills including open and closed questions, probing questions and wait time, and support students to generate questions." },
+    { "level": 3, "label": "Embedding", "text": "Teachers deploy a range of question types matched to learning goals, reinforce agreed protocols, and use peer observation to debrief on question quality." },
+    { "level": 4, "label": "Excelling", "text": "Teachers use questioning skilfully for varied purposes including assessment, support students to think critically and pose problems, and use observation and student feedback to evaluate their questioning." }
+  ],
+  "related": ["feedback", "meta", "collab"],
+  "evidence": "Hattie (2009): questioning 0.46; classroom discussion 0.82. Kyriakides et al. (2013) and Muijs et al. (2014) on effective questions focusing on both product and process. The HITS resource's own primary science exemplar uses a five-second wait time and an 'active sceptic' norm; the arc above scales that to a secondary faculty."
+}

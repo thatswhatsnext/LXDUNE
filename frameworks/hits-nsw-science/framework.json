@@ -1,0 +1,31 @@
+{
+  "id": "hits-nsw-science",
+  "title": "High Impact Teaching Strategies as sustained science practice",
+  "subtitle": "Ten evidence-based instructional practices, each worked through as a <b>term-length arc</b> in a real NSW science context — Stage 4 and 5 focus areas from the <b>Science 7–10 Syllabus (2023)</b>, and Stage 6 modules from the current science syllabuses.",
+  "viewType": "deep-dive",
+  "version": "1.0.0",
+  "vocabulary": "../_schema/curriculum.vocab.json",
+  "items": [
+    "items/01-setting-goals.json",
+    "items/02-structuring-lessons.json",
+    "items/03-explicit-teaching.json",
+    "items/04-worked-examples.json",
+    "items/05-collaborative-learning.json",
+    "items/06-multiple-exposures.json",
+    "items/07-questioning.json",
+    "items/08-feedback.json",
+    "items/09-metacognitive-strategies.json",
+    "items/10-differentiated-teaching.json"
+  ],
+  "kicker": "NSW secondary science · a resource for beginning teachers and mentors",
+  "thesis": "A HITS is not a lesson activity. Read the Victorian department's own exemplars closely and none of them is a single moment: they run across terms, are planned in teams, are monitored with data, and are evaluated and revised. <b>The unit of implementation is a term, not a lesson.</b> Every exemplar here is built that way.",
+  "usageNote": "<p><b>Pick a strategy, then read the arc.</b> Each exemplar opens with a real problem of practice, then runs as four or five phases across a term. The coloured bar is a week ruler — click a segment to jump to that phase. Underneath sit the teacher and student indicators, a four-level continuum of practice written for science, and what the teacher used to judge whether it worked.</p><p><b>Read the phases, not just the headline.</b> The interesting part of most of these arcs is phase 3 or 4 — the point where the scaffold is deliberately faded, or where the data comes back and the plan changes. That is where the strategy stops being a technique and becomes practice.</p><p><b>On jurisdictions.</b> The HITS framework is a Victorian Department of Education resource, and the effect sizes quoted are Hattie's, as reported in that document. The syllabus contexts here are all NSW. The NSW equivalent framework is CESE's <i>What Works Best</i> (2020 update; a 2025 edition is now published), built on eight themes — high expectations, explicit teaching, effective feedback, use of data to inform practice, assessment, classroom management, wellbeing and collaboration. The overlap is substantial but not one-to-one, and the two use different organising logic. If you're programming in a NSW public school, <i>What Works Best</i> is the framework your school improvement documents will speak; HITS is a useful second lens, particularly for its granularity about worked examples, multiple exposures and lesson structure.</p><p><b>A caution the HITS document makes itself.</b> These strategies are described as reliable, not infallible. An effect size is an average across many studies and contexts; it is not a promise about your Year 9 class on a Friday afternoon. Each arc below therefore ends with how the teacher <i>checked</i>, because that is the part that makes the strategy answerable to your own students.</p>",
+  "attribution": "The HITS framework, its strategy definitions, indicator structure, continuum of practice and reported effect sizes are from the State of Victoria (Department of Education and Training), High Impact Teaching Strategies: Excellence in Teaching and Learning, 2017 (rev. 2020), licensed CC BY 4.0. The exemplars, indicators and continuum text here are adapted for NSW science contexts — an indication of changes made, as the licence requires. Effect sizes are Hattie's, as reported in the HITS resource.",
+  "sources": [
+    "State of Victoria, Department of Education and Training (2017, rev. 2020), High Impact Teaching Strategies: Excellence in Teaching and Learning — strategy definitions, indicators, continuum structure and reported effect sizes. Licensed CC BY 4.0.",
+    "Hattie, J. (2009), Visible Learning; Evidence for Learning, Teaching and Learning Toolkit – Australia (months of progress); Sweller and colleagues on worked examples and cognitive load; Nuthall (2000) on multiple exposures.",
+    "NSW Education Standards Authority — Science 7–10 Syllabus (2023) (16 focus areas across Stages 4–5; depth study each year; at least 50% of course time on scientific investigations) and the Stage 6 Biology, Chemistry, Physics and Investigating Science syllabuses (2017), with new 11–12 syllabuses (2025) implemented from 2027.",
+    "NSW Department of Education, Centre for Education Statistics and Evaluation — What Works Best (2020 update; 2025 edition), the NSW-facing evidence framework.",
+    "NSW Department of Education (2020), Metacognition — a key to unlocking learning."
+  ]
+}

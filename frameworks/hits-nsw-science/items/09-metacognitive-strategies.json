@@ -1,0 +1,88 @@
+{
+  "id": "meta",
+  "ordinal": 9,
+  "name": "Metacognitive Strategies",
+  "headline": "Effective teachers use metacognitive strategies to help students develop awareness of their own learning, to self-regulate, and to sustain their motivation to learn.",
+  "badges": [
+    { "label": "Metacognitive strategies", "value": "0.69", "kind": "effectSize" },
+    { "label": "Self-questioning", "value": "0.64", "kind": "effectSize" },
+    { "label": "Concept mapping", "value": "0.64", "kind": "effectSize" },
+    { "label": "+8 months", "kind": "monthsProgress" }
+  ],
+  "inContext": "The trap is treating metacognition as reflection sheets stapled to the end of a practical. The HITS document is precise about what actually matters: students need a <b>repertoire</b> of strategies, they need to be able to <b>select</b> between them, and the advantage of each strategy must be clear to them. That is a year-long build, not a lesson. Science is a good vehicle because it supplies constant, honest feedback on whether a strategy worked — a prediction is wrong, an anomaly appears, a confident answer turns out to be a misconception. The single highest-value move is <b>calibration</b>: making the gap between how well students think they understand and how well they do understand visible to them.",
+  "exemplar": {
+    "context": {
+      "stage": "stage-5",
+      "syllabus": "science-7-10-2023",
+      "scope": "whole-year",
+      "duration": "Full year, four-term build",
+      "label": "Across all focus areas · Year 10"
+    },
+    "problem": "Asked how they studied, almost every student described re-reading notes. Confidence surveys before topic tests bore little relationship to results, and students who performed poorly were frequently the most confident — they had no way of knowing what they did not know.",
+    "phases": [
+      {
+        "label": "Build the repertoire",
+        "weekLabel": "Term 1",
+        "span": { "start": 0, "end": 3 },
+        "what": "Three strategies are taught explicitly, with their evidence and with when each is useful.",
+        "detail": "Retrieval practice, self-explanation, and concept mapping — taught as content, modelled, and practised on real science. Students are told <b>why</b> each works and where it is the wrong choice, because the HITS document is clear that the advantage of a strategy must be clear to students or they will not select it. Re-reading is discussed honestly as the strategy that feels most effective and is among the least."
+      },
+      {
+        "label": "Calibrate",
+        "weekLabel": "Term 2",
+        "span": { "start": 3, "end": 6 },
+        "what": "Students predict their score before every topic test and compare it afterwards — repeatedly.",
+        "detail": "The object of discussion is the <b>gap</b>, not the mark. Over-confidence, once it has been visible three or four times, stops being an argument the teacher has to make. Students who predicted 80% and scored 55% have direct evidence that their monitoring is unreliable, which is the precondition for changing strategy. This costs two minutes per test and is the highest-yield element of the year."
+      },
+      {
+        "label": "Select and monitor",
+        "weekLabel": "Term 3",
+        "span": { "start": 6, "end": 9 },
+        "what": "For each new topic students choose a strategy, justify the choice against the task, and review whether it worked.",
+        "detail": "The justification is the assessable part: 'this topic is mostly relationships between processes, so a concept map suits it better than flashcards' shows selection; 'I'll use flashcards because I like them' does not. Concept maps are drawn at the start and end of each focus area so students can see their own model change — which is also a memorable demonstration that understanding is constructed rather than received."
+      },
+      {
+        "label": "Withdraw the scaffolding",
+        "weekLabel": "Term 4",
+        "span": { "start": 9, "end": 12 },
+        "what": "Students plan, monitor and evaluate their own revision, with teacher prompts deliberately removed.",
+        "detail": "Checklists and prompts that have been in place all year are withdrawn on a stated schedule. The test of the year's work is not whether students use a strategy when prompted but whether they use one when not. For students moving into Stage 6, this is the capability that determines whether they can manage a depth study and two years of accumulating content."
+      }
+    ],
+    "impact": "Calibration data across four testing points — the mean absolute gap between predicted and actual scores should narrow, and it is a clean, quantitative measure of a capability that usually gets described only in adjectives. Alongside it, the strategy-choice justifications were coded for whether they referred to the demands of the task or only to preference."
+  },
+  "transfer": {
+    "label": "Stage 6 · Investigating Science or any depth study",
+    "text": "The same calibration move applied to an extended investigation: students predict which section of their report will score lowest before submission. Students whose prediction is accurate have functioning self-monitoring even if the work is weak, and that distinction changes what the teacher does next — a knowledge problem and a monitoring problem need different responses."
+  },
+  "indicators": {
+    "teacher": [
+      "Teaches specific strategies explicitly, including why and when each one works",
+      "Makes the advantage of each strategy clear rather than assuming students will infer it",
+      "Builds calibration in — predictions compared against performance, repeatedly",
+      "Requires students to justify a strategy choice against the demands of the task",
+      "Withdraws prompts and checklists on a stated schedule rather than indefinitely"
+    ],
+    "notDemonstrated": [
+      "Students are given a choice of activities but never taught how to choose",
+      "Reflection is a sheet completed after the task with no bearing on the next one",
+      "Metacognitive strategies are taught once and never revisited or transferred",
+      "Students are told to 'revise' with no strategy named",
+      "The teacher does not encourage students to take responsibility for their own learning"
+    ],
+    "student": [
+      "Have a repertoire of strategies and select one appropriate to the goal",
+      "Reflect on their learning processes and acknowledge the effect of effort",
+      "Actively seek feedback because they value it as information about how they learn",
+      "Take proactive control of their own learning, and their confidence matches their performance"
+    ]
+  },
+  "continuum": [
+    { "level": 1, "label": "Emerging", "text": "Teachers encourage students to be self-reflective and emphasise that the ability to learn is not fixed." },
+    { "level": 2, "label": "Evolving", "text": "Teachers introduce differentiated strategies, explain how to make informed choices about which to use, and teach students to reflect on and monitor their learning." },
+    { "level": 3, "label": "Embedding", "text": "Teachers explicitly teach several strategies, model their use, embed them in routines and lesson structure, and support students to plan, monitor and evaluate their learning." },
+    { "level": 4, "label": "Excelling", "text": "Strategies are explicitly taught, extensively modelled, embedded in routines, and linked to the content being taught. Students set and monitor their own goals and develop strategies for reaching them." }
+  ],
+  "related": ["worked", "feedback", "questioning"],
+  "evidence": "Hattie (2009): metacognitive strategies 0.69, self-questioning 0.64, concept mapping 0.64, study skills 0.60, teaching problem solving 0.63; Evidence for Learning: metacognition and self-regulation +8 months. Education Endowment Foundation, Metacognition and Self-Regulated Learning. NSW DoE (2020), Metacognition — a key to unlocking learning. Self-testing, spacing and interleaving: CBE–Life Sciences Education evidence-based teaching guide (2021)."
+}
