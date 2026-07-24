@@ -1,0 +1,293 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thatswhatsnext.github.io/LXDUNE/frameworks/_schema/framework.schema.json",
+  "title": "LXDUNE Framework Explorer",
+  "description": "Schema for config-driven teaching-framework artefacts (Framework Explorer). One framework.json wrapper per framework; item/axis/cell files validated against the $defs referenced by the wrapper's viewType. NOTE: JSON Schema enforces per-file STRUCTURE only. Cross-file rules (unique ids, contiguous ordinals, related-ref resolution, span.end>span.start, cell-matrix completeness, curriculum-vocab membership + supersession) are enforced by scripts/validate-frameworks.js — see that file's report for the full gate. This split is deliberate: it is the boundary of what a JSON Schema can express.",
+
+  "$defs": {
+
+    "semver": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+
+    "vocabRef": {
+      "description": "Identifier that MUST resolve to an entry in curriculum.vocab.json. Membership + supersession is checked by the validator, not here.",
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+
+    "framework": {
+      "type": "object",
+      "description": "The framework.json wrapper — metadata, provenance, view type. No pedagogical content lives here.",
+      "additionalProperties": false,
+      "required": ["id", "title", "viewType", "version", "vocabulary", "attribution", "sources"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "title": { "type": "string", "minLength": 1 },
+        "subtitle": { "type": "string" },
+        "viewType": { "enum": ["deep-dive", "matrix"] },
+        "version": { "$ref": "#/$defs/semver" },
+        "items": {
+          "description": "Ordered manifest of item file paths (relative to the framework dir). Required for the deep-dive view so the renderer can fetch them over HTTP (no directory listing on GitHub Pages). The validator checks this matches the items/ directory.",
+          "type": "array",
+          "items": { "type": "string", "pattern": "\\.json$" }
+        },
+        "matrix": {
+          "description": "Source file paths for the matrix view (relative to the framework dir). Required when viewType is matrix.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["habits", "contexts", "cells"],
+          "properties": {
+            "habits": { "type": "string", "pattern": "\\.json$" },
+            "contexts": { "type": "string", "pattern": "\\.json$" },
+            "cells": { "type": "string", "pattern": "\\.json$" }
+          }
+        },
+        "vocabulary": {
+          "description": "Relative path to the controlled-vocabulary file this framework validates against.",
+          "type": "string"
+        },
+        "attribution": {
+          "description": "Full attribution string. REQUIRED and must not be dropped/shortened on build — CC BY 4.0 obligation (see handoff §14).",
+          "type": "string",
+          "minLength": 1
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "kicker": { "type": "string" },
+        "thesis": { "type": "string" },
+        "helperText": { "type": "string", "description": "Short caption under a picker (matrix view: the habit chips)." },
+        "usageNote": { "type": "string", "description": "Constrained HTML — the 'how to use / jurisdictions' panel." }
+      }
+    },
+
+    "badge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "kind"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "value": { "type": "string" },
+        "kind": { "enum": ["effectSize", "monthsProgress"] }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "effectSize" } } },
+          "then": { "required": ["value"] }
+        }
+      ]
+    },
+
+    "phaseSpan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": { "type": "number", "minimum": 0 },
+        "end": { "type": "number", "minimum": 0 }
+      }
+    },
+
+    "phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "weekLabel", "span", "what", "detail"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "weekLabel": { "type": "string", "minLength": 1 },
+        "span": { "$ref": "#/$defs/phaseSpan" },
+        "what": { "type": "string", "minLength": 1 },
+        "detail": { "type": "string", "minLength": 1 }
+      }
+    },
+
+    "context": {
+      "type": "object",
+      "description": "The exemplar's curriculum context. Either a SINGLE clean placement (stage+syllabus+focusArea) OR a cross-context descriptor (scope + optional spans[]) for whole-year / faculty-wide / module-spanning exemplars. See handoff-reconciliation note: ~half the HITS exemplars are deliberately multi-context.",
+      "additionalProperties": false,
+      "required": ["duration"],
+      "properties": {
+        "stage": { "$ref": "#/$defs/vocabRef" },
+        "syllabus": { "$ref": "#/$defs/vocabRef" },
+        "focusArea": { "$ref": "#/$defs/vocabRef" },
+        "duration": { "type": "string", "minLength": 1 },
+        "scope": {
+          "description": "Set instead of focusArea when the exemplar spans/thematically cuts across areas.",
+          "enum": ["single", "spans-areas", "spans-stages", "whole-year", "faculty-wide", "thematic"]
+        },
+        "spans": {
+          "description": "Controlled refs the exemplar touches when scope != single. Each must resolve in the vocab.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/vocabRef" }
+        },
+        "label": { "type": "string", "description": "Human-facing context string shown as chips, e.g. 'Particle model across the year'." }
+      }
+    },
+
+    "deepDiveItem": {
+      "type": "object",
+      "description": "One strategy — HITS shape (handoff §5).",
+      "additionalProperties": false,
+      "required": ["id", "ordinal", "name", "headline", "badges", "inContext", "exemplar", "transfer", "indicators", "continuum", "related", "evidence"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "ordinal": { "type": "integer", "minimum": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "acknowledgedSuperseded": {
+          "type": "boolean",
+          "description": "Set true to deliberately author against a superseded curriculum reference (e.g. a 2017 Stage 6 module before the 2025 syllabus is examined). The validator requires this to pass a superseded ref."
+        },
+        "headline": { "type": "string", "minLength": 1 },
+        "badges": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/badge" }
+        },
+        "inContext": { "type": "string", "minLength": 1, "description": "Markdown or constrained HTML." },
+        "exemplar": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["context", "problem", "phases", "impact"],
+          "properties": {
+            "context": { "$ref": "#/$defs/context" },
+            "problem": { "type": "string", "minLength": 1 },
+            "phases": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 6,
+              "items": { "$ref": "#/$defs/phase" }
+            },
+            "impact": { "type": "string", "minLength": 1 }
+          }
+        },
+        "transfer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["label", "text"],
+          "properties": {
+            "label": { "type": "string", "minLength": 1 },
+            "text": { "type": "string", "minLength": 1 }
+          }
+        },
+        "indicators": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["teacher", "notDemonstrated", "student"],
+          "properties": {
+            "teacher": { "type": "array", "minItems": 4, "items": { "type": "string", "minLength": 1 } },
+            "notDemonstrated": { "type": "array", "minItems": 4, "items": { "type": "string", "minLength": 1 } },
+            "student": { "type": "array", "minItems": 3, "items": { "type": "string", "minLength": 1 } }
+          }
+        },
+        "continuum": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["level", "label", "text"],
+            "properties": {
+              "level": { "type": "integer", "minimum": 1, "maximum": 4 },
+              "label": { "enum": ["Emerging", "Evolving", "Embedding", "Excelling"] },
+              "text": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "related": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+          "description": "Sibling item ids. Validator enforces: resolves to existing sibling, excludes self."
+        },
+        "evidence": { "type": "string", "minLength": 1 }
+      }
+    },
+
+    "matrixHabit": {
+      "type": "object",
+      "description": "A teaching habit (matrix row). `category` is the phase of self-regulated thinking the habit mainly serves.",
+      "additionalProperties": false,
+      "required": ["id", "name", "category", "definition"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "category": { "enum": ["planning", "monitoring", "evaluating"] },
+        "definition": { "type": "string", "minLength": 1 }
+      }
+    },
+
+    "matrixTopic": {
+      "type": "object",
+      "description": "A teachable topic (matrix column). `sci` is the shared science summary for all habit cells on this topic.",
+      "additionalProperties": false,
+      "required": ["id", "name", "type", "sci"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "tag": { "type": "string", "description": "Display tag, e.g. the focus area or 'Module 5 Heredity'." },
+        "type": { "enum": ["concept", "skill"] },
+        "sci": { "type": "string", "minLength": 1 }
+      }
+    },
+
+    "matrixArea": {
+      "type": "object",
+      "description": "A syllabus area (focus area for Stage 4/5; subject/syllabus for Stage 6). `id` is vocab-controlled.",
+      "additionalProperties": false,
+      "required": ["id", "label", "topics"],
+      "properties": {
+        "id": { "$ref": "#/$defs/vocabRef" },
+        "label": { "type": "string", "minLength": 1 },
+        "sub": { "type": "string" },
+        "acknowledgedSuperseded": {
+          "type": "boolean",
+          "description": "Set true when the area maps to a superseded syllabus deliberately (e.g. the 2017 Stage 6 modules)."
+        },
+        "topics": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/matrixTopic" }
+        }
+      }
+    },
+
+    "matrixStage": {
+      "type": "object",
+      "description": "A stage grouping in the matrix column tree: stage → areas → topics.",
+      "additionalProperties": false,
+      "required": ["stage", "label", "areas"],
+      "properties": {
+        "stage": { "$ref": "#/$defs/vocabRef" },
+        "label": { "type": "string", "minLength": 1 },
+        "sub": { "type": "string" },
+        "areas": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/matrixArea" }
+        }
+      }
+    },
+
+    "matrixCell": {
+      "type": "object",
+      "description": "One {topicId}×{habitId} cell. Validator enforces full matrix completeness (every topic × habit).",
+      "additionalProperties": false,
+      "required": ["topicId", "habitId", "goal", "script", "why", "evidence"],
+      "properties": {
+        "topicId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "habitId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "goal": { "type": "string", "minLength": 1, "description": "The metacognitive goal." },
+        "script": { "type": "string", "minLength": 1, "description": "What the teacher says/does in this lesson." },
+        "why": { "type": "string", "minLength": 1, "description": "The rationale — why this move builds the habit." },
+        "evidence": { "type": "string", "minLength": 1, "description": "Evidence-base citation." }
+      }
+    }
+  },
+
+  "$ref": "#/$defs/framework"
+}

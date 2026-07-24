@@ -1,0 +1,95 @@
+{
+  "id": "feedback",
+  "ordinal": 8,
+  "name": "Feedback",
+  "acknowledgedSuperseded": true,
+  "headline": "Effective teachers use two-way feedback to gather information about student understanding, to help students advance their own learning, and to verify the impact of their own practice.",
+  "badges": [
+    { "label": "Feedback", "value": "0.73", "kind": "effectSize" },
+    { "label": "+8 months", "kind": "monthsProgress" }
+  ],
+  "inContext": "Two things make science feedback fail in predictable ways. First, timing: on an extended investigation, feedback that arrives with the mark arrives too late to be acted on, so it is read as a verdict rather than a direction. Second, volume — heavily annotated drafts produce compliance, not learning. The sustained fix is to <b>design the feedback points into the task before the task is issued</b>, each with a declared focus, no marks attached at the early points, and a requirement that students show what they did with the previous round. A depth study is the natural home for this because NESA already requires the extended timeframe.",
+  "exemplar": {
+    "context": {
+      "stage": "stage-6",
+      "syllabus": "biology-stage6-2017",
+      "scope": "thematic",
+      "spans": ["depth-study"],
+      "duration": "Term-long, three scheduled feedback points",
+      "label": "Stage 6 Biology (2017) · Depth study — 15 hours of course time"
+    },
+    "problem": "Detailed written feedback on depth study drafts was almost entirely ignored. Students looked at the mark and filed the work. Feedback arrived at points where nothing could be changed, and the teacher was spending roughly six hours per class producing it.",
+    "phases": [
+      {
+        "label": "Design the feedback before the task",
+        "weekLabel": "Weeks 1–2",
+        "span": { "start": 0, "end": 2 },
+        "what": "Three feedback points are built into the task timeline, each with a declared and narrow focus.",
+        "detail": "Week 3 — research question and variables. Week 6 — method and data quality. Week 9 — analysis and evaluation. Students receive this schedule with the task notification, so they know exactly when feedback arrives and on what. Narrowing the focus is what makes the volume manageable: the teacher is not marking everything three times, but one thing well at the point it can still change."
+      },
+      {
+        "label": "Feed forward, no marks",
+        "weekLabel": "Week 3",
+        "span": { "start": 2, "end": 4 },
+        "what": "The first round is task-focused, actionable, and deliberately carries no grade.",
+        "detail": "'Your dependent variable can't be measured with the equipment you've listed' rather than 'good start' or a mark out of ten. The evidence is consistent that feedback about the <b>task</b> outperforms feedback about the person, and that attaching a grade suppresses engagement with the comment. Every comment ends with a next action, because feedback without a next action is a judgement."
+      },
+      {
+        "label": "Self-assessment first, then conference",
+        "weekLabel": "Week 6",
+        "span": { "start": 4, "end": 7 },
+        "what": "Students bring their own judgement to a structured conference; the conversation is about the gap.",
+        "detail": "Peer feedback using a protocol students have been taught precedes a short student–teacher conference. The student self-assesses <b>before</b> the teacher speaks, and the discussion focuses on where the two judgements differ. This is what turns feedback into calibration — students learn to judge their own work accurately, which is the capability that outlives the task."
+      },
+      {
+        "label": "Show what you did with it",
+        "weekLabel": "Week 9",
+        "span": { "start": 7, "end": 10 },
+        "what": "A short response-to-feedback log is submitted with the draft, and non-uptake is treated as a design problem.",
+        "detail": "Students record what each earlier comment asked, what they changed, and what they chose not to change and why — the last one matters, because a reasoned rejection is a legitimate scientific response. Where feedback was not taken up, the teacher's first question is whether it was actionable, not whether the student was diligent."
+      },
+      {
+        "label": "Feedback in the other direction",
+        "weekLabel": "After",
+        "span": { "start": 10, "end": 11 },
+        "what": "Students report which of the three points helped most, and that reshapes the schedule for the next cohort.",
+        "detail": "The HITS document is explicit that feedback is two-way and that teachers learn how their practice influences student learning. In the exemplar the Week 6 method conference was rated far more useful than the Week 9 analysis round, which led the faculty to move the third point earlier the following year."
+      }
+    ],
+    "impact": "Two measures that cost almost nothing. The proportion of Week 3 feedback points visibly actioned by Week 6, read directly off the drafts — a blunt but honest measure of whether feedback is landing. And the size of the gap between student self-assessment and teacher assessment across the three points, which should narrow if calibration is developing."
+  },
+  "transfer": {
+    "label": "Stage 4–5 · practical reports",
+    "text": "The same architecture, compressed. Feedback on one section only per practical report across a unit — aim and hypothesis in the first, method in the second, conclusion in the third — so students receive less feedback per report but can act on all of it, and the teacher's marking load falls rather than rises."
+  },
+  "indicators": {
+    "teacher": [
+      "Schedules feedback points into the task timeline before the task is issued",
+      "Gives early feedback without marks attached, focused on the task and not the person",
+      "Ends every comment with an action the student can actually take",
+      "Requires students to self-assess before receiving teacher feedback",
+      "Treats feedback that wasn't acted on as a problem with the feedback"
+    ],
+    "notDemonstrated": [
+      "Feedback is about the person ('you're one of my strongest students') or vague ('good work')",
+      "Feedback only arrives with the summative mark, when nothing can change",
+      "Extensive annotation is produced that students have no opportunity to use",
+      "Students are never asked to judge their own work before being told",
+      "Student feedback on teaching is never sought"
+    ],
+    "student": [
+      "Understand specifically what they need to do to improve",
+      "Can point to what they changed in response to earlier feedback",
+      "Judge their own work against the criteria before submitting",
+      "Use feedback to monitor and self-regulate, not merely to comply"
+    ]
+  },
+  "continuum": [
+    { "level": 1, "label": "Emerging", "text": "Teachers provide students with feedback on strengths and areas for improvement." },
+    { "level": 2, "label": "Evolving", "text": "Feedback is targeted, based on informed and timely judgements of each student's achievement relative to their goals and needs." },
+    { "level": 3, "label": "Embedding", "text": "Formative and summative strategies are used across the faculty with timely feedback supporting individualised learning, and assessment data feeds back into teaching practice." },
+    { "level": 4, "label": "Excelling", "text": "Comprehensive assessment data underpins regular feedback to students and parents. Teachers analyse data to reflect on practice, and student feedback actively informs teaching." }
+  ],
+  "related": ["goals", "meta", "questioning"],
+  "evidence": "Hattie (2009): feedback 0.73; Evidence for Learning: +8 months. Hattie and Timperley (2007) on feedback about the task outperforming praise, punishment and rewards; Kluger and DeNisi (1996) on task-focused feedback. Effective feedback is one of the eight CESE What Works Best themes. NESA Stage 6 syllabuses allocate 15 hours of course time to depth studies in each of Year 11 and Year 12."
+}

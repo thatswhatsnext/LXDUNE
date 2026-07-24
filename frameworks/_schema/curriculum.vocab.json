@@ -1,0 +1,155 @@
+{
+  "_meta": {
+    "description": "Controlled vocabulary for NSW science curriculum references. Every stage/syllabus/focusArea/module/theme id used in a framework item MUST resolve here. Verified against NESA during authoring, July 2026 (handoff §8). The validator (scripts/validate-frameworks.js) fails the build on: an unknown reference; a superseded reference used without acknowledgedSuperseded:true on the item.",
+    "verifiedAt": "2026-07",
+    "version": "1.0.0",
+    "TODO": [
+      "investigating-science-stage6-2017 modules are NOT enumerated here — §8 verified the Bio/Chem/Physics module lists but not Investigating Science. Steve to supply, or leave unreferenced. Do not fabricate.",
+      "2025 Stage 6 syllabuses (successors) are represented as supersededBy targets only; enumerate their modules when content is authored against them (implemented 2027, first HSC 2028)."
+    ]
+  },
+
+  "stages": {
+    "stage-4": { "label": "Stage 4", "years": "7–8" },
+    "stage-5": { "label": "Stage 5", "years": "9–10" },
+    "stage-6": { "label": "Stage 6", "years": "11–12" }
+  },
+
+  "syllabuses": {
+    "science-7-10-2023": {
+      "label": "Science 7–10 Syllabus (2023)",
+      "authority": "NESA",
+      "activeFrom": "2024",
+      "stages": ["stage-4", "stage-5"],
+      "note": "Staged rollout. 16 focus areas across Stages 4–5; depth study each year; at least 50% of course time on scientific investigations."
+    },
+    "biology-stage6-2017": {
+      "label": "Biology Stage 6 (2017)",
+      "authority": "NESA",
+      "activeFrom": "2018",
+      "stages": ["stage-6"],
+      "supersededBy": "biology-stage6-2025"
+    },
+    "chemistry-stage6-2017": {
+      "label": "Chemistry Stage 6 (2017)",
+      "authority": "NESA",
+      "activeFrom": "2018",
+      "stages": ["stage-6"],
+      "supersededBy": "chemistry-stage6-2025"
+    },
+    "physics-stage6-2017": {
+      "label": "Physics Stage 6 (2017)",
+      "authority": "NESA",
+      "activeFrom": "2018",
+      "stages": ["stage-6"],
+      "supersededBy": "physics-stage6-2025"
+    },
+    "investigating-science-stage6-2017": {
+      "label": "Investigating Science Stage 6 (2017)",
+      "authority": "NESA",
+      "activeFrom": "2018",
+      "stages": ["stage-6"],
+      "modulesEnumerated": false,
+      "supersededBy": "investigating-science-stage6-2025"
+    },
+    "biology-stage6-2025": {
+      "label": "Biology Stage 6 (2025)",
+      "authority": "NESA",
+      "activeFrom": "2027",
+      "firstHSC": "2028",
+      "stages": ["stage-6"],
+      "modulesEnumerated": false
+    },
+    "chemistry-stage6-2025": {
+      "label": "Chemistry Stage 6 (2025)",
+      "authority": "NESA",
+      "activeFrom": "2027",
+      "firstHSC": "2028",
+      "stages": ["stage-6"],
+      "modulesEnumerated": false
+    },
+    "physics-stage6-2025": {
+      "label": "Physics Stage 6 (2025)",
+      "authority": "NESA",
+      "activeFrom": "2027",
+      "firstHSC": "2028",
+      "stages": ["stage-6"],
+      "modulesEnumerated": false
+    },
+    "investigating-science-stage6-2025": {
+      "label": "Investigating Science Stage 6 (2025)",
+      "authority": "NESA",
+      "activeFrom": "2027",
+      "firstHSC": "2028",
+      "stages": ["stage-6"],
+      "modulesEnumerated": false
+    }
+  },
+
+  "focusAreas": {
+    "science-7-10-2023": {
+      "stage-4": [
+        { "id": "observing-the-universe", "label": "Observing the Universe" },
+        { "id": "forces", "label": "Forces" },
+        { "id": "cells-and-classification", "label": "Cells and classification" },
+        { "id": "solutions-and-mixtures", "label": "Solutions and mixtures" },
+        { "id": "living-systems", "label": "Living systems" },
+        { "id": "periodic-table-and-atomic-structure", "label": "Periodic table and atomic structure" },
+        { "id": "change", "label": "Change" },
+        { "id": "data-science-1", "label": "Data science 1" }
+      ],
+      "stage-5": [
+        { "id": "energy", "label": "Energy" },
+        { "id": "disease", "label": "Disease" },
+        { "id": "materials", "label": "Materials" },
+        { "id": "environmental-sustainability", "label": "Environmental sustainability" },
+        { "id": "genetics-and-evolutionary-change", "label": "Genetics and evolutionary change" },
+        { "id": "reactions", "label": "Reactions" },
+        { "id": "waves-and-motion", "label": "Waves and motion" },
+        { "id": "data-science-2", "label": "Data science 2" }
+      ]
+    }
+  },
+
+  "modules": {
+    "biology-stage6-2017": [
+      { "id": "bio-m1", "label": "M1 Cells as the Basis of Life" },
+      { "id": "bio-m2", "label": "M2 Organisation of Living Things" },
+      { "id": "bio-m3", "label": "M3 Biological Diversity" },
+      { "id": "bio-m4", "label": "M4 Ecosystem Dynamics" },
+      { "id": "bio-m5", "label": "M5 Heredity" },
+      { "id": "bio-m6", "label": "M6 Genetic Change" },
+      { "id": "bio-m7", "label": "M7 Infectious Disease" },
+      { "id": "bio-m8", "label": "M8 Non-infectious Disease and Disorders" }
+    ],
+    "chemistry-stage6-2017": [
+      { "id": "chem-m1", "label": "M1 Properties and Structure of Matter" },
+      { "id": "chem-m2", "label": "M2 Introduction to Quantitative Chemistry" },
+      { "id": "chem-m3", "label": "M3 Reactive Chemistry" },
+      { "id": "chem-m4", "label": "M4 Drivers of Reactions" },
+      { "id": "chem-m5", "label": "M5 Equilibrium and Acid Reactions" },
+      { "id": "chem-m6", "label": "M6 Acid/Base Reactions" },
+      { "id": "chem-m7", "label": "M7 Organic Chemistry" },
+      { "id": "chem-m8", "label": "M8 Applying Chemical Ideas" }
+    ],
+    "physics-stage6-2017": [
+      { "id": "phys-m1", "label": "M1 Kinematics" },
+      { "id": "phys-m2", "label": "M2 Dynamics" },
+      { "id": "phys-m3", "label": "M3 Waves and Thermodynamics" },
+      { "id": "phys-m4", "label": "M4 Electricity and Magnetism" },
+      { "id": "phys-m5", "label": "M5 Advanced Mechanics" },
+      { "id": "phys-m6", "label": "M6 Electromagnetism" },
+      { "id": "phys-m7", "label": "M7 The Nature of Light" },
+      { "id": "phys-m8", "label": "M8 From the Universe to the Atom" }
+    ]
+  },
+
+  "themes": {
+    "_note": "Cross-cutting references for exemplars whose context is thematic / whole-year / faculty-wide rather than a single focus area (context.scope != 'single'). These are NOT NESA structural units; they are the recurring science ideas/skills the exemplars are built around.",
+    "particle-model": { "label": "Particle model" },
+    "conservation-of-matter": { "label": "Conservation of matter" },
+    "energy-transfer": { "label": "Energy transfer" },
+    "working-scientifically": { "label": "Working Scientifically", "note": "NESA outcome strand across Science 7–10 and Stage 6." },
+    "depth-study": { "label": "Depth study", "note": "NESA requires 15 hours of course time in each of Year 11 and Year 12." }
+  }
+}

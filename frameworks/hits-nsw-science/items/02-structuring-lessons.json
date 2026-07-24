@@ -1,0 +1,87 @@
+{
+  "id": "structure",
+  "ordinal": 2,
+  "name": "Structuring Lessons",
+  "headline": "Effective teachers plan and deliver structured lessons with clear steps and transitions between them, scaffolding learning to build students' knowledge and skills.",
+  "badges": [
+    { "label": "Scaffolding", "value": "0.53", "kind": "effectSize" },
+    { "label": "Formative evaluation", "value": "0.68", "kind": "effectSize" },
+    { "label": "Teacher clarity", "value": "0.75", "kind": "effectSize" }
+  ],
+  "inContext": "Science lessons have a structural problem no other subject has to the same degree: <b>equipment</b>. A practical lesson has at least four transitions that don't exist in a humanities classroom — into safety, into equipment, into the investigation, out of it and into meaning-making. Beginning teachers lose enormous amounts of time at exactly these points, and behaviour spikes there too. The strategy is not 'plan your lesson'; it is designing <b>one repeatable architecture</b> for a practical-heavy unit, explicitly teaching the routine itself, and holding it stable long enough that the teacher's attention can move from managing the room to monitoring understanding.",
+  "exemplar": {
+    "context": {
+      "stage": "stage-4",
+      "syllabus": "science-7-10-2023",
+      "focusArea": "forces",
+      "scope": "single",
+      "duration": "8-week unit, graduate teacher with mentor"
+    },
+    "problem": "A mentor's observation notes showed 12 minutes of a 55-minute lesson lost at practical transitions, and students arriving at the investigation without knowing what question it answered. Most lessons ended when the bell went rather than with a conclusion.",
+    "phases": [
+      {
+        "label": "Design the architecture",
+        "weekLabel": "Week 0",
+        "span": { "start": 0, "end": 1 },
+        "what": "One lesson shape is designed for the whole unit and written down as a set of non-negotiables.",
+        "detail": "<b>Retrieve</b> (5 min of spaced questions drawn from earlier lessons, not just last lesson) → <b>Orient</b> (the intention as a step, and the question this practical answers) → <b>Explicit</b> (10 min of teaching and modelling) → <b>Investigate</b> (with a named safety checkpoint before equipment is touched) → <b>Consolidate</b> (one written claim from the data) → <b>Exit</b> (one question). Crucially the architecture is designed once, for eight weeks — not reinvented weekly."
+      },
+      {
+        "label": "Teach the routine itself",
+        "weekLabel": "Weeks 1–2",
+        "span": { "start": 1, "end": 3 },
+        "what": "The first lessons rehearse the transitions explicitly, as content in their own right.",
+        "detail": "Students are taught what 'equipment out' and 'pens down, goggles on' look like, and the class practises them against a timer. This feels like lost teaching time and is not: the mentor observes <b>transitions only</b> and times them, so both teacher and mentor have a baseline. The HITS document is explicit that unpredictable structures produce unhelpful classroom environments — predictability is the intervention here."
+      },
+      {
+        "label": "Hold it stable, shift attention",
+        "weekLabel": "Weeks 3–6",
+        "span": { "start": 3, "end": 7 },
+        "what": "The structure stays fixed while content moves through balanced and unbalanced forces, friction, and simple machines.",
+        "detail": "Because students no longer need instructions repeated, the teacher's cognitive load drops and attention moves to the <b>Consolidate</b> step. That closing claim becomes the formative check that visibly sets the next lesson's Retrieve questions — the loop that turns lesson structure into formative evaluation, and the reason its effect size sits at 0.68 rather than the 0.53 for scaffolding alone."
+      },
+      {
+        "label": "Fade it deliberately",
+        "weekLabel": "Weeks 7–8",
+        "span": { "start": 7, "end": 9 },
+        "what": "For the unit's open investigation, the middle of the lesson is handed to students while the frame stays.",
+        "detail": "Retrieve, Orient, Consolidate and Exit remain fixed; students negotiate the Investigate section themselves. This is the phase most beginning teachers skip, and it is what separates a structured classroom from a controlled one. The scaffold is withdrawn where students can now carry it, which is also the preparation for depth study work where they must run the whole shape unaided."
+      }
+    ],
+    "impact": "The mentor's transition timings dropped from around 12 minutes to under 4 across the unit — roughly four extra teaching hours recovered over eight weeks. More usefully, the teacher could name, from exit tickets, which three students needed the next lesson's Retrieve targeted at them, which had been impossible in Week 1."
+  },
+  "transfer": {
+    "label": "Stage 6 Physics · Module 1 Kinematics",
+    "text": "The same frame with a different spine in the middle: Retrieve → Orient → worked example → faded example → independent problem → Consolidate → Exit. Senior students benefit from predictability at least as much as junior ones, because a stable structure lets them spend working memory on the physics rather than on figuring out what is about to happen."
+  },
+  "indicators": {
+    "teacher": [
+      "Publishes a stable lesson architecture and rehearses the transitions as explicitly as the content",
+      "Signals each transition and holds the timing rather than letting it drift",
+      "Names a safety checkpoint as a step in the structure, not an announcement",
+      "Uses the closing check as data that demonstrably shapes the next lesson's opening",
+      "Fades the structure deliberately once students can carry part of it"
+    ],
+    "notDemonstrated": [
+      "The lesson shape changes every time so students cannot anticipate what is next",
+      "Practical work has no orienting question and no consolidating claim",
+      "Equipment and safety routines are renegotiated from scratch each practical",
+      "The exit task is collected but never analysed or acted on",
+      "Structure is confused with control — nothing is ever handed back to students"
+    ],
+    "student": [
+      "Can state the lesson's steps and what is expected at each one",
+      "Move into and out of practical work without instructions being repeated",
+      "Produce a defensible claim from their data before packing up",
+      "Manage the middle of an open investigation while keeping the familiar frame"
+    ]
+  },
+  "continuum": [
+    { "level": 1, "label": "Emerging", "text": "The teacher explains the lesson steps and timeframes, including for practical work." },
+    { "level": 2, "label": "Evolving", "text": "A consistent architecture is planned across the unit, including review, signposting of new content, and a closing check." },
+    { "level": 3, "label": "Embedding", "text": "The architecture is stable enough that students self-manage transitions, and the closing check is analysed and visibly shapes the next lesson." },
+    { "level": 4, "label": "Excelling", "text": "The structure is applied consistently across the faculty. Teachers adjust within the lesson in response to the check, and deliberately fade the scaffold for open investigations and depth studies." }
+  ],
+  "related": ["explicit", "exposures", "feedback"],
+  "evidence": "Hattie (2009): scaffolding 0.53, formative evaluation 0.68, teacher clarity 0.75. Kyriakides et al. (2013) report 0.36 for lessons structured by summarising main points, gradually increasing difficulty and connecting to previous lessons. NESA Science 7–10 (2023) requires at least 50% of course time on scientific investigations, which makes practical transitions a structural issue rather than a minor one."
+}
