@@ -1,0 +1,42 @@
+[
+  {
+    "id": "ecosystems",
+    "name": "Ecosystems",
+    "type": "concept",
+    "stage": "stage-4",
+    "syllabusArea": "living-systems",
+    "blurb": "Interdependence, food webs and energy flow between organisms.",
+    "whyHard": "Students naturally reason in single chains (“more grass → more rabbits”) rather than networks, and struggle to trace effects that are more than one link away — removing a predator changing a plant two steps removed, for instance.",
+    "label": "Stage 4 · Living systems"
+  },
+  {
+    "id": "investigation",
+    "name": "Designing a first-hand investigation",
+    "type": "skill",
+    "stage": "stage-4",
+    "syllabusArea": "working-scientifically",
+    "blurb": "Identifying variables and building a fair, repeatable method.",
+    "whyHard": "Students can often define ‘independent variable’ correctly on a test but still fail to apply the discipline of isolating one variable at a time when they have to build a method themselves.",
+    "label": "Stage 4–5 · any practical topic"
+  },
+  {
+    "id": "evidence",
+    "name": "Evaluating evidence from secondary sources",
+    "type": "skill",
+    "stage": "stage-5",
+    "syllabusArea": "working-scientifically",
+    "blurb": "Weighing sample size, methodology and bias; separating correlation from causation.",
+    "whyHard": "Students tend to judge a claim by how persuasive or familiar it sounds, not by checking the features — sample size, replication, funding — that actually indicate reliability.",
+    "label": "Stage 5–6 · Nature of Science"
+  },
+  {
+    "id": "equilibrium",
+    "name": "Chemical equilibrium",
+    "type": "concept",
+    "stage": "stage-6",
+    "syllabusArea": "chem-m5",
+    "blurb": "Dynamic equilibrium and Le Chatelier’s principle.",
+    "whyHard": "Almost every student starts by picturing equilibrium as a reaction that has stopped, rather than one still running in both directions at equal rates — and the misconception often survives correct-sounding definitions.",
+    "label": "Stage 6 · Chemistry"
+  }
+]

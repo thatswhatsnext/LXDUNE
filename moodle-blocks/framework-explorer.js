@@ -107,6 +107,7 @@ function djb2(str) {
 const VIEWS = {
   'deep-dive': { load: loadDeepDive, render: renderDeepDive },
   matrix: { load: loadMatrix, render: renderMatrix },
+  grid: { load: loadGrid, render: renderGrid },
 };
 
 // ── deep-dive view (HITS shape) ─────────────────────────────────────────────────
@@ -958,4 +959,286 @@ const MATRIX_STYLES = `
   .lxd-fx-mx .lxd-fx-mx-stepsub,.lxd-fx-mx .lxd-fx-mx-seg-wrap,.lxd-fx-mx .lxd-fx-mx-topics-wrap,.lxd-fx-mx .lxd-fx-mx-habits-wrap{margin-left:0;}
 }
 @media(prefers-reduced-motion:reduce){.lxd-fx-mx *{transition:none !important;}}
+`;
+
+// ── grid view (lighter matrix — "starter" metacognition) ─────────────────────────────────────────────────────────────
+// Two axes (science contexts × teaching habits) resolving to a cell of three
+// fields. Adding this view required no change to the core above the VIEWS
+// registry — the seam holds (handoff §9 step 6).
+async function loadGrid(dir, fw) {
+  if (!fw.grid) throw new Error('framework has no grid manifest');
+  const [habits, contexts, cells] = await Promise.all([
+    fetchJson(dir + fw.grid.habits),
+    fetchJson(dir + fw.grid.contexts),
+    fetchJson(dir + fw.grid.cells),
+  ]);
+  return { habits, contexts, cells };
+}
+
+function renderGrid(mount, fw, { habits, contexts, cells }) {
+  injectStyles('lxd-fx-gr-styles', GRID_STYLES);
+  mount.className = 'lxd-fx lxd-fx-gr';
+  mount.innerHTML = GRID_SHELL(fw);
+  const $ = (sel) => mount.querySelector(sel);
+
+  const cellOf = new Map(cells.map((c) => [`${c.contextId}×${c.habitId}`, c]));
+  const state = { context: contexts[0]?.id, habit: habits[0]?.id, scanOpen: false }; // in-memory only
+
+  function renderContexts() {
+    const grid = $('.lxd-fx-gr-contexts');
+    grid.innerHTML = '';
+    contexts.forEach((c) => {
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'lxd-fx-gr-ctx' + (c.id === state.context ? ' active' : '');
+      card.setAttribute('aria-pressed', String(c.id === state.context));
+      const typeLabel = c.type === 'concept' ? 'Content concept' : 'Science skill';
+      card.innerHTML =
+        `<div class="lxd-fx-gr-badges"><span class="lxd-fx-gr-badge type">${esc(typeLabel)}</span>` +
+        `<span class="lxd-fx-gr-badge stage">${esc(c.label || c.stage)}</span></div>` +
+        `<h3>${esc(c.name)}</h3><p class="lxd-fx-gr-blurb">${esc(c.blurb)}</p>` +
+        `<details><summary></summary><p class="lxd-fx-gr-why">${esc(c.whyHard)}</p></details>`;
+      card.querySelector('summary').addEventListener('click', (e) => e.stopPropagation());
+      card.addEventListener('click', () => {
+        state.context = c.id;
+        closeScan();
+        renderAll();
+      });
+      grid.appendChild(card);
+    });
+  }
+
+  function renderHabits() {
+    const wrap = $('.lxd-fx-gr-habits');
+    wrap.innerHTML = '';
+    habits.forEach((h) => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'lxd-fx-gr-chip' + (h.id === state.habit ? ' active' : '');
+      chip.setAttribute('aria-pressed', String(h.id === state.habit));
+      chip.textContent = h.name;
+      chip.addEventListener('mouseenter', () => showHabitHelper(h));
+      chip.addEventListener('mouseleave', () => showHabitHelper(byHabit(state.habit)));
+      chip.addEventListener('click', () => {
+        state.habit = h.id;
+        closeScan();
+        renderAll();
+      });
+      wrap.appendChild(chip);
+    });
+    showHabitHelper(byHabit(state.habit));
+  }
+
+  const byHabit = (id) => habits.find((h) => h.id === id);
+  const byContext = (id) => contexts.find((c) => c.id === id);
+
+  function showHabitHelper(h) {
+    if (h) $('.lxd-fx-gr-habithelper').innerHTML = `<b>${esc(h.name)}</b> — ${esc(h.definition)}`;
+  }
+
+  function renderDetail() {
+    const c = byContext(state.context);
+    const h = byHabit(state.habit);
+    const cell = cellOf.get(`${state.context}×${state.habit}`);
+    $('.lxd-fx-gr-eq-context').textContent = c ? c.name : '—';
+    $('.lxd-fx-gr-eq-habit').textContent = h ? h.name : '—';
+    $('.lxd-fx-gr-science').textContent = cell ? cell.science : '';
+    $('.lxd-fx-gr-meta').textContent = cell ? cell.meta : '';
+    $('.lxd-fx-gr-vignette').textContent = cell ? cell.vignette : '';
+    $('.lxd-fx-gr-scanbtn').textContent = `See all ${habits.length} habits applied to ${c ? c.name : 'this context'} →`;
+  }
+
+  function closeScan() {
+    state.scanOpen = false;
+    const list = $('.lxd-fx-gr-scanlist');
+    list.hidden = true;
+    list.innerHTML = '';
+  }
+
+  function renderScan() {
+    const list = $('.lxd-fx-gr-scanlist');
+    if (state.scanOpen) return closeScan();
+    list.innerHTML = '';
+    habits.forEach((h) => {
+      const cell = cellOf.get(`${state.context}×${h.id}`);
+      if (!cell) return;
+      const row = document.createElement('div');
+      row.className = 'lxd-fx-gr-scanrow';
+      row.innerHTML =
+        `<span class="lxd-fx-gr-scanname">${esc(h.name)}</span>` +
+        `<span class="lxd-fx-gr-scantext"><b>${esc(cell.meta)}</b> — ${esc(cell.vignette)}</span>`;
+      list.appendChild(row);
+    });
+    list.hidden = false;
+    state.scanOpen = true;
+  }
+
+  function renderAll() {
+    renderContexts();
+    renderHabits();
+    renderDetail();
+  }
+
+  $('.lxd-fx-gr-scanbtn').addEventListener('click', renderScan);
+  renderAll();
+}
+
+function GRID_SHELL(fw) {
+  const sources = (fw.sources || []).map((s) => `<li>${s}</li>`).join('');
+  return `
+  <div class="lxd-fx-gr-page">
+    ${fw.kicker ? `<p class="lxd-fx-gr-eyebrow">${fw.kicker}</p>` : ''}
+    <h1 class="lxd-fx-gr-h1">${esc(fw.title)}</h1>
+    ${fw.subtitle ? `<p class="lxd-fx-gr-thesis">${fw.subtitle}</p>` : ''}
+    ${
+      fw.usageNote
+        ? `<details class="lxd-fx-gr-howto"><summary>How to read this tool</summary>
+             <div class="lxd-fx-gr-howto-body">${fw.usageNote}</div></details>`
+        : ''
+    }
+
+    <p class="lxd-fx-gr-section">1 — Choose a science teaching context</p>
+    <div class="lxd-fx-gr-contexts" role="group" aria-label="Choose a science context"></div>
+
+    <p class="lxd-fx-gr-section">2 — Choose a teaching habit</p>
+    ${fw.helperText ? `<p class="lxd-fx-gr-helper">${esc(fw.helperText)}</p>` : ''}
+    <div class="lxd-fx-gr-habits" role="group" aria-label="Choose a teaching habit"></div>
+    <p class="lxd-fx-gr-habithelper" aria-live="polite"></p>
+
+    <div class="lxd-fx-gr-eqbar">
+      <span class="lxd-fx-gr-eqchip context lxd-fx-gr-eq-context">—</span>
+      <span class="lxd-fx-gr-eqop">+</span>
+      <span class="lxd-fx-gr-eqchip habit lxd-fx-gr-eq-habit">—</span>
+    </div>
+
+    <div class="lxd-fx-gr-panel">
+      <div class="lxd-fx-gr-cols">
+        <div class="lxd-fx-gr-col science">
+          <span class="lxd-fx-gr-colbadge">The science (context)</span>
+          <p class="lxd-fx-gr-science"></p>
+        </div>
+        <div class="lxd-fx-gr-col meta">
+          <span class="lxd-fx-gr-colbadge">The metacognitive move (goal)</span>
+          <p class="lxd-fx-gr-meta"></p>
+        </div>
+      </div>
+      <div class="lxd-fx-gr-vignettebox">
+        <span class="lxd-fx-gr-vlabel">What this looks like in the classroom</span>
+        <p class="lxd-fx-gr-vignette"></p>
+      </div>
+    </div>
+
+    <div class="lxd-fx-gr-scan">
+      <button class="lxd-fx-gr-scanbtn" type="button">See all habits applied to this context →</button>
+      <div class="lxd-fx-gr-scanlist" hidden></div>
+    </div>
+
+    <div class="lxd-fx-gr-footer">
+      <ul>${sources}</ul>
+      ${fw.attribution ? `<p>${esc(fw.attribution)}</p>` : ''}
+    </div>
+  </div>`;
+}
+
+// Scoped grid styles. Same §7 rules as deep-dive: everything under .lxd-fx,
+// custom properties on the root, inline colour fallbacks, no external fonts,
+// no storage, focus + reduced-motion preserved.
+const GRID_STYLES = `
+.lxd-fx.lxd-fx-gr{
+  --gr-bg:#F5F4EF; --gr-card:#FFFFFF; --gr-border:#DEDAD0;
+  --gr-ink:#1E2A35; --gr-body:#3C4750; --gr-muted:#74808A;
+  --gr-science:#2F6B60; --gr-science-bg:#E4EEEA; --gr-science-line:#BFD6CE;
+  --gr-meta:#9A5B18; --gr-meta-bg:#F4E7D3; --gr-meta-line:#E2C89C;
+  --gr-gold:#B08A2E;
+  --gr-shadow:0 1px 2px rgba(30,42,53,0.04), 0 6px 16px rgba(30,42,53,0.05);
+  --gr-r:14px;
+  --gr-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  color:var(--gr-body,#3C4750); line-height:1.5; box-sizing:border-box;
+}
+.lxd-fx.lxd-fx-gr *,.lxd-fx.lxd-fx-gr *::before,.lxd-fx.lxd-fx-gr *::after{box-sizing:border-box;}
+.lxd-fx-gr .lxd-fx-gr-page{max-width:980px;margin:0 auto;padding:8px 4px 40px;}
+
+.lxd-fx-gr .lxd-fx-gr-eyebrow{font-family:var(--gr-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gr-gold,#B08A2E);margin:0 0 10px;font-weight:600;}
+.lxd-fx-gr .lxd-fx-gr-h1{font-weight:700;font-size:clamp(26px,4vw,38px);line-height:1.15;color:var(--gr-ink,#1E2A35);margin:0 0 16px;max-width:20ch;}
+.lxd-fx-gr .lxd-fx-gr-thesis{font-size:17px;max-width:62ch;color:var(--gr-body,#3C4750);margin:0 0 6px;}
+.lxd-fx-gr .lxd-fx-gr-thesis strong{color:var(--gr-ink,#1E2A35);}
+
+.lxd-fx-gr .lxd-fx-gr-howto{margin-top:18px;background:var(--gr-card,#FFFFFF);border:1px solid var(--gr-border,#DEDAD0);border-radius:var(--gr-r,14px);padding:4px 18px;box-shadow:var(--gr-shadow);}
+.lxd-fx-gr .lxd-fx-gr-howto summary{cursor:pointer;font-weight:600;color:var(--gr-ink,#1E2A35);padding:14px 0;list-style:none;display:flex;align-items:center;gap:8px;font-size:15px;}
+.lxd-fx-gr .lxd-fx-gr-howto summary::-webkit-details-marker{display:none;}
+.lxd-fx-gr .lxd-fx-gr-howto summary::before{content:"+";display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:var(--gr-meta-bg,#F4E7D3);color:var(--gr-meta,#9A5B18);font-weight:700;font-size:15px;flex-shrink:0;}
+.lxd-fx-gr .lxd-fx-gr-howto[open] summary::before{content:"\\2212";}
+.lxd-fx-gr .lxd-fx-gr-howto-body{padding:0 0 18px 28px;font-size:15px;color:var(--gr-body,#3C4750);}
+.lxd-fx-gr .lxd-fx-gr-howto-body p{margin:0 0 10px;}
+.lxd-fx-gr .lxd-fx-gr-howto-body p:last-child{margin-bottom:0;}
+
+.lxd-fx-gr .lxd-fx-gr-section{font-family:var(--gr-mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--gr-muted,#74808A);font-weight:600;margin:44px 0 4px;}
+.lxd-fx-gr .lxd-fx-gr-helper{font-size:14.5px;color:var(--gr-muted,#74808A);margin:0 0 16px;max-width:62ch;}
+
+.lxd-fx-gr .lxd-fx-gr-contexts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.lxd-fx-gr .lxd-fx-gr-ctx{text-align:left;background:var(--gr-card,#FFFFFF);border:1.5px solid var(--gr-border,#DEDAD0);border-radius:var(--gr-r,14px);padding:16px 18px 14px;cursor:pointer;box-shadow:var(--gr-shadow);transition:border-color .15s ease;color:inherit;font:inherit;}
+.lxd-fx-gr .lxd-fx-gr-ctx:hover{border-color:var(--gr-science-line,#BFD6CE);}
+.lxd-fx-gr .lxd-fx-gr-ctx.active{border-color:var(--gr-science,#2F6B60);box-shadow:0 0 0 3px var(--gr-science-bg,#E4EEEA),var(--gr-shadow);}
+.lxd-fx-gr .lxd-fx-gr-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.lxd-fx-gr .lxd-fx-gr-badge{font-family:var(--gr-mono);font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;display:inline-block;letter-spacing:.02em;}
+.lxd-fx-gr .lxd-fx-gr-badge.type{background:#EDEBE3;color:#6B6355;}
+.lxd-fx-gr .lxd-fx-gr-badge.stage{background:#E9ECEF;color:#4A5560;}
+.lxd-fx-gr .lxd-fx-gr-ctx h3{font-size:18px;font-weight:700;color:var(--gr-ink,#1E2A35);margin:0 0 6px;}
+.lxd-fx-gr .lxd-fx-gr-blurb{font-size:14px;color:var(--gr-body,#3C4750);margin:0 0 8px;}
+.lxd-fx-gr .lxd-fx-gr-ctx details{margin-top:6px;}
+.lxd-fx-gr .lxd-fx-gr-ctx summary{cursor:pointer;font-size:13px;color:var(--gr-gold,#B08A2E);font-weight:600;list-style:none;}
+.lxd-fx-gr .lxd-fx-gr-ctx summary::-webkit-details-marker{display:none;}
+.lxd-fx-gr .lxd-fx-gr-ctx summary::after{content:" why this is hard \\25BE";}
+.lxd-fx-gr .lxd-fx-gr-ctx details[open] summary::after{content:" why this is hard \\25B4";}
+.lxd-fx-gr .lxd-fx-gr-why{font-size:13.5px;color:var(--gr-body,#3C4750);margin:8px 0 0;padding-top:8px;border-top:1px dashed var(--gr-border,#DEDAD0);}
+
+.lxd-fx-gr .lxd-fx-gr-habits{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.lxd-fx-gr .lxd-fx-gr-chip{font-size:14px;font-weight:600;color:var(--gr-ink,#1E2A35);background:var(--gr-card,#FFFFFF);border:1.5px solid var(--gr-border,#DEDAD0);border-radius:999px;padding:8px 16px;cursor:pointer;box-shadow:var(--gr-shadow);transition:border-color .15s ease,background .15s ease;}
+.lxd-fx-gr .lxd-fx-gr-chip:hover{border-color:var(--gr-meta-line,#E2C89C);}
+.lxd-fx-gr .lxd-fx-gr-chip.active{border-color:var(--gr-meta,#9A5B18);background:var(--gr-meta-bg,#F4E7D3);color:var(--gr-meta,#9A5B18);}
+.lxd-fx-gr .lxd-fx-gr-habithelper{font-size:13.5px;color:var(--gr-muted,#74808A);min-height:20px;margin:6px 0 0;}
+.lxd-fx-gr .lxd-fx-gr-habithelper b{color:var(--gr-ink,#1E2A35);}
+
+.lxd-fx-gr .lxd-fx-gr-eqbar{margin-top:40px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:18px;background:linear-gradient(180deg,#FBFAF7,#F3F1EA);border:1px solid var(--gr-border,#DEDAD0);border-radius:var(--gr-r,14px);}
+.lxd-fx-gr .lxd-fx-gr-eqchip{font-size:19px;font-weight:700;padding:8px 18px;border-radius:10px;}
+.lxd-fx-gr .lxd-fx-gr-eqchip.context{background:var(--gr-science-bg,#E4EEEA);color:var(--gr-science,#2F6B60);}
+.lxd-fx-gr .lxd-fx-gr-eqchip.habit{background:var(--gr-meta-bg,#F4E7D3);color:var(--gr-meta,#9A5B18);}
+.lxd-fx-gr .lxd-fx-gr-eqop{font-size:22px;color:var(--gr-muted,#74808A);}
+
+.lxd-fx-gr .lxd-fx-gr-panel{margin-top:18px;background:var(--gr-card,#FFFFFF);border:1px solid var(--gr-border,#DEDAD0);border-radius:var(--gr-r,14px);box-shadow:var(--gr-shadow);overflow:hidden;}
+.lxd-fx-gr .lxd-fx-gr-cols{display:grid;grid-template-columns:1fr 1fr;}
+.lxd-fx-gr .lxd-fx-gr-col{padding:22px 24px;}
+.lxd-fx-gr .lxd-fx-gr-col.science{background:var(--gr-science-bg,#E4EEEA);border-right:1px solid var(--gr-border,#DEDAD0);}
+.lxd-fx-gr .lxd-fx-gr-col.meta{background:var(--gr-meta-bg,#F4E7D3);}
+.lxd-fx-gr .lxd-fx-gr-colbadge{font-family:var(--gr-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:8px;}
+.lxd-fx-gr .lxd-fx-gr-col.science .lxd-fx-gr-colbadge{color:var(--gr-science,#2F6B60);}
+.lxd-fx-gr .lxd-fx-gr-col.meta .lxd-fx-gr-colbadge{color:var(--gr-meta,#9A5B18);}
+.lxd-fx-gr .lxd-fx-gr-col p{margin:0;font-size:15.5px;font-weight:600;color:var(--gr-ink,#1E2A35);line-height:1.4;}
+.lxd-fx-gr .lxd-fx-gr-vignettebox{padding:24px 26px 26px;}
+.lxd-fx-gr .lxd-fx-gr-vlabel{font-family:var(--gr-mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gr-muted,#74808A);display:block;margin-bottom:10px;}
+.lxd-fx-gr .lxd-fx-gr-vignette{font-size:16px;color:var(--gr-body,#3C4750);margin:0;}
+
+.lxd-fx-gr .lxd-fx-gr-scan{margin-top:26px;text-align:center;}
+.lxd-fx-gr .lxd-fx-gr-scanbtn{font-size:14px;font-weight:600;color:var(--gr-science,#2F6B60);background:none;border:1.5px solid var(--gr-science-line,#BFD6CE);border-radius:999px;padding:10px 20px;cursor:pointer;}
+.lxd-fx-gr .lxd-fx-gr-scanbtn:hover{background:var(--gr-science-bg,#E4EEEA);}
+.lxd-fx-gr .lxd-fx-gr-scanlist{margin-top:18px;text-align:left;display:grid;gap:10px;}
+.lxd-fx-gr .lxd-fx-gr-scanrow{display:grid;grid-template-columns:170px 1fr;gap:16px;background:var(--gr-card,#FFFFFF);border:1px solid var(--gr-border,#DEDAD0);border-radius:10px;padding:14px 16px;align-items:baseline;}
+.lxd-fx-gr .lxd-fx-gr-scanname{font-weight:700;color:var(--gr-meta,#9A5B18);font-size:14px;}
+.lxd-fx-gr .lxd-fx-gr-scantext{font-size:14px;color:var(--gr-body,#3C4750);}
+.lxd-fx-gr .lxd-fx-gr-scantext b{color:var(--gr-ink,#1E2A35);}
+
+.lxd-fx-gr .lxd-fx-gr-footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--gr-border,#DEDAD0);font-size:13px;color:var(--gr-muted,#74808A);}
+.lxd-fx-gr .lxd-fx-gr-footer ul{margin:0 0 10px;padding-left:18px;}
+.lxd-fx-gr .lxd-fx-gr-footer li{margin-bottom:5px;}
+.lxd-fx-gr .lxd-fx-gr-footer p{margin:0;}
+
+.lxd-fx-gr button:focus-visible,.lxd-fx-gr summary:focus-visible{outline:2.5px solid var(--gr-gold,#B08A2E);outline-offset:2px;}
+
+@media(max-width:720px){
+  .lxd-fx-gr .lxd-fx-gr-contexts{grid-template-columns:1fr;}
+  .lxd-fx-gr .lxd-fx-gr-cols,.lxd-fx-gr .lxd-fx-gr-cols{grid-template-columns:1fr;}
+  .lxd-fx-gr .lxd-fx-gr-col.science{border-right:none;border-bottom:1px solid var(--gr-border,#DEDAD0);}
+  .lxd-fx-gr .lxd-fx-gr-scanrow{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){.lxd-fx-gr *{transition:none !important;}}
 `;
