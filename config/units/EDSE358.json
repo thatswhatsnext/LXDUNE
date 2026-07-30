@@ -1604,6 +1604,70 @@
         "LO3",
         "LO4"
       ],
+      "liveSessionRecording": "https://echo360.net.au/media/90ac2f6a-29ce-43f2-8002-f4f932f63dff/public",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Summary",
+            "items": [
+              "The session addressed Assessment Task 2 (critique, redesign, and reflection of a Queensland science assessment task adapted for NSW), covered Stage 6 assessment design principles from Module 4B, and concluded with an extended discussion on generative AI's impact on assessment validity.",
+              "Students clarified the scope of the task and received guidance on prioritising critique over redesign."
+            ]
+          },
+          {
+            "heading": "Key Points",
+            "items": [
+              "Assessment Task 2 requires students to select the subject-specific Queensland task matching their specialty (biology, chemistry, earth & environmental science, or physics) and adapt it for NSW.",
+              "Critique focus (~1,000 words): address validity, fairness, internal alignment, and cognitive demand, backed by theory and literature.",
+              "Redesign scope: transform the task to better align with NSW syllabus outcomes and working scientifically skills — full rewrite is unnecessary; targeted additions/extensions are sufficient.",
+              "Queensland vs. NSW comparison: not the goal; instead, identify how much of the NSW syllabus the Queensland document can address, using the Australian Curriculum as a shared origin point.",
+              "Assessment is a learning task (not proctored), meaning AI use cannot be realistically controlled — task design accounts for this."
+            ]
+          },
+          {
+            "heading": "Key Content — Module 4B Highlights",
+            "items": [
+              "Assessment schedule design: map outcomes against tasks in a matrix; working scientifically outcomes should appear more than once, knowledge & understanding at least once.",
+              "Rubric alignment: marking criteria must discriminate clearly across A–E bands; marks must map to the common grade scale.",
+              "Moderation: internal school moderation involves teams comparing student work samples to ensure consistent A–E judgements across teachers.",
+              "Formative vs. summative: homework and in-class work can form a corpus of formative evidence; formal graded assessments are limited (3 in Preliminary, 4 in Year 12).",
+              "Assessment pressure: multiple assessments across 4–5 Stage 6 subjects can mean ~50 pieces per year — quantity does not guarantee better judgement."
+            ]
+          },
+          {
+            "heading": "AI & Assessment Integrity Discussion",
+            "items": [
+              "Core issue: validity — if a student submits AI-generated work, the assessment no longer measures what it claims to.",
+              "Helping students manage time and starting assignments early can reduce pressure and temptation to use quick/easy options (e.g., AI).",
+              "Practical responses observed: moving writing tasks in-class to restore validity; using AI-generated images while requiring student-written text.",
+              "Suggested teacher approaches: teach students to critically evaluate AI outputs, not just use them; design tasks around student-gathered data and interpretation (e.g., depth studies, fieldwork) that are harder to fully outsource to AI; ask students to critique an AI-generated response to a prompt as the task itself.",
+              "Honesty and AI in assessment design is increasingly relevant; \"AI-proofing\" parallels the old \"un-Googleable question\" challenge — now complicated further by AI-integrated search.",
+              "Stephen will share resources on AI literacy for teachers if found."
+            ]
+          },
+          {
+            "heading": "Pending Confirmation",
+            "items": [
+              "Marks from Assessment Task 1 to be returned before Task 2 is due; marking currently in progress."
+            ]
+          },
+          {
+            "heading": "Other Notes",
+            "items": [
+              "No assessment questions to clarify."
+            ]
+          },
+          {
+            "heading": "Action Items",
+            "items": [
+              "All students: Read Module 4B materials before tackling Assessment Task 2 — provides language and frameworks for critique.",
+              "All students: Review the subject-specific Queensland assessment task and begin critique using validity, fairness, alignment, and cognitive demand as lenses.",
+              "Stephen: Forward AI literacy resources relevant to classroom teaching practice when available.",
+              "Assessment Task 2 deadline: ~39 days from session date (approximately 5–6 weeks); extension policy available for extenuating circumstances."
+            ]
+          }
+        ]
+      },
       "moodleTitles": {
         "lecture": "Text and media area: Module 4 Lecture Recordings",
         "slides": "File: Module 4 Lecture Material",
