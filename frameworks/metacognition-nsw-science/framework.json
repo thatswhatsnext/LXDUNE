@@ -1,0 +1,22 @@
+{
+  "id": "metacognition-nsw-science",
+  "title": "Teaching science is the context. Building metacognition is the goal.",
+  "subtitle": "Pick a <b>stage</b>, a <b>syllabus</b>, and a real <b>topic</b> you'll actually teach. Then choose one of the nine <b>teaching habits</b> from the NSW metacognition guide. The tool shows you a specific classroom move — often a script you can say out loud — that builds students' awareness of their own thinking <i>while</i> they learn that science.",
+  "viewType": "matrix",
+  "version": "1.0.0",
+  "vocabulary": "../_schema/curriculum.vocab.json",
+  "matrix": {
+    "habits": "habits.json",
+    "contexts": "contexts.json",
+    "cells": "cells.json"
+  },
+  "kicker": "A worked example set for beginning science teachers",
+  "helperText": "Nine habits from the NSW metacognition guide. Each is colour-coded by the phase of self-regulated thinking it mainly serves.",
+  "usageNote": "<p>It's tempting to treat the Working Scientifically skills — questioning, planning, analysing — as “the metacognition”. They aren't. They're <b>science skills</b>: disciplinary content students learn, the same as photosynthesis or projectile motion. Metacognition is something more general — a student's awareness and regulation of their <i>own</i> thinking, which the research splits into <b>metacognitive knowledge</b> (knowing which strategies exist and when to use them) and <b>regulation</b> (planning, monitoring, evaluating your own cognition).</p><p>So the question this tool answers isn't “which syllabus skill is metacognitive?” It's the more useful one for a beginning teacher: <b>while I'm teaching this particular bit of science, what can I actually do or say to make students more aware of how they're thinking?</b> Every example keeps the science real and specific, then names the metacognitive move layered on top of it.</p><p>The nine habits come from the NSW Department of Education's <i>Metacognition — a key to unlocking learning</i> (2020). The specific classroom techniques draw on wider evidence: self-explanation and Predict–Observe–Explain, Claim–Evidence–Reasoning, confidence-rating and self-testing, exam wrappers, and social metacognition in group work.</p>",
+  "attribution": "The nine teaching habits and the three-phase (planning / monitoring / evaluating) framework are from NSW Department of Education, Metacognition — a key to unlocking learning (2020). The science topics and classroom moves are adapted for NSW secondary science curriculum-method study — an indication of changes made.",
+  "sources": [
+    "NSW Department of Education (2020), Metacognition — a key to unlocking learning — the nine teaching habits and three-phase framework.",
+    "NSW Education Standards Authority — Science 7–10 Syllabus (2023) focus areas; Biology, Chemistry, Physics Stage 6 (2017) modules; and the 2025 Stage 6 syllabuses (implementation 2027–28).",
+    "Wider evidence base on metacognition in science: self-explanation & Predict–Observe–Explain (White & Frederiksen; Veenman et al.); Claim–Evidence–Reasoning argumentation; self-testing, spacing & interleaving and social metacognition (CBE–Life Sciences Education evidence-based teaching guide); confidence-accuracy calibration and exam wrappers."
+  ]
+}

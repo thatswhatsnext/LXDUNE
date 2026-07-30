@@ -1,0 +1,94 @@
+{
+  "id": "diff",
+  "ordinal": 10,
+  "name": "Differentiated Teaching",
+  "headline": "Effective teachers use evidence of learning readiness and progress to make adjustments so all students experience challenge, success and improved learning.",
+  "badges": [
+    { "label": "Response to Intervention", "value": "1.07", "kind": "effectSize" },
+    { "label": "Second/third chance", "value": "0.50", "kind": "effectSize" },
+    { "label": "+2 months", "kind": "monthsProgress" }
+  ],
+  "inContext": "Differentiation in science usually arrives as an extension worksheet and a revision worksheet, and it typically moves neither end of the class. The 1.07 effect size attached to Response to Intervention is not a claim about worksheets — it describes a <b>tiered, monitored system</b> with fluid grouping and defined exit criteria. Two things make science distinctive here. First, a substantial share of apparent conceptual difficulty is actually the language of science, so a diagnostic that ignores reading will misdiagnose. Second, the HITS document's phrase is worth holding onto: effective teachers <b>teach up</b> — rich curriculum for everyone with scaffolding, rather than a reduced diet for some.",
+  "exemplar": {
+    "context": {
+      "stage": "stage-5",
+      "syllabus": "science-7-10-2023",
+      "focusArea": "reactions",
+      "scope": "single",
+      "duration": "10-week unit, tiered structure"
+    },
+    "problem": "The class spanned students who could not balance a simple equation and students ready for stoichiometric reasoning. Existing practice — extension sheets for some, revision sheets for others — had produced no measurable movement at either end for two years running.",
+    "phases": [
+      {
+        "label": "Diagnose the right things",
+        "weekLabel": "Weeks 0–1",
+        "span": { "start": 0, "end": 2 },
+        "what": "A prerequisite diagnostic covers the conceptual foundations and the reading demand, not just current content.",
+        "detail": "Particle model, conservation of matter, and reading a chemical formula — plus a short measure of how students cope with the <b>language</b> of the unit, since much of what looks like conceptual failure in chemistry is a nominalisation problem. Diagnosing prerequisites rather than performance is what makes the grouping meaningful, because it identifies what to teach rather than who is behind."
+      },
+      {
+        "label": "Tier 1 — teach up for everyone",
+        "weekLabel": "Weeks 1–8",
+        "span": { "start": 2, "end": 9 },
+        "what": "High-quality core teaching of the full concept for the whole class, differentiated by scaffold and product.",
+        "detail": "Every student meets the same rich chemistry. What varies is the <b>scaffold</b> (a partially completed equation, a word bank, a worked example bank) and the <b>product</b> (a written explanation, an annotated diagram, a recorded verbal explanation). What does not vary is the concept, because differentiating by lowering the concept is how a gap becomes permanent."
+      },
+      {
+        "label": "Tier 2 — supplemental, fluid, with an exit",
+        "weekLabel": "Weeks 2–8",
+        "span": { "start": 3, "end": 9 },
+        "what": "A small-group block twice weekly for students the diagnostic flagged, with a stated exit criterion.",
+        "detail": "The group targets the specific prerequisite — conservation of matter, not 'chemistry' — and runs alongside Tier 1 rather than instead of it. Membership is reviewed <b>fortnightly on formative data</b> and students exit when they meet the criterion. Fluidity is the active ingredient: a fixed bottom group is not differentiation, it is streaming with better branding."
+      },
+      {
+        "label": "Tier 3 — individualised, monitored more often",
+        "weekLabel": "Weeks 3–9",
+        "span": { "start": 4, "end": 10 },
+        "what": "For the few who do not respond to Tier 2, individual intervention with higher-frequency monitoring.",
+        "detail": "The defining feature of Response to Intervention is that intensity increases in response to <b>data</b>, not in response to a label. A student moves to Tier 3 because two rounds of Tier 2 data show no movement, and the monitoring frequency rises so a wrong intervention is caught in a fortnight rather than a term."
+      },
+      {
+        "label": "Evaluate movement at both ends",
+        "weekLabel": "Weeks 9–10",
+        "span": { "start": 10, "end": 11 },
+        "what": "The question is whether students exited tiers — and whether the top of the class moved too.",
+        "detail": "The honest test of differentiation is not whether the intervention was delivered but whether the groups changed. The second question is the one most often skipped: did the students who were already secure make gains? A differentiation strategy that moves the bottom and stalls the top has solved half a problem, and the data will say so if anyone asks."
+      }
+    ],
+    "impact": "Fortnightly formative data on the specific prerequisite, the number of students exiting Tier 2 before the unit's end, and growth at the top quartile as well as the bottom. The exemplar's uncomfortable finding in year one was that the top quartile had not moved — which redirected the following year's planning toward the Tier 1 extension question rather than more intervention."
+  },
+  "transfer": {
+    "label": "Stage 6 · any science course",
+    "text": "In Stage 6, tiering usually attaches to Working Scientifically rather than content — for example a supplemental block on analysing and evaluating data for students whose Year 11 assessment showed that as the limiting skill, running alongside the full Year 12 module rather than replacing any of it."
+  },
+  "indicators": {
+    "teacher": [
+      "Diagnoses prerequisites and reading demand, not just current performance",
+      "Teaches up — rich curriculum for all, with variation in scaffold and product rather than concept",
+      "Uses fluid groupings reviewed on formative data with stated exit criteria",
+      "Increases intervention intensity in response to data rather than to a label",
+      "Evaluates movement at both ends of the class, not only the bottom"
+    ],
+    "notDemonstrated": [
+      "The same work is set for everyone, or the only variation is more or fewer questions",
+      "Groups are formed once and never change",
+      "Differentiation means a reduced concept for some students rather than more scaffold",
+      "Extension is offered only to identified gifted students",
+      "The intervention is judged on being delivered rather than on students exiting it"
+    ],
+    "student": [
+      "Can choose learning activities aligned to agreed goals",
+      "Are assessed against their own prior achievement rather than against classmates",
+      "Meet the full concept with support, rather than a simplified version of it",
+      "Are both supported and challenged relative to where they actually are"
+    ]
+  },
+  "continuum": [
+    { "level": 1, "label": "Emerging", "text": "Teachers use assessment strategies to identify what students know and use varied strategies to accommodate the range of abilities." },
+    { "level": 2, "label": "Evolving", "text": "A range of assessment activities identifies prior learning and diagnoses needs, and instructional delivery is modified to meet different needs." },
+    { "level": 3, "label": "Embedding", "text": "Assessment data explicitly informs planning; teachers determine targeted interventions and teach up, scaffolding so all students reach high-level goals." },
+    { "level": 4, "label": "Excelling", "text": "Teachers diagnose individual abilities and teach with tailored, appropriately challenging strategies. Differentiation is central to planning and delivery in all lessons." }
+  ],
+  "related": ["goals", "worked", "feedback"],
+  "evidence": "Hattie (2012): Response to Intervention 1.07 — a tiered, monitored system, not an extension worksheet. Tomlinson (2014) on differentiation; Wiliam (2011) on embedded formative assessment. Use of data to inform practice is one of the eight CESE What Works Best themes. The 'teach up' formulation is the HITS resource's own."
+}
