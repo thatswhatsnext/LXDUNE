@@ -61,6 +61,9 @@ const validateDeepDive = ajv.getSchema('framework.schema.json#/$defs/deepDiveIte
 const validateMatrixHabit = ajv.getSchema('framework.schema.json#/$defs/matrixHabit');
 const validateMatrixStage = ajv.getSchema('framework.schema.json#/$defs/matrixStage');
 const validateMatrixCell = ajv.getSchema('framework.schema.json#/$defs/matrixCell');
+const validateGridHabit = ajv.getSchema('framework.schema.json#/$defs/gridHabit');
+const validateGridContext = ajv.getSchema('framework.schema.json#/$defs/gridContext');
+const validateGridCell = ajv.getSchema('framework.schema.json#/$defs/gridCell');
 
 const fmtAjv = (label, errors) =>
   (errors || []).map((e) => `${label}${e.instancePath || ''} ${e.message}`);
@@ -213,6 +216,57 @@ function validateMatrixFramework(dir, name, vocab, fw) {
   return `${topicIds.length} topics × ${habitIds.length} habits = ${topicIds.length * habitIds.length} cells`;
 }
 
+// ── validate one grid framework (lighter flat-context matrix) ──────────────────
+function validateGridFramework(dir, name, vocab, fw) {
+  if (!fw.grid) {
+    err(name, 'framework.json has no "grid" source manifest (habits/contexts/cells)');
+    return 'no grid';
+  }
+  const loadArr = (key) => {
+    const p = fw.grid[key];
+    const rel = `${name}/${p}`;
+    if (!p || !existsSync(join(dir, p))) {
+      err(name, `grid.${key} file "${p}" not found`);
+      return { rel, arr: [] };
+    }
+    const arr = readJson(join(dir, p));
+    if (!Array.isArray(arr)) {
+      err(rel, `expected a JSON array`);
+      return { rel, arr: [] };
+    }
+    return { rel, arr };
+  };
+  const { rel: habitsRel, arr: habits } = loadArr('habits');
+  const { rel: contextsRel, arr: contexts } = loadArr('contexts');
+  const { rel: cellsRel, arr: cells } = loadArr('cells');
+
+  habits.forEach((h) => {
+    if (!validateGridHabit(h)) fmtAjv(`[${h.id || '?'}]`, validateGridHabit.errors).forEach((m) => err(habitsRel, m));
+  });
+  contexts.forEach((c) => {
+    if (!validateGridContext(c)) fmtAjv(`[${c.id || '?'}]`, validateGridContext.errors).forEach((m) => err(contextsRel, m));
+    checkRefs(contextsRel, { stage: c.stage, focusArea: c.syllabusArea }, vocab, true); // starter maps to areas/themes; supersession n/a
+  });
+
+  const habitIds = habits.map((h) => h.id);
+  const contextIds = contexts.map((c) => c.id);
+  const present = new Set();
+  cells.forEach((cell, i) => {
+    if (!validateGridCell(cell))
+      fmtAjv(`[${cell.contextId || '?'}×${cell.habitId || '?'}]`, validateGridCell.errors).forEach((m) => err(cellsRel, m));
+    if (!contextIds.includes(cell.contextId)) err(cellsRel, `cell[${i}] contextId "${cell.contextId}" is not a defined context`);
+    if (!habitIds.includes(cell.habitId)) err(cellsRel, `cell[${i}] habitId "${cell.habitId}" is not a defined habit`);
+    const key = `${cell.contextId}×${cell.habitId}`;
+    if (present.has(key)) err(cellsRel, `duplicate cell ${key}`);
+    present.add(key);
+  });
+  for (const c of contextIds)
+    for (const h of habitIds)
+      if (!present.has(`${c}×${h}`)) err(name, `grid incomplete — missing cell ${c}×${h}`);
+
+  return `${contextIds.length} contexts × ${habitIds.length} habits = ${contextIds.length * habitIds.length} cells`;
+}
+
 // ── main ────────────────────────────────────────────────────────────────────────
 const vocab = buildVocab();
 const dirs = readdirSync(FRAMEWORKS)
@@ -240,6 +294,7 @@ for (const d of dirs) {
   let summary = '';
   if (fw.viewType === 'deep-dive') summary = `${validateDeepDiveFramework(dir, d, vocab, fw)} items`;
   else if (fw.viewType === 'matrix') summary = `${validateMatrixFramework(dir, d, vocab, fw)}`;
+  else if (fw.viewType === 'grid') summary = `${validateGridFramework(dir, d, vocab, fw)}`;
 
   const bad = report.errors.some((e) => e.file.startsWith(d));
   console.log(`${bad ? '✗' : '✓'} ${d} (${fw.viewType}, v${fw.version}) — ${summary}`);

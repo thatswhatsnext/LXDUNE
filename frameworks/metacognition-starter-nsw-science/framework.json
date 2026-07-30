@@ -1,0 +1,22 @@
+{
+  "id": "metacognition-starter-nsw-science",
+  "title": "Science is the context. Metacognition is the goal.",
+  "subtitle": "The <strong>Working Scientifically skills</strong> in the NSW syllabuses — questioning, planning, analysing, communicating — are science skills. They are the <strong>subject matter</strong> here, the same as a concept like ecosystems. <strong>Metacognition</strong> is something different: a domain-general awareness of your own thinking. This lighter tool holds those two things apart across four worked contexts — a starter version of the fuller Metacognition explorer.",
+  "viewType": "grid",
+  "version": "1.0.0",
+  "vocabulary": "../_schema/curriculum.vocab.json",
+  "grid": {
+    "habits": "habits.json",
+    "contexts": "contexts.json",
+    "cells": "cells.json"
+  },
+  "kicker": "A starter tool for beginning science teachers",
+  "helperText": "Nine habits, drawn from the NSW Department of Education's metacognition guide, that make student thinking visible, practised and self-monitored.",
+  "usageNote": "<p><b>Pick a science context first.</b> Two are content concepts (ecosystems, chemical equilibrium) and two are science skills (designing an investigation, evaluating evidence). Both count as “the science” — the thing students are learning about the natural world, or the disciplinary skill they're building.</p><p><b>Then pick a teaching habit.</b> These nine come from the NSW DoE's guide to metacognitive teaching practice. They are not science-specific — the same nine habits could sit inside a history or maths lesson. What changes below is only the science; the habit, and the kind of thinking it's building, stays recognisably itself.</p><p><b>This is the starter version</b> — four contexts, to introduce the idea. The full <i>Metacognition in Science</i> framework carries the same nine habits across thirteen topics spanning Stages 4–6.</p>",
+  "attribution": "The nine teaching habits and the metacognitive framing are from NSW Department of Education, Metacognition — a key to unlocking learning (2020). The science contexts, cell content and classroom vignettes are adapted for NSW secondary science curriculum-method study — an indication of changes made.",
+  "sources": [
+    "NSW Department of Education, Metacognition — a key to unlocking learning (2020) — the nine teaching habits and metacognitive framing.",
+    "NSW Education Standards Authority — Science 7–10 Syllabus (2023) and the Stage 6 science syllabuses — the science contexts.",
+    "Education Endowment Foundation, Metacognition and Self-Regulated Learning — guidance report underpinning the approach."
+  ]
+}

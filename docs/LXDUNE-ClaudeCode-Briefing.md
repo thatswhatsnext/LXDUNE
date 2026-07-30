@@ -42,6 +42,7 @@ frameworks/                   ← Framework Explorer data + tooling (Phase 5)
     curriculum.vocab.json     ← controlled NSW syllabus vocabulary (stages, focus areas, modules, themes)
   hits-nsw-science/           ← deep-dive view: framework.json + items/*.json (10) + CHANGELOG
   metacognition-nsw-science/  ← matrix view: framework.json + habits/contexts/cells.json (117) + CHANGELOG
+  metacognition-starter-nsw-science/ ← grid view (lighter starter): 4 contexts × 9 habits = 36 cells + CHANGELOG
   README.md                   ← authoring + testing guide
   preview.html                ← local test harness (framework switcher, width toggles, version stamp)
 
@@ -70,6 +71,7 @@ docs/
   STAFF-README.md             ← plain-language guide for non-technical coordinators
   LXDUNE-ClaudeCode-Briefing.md ← this file
   ACTION-PLAN.md              ← prioritised action plan for content and system work
+  framework-explorer-roadmap.md ← Framework Explorer product roadmap (Now/Next/Later + candidate frameworks + delivery-model limits)
   EDSE357-T1-2026-shells.html    ← git-ignored; open in browser to copy shells
   EDSE358-T1-2026-shells.html    ← git-ignored; stale for AT1 (pre D1/D2 split); use new-shells file instead
   EDSE357-navigation-shells.html ← git-ignored; navigation block shells (renderUnitKeyInfo + renderAssessmentStatus)
@@ -359,7 +361,7 @@ Both live scripts refactored to read from `config/units/*.json` instead of embed
 
 A separate, config-driven capability from `blocks.js`: standalone teaching-framework artefacts ported into validated JSON + one shared renderer. **Not unit-scoped** — frameworks are general NSW-science teaching resources embeddable on any Moodle page.
 
-- **Delivery:** `moodle-blocks/framework-explorer.js` — ES module in the `blocks.js` live-served pattern (no build step, no `dist/`). Exports `renderFrameworkExplorer({ framework, mount })`. Two view types behind a `VIEWS` registry: **deep-dive** (HITS) and **matrix** (Metacognition).
+- **Delivery:** `moodle-blocks/framework-explorer.js` — ES module in the `blocks.js` live-served pattern (no build step, no `dist/`). Exports `renderFrameworkExplorer({ framework, mount })`. Three view types behind a `VIEWS` registry: **deep-dive** (HITS), **matrix** (full Metacognition, 117 cells), and **grid** (Metacognition starter, 36 cells — lighter flat-context variant, 3-field cells).
 - **Data:** `frameworks/<id>/` — `framework.json` wrapper + per-view data files. HITS: 10 items · 43 phases · 140 indicators · 40 continuum cells. Metacognition: 3 stages → 9 areas → 13 topics × 9 habits = 117 cells.
 - **Vocabulary:** `frameworks/_schema/curriculum.vocab.json` — NEW controlled NSW syllabus vocabulary (stages, Stage 4/5 focus areas, Stage 6 modules, cross-cutting themes) with `activeFrom`/`supersededBy`. Every curriculum reference in a framework must resolve here.
 - **Validation gate:** `scripts/validate-frameworks.js` (`npm run validate`) — ajv (structure) + code (cross-file: unique/contiguous ids, `related` resolution, vocab membership + supersession, matrix completeness, manifest consistency). Wired into CI (`.github/workflows/validate-frameworks.yml`). `ajv` added to `dependencies`.
@@ -367,6 +369,14 @@ A separate, config-driven capability from `blocks.js`: standalone teaching-frame
 - **Testing:** `frameworks/preview.html` (local harness) + real-Moodle steps in `frameworks/README.md`. Local verified; **real-Moodle test still pending** (see Known issues).
 
 **Decisions (override the source handoff's own proposals):** repo-native live JS+JSON (no `dist/` build); ajv gate; both frameworks under one renderer; inherit Moodle theme fonts for v1.
+
+**Post-implementation decisions (2026-07-30, Steve — resolving handoff §11 + follow-ups):**
+- **Typography:** keep (a) — inherit Moodle theme fonts. No display-face inlining.
+- **Constructive-alignment maps:** **NOT** part of the Framework Explorer pipeline (handoff D2c declined). They remain a separate piece of work — the `blocks.js` `renderAlignmentMap()` renderer (next-tasks #10). Do not fold CA maps into `frameworks/`.
+- **Fourth framework:** deferred — Steve not ready to add new framework content yet. Suggestions for future science-teaching / general-teaching frameworks welcome (candidates noted for when ready).
+- **2017 → 2025 Stage 6 deprecation:** confirmed to occur in **2027** (first HSC 2028). Vocab already carries `supersededBy`/`activeFrom`; content flagged `acknowledgedSuperseded: true`. Re-author against 2025 modules then.
+- **Lighter metacognition variant:** build the simpler 36-cell version (`Science_Teaching_Metacognition_Explorer.html`) as a **starter** framework (`metacognition-starter-nsw-science`, viewType `grid`) — a lighter entry point alongside the full 117-cell matrix.
+- **Learning analytics:** Steve wants to gather + report interaction analytics in Moodle. This reverses handoff §12 ("no analytics") and §7 ("no external requests") — a deliberate scope expansion. Approach under design (see below / ACTION-PLAN).
 
 **Moodle shell (paste into a Page):**
 ```html
@@ -418,7 +428,7 @@ Pre-generated copyable Moodle shell snippets. Open in a browser — each shell h
 | `docs/EDSE357-navigation-shells.html` | 2 | — | 2026-05-19 (rev 2) | Current |
 | `docs/EDSE358-new-shells-may2026.html` | 7 | — | 2026-05-21 | **Use this for EDSE358 AT1 + new week blocks** |
 | `docs/EDSE357-new-shells-may2026.html` | 6 | — | 2026-05-21 | Orientation notes + forum prompts for Topics 3, 5, 7 |
-| `docs/EDSE362-framework-explorer-shells.html` | 3 | — | 2026-07-24 | **Framework Explorer page for EDSE362** — HITS, Metacognition, and both-on-one-page snippets + live production preview |
+| `docs/EDSE362-framework-explorer-shells.html` | 4 | — | 2026-07-30 | **Framework Explorer page for EDSE362** — HITS, Metacognition, Metacognition-starter, and all-three-on-one-page snippets + live production preview |
 
 **`EDSE358-new-shells-may2026.html` contains (7 shells):**
 - Section 1: Updated AT1 assessment page — **replace** existing Moodle shell (reflects D1/D2 split + guidanceNotes)

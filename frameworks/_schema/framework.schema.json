@@ -26,7 +26,7 @@
         "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
         "title": { "type": "string", "minLength": 1 },
         "subtitle": { "type": "string" },
-        "viewType": { "enum": ["deep-dive", "matrix"] },
+        "viewType": { "enum": ["deep-dive", "matrix", "grid"] },
         "version": { "$ref": "#/$defs/semver" },
         "items": {
           "description": "Ordered manifest of item file paths (relative to the framework dir). Required for the deep-dive view so the renderer can fetch them over HTTP (no directory listing on GitHub Pages). The validator checks this matches the items/ directory.",
@@ -35,6 +35,17 @@
         },
         "matrix": {
           "description": "Source file paths for the matrix view (relative to the framework dir). Required when viewType is matrix.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["habits", "contexts", "cells"],
+          "properties": {
+            "habits": { "type": "string", "pattern": "\\.json$" },
+            "contexts": { "type": "string", "pattern": "\\.json$" },
+            "cells": { "type": "string", "pattern": "\\.json$" }
+          }
+        },
+        "grid": {
+          "description": "Source file paths for the grid view (lighter matrix variant). Required when viewType is grid.",
           "type": "object",
           "additionalProperties": false,
           "required": ["habits", "contexts", "cells"],
@@ -285,6 +296,49 @@
         "script": { "type": "string", "minLength": 1, "description": "What the teacher says/does in this lesson." },
         "why": { "type": "string", "minLength": 1, "description": "The rationale — why this move builds the habit." },
         "evidence": { "type": "string", "minLength": 1, "description": "Evidence-base citation." }
+      }
+    },
+
+    "gridHabit": {
+      "type": "object",
+      "description": "A teaching habit (grid row — lighter 'starter' variant). No `category` (the simpler artefact has none; not invented).",
+      "additionalProperties": false,
+      "required": ["id", "name", "definition"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "definition": { "type": "string", "minLength": 1 }
+      }
+    },
+
+    "gridContext": {
+      "type": "object",
+      "description": "A science context (grid column — flat, one per column, no nested topics). `stage`/`syllabusArea` vocab-controlled; `label` is the display chip.",
+      "additionalProperties": false,
+      "required": ["id", "name", "type", "stage", "blurb", "whyHard"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "type": { "enum": ["concept", "skill"] },
+        "stage": { "$ref": "#/$defs/vocabRef" },
+        "syllabusArea": { "$ref": "#/$defs/vocabRef" },
+        "blurb": { "type": "string", "minLength": 1 },
+        "whyHard": { "type": "string", "minLength": 1 },
+        "label": { "type": "string" }
+      }
+    },
+
+    "gridCell": {
+      "type": "object",
+      "description": "One {contextId}×{habitId} cell for the grid view. Three fields (no `why`/`evidence` — the lighter artefact has none; do not fabricate). Validator enforces full context × habit completeness.",
+      "additionalProperties": false,
+      "required": ["contextId", "habitId", "science", "meta", "vignette"],
+      "properties": {
+        "contextId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "habitId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "science": { "type": "string", "minLength": 1, "description": "The science (context) in play for this cell." },
+        "meta": { "type": "string", "minLength": 1, "description": "The metacognitive move (goal)." },
+        "vignette": { "type": "string", "minLength": 1, "description": "What this looks like in the classroom." }
       }
     }
   },
