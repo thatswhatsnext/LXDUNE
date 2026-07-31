@@ -1674,6 +1674,82 @@
         "LO1",
         "LO3"
       ],
+      "liveSessionRecording": "https://echo360.net.au/media/46feab82-4574-4c6d-aa25-b95e3cab0dbf/public",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Summary",
+            "items": [
+              "The session focused on clarifying Assessment Task 2 (AT2) requirements: a 5-week unit program with an embedded summative assessment task, an A–E marking rubric, and a reflection.",
+              "Key structural expectations, differentiation standards, and rubric criteria were unpacked.",
+              "The session also covered how teachers evaluate the effectiveness of their teaching and learning programs."
+            ]
+          },
+          {
+            "heading": "Key Points",
+            "items": [
+              "AT2 word count: Use 2,500 words (template error showing 2,100 — correction to be announced).",
+              "Unit structure: Plan for ~20 lessons over 5 weeks, assuming 4 × 50-minute lessons/week, 2 of which are lab sessions.",
+              "Practical lessons: More than 2 practicals per week is permitted.",
+              "Working Scientifically vs. content split: ~60% Working Scientifically skills, ~40% knowledge and understanding.",
+              "Syllabus reference: Use the new 2023 science syllabus (implemented in classrooms from 2026); reference focus area, not strand.",
+              "Reusing AT1 content: Permitted if properly referenced and refined, particularly where feedback was received."
+            ]
+          },
+          {
+            "heading": "AT2 Structure & Expectations",
+            "items": [
+              "Part A: Unit program with context, teacher background, resources, weekly sequence, and an adjustments column for differentiation.",
+              "Part B: Embedded features — literacy & numeracy, Aboriginal and Torres Strait Islander histories & cultures, formative assessment, community engagement.",
+              "Summative task + A–E rubric: Assesses outcomes taught; must align to syllabus and be accessible to all learners including EALD students.",
+              "Reflection: Addresses community engagement by identifying specific people/networks (e.g., NESA contacts, community elders, subject specialists) to consult for program improvement."
+            ]
+          },
+          {
+            "heading": "Differentiation & Inclusion Standards",
+            "items": [
+              "Credit level: Barriers identified after the fact; unit mostly accessible for diverse learners.",
+              "Distinction/HD level: Cohort needs considered from the outset of design; explicit call-outs in the adjustments column for each weekly block; may embed 8 Aboriginal Ways of Learning.",
+              "Community elders and First Nations community members are valid sources for shaping assessment design and cultural relevance."
+            ]
+          },
+          {
+            "heading": "Rubric & Assessment Design Guidance",
+            "items": [
+              "Rubric components: syllabus alignment (LOs 1–3), literacy & numeracy, inclusion & cohort appropriateness (9 marks), summative task quality (6 marks).",
+              "Task must demonstrate internal alignment — assesses what was actually taught.",
+              "Use Course Performance Descriptors (Stage 5/Year 10) and Common Grade Scale to inform rubric language.",
+              "Keep rubric focused on a small number of outcomes to maintain manageability."
+            ]
+          },
+          {
+            "heading": "Evaluating Teaching & Learning Programs",
+            "items": [
+              "Key evaluation sources identified: formative assessment data (informs whether students are meeting outcomes); student feedback surveys (mid-topic or post-unit); peer/mentor observations (seek specific, targeted feedback on a chosen aspect of practice); student engagement signals (on-task behaviour, questioning, use of vocabulary).",
+              "Summative marks alone are insufficient for rich program evaluation.",
+              "Proactive engagement with mentors during practicum — framing a sharp, specific question — maximises feedback value."
+            ]
+          },
+          {
+            "heading": "Pending Confirmation",
+            "items": [
+              "Stephen to update AT2 announcement confirming 2,500-word limit: NOW UPDATED.",
+              "AT2 unpacking video to be reviewed/updated for currency.",
+              "Template to be corrected: \"strand\" → \"focus area\" NOW UPDATED."
+            ]
+          },
+          {
+            "heading": "Action Items",
+            "items": [
+              "Stephen: Post announcement correcting word count to 2,500 words.",
+              "Stephen: Review and update AT2 unpacking video.",
+              "All students: Review AT2 template, sample Stage 5 Energy unit, and Course Performance Descriptors before drafting.",
+              "AT1 (Flexible Portal) students: Submission due imminently; feedback expected within ~2 weeks of due date.",
+              "AT2 due date: 6 September."
+            ]
+          }
+        ]
+      },
       "orientationNote": "Topic 6B is the direct preparation week for Parts C and D of AT2. Part C requires you to design a summative assessment task and A–E marking rubric that align directly with the learning experiences and outcomes developed in your unit program. Part D requires you to evaluate aspects of your teaching program and identify professional sources of support that could improve future practice. Use this week’s materials to think about assessment as evidence for learning, not simply grading, and about evaluation as an ongoing process of refining teaching to improve student outcomes.",
       "forumPrompts": [
         "Design a single summative assessment task for a five-week Stage 4 or 5 science unit of your choice. The task should be completable in one lesson or as a short take-home piece, and should assess at least two syllabus outcomes. Post: the task prompt (as you would give it to students), the outcomes it assesses, and one marking criterion written in A–E NESA Performance Band Descriptor language. For your A-band criterion, what does 'extensive knowledge and understanding' actually look like for this task — in concrete, observable terms?",
