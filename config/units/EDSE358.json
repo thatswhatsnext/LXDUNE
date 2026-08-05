@@ -1851,6 +1851,75 @@
         "LO2",
         "LO3"
       ],
+      "liveSessionRecording": "https://echo360.net.au/media/72cd6110-38be-4603-9663-dcfbfec95498/public",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Summary",
+            "items": [
+              "The session focused on designing inclusive assessments for diverse science learners, using NAPLAN literacy/numeracy decline data as a prompt.",
+              "Key strategies discussed included Universal Design for Learning (UDL), scaffolding, portfolio-style tasks, and multi-tiered support.",
+              "A sample Stage 6 Chemistry depth study task was analysed live to identify accessibility barriers and differentiation opportunities."
+            ]
+          },
+          {
+            "heading": "Key Takeaways",
+            "items": [
+              "Scaffolding benefits all learners (Tier 1 support), not just low-ability students; sentence starters and response structures are universally appropriate.",
+              "Low floor, high ceiling task design is preferred over separate marking guides for gifted/talented students — the same rubric applies to all.",
+              "Portfolio assessments (e.g., process diaries, depth studies) are viable inclusive formats in science, covering working scientifically skills across multiple modes.",
+              "Cognitive verb hierarchy (evaluate → discuss → describe → outline) within marking guides naturally accommodates differentiated performance without altering the task."
+            ]
+          },
+          {
+            "heading": "Discussion Points — NAPLAN & Mathematical Diversity",
+            "items": [
+              "Recent NAPLAN data indicates decline in both numeracy and literacy, with direct implications for science classrooms.",
+              "Students' maths level (standard vs. advanced) is not always known to science teachers; even within courses, ability varies widely.",
+              "Context-switching from maths to science is a barrier to skill transfer — explicit re-teaching of mathematical skills in science contexts is recommended.",
+              "Action: Talk to maths staff early, ideally face-to-face, to understand cohort capability and share cross-disciplinary challenges."
+            ]
+          },
+          {
+            "heading": "Writing & Digital Assessment",
+            "items": [
+              "Students' handwriting speed is declining due to increased technology use, impacting timed written assessments.",
+              "Some schools now allow typed NAPLAN writing tasks; HSC still requires written exams.",
+              "Risk of inadvertently assessing writing stamina rather than scientific understanding in extended-response tasks.",
+              "Research supports handwriting for retention, but UDL principles support offering student choice of mode."
+            ]
+          },
+          {
+            "heading": "Sample Assessment Analysis (Stage 6 Chemistry Depth Study)",
+            "items": [
+              "Task involves selecting a hydrocarbon, conducting secondary research, maintaining a process diary, and completing an in-class extended response.",
+              "Identified gaps: assumed prior knowledge, vague process diary structure, open hydrocarbon selection (safety risk).",
+              "Suggested improvements: structured diary prompts, scaffolded evaluate responses, a curated hydrocarbon list with an open-choice option for advanced students."
+            ]
+          },
+          {
+            "heading": "Grading & Standards Reference",
+            "items": [
+              "Stage 4–5 uses a Common Grade Scale (A–E); Stage 6 uses performance band descriptors (Bands 1–6).",
+              "On-balance judgments combine formal assessment results with formative evidence gathered throughout the year.",
+              "Standards materials on the NSW Education website provide annotated student response exemplars to anchor grade decisions."
+            ]
+          },
+          {
+            "heading": "Action Items",
+            "items": [
+              "Stephen: Fixed broken Life Skills link in Module 4C, point 6.",
+              "Stephen: Provide more targeted standards materials example in response to Rima's grading question."
+            ]
+          },
+          {
+            "heading": "Next Session",
+            "items": [
+              "Not scheduled in this meeting; students directed to post questions to the forum or contact Stephen via email."
+            ]
+          }
+        ]
+      },
       "moodleTitles": {
         "lecture": "Text and media area: Module 4 Lecture Recordings",
         "slides": "File: Module 4 Lecture Material",
