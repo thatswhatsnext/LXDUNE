@@ -1793,6 +1793,82 @@
         "LO1",
         "LO6"
       ],
+      "liveSessionRecording": "https://echo360.net.au/media/ce6e55b7-20d5-491a-8a7d-d82773e82778/public",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Summary",
+            "items": [
+              "The session covered two main areas: clarifying Assessment Task 2 requirements and exploring the pedagogical use of analogies in science teaching.",
+              "Students confirmed they can reuse work from Assessment 1 with modifications and self-citation.",
+              "The analogy discussion emphasized purposeful planning, identifying limitations, and using analogies as formative assessment tools."
+            ]
+          },
+          {
+            "heading": "Key Points",
+            "items": [
+              "Assessment 2 scope: Choose a focus area from Stage 4 or Stage 5 (Year 7–10); focus areas are designed for ~8–10 weeks of teaching, but students sequence only a 5-week chunk.",
+              "Reusing Assessment 1 content: Permitted with caveats — must be modified for Assessment 2 requirements and self-referenced; direct copy-paste flagged as plagiarism.",
+              "Same focus area as A1: Acceptable; marking is based purely on merit, not topic choice.",
+              "Contextual narrative required: Students should briefly explain where their 5-week sequence fits within the broader unit (e.g., what precedes and follows it).",
+              "Term breaks are the natural delineation points for pausing a focus area; splitting mid-topic across unrelated content is discouraged."
+            ]
+          },
+          {
+            "heading": "Analogy Pedagogy — Key Points",
+            "items": [
+              "Purpose of analogies: Bootstrap prior knowledge into abstract/unfamiliar content; support constructivist learning by connecting new concepts to familiar ones.",
+              "Plan analogies deliberately — improvised analogies risk failing if the source concept is also unfamiliar to students.",
+              "Always identify limitations: No analogy is perfect; explicitly discussing breakdowns prevents misconceptions (e.g., the chef/ribosome analogy risks anthropomorphising cellular processes).",
+              "Cultural/contextual fit matters: Analogies can fall flat with ESL or culturally diverse learners if the source concept isn't shared.",
+              "Analogy competence framework (from cited paper) includes three components: conceptual, procedural, and performance competence."
+            ]
+          },
+          {
+            "heading": "Educational Functions of Analogies (research-supported)",
+            "items": [
+              "Promote conceptual content knowledge.",
+              "Develop cognitive and critical thinking skills.",
+              "Support linguistic development (benefit for EAL/D learners).",
+              "Increase student engagement and motivation.",
+              "Enable formative assessment of student understanding."
+            ]
+          },
+          {
+            "heading": "Classroom Strategies Discussed",
+            "items": [
+              "Student-generated analogies: Ask students to create or critically analyse analogies — reveals background knowledge and promotes higher-order thinking.",
+              "Peer explanation: Students often understand concepts better when explained by peers thinking at a similar level.",
+              "Think/talk alouds: Conversational probing of how students are analogising serves as an effective formative assessment strategy.",
+              "Caution with literal thinkers: Students on the autism spectrum may interpret analogies literally — consider audience before deploying."
+            ]
+          },
+          {
+            "heading": "Example Analogies Referenced",
+            "items": [
+              "Kidney/renal filtration → hose and connector system (Jackie): effective for lay audiences; acknowledged as an oversimplification.",
+              "Chromosome/gene/ribosome/protein → cookbook/recipe/chef/dish: illustrates structural relations; limitations include anthropomorphising the ribosome and ambiguous terms like \"dish.\"",
+              "Expanding universe → dots on a balloon: useful entry point, but limitations must be stated.",
+              "Geological folding → paper/spaghetti snapping (Greta): effective in geoscience education for slow-process concepts."
+            ]
+          },
+          {
+            "heading": "Resolved",
+            "items": [
+              "Broken link to Scamp & Preston pp. 264–270 (electricity analogies chapter) — appeared to resolve during session but should be verified in the LMS readings."
+            ]
+          },
+          {
+            "heading": "Other Notes",
+            "items": [
+              "Analogy competence for science teachers: https://doi.org/10.1080/03057267.2024.2434797",
+              "[Science analogies](https://science-education-research.com/teaching-science/constructivist-pedagogy/making-the-unfamiliar-familiar/science-analogies/)",
+              "[Examples of Science analogies](https://science-education-research.com/public-science/examples-of-science-analogies/)",
+              "[\"The nucleus is the brain of the cell\"](https://science-education-research.com/the-nucleus-is-the-brain-of-the-cell/) — example of a think-aloud (formative assessment) with a student, exploring how they use an analogy."
+            ]
+          }
+        ]
+      },
       "orientationNote": "Topic 7 builds directly on the pedagogical justification skills you need for AT1 Part B and the teaching strategy decisions in AT2 Part A. In AT1 Part B, you are asked to justify your choice of pedagogical approach — and the Teaching-With-Analogies model is one framework that can legitimately ground that justification, provided you use it precisely. In AT2 Part A, you are designing five weeks of lessons with named teaching strategies; analogies and models are among the most powerful conceptual-change strategies available in science, but only if their limitations are explicitly addressed. This week, practise the critical evaluation of an analogy before you use it — a habit that will distinguish your AT2 unit program from one that simply lists activities.",
       "forumPrompts": [
         "Identify one analogy commonly used in a 7–10 science classroom in your discipline (e.g. 'the atom is like a solar system', 'the cell membrane is like a security guard', 'electric current is like water in a pipe'). For each of these three criteria, evaluate your chosen analogy: (a) What does the analogy map correctly — where is the structural correspondence genuinely accurate? (b) Where does the mapping break down — what misconception could it embed if not explicitly addressed? (c) How would you introduce the analogy with its limitations foregrounded, so students build accurate conceptual understanding? Post your analogy, your three-criterion evaluation, and a two-sentence script for how you would address its limitations with students.",
