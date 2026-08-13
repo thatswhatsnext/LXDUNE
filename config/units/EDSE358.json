@@ -2005,6 +2005,79 @@
         "LO3",
         "LO4"
       ],
+      "liveSessionRecording": "https://echo360.net.au/media/5662e8fe-65f1-4f83-b29e-7fa11e81d7e3/public",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Summary",
+            "items": [
+              "This was the final live session of a four-module unit on assessment design for pre-service science teachers.",
+              "Discussion covered Assessment Task 2 requirements (critiquing and redesigning a Queensland assessment for NSW context), rubric design, and feedback principles.",
+              "Scott shared practicum reflections on behaviour management challenges, and the group explored broader pedagogical issues including prior knowledge gaps, student motivation, and cultural sensitivity in science teaching."
+            ]
+          },
+          {
+            "heading": "Key Points",
+            "items": [
+              "Assessment Task 2 scope: Rewrite both the assessment instructions and the marking criteria to align with the NSW syllabus — the original Queensland marking key is not transferable.",
+              "Dataset 2 handling: If a dataset draws on prior-stage content (e.g., Year 11 chemistry in a Year 12 assessment), questions must be reframed to assess working scientifically skills only, not content knowledge, to preserve construct validity.",
+              "Retaining strong questions: Students may keep questions they consider high quality and only modify or replace problematic ones — a full rewrite is not mandatory.",
+              "Replacing Dataset 2: Substituting an entirely new dataset is acceptable if it better serves the assessment purpose.",
+              "Feedback checkpoint: At minimum, one purposeful feedback point must be included before final submission; for a topic test format, a practice data set with feedback satisfies this requirement.",
+              "ICT integration: Applies \"where appropriate\" — shoehorning ICT into a topic test is discouraged; meaningful integration is expected if the format is redesigned as a depth study.",
+              "Life skills students: Not included in this assessment task; in practice, their assessment schedules and syllabus outcomes are modified and differ significantly from standard pathways."
+            ]
+          },
+          {
+            "heading": "Key Discussion Points — Practicum Reflections (Scott)",
+            "items": [
+              "Behaviour management identified as harder than expected — difficult to regulate own emotions while following correct procedures in real time.",
+              "Key reminder: be the thermostat, not the thermometer (regulate the room rather than react to it).",
+              "Self-reflection noted as a strength; Stephen emphasised giving oneself grace at only three weeks into teaching."
+            ]
+          },
+          {
+            "heading": "Feedback Quality",
+            "items": [
+              "Poor feedback examples raised: \"fix this\" with no guidance, \"good job\" with no score explanation, and marks returned the night before an exam.",
+              "Effective feedback should be timely, specific, and actionable — one actionable improvement with explicit guidance and a forward-looking comment.",
+              "A raw score (e.g., 45/70) communicates little to students without criteria-referenced explanation."
+            ]
+          },
+          {
+            "heading": "Formative Assessment & Student Motivation",
+            "items": [
+              "Students without intrinsic motivation often disengage from ungraded tasks; the sports practice analogy was offered — training exists to improve performance when it counts.",
+              "Formative assessment value must be explicitly communicated and connected to future summative performance; otherwise students may default to minimal effort or outsource thinking.",
+              "Year 11 biology students (elective) showed higher intrinsic motivation vs. compulsory Year 9/10 classes."
+            ]
+          },
+          {
+            "heading": "Cultural & Religious Sensitivity in Science",
+            "items": [
+              "Teaching cosmology or origins of the universe may conflict with students' religious beliefs; recommended approach: present content explicitly as scientific theory with its own epistemological boundaries.",
+              "Science does not claim to explain the divine — acknowledging that boundary is a valid and respectful framing.",
+              "When challenged in class, teachers can defer (\"I'd like to reflect on that\") and consult the learning area leader for guidance."
+            ]
+          },
+          {
+            "heading": "Prior Knowledge & Academic Progression",
+            "items": [
+              "Students who missed foundational Stage 5 concepts entering Stage 6 may not get another opportunity to demonstrate that mastery — gaps must be actively diagnosed through formative assessment.",
+              "Constructivist pedagogy (e.g., Bruner's cycles of inquiry) supports revisiting concepts in multiple contexts — the atomic model was cited as an example of progressively refined understanding across stages."
+            ]
+          },
+          {
+            "heading": "Action Items",
+            "items": [
+              "All students: Complete Assessment Task 2 — redesign the assessment and marking criteria for NSW context, address internal alignment (outcomes, instructions, criteria, evidence), syllabus alignment, and differentiation.",
+              "All students: Engage with the module's student work sample, practise making judgements, and write structured feedback with one actionable improvement and a forward-looking comment.",
+              "Stephen: Continue marking Assessment Task 1 (currently in progress).",
+              "Students with specific formatting questions about Assessment Task 2 directed to use forums or email for follow-up."
+            ]
+          }
+        ]
+      },
       "moodleTitles": {
         "lecture": "Text and media area: Module 4 Lecture Recordings",
         "slides": "File: Module 4 Lecture Material",
