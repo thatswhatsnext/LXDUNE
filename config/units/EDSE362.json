@@ -1912,6 +1912,59 @@
         "LO1",
         "LO6"
       ],
+      "liveSessionRecording": "https://echo360.net.au/media/655fdfbe-260e-468a-8a4a-f2d5409aaebf/public",
+      "liveSessionRecap": {
+        "sections": [
+          {
+            "heading": "Summary",
+            "items": [
+              "The session focused on clarifying Assessment Task 2 (AT2) requirements — a 5-week unit plan for Stage 4/5 Science.",
+              "Key guidance covered referencing expectations, syllabus outcome notation, summative assessment design, rubric scope, and how to chunk focus areas into a manageable 5-week program.",
+              "Students were encouraged to post remaining queries to the AT2 forum."
+            ]
+          },
+          {
+            "heading": "Key Points",
+            "items": [
+              "Referencing: No need to cite every pedagogical decision; link resources where adjustments are made for cohorts and where assets/materials need to be findable by a colleague.",
+              "Syllabus outcomes notation: Include the outcome and the specific dot point it covers; for later weeks, call back previously covered dot points and flag only newly introduced ones.",
+              "Summative assessment: Must be completable in class (not take-home); one lesson block in Week 5 is appropriate.",
+              "Assessment type: Open choice — test, investigation, portfolio, podcast, report, poster, oral defence, etc.",
+              "Rubric scope: Aim for ~2 rubrics (one for knowledge/understanding, one for Working Scientifically skills); maintain a ~30/60 knowledge-to-skills ratio; keep criteria student-readable.",
+              "Unit chunking: 5 weeks ≈ half a 10-week term focus area; start from outcomes and work backwards (backwards by design — Wiggins & McTighe).",
+              "Word count: Copied/pasted syllabus elements do not count toward the word limit; 550-word cap applies to the summative assessment description including rubric."
+            ]
+          },
+          {
+            "heading": "Guidance on Syllabus Structure",
+            "items": [
+              "Stage 4 has 8 focus areas across 2 years (~4 per year, ~10 weeks each).",
+              "Data Science strand: best woven through other focus areas rather than taught standalone.",
+              "Scope and sequence is typically co-designed by the Head Teacher with the teaching team at year-start or end of prior year.",
+              "Practical reality: reporting, grade moderation, and public holidays reduce usable teaching weeks below 10."
+            ]
+          },
+          {
+            "heading": "Open Questions",
+            "items": [
+              "Optimal granularity of dot-point listing in tables remains somewhat discretionary — outcomes + new dot points is the recommended minimum, but full dot-point lists (as seen in NESA examples) are also acceptable."
+            ]
+          },
+          {
+            "heading": "Action Items",
+            "items": [
+              "All students: Post remaining AT2 questions to the AT2 queries forum before submission."
+            ]
+          },
+          {
+            "heading": "Closing Notes",
+            "items": [
+              "Topic 8 theme: auditing personal science knowledge gaps as a Generalist Science Specialist; strategies include brainstorming a focus area, cross-referencing the syllabus, then the Australian Curriculum elaborations to build schema.",
+              "AT2 feedback will address constructivist sequencing, cross-curriculum links, general capabilities, formative assessment integration, and whether content volume is realistic for 5 weeks."
+            ]
+          }
+        ]
+      },
       "orientationNote": "Topic 8 is the direct preparation for AT1 Part C and AT2 Part D — both reflection tasks. A common mistake is treating these as summaries of what you learned. The rubric rewards something more specific: identifying a named external professional learning source (such as a NESA resource, ASTA, a professional association in your discipline, or a community representative) and explaining concretely why it is relevant to your teaching context and chosen strand. AT2 Part D also asks you to evaluate one aspect of your unit program with evidence. Use this week to audit your own content knowledge honestly and identify specific gaps — that audit is the raw material for a reflection that earns marks.",
       "forumPrompts": [
         "Conduct a content knowledge audit for the strand you have chosen for AT1 or AT2. Rate your confidence across the main content areas of that strand on a simple three-point scale (strong / developing / gap). For your two most significant gaps, identify: (a) one specific professional learning resource or action that would address it — a named book, online course, ASTA workshop, university contact, or community expert; (b) why that resource is the right one for your specific gap and teaching context, not just a general reference. Post your audit summary and your two gap-closure plans. What would you need to be confident enough to teach that content well?",
