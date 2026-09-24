@@ -1,0 +1,37 @@
+name: Reckoner
+
+# The reckoner's publishing gate. Fails on invalid guide YAML, a broken schema
+# rule, a build or render regression, or a reckoner/ folder that does not match
+# the YAML (edited without running npm run publish:pages, or hand-edited output).
+# Checks only: it never commits or deploys.
+on:
+  push:
+    paths:
+      - 'tools/reckoner/**'
+      - 'reckoner/**'
+      - '.github/workflows/reckoner.yml'
+  pull_request:
+    paths:
+      - 'tools/reckoner/**'
+      - 'reckoner/**'
+      - '.github/workflows/reckoner.yml'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tools/reckoner
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: tools/reckoner/package-lock.json
+      - run: npm ci
+      - run: npm run validate
+      - run: npm test
+      - run: npm run typecheck
+      - name: reckoner/ matches the YAML
+        run: npm run check:pages
