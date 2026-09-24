@@ -1,0 +1,31 @@
+{
+  "name": "lxdune-reckoner",
+  "version": "1.3.0",
+  "description": "Content schema for constructivist model companion guides (NSW Science 7–10)",
+  "scripts": {
+    "validate": "tsx scripts/validate.ts",
+    "export-schema": "tsx scripts/export-json-schema.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx scripts/test-rules.ts && tsx scripts/test-build.ts",
+    "build": "tsx scripts/build-site.ts",
+    "build:single": "tsx scripts/build-site.ts --single-file",
+    "review": "tsx scripts/build-site.ts --review",
+    "publish:pages": "npm run validate && npm test && npm run build && tsx scripts/copy-to-pages.ts",
+    "check:pages": "npm run build && tsx scripts/copy-to-pages.ts --check"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^26.6.2",
+    "js-yaml": "^5.4.2",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "zod": "^3.25.76",
+    "zod-to-json-schema": "^3.25.2"
+  },
+  "private": true,
+  "devDependencies": {
+    "jsdom": "^30.1.0"
+  }
+}

@@ -1,0 +1,504 @@
+# Predict–Observe–Explain companion guide
+# First single-lesson (micro-scale) guide; used to test the schema beyond unit-level models.
+# Worked episodes: Stage 4 Living systems (yeast), Stage 5 Disease (handwashing model).
+
+schemaVersion: "1.3"
+id: poe
+name: Predict–Observe–Explain
+originators: White & Gunstone (1992)
+version: 1.0.0
+status: published
+lastReviewed: 2026-09-21
+syllabus: NSW Science 7–10 Syllabus (2023)
+provenance:
+  source: ai-drafted-reviewed
+  authors: ["Claude, drafted for S. Grant"]
+  reviewedBy: ["Steve Grant"]
+  reviewedOn: 2026-09-21
+
+reckoner:
+  scale: micro
+  fitProfile:
+    purpose: [3, 1, 1, 1, 0, 0, 1]
+    time:    [3, 2, 1, 0]
+    ready:   [3, 3, 2]
+    concept: [3, 2, 1, 0, 0]
+    misc:    [3, 2, 1]
+    ws:      [3, 3, 0, 1, 1, 2, 0, 2]
+    conf:    [3, 3, 2]
+    res:     [3, 3, 2]
+    assess:  [3, 1, 1, 0, 2]
+    lang:    [2, 2, 2]
+    place:   [1, 1, 1]
+  distinguishingFeature: Creates and uses cognitive conflict within a single lesson.
+  bestScienceFit: "Discrepant events with a clear, visible outcome: dissolving and mass, falling objects, living and non-living, hygiene and microbes."
+  commonPitfall: Running the demonstration before predictions are committed in writing, or skipping the explain step.
+  evidenceSummary: Widely used as a diagnostic and conceptual-change strategy; evidence is mainly classroom-based. Anomalous data does not change ideas on its own, so the explain step carries the learning.
+  evidenceStrength: moderate
+  evidenceReferenceIds: [white-gunstone-1992, chinn-brewer-1993]
+  theoryTags: ["Piaget: disequilibrium", "Conceptual change (Posner et al.)", "Metacognition"]
+
+introduction:
+  lead: A Predict–Observe–Explain puts students' own ideas on the line in a single lesson, then uses what they see to make those ideas open to change.
+  purposeStatement: |
+    This guide helps undergraduate and early career teachers choose, run and follow up a POE in
+    NSW Science 7–10. A POE is a strategy, not a unit: it usually sits inside a larger model such as
+    5E, most often in Engage. The guide covers what makes an event genuinely discrepant, how to protect
+    the prediction from cueing, and how to turn surprise into revised explanations.
+  audience: Pre-service teachers in secondary science method units, and teachers in their first years.
+  howToUse: |
+    Read the theory section once. Use the phase cards and checklist when you choose an event and write
+    your prediction sheet. Try each worked episode's prediction question before you read why it works;
+    that is the same move you will ask of your students.
+
+theory:
+  summary: |
+    Students hold intuitive explanations that feel right because they usually work. A POE asks students to
+    use those explanations to predict, then confronts the prediction with an observation it cannot
+    explain. The surprise creates a reason to change, and the explain step gives students the chance to
+    build something better.
+  foundations:
+    - tradition: "Piaget: disequilibrium"
+      idea: A mismatch between expectation and experience creates the pressure for mental models to change.
+      designImplication: The event must reliably contradict the most common prediction, or there is no mismatch to work with.
+      referenceIds: []
+    - tradition: "Conceptual change"
+      idea: Dissatisfaction with a current idea is a precondition for adopting a new one.
+      designImplication: The predict step makes students commit to the current idea, so the observation can produce dissatisfaction with it.
+      referenceIds: [posner-1982]
+    - tradition: "Metacognition"
+      idea: Learners improve when they notice and monitor their own thinking.
+      designImplication: Written predictions with reasons give students a record of their earlier thinking to compare against.
+      referenceIds: [white-gunstone-1992]
+  critiques:
+    - claim: Students often ignore, reject or reinterpret anomalous data rather than change their ideas.
+      response: |
+        Choose events with unambiguous outcomes, let students check the observation themselves, and
+        treat the explain step, not the surprise, as where learning happens. Plan a follow-up, because one
+        POE rarely produces lasting change.
+      referenceIds: [chinn-brewer-1993]
+
+roles:
+  teacher: Chooses a genuinely discrepant event, protects the prediction from cueing, makes the observation clear and checkable, and orchestrates reconciliation before consolidating the science.
+  learner: Commits to a prediction with reasons, observes carefully, compares prediction with observation, and revises their explanation.
+
+sequence:
+  shape: linear
+  summary: |
+    Three phases in one episode of about 20–50 minutes. A common variant, Predict–Explain–Observe–Explain,
+    asks students to explain their prediction before observing.
+  diagramMermaid: |
+    flowchart LR
+      A[Predict<br/>with reasons] --> B[Observe<br/>and record] --> C[Explain<br/>and reconcile]
+  scaleNote: A POE is a single episode that sits inside a unit model, most often the Engage phase of a 5E sequence. It is not a unit architecture.
+
+phases:
+  - id: predict
+    name: Predict
+    order: 1
+    job: Get every student to commit, in writing, to a prediction and the reason for it.
+    essentialFeatures:
+      - An event chosen because it contradicts a common alternative conception
+      - Individual written predictions before any discussion
+      - Reasons required, not just outcomes
+      - No cueing of the expected answer through wording, tone or set-up
+    teacherMoves: [Presents the set-up neutrally, Asks for a prediction and a reason, Tallies predictions without judging them]
+    learnerMoves: [Writes a prediction, Gives a reason, Compares predictions with peers]
+    typicalShare: { minPercent: 15, maxPercent: 25 }
+    formativeChecks: [Written predictions with reasons, Class tally of predictions]
+    lookFors:
+      - id: poe-discrepant
+        question: Is the event likely to contradict the most common prediction?
+        strongEvidence: Chosen from a documented alternative conception; many students will predict wrongly.
+        weakEvidence: Most students will predict correctly, so there is no conflict.
+      - id: poe-commit-written
+        question: Does every student commit individually, in writing, before observing?
+        strongEvidence: Written predictions are collected or displayed before the event runs.
+        weakEvidence: A few students call out predictions orally.
+      - id: poe-reasons
+        question: Are students asked why, not just what?
+        strongEvidence: Prediction sheets require a reason for each prediction.
+        weakEvidence: Only an outcome is recorded.
+      - id: poe-no-cueing
+        question: Is the set-up free of cues to the expected answer?
+        strongEvidence: Neutral wording and presentation; no hint of the surprise.
+        weakEvidence: The teacher's framing signals the "right" answer.
+    examples:
+      - id: poe-predict-pos-falling
+        kind: positive
+        title: Which lands first?
+        context: { stages: [stage5], focusAreas: [Waves and motion], disciplines: [physics] }
+        outcomes: [SC5-WAM-02, SC5-WS-02]
+        body: |
+          The teacher holds a basketball and a tennis ball at the same height and asks each student to write
+          which will land first and why. The same is then asked of a flat sheet of paper and a crumpled one.
+          Predictions are tallied on the board without comment.
+        diagnosis: A reliable discrepant event, individual written commitment with reasons, and a neutral set-up.
+        lookForIds: [poe-discrepant, poe-commit-written, poe-reasons, poe-no-cueing]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: poe-predict-neg-cued
+        kind: negative
+        title: '"Let''s see if the heavy one really is faster"'
+        context: { stages: [stage5], focusAreas: [Waves and motion], disciplines: [physics] }
+        outcomes: []
+        body: |
+          The teacher says "Most people think heavier things fall faster; let's see if that's true", then asks
+          for a show of hands.
+        diagnosis: The framing cues that the common idea is wrong, and hands-up commits nobody to a reason.
+        lookForIds: [poe-no-cueing, poe-commit-written, poe-reasons]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: observe
+    name: Observe
+    order: 2
+    job: Let every student see, record and check what actually happens.
+    essentialFeatures:
+      - Every student can see the event clearly, or runs it themselves
+      - Observations are recorded before discussion
+      - Observations are kept separate from interpretations
+      - The event can be repeated if students doubt the result
+    teacherMoves: [Makes the event visible, Asks for observations before explanations, Repeats the event on request]
+    learnerMoves: [Observes carefully, Records what happened, Separates observation from inference]
+    typicalShare: { minPercent: 20, maxPercent: 40 }
+    formativeChecks: [Recorded observations]
+    lookFors:
+      - id: poe-observe-visible
+        question: Can every student see and check the outcome?
+        strongEvidence: A visualiser, small-group sets or repeat runs make the result unambiguous.
+        weakEvidence: A front-bench demonstration half the class cannot see.
+      - id: poe-observe-record
+        question: Do students record observations before discussing them?
+        strongEvidence: Observation boxes are completed before any talk about why.
+        weakEvidence: The teacher narrates what happened.
+      - id: poe-observe-inference
+        question: Are observations kept separate from inferences?
+        strongEvidence: Students distinguish what they saw from what they think it means.
+        weakEvidence: Explanations are written as if they were observations.
+    examples:
+      - id: poe-observe-pos-mass
+        kind: positive
+        title: The balance reading everyone can see
+        context: { stages: [stage4], focusAreas: [Solutions and mixtures], disciplines: [chemistry] }
+        outcomes: [SC4-SOL-01, SC4-WS-01]
+        body: |
+          Salt is dissolved in water on a balance shown through a visualiser. Students record the reading before
+          and after, then write one observation and, separately, one inference. The teacher repeats the
+          weighing when a student suggests the balance is faulty.
+        diagnosis: A visible, checkable result with observation and inference kept apart, and doubt answered with a repeat.
+        lookForIds: [poe-observe-visible, poe-observe-record, poe-observe-inference]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: poe-observe-neg-narrated
+        kind: negative
+        title: The teacher tells them what they saw
+        context: { stages: [stage4], focusAreas: [Solutions and mixtures], disciplines: [chemistry] }
+        outcomes: []
+        body: The demonstration runs on the front bench, and the teacher says "So you can see the mass didn't change."
+        diagnosis: Students cannot check the result, and narration replaces their own observation, so doubt goes unaddressed.
+        lookForIds: [poe-observe-visible, poe-observe-record]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: explain
+    name: Explain
+    order: 3
+    job: Help students reconcile prediction with observation and build a better explanation.
+    essentialFeatures:
+      - Students compare their prediction with the observation explicitly
+      - Students revise their explanation before the teacher gives the science
+      - The teacher consolidates the scientific explanation and names the alternative conception
+      - A follow-up is planned, because one POE rarely produces lasting change
+    teacherMoves: [Asks students to compare prediction and observation, Invites revised explanations, Consolidates the science]
+    learnerMoves: [Compares, Revises their explanation, Records how their thinking changed]
+    typicalShare: { minPercent: 40, maxPercent: 60 }
+    formativeChecks: ["Exit ticket: I predicted… I observed… Now I think…"]
+    lookFors:
+      - id: poe-reconcile
+        question: Do students explicitly compare their prediction with the observation?
+        strongEvidence: Students write or say what matched, what did not, and why.
+        weakEvidence: The class moves straight to the answer.
+      - id: poe-revise
+        question: Do students revise their own explanations before the teacher explains?
+        strongEvidence: Revised explanations are drafted in pairs, then shared.
+        weakEvidence: The teacher explains immediately.
+      - id: poe-consolidate
+        question: Does the teacher consolidate the science and name the alternative conception?
+        strongEvidence: The scientific explanation is made explicit and contrasted with the common idea.
+        weakEvidence: The episode ends with surprise but no resolution.
+      - id: poe-followup
+        question: Is the POE connected to later learning?
+        strongEvidence: Predictions are kept and revisited, and the next lessons build on the conflict.
+        weakEvidence: A one-off demonstration with nothing after it.
+    examples:
+      - id: poe-explain-pos-yeast
+        kind: positive
+        title: "Yeast: powder or organism?"
+        context: { stages: [stage4], focusAreas: [Living systems], disciplines: [biology] }
+        outcomes: [SC4-LIV-01, SC4-WS-06]
+        body: |
+          Many students predicted that yeast would not inflate a balloon because "it's just a powder". In pairs
+          they compare their prediction with the inflated balloon and draft a new explanation. The teacher then
+          consolidates: yeast is a living, single-celled fungus that uses sugar and releases carbon dioxide.
+          Predictions are kept for the next lesson on cells.
+        diagnosis: Explicit reconciliation, student revision before consolidation, and a planned follow-up.
+        lookForIds: [poe-reconcile, poe-revise, poe-consolidate, poe-followup]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: poe-explain-neg-quiz
+        kind: negative
+        title: '"Who got it right?"'
+        context: { stages: [stage4], focusAreas: [Living systems], disciplines: [biology] }
+        outcomes: []
+        body: The teacher asks who predicted correctly, praises them, gives the explanation, and moves to the next topic.
+        diagnosis: The POE becomes a quiz. Students who predicted wrongly feel judged, and nobody revises their thinking.
+        lookForIds: [poe-reconcile, poe-revise, poe-followup]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+workedSequences:
+  - id: ep-s4-yeast
+    title: Is yeast alive?
+    context: { stages: [stage4], focusAreas: [Living systems], disciplines: [biology] }
+    contentOutcomes: [SC4-LIV-01]
+    bigQuestion: How can we tell whether something is alive?
+    learningIntentions:
+      - Living things carry out life processes, such as using food and releasing gases
+      - Yeast is a living, single-celled organism
+    targetConceptions:
+      - Yeast is a non-living powder
+      - Living things must be visible and move
+    predictPrompt: Before reading on, why are there three flasks rather than one? What would students be unable to conclude with only the yeast-and-sugar flask?
+    steps:
+      - minutes: "0–5"
+        phaseId: predict
+        activity: |
+          Show three flasks of warm water with balloons on top: yeast and sugar; yeast only; sugar only.
+          Students write, individually, which balloons will inflate and why.
+        wsOutcomes: [SC4-WS-02]
+        formativeCheck: Written predictions with reasons
+        scaffoldSlots:
+          - field: activity
+            prompt: Which alternative conception would a student reveal by predicting that only the sugar flask changes?
+      - minutes: "5–10"
+        phaseId: predict
+        activity: Pairs share predictions; the class tallies predictions for each flask without discussing the answer.
+        wsOutcomes: [SC4-WS-02]
+        formativeCheck: Class tally displayed
+      - minutes: "10–30"
+        phaseId: observe
+        activity: |
+          Flasks stand in a warm water bath. Students record balloon size every five minutes and note any foam,
+          keeping observations separate from explanations.
+        wsOutcomes: [SC4-WS-01, SC4-WS-05]
+        formativeCheck: Observation tables checked for separation of observation and inference
+      - minutes: "30–45"
+        phaseId: explain
+        activity: |
+          Pairs compare predictions with observations and draft revised explanations. The teacher consolidates:
+          yeast is a living, single-celled fungus that uses sugar and releases carbon dioxide, which is why only
+          one balloon inflated.
+        wsOutcomes: [SC4-WS-06, SC4-WS-08]
+        formativeCheck: Revised explanations shared
+      - minutes: "45–50"
+        phaseId: explain
+        activity: 'Exit ticket: "I predicted… I observed… Now I think…"'
+        wsOutcomes: [SC4-WS-08]
+        formativeCheck: Exit tickets sorted to plan the next lesson
+    whyItWorks:
+      - The yeast-only and sugar-only flasks act as controls, so students can pin the change on yeast using sugar
+      - The idea of yeast as powder is common and reliably contradicted
+      - Observations are recorded over time, so the result builds and cannot be missed
+      - The exit ticket gives the teacher evidence to plan the follow-up
+    watchFor: Warm water that is too hot will kill the yeast and remove the effect. Test the set-up beforehand.
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: ep-s5-handwashing
+    title: Which handwashing method removes the most "germs"?
+    context: { stages: [stage5], focusAreas: [Disease], disciplines: [biology] }
+    contentOutcomes: [SC5-DIS-01]
+    bigQuestion: How well do everyday hygiene methods reduce the spread of disease?
+    learningIntentions:
+      - Hygiene practices reduce transmission of pathogens in different ways
+      - Scientific models have strengths and limitations
+    targetConceptions:
+      - A quick rinse with water is enough
+      - All hygiene methods work the same way
+    predictPrompt: Before reading on, where does the fluorescent-lotion model of germs break down, and why is that limitation useful in the explain step?
+    steps:
+      - minutes: "0–5"
+        phaseId: predict
+        activity: |
+          Students rub fluorescent lotion (a model for germs) onto their hands. Each writes a prediction of which
+          method will remove the most: a 5-second water rinse, a 20-second soap wash, an alcohol hand sanitiser
+          rub, or wiping on paper towel, with reasons.
+        wsOutcomes: [SC5-WS-02]
+        formativeCheck: Written predictions with reasons
+      - minutes: "5–10"
+        phaseId: predict
+        activity: The class tallies predictions for each method.
+        wsOutcomes: [SC5-WS-02]
+        formativeCheck: Class tally displayed
+      - minutes: "10–25"
+        phaseId: observe
+        activity: |
+          Groups each test one method, inspect hands under a UV torch, photograph the result and rate remaining
+          coverage on a simple scale.
+        wsOutcomes: [SC5-WS-04, SC5-WS-05]
+        formativeCheck: Photographs and coverage ratings compared across groups
+      - minutes: "25–45"
+        phaseId: explain
+        activity: |
+          Groups compare results with predictions. The class discusses mechanical removal versus killing microbes,
+          and the model's limitation: sanitiser can inactivate many microbes without removing the lotion. The
+          teacher links methods to modes of transmission and prevention.
+        wsOutcomes: [SC5-WS-06, SC5-WS-08]
+        formativeCheck: Group explanations of the model's limitation
+        scaffoldSlots:
+          - field: formativeCheck
+            prompt: What would a student say that shows they have concluded "sanitiser doesn't work" from the model? How would you respond?
+      - minutes: "45–50"
+        phaseId: explain
+        activity: 'Exit ticket: "I predicted… I observed… Now I think…", including one limitation of the model.'
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Exit tickets used to plan the transmission lesson
+    whyItWorks:
+      - The short water rinse reliably disappoints, contradicting a common belief
+      - Groups generate their own visible, photographed evidence
+      - The model's limitation turns a possible misconception into a Stage 5 discussion about models
+      - The episode leads directly into teaching on transmission and prevention
+    watchFor: |
+      Students concluding that sanitiser "doesn't work" because the lotion remains. Plan the explain step
+      around this limitation rather than letting it slip past.
+    safetyNotes: |
+      Check for skin sensitivities before using the lotion. Do not shine UV torches into eyes. Alcohol sanitiser
+      is flammable; keep it away from ignition sources.
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+misapplications:
+  - id: mis-poe-not-discrepant
+    name: No real surprise
+    looksLike: An event most students predict correctly.
+    whyItUndermines: Without a mismatch there is no pressure to change ideas.
+    fix: Choose events from documented alternative conceptions, and trial them with a colleague.
+    lookForIds: [poe-discrepant]
+  - id: mis-poe-no-reasons
+    name: Predictions without reasons
+    looksLike: Students record only what they think will happen.
+    whyItUndermines: The underlying idea never surfaces, so there is nothing to revise.
+    fix: Require a because statement for every prediction.
+    lookForIds: [poe-reasons]
+  - id: mis-poe-cued
+    name: Cued predictions
+    looksLike: Wording or tone signals the expected answer.
+    whyItUndermines: Students predict what they think the teacher wants, hiding their real ideas.
+    fix: Present the set-up neutrally and collect predictions before any hint.
+    lookForIds: [poe-no-cueing]
+  - id: mis-poe-ambiguous
+    name: An observation students can dismiss
+    looksLike: A small, unclear or unrepeatable effect.
+    whyItUndermines: Students explain away the result rather than their prediction.
+    fix: Make the result visible and checkable, and repeat it on request.
+    lookForIds: [poe-observe-visible]
+  - id: mis-poe-quiz
+    name: POE as a quiz
+    looksLike: The teacher asks who got it right and moves on.
+    whyItUndermines: Wrong predictors feel judged and no one revises their thinking.
+    fix: Treat every prediction as useful evidence of thinking, and spend most time on explanation.
+    lookForIds: [poe-reconcile, poe-revise]
+  - id: mis-poe-one-off
+    name: A one-off demonstration
+    looksLike: A POE with no link to the lessons that follow.
+    whyItUndermines: Conflict without follow-up rarely produces lasting change.
+    fix: Keep predictions and revisit them in the next lessons.
+    lookForIds: [poe-followup]
+
+checklist:
+  - id: chk-poe-choice
+    title: Choosing the event
+    items:
+      - { id: chk-poe-choice-conception, text: 'The event targets a documented alternative conception', lookForId: poe-discrepant }
+      - { id: chk-poe-choice-trial, text: 'The event has been trialled and works reliably' }
+      - { id: chk-poe-choice-safety, text: 'The event has a risk assessment' }
+  - id: chk-poe-predict
+    title: Predict
+    phaseId: predict
+    items:
+      - { id: chk-poe-predict-written, text: 'Every student writes a prediction before observing', lookForId: poe-commit-written }
+      - { id: chk-poe-predict-reasons, text: 'Every prediction includes a reason', lookForId: poe-reasons }
+      - { id: chk-poe-predict-neutral, text: 'The set-up is presented without cues', lookForId: poe-no-cueing }
+  - id: chk-poe-observe
+    title: Observe
+    phaseId: observe
+    items:
+      - { id: chk-poe-observe-visible, text: 'Every student can see or check the result', lookForId: poe-observe-visible }
+      - { id: chk-poe-observe-separate, text: 'Observations are recorded separately from inferences', lookForId: poe-observe-inference }
+  - id: chk-poe-explain
+    title: Explain
+    phaseId: explain
+    items:
+      - { id: chk-poe-explain-compare, text: 'Students compare prediction and observation explicitly', lookForId: poe-reconcile }
+      - { id: chk-poe-explain-revise, text: 'Students revise their explanations before the teacher consolidates', lookForId: poe-revise }
+      - { id: chk-poe-explain-followup, text: 'A follow-up lesson builds on the conflict', lookForId: poe-followup }
+  - id: chk-poe-inclusion
+    title: Inclusion
+    items:
+      - { id: chk-poe-inclusion-frames, text: 'Sentence frames are available for predictions and explanations' }
+      - { id: chk-poe-inclusion-safe, text: 'The classroom treats wrong predictions as valuable, not embarrassing' }
+
+syllabusAlignment:
+  wsMapping:
+    - { skill: 1, phaseIds: [observe] }
+    - { skill: 2, phaseIds: [predict] }
+    - { skill: 3, phaseIds: [], note: A POE gives students no planning role. Extend it with a follow-up in which students design their own test of the idea. }
+    - { skill: 4, phaseIds: [observe], note: Only when students run the event themselves rather than watching a demonstration. }
+    - { skill: 5, phaseIds: [observe] }
+    - { skill: 6, phaseIds: [explain] }
+    - { skill: 7, phaseIds: [], note: Not a problem-solving strategy. Pair it with a design or problem-based task if WS-07 is a target. }
+    - { skill: 8, phaseIds: [explain] }
+  depthStudies: A surprising POE result is a strong source of student questions for a depth study.
+  dataScience: A class tally of predictions is a small data set; comparing predicted and observed distributions is an accessible Data science link.
+  inclusion:
+    eald: Offer sentence frames ("I predict… because…", "I observed…", "Now I think…") and allow drawings as predictions.
+    disability: Ensure the observation is accessible, for example through a visualiser, tactile or audio cues, or hands-on sets.
+    highPotential: Ask students to predict a quantitative result, or to design a second event that tests the same idea.
+    aboriginalPerspectives: Where appropriate, draw events from local contexts and knowledges, such as fermentation or seasonal indicators, developed with community.
+
+nesting:
+  - { modelId: 5e, role: nests-in, phaseId: engage, how: 'Use a POE as the Engage to surface and challenge the target conception.' }
+  - { modelId: glm, role: nests-in, phaseId: challenge, how: 'Use a POE to stage the challenge between students'' views and the scientific view.' }
+  - { modelId: ast, role: nests-in, phaseId: elicit-models, how: 'Use a POE to prompt students'' first explanatory models.' }
+  - { modelId: levels-of-inquiry, role: hosts, phaseId: observe, how: 'Use the guidance dial to decide whether students run the event themselves or observe a demonstration.' }
+  - { modelId: adi, role: nests-in, phaseId: task-question, how: 'Use a POE before the guiding question is posed, to surface prior ideas.' }
+
+reflectionPrompts:
+  - id: refl-poe-personal
+    type: personal
+    prompt: Recall a time a result surprised you in science. Did it change your mind straight away? What else had to happen?
+    coachFollowUps: [What made you trust or doubt the result?, How long did the change take?]
+  - id: refl-poe-critical
+    type: critical
+    prompt: Chinn and Brewer (1993) show that students often reject or reinterpret anomalous data. What does that imply for how much weight a single POE can carry?
+    coachFollowUps: [Which of their responses to anomalous data have you seen in classrooms?, What design choices reduce the chance of rejection?]
+  - id: refl-poe-application
+    type: application
+    prompt: Choose a Stage 4 or Stage 5 focus area and a documented alternative conception. Design a POE event and write the prediction sheet.
+    coachFollowUps: [What percentage of students do you expect to predict wrongly?, How will you check the observation is unambiguous?]
+
+scaffold:
+  defaultMode: tutor
+  revealAfterAttempt: [ep-s4-yeast, ep-s5-handwashing]
+  ai:
+    groundedIn: [phases.examples, workedSequences, misapplications, checklist, reflectionPrompts]
+    allowed: [contextualise-examples, audit-program, coach-reflection, compare-models]
+    never:
+      - Never design the learner's POE event or prediction sheet in tutor mode
+      - Never reveal the outcome of an event in learner-facing prediction materials
+      - Never cite an outcome code that is not in the syllabus whitelist
+      - Never answer a reflection prompt; ask follow-up questions only
+    auditorFocus: [poe-discrepant, poe-reasons, poe-no-cueing, poe-reconcile]
+
+references:
+  - id: white-gunstone-1992
+    citation: 'White, R., & Gunstone, R. (1992). Probing understanding. Falmer Press.'
+  - id: chinn-brewer-1993
+    citation: 'Chinn, C. A., & Brewer, W. F. (1993). The role of anomalous data in knowledge acquisition: A theoretical framework and implications for science instruction. Review of Educational Research, 63(1), 1–49.'
+    doi: 10.3102/00346543063001001
+  - id: posner-1982
+    citation: 'Posner, G. J., Strike, K. A., Hewson, P. W., & Gertzog, W. A. (1982). Accommodation of a scientific conception: Toward a theory of conceptual change. Science Education, 66(2), 211–227.'
+    doi: 10.1002/sce.3730660207

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Constructivist model reckoner and companion guides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F7F5; --surface:#FFFFFF; --ink:#1F2B2E; --muted:#56676A; --line:#D6DDDA;
+  --accent:#2E6A5C; --accent-soft:#E2EEE9; --accent-ink:#FFFFFF;
+  --macro:#2E6A5C; --meso:#3D5A98; --micro:#9C6419; --dial:#76578A;
+  --warn:#8A4B12; --warn-soft:#FBF1E4; --pos:#2E6A5C; --neg:#8A4B12;
+  --serif:"Source Serif 4", Georgia, serif; --sans:"IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#131A1B; --surface:#1B2426; --ink:#E4EBE9; --muted:#9DAEAB; --line:#2F3C3E;
+  --accent:#72BCA6; --accent-soft:#1E3530; --accent-ink:#0F1A18;
+  --macro:#72BCA6; --meso:#94AEEA; --micro:#E0A95A; --dial:#C6A6DA;
+  --warn:#F0B47A; --warn-soft:#2E2318; --pos:#72BCA6; --neg:#E0A95A;}}
+:root[data-theme="dark"]{
+  --paper:#131A1B; --surface:#1B2426; --ink:#E4EBE9; --muted:#9DAEAB; --line:#2F3C3E;
+  --accent:#72BCA6; --accent-soft:#1E3530; --accent-ink:#0F1A18;
+  --macro:#72BCA6; --meso:#94AEEA; --micro:#E0A95A; --dial:#C6A6DA;
+  --warn:#F0B47A; --warn-soft:#2E2318; --pos:#72BCA6; --neg:#E0A95A;}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(1rem + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.55 var(--sans)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.2;margin:0}
+h1{font-size:clamp(1.6rem,3.6vw,2.3rem);max-width:24ch}
+h2{font-size:1.35rem} h3{font-size:1.1rem} h4{font-size:1rem}
+p{margin:.4rem 0} a{color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 1.25rem}
+header.top{padding:2.25rem 0 1rem;border-bottom:1px solid var(--line)}
+.lede{max-width:66ch;color:var(--muted);margin-top:.6rem}
+.tabs{display:flex;gap:.25rem;margin-top:1.25rem;flex-wrap:wrap}
+.tab{font:500 .95rem var(--sans);padding:.55rem 1rem;border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;background:transparent;color:var(--muted);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 0 var(--surface)}
+.panel{display:none;padding:1.5rem 0 3rem} .panel.active{display:block}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.intro{max-width:70ch;color:var(--muted);margin-bottom:1.25rem}
+fieldset.q{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1rem}
+fieldset.q legend{font-weight:600;padding:0 .35rem;margin-left:-.35rem}
+.hint{color:var(--muted);font-size:.9rem;margin:.1rem 0 .6rem}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.chip{position:relative;cursor:pointer}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chip span{display:inline-block;padding:.4rem .75rem;border:1px solid var(--line);border-radius:999px;font-size:.9rem;background:var(--paper)}
+.chip input:checked + span{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip input:focus-visible + span{outline:3px solid var(--accent);outline-offset:2px}
+.q-foot{display:flex;justify-content:space-between;gap:1rem;margin-top:.7rem;flex-wrap:wrap}
+details.help summary{cursor:pointer;color:var(--accent);font-size:.88rem}
+details.help p{font-size:.9rem;color:var(--muted);max-width:60ch}
+.imp{font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:.4rem}
+select,textarea,input[type=text]{font:inherit;padding:.3rem .45rem;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+select{font-size:.85rem}
+textarea{width:100%;min-height:4.5rem;font-size:.95rem}
+.note{font-size:.85rem;color:var(--warn);min-height:1.2em;margin:.3rem 0 0}
+.quick-grid,.detail-grid,.guide-grid{display:grid;gap:1.5rem}
+@media (min-width:960px){
+  .quick-grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+  .detail-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+  .guide-grid{grid-template-columns:minmax(0,15rem) minmax(0,1fr)}
+  .side,.guide-nav{position:sticky;top:calc(1rem + env(safe-area-inset-top,0px));align-self:start;max-height:calc(100vh - 2rem);overflow:auto}
+}
+@media screen and (max-width:959px){
+  .guide-grid{grid-template-columns:minmax(0,1fr)} .guide-grid>*{min-width:0}
+  .guide table{display:block;overflow-x:auto}
+}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.1rem 1.2rem}
+.empty{color:var(--muted);font-size:.95rem}
+.badge{display:inline-block;font-size:.75rem;font-weight:500;padding:.15rem .55rem;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.b-macro{color:var(--macro)} .b-meso{color:var(--meso)} .b-micro{color:var(--micro)} .b-dial{color:var(--dial)}
+.b-match{color:var(--accent);background:var(--accent-soft)}
+.theory{display:flex;flex-wrap:wrap;gap:.35rem;margin:.4rem 0}
+.theory span{font-size:.78rem;padding:.15rem .5rem;border-radius:6px;background:var(--accent-soft)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.2rem 1.25rem;margin-bottom:1rem}
+.card.lead{border:2px solid var(--accent)}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.75rem;flex-wrap:wrap}
+.card-head .src{color:var(--muted);font-size:.85rem;margin-top:.2rem}
+.fitnum{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--accent);line-height:1}
+.fitnum small{display:block;font:400 .7rem var(--sans);color:var(--muted);text-align:right;margin-top:.2rem}
+.phases{display:flex;flex-wrap:wrap;gap:.3rem;padding:0;margin:.6rem 0;list-style:none;counter-reset:ph}
+.phases li{counter-increment:ph;font-size:.83rem;padding:.25rem .55rem;border:1px solid var(--line);border-radius:6px;background:var(--paper)}
+.phases li::before{content:counter(ph) ". ";color:var(--muted)}
+.roles{display:grid;gap:.75rem;margin:.75rem 0}
+@media (min-width:640px){.roles{grid-template-columns:1fr 1fr}}
+.roles div{border-left:3px solid var(--accent);padding-left:.7rem}
+.sub,.roles h4{font:600 .85rem var(--sans);margin:0 0 .15rem;color:var(--muted)}
+ul.tight{margin:.3rem 0 .6rem;padding-left:1.1rem} ul.tight li{margin:.2rem 0;font-size:.93rem}
+.warnbox{background:var(--warn-soft);border-radius:8px;padding:.6rem .8rem;margin:.6rem 0}
+.warnbox .sub{color:var(--warn)}
+details.why{margin-top:.7rem;border-top:1px solid var(--line);padding-top:.6rem}
+details.why summary{cursor:pointer;color:var(--accent);font-weight:500;font-size:.92rem}
+.rank{list-style:none;margin:.6rem 0 0;padding:0}
+.rank li{display:grid;grid-template-columns:minmax(0,10rem) minmax(0,1fr) 2.8rem;align-items:center;gap:.6rem;padding:.3rem 0;font-size:.88rem}
+.rank .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar{height:.6rem;border-radius:999px;background:var(--paper);border:1px solid var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);transition:width .35s ease}
+.rank li.top .nm{font-weight:600} .rank .pc{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+.dial{display:grid;grid-template-columns:repeat(4,1fr);gap:.25rem;margin:.6rem 0}
+.dial div{font-size:.78rem;text-align:center;padding:.45rem .2rem;border:1px solid var(--line);border-radius:6px;color:var(--muted);background:var(--paper)}
+.dial div.on{background:var(--dial);border-color:var(--dial);color:#fff;font-weight:600}
+.matrix-wrap{overflow-x:auto;margin-top:1.25rem}
+table{border-collapse:separate;border-spacing:0;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:.55rem .7rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-size:.9rem}
+thead th{background:var(--paper);font-weight:600}
+tr:last-child td,tr:last-child th{border-bottom:none}
+table.matrix{min-width:620px} table.matrix tbody th{font-weight:500;width:28%}
+.cellbtn{all:unset;cursor:pointer;display:block;padding:.35rem .5rem;border-radius:6px;border:1px solid transparent}
+.cellbtn:hover{border-color:var(--line)} .cellbtn:focus-visible{outline:3px solid var(--accent)}
+.cellbtn.sel{background:var(--accent);color:var(--accent-ink);font-weight:500}
+.cellbtn.prev{border-color:var(--accent)}
+.toolbar{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center}
+button.ghost{font:500 .88rem var(--sans);padding:.45rem .85rem;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer}
+button.ghost:hover{border-color:var(--accent)}
+button.ghost[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.lib-grid{display:grid;gap:1rem} @media (min-width:760px){.lib-grid{grid-template-columns:1fr 1fr}}
+.lib-grid .card{margin:0}
+/* guide pages */
+.guide-nav ul{list-style:none;margin:.4rem 0 1rem;padding:0}
+.guide-nav li{margin:.1rem 0}
+.guide-nav a{display:block;padding:.3rem .5rem;border-radius:6px;text-decoration:none;color:var(--ink);font-size:.9rem}
+.guide-nav a:hover{background:var(--accent-soft)}
+.guide-nav a.on{background:var(--accent);color:var(--accent-ink)}
+.guide section{margin:0 0 2rem;scroll-margin-top:1rem}
+.guide h2{margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:1px solid var(--line)}
+.ex{border-left:4px solid var(--line);padding:.6rem .9rem;margin:.6rem 0;background:var(--paper);border-radius:0 8px 8px 0}
+.ex.pos{border-left-color:var(--pos)} .ex.neg{border-left-color:var(--neg)}
+.ex h4{font-family:var(--sans);font-size:.95rem}
+.ex .tagline{font-size:.78rem;color:var(--muted);margin:.1rem 0 .4rem}
+.lookfor{margin:.5rem 0;padding:.5rem .7rem;border:1px solid var(--line);border-radius:8px;background:var(--paper)}
+.lookfor p{margin:.15rem 0;font-size:.9rem}
+.lookfor .q{font-weight:600}
+.checkitem{display:flex;gap:.5rem;align-items:flex-start;padding:.3rem 0;font-size:.93rem}
+.checkitem input{margin-top:.28rem;accent-color:var(--accent);width:1.05rem;height:1.05rem}
+.progress{font-size:.85rem;color:var(--muted)}
+.ctx{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;font-size:.9rem}
+.reveal{border:1px dashed var(--line);border-radius:8px;padding:.7rem .9rem;margin:.6rem 0;background:var(--paper)}
+.slot{border-left:3px solid var(--micro);padding-left:.6rem;margin:.4rem 0;font-size:.9rem}
+.slot .sub{color:var(--micro)}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:.8rem 0;padding:.9rem;background:var(--paper);border:1px solid var(--line);border-radius:8px}
+.flow .node{flex:1 1 8rem;min-width:7.5rem;text-align:center;padding:.55rem .6rem;border:1px solid var(--accent);border-radius:8px;background:var(--surface)}
+.flow .node b{display:block;font:600 .95rem var(--sans)}
+.flow .node em{display:block;font-style:normal;font-size:.68rem;letter-spacing:.02em;color:var(--muted);margin-bottom:.15rem}
+.groupintro{margin:1.2rem 0 .6rem;padding-left:.8rem;border-left:4px solid var(--accent)}
+.groupintro h3{font-size:1.05rem}
+.groupintro p{color:var(--muted);font-size:.92rem}
+.flow .node small{display:block;color:var(--muted);font-size:.75rem;margin-top:.15rem}
+.flow .arrow{color:var(--muted);flex:0 0 auto;font-size:1.1rem}
+.flow .loop{flex-basis:100%;text-align:center;color:var(--muted);font-size:.82rem;border-top:1px dashed var(--line);padding-top:.45rem;margin-top:.2rem}
+footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted);font-size:.88rem}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@page{size:A4;margin:18mm}
+@media print{
+  :root{--paper:#fff;--surface:#fff;--ink:#000;--muted:#333;--line:#999}
+  header.top,.tabs,.guide-nav,.toolbar,footer details,button{display:none!important}
+  .panel{display:none!important} .panel.active{display:block!important}
+  .guide-grid{display:block} body{font-size:11pt}
+  .card,.box,section{break-inside:avoid} h2{break-after:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt;color:#555}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <h1>Which constructivist model fits this science sequence?</h1>
+    <p class="lede">A planning companion for pre-service and early career teachers working with the NSW Science 7–10 Syllabus (2023). Answer a few questions to see which teaching models fit and why, then open the companion guide for the model you choose.</p>
+    <div class="tabs" role="tablist" aria-label="Views">
+      <button class="tab" role="tab" id="t-quick" aria-controls="p-quick" aria-selected="true">Quick reckoner</button>
+      <button class="tab" role="tab" id="t-detail" aria-controls="p-detail" aria-selected="false" tabindex="-1">Detailed reckoner</button>
+      <button class="tab" role="tab" id="t-guides" aria-controls="p-guides" aria-selected="false" tabindex="-1">Companion guides</button>
+      <button class="tab" role="tab" id="t-lib" aria-controls="p-lib" aria-selected="false" tabindex="-1">Model library</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <p id="bootMsg" class="empty" role="status" style="margin:1rem 0 0"></p>
+  <section class="panel active" id="p-quick" role="tabpanel" aria-labelledby="t-quick">
+    <p class="intro">Three questions, one recommendation. Use the detailed reckoner when resources, language demands or assessment also matter.</p>
+    <div class="quick-grid">
+      <form id="quickForm" onsubmit="return false"></form>
+      <div id="quickResult" aria-live="polite"></div>
+    </div>
+    <h2 style="margin-top:2rem">The quick matrix</h2>
+    <p class="intro" style="margin-bottom:0">Each row is a learning purpose. Select any cell to preview that model.</p>
+    <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
+  </section>
+
+  <section class="panel" id="p-detail" role="tabpanel" aria-labelledby="t-detail" hidden>
+    <p class="intro">Answer as many questions as apply. Each answer scores every model; importance says which factors matter most for this sequence.</p>
+    <div class="detail-grid">
+      <div>
+        <div class="toolbar"><button class="ghost" id="clearDetail" type="button">Clear answers</button></div>
+        <form id="detailForm" onsubmit="return false"></form>
+      </div>
+      <aside class="side">
+        <div class="box"><h3>How the models rank</h3><div id="ranking" aria-live="polite"></div></div>
+        <div class="box" style="margin-top:1rem"><h3>Guidance dial</h3>
+          <p class="hint" style="margin-top:.3rem">How much of the inquiry you specify, whatever model you choose (Banchi &amp; Bell, 2008).</p>
+          <div id="dial"></div></div>
+      </aside>
+    </div>
+    <h2 style="margin:2rem 0 1rem">Your top three</h2>
+    <div id="topCards"></div>
+  </section>
+
+  <section class="panel" id="p-guides" role="tabpanel" aria-labelledby="t-guides" hidden>
+    <div class="guide-grid">
+      <nav class="guide-nav" id="guideNav" aria-label="Guide contents"></nav>
+      <div class="guide" id="guideBody"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-lib" role="tabpanel" aria-labelledby="t-lib" hidden>
+    <p class="intro">Every model in the reckoner. Models work at different scales and often nest: a unit architecture can hold multi-lesson routines and single-lesson strategies.</p>
+    <div class="toolbar" id="libFilter" role="group" aria-label="Filter by scale"></div>
+    <div class="lib-grid" id="library"></div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <p><strong>Use with judgement.</strong> The reckoner prompts reasoning; it does not prescribe a choice. Strong programs often combine models. Check any sequence against the NSW Science 7–10 Syllabus (2023) and your school's scope and sequence.</p>
+  <p id="buildStamp"></p>
+</div></footer>
+
+<script>
+(function(){
+  var msg = document.getElementById("bootMsg");
+  if (msg) msg.textContent = "Loading the reckoner…";
+  function fail(){ if (msg) msg.textContent = "The reckoner could not load its content. Check your connection and reload the page."; }
+  function json(u, opt){ return fetch(u, opt).then(function(r){ if(!r.ok) throw new Error(u + " " + r.status); return r.json(); }); }
+  json("data/manifest.json", { cache: "no-cache" }).then(function(man){
+    return Promise.all(man.guides.map(function(g){ return json("data/guides/" + g.id + ".json?v=" + g.hash); }))
+      .then(function(guides){
+        man.guides = guides;
+        window.RECKONER_DATA = man;
+        var s = document.createElement("script");
+        s.src = "app.js?v=2f43299f3e80";
+        s.onerror = fail;
+        document.body.appendChild(s);
+      });
+  }).catch(fail);
+})();
+</script>
+</body>
+</html>

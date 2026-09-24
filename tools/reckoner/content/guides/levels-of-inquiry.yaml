@@ -1,0 +1,489 @@
+# Levels of inquiry companion guide
+# First guidance-dial model: it is not ranked by the reckoner and carries no fit profile.
+
+schemaVersion: "1.3"
+id: levels-of-inquiry
+name: Levels of inquiry
+originators: Banchi & Bell (2008), after Herron (1971)
+version: 1.0.0
+status: published
+lastReviewed: 2026-09-21
+syllabus: NSW Science 7–10 Syllabus (2023)
+provenance:
+  source: ai-drafted-reviewed
+  authors: ["Claude, drafted for S. Grant"]
+  reviewedBy: ["Steve Grant"]
+  reviewedOn: 2026-09-21
+
+reckoner:
+  scale: dial
+  fitProfile: null
+  distinguishingFeature: Not a sequence but a way to calibrate how much of the investigation the teacher specifies.
+  bestScienceFit: Any practical work; planning a progression of independence from Stage 4 to Stage 5.
+  commonPitfall: Jumping to open inquiry with novices, or never moving beyond confirmation.
+  evidenceSummary: 'A planning framework rather than a tested model, but the direction it points is well supported: guided inquiry outperforms both unguided discovery and verification practicals, and teacher-led activities outperformed student-led ones by about 0.40 in Furtak et al.''s meta-analysis.'
+  evidenceStrength: framework
+  evidenceReferenceIds: [banchi-bell-2008, blanchard-2010]
+  theoryTags: ["Dewey and Schwab: inquiry", "Cognitive load theory", "Scaffolding and fading"]
+  dialHeuristic:
+    summary: |
+      The reckoner suggests a starting level from three answers: learner readiness, your confidence
+      facilitating open-ended work, and the time available. Each factor scores 0–2, and the total maps to a
+      level. The scoring below is a planning heuristic, not a measured model: the direction of each factor
+      is supported by research, the specific point values are a judgement.
+    caveat: The dial suggests a starting point for a content investigation. It never recommends confirmation, which is for technique rather than content, and it cannot see what your students have already succeeded at.
+    factors:
+      - dimension: ready
+        points: { novice: 0, developing: 1, experienced: 2 }
+        rationale: |
+          Guidance helps most when students know least. Lazonder and Harmsen's meta-analysis of 72 studies
+          found guidance produced moderate-to-large gains in inquiry learning (d = 0.50 for learning
+          outcomes, d = 0.71 for performance success), and the expertise reversal effect shows that support
+          which helps novices can hinder more knowledgeable learners. Readiness therefore raises the level.
+        evidenceStrength: strong
+        referenceIds: [lazonder-harmsen-2016, kalyuga-2007]
+      - dimension: conf
+        points: { low: 0, mod: 1, high: 2 }
+        rationale: |
+          Open and guided levels depend on the teacher's moment-to-moment decisions: which plans to approve,
+          which questions to press. Research on enacting inquiry finds that teacher knowledge, beliefs and
+          experience strongly shape whether open inquiry is productive in practice. This factor is a
+          professional judgement about implementation rather than a measured effect.
+        evidenceStrength: emerging
+        referenceIds: [crawford-2007]
+      - dimension: time
+        points: { lesson: 0, short: 0, unit: 1, depth: 2 }
+        rationale: |
+          Higher levels need time for planning, false starts and repeat runs. This factor is a practical
+          constraint rather than an evidence claim: no study sets a minimum duration for guided or open
+          inquiry, but a single lesson cannot hold a plan conference, a data run and a revision.
+        evidenceStrength: framework
+        referenceIds: []
+    thresholds:
+      - { maxPoints: 1, phaseId: structured }
+      - { maxPoints: 4, phaseId: guided }
+      - { maxPoints: 6, phaseId: open }
+    caps:
+      - dimension: ready
+        option: novice
+        maxPhaseId: structured
+        rationale: With novices, open-ended work consumes working memory on task management, so the dial never recommends above structured however much time or confidence you have.
+
+introduction:
+  lead: 'Levels of inquiry is the dial you set inside whatever model you are using: how much of the question, the method and the answer you hand over, and how much students work out themselves.'
+  purposeStatement: |
+    This guide helps undergraduate and early career teachers choose a level of inquiry for a practical
+    task, and plan a progression across Stage 4 and Stage 5. It is not a teaching model in the way 5E or
+    ADI are. There is no sequence of phases to run and no recommended level: the four levels are settings,
+    and the professional decision is which one fits these students, this content and this point in the year.
+  audience: Pre-service teachers in secondary science method units, and teachers in their first years.
+  howToUse: |
+    Read the four level cards and the progression. When planning any practical, decide which of the three
+    things you will specify: the question, the method, the expected result. Use the checklist to sanity-check
+    the choice, then set the dial inside your chosen model, for example the Explore phase of a 5E sequence.
+
+theory:
+  summary: |
+    Investigation makes three demands on students at once: framing a question, designing a method, and
+    interpreting results against an expected outcome. Novices cannot carry all three, so the teacher takes
+    some and hands them back as students become capable. The levels name the handover points.
+  foundations:
+    - tradition: "Dewey and Schwab: inquiry"
+      idea: Science is learned by doing something that resembles scientific practice, not by rehearsing conclusions.
+      designImplication: Confirmation has a narrow role. Students should meet unknown outcomes early and often.
+      referenceIds: [banchi-bell-2008]
+    - tradition: "Cognitive load theory and expertise reversal"
+      idea: Novices have limited working memory, and open-ended tasks consume it on task management rather than learning. Support that helps a novice can hinder a more knowledgeable student.
+      designImplication: Specify more when content is new, and less when students already hold the concepts and routines. The level is a property of these students with this content, not of the class in general.
+      referenceIds: [kirschner-2006, kalyuga-2007]
+    - tradition: "Scaffolding and fading"
+      idea: Support should be planned to reduce over time, or it becomes dependence.
+      designImplication: Plan the level for a unit or a year, not for one lesson, so independence actually grows.
+      referenceIds: [banchi-bell-2008]
+  critiques:
+    - claim: Higher is not better. Open inquiry with novices can produce less learning than a well-structured task.
+      response: |
+        Treat the levels as a dial, not a ladder to climb as fast as possible. The design question is which
+        level makes students think hardest about the science, given what they already know.
+      referenceIds: [kirschner-2006, blanchard-2010, furtak-2012]
+
+roles:
+  teacher: Decides which of the question, the method and the result to specify, then fades that support deliberately across a unit and a stage.
+  learner: Takes on more of the framing, design and interpretation as routines and content knowledge build.
+
+sequence:
+  shape: dial
+  summary: |
+    Four settings, from most to least specified. At each step up, the teacher hands over one more of the
+    three elements: the expected result, then the method, then the question.
+  scaleNote: This is a setting inside another model, not a sequence to run. Set it in the Explore phase of a 5E sequence, the design stage of ADI, or any standalone practical.
+
+phases:
+  - id: confirmation
+    name: Confirmation
+    order: 1
+    job: Rehearse a technique or verify a known result, when the point is the skill rather than the finding.
+    essentialFeatures:
+      - Question, method and expected result are all given
+      - Used for technique, safety routines or measurement practice
+      - Short, and a small proportion of practical work overall
+      - Students still explain why the result came out as it did
+    teacherMoves: [Demonstrates technique, Specifies the procedure, States the expected result]
+    learnerMoves: [Practises the technique, Records data accurately, Explains the known result]
+    formativeChecks: [Observation of technique, Accuracy of recorded data]
+    lookFors:
+      - id: loi-confirm-purpose
+        question: Is the purpose genuinely technique or routine, not content?
+        strongEvidence: Students are learning to use the microscope, balance or probe, or a safety routine.
+        weakEvidence: A concept is being "discovered" that students were already told.
+      - id: loi-confirm-proportion
+        question: Is confirmation a small share of practical work?
+        strongEvidence: It appears occasionally, for a stated skill purpose.
+        weakEvidence: Most practicals verify what was taught last lesson.
+    examples:
+      - id: loi-confirm-pos-microscope
+        kind: positive
+        title: Learning to use the microscope
+        context: { stages: [stage4], focusAreas: [Cells and classification], disciplines: [biology] }
+        outcomes: [SC4-CLS-01, SC4-WS-04]
+        body: |
+          Students follow a supplied procedure to prepare and focus an onion slide, knowing they should see
+          rectangular cells with visible walls. The teacher circulates checking technique: slide preparation,
+          coarse before fine focus, drawing to scale.
+        diagnosis: The learning target is the technique, the expected result is stated, and the practical is short.
+        lookForIds: [loi-confirm-purpose, loi-confirm-proportion]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: loi-confirm-neg-verify
+        kind: negative
+        title: Proving the thing they were told yesterday
+        context: { stages: [stage4], focusAreas: [Living systems], disciplines: [biology] }
+        outcomes: []
+        body: |
+          After a lesson on photosynthesis, students follow a procedure to show that a destarched leaf makes
+          starch in light, with the conclusion pre-written on the worksheet.
+        diagnosis: A concept practical run at confirmation level. Nothing is at stake, so students follow steps without thinking.
+        lookForIds: [loi-confirm-purpose, loi-confirm-proportion]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: structured
+    name: Structured
+    order: 2
+    job: Give the question and the method, but let the result be genuinely unknown to students.
+    essentialFeatures:
+      - Question and procedure supplied; outcome not revealed
+      - Students predict before they start
+      - Data analysis and conclusions are the students' work
+      - A good default when content is new or equipment is unfamiliar
+    teacherMoves: [Supplies question and method, Withholds the expected result, Presses on interpretation]
+    learnerMoves: [Predicts, Follows the method, Analyses data and draws conclusions]
+    formativeChecks: [Predictions before starting, Conclusions checked against data]
+    lookFors:
+      - id: loi-structured-unknown
+        question: Is the outcome genuinely unknown to students?
+        strongEvidence: Predictions vary across the class, and students do not already know the answer.
+        weakEvidence: The conclusion was taught before the practical.
+      - id: loi-structured-interpretation
+        question: Is the interpretation left to students?
+        strongEvidence: Students decide what the data show and justify it.
+        weakEvidence: A pre-written conclusion with blanks.
+    examples:
+      - id: loi-structured-pos-enzyme
+        kind: positive
+        title: What happens to catalase at different temperatures?
+        context: { stages: [stage5], focusAreas: [Disease, Materials], disciplines: [biology] }
+        outcomes: [SC5-WS-04, SC5-WS-06]
+        body: |
+          Students are given a method for measuring oxygen foam height from liver and hydrogen peroxide at
+          five temperatures. They predict the pattern first, then collect and graph their own data and explain
+          the shape of the curve, including the drop after the optimum.
+        diagnosis: Method supplied because the technique is fiddly, but prediction, analysis and explanation are the students' work.
+        lookForIds: [loi-structured-unknown, loi-structured-interpretation]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: loi-structured-neg-blanks
+        kind: negative
+        title: Fill in the conclusion
+        context: { stages: [stage5], focusAreas: [Reactions], disciplines: [chemistry] }
+        outcomes: []
+        body: 'The worksheet ends: "This shows that as temperature increases, the rate of reaction ______."'
+        diagnosis: The interpretation is done for students, so the task drops to confirmation without saying so.
+        lookForIds: [loi-structured-interpretation, loi-structured-unknown]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: guided
+    name: Guided
+    order: 3
+    job: Give the question; students design the method.
+    essentialFeatures:
+      - The question is supplied; the design is the students' work
+      - A plan checkpoint before data collection, for safety and feasibility
+      - Variables, sample size and reliability are decided by students
+      - Groups' methods may legitimately differ
+    teacherMoves: [Poses the question, Conferences plans, Asks about reliability without redesigning]
+    learnerMoves: [Designs a method, Justifies design choices, Collects and interprets data]
+    formativeChecks: [Plan conference, Mid-collection check of data quality]
+    lookFors:
+      - id: loi-guided-design
+        question: Is the method genuinely the students' design?
+        strongEvidence: Groups' methods differ in defensible ways.
+        weakEvidence: A "planning" sheet that funnels everyone to the same procedure.
+      - id: loi-guided-checkpoint
+        question: Is there a plan checkpoint before collection?
+        strongEvidence: A short conference covers safety, feasibility and reliability.
+        weakEvidence: Groups start with unsafe or unworkable plans, or the teacher fixes the design for them.
+    examples:
+      - id: loi-guided-pos-germination
+        kind: positive
+        title: What affects the germination rate of these seeds?
+        context: { stages: [stage4], focusAreas: [Living systems], disciplines: [biology] }
+        outcomes: [SC4-LIV-01, SC4-WS-03]
+        body: |
+          Groups choose one variable, design a method with the seeds, containers and materials available,
+          and conference the plan with the teacher, who asks how many seeds per condition and how the groups
+          will keep other conditions the same.
+        diagnosis: The question is set, the design is the students', and the checkpoint targets reliability rather than correctness.
+        lookForIds: [loi-guided-design, loi-guided-checkpoint]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: loi-guided-neg-funnel
+        kind: negative
+        title: A planning sheet with one possible answer
+        context: { stages: [stage4], focusAreas: [Living systems], disciplines: [biology] }
+        outcomes: []
+        body: |
+          The planning proforma names the independent variable, the number of seeds and the measurement
+          interval, leaving students to write them into boxes.
+        diagnosis: Structured inquiry wearing a planning sheet. Students practise transcription, not design.
+        lookForIds: [loi-guided-design]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: open
+    name: Open
+    order: 4
+    job: Students pose the question and design the method.
+    essentialFeatures:
+      - Students generate investigable questions from a shared experience
+      - A question conference turns curiosity into something testable
+      - Plans are reviewed before work starts
+      - Best after students have succeeded at guided level with this content
+    teacherMoves: [Provides a rich shared context, Coaches question refinement, Reviews plans]
+    learnerMoves: [Poses an investigable question, Designs and runs the method, Reports findings]
+    formativeChecks: [Question conference, Plan review, Progress checkpoints]
+    lookFors:
+      - id: loi-open-question
+        question: Are students' questions investigable with the time and equipment available?
+        strongEvidence: A conference narrows broad curiosity to a testable question.
+        weakEvidence: Questions that cannot be answered in the time, or that need unavailable equipment.
+      - id: loi-open-readiness
+        question: Have students succeeded at guided level with this content first?
+        strongEvidence: Design routines and the relevant concepts are already in place.
+        weakEvidence: Open inquiry used as a first encounter with unfamiliar content.
+    examples:
+      - id: loi-open-pos-depthstudy
+        kind: positive
+        title: A Stage 5 depth study grown from a guided investigation
+        context: { stages: [stage5], focusAreas: [Environmental sustainability], disciplines: [biology] }
+        outcomes: [SC5-ENV-01, SC5-WS-02, SC5-WS-03]
+        body: |
+          After a guided investigation of invertebrate sampling, students pose their own question about a
+          local site, conference it for feasibility, and run a four-lesson depth study with checkpoints on
+          the plan, the data and the draft report.
+        diagnosis: Open level follows guided success with the same content and techniques, and the question conference keeps it feasible.
+        lookForIds: [loi-open-question, loi-open-readiness]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: loi-open-neg-cold
+        kind: negative
+        title: "\"Design your own experiment\" in week 2 of Year 7"
+        context: { stages: [stage4], focusAreas: [Solutions and mixtures], disciplines: [chemistry] }
+        outcomes: []
+        body: |
+          Students are asked to investigate anything they like about dissolving, with no shared experience,
+          no design routines and no question conference.
+        diagnosis: Open level used with novices. Most groups spend the lesson deciding what to do, and little science is learned.
+        lookForIds: [loi-open-readiness, loi-open-question]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+workedSequences:
+  - id: seq-s4-progression
+    title: A Stage 4 progression across one unit
+    context: { stages: [stage4], focusAreas: [Living systems, Cells and classification], disciplines: [biology] }
+    contentOutcomes: [SC4-LIV-01]
+    bigQuestion: How do we investigate living things, and how much of that can we do ourselves?
+    learningIntentions:
+      - Students use microscopy and measurement techniques accurately
+      - Students design a fair test with adequate replication
+      - Students pose an investigable question and plan how to answer it
+    targetConceptions:
+      - An investigation is following instructions
+      - One trial is enough
+    predictPrompt: Before reading on, what would go wrong if lessons 7–10 came first, and what exactly would students be missing?
+    steps:
+      - lessons: "1"
+        phaseId: confirmation
+        activity: |
+          Microscope technique with prepared and self-made slides. Procedure and expected observations are
+          given; the teacher checks slide preparation, focusing and scale drawing.
+        wsOutcomes: [SC4-WS-04]
+        formativeCheck: Observation of technique against a checklist
+      - lessons: "2–3"
+        phaseId: structured
+        activity: |
+          Supplied question and method for comparing transpiration or water uptake in different conditions.
+          Students predict first, then analyse and interpret their own data.
+        wsOutcomes: [SC4-WS-02, SC4-WS-05, SC4-WS-06]
+        formativeCheck: Predictions collected; conclusions checked against the data
+        scaffoldSlots:
+          - field: activity
+            prompt: Which part of this task would you hand over first if the class handled it easily, the method or the question?
+      - lessons: "4–6"
+        phaseId: guided
+        activity: |
+          Question supplied: what affects the germination rate of these seeds? Groups design the method,
+          conference the plan, then collect and interpret data over several days.
+        wsOutcomes: [SC4-WS-03, SC4-WS-04, SC4-WS-06]
+        formativeCheck: Plan conference focused on replication and controlled variables
+      - lessons: "7–10"
+        phaseId: open
+        activity: |
+          Students pose their own question about the plants or invertebrates they have been studying,
+          conference it for feasibility, plan, run and report the investigation.
+        wsOutcomes: [SC4-WS-02, SC4-WS-03, SC4-WS-08]
+        formativeCheck: Question conference and plan review before work starts
+        scaffoldSlots:
+          - field: formativeCheck
+            prompt: What would you say to a group whose question needs six weeks of growth, without simply rejecting it?
+    whyItWorks:
+      - Each level hands over one more element, so nothing is handed over twice at once
+      - Technique is taught at confirmation level, where it is the actual target
+      - Design routines are practised at guided level before students carry the question as well
+      - The same context runs throughout, so the increase in independence is not also an increase in content load
+    watchFor: |
+      Treating the progression as a fixed timetable. If the plan conference shows groups cannot control
+      variables, spend another cycle at guided level rather than moving up on schedule.
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+misapplications:
+  - id: mis-loi-ladder
+    name: Treating the levels as a ladder
+    looksLike: Racing to open inquiry because it looks like the best kind of teaching.
+    whyItUndermines: Open tasks with novices consume working memory on task management, so less science is learned.
+    fix: Choose the level that makes students think hardest about the science, given what they know.
+    lookForIds: [loi-open-readiness]
+  - id: mis-loi-stuck
+    name: Never leaving confirmation
+    looksLike: A year of practicals that verify what was taught.
+    whyItUndermines: Students never plan, decide or interpret, so WS-02, WS-03 and WS-06 go untaught.
+    fix: Plan the progression across the unit and the stage, not lesson by lesson.
+    lookForIds: [loi-confirm-proportion]
+  - id: mis-loi-fake-guided
+    name: Guided in name only
+    looksLike: A planning proforma that funnels every group to the same method.
+    whyItUndermines: Students transcribe a design instead of making one, so design is never assessed.
+    fix: Supply the question and the materials, then let methods differ.
+    lookForIds: [loi-guided-design]
+  - id: mis-loi-hidden-answer
+    name: Structured with the answer already given
+    looksLike: The conclusion is taught, then verified.
+    whyItUndermines: The task claims to be an investigation but nothing is at stake.
+    fix: Withhold the outcome, and have students predict first.
+    lookForIds: [loi-structured-unknown]
+  - id: mis-loi-no-checkpoint
+    name: Open or guided without checkpoints
+    looksLike: Groups collecting data from unsafe or unworkable plans.
+    whyItUndermines: Handing over design is not the same as handing over responsibility for safety and feasibility.
+    fix: Conference every plan before collection, on safety and feasibility rather than correctness.
+    lookForIds: [loi-guided-checkpoint, loi-open-question]
+
+checklist:
+  - id: chk-loi-choice
+    title: Setting the dial
+    items:
+      - { id: chk-loi-choice-three, text: 'You have decided which of the question, method and expected result you will specify' }
+      - { id: chk-loi-choice-known, text: 'If the outcome is already known to students, the purpose is technique, not content', lookForId: loi-confirm-purpose }
+      - { id: chk-loi-choice-readiness, text: 'The level matches what students have already succeeded at with this content', lookForId: loi-open-readiness }
+      - { id: chk-loi-choice-model, text: 'The level is set inside a teaching model, such as the Explore phase of a 5E sequence' }
+  - id: chk-loi-running
+    title: Running the task
+    items:
+      - { id: chk-loi-running-predict, text: 'Students predict before collecting data at structured level or above', lookForId: loi-structured-unknown }
+      - { id: chk-loi-running-plan, text: 'Plans are conferenced for safety and feasibility before collection', lookForId: loi-guided-checkpoint }
+      - { id: chk-loi-running-differ, text: 'At guided or open level, groups methods may legitimately differ', lookForId: loi-guided-design }
+      - { id: chk-loi-running-interpret, text: 'Interpretation is left to students, not pre-written', lookForId: loi-structured-interpretation }
+  - id: chk-loi-progression
+    title: Planning the progression
+    items:
+      - { id: chk-loi-prog-unit, text: 'The progression is planned across the unit and stage, not lesson by lesson', lookForId: loi-confirm-proportion }
+      - { id: chk-loi-prog-context, text: 'Independence increases without content load increasing at the same time' }
+      - { id: chk-loi-prog-evidence, text: 'You will decide whether to move up based on evidence, not the timetable' }
+
+syllabusAlignment:
+  wsMapping:
+    - { skill: 1, phaseIds: [confirmation, structured] }
+    - { skill: 2, phaseIds: [structured, open] }
+    - { skill: 3, phaseIds: [guided, open] }
+    - { skill: 4, phaseIds: [confirmation, structured, guided, open] }
+    - { skill: 5, phaseIds: [structured, guided] }
+    - { skill: 6, phaseIds: [structured, guided, open] }
+    - { skill: 7, phaseIds: [], note: The levels calibrate investigation rather than problem-solving. Pair with a design task if WS-07 is a target. }
+    - { skill: 8, phaseIds: [guided, open] }
+  depthStudies: A depth study is usually open level, and works best after students have succeeded at guided level with the same content and techniques.
+  dataScience: 'The dial applies to secondary data too: supply the data set and the question, or let students choose both.'
+  inclusion:
+    eald: Higher levels carry heavy language demands in planning and reporting. Provide planning frames and allow diagrams or oral plans at guided level.
+    disability: Adjust the level per group where needed. Different groups can work at different levels in the same lesson.
+    highPotential: Move to guided or open earlier with familiar content, and ask for a critique of the method's limitations.
+    aboriginalPerspectives: At open level, students may investigate questions arising from local knowledge and Country, developed with local Aboriginal community.
+
+nesting:
+  - { modelId: 5e, role: nests-in, phaseId: explore, how: 'Set the level of the Explore investigation to match learner readiness.' }
+  - { modelId: adi, role: nests-in, phaseId: design-data, how: 'ADI assumes guided level or above, so use the dial to decide how much planning support groups need.' }
+  - { modelId: poe, role: nests-in, phaseId: observe, how: 'Decide whether students run the event themselves or observe a demonstration.' }
+
+reflectionPrompts:
+  - id: refl-loi-personal
+    type: personal
+    prompt: Think about a practical you did as a student. Which of the question, the method and the result were given to you? What did that let you learn, and what did it prevent?
+    coachFollowUps: [What would have changed if the result had been unknown?, Could you have designed that method at the time?]
+  - id: refl-loi-critical
+    type: critical
+    prompt: Higher levels of inquiry are often treated as better teaching. What does the evidence on cognitive load suggest about that assumption, and what would you say to a colleague who runs open inquiry with every Year 7 class?
+    coachFollowUps: [What does a novice need before open inquiry helps?, What is confirmation genuinely good for?]
+  - id: refl-loi-application
+    type: application
+    prompt: Take a practical from a unit you are planning. Write the same task at all four levels, then decide which one you would teach and justify it against what your students can already do.
+    coachFollowUps: [What changes in the materials you supply?, How long does each version take?]
+
+scaffold:
+  defaultMode: tutor
+  revealAfterAttempt: [seq-s4-progression]
+  ai:
+    groundedIn: [phases.examples, workedSequences, misapplications, checklist, reflectionPrompts]
+    allowed: [contextualise-examples, audit-program, coach-reflection, compare-models]
+    never:
+      - Never choose the level for the learner; ask what students have already succeeded at
+      - Never write the learner's planning proforma or question conference prompts in tutor mode
+      - Never cite an outcome code that is not in the syllabus whitelist
+      - Never answer a reflection prompt; ask follow-up questions only
+    auditorFocus: [loi-confirm-purpose, loi-structured-unknown, loi-guided-design, loi-open-readiness]
+
+references:
+  - id: lazonder-harmsen-2016
+    citation: 'Lazonder, A. W., & Harmsen, R. (2016). Meta-analysis of inquiry-based learning: Effects of guidance. Review of Educational Research, 86(3), 681–718.'
+    doi: 10.3102/0034654315627366
+  - id: kalyuga-2007
+    citation: 'Kalyuga, S. (2007). Expertise reversal effect and its implications for learner-tailored instruction. Educational Psychology Review, 19(4), 509–539.'
+    doi: 10.1007/s10648-007-9054-3
+  - id: furtak-2012
+    citation: 'Furtak, E. M., Seidel, T., Iverson, H., & Briggs, D. C. (2012). Experimental and quasi-experimental studies of inquiry-based science teaching: A meta-analysis. Review of Educational Research, 82(3), 300–329.'
+    doi: 10.3102/0034654312457206
+  - id: crawford-2007
+    citation: 'Crawford, B. A. (2007). Learning to teach science as inquiry in the rough and tumble of practice. Journal of Research in Science Teaching, 44(4), 613–642.'
+    doi: 10.1002/tea.20157
+  - id: banchi-bell-2008
+    citation: 'Banchi, H., & Bell, R. (2008). The many levels of inquiry. Science and Children, 46(2), 26–29.'
+  - id: blanchard-2010
+    citation: 'Blanchard, M. R., Southerland, S. A., Osborne, J. W., Sampson, V. D., Annetta, L. A., & Granger, E. M. (2010). Is inquiry possible in light of accountability? A quantitative comparison of the relative effectiveness of guided inquiry and verification laboratory instruction. Science Education, 94(4), 577–616.'
+    doi: 10.1002/sce.20390
+  - id: herron-1971
+    citation: 'Herron, M. D. (1971). The nature of scientific enquiry. The School Review, 79(2), 171–212.'
+  - id: kirschner-2006
+    citation: 'Kirschner, P. A., Sweller, J., & Clark, R. E. (2006). Why minimal guidance during instruction does not work. Educational Psychologist, 41(2), 75–86.'
+    doi: 10.1207/s15326985ep4102_1
