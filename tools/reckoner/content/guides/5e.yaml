@@ -1,0 +1,730 @@
+# 5E companion guide — reference instance of schema 1.0
+# Migrated from "Designing with the 5E Model: A Companion Guide for NSW Science 7–10".
+# Worked sequences: Stage 4 Forces, Stage 4 Biology (Cells and classification), Stage 5 Biology (Disease).
+
+schemaVersion: "1.3"
+id: 5e
+name: 5E
+originators: Bybee / BSCS (1987)
+version: 1.0.0
+status: published
+lastReviewed: 2026-09-21
+syllabus: NSW Science 7–10 Syllabus (2023)
+provenance:
+  source: ai-drafted-reviewed
+  authors: ["Claude, drafted for S. Grant"]
+  reviewedBy: ["Steve Grant"]
+  reviewedOn: 2026-09-21
+
+reckoner:
+  scale: macro
+  fitProfile:
+    purpose: [2, 3, 2, 1, 1, 1, 1]
+    time:    [0, 2, 3, 1]
+    ready:   [3, 3, 2]
+    concept: [3, 3, 2, 2, 1]
+    misc:    [2, 2, 2]
+    ws:      [2, 3, 2, 2, 2, 2, 1, 2]
+    conf:    [3, 3, 2]
+    res:     [3, 2, 2]
+    assess:  [3, 2, 1, 1, 2]
+    lang:    [3, 2, 2]
+    place:   [2, 1, 1]
+  distinguishingFeature: A balanced default with an explicit Explain phase after inquiry.
+  bestScienceFit: Most Stage 4–5 focus areas; the strongest default for early career teachers.
+  commonPitfall: Relabelling existing lessons with E headings without changing their order.
+  evidenceSummary: A 2023 meta-analysis of 61 randomised trials found large gains in science achievement for 3E/5E/7E models (g = 0.87).
+  evidenceStrength: strong
+  evidenceReferenceIds: [air-2023, bybee-2006]
+  theoryTags: ["Piaget", "Vygotsky: social construction", "Conceptual change", "How People Learn (NRC, 2000)"]
+
+introduction:
+  lead: The 5E model gives you a research-informed sequence that starts from what students already think and moves them towards scientific understanding.
+  purposeStatement: |
+    This guide helps undergraduate and early career teachers design, check and refine 5E sequences
+    for the NSW Science 7–10 Syllabus (2023). It explains the essential features of each phase,
+    shows what each phase looks like done well and done badly, and gives you a checklist for
+    auditing a program before you teach it.
+  audience: Pre-service teachers in secondary science method units, and teachers in their first years.
+  howToUse: |
+    Read the theory and model overview once. Keep the phase cards, misapplications and checklist
+    open while you plan. Try each worked sequence's prediction question before reading why it works.
+
+theory:
+  summary: |
+    Students build new understanding by testing it against ideas they already hold. The 5E model
+    makes that process visible and productive, and times explanation so it lands on prepared ground.
+  foundations:
+    - tradition: "Piaget: disequilibrium"
+      idea: Learning is triggered when experience does not fit existing mental models, leading to assimilation or accommodation.
+      designImplication: Engage and Explore are built to create a productive mismatch before any explanation.
+      referenceIds: []
+    - tradition: "Conceptual change"
+      idea: Students abandon a prior conception only when dissatisfied with it, and the new idea is intelligible, plausible and fruitful.
+      designImplication: Engage and Explore create dissatisfaction; Explain makes the idea intelligible and plausible; Elaborate shows it is fruitful.
+      referenceIds: [posner-1982]
+    - tradition: "Vygotsky: social constructivism"
+      idea: Understanding is built through talk, shared representations and guided support within the zone of proximal development.
+      designImplication: Group exploration, argument from evidence and teacher scaffolding in Explain are social processes, planned as such.
+      referenceIds: []
+  critiques:
+    - claim: Minimally guided instruction is less effective than explicit instruction for novices.
+      response: The 5E model does not withhold explanation. It places explicit teaching in Explain, after students have experience to attach it to.
+      referenceIds: [kirschner-2006]
+
+roles:
+  teacher: Facilitates Engage and Explore, teaches explicitly in Explain, designs transfer in Elaborate, and assesses throughout.
+  learner: Predicts, investigates, explains with evidence, applies ideas in new contexts, and reflects on how their thinking changed.
+
+sequence:
+  shape: cyclical
+  summary: Five phases forming one conceptual storyline, with formative assessment running through every phase.
+  diagramMermaid: |
+    flowchart LR
+      A[Engage] --> B[Explore] --> C[Explain] --> D[Elaborate] --> E[Evaluate]
+      E -. next sequence .-> A
+  scaleNote: A 5E sequence is usually 4–12 lessons around one big question, not one lesson with five segments.
+
+phases:
+  - id: engage
+    name: Engage
+    order: 1
+    job: Create a need to know and make students' current thinking visible.
+    essentialFeatures:
+      - A concrete phenomenon, discrepant event or problem linked to the big idea
+      - Students commit to a prediction or explanation before any teaching
+      - The teacher records student ideas to revisit later
+      - Short, usually one lesson or less
+    teacherMoves: [Presents a puzzling phenomenon, Asks open questions, Records student ideas]
+    learnerMoves: [Predicts, States and commits to a current explanation]
+    typicalShare: { minPercent: 5, maxPercent: 10 }
+    formativeChecks: [Individual prediction cards]
+    lookFors:
+      - id: engage-link
+        question: Is the hook conceptually linked to the big idea, or just entertaining?
+        strongEvidence: The phenomenon is the one the sequence will explain.
+        weakEvidence: An unrelated video or demonstration used for attention only.
+      - id: engage-elicit
+        question: Are student ideas elicited and recorded?
+        strongEvidence: Predictions are written down and kept for later comparison.
+        weakEvidence: Student thinking is never surfaced.
+      - id: engage-question
+        question: Does Engage raise the question the sequence will answer?
+        strongEvidence: A driving question is posed and displayed.
+        weakEvidence: The lesson moves straight to definitions.
+    examples:
+      - id: engage-pos-dissolving
+        kind: positive
+        title: Where did the salt go?
+        context: { stages: [stage4], focusAreas: [Solutions and mixtures], disciplines: [chemistry] }
+        outcomes: [SC4-SOL-01, SC4-WS-02]
+        body: |
+          Students weigh water and salt separately, predict the mass once the salt dissolves, and write why.
+          Many predict a loss because the salt "disappears". The teacher photographs the prediction chart
+          and asks how the class could find out where the salt went.
+        diagnosis: Linked phenomenon, committed predictions and a driving question for the whole sequence.
+        lookForIds: [engage-link, engage-elicit, engage-question]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: engage-neg-video
+        kind: negative
+        title: A spectacular but unrelated video
+        context: { stages: [stage4], focusAreas: [Solutions and mixtures], disciplines: [chemistry] }
+        outcomes: []
+        body: A video of an exothermic reaction, then "Copy the definitions of solute and solvent."
+        diagnosis: A hook, but not an Engage. The video is unrelated to dissolving and no thinking is surfaced.
+        lookForIds: [engage-link, engage-elicit]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: explore
+    name: Explore
+    order: 2
+    job: Give every student a shared, concrete experience of the phenomenon before the scientific explanation.
+    essentialFeatures:
+      - Hands-on or minds-on investigation in which students generate evidence
+      - Teacher questions and probes but does not supply the answer
+      - Students record observations, test predictions and notice patterns
+      - Structure calibrated on the structured, guided or open continuum
+    teacherMoves: [Sets up the investigation, Circulates and questions, Withholds the answer]
+    learnerMoves: [Investigates, Records observations, Identifies patterns]
+    typicalShare: { minPercent: 20, maxPercent: 30 }
+    formativeChecks: [Teacher questioning, Checks of data tables and variable control]
+    lookFors:
+      - id: explore-before-explain
+        question: Does the investigation come before the formal explanation?
+        strongEvidence: Students would still need to think even if they knew the answer.
+        weakEvidence: A confirmation practical run after the theory.
+      - id: explore-own-data
+        question: Is the data the students' own?
+        strongEvidence: Students generate and record their own evidence.
+        weakEvidence: Results are given or a conclusion is pre-scaffolded.
+      - id: explore-feeds-explain
+        question: Does the activity produce the evidence Explain will draw on?
+        strongEvidence: Explain explicitly uses the Explore results.
+        weakEvidence: Explore and Explain are disconnected.
+    examples:
+      - id: explore-pos-rates
+        kind: positive
+        title: Antacid tablets at four temperatures
+        context: { stages: [stage5], focusAreas: [Reactions], disciplines: [chemistry] }
+        outcomes: [SC5-RXN-02, SC5-WS-04, SC5-WS-05]
+        body: |
+          Groups time effervescent tablets in water at four temperatures, then crushed versus whole.
+          The teacher asks what students notice and what might be happening to the particles,
+          without introducing collision theory yet.
+        diagnosis: Students generate evidence before explanation, and the data sets up Explain.
+        lookForIds: [explore-before-explain, explore-own-data, explore-feeds-explain]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: explore-neg-recipe
+        kind: negative
+        title: Proving what was already taught
+        context: { stages: [stage5], focusAreas: [Reactions], disciplines: [chemistry] }
+        outcomes: []
+        body: Collision theory is taught first, then students follow a recipe with a fill-in-the-blank conclusion.
+        diagnosis: A confirmation practical in the Explore slot. Students verify rather than investigate.
+        lookForIds: [explore-before-explain, explore-own-data]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: explain
+    name: Explain
+    order: 3
+    job: Help students make sense of the Explore experience by building the scientific explanation from it.
+    essentialFeatures:
+      - Students explain first, in their own words, using their evidence
+      - Teacher introduces concepts, terms and models linked to what students observed
+      - Direct instruction belongs here
+      - Students compare their Engage ideas with the scientific explanation
+    teacherMoves: [Invites student explanations, Introduces concepts and representations, Addresses alternative conceptions]
+    learnerMoves: [Explains using evidence, Revises ideas, Uses new vocabulary]
+    typicalShare: { minPercent: 20, maxPercent: 25 }
+    formativeChecks: [Mini-whiteboard representations, Exit tickets]
+    lookFors:
+      - id: explain-students-first
+        question: Do students explain first, before the teacher?
+        strongEvidence: Groups present and interpret their own data.
+        weakEvidence: The teacher explains and students copy notes.
+      - id: explain-links-data
+        question: Does the explanation refer back to the class's own data?
+        strongEvidence: The teacher cites group results when introducing concepts.
+        weakEvidence: Explanation is disconnected from the investigation.
+      - id: explain-representations
+        question: Are multiple representations used?
+        strongEvidence: Macroscopic, particulate, symbolic and graphical views are connected.
+        weakEvidence: One representation, usually text.
+      - id: explain-conceptions
+        question: Are the Engage ideas explicitly revisited?
+        strongEvidence: Students name what has changed in their thinking.
+        weakEvidence: Prior ideas are never returned to.
+    examples:
+      - id: explain-pos-trolleys
+        kind: positive
+        title: Newton's second law from the class's trolley data
+        context: { stages: [stage5], focusAreas: [Waves and motion], disciplines: [physics] }
+        outcomes: [SC5-WAM-02, SC5-WS-06]
+        body: |
+          Groups present their trolley graphs. The teacher introduces F = ma using the class data,
+          draws force diagrams on the groups' own set-ups, and addresses the idea that a moving object
+          needs a force to keep moving.
+        diagnosis: Students explain first, and the formal idea is built from their data and prior ideas.
+        lookForIds: [explain-students-first, explain-links-data, explain-conceptions]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: explain-neg-notes
+        kind: negative
+        title: Three lessons of slides
+        context: { stages: [stage5], focusAreas: [Waves and motion], disciplines: [physics] }
+        outcomes: []
+        body: Three consecutive lessons of slides and notes on Newton's laws, two weeks after the practical.
+        diagnosis: Explanation is present, but constructivist sequencing is lost.
+        lookForIds: [explain-students-first, explain-links-data]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: elaborate
+    name: Elaborate
+    order: 4
+    job: Deepen and transfer understanding by applying it to a new situation.
+    essentialFeatures:
+      - A new context, problem or application that requires the concept
+      - Opportunities to extend to more complex systems or socio-scientific issues
+      - A natural home for design tasks and depth study work
+      - Students use scientific language and argue from evidence
+    teacherMoves: [Poses a new problem or context, Coaches application]
+    learnerMoves: [Applies concepts, Designs and solves, Argues from evidence]
+    typicalShare: { minPercent: 20, maxPercent: 30 }
+    formativeChecks: [Design log checkpoints, Peer feedback]
+    lookFors:
+      - id: elaborate-new-context
+        question: Is the context genuinely different from Explore?
+        strongEvidence: A new setting that requires transfer.
+        weakEvidence: A repeat of the Explore activity or textbook questions.
+      - id: elaborate-requires-concept
+        question: Does the task demand the concept?
+        strongEvidence: The task cannot be completed without using the concept.
+        weakEvidence: Students can succeed without the science.
+      - id: elaborate-demand
+        question: Is cognitive demand higher than in Explore?
+        strongEvidence: Students apply, analyse, design or evaluate.
+        weakEvidence: Students recall definitions.
+    examples:
+      - id: elaborate-pos-water
+        kind: positive
+        title: Drinkable water for a remote community
+        context: { stages: [stage4], focusAreas: [Solutions and mixtures], disciplines: [chemistry] }
+        outcomes: [SC4-SOL-01, SC4-WS-07]
+        body: |
+          Students design a low-cost system to produce drinkable water from muddy, salty water, justify each
+          separation step by the property it exploits, test a prototype and evaluate its limits.
+        diagnosis: A new context that demands the concept, with higher cognitive demand.
+        lookForIds: [elaborate-new-context, elaborate-requires-concept, elaborate-demand]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: elaborate-neg-questions
+        kind: negative
+        title: Textbook questions 1–15
+        context: { stages: [stage4], focusAreas: [Solutions and mixtures], disciplines: [chemistry] }
+        outcomes: []
+        body: Questions that repeat the definitions from Explain.
+        diagnosis: No new context, no transfer and no increase in demand.
+        lookForIds: [elaborate-new-context, elaborate-demand]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: evaluate
+    name: Evaluate
+    order: 5
+    job: Give students and teacher evidence of learning, and let students see their own conceptual change.
+    essentialFeatures:
+      - Formative assessment runs through every phase
+      - The final task is aligned with learning intentions and success criteria
+      - Students revisit their Engage ideas and explain how their thinking changed
+      - Content and Working scientifically outcomes are both assessed
+    teacherMoves: [Assesses against success criteria, Prompts self-reflection]
+    learnerMoves: [Demonstrates understanding, Compares new and initial ideas]
+    typicalShare: { minPercent: 10, maxPercent: 15 }
+    formativeChecks: [Summative task marked against success criteria]
+    lookFors:
+      - id: evaluate-aligned
+        question: Is the assessment aligned with the outcomes actually taught?
+        strongEvidence: Tasks map to the stated outcomes and success criteria.
+        weakEvidence: Assessment covers content not taught, or omits Working scientifically.
+      - id: evaluate-understanding
+        question: Does it test understanding and application, not just recall?
+        strongEvidence: Students explain an unfamiliar scenario.
+        weakEvidence: Recall-only multiple choice.
+      - id: evaluate-revisit
+        question: Do students return to their initial ideas?
+        strongEvidence: "I used to think… now I think… because…"
+        weakEvidence: No metacognitive comparison.
+      - id: evaluate-formative
+        question: Are formative checks built into every phase?
+        strongEvidence: Checks appear throughout and inform adjustment.
+        weakEvidence: One test at the end.
+    examples:
+      - id: evaluate-pos-tree
+        kind: positive
+        title: Where does a tree's mass come from?
+        context: { stages: [stage4], focusAreas: [Living systems], disciplines: [biology] }
+        outcomes: [SC4-LIV-01, SC4-WS-08]
+        body: |
+          Students annotate their Engage drawings with evidence from the sequence, then explain an
+          unfamiliar plant's growth using photosynthesis and gas exchange.
+        diagnosis: Aligned, application-focused, and makes conceptual change visible.
+        lookForIds: [evaluate-aligned, evaluate-understanding, evaluate-revisit]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: evaluate-neg-test
+        kind: negative
+        title: A recall test in week 8
+        context: { stages: [stage4], focusAreas: [Living systems], disciplines: [biology] }
+        outcomes: []
+        body: A 30-question recall test at the end, with no formative checks during the sequence.
+        diagnosis: The teacher discovers too late that most students still believe plants eat soil.
+        lookForIds: [evaluate-understanding, evaluate-formative]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+workedSequences:
+  - id: seq-s4-forces
+    title: Why do things slow down and stop?
+    context: { stages: [stage4], focusAreas: [Forces], disciplines: [physics] }
+    contentOutcomes: [SC4-FOR-01]
+    bigQuestion: Why do things slow down and stop?
+    learningIntentions:
+      - Friction is a contact force that opposes motion
+      - Unbalanced forces change an object's motion
+      - How to design a fair test and represent data
+    targetConceptions: [A moving object stops because it runs out of force]
+    predictPrompt: Before reading on, which feature of this sequence do you think does most to shift the target conception, and why?
+    steps:
+      - lessons: "1"
+        phaseId: engage
+        activity: Slide a puck across carpet, lino and ice. Students predict why it stops and whether it would stop on perfect ice.
+        wsOutcomes: [SC4-WS-02]
+        formativeCheck: Individual prediction cards
+      - lessons: "2–3"
+        phaseId: explore
+        activity: Pull a weighted shoe across surfaces with a spring balance; vary one factor and record force.
+        wsOutcomes: [SC4-WS-03, SC4-WS-04, SC4-WS-05]
+        formativeCheck: Questioning; check tables and variable control
+      - lessons: "4"
+        phaseId: explore
+        activity: PhET Forces and Motion simulation with friction removed; students revise predictions.
+        wsOutcomes: [SC4-WS-06]
+        formativeCheck: Revised prediction on the thinking wall
+      - lessons: "5"
+        phaseId: explain
+        activity: Groups present patterns; teacher introduces friction, balanced and unbalanced forces, and force arrows from class data.
+        wsOutcomes: [SC4-WS-06, SC4-WS-08]
+        formativeCheck: Mini-whiteboard force diagrams
+        scaffoldSlots:
+          - field: activity
+            prompt: Which group results would you use to introduce friction, and in what order?
+      - lessons: "6"
+        phaseId: explain
+        activity: Worked examples and guided practice drawing force diagrams for everyday situations.
+        wsOutcomes: [SC4-WS-08]
+        formativeCheck: Exit ticket with one diagram and explanation
+      - lessons: "7–8"
+        phaseId: elaborate
+        activity: Design challenge to improve grip for a ramp, a shoe for wet tiles, or a carnival sled; justify with forces.
+        wsOutcomes: [SC4-WS-07, SC4-WS-03]
+        formativeCheck: Design log checkpoints; peer feedback
+        scaffoldSlots:
+          - field: formativeCheck
+            prompt: What evidence would show a student is using friction to justify a design choice, not just trial and error?
+      - lessons: "9"
+        phaseId: evaluate
+        activity: Students revisit their lesson 1 card and explain a curling stone or air-hockey puck with force diagrams.
+        wsOutcomes: [SC4-WS-08]
+        formativeCheck: Summative task against success criteria
+    whyItWorks:
+      - The Engage question is the one Evaluate answers, so the storyline closes
+      - Explore generates the data Explain uses
+      - The simulation removes friction in a way no school lab can
+      - Elaborate shifts to design, raising cognitive demand
+      - Formative checks in every phase allow adjustment
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: seq-s4-cells
+    title: What makes something alive, and how do we sort living things?
+    context: { stages: [stage4], focusAreas: [Cells and classification], disciplines: [biology] }
+    contentOutcomes: [SC4-CLS-01]
+    bigQuestion: What makes something alive, and how do we sort living things?
+    learningIntentions:
+      - All living things are made of cells
+      - Plant, animal and microbial cells share some structures and differ in others
+      - Scientists classify organisms using observable structural features
+    targetConceptions:
+      - Plants and fungi are not made of cells
+      - Cells are flat, like textbook diagrams
+      - Living things are things that move
+      - Classification groups are fixed and obvious
+    predictPrompt: Before reading on, why might this sequence delay the labelled cell diagram until lesson 5? What would be lost if it came first?
+    steps:
+      - lessons: "1"
+        phaseId: engage
+        activity: |
+          Card sort of a candle flame, a seed, yeast granules, a lichen-covered rock, a crystal, a mushroom
+          and a virus image into "alive" and "not alive". Each group writes the rule it used; rules go on a
+          class thinking wall.
+        wsOutcomes: [SC4-WS-02]
+        formativeCheck: Photograph of each group's sort and rule
+      - lessons: "2–4"
+        phaseId: explore
+        activity: |
+          Microscopy rotation: onion epidermis, cheek cells (or prepared slides), Elodea leaf, yeast in sugar
+          water and pond water. Students draw at two magnifications, estimate size, and list what all samples
+          have in common.
+        wsOutcomes: [SC4-WS-01, SC4-WS-04, SC4-WS-05]
+        formativeCheck: Check drawings for scale, labels and magnification; questioning at each station
+        scaffoldSlots:
+          - field: formativeCheck
+            prompt: What question would you ask at the Elodea station to find out whether a student thinks plants are made of cells?
+      - lessons: "5"
+        phaseId: explain
+        activity: |
+          Groups share drawings. The teacher introduces cell theory, key organelles (nucleus, cell membrane,
+          cell wall, chloroplast, vacuole) and unicellular versus multicellular organisms, using students' own
+          images and a 3D cell model to challenge the flat-cell idea.
+        wsOutcomes: [SC4-WS-06, SC4-WS-08]
+        formativeCheck: Mini-whiteboard Venn diagram of plant and animal cells
+      - lessons: "6"
+        phaseId: explain
+        activity: |
+          The teacher models building a dichotomous key for classroom objects, then for living things, and
+          introduces kingdoms and binomial names.
+        wsOutcomes: [SC4-WS-06]
+        formativeCheck: Exit ticket using a short key to identify two organisms
+        scaffoldSlots:
+          - field: activity
+            prompt: Which students' drawings from lessons 2–4 would you use to show a feature that separates plants from fungi, and why?
+      - lessons: "7–9"
+        phaseId: elaborate
+        activity: |
+          Students build a dichotomous key for 8–10 local organisms from a schoolyard survey or specimen photos,
+          then test it on a peer. Extension: compare Western taxonomy with an Aboriginal classification system
+          for local plants and animals, developed with local community input, and discuss what each is
+          designed to do.
+        wsOutcomes: [SC4-WS-07, SC4-WS-08]
+        formativeCheck: Peer test of keys; teacher feedback on the features chosen
+      - lessons: "10"
+        phaseId: evaluate
+        activity: |
+          Students revise their lesson 1 sort with evidence and complete "I used to think… now I think…
+          because…". Short task: classify an unfamiliar organism from images and justify using cell and
+          structural evidence.
+        wsOutcomes: [SC4-WS-08]
+        formativeCheck: Summative task against success criteria
+    whyItWorks:
+      - The Engage sort surfaces fuzzy criteria for life that students test and refine throughout
+      - Students see real cells before a labelled diagram, so vocabulary attaches to their own observations
+      - Elaborate moves from recognising structures to using them to classify, raising cognitive demand
+      - Comparing knowledge systems shows classification as a human, purposeful activity
+    watchFor: |
+      The temptation to open with a labelled animal cell diagram. For biology-trained teachers this feels
+      efficient, but it turns lessons 2–4 into a spot-the-organelle exercise rather than an investigation.
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: seq-s5-disease
+    title: How does a disease spread through a community, and what is the best way to stop it?
+    context: { stages: [stage5], focusAreas: [Disease, Data science 2], disciplines: [biology] }
+    contentOutcomes: [SC5-DIS-01, SC5-DA2-01]
+    bigQuestion: How does a disease spread through a community, and what is the best way to stop it?
+    learningIntentions:
+      - Infectious diseases are caused by pathogens transmitted in specific ways
+      - The immune system responds to pathogens
+      - Vaccination, hygiene and public health measures reduce spread, and data can be used to evaluate them
+    targetConceptions:
+      - Cold weather causes colds
+      - Antibiotics cure viral infections
+      - Vaccines only protect the person vaccinated
+      - All microbes are harmful
+    predictPrompt: Before reading on, what does the simulation in lessons 2–3 let students experience that a lecture on herd immunity could not?
+    steps:
+      - lessons: "1"
+        phaseId: engage
+        activity: |
+          A hypothetical scenario: half a Year 9 class is absent with the same illness after camp. Students
+          answer individually: what caused it, how did it spread, and what should the school do? Answers are
+          recorded, then pooled.
+        wsOutcomes: [SC5-WS-02]
+        formativeCheck: Written initial explanations collected
+      - lessons: "2–3"
+        phaseId: explore
+        activity: |
+          Simulated outbreak: each student has a cup of clear liquid, one secretly "infected" with dilute sodium
+          carbonate. Students exchange liquid over three rounds, test with indicator, and use exchange records
+          to trace patient zero. Repeat with a "vaccinated" subgroup whose cups cannot be infected.
+        wsOutcomes: [SC5-WS-04, SC5-WS-05, SC5-WS-06]
+        formativeCheck: Transmission tables and tracing logic checked
+      - lessons: "4"
+        phaseId: explore
+        activity: |
+          Groups analyse a real data set, such as measles cases against vaccination coverage or notifiable
+          disease data, describe patterns, and write a hypothesis explaining them.
+        wsOutcomes: [SC5-WS-02, SC5-WS-06]
+        formativeCheck: Hypothesis statements reviewed
+        scaffoldSlots:
+          - field: formativeCheck
+            prompt: What would a weak hypothesis look like here, and what feedback would move it towards a testable one?
+      - lessons: "5–6"
+        phaseId: explain
+        activity: |
+          Groups present findings. The teacher introduces pathogen types (bacteria, viruses, fungi, protists,
+          parasites), modes of transmission, the immune response and herd immunity, linking repeatedly to the
+          simulation and data, and explicitly addresses the idea that antibiotics cure viruses.
+        wsOutcomes: [SC5-WS-06, SC5-WS-08]
+        formativeCheck: Mini-whiteboards matching pathogen, transmission and control measure
+      - lessons: "7"
+        phaseId: explain
+        activity: |
+          Case study of John Snow's cholera map and the rise of germ theory. Students annotate their Engage
+          answers with new concepts.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Annotated Engage response
+      - lessons: "8–10"
+        phaseId: elaborate
+        activity: |
+          Students choose a disease relevant to a community (a vaccine-preventable disease, a zoonotic disease,
+          or trachoma in remote communities) and produce an evidence-based public health recommendation. They
+          evaluate one online claim about the disease for legitimacy and weigh ethical considerations. Where
+          relevant, include Aboriginal community-controlled health perspectives, developed with community.
+        wsOutcomes: [SC5-WS-07, SC5-WS-08]
+        formativeCheck: Draft recommendation conference; claim-evaluation checkpoint
+        scaffoldSlots:
+          - field: activity
+            prompt: Which criteria would you give students for judging whether an online health claim is legitimate?
+      - lessons: "11"
+        phaseId: evaluate
+        activity: |
+          Students revisit the camp scenario and rewrite their response with scientific reasoning. Short task:
+          explain a new outbreak scenario, identify the pathogen type and propose justified control measures.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Summative task against success criteria
+    whyItWorks:
+      - The simulation lets students experience exponential spread and herd immunity before they hear the terms
+      - Real data moves Explore beyond the lab and builds towards Stage 5 data outcomes
+      - Elaborate is a genuine transfer task with ethical and evidence-evaluation dimensions
+      - The Engage scenario returns in Evaluate, so students can see how far their reasoning has moved
+    watchFor: |
+      Letting Elaborate become a poster about a disease. The recommendation must use transmission and immunity
+      concepts, and the claim evaluation must cite evidence.
+    safetyNotes: |
+      Follow your school's chemical safety procedures for the simulation, and your sector's microbiology
+      guidelines if you add culturing (sealed plates, no opening, correct disposal). Disease topics can touch
+      students' experience of illness or loss: keep the Engage scenario hypothetical and give students choice
+      of disease in Elaborate.
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+misapplications:
+  - id: mis-labels
+    name: Labels without logic
+    looksLike: Existing lessons re-badged with E headings; order unchanged.
+    whyItUndermines: Explanation still precedes experience, so there is no mechanism for conceptual change.
+    fix: Rebuild around one big question and move practical work before explanation.
+    lookForIds: [explore-before-explain]
+  - id: mis-one-lesson
+    name: Five Es in one lesson
+    looksLike: Ten minutes per phase, every lesson.
+    whyItUndermines: No time to explore or transfer; phases become rituals.
+    fix: Plan 5E across 4–12 lessons.
+    lookForIds: [explore-own-data, elaborate-new-context]
+  - id: mis-entertainment
+    name: Engage as entertainment
+    looksLike: A fun video or demonstration with no link to the concept.
+    whyItUndermines: Motivation without elicitation; prior ideas stay hidden.
+    fix: Require a prediction or explanation and record it.
+    lookForIds: [engage-link, engage-elicit]
+  - id: mis-confirmation
+    name: Explore as confirmation
+    looksLike: A recipe practical run after the theory.
+    whyItUndermines: Students verify rather than investigate.
+    fix: Run the investigation first and hold back the answer.
+    lookForIds: [explore-before-explain]
+  - id: mis-monologue
+    name: Explain as teacher monologue
+    looksLike: Lessons of slides and notes with no student talk.
+    whyItUndermines: Students' ideas are bypassed and misconceptions persist.
+    fix: Students explain first; build on their data.
+    lookForIds: [explain-students-first, explain-links-data]
+  - id: mis-no-explain
+    name: Explore without Explain
+    looksLike: Open inquiry with no consolidation.
+    whyItUndermines: Students leave with vague or wrong ideas.
+    fix: Always follow Explore with explicit sense-making.
+    lookForIds: [explore-feeds-explain]
+  - id: mis-no-elaborate
+    name: Missing Elaborate
+    looksLike: The sequence ends at Explain, then a test.
+    whyItUndermines: No transfer; understanding stays bound to one context.
+    fix: Plan a new context that demands the concept.
+    lookForIds: [elaborate-new-context, elaborate-requires-concept]
+  - id: mis-end-only
+    name: Evaluate only at the end
+    looksLike: One summative test.
+    whyItUndermines: No chance to respond to misconceptions during the sequence.
+    fix: Embed formative checks in every phase.
+    lookForIds: [evaluate-formative]
+
+checklist:
+  - id: chk-whole
+    title: Whole sequence
+    items:
+      - { id: chk-whole-question, text: 'One big question anchors the sequence and Evaluate returns to it', lookForId: engage-question }
+      - { id: chk-whole-outcomes, text: 'Content and Working scientifically outcomes are named and taught', lookForId: evaluate-aligned }
+      - { id: chk-whole-conceptions, text: 'Target alternative conceptions are identified in advance' }
+  - id: chk-engage
+    title: Engage
+    phaseId: engage
+    items:
+      - { id: chk-engage-link, text: 'The hook is linked to the big idea', lookForId: engage-link }
+      - { id: chk-engage-record, text: 'Student predictions are recorded for later', lookForId: engage-elicit }
+  - id: chk-explore
+    title: Explore
+    phaseId: explore
+    items:
+      - { id: chk-explore-order, text: 'Investigation comes before formal explanation', lookForId: explore-before-explain }
+      - { id: chk-explore-data, text: 'Students generate their own evidence', lookForId: explore-own-data }
+  - id: chk-explain
+    title: Explain
+    phaseId: explain
+    items:
+      - { id: chk-explain-first, text: 'Students explain first using Explore evidence', lookForId: explain-students-first }
+      - { id: chk-explain-reps, text: 'Multiple representations are used', lookForId: explain-representations }
+  - id: chk-elaborate
+    title: Elaborate
+    phaseId: elaborate
+    items:
+      - { id: chk-elaborate-new, text: 'The context is new', lookForId: elaborate-new-context }
+      - { id: chk-elaborate-demand, text: 'Cognitive demand increases', lookForId: elaborate-demand }
+  - id: chk-evaluate
+    title: Evaluate
+    phaseId: evaluate
+    items:
+      - { id: chk-evaluate-formative, text: 'Formative checks appear in every phase', lookForId: evaluate-formative }
+      - { id: chk-evaluate-revisit, text: 'Students reflect on how their thinking changed', lookForId: evaluate-revisit }
+  - id: chk-inclusion
+    title: Inclusion and context
+    items:
+      - { id: chk-inclusion-adjust, text: 'Adjustments are planned for EAL/D learners, students with disability and high potential students' }
+      - { id: chk-inclusion-aboriginal, text: 'Aboriginal and Torres Strait Islander perspectives are authentic and developed with community' }
+      - { id: chk-inclusion-risk, text: 'Practical work has a risk assessment' }
+
+syllabusAlignment:
+  wsMapping:
+    - { skill: 1, phaseIds: [engage, explore] }
+    - { skill: 2, phaseIds: [engage, explore] }
+    - { skill: 3, phaseIds: [explore, elaborate] }
+    - { skill: 4, phaseIds: [explore, elaborate] }
+    - { skill: 5, phaseIds: [explore, explain] }
+    - { skill: 6, phaseIds: [explain, elaborate] }
+    - { skill: 7, phaseIds: [elaborate] }
+    - { skill: 8, phaseIds: [explain, evaluate] }
+  depthStudies: A depth study fits an extended Elaborate phase, or can be designed as its own 5E cycle with a student-generated question.
+  dataScience: Real data sets can serve as the Explore experience before modelling or claim evaluation is introduced.
+  inclusion:
+    eald: Explore gives shared concrete experience before technical language; pre-teach vocabulary in Explain with visuals and sentence frames.
+    disability: Plan adjustments to practical tasks, recording formats and communication modes; Life Skills outcomes may apply.
+    highPotential: Open up Explore with student-designed variables and deepen Elaborate with complex systems.
+    aboriginalPerspectives: Engage and Elaborate suit authentic, place-based connections developed with local Aboriginal community.
+
+nesting:
+  - { modelId: poe, phaseId: engage, how: 'Use a Predict–Observe–Explain to surface and challenge the target conception.' }
+  - { modelId: swh, phaseId: explain, how: 'Use a Science Writing Heuristic template to structure claims and evidence.' }
+  - { modelId: adi, phaseId: explore, how: 'Run an Argument-Driven Inquiry across Explore and Explain when the sequence targets argument from evidence.' }
+  - { modelId: ssi, phaseId: elaborate, how: 'Add a socio-scientific deliberation as the transfer task.' }
+  - { modelId: levels-of-inquiry, phaseId: explore, how: 'Set the inquiry level to learner readiness.' }
+
+reflectionPrompts:
+  - id: refl-personal-misconception
+    type: personal
+    prompt: Think of a science idea you misunderstood at school. What would an Engage and Explore sequence have needed to do to change your mind?
+    coachFollowUps: [What evidence would have convinced you?, Why might direct explanation alone not have worked?]
+  - id: refl-critical-guidance
+    type: critical
+    prompt: Where does the 5E model sit in relation to the critique of minimally guided instruction, and what design choices keep it on the right side?
+    coachFollowUps: [Which phase carries the explicit guidance?, What happens if Explain is skipped?]
+  - id: refl-application-engage
+    type: application
+    prompt: Choose a Stage 4 or Stage 5 focus area, identify one alternative conception, and design an Engage activity that surfaces it.
+    coachFollowUps: [How will you record students' ideas?, When in the sequence will you return to them?]
+
+scaffold:
+  defaultMode: tutor
+  revealAfterAttempt: [seq-s4-forces, seq-s4-cells, seq-s5-disease]
+  ai:
+    groundedIn: [phases.examples, workedSequences, misapplications, checklist, reflectionPrompts]
+    allowed: [contextualise-examples, audit-program, draft-skeleton, coach-reflection, compare-models]
+    never:
+      - Never return a rewritten or completed teaching program in tutor mode
+      - Never fill scaffold slots on the learner's behalf
+      - Never cite an outcome code that is not in the syllabus whitelist
+      - Never answer a reflection prompt; ask follow-up questions only
+    auditorFocus: [explore-before-explain, explain-links-data, elaborate-new-context, evaluate-formative]
+
+references:
+  - id: air-2023
+    citation: 'Polanin, J. R., et al. (2023). The 5E instructional model: An evidence gap map analysis. American Institutes for Research.'
+    url: https://air.org/sites/default/files/2023-10/5E-EGM-brief-Oct-2023.pdf
+  - id: bybee-2006
+    citation: 'Bybee, R. W., Taylor, J. A., Gardner, A., Van Scotter, P., Powell, J. C., Westbrook, A., & Landes, N. (2006). The BSCS 5E instructional model: Origins and effectiveness. BSCS.'
+  - id: kirschner-2006
+    citation: 'Kirschner, P. A., Sweller, J., & Clark, R. E. (2006). Why minimal guidance during instruction does not work. Educational Psychologist, 41(2), 75–86.'
+    doi: 10.1207/s15326985ep4102_1
+  - id: posner-1982
+    citation: 'Posner, G. J., Strike, K. A., Hewson, P. W., & Gertzog, W. A. (1982). Accommodation of a scientific conception. Science Education, 66(2), 211–227.'
+    doi: 10.1002/sce.3730660207

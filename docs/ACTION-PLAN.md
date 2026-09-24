@@ -1,5 +1,5 @@
 # LXDUNE Action Plan
-**Last updated:** 2026-05-23
+**Last updated:** 2026-09-24
 **How to update:** Tell Claude Code "Update docs/ACTION-PLAN.md — mark item X complete" or "add [item] under [priority]"
 
 ---
@@ -290,6 +290,15 @@ replaces two, students see AT1/AT2 in a tab switcher. Also deploy
 - [ ] Add assessment file links once tasks are uploaded
 - [ ] Deploy all Moodle shells to EDSE362 course
 - [ ] Verify in test harness before go-live
+
+### 28. Constructivist model reckoner — companion guides ⬜ (open item remains) — 2026-09-24
+Session note: added the reckoner as a standalone tool, separate from `blocks.js`.
+- [x] Source lives at `tools/reckoner` (YAML guides + Zod schema + build); published page is `reckoner/index.html`
+- [x] Editing workflow: change `tools/reckoner/content/guides/*.yaml`, then `cd tools/reckoner && npm run publish:pages`. Never edit `reckoner/index.html` by hand
+- [x] Only guides with `status: published` reach students (`--drafts` builds a review copy to `dist/site/review.html` only)
+- [x] Four guides published at v1.0.0: 5E, POE, ADI, Levels of inquiry. The other eleven models show "guide coming soon"
+- [ ] Open: the 13 catalogue models in `tools/reckoner/content/catalogue.json` still carry unvalidated fit profiles
+- [ ] After dev → main merge: confirm `https://thatswhatsnext.github.io/LXDUNE/reckoner/` serves, then link from a Moodle block with `target="_blank"`
 
 ---
 

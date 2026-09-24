@@ -1,0 +1,398 @@
+{
+ "SCALE": {
+  "macro": {
+   "label": "Unit architecture",
+   "cls": "b-macro",
+   "tip": "Structures a whole sequence of 4–15 lessons"
+  },
+  "meso": {
+   "label": "Multi-lesson routine",
+   "cls": "b-meso",
+   "tip": "An investigation or routine across a few lessons, nestable in a unit"
+  },
+  "micro": {
+   "label": "Single lesson",
+   "cls": "b-micro",
+   "tip": "A strategy for one lesson or activity"
+  },
+  "dial": {
+   "label": "Guidance dial",
+   "cls": "b-dial",
+   "tip": "Calibrates teacher guidance within any model"
+  }
+ },
+ "DIMS": [
+  {
+   "id": "purpose",
+   "label": "What is the main learning purpose?",
+   "short": "purpose",
+   "weight": 3,
+   "multi": 2,
+   "sub": "Choose one, or two if the sequence genuinely has a dual purpose.",
+   "help": "Purpose drives the choice more than anything else. A misconception-focused sequence needs cognitive conflict; an argument-focused one needs structured critique; a design-focused one needs a problem with real constraints.",
+   "options": [
+    [
+     "misc",
+     "Shift a robust misconception"
+    ],
+    [
+     "model",
+     "Explain a phenomenon with a model"
+    ],
+    [
+     "investigate",
+     "Learn to investigate"
+    ],
+    [
+     "argue",
+     "Argue from evidence"
+    ],
+    [
+     "design",
+     "Solve a real problem or design"
+    ],
+    [
+     "ssi",
+     "Reason about a socio-scientific issue"
+    ],
+    [
+     "reason",
+     "Develop reasoning patterns"
+    ]
+   ]
+  },
+  {
+   "id": "time",
+   "label": "How much time do you have?",
+   "short": "timescale",
+   "weight": 2,
+   "help": "Models that hand students control (problem-based, project-based, Ambitious Science Teaching) need time for false starts and revision. Short timeframes favour tighter sequences.",
+   "options": [
+    [
+     "lesson",
+     "One lesson"
+    ],
+    [
+     "short",
+     "2–5 lessons"
+    ],
+    [
+     "unit",
+     "A unit (6–15 lessons)"
+    ],
+    [
+     "depth",
+     "A depth study or term project"
+    ]
+   ]
+  },
+  {
+   "id": "ready",
+   "label": "How independent are your learners with inquiry?",
+   "short": "learner readiness",
+   "weight": 2,
+   "help": "Novices lack the knowledge to manage open-ended tasks, so low-guidance models overload them (Kirschner, Sweller & Clark, 2006). Readiness is about experience with inquiry, not ability.",
+   "options": [
+    [
+     "novice",
+     "Novice"
+    ],
+    [
+     "developing",
+     "Developing"
+    ],
+    [
+     "experienced",
+     "Experienced"
+    ]
+   ]
+  },
+  {
+   "id": "concept",
+   "label": "What kind of concept is it?",
+   "short": "nature of the concept",
+   "weight": 1,
+   "help": "Observable phenomena suit hands-on exploration. Abstract, unobservable mechanisms (particles, genes, fields) need explicit modelling. Large-scale or historical ideas rely on data and models. Value-laden topics need ethical reasoning.",
+   "options": [
+    [
+     "observable",
+     "Directly observable in class"
+    ],
+    [
+     "instrument",
+     "Observable with instruments or data"
+    ],
+    [
+     "abstract",
+     "Abstract or unobservable"
+    ],
+    [
+     "largescale",
+     "Large-scale or historical"
+    ],
+    [
+     "value",
+     "Value-laden or contested"
+    ]
+   ]
+  },
+  {
+   "id": "misc",
+   "label": "How well known are students’ alternative conceptions?",
+   "short": "alternative conceptions",
+   "weight": 1,
+   "help": "Robust, well-documented ideas (for example, a moving object needs a force to keep moving) call for models built around eliciting and challenging them.",
+   "options": [
+    [
+     "robust",
+     "Robust and well documented"
+    ],
+    [
+     "some",
+     "Some known"
+    ],
+    [
+     "unknown",
+     "Largely unknown"
+    ]
+   ]
+  },
+  {
+   "id": "ws",
+   "label": "Which Working scientifically outcomes are you targeting?",
+   "short": "Working scientifically focus",
+   "weight": 1,
+   "multi": 8,
+   "sub": "Select all that apply (Stage 4 SC4-WS or Stage 5 SC5-WS).",
+   "help": "Different models build different skills. Inquiry models build planning and conducting; argument models build analysing and communicating; problem and design models build problem-solving.",
+   "options": [
+    [
+     "1",
+     "WS-01 Observing"
+    ],
+    [
+     "2",
+     "WS-02 Questioning and predicting"
+    ],
+    [
+     "3",
+     "WS-03 Planning"
+    ],
+    [
+     "4",
+     "WS-04 Conducting"
+    ],
+    [
+     "5",
+     "WS-05 Processing data"
+    ],
+    [
+     "6",
+     "WS-06 Analysing data"
+    ],
+    [
+     "7",
+     "WS-07 Problem-solving"
+    ],
+    [
+     "8",
+     "WS-08 Communicating"
+    ]
+   ]
+  },
+  {
+   "id": "conf",
+   "label": "How confident are you facilitating open-ended discussion and inquiry?",
+   "short": "your facilitation confidence",
+   "weight": 1,
+   "help": "Some models ask the teacher to withhold answers, manage disagreement and follow students’ ideas. That is a learnable skill; choose a model that stretches you without derailing the class.",
+   "options": [
+    [
+     "low",
+     "Still building"
+    ],
+    [
+     "mod",
+     "Moderate"
+    ],
+    [
+     "high",
+     "Confident"
+    ]
+   ]
+  },
+  {
+   "id": "res",
+   "label": "What practical resources do you have?",
+   "short": "practical resources",
+   "weight": 1,
+   "help": "Some models depend on hands-on work. Without a lab, simulations (such as PhET) and secondary data sets can carry the Explore phase.",
+   "options": [
+    [
+     "lab",
+     "Full lab access"
+    ],
+    [
+     "limited",
+     "Limited equipment"
+    ],
+    [
+     "none",
+     "Simulations and data only"
+    ]
+   ]
+  },
+  {
+   "id": "assess",
+   "label": "What evidence of learning do you need?",
+   "short": "assessment evidence",
+   "weight": 1,
+   "help": "Align the model with the assessment. A design product suits a design cycle; a written argument suits ADI or SWH; a conceptual explanation suits 5E, GLM or Ambitious Science Teaching.",
+   "options": [
+    [
+     "explanation",
+     "Conceptual explanation"
+    ],
+    [
+     "report",
+     "Investigation report"
+    ],
+    [
+     "argument",
+     "Written argument"
+    ],
+    [
+     "product",
+     "Product or prototype"
+    ],
+    [
+     "reflection",
+     "Reflection on learning"
+    ]
+   ]
+  },
+  {
+   "id": "lang",
+   "label": "How high are the language demands for your class?",
+   "short": "language demands",
+   "weight": 1,
+   "help": "Classes with many EAL/D learners benefit from shared concrete experience before technical language, and from structured writing scaffolds. Talk-heavy models need extra support.",
+   "options": [
+    [
+     "high",
+     "High (many EAL/D learners)"
+    ],
+    [
+     "moderate",
+     "Moderate"
+    ],
+    [
+     "low",
+     "Low"
+    ]
+   ]
+  },
+  {
+   "id": "place",
+   "label": "Is there scope for place-based learning with local community?",
+   "short": "place-based scope",
+   "weight": 0.5,
+   "help": "Some models make authentic space for local contexts and Aboriginal knowledges. Develop these with local Aboriginal community and your school’s Aboriginal Education staff.",
+   "options": [
+    [
+     "yes",
+     "Yes"
+    ],
+    [
+     "maybe",
+     "Possibly"
+    ],
+    [
+     "no",
+     "Not this time"
+    ]
+   ]
+  }
+ ],
+ "QUICK": {
+  "misc": {
+   "left": [
+    "5e",
+    "5E, with a POE in Engage"
+   ],
+   "right": [
+    "glm",
+    "Generative Learning Model (or 7E)"
+   ]
+  },
+  "model": {
+   "left": [
+    "5e",
+    "5E"
+   ],
+   "right": [
+    "ast",
+    "Ambitious Science Teaching"
+   ]
+  },
+  "investigate": {
+   "left": [
+    "5e",
+    "5E, with structured to guided inquiry in Explore"
+   ],
+   "right": [
+    "interactive-approach",
+    "Interactive Approach, or open inquiry in a depth study"
+   ]
+  },
+  "argue": {
+   "left": [
+    "swh",
+    "Science Writing Heuristic"
+   ],
+   "right": [
+    "adi",
+    "Argument-Driven Inquiry"
+   ]
+  },
+  "design": {
+   "left": [
+    "design-cycle",
+    "Scaffolded engineering design cycle"
+   ],
+   "right": [
+    "pbl",
+    "Problem-based learning or project-based science"
+   ]
+  },
+  "ssi": {
+   "left": [
+    "5e",
+    "5E, with an SSI task in Elaborate"
+   ],
+   "right": [
+    "ssi",
+    "SSI-based unit"
+   ]
+  },
+  "reason": {
+   "left": [
+    "case",
+    "Single CASE lessons"
+   ],
+   "right": [
+    "case",
+    "CASE lessons bridged into units"
+   ]
+  }
+ },
+ "PURPOSE_PHRASE": {
+  "misc": "shift a robust misconception",
+  "model": "build an explanatory model of a phenomenon",
+  "investigate": "develop investigation skills",
+  "argue": "develop argument from evidence",
+  "design": "solve a real problem or design a solution",
+  "ssi": "reason about a socio-scientific issue",
+  "reason": "develop general reasoning patterns"
+ }
+}
