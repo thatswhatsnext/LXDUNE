@@ -1,0 +1,470 @@
+[
+ {
+  "id": "learning-cycle",
+  "name": "Learning cycle",
+  "src": "Karplus & Thier (1967); Lawson (1989)",
+  "scale": "macro",
+  "phases": [
+   "Exploration",
+   "Term introduction",
+   "Concept application"
+  ],
+  "distinct": "The minimal experience-before-vocabulary sequence, and the ancestor of 5E.",
+  "fit": "Short concept sequences built on a clear lab phenomenon.",
+  "theory": [
+   "Piaget: equilibration",
+   "Lawson: hypothetico-deductive reasoning"
+  ],
+  "teacher": "Designs the exploration, then introduces terms at the moment students need them.",
+  "learner": "Explores, attaches new terms to experience, then applies them.",
+  "pitfall": "Introducing terms before exploration, which collapses it into a traditional lesson.",
+  "evidence": "Early studies (for example, Abraham & Renner, 1986) supported the sequence; it is included in 3E/5E/7E meta-analyses.",
+  "p": {
+   "purpose": "2221001",
+   "time": "1320",
+   "ready": "332",
+   "concept": "33110",
+   "misc": "222",
+   "ws": "22232211",
+   "conf": "332",
+   "res": "311",
+   "assess": "32101",
+   "lang": "322",
+   "place": "111"
+  }
+ },
+ {
+  "id": "e7",
+  "name": "7E",
+  "src": "Eisenkraft (2003)",
+  "scale": "macro",
+  "phases": [
+   "Elicit",
+   "Engage",
+   "Explore",
+   "Explain",
+   "Elaborate",
+   "Evaluate",
+   "Extend"
+  ],
+  "distinct": "Separates eliciting prior knowledge from engaging interest, and adds far transfer.",
+  "fit": "Topics with robust misconceptions and clear real-world transfer, such as Energy and Disease.",
+  "theory": [
+   "As for 5E",
+   "Ausubel: prior knowledge",
+   "Transfer of learning"
+  ],
+  "teacher": "Diagnoses prior knowledge deliberately and designs a far-transfer task.",
+  "learner": "Surfaces their own ideas and extends learning to unfamiliar contexts.",
+  "pitfall": "Treating Elicit as a quick brainstorm whose results are never used.",
+  "evidence": "Pooled with 5E in meta-analyses; the added phases rest on strong prior-knowledge and transfer research.",
+  "p": {
+   "purpose": "3321121",
+   "time": "0132",
+   "ready": "233",
+   "concept": "33222",
+   "misc": "321",
+   "ws": "23222222",
+   "conf": "233",
+   "res": "322",
+   "assess": "32123",
+   "lang": "322",
+   "place": "211"
+  }
+ },
+ {
+  "id": "glm",
+  "name": "Generative Learning Model",
+  "src": "Osborne & Wittrock (1985); Cosgrove & Osborne (1985)",
+  "scale": "macro",
+  "phases": [
+   "Preliminary: find out students’ ideas",
+   "Focus: students clarify their views",
+   "Challenge: compare with peers’ and scientists’ views",
+   "Application: use the new idea"
+  ],
+  "distinct": "Makes the challenge between student and scientific views the centrepiece.",
+  "fit": "Stubborn intuitive ideas: forces and motion, plant nutrition, heat and temperature.",
+  "theory": [
+   "Wittrock: generative learning",
+   "Personal constructivism",
+   "Ausubel"
+  ],
+  "teacher": "Investigates students’ ideas first, then stages a respectful challenge.",
+  "learner": "Clarifies, defends and revises their view against evidence.",
+  "pitfall": "A ‘challenge’ that is really a correction, so students defer rather than reason.",
+  "evidence": "Developed through the New Zealand Learning in Science Project; evidence is mainly classroom-based and qualitative.",
+  "p": {
+   "purpose": "3212001",
+   "time": "1320",
+   "ready": "233",
+   "concept": "32210",
+   "misc": "320",
+   "ws": "13111213",
+   "conf": "123",
+   "res": "233",
+   "assess": "30203",
+   "lang": "123",
+   "place": "111"
+  }
+ },
+ {
+  "id": "case",
+  "name": "CASE (Thinking Science)",
+  "src": "Adey, Shayer & Yates",
+  "scale": "meso",
+  "phases": [
+   "Concrete preparation",
+   "Cognitive conflict",
+   "Social construction",
+   "Metacognition",
+   "Bridging"
+  ],
+  "distinct": "Targets general reasoning patterns (control of variables, proportionality, probability, classification) rather than topic content.",
+  "fit": "Stage 4 reasoning foundations that underpin planning (WS-03) and analysis (WS-06).",
+  "theory": [
+   "Piaget: formal reasoning schemata",
+   "Vygotsky: ZPD",
+   "Flavell: metacognition"
+  ],
+  "teacher": "Manages conflict and group talk, withholds answers, and prompts reflection and bridging.",
+  "learner": "Reasons aloud, reflects on how they thought, and transfers the pattern.",
+  "pitfall": "Rushing to the right answer, which removes the conflict the lesson depends on.",
+  "evidence": "Early UK studies reported lasting gains; a later large UK trial of the Let’s Think programme found no attainment effect, so implementation quality matters.",
+  "p": {
+   "purpose": "1121003",
+   "time": "3210",
+   "ready": "332",
+   "concept": "32100",
+   "misc": "111",
+   "ws": "12321311",
+   "conf": "123",
+   "res": "332",
+   "assess": "11103",
+   "lang": "123",
+   "place": "111"
+  }
+ },
+ {
+  "id": "interactive-approach",
+  "name": "Interactive Approach",
+  "src": "Biddulph & Osborne (1984); Faire & Cosgrove (1988)",
+  "scale": "meso",
+  "phases": [
+   "Preparation",
+   "Exploratory activity",
+   "Students’ questions",
+   "Investigations",
+   "Reflection"
+  ],
+  "distinct": "Students’ own questions drive the investigations.",
+  "fit": "Local environments, Living systems and depth studies.",
+  "theory": [
+   "Personal constructivism",
+   "Dewey: inquiry from experience"
+  ],
+  "teacher": "Elicits and sorts students’ questions, helping them become investigable.",
+  "learner": "Generates questions and designs investigations to answer them.",
+  "pitfall": "Collecting students’ questions and then answering them by lecture.",
+  "evidence": "Originated in primary science; evidence is mainly classroom-based and qualitative.",
+  "p": {
+   "purpose": "1131111",
+   "time": "0233",
+   "ready": "123",
+   "concept": "33121",
+   "misc": "122",
+   "ws": "33332212",
+   "conf": "023",
+   "res": "321",
+   "assess": "13112",
+   "lang": "222",
+   "place": "321"
+  }
+ },
+ {
+  "id": "levels-of-inquiry",
+  "name": "Levels of inquiry",
+  "src": "Banchi & Bell (2008)",
+  "scale": "dial",
+  "phases": [
+   "Confirmation: question, method and answer given",
+   "Structured: question and method given",
+   "Guided: question given",
+   "Open: students pose question and method"
+  ],
+  "distinct": "Not a sequence but a way to calibrate how much the teacher specifies.",
+  "fit": "Any practical work; plan a progression from Stage 4 to Stage 5.",
+  "theory": [
+   "Dewey and Schwab: inquiry",
+   "Cognitive load theory"
+  ],
+  "teacher": "Decides what to specify and fades support deliberately.",
+  "learner": "Takes more design responsibility as the level rises.",
+  "pitfall": "Jumping to open inquiry with novices, or never moving beyond confirmation.",
+  "evidence": "A planning framework rather than a tested model; consistent with evidence that guided inquiry outperforms unguided discovery.",
+  "p": null
+ },
+ {
+  "id": "adi",
+  "name": "Argument-Driven Inquiry",
+  "src": "Sampson, Grooms & Walker (2011)",
+  "scale": "meso",
+  "phases": [
+   "Guiding question",
+   "Design and collect data",
+   "Tentative argument",
+   "Argumentation session",
+   "Reflective discussion",
+   "Investigation report",
+   "Double-blind peer review",
+   "Revise and submit"
+  ],
+  "distinct": "Argument and peer critique are built into the investigation itself.",
+  "fit": "Stage 5 investigations targeting SC5-WS-08; Reactions, Waves and motion.",
+  "theory": [
+   "Social constructivism",
+   "Epistemic practice (Duschl)",
+   "Toulmin: argument",
+   "Writing to learn"
+  ],
+  "teacher": "Frames the guiding question and runs argumentation and peer review.",
+  "learner": "Builds, critiques and revises arguments from evidence.",
+  "pitfall": "Dropping the argumentation session or peer review when time runs short, which removes the core.",
+  "evidence": "Quasi-experimental studies report gains in argument writing and science proficiency.",
+  "p": {
+   "purpose": "1223011",
+   "time": "0321",
+   "ready": "023",
+   "concept": "33211",
+   "misc": "111",
+   "ws": "12333313",
+   "conf": "123",
+   "res": "321",
+   "assess": "13301",
+   "lang": "123",
+   "place": "111"
+  }
+ },
+ {
+  "id": "swh",
+  "name": "Science Writing Heuristic",
+  "src": "Keys, Hand, Prain & Collins (1999)",
+  "scale": "meso",
+  "phases": [
+   "Beginning questions",
+   "Tests and procedures",
+   "Observations",
+   "Claims",
+   "Evidence",
+   "Comparison with others and texts",
+   "Reflection on how ideas changed"
+  ],
+  "distinct": "A writing-to-learn scaffold that turns lab reports into reasoning.",
+  "fit": "Any practical; particularly strong in EAL/D-rich classes. Builds WS-06 and WS-08.",
+  "theory": [
+   "Writing to learn (Hand, Prain)",
+   "Social constructivism"
+  ],
+  "teacher": "Negotiates meaning in discussion and prompts comparison with the literature.",
+  "learner": "Writes questions, claims and evidence, and reflects on how their thinking changed.",
+  "pitfall": "Using the template as a fill-in form without the class negotiation of claims.",
+  "evidence": "Multiple studies report gains, often largest for lower-achieving students.",
+  "p": {
+   "purpose": "2223011",
+   "time": "1321",
+   "ready": "332",
+   "concept": "33211",
+   "misc": "222",
+   "ws": "13122313",
+   "conf": "233",
+   "res": "321",
+   "assess": "23303",
+   "lang": "322",
+   "place": "111"
+  }
+ },
+ {
+  "id": "ast",
+  "name": "Ambitious Science Teaching",
+  "src": "Windschitl, Thompson & Braaten (2018)",
+  "scale": "macro",
+  "phases": [
+   "Anchoring phenomenon",
+   "Elicit initial models",
+   "Revise models with evidence",
+   "Evidence-based explanation"
+  ],
+  "distinct": "Students’ explanatory models are drafted early and revised publicly across the unit.",
+  "fit": "Unobservable mechanisms: particles, cells, genetics, climate, disease transmission.",
+  "theory": [
+   "Model-based reasoning",
+   "Sociocultural learning",
+   "Conceptual change over time"
+  ],
+  "teacher": "Selects the anchoring phenomenon, then tracks and presses on students’ models.",
+  "learner": "Drafts, tests and revises explanatory models in public.",
+  "pitfall": "An anchoring phenomenon too thin to sustain a unit, or models that are never revised.",
+  "evidence": "A growing body of classroom and design-based research; fewer controlled trials.",
+  "p": {
+   "purpose": "3322011",
+   "time": "0132",
+   "ready": "123",
+   "concept": "23331",
+   "misc": "321",
+   "ws": "13122323",
+   "conf": "023",
+   "res": "233",
+   "assess": "31312",
+   "lang": "222",
+   "place": "221"
+  }
+ },
+ {
+  "id": "pbl",
+  "name": "Problem-based learning",
+  "src": "Barrows (1986); Hmelo-Silver (2004)",
+  "scale": "macro",
+  "phases": [
+   "Ill-structured problem",
+   "What we know and need to know",
+   "Self-directed research",
+   "Propose a solution",
+   "Reflect"
+  ],
+  "distinct": "The problem comes first; content is learned in order to solve it.",
+  "fit": "Environmental sustainability, Disease, Materials; best with experienced learners.",
+  "theory": [
+   "Situated cognition",
+   "Self-regulated learning",
+   "Vygotsky"
+  ],
+  "teacher": "Tutor and cognitive coach who manages the process rather than delivering content.",
+  "learner": "Self-directed researcher and problem-solver.",
+  "pitfall": "Too little scaffolding, so novices flounder and misconceptions persist.",
+  "evidence": "Mixed in school science; effective when strongly scaffolded (Hmelo-Silver, Duncan & Chinn, 2007).",
+  "p": {
+   "purpose": "0122321",
+   "time": "0133",
+   "ready": "013",
+   "concept": "22123",
+   "misc": "011",
+   "ws": "12222233",
+   "conf": "013",
+   "res": "233",
+   "assess": "11232",
+   "lang": "122",
+   "place": "321"
+  }
+ },
+ {
+  "id": "project-based",
+  "name": "Project-based science",
+  "src": "Krajcik & Blumenfeld (2006)",
+  "scale": "macro",
+  "phases": [
+   "Driving question",
+   "Investigations",
+   "Collaboration",
+   "Technology tools",
+   "Public artefact"
+  ],
+  "distinct": "Extended, artefact-producing work around a driving question.",
+  "fit": "Depth studies; Energy, Environmental sustainability.",
+  "theory": [
+   "Situated learning",
+   "Constructionism (Papert)",
+   "Dewey"
+  ],
+  "teacher": "Designs the driving question and scaffolds sustained inquiry.",
+  "learner": "Investigator and producer of public artefacts.",
+  "pitfall": "A product that can be completed without the science.",
+  "evidence": "Promising results from well-designed curricula; outcomes vary with design and support.",
+  "p": {
+   "purpose": "0232321",
+   "time": "0023",
+   "ready": "013",
+   "concept": "23222",
+   "misc": "011",
+   "ws": "23333333",
+   "conf": "013",
+   "res": "332",
+   "assess": "12232",
+   "lang": "122",
+   "place": "321"
+  }
+ },
+ {
+  "id": "design-cycle",
+  "name": "Engineering design cycle",
+  "src": "Various (for example, ask, imagine, plan, create, test, improve)",
+  "scale": "macro",
+  "phases": [
+   "Define problem and constraints",
+   "Imagine solutions",
+   "Plan",
+   "Prototype",
+   "Test",
+   "Improve"
+  ],
+  "distinct": "Success is a working solution, not an explanation.",
+  "fit": "Forces, Materials, Energy; WS-07 problem-solving.",
+  "theory": [
+   "Constructionism (Papert)",
+   "Kolb: experiential learning"
+  ],
+  "teacher": "Sets constraints and criteria, and coaches iteration.",
+  "learner": "Designer who tests, fails and improves.",
+  "pitfall": "Trial and error with no science used to justify design choices.",
+  "evidence": "Integrated STEM evidence is varied; stronger when science concepts are explicitly required.",
+  "p": {
+   "purpose": "0121312",
+   "time": "0232",
+   "ready": "233",
+   "concept": "33101",
+   "misc": "111",
+   "ws": "21332232",
+   "conf": "233",
+   "res": "320",
+   "assess": "01132",
+   "lang": "322",
+   "place": "221"
+  }
+ },
+ {
+  "id": "ssi",
+  "name": "SSI-based teaching",
+  "src": "Zeidler et al. (2005); Sadler (2004)",
+  "scale": "macro",
+  "phases": [
+   "Contested issue",
+   "Science background",
+   "Evaluate evidence and claims",
+   "Ethical reasoning",
+   "Justified position"
+  ],
+  "distinct": "Integrates values and ethics with scientific evidence.",
+  "fit": "Genetics, Energy, Environmental sustainability, Data science 2.",
+  "theory": [
+   "Sociocultural theory",
+   "Moral reasoning",
+   "Functional scientific literacy"
+  ],
+  "teacher": "Frames a contested issue, keeps the science sound, and facilitates respectful deliberation.",
+  "learner": "Evaluates evidence and weighs values to reach a justified position.",
+  "pitfall": "A debate built on opinion with thin science underneath.",
+  "evidence": "Research shows gains in argumentation and reasoning; content gains vary.",
+  "p": {
+   "purpose": "0113131",
+   "time": "1232",
+   "ready": "123",
+   "concept": "01223",
+   "misc": "111",
+   "ws": "11112233",
+   "conf": "123",
+   "res": "133",
+   "assess": "10323",
+   "lang": "123",
+   "place": "321"
+  }
+ }
+]

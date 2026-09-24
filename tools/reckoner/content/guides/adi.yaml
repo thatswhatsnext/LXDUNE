@@ -1,0 +1,610 @@
+# Argument-Driven Inquiry companion guide
+# First multi-lesson routine (meso scale), and the first model with more than five phases.
+
+schemaVersion: "1.3"
+id: adi
+name: Argument-Driven Inquiry
+originators: Sampson, Grooms & Walker (2011)
+version: 1.0.0
+status: published
+lastReviewed: 2026-09-21
+syllabus: NSW Science 7–10 Syllabus (2023)
+provenance:
+  source: ai-drafted-reviewed
+  authors: ["Claude, drafted for S. Grant"]
+  reviewedBy: ["Steve Grant"]
+  reviewedOn: 2026-09-21
+
+reckoner:
+  scale: meso
+  fitProfile:
+    purpose: [1, 2, 2, 3, 0, 1, 1]
+    time:    [0, 3, 2, 1]
+    ready:   [0, 2, 3]
+    concept: [3, 3, 2, 1, 1]
+    misc:    [1, 1, 1]
+    ws:      [1, 2, 3, 3, 3, 3, 1, 3]
+    conf:    [1, 2, 3]
+    res:     [3, 2, 1]
+    assess:  [1, 3, 3, 0, 1]
+    lang:    [1, 2, 3]
+    place:   [1, 1, 1]
+  distinguishingFeature: Argument and peer critique are built into the investigation itself.
+  bestScienceFit: Stage 5 investigations targeting SC5-WS-08; Reactions, Waves and motion, Environmental sustainability.
+  commonPitfall: Dropping the argumentation session or peer review when time runs short, which removes the core.
+  evidenceSummary: Quasi-experimental studies report gains in argument writing and science proficiency, with the strongest effects when critique is genuinely two-way.
+  evidenceStrength: moderate
+  evidenceReferenceIds: [sampson-2011, osborne-2010]
+  theoryTags: ["Social constructivism", "Epistemic practice (Duschl)", "Toulmin: argument", "Writing to learn"]
+
+introduction:
+  lead: Argument-Driven Inquiry turns a practical investigation into an argument that other students can interrogate, then makes students revise it.
+  purposeStatement: |
+    This guide helps undergraduate and early career teachers run ADI in NSW Science 7–10. ADI is a
+    multi-lesson routine, usually 6–8 lessons, that nests inside a unit. It replaces the confirmation
+    practical and the copied prac report with a student-designed investigation, a public argument and a
+    genuine peer-review cycle. The guide covers what makes a guiding question work, how to run an
+    argumentation session that critiques ideas rather than people, and how to keep peer review honest.
+  audience: Pre-service teachers in secondary science method units, and teachers in their first years.
+  howToUse: |
+    Read the theory and stage groups first. Use the stage cards while planning, and the checklist before
+    you teach. Try the worked sequence's prediction question before you read the analysis.
+
+theory:
+  summary: |
+    Science settles claims by argument: evidence is offered, challenged and revised in public. ADI makes
+    that process the structure of the lesson sequence, so students learn the content and the practice at
+    the same time.
+  foundations:
+    - tradition: "Epistemic practice"
+      idea: Knowing science includes knowing how claims are justified, critiqued and revised in a community.
+      designImplication: The argumentation session and peer review are not extras; they are where the science practice lives.
+      referenceIds: [duschl-osborne-2002]
+    - tradition: "Toulmin: argument structure"
+      idea: An argument has a claim, the evidence for it, and a justification connecting the two.
+      designImplication: Students build all three parts on a whiteboard before they present, so critique has something to grip.
+      referenceIds: [sampson-2011]
+    - tradition: "Social constructivism"
+      idea: Understanding is built through talk in which ideas are tested against others' reasoning.
+      designImplication: Round-robin critique gives every student both roles, presenter and critic.
+      referenceIds: [osborne-2010]
+    - tradition: "Writing to learn"
+      idea: Writing for an audience forces reasoning to become explicit.
+      designImplication: The report is written for peers who will review it, not for the teacher's mark book.
+      referenceIds: [sampson-2011]
+  critiques:
+    - claim: Argumentation sessions can become social rather than critical, with students agreeing to avoid conflict.
+      response: |
+        Teach critique language explicitly, require each group to record the questions they were asked and
+        what they changed, and make reviewers accountable by spot-checking the quality of their feedback.
+      referenceIds: [osborne-2010]
+
+roles:
+  teacher: Frames the guiding question and the criteria, approves plans for safety rather than correctness, models critique language, consolidates the science, and holds reviewers accountable.
+  learner: Designs the investigation, builds a three-part argument, critiques and is critiqued, writes an individual report, reviews a peer's report, and revises their own.
+
+sequence:
+  shape: iterative
+  summary: |
+    Eight stages in three groups: investigate, argue, then write and review. The last stages loop, because
+    the report is revised after review rather than submitted once.
+  scaleNote: ADI is a routine of about 6–8 lessons that sits inside a unit. It replaces a practical and its report, not the whole unit.
+
+phaseGroups:
+  - id: investigate
+    name: Investigate
+    summary: Students take on a guiding question, design a method, and build a first argument from their own data.
+  - id: argue
+    name: Argue
+    summary: Arguments are presented, critiqued and revised, then the class consolidates the science and how the science was settled.
+  - id: write-review
+    name: Write and review
+    summary: Each student writes an individual report, reviews a peer's anonymously, and revises their own before submitting.
+
+phases:
+  - id: task-question
+    name: Task and guiding question
+    order: 1
+    group: investigate
+    job: Give students a phenomenon, a guiding question and the materials, so they know what they are trying to explain.
+    essentialFeatures:
+      - A guiding question with more than one defensible answer
+      - A short tool talk covering materials, technique and safety
+      - Criteria for a strong argument shared before students start
+      - A link to a phenomenon students have already met
+    teacherMoves: [Frames the phenomenon, Poses the guiding question, Runs the tool talk and shares the criteria]
+    learnerMoves: [Clarifies the question, Identifies what data would count as evidence]
+    typicalShare: { minPercent: 10, maxPercent: 15 }
+    formativeChecks: [Group statement of what evidence would answer the question]
+    lookFors:
+      - id: adi-question-open
+        question: Does the guiding question admit more than one plausible answer?
+        strongEvidence: Reasonable groups could reach different conclusions from the same materials.
+        weakEvidence: The question has one obvious answer, so there is nothing to argue.
+      - id: adi-criteria-shared
+        question: Do students know what a strong argument looks like before they start?
+        strongEvidence: Claim, evidence and justification criteria are displayed and discussed.
+        weakEvidence: Criteria appear only when work is marked.
+      - id: adi-tool-talk
+        question: Do students know how to use the equipment and what the hazards are?
+        strongEvidence: A brief demonstration of technique and a risk discussion precede planning.
+        weakEvidence: Students improvise with unfamiliar equipment.
+    examples:
+      - id: adi-inv-pos-microhabitats
+        kind: positive
+        title: Which schoolyard microhabitat supports more invertebrate diversity?
+        context: { stages: [stage5], focusAreas: [Environmental sustainability], disciplines: [biology] }
+        outcomes: [SC5-ENV-01, SC5-WS-03]
+        body: |
+          Two contrasting sites are offered, with pitfall traps, quadrats, sorting trays and keys. The teacher
+          demonstrates trap setting and safe handling, displays the argument criteria, and leaves sampling
+          design to the groups.
+        diagnosis: An open question, shared criteria and a tool talk, with the method left to students.
+        lookForIds: [adi-question-open, adi-criteria-shared, adi-tool-talk, adi-student-designed]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: adi-inv-neg-worksheet
+        kind: negative
+        title: A worksheet with one right answer
+        context: { stages: [stage5], focusAreas: [Environmental sustainability], disciplines: [biology] }
+        outcomes: []
+        body: |
+          Students are told to count invertebrates in two quadrats using a supplied method, then complete
+          a conclusion sentence starter.
+        diagnosis: The question has a single answer and the method is given, so no argument is possible and the later stages have nothing to work on.
+        lookForIds: [adi-question-open, adi-student-designed, adi-three-part]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: design-data
+    name: Design the method and collect data
+    order: 2
+    group: investigate
+    job: Students plan and run their own investigation, with the teacher checking safety and feasibility rather than correctness.
+    essentialFeatures:
+      - Groups design the method themselves
+      - The teacher approves plans for safety and feasibility, not for the right answer
+      - Variables, sample size and reliability are considered in the plan
+      - Time exists to repeat or fix a run that fails
+    teacherMoves: [Approves plans, Asks about reliability and controls, Resists fixing the design]
+    learnerMoves: [Designs a method, Justifies choices, Collects and records data]
+    typicalShare: { minPercent: 20, maxPercent: 30 }
+    formativeChecks: [Plan approval checkpoint, Data tables checked mid-collection]
+    lookFors:
+      - id: adi-student-designed
+        question: Did students design the method?
+        strongEvidence: Groups' methods differ from each other in defensible ways.
+        weakEvidence: Every group follows the same supplied procedure.
+      - id: adi-plan-checkpoint
+        question: Is the plan checked before data collection?
+        strongEvidence: A short conference covers safety, feasibility and reliability.
+        weakEvidence: Groups start collecting with unworkable or unsafe plans.
+      - id: adi-reliability
+        question: Have students thought about how much data they need and how reliable it is?
+        strongEvidence: Sample size, repeats and controls appear in the plan.
+        weakEvidence: A single measurement is treated as sufficient.
+
+  - id: tentative-argument
+    name: Analysis and tentative argument
+    order: 3
+    group: investigate
+    job: Turn data into a three-part argument other groups can examine.
+    essentialFeatures:
+      - Data are analysed and represented, not just listed
+      - A whiteboard carries the claim, the evidence and the justification
+      - The justification explains why the evidence counts, using scientific concepts
+      - Arguments are drafted quickly, because they are expected to change
+    teacherMoves: [Prompts analysis beyond raw numbers, Asks why the evidence counts]
+    learnerMoves: [Analyses data, Builds the three-part argument, Prepares to defend it]
+    typicalShare: { minPercent: 10, maxPercent: 15 }
+    formativeChecks: [Whiteboard check before the argumentation session]
+    lookFors:
+      - id: adi-three-part
+        question: Does the whiteboard show a claim, evidence and a justification?
+        strongEvidence: All three are present and distinguishable.
+        weakEvidence: A claim with raw data underneath and no justification.
+      - id: adi-analysis
+        question: Have the data been analysed and represented?
+        strongEvidence: Means, ranges, graphs or comparisons appear, chosen to answer the question.
+        weakEvidence: An unprocessed results table.
+      - id: adi-justification
+        question: Does the justification connect evidence to the claim using science?
+        strongEvidence: Students explain why this evidence is relevant and sufficient.
+        weakEvidence: "Because that's what we found."
+
+  - id: argumentation
+    name: Argumentation session
+    order: 4
+    group: argue
+    job: Put every argument under genuine, respectful critique, and let groups revise.
+    essentialFeatures:
+      - A format where every student presents and critiques, such as round robin with one presenter staying
+      - Critique language is modelled and displayed
+      - Groups record the questions they were asked and what they changed
+      - Critique targets the argument, not the group
+    teacherMoves: [Models critique language, Circulates and presses for justification, Protects the norms]
+    learnerMoves: [Presents the argument, Asks critical questions, Revises the argument]
+    typicalShare: { minPercent: 15, maxPercent: 20 }
+    formativeChecks: [Record of questions asked and changes made]
+    lookFors:
+      - id: adi-critique-quality
+        question: Are the questions about evidence and justification?
+        strongEvidence: Students ask how many samples, how the data were analysed, and why the evidence supports the claim.
+        weakEvidence: Comments about neatness, or agreement without questions.
+      - id: adi-talk-norms
+        question: Is critique directed at ideas rather than people?
+        strongEvidence: Sentence stems are displayed and used, and disagreement is normal.
+        weakEvidence: Students avoid disagreeing, or critique becomes personal.
+      - id: adi-revision-record
+        question: Is revision visible?
+        strongEvidence: Each group records what changed in its argument and why.
+        weakEvidence: Arguments are unchanged after the session.
+    examples:
+      - id: adi-argue-pos-roundrobin
+        kind: positive
+        title: Round robin with recorded changes
+        context: { stages: [stage5], focusAreas: [Environmental sustainability], disciplines: [biology] }
+        outcomes: [SC5-WS-08]
+        body: |
+          One student stays with each whiteboard while the rest circulate. Visiting students use displayed
+          stems such as "What makes you think…?" and "How do you know your sample was big enough?". Presenters
+          log every question and note which ones forced a change. Two groups revise their claim about
+          diversity after being challenged on sample size.
+        diagnosis: Every student both presents and critiques, questions target evidence and justification, and revision is recorded.
+        lookForIds: [adi-critique-quality, adi-talk-norms, adi-revision-record]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: adi-argue-neg-presentations
+        kind: negative
+        title: Presentations with polite applause
+        context: { stages: [stage5], focusAreas: [Environmental sustainability], disciplines: [biology] }
+        outcomes: []
+        body: |
+          Each group presents results to the class. The teacher comments on whether each is correct, the class
+          claps, and the next group begins.
+        diagnosis: The teacher adjudicates instead of the evidence, nobody critiques, and no argument is revised.
+        lookForIds: [adi-critique-quality, adi-revision-record, adi-nos-explicit]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: reflective-discussion
+    name: Explicit and reflective discussion
+    order: 5
+    group: argue
+    job: Consolidate the science concept, and make explicit how the class settled the question.
+    essentialFeatures:
+      - The teacher consolidates the target concept, correcting what the session surfaced
+      - The class discusses what counted as good evidence and why
+      - Ideas about the nature of science are named, not left implicit
+      - Misconceptions raised during critique are addressed directly
+    teacherMoves: [Consolidates the concept, Names the nature-of-science idea, Addresses misconceptions]
+    learnerMoves: [Compares arguments, Articulates what makes evidence strong, Records the agreed science]
+    typicalShare: { minPercent: 10, maxPercent: 15 }
+    formativeChecks: [Exit ticket on the concept and on what made an argument strong]
+    lookFors:
+      - id: adi-concept-consolidated
+        question: Is the scientific concept made explicit at the end?
+        strongEvidence: Students leave knowing the accepted explanation and how it relates to their arguments.
+        weakEvidence: The sequence ends with competing claims and no resolution.
+      - id: adi-nos-explicit
+        question: Is the nature of science discussed explicitly?
+        strongEvidence: The class names ideas such as evidence, justification and peer review.
+        weakEvidence: The practice is performed but never discussed.
+
+  - id: report
+    name: Investigation report
+    order: 6
+    group: write-review
+    job: Each student writes their own argument for an audience of peers.
+    essentialFeatures:
+      - Writing is individual, even though the investigation was collaborative
+      - 'Three guiding questions structure the report: what were you investigating and why, what did you do and why, and what is your argument'
+      - A word limit keeps the reasoning tight
+      - The audience is a peer reviewer, not the teacher
+    teacherMoves: [Provides the report structure, Models a strong justification paragraph]
+    learnerMoves: [Writes individually, Uses evidence and justification, Writes for a peer audience]
+    typicalShare: { minPercent: 10, maxPercent: 15 }
+    formativeChecks: [Draft check of the justification paragraph]
+    lookFors:
+      - id: adi-individual-writing
+        question: Is the report written individually?
+        strongEvidence: Each student produces their own argument, even from shared data.
+        weakEvidence: One report per group, copied.
+      - id: adi-report-structure
+        question: Does the report answer the three guiding questions?
+        strongEvidence: Purpose, method with reasons, and a three-part argument are all present.
+        weakEvidence: A traditional aim, method, results, conclusion template with no justification.
+    examples:
+      - id: adi-write-pos-review
+        kind: positive
+        title: Anonymous review with accountable reviewers
+        context: { stages: [stage4, stage5], focusAreas: [Living systems, Environmental sustainability], disciplines: [biology] }
+        outcomes: [SC4-WS-08, SC5-WS-08]
+        body: |
+          Reports are anonymised and swapped between groups. Reviewers work through a review guide, marking
+          each criterion and writing one comment saying why the report met it or what would fix it. The teacher
+          samples three reviews and returns two for more specific feedback before the authors see them.
+        diagnosis: Review is criterion-based, anonymous and accountable, so feedback is usable and honest.
+        lookForIds: [adi-review-rubric, adi-review-accountable, adi-individual-writing]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: adi-write-neg-ticks
+        kind: negative
+        title: Five minutes of ticking boxes
+        context: { stages: [stage5], focusAreas: [Environmental sustainability], disciplines: [biology] }
+        outcomes: []
+        body: |
+          Students swap reports with the person beside them, tick every box on the review sheet, write "good
+          job", and hand them back. Authors submit unchanged reports.
+        diagnosis: Review without accountability produces no usable feedback, and revision becomes a formality.
+        lookForIds: [adi-review-rubric, adi-review-accountable, adi-revision-used]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+  - id: peer-review
+    name: Double-blind peer review
+    order: 7
+    group: write-review
+    job: Students review an anonymised report against explicit criteria, and are held to account for the quality of that review.
+    essentialFeatures:
+      - Reports and reviewers are anonymous
+      - A review guide states the criteria, with space for written reasons
+      - Reviewers must say what would fix a criterion that is not met
+      - The teacher samples reviews and returns weak ones
+    teacherMoves: [Supplies the review guide, Samples and returns reviews, Models specific feedback]
+    learnerMoves: [Applies criteria to a peer's report, Writes specific, usable feedback]
+    typicalShare: { minPercent: 10, maxPercent: 15 }
+    formativeChecks: [Teacher sample of reviews before they are returned]
+    lookFors:
+      - id: adi-review-rubric
+        question: Is the review criterion-based, with reasons?
+        strongEvidence: Each criterion carries a comment explaining the judgement.
+        weakEvidence: Ticks only, or general praise.
+      - id: adi-review-accountable
+        question: Are reviewers accountable for review quality?
+        strongEvidence: The teacher samples reviews and sends weak ones back.
+        weakEvidence: Reviews go straight to authors unchecked.
+
+  - id: revision
+    name: Revision and submission
+    order: 8
+    group: write-review
+    job: Authors revise using the feedback, and submit with the review attached.
+    essentialFeatures:
+      - Authors respond to each point of feedback, accepting or rebutting it
+      - The final report is submitted with the review attached
+      - Marking is against the same criteria students have used throughout
+      - Reports that still miss a criterion can be revised again where time allows
+    teacherMoves: [Marks against the shared criteria, Requires a response to feedback]
+    learnerMoves: [Revises the report, Responds to each review point, Submits]
+    typicalShare: { minPercent: 10, maxPercent: 15 }
+    formativeChecks: [Comparison of draft and final report]
+    lookFors:
+      - id: adi-revision-used
+        question: Did the feedback change the report?
+        strongEvidence: Authors show what they changed, or argue why they did not.
+        weakEvidence: Identical drafts and final versions.
+      - id: adi-final-standard
+        question: Is the final report marked against the criteria students used?
+        strongEvidence: The same claim, evidence and justification criteria run from stage 1 to stage 8.
+        weakEvidence: A different marking rubric appears at the end.
+
+workedSequences:
+  - id: seq-s5-microhabitats
+    title: Which schoolyard microhabitat supports more invertebrate diversity?
+    context: { stages: [stage5], focusAreas: [Environmental sustainability], disciplines: [biology] }
+    contentOutcomes: [SC5-ENV-01]
+    bigQuestion: Which schoolyard microhabitat supports more invertebrate diversity, and how would we know?
+    learningIntentions:
+      - Biodiversity varies with habitat conditions, and can be sampled and compared
+      - A scientific argument links a claim to analysed evidence with a justification
+      - Peer review improves both the report and the reviewer's own work
+    targetConceptions:
+      - More animals seen means more diversity
+      - One sample is enough to compare two places
+    predictPrompt: Before reading on, which stage would you cut first if you lost a lesson, and what would that cost students?
+    steps:
+      - lessons: "1"
+        phaseId: task-question
+        activity: |
+          Introduce two contrasting schoolyard sites, the guiding question and the equipment. Tool talk on
+          pitfall traps, quadrats, keys and safe handling. Display the argument criteria.
+        wsOutcomes: [SC5-WS-02]
+        formativeCheck: Each group states what evidence would answer the question
+      - lessons: "2"
+        phaseId: design-data
+        activity: |
+          Groups design a sampling method, deciding sample number, placement and how diversity will be
+          measured. The teacher conferences each plan for safety and feasibility, asking about reliability
+          without correcting the design.
+        wsOutcomes: [SC5-WS-03]
+        formativeCheck: Plan approval conference
+        scaffoldSlots:
+          - field: formativeCheck
+            prompt: What would you say to a group planning one quadrat per site, without telling them the answer?
+      - lessons: "3"
+        phaseId: design-data
+        activity: Groups collect and record data, identify invertebrates to order using keys, and note conditions at each site.
+        wsOutcomes: [SC5-WS-04, SC5-WS-05]
+        formativeCheck: Data tables checked mid-collection
+      - lessons: "4"
+        phaseId: tentative-argument
+        activity: |
+          Groups analyse their data, choosing how to represent diversity, and build a whiteboard argument with
+          claim, evidence and justification.
+        wsOutcomes: [SC5-WS-05, SC5-WS-06]
+        formativeCheck: Whiteboard check for all three parts
+      - lessons: "5"
+        phaseId: argumentation
+        activity: |
+          Round robin: one presenter stays with each whiteboard while others circulate and critique using
+          displayed stems. Groups log questions asked and changes made.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Record of questions and revisions
+      - lessons: "6"
+        phaseId: reflective-discussion
+        activity: |
+          Whole-class discussion consolidates habitat and biodiversity concepts, addresses the abundance
+          versus diversity confusion, and names what made some arguments stronger.
+        wsOutcomes: [SC5-WS-06, SC5-WS-08]
+        formativeCheck: Exit ticket on the concept and on evidence quality
+      - lessons: "7"
+        phaseId: report
+        activity: Each student writes an individual report answering the three guiding questions, within a word limit.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Draft justification paragraph checked
+      - lessons: "8"
+        phaseId: peer-review
+        activity: |
+          Anonymised reports are reviewed by another group against the review guide. The teacher samples
+          reviews and returns any that are not specific enough.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Sampled reviews
+        scaffoldSlots:
+          - field: activity
+            prompt: Which three criteria would you put on the review guide for this investigation, and why those three?
+      - lessons: "8"
+        phaseId: revision
+        activity: Authors revise, respond to each review point, and submit the final report with the review attached.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Draft and final compared against the shared criteria
+    whyItWorks:
+      - The question is open enough that groups reach different defensible conclusions
+      - Sampling decisions are the students', so critique about sample size lands on their own choices
+      - The abundance versus diversity confusion surfaces in critique, where students can address it
+      - The same criteria run from stage 1 to stage 8, so students always know what quality means
+    watchFor: |
+      Groups that finish sampling early and treat analysis as filling in a table. Press for a representation
+      that answers the question, not a tidy results section.
+    safetyNotes: |
+      Conduct a site risk assessment for the schoolyard, including hazardous plants, sharps and allergies.
+      Handle invertebrates minimally and return them to the site.
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+
+misapplications:
+  - id: mis-adi-closed-question
+    name: A closed guiding question
+    looksLike: A question with one obvious answer.
+    whyItUndermines: With nothing to argue about, argumentation and review become theatre.
+    fix: Choose questions where defensible answers can differ with method or interpretation.
+    lookForIds: [adi-question-open]
+  - id: mis-adi-given-method
+    name: The teacher supplies the method
+    looksLike: All groups follow the same procedure.
+    whyItUndermines: Critique of design is impossible, and WS-03 is never assessed.
+    fix: Approve plans for safety and feasibility, and let designs differ.
+    lookForIds: [adi-student-designed]
+  - id: mis-adi-no-justification
+    name: Claim and evidence without justification
+    looksLike: A whiteboard with a claim and a results table.
+    whyItUndermines: The scientific reasoning stays implicit, so it cannot be critiqued or taught.
+    fix: Require a justification that says why the evidence counts.
+    lookForIds: [adi-three-part, adi-justification]
+  - id: mis-adi-teacher-judges
+    name: The teacher adjudicates
+    looksLike: The teacher says which group is right after each presentation.
+    whyItUndermines: Authority replaces evidence, and students stop critiquing.
+    fix: Hold the science back until the reflective discussion, and let critique run on evidence.
+    lookForIds: [adi-critique-quality, adi-concept-consolidated]
+  - id: mis-adi-skip-review
+    name: Cutting the argumentation or review stages
+    looksLike: The sequence runs from data straight to a report handed to the teacher.
+    whyItUndermines: The stages that distinguish ADI from a practical report are exactly the ones cut.
+    fix: Shorten data collection rather than argumentation; plan 6–8 lessons from the start.
+    lookForIds: [adi-revision-record, adi-review-accountable]
+  - id: mis-adi-group-report
+    name: One report per group
+    looksLike: A shared document with three names on it.
+    whyItUndermines: Individual reasoning is never made visible or assessed.
+    fix: Share the data, write individually.
+    lookForIds: [adi-individual-writing]
+
+checklist:
+  - id: chk-adi-setup
+    title: Before you start
+    items:
+      - { id: chk-adi-setup-question, text: 'The guiding question admits more than one defensible answer', lookForId: adi-question-open }
+      - { id: chk-adi-setup-criteria, text: 'Argument criteria are displayed before students plan', lookForId: adi-criteria-shared }
+      - { id: chk-adi-setup-time, text: 'Six to eight lessons are timetabled, including argumentation and review' }
+      - { id: chk-adi-setup-risk, text: 'A risk assessment covers student-designed methods' }
+  - id: chk-adi-investigate
+    title: Investigate
+    phaseId: design-data
+    items:
+      - { id: chk-adi-inv-design, text: 'Groups design their own methods', lookForId: adi-student-designed }
+      - { id: chk-adi-inv-plan, text: 'Plans are conferenced for safety and reliability, not correctness', lookForId: adi-plan-checkpoint }
+      - { id: chk-adi-inv-three, text: 'Whiteboards carry claim, evidence and justification', lookForId: adi-three-part }
+  - id: chk-adi-argue
+    title: Argue
+    phaseId: argumentation
+    items:
+      - { id: chk-adi-argue-format, text: 'Every student both presents and critiques', lookForId: adi-talk-norms }
+      - { id: chk-adi-argue-stems, text: 'Critique stems are modelled and displayed', lookForId: adi-critique-quality }
+      - { id: chk-adi-argue-record, text: 'Groups record questions asked and changes made', lookForId: adi-revision-record }
+      - { id: chk-adi-argue-consolidate, text: 'The concept is consolidated in the reflective discussion', lookForId: adi-concept-consolidated }
+  - id: chk-adi-write
+    title: Write and review
+    phaseId: peer-review
+    items:
+      - { id: chk-adi-write-individual, text: 'Reports are written individually', lookForId: adi-individual-writing }
+      - { id: chk-adi-write-guide, text: 'The review guide requires reasons, not ticks', lookForId: adi-review-rubric }
+      - { id: chk-adi-write-sample, text: 'Reviews are sampled before they reach authors', lookForId: adi-review-accountable }
+      - { id: chk-adi-write-revise, text: 'Final reports show a response to feedback', lookForId: adi-revision-used }
+
+syllabusAlignment:
+  wsMapping:
+    - { skill: 1, phaseIds: [design-data] }
+    - { skill: 2, phaseIds: [task-question] }
+    - { skill: 3, phaseIds: [design-data] }
+    - { skill: 4, phaseIds: [design-data] }
+    - { skill: 5, phaseIds: [tentative-argument] }
+    - { skill: 6, phaseIds: [tentative-argument, reflective-discussion] }
+    - { skill: 7, phaseIds: [], note: ADI answers questions rather than solving problems. Pair it with a design task if WS-07 is a target. }
+    - { skill: 8, phaseIds: [argumentation, report, peer-review, revision] }
+  depthStudies: ADI is a strong depth study structure at Stage 5, because the report and review cycle produce individual evidence of achievement.
+  dataScience: Secondary data sets can replace fieldwork, with the argument built from analysis rather than collection.
+  inclusion:
+    eald: Display critique stems and report sentence frames, and allow a labelled diagram on the whiteboard argument.
+    disability: Offer roles within the round robin, scribing support for reports, and alternative recording formats for review feedback.
+    highPotential: Ask for a consideration of alternative claims and their rebuttal, or a second round of data collection prompted by critique.
+    aboriginalPerspectives: Where the investigation involves Country, develop the question and protocols with local Aboriginal community, including how knowledge is shared and attributed.
+
+nesting:
+  - { modelId: 5e, role: nests-in, phaseId: explore, how: 'Run ADI as the Explore and Explain phases when the sequence targets argument from evidence.' }
+  - { modelId: poe, role: hosts, phaseId: task-question, how: 'Open with a POE to surface prior ideas before the guiding question is posed.' }
+  - { modelId: levels-of-inquiry, role: hosts, phaseId: design-data, how: 'Use the guidance dial to decide how much planning support groups need; ADI assumes guided level or above.' }
+  - { modelId: swh, role: hosts, phaseId: report, how: 'Use an SWH template to scaffold claims and evidence in the report.' }
+
+reflectionPrompts:
+  - id: refl-adi-personal
+    type: personal
+    prompt: When your work has been critiqued, what made the critique useful rather than discouraging? What does that suggest about the norms you need before an argumentation session?
+    coachFollowUps: [What did the critic do or say?, How would you teach that move to Year 9?]
+  - id: refl-adi-critical
+    type: critical
+    prompt: ADI assumes students can learn content through argument about their own data. What conditions does that assumption depend on, and when would a more structured model serve your class better?
+    coachFollowUps: [What prior knowledge do students need before the session?, Where does the teacher's explanation sit in ADI?]
+  - id: refl-adi-application
+    type: application
+    prompt: Take a confirmation practical you have seen on placement and rewrite its question so that groups could reach different defensible conclusions. What changes in the equipment and the time needed?
+    coachFollowUps: [What would you have to stop specifying?, How many lessons would your version need?]
+
+scaffold:
+  defaultMode: tutor
+  revealAfterAttempt: [seq-s5-microhabitats]
+  ai:
+    groundedIn: [phases.examples, workedSequences, misapplications, checklist, reflectionPrompts]
+    allowed: [contextualise-examples, audit-program, coach-reflection, compare-models]
+    never:
+      - Never write the learner's guiding question or review guide in tutor mode
+      - Never generate peer-review feedback on behalf of a student
+      - Never cite an outcome code that is not in the syllabus whitelist
+      - Never answer a reflection prompt; ask follow-up questions only
+    auditorFocus: [adi-question-open, adi-student-designed, adi-justification, adi-review-accountable]
+
+references:
+  - id: sampson-2011
+    citation: 'Sampson, V., Grooms, J., & Walker, J. P. (2011). Argument-Driven Inquiry as a way to help students learn how to participate in scientific argumentation and craft written arguments. Science Education, 95(2), 217–257.'
+    doi: 10.1002/sce.20421
+  - id: osborne-2010
+    citation: 'Osborne, J. (2010). Arguing to learn in science: The role of collaborative, critical discourse. Science, 328(5977), 463–466.'
+    doi: 10.1126/science.1183944
+  - id: duschl-osborne-2002
+    citation: 'Duschl, R. A., & Osborne, J. (2002). Supporting and promoting argumentation discourse in science education. Studies in Science Education, 38(1), 39–72.'
+    doi: 10.1080/03057260208560187
+  - id: toulmin-1958
+    citation: 'Toulmin, S. (1958). The uses of argument. Cambridge University Press.'

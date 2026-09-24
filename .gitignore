@@ -14,3 +14,6 @@ node_modules/
 
 # Local generated docs
 docs/LXDUNE-presubmission-checklists.html
+# Reckoner build artefacts
+tools/reckoner/node_modules/
+tools/reckoner/dist/
