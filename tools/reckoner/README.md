@@ -9,11 +9,14 @@ The product is a **learning scaffold** for pre-service science teachers, so the 
 ```bash
 npm install
 npm run validate       # check every guide, cross-guide links and coverage
-npm test               # confirm the quality rules still catch what they should
+npm test               # schema rule tests, then build and render tests
 npm run typecheck
 npm run export-schema  # JSON Schemas for YAML editors and AI structured output
-npm run build          # render the student app -> dist/site/index.html
-npm run build -- --drafts  # review copy including unreviewed guides -> dist/site/review.html
+npm run build          # render the student app -> dist/site/ (shell, app.js, data/)
+npm run publish:pages  # validate, test, build, then mirror dist/site/ into reckoner/ at the repo root
+npm run check:pages    # confirm reckoner/ matches the YAML (what CI runs)
+npm run review -- poe  # review copy of one guide, drafts included -> dist/review/poe-review.html
+npm run build:single   # self-contained single file for offline use -> dist/single/index.html
 ```
 
 ## Files
@@ -28,10 +31,13 @@ npm run build -- --drafts  # review copy including unreviewed guides -> dist/sit
 | `content/guides/adi.yaml` | The ADI guide: reference instance for multi-lesson routines with stage groups |
 | `content/guides/levels-of-inquiry.yaml` | The Levels of inquiry guide: reference instance for unranked guidance-dial models |
 | `scripts/validate.ts` | Validates all guides, checks nesting links, reports coverage gaps |
-| `scripts/test-rules.ts` | Breaks the 5E and POE guides in 15 ways and checks each is caught |
+| `scripts/test-rules.ts` | Breaks the guides in 30 ways and checks each is caught |
+| `scripts/test-build.ts` | Build tests: deterministic output, drafts excluded, every guide renders (jsdom), stale files removed |
 | `scripts/export-json-schema.ts` | Writes `dist/*.schema.json` |
-| `scripts/build-site.ts` | Renders the student app from published guides |
-| `templates/app.html` | App template; `/*__DATA__*/` is replaced with the built payload |
+| `scripts/build-site.ts` | Command line for the builds in `scripts/lib/build.ts` (site, single file, review copy) |
+| `scripts/copy-to-pages.ts` | Mirrors `dist/site/` into `reckoner/`; `--check` compares only |
+| `templates/app.html` | Page shell: markup and styles; `<!--__BOOT__-->` is replaced with the loader or inline data |
+| `templates/app.js` | App code: reckoner scoring, guide rendering, routing |
 | `content/catalogue.json` | Reckoner entries for models with no guide yet |
 | `content/questions.json` | Reckoner question text, quick matrix and scale labels |
 
@@ -93,9 +99,23 @@ AI output returns as JSON matching `dist/example.schema.json` or `dist/sequence-
 
 ## Publishing to students
 
-`npm run build` renders a single self-contained `dist/site/index.html`: the quick and detailed reckoners, the companion guides, and the model library. Only guides with `status: published` are included, so unreviewed content cannot reach students. Models without a guide still appear in the reckoner, marked "guide coming soon".
+The page GitHub Pages serves at `/LXDUNE/reckoner/` is split so that content and code change separately:
 
-Edit the YAML, run `npm run validate && npm test && npm run build`, and republish. The YAML is canonical: never edit the built HTML.
+```
+reckoner/
+  index.html              page shell and loader; changes only when templates/app.html changes
+  app.js                  app code; changes only when templates/app.js changes
+  data/manifest.json      models, questions, catalogue, published guide list with versions
+  data/guides/<id>.json   one file per published guide
+```
+
+The loader fetches the manifest, then every published guide, then `app.js`. Guide and app URLs carry a content hash, so a changed file is never served from a stale cache. The page needs a web server; for a copy that opens from disk, use `npm run build:single`.
+
+Only guides with `status: published` are included, so unreviewed content cannot reach students. Models without a guide still appear in the reckoner, marked "guide coming soon". The build is deterministic, so the same YAML always produces identical files.
+
+**To update a guide:** edit its YAML, run `npm run publish:pages`, and commit. The output lists exactly which files in `reckoner/` changed; a content edit to one guide changes only that guide's JSON and the manifest. The YAML is canonical: never edit anything in `reckoner/` by hand. The `Reckoner` GitHub Actions workflow fails if `reckoner/` does not match the YAML.
+
+**To have a guide reviewed:** run `npm run review -- <id>` and send the reviewer `dist/review/<id>-review.html`. It is one self-contained file that opens in any browser, starts at that guide, includes draft and in-review guides marked "Not yet reviewed", and carries a "Review copy, not for students" banner. Record sign-off in the guide's `provenance.reviewedBy` and `reviewedOn`, then publish.
 
 ## Guide status
 

@@ -294,11 +294,21 @@ replaces two, students see AT1/AT2 in a tab switcher. Also deploy
 ### 28. Constructivist model reckoner — companion guides ⬜ (open item remains) — 2026-09-24
 Session note: added the reckoner as a standalone tool, separate from `blocks.js`.
 - [x] Source lives at `tools/reckoner` (YAML guides + Zod schema + build); published page is `reckoner/index.html`
-- [x] Editing workflow: change `tools/reckoner/content/guides/*.yaml`, then `cd tools/reckoner && npm run publish:pages`. Never edit `reckoner/index.html` by hand
+- [x] Editing workflow: change `tools/reckoner/content/guides/*.yaml`, then `cd tools/reckoner && npm run publish:pages`. Never edit anything in `reckoner/` by hand (see item 29)
 - [x] Only guides with `status: published` reach students (`--drafts` builds a review copy to `dist/site/review.html` only)
 - [x] Four guides published at v1.0.0: 5E, POE, ADI, Levels of inquiry. The other eleven models show "guide coming soon"
 - [ ] Open: the 13 catalogue models in `tools/reckoner/content/catalogue.json` still carry unvalidated fit profiles
 - [ ] After dev → main merge: confirm `https://thatswhatsnext.github.io/LXDUNE/reckoner/` serves, then link from a Moodle block with `target="_blank"`
+
+### 29. Reckoner: split content from the page ✅ — 2026-09-24
+Session note: `reckoner/` is now a shell plus data files, so one guide edit changes one file.
+- [x] `reckoner/index.html` (shell + loader), `reckoner/app.js` (code), `reckoner/data/manifest.json`, `reckoner/data/guides/<id>.json`
+- [x] Build is deterministic (no build date); `publish:pages` lists exactly which files changed and removes files for unpublished guides
+- [x] `npm run review -- <id>` makes a self-contained review copy of one guide (drafts included, "not for students" banner) to send to a reviewer
+- [x] `npm run build:single` still makes a single offline file
+- [x] New GitHub Actions workflow `Reckoner` (`.github/workflows/reckoner.yml`): validate, 39 tests, typecheck, and fails if `reckoner/` does not match the YAML. Checks only, never commits
+- [x] Rendered output checked identical to the PR #5 page (only the "Built <date>" stamp removed)
+- Note: the page now needs a web server (Pages is fine); opening `reckoner/index.html` from disk shows "could not load its content"
 
 ---
 

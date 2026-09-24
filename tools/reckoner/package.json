@@ -6,9 +6,12 @@
     "validate": "tsx scripts/validate.ts",
     "export-schema": "tsx scripts/export-json-schema.ts",
     "typecheck": "tsc --noEmit",
-    "test": "tsx scripts/test-rules.ts",
+    "test": "tsx scripts/test-rules.ts && tsx scripts/test-build.ts",
     "build": "tsx scripts/build-site.ts",
-    "publish:pages": "npm run validate && npm test && npm run build && node scripts/copy-to-pages.mjs"
+    "build:single": "tsx scripts/build-site.ts --single-file",
+    "review": "tsx scripts/build-site.ts --review",
+    "publish:pages": "npm run validate && npm test && npm run build && tsx scripts/copy-to-pages.ts",
+    "check:pages": "npm run build && tsx scripts/copy-to-pages.ts --check"
   },
   "author": "",
   "license": "ISC",
