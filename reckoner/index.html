@@ -153,6 +153,42 @@ button.ghost[aria-pressed="true"]{background:var(--accent);color:var(--accent-in
 .flow .node small{display:block;color:var(--muted);font-size:.75rem;margin-top:.15rem}
 .flow .arrow{color:var(--muted);flex:0 0 auto;font-size:1.1rem}
 .flow .loop{flex-basis:100%;text-align:center;color:var(--muted);font-size:.82rem;border-top:1px dashed var(--line);padding-top:.45rem;margin-top:.2rem}
+/* orientation */
+.orient{margin-bottom:1.25rem} .orient .toolbar{margin:.7rem 0 0}
+details.more{margin-top:2rem}
+details.more > summary{cursor:pointer;color:var(--accent);font-weight:500}
+/* compare */
+.cmp-group{margin:0 0 .9rem}
+.cmp-group > .sub{margin-bottom:.4rem}
+.chip .badge{margin-left:.35rem;font-size:.68rem;padding:.02rem .4rem}
+.chip input:checked + span .badge{color:inherit}
+.cmp-wrap{overflow-x:auto;margin-top:.75rem}
+table.cmp{table-layout:fixed;min-width:640px}
+table.cmp thead th{vertical-align:bottom}
+table.cmp thead td{width:10.5rem;background:var(--paper)}
+table.cmp th[scope=row]{font-weight:600}
+.clamp{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
+.clamp-block{max-height:5.4rem;overflow:hidden}
+.clamp-block .phases{margin:0}
+.open .clamp,.open .clamp-block{display:block;-webkit-line-clamp:unset;line-clamp:unset;max-height:none;overflow:visible}
+button.ghost.rowtoggle{display:block;margin-top:.45rem;padding:.15rem .5rem;font-size:.78rem}
+.cmp-cards{display:none}
+.cmp-row{padding:.55rem 0;border-top:1px solid var(--line)}
+.cmp-row .sub{margin-bottom:.25rem}
+@media (max-width:759px){ .cmp-wrap{display:none} .cmp-cards{display:block} }
+/* guide density */
+.density{display:flex;gap:.35rem;align-items:center}
+.guide section:has(> details.sec:not([open])){margin-bottom:.9rem}
+details.sec > summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:.4rem .75rem;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:.3rem;margin-bottom:.5rem}
+details.sec > summary::-webkit-details-marker{display:none}
+details.sec > summary::before{content:"\25B8";color:var(--accent)}
+details.sec[open] > summary::before{content:"\25BE"}
+.guide details.sec > summary h2{border:none;margin:0;padding:0}
+.count{color:var(--muted);font-size:.88rem}
+/* walkthrough */
+.tour{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:10;width:min(24rem,calc(100% - 2rem));background:var(--surface);border:2px solid var(--accent);border-radius:10px;padding:1rem 1.1rem}
+.tour p{margin:.2rem 0}
+.tour-target{outline:3px solid var(--accent);outline-offset:4px;border-radius:8px}
 footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted);font-size:.88rem}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @page{size:A4;margin:18mm}
@@ -163,6 +199,11 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted)
   .guide-grid{display:block} body{font-size:11pt}
   .card,.box,section{break-inside:avoid} h2{break-after:avoid}
   a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt;color:#555}
+  .tour,#cmpPicker,#cmpNote,.cmp-cards{display:none!important}
+  .cmp-wrap{display:block!important;overflow:visible} table.cmp{min-width:0}
+  .clamp,.clamp-block{display:block!important;-webkit-line-clamp:unset!important;line-clamp:unset!important;max-height:none!important;overflow:visible!important}
+  details.sec > summary::before{content:none}
+  .tour-target{outline:none}
 }
 </style>
 </head>
@@ -173,6 +214,7 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted)
     <p class="lede">A planning companion for pre-service and early career teachers working with the NSW Science 7–10 Syllabus (2023). Answer a few questions to see which teaching models fit and why, then open the companion guide for the model you choose.</p>
     <div class="tabs" role="tablist" aria-label="Views">
       <button class="tab" role="tab" id="t-quick" aria-controls="p-quick" aria-selected="true">Quick reckoner</button>
+      <button class="tab" role="tab" id="t-compare" aria-controls="p-compare" aria-selected="false" tabindex="-1">Compare models</button>
       <button class="tab" role="tab" id="t-detail" aria-controls="p-detail" aria-selected="false" tabindex="-1">Detailed reckoner</button>
       <button class="tab" role="tab" id="t-guides" aria-controls="p-guides" aria-selected="false" tabindex="-1">Companion guides</button>
       <button class="tab" role="tab" id="t-lib" aria-controls="p-lib" aria-selected="false" tabindex="-1">Model library</button>
@@ -183,14 +225,34 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted)
 <main class="wrap">
   <p id="bootMsg" class="empty" role="status" style="margin:1rem 0 0"></p>
   <section class="panel active" id="p-quick" role="tabpanel" aria-labelledby="t-quick">
+    <div class="box orient">
+      <p>Answer a few questions to see which teaching models fit and why, then open the companion guide for the model you choose.</p>
+      <div class="toolbar">
+        <button class="ghost" type="button" id="goReckoner">I know what I’m planning — use the reckoner</button>
+        <button class="ghost" type="button" id="goCompare">Show me the models side by side</button>
+        <button class="ghost" type="button" id="goTour">Take the 60-second tour</button>
+      </div>
+    </div>
     <p class="intro">Three questions, one recommendation. Use the detailed reckoner when resources, language demands or assessment also matter.</p>
     <div class="quick-grid">
       <form id="quickForm" onsubmit="return false"></form>
       <div id="quickResult" aria-live="polite"></div>
     </div>
-    <h2 style="margin-top:2rem">The quick matrix</h2>
-    <p class="intro" style="margin-bottom:0">Each row is a learning purpose. Select any cell to preview that model.</p>
-    <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
+    <details class="more" id="matrixMore">
+      <summary>See the full purpose-by-readiness matrix</summary>
+      <h2 style="margin-top:1rem">The quick matrix</h2>
+      <p class="intro" style="margin-bottom:0">Each row is a learning purpose. Select any cell to preview that model.</p>
+      <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
+    </details>
+  </section>
+
+  <section class="panel" id="p-compare" role="tabpanel" aria-labelledby="t-compare" hidden>
+    <div class="toolbar"><button class="ghost" type="button" id="cmpClear">Clear</button>
+      <span class="progress" id="cmpStatus" role="status" aria-live="polite"></span></div>
+    <div id="cmpPicker" role="group" aria-label="Models to compare"></div>
+    <p class="note" id="cmpNote" aria-live="polite"></p>
+    <div class="cmp-wrap" id="cmpTable"></div>
+    <div class="cmp-cards" id="cmpCards"></div>
   </section>
 
   <section class="panel" id="p-detail" role="tabpanel" aria-labelledby="t-detail" hidden>
@@ -230,6 +292,15 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted)
   <p id="buildStamp"></p>
 </div></footer>
 
+<div class="tour" id="tour" role="dialog" aria-labelledby="tourCount" aria-describedby="tourText" tabindex="-1" hidden>
+  <p class="sub" id="tourCount"></p>
+  <p id="tourText"></p>
+  <div class="toolbar" style="margin:.8rem 0 0">
+    <button class="ghost" type="button" id="tourNext">Next</button>
+    <button class="ghost" type="button" id="tourClose">Close</button>
+  </div>
+</div>
+
 <script>
 (function(){
   var msg = document.getElementById("bootMsg");
@@ -242,7 +313,7 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted)
         man.guides = guides;
         window.RECKONER_DATA = man;
         var s = document.createElement("script");
-        s.src = "app.js?v=2f43299f3e80";
+        s.src = "app.js?v=32eadaa429da";
         s.onerror = fail;
         document.body.appendChild(s);
       });
