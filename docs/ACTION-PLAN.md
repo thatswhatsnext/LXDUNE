@@ -310,6 +310,15 @@ Session note: `reckoner/` is now a shell plus data files, so one guide edit chan
 - [x] Rendered output checked identical to the PR #5 page (only the "Built <date>" stamp removed)
 - Note: the page now needs a web server (Pages is fine); opening `reckoner/index.html` from disk shows "could not load its content"
 
+### 30. Reckoner: compare view, lighter entry point and density control ⬜ (open item remains) — 2026-09-26
+Feedback: reviewers found the app overwhelming on arrival.
+Built in response (template only; no guide content, schema or build script changed):
+- [x] Compare models tab (second): up to four models side by side on scale, distinguishing feature, phases, teacher and learner roles, best fit, pitfall and guide link. Rows clamp to about three lines with one "Show more" per row across all columns; below 760px it becomes one stacked card per model; prints fully expanded. Defaults to the detailed reckoner's top three, otherwise 5E, ADI and POE
+- [x] Quick reckoner opens with three entry points (use the reckoner, compare models, 60-second tour); the purpose-by-readiness matrix is collapsed into a details element
+- [x] Guide pages default to Compact (long sections collapse to a heading and a count) with a Full toggle saved per browser; deep links still open and scroll to their section; printing always prints everything
+- [x] Four-step in-app walkthrough: opens once on a first visit to the landing screen, dismissible at any step, repeatable from the entry point
+- [ ] Open: record a narrated walkthrough video (about 90 seconds, captioned, hosted on the Moodle page beside the reckoner link), only if the in-app walkthrough does not cover it
+
 ---
 
 ## ✅ Completed
