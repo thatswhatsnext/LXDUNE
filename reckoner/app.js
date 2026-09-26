@@ -38,6 +38,7 @@ function selectTab(t, push = true){
   tabs.forEach(x => { const on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1;
     const p = document.getElementById(x.getAttribute("aria-controls")); p.hidden = !on; p.classList.toggle("active", on); });
   if (push && t.id !== "t-guides") location.hash = "";
+  if (t.id === "t-compare") renderCompare();
 }
 tabs.forEach((t,i) => { t.addEventListener("click", () => selectTab(t));
   t.addEventListener("keydown", e => { if(e.key==="ArrowRight") selectTab(tabs[(i+1)%tabs.length]).focus?.();
@@ -48,8 +49,10 @@ function openGuide(id, section){
   selectTab(document.getElementById("t-guides"), false);
   renderGuide(id);
   location.hash = `#/guide/${id}${section ? "/" + section : ""}`;
+  const target = section && document.getElementById("s-" + section);
+  if (target) expandTo(target);
   requestAnimationFrame(() => {
-    const el = section && document.getElementById("s-" + section);
+    const el = target;
     (el || document.getElementById("p-guides")).scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" });
     if (el) markNav(section);
   });
@@ -283,6 +286,24 @@ const SECTIONS = [
 ];
 const FOCUS = { stage4:["Observing the Universe","Forces","Cells and classification","Solutions and mixtures","Living systems","Periodic table and atomic structure","Change","Data science 1"],
   stage5:["Energy","Disease","Materials","Environmental sustainability","Genetics and evolutionary change","Reactions","Waves and motion","Data science 2"] };
+/**
+ * Density. Compact collapses the long sections to a heading and a count; Full opens
+ * everything. Sections opened by hand stay open while the same guide is re-rendered.
+ */
+let density = store.get("density") === "full" ? "full" : "compact", openSecs = new Set();
+const plural = (n, one) => `${n} ${n === 1 ? one : one + "s"}`;
+function sec(id, title, count, inner){
+  const open = density === "full" || openSecs.has(id);
+  return `<section id="s-${id}"><details class="sec" data-sec="${id}"${open ? " open" : ""}>
+    <summary><h2>${title}</h2><span class="count">${esc(count)}</span></summary>${inner}</details></section>`;
+}
+/** Open every collapsed section containing el, so deep links land on visible content. */
+function expandTo(el){
+  el.querySelectorAll(":scope > details.sec").forEach(d => { d.open = true; openSecs.add(d.dataset.sec); });
+  for (let d = el.closest("details"); d; d = d.parentElement && d.parentElement.closest("details")){
+    d.open = true; if (d.dataset.sec) openSecs.add(d.dataset.sec);
+  }
+}
 const matches = c => (!ctx.stage || c.stages.includes(ctx.stage)) && (!ctx.focusArea || (c.focusAreas||[]).includes(ctx.focusArea));
 const ctxSet = () => ctx.stage || ctx.focusArea;
 const matchBadge = c => ctxSet() && matches(c) ? ` <span class="badge b-match">Matches your context</span>` : "";
@@ -297,6 +318,7 @@ function renderGuideNav(){
 const markNav = sec => document.querySelectorAll("#secNav a").forEach(a => a.classList.toggle("on", a.dataset.sec === sec));
 
 function renderGuide(id){
+  if (id !== current) openSecs = new Set();
   current = id; const g = G[id];
   if (!g){ document.getElementById("guideBody").innerHTML = `<p class="empty">Select a guide.</p>`; renderGuideNav(); return; }
   const focusOpts = (ctx.stage ? FOCUS[ctx.stage] : [...FOCUS.stage4, ...FOCUS.stage5]);
@@ -304,7 +326,10 @@ function renderGuide(id){
   const body = `
   <div class="box" style="margin-bottom:1.25rem">
     <div class="card-head"><div><h2 style="border:none">${esc(g.name)} companion guide</h2>
-      <p class="src">${esc(g.originators)} · ${esc(g.syllabus)} · v${esc(g.version)}, reviewed ${esc(g.lastReviewed)}</p></div>${badge(g.reckoner.scale)}</div>
+      <p class="src">${esc(g.originators)} · ${esc(g.syllabus)} · v${esc(g.version)}, reviewed ${esc(g.lastReviewed)}</p></div>
+      <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
+        <div class="density" role="group" aria-label="Guide layout">${["compact","full"].map(d => `<button class="ghost" type="button" data-density="${d}" aria-pressed="${density===d}">${d==="compact"?"Compact":"Full"}</button>`).join("")}</div>
+        ${badge(g.reckoner.scale)}</div></div>
     ${g.status === "published" ? "" : `<div class="warnbox"><p class="sub">Not yet reviewed</p><p>This guide is a ${esc(g.status)} draft, included in this review copy only. Do not use it with students until it is signed off.</p></div>`}
     <p style="margin-top:.6rem">${esc(g.introduction.lead)}</p>
     <div class="ctx" style="margin-top:.8rem">
@@ -321,16 +346,16 @@ function renderGuide(id){
   <section id="s-purpose"><h2>Purpose</h2>${md(g.introduction.purposeStatement)}
     <p><strong>Who it is for.</strong> ${esc(g.introduction.audience)}</p>${md(g.introduction.howToUse)}</section>
 
-  <section id="s-theory"><h2>Theory</h2>${md(g.theory.summary)}
+  ${sec("theory", "Theory", `${plural(g.theory.foundations.length,"foundation")}${g.theory.critiques.length ? `, ${plural(g.theory.critiques.length,"critique")}` : ""}`, `${md(g.theory.summary)}
     ${g.theory.foundations.map(f => `<div class="lookfor"><p class="q">${esc(f.tradition)}</p>${md(f.idea)}<p><strong>What this means for design.</strong> ${esc(f.designImplication)}</p></div>`).join("")}
-    ${g.theory.critiques.length ? `<h3 style="margin-top:1rem">Critiques</h3>${g.theory.critiques.map(c => `<div class="warnbox"><p class="sub">The critique</p>${md(c.claim)}<p class="sub">Response</p>${md(c.response)}</div>`).join("")}` : ""}</section>
+    ${g.theory.critiques.length ? `<h3 style="margin-top:1rem">Critiques</h3>${g.theory.critiques.map(c => `<div class="warnbox"><p class="sub">The critique</p>${md(c.claim)}<p class="sub">Response</p>${md(c.response)}</div>`).join("")}` : ""}`)}
 
   <section id="s-model"><h2>The model</h2>${md(g.sequence.summary)}
     ${flowHTML(g)}
     <p><strong>Scale.</strong> ${esc(g.sequence.scaleNote)}</p>
     <div class="roles"><div><h4>Teacher’s role</h4><p>${esc(g.roles.teacher)}</p></div><div><h4>Learner’s role</h4><p>${esc(g.roles.learner)}</p></div></div></section>
 
-  <section id="s-phases"><h2>${g.phaseGroups.length ? "Stages" : "Phases"}</h2>
+  ${sec("phases", g.phaseGroups.length ? "Stages" : "Phases", g.phaseGroups.length ? `${plural(g.phases.length,"stage")} in ${plural(g.phaseGroups.length,"group")}` : plural(g.phases.length,"phase"), `
     ${groupedPhases(g).map(([grp, ps]) => `${grp ? `<div class="groupintro"><h3>${esc(grp.name)}</h3><p>${esc(grp.summary)}</p></div>` : ""}
     ${ps.map(p => `<article class="card" id="s-${p.id}">
       <div class="card-head"><div><h3>${p.order}. ${esc(p.name)}</h3><p class="src">${esc(p.job)}</p></div>
@@ -346,23 +371,23 @@ function renderGuide(id){
         <p class="tagline">${esc(tagline(e.context))}${e.outcomes.length ? " · " + e.outcomes.join(", ") : ""}</p>
         ${md(e.body)}<p><strong>Why.</strong> ${esc(e.diagnosis)}</p></div>`).join("")}
       ${p.formativeChecks.length ? `<p class="sub">Formative checks</p><ul class="tight">${p.formativeChecks.map(f=>`<li>${esc(f)}</li>`).join("")}</ul>` : ""}
-    </article>`).join("")}`).join("")}</section>
+    </article>`).join("")}`).join("")}`)}
 
-  <section id="s-sequences"><h2>Worked ${g.reckoner.scale === "micro" ? "episodes" : "sequences"}</h2>
-    ${orderByCtx(g.workedSequences).map(s => sequenceHTML(g,s)).join("")}</section>
+  ${sec("sequences", `Worked ${g.reckoner.scale === "micro" ? "episodes" : "sequences"}`, plural(g.workedSequences.length, g.reckoner.scale === "micro" ? "worked episode" : "worked sequence"), `
+    ${orderByCtx(g.workedSequences).map(s => sequenceHTML(g,s)).join("")}`)}
 
-  <section id="s-misapplications"><h2>Common misapplications</h2>
+  ${sec("misapplications", "Common misapplications", plural(g.misapplications.length,"misapplication"), `
     <table><thead><tr><th>Misapplication</th><th>What it looks like</th><th>Why it undermines learning</th><th>Fix</th></tr></thead><tbody>
     ${g.misapplications.map(m => `<tr><th scope="row">${esc(m.name)}</th><td>${esc(m.looksLike)}</td><td>${esc(m.whyItUndermines)}</td><td>${esc(m.fix)}</td></tr>`).join("")}
-    </tbody></table></section>
+    </tbody></table>`)}
 
-  <section id="s-checklist"><h2>Designer’s checklist</h2>
+  ${sec("checklist", "Designer’s checklist", plural(g.checklist.reduce((n,c) => n + c.items.length, 0),"item"), `
     <p class="intro">Tick as you audit your draft. Progress is saved in this browser only.</p>
     <div class="toolbar"><span class="progress" id="chkProgress"></span><button class="ghost" type="button" id="chkReset">Reset</button></div>
     ${g.checklist.map(c => `<article class="card"><h3>${esc(c.title)}</h3>
-      ${c.items.map(i => `<label class="checkitem"><input type="checkbox" data-chk="${g.id}:${i.id}"><span>${esc(i.text)}</span></label>`).join("")}</article>`).join("")}</section>
+      ${c.items.map(i => `<label class="checkitem"><input type="checkbox" data-chk="${g.id}:${i.id}"><span>${esc(i.text)}</span></label>`).join("")}</article>`).join("")}`)}
 
-  <section id="s-alignment"><h2>Syllabus alignment</h2>
+  ${sec("alignment", "Syllabus alignment", `${g.syllabusAlignment.wsMapping.filter(m => m.phaseIds.length).length} of ${g.syllabusAlignment.wsMapping.length} Working scientifically skills built`, `
     <table><thead><tr><th>Working scientifically</th><th>Where it lives</th></tr></thead><tbody>
     ${g.syllabusAlignment.wsMapping.map(m => `<tr><th scope="row">WS-0${m.skill}</th><td>${m.phaseIds.length ? m.phaseIds.map(p => esc(phaseName(g,p))).join(", ") : "<em>Not built by this model.</em>"}${m.note ? ` ${esc(m.note)}` : ""}</td></tr>`).join("")}
     </tbody></table>
@@ -373,15 +398,15 @@ function renderGuide(id){
       <li><strong>Students with disability.</strong> ${esc(g.syllabusAlignment.inclusion.disability)}</li>
       <li><strong>High potential and gifted students.</strong> ${esc(g.syllabusAlignment.inclusion.highPotential)}</li>
       <li><strong>Aboriginal and Torres Strait Islander perspectives.</strong> ${esc(g.syllabusAlignment.inclusion.aboriginalPerspectives)}</li></ul>
-    ${g.nesting.length ? `<h3 style="margin-top:1rem">Nesting</h3><ul class="tight">${g.nesting.map(n => `<li>${n.role === "hosts" ? `Hosts <strong>${esc(M[n.modelId]?.name || n.modelId)}</strong>${n.phaseId ? ` in ${esc(phaseName(g,n.phaseId))}` : ""}` : `Nests inside <strong>${esc(M[n.modelId]?.name || n.modelId)}</strong>${n.phaseId ? ` at its ${esc(n.phaseId.replace(/-/g," "))} phase` : ""}`}: ${esc(n.how)}${G[n.modelId] ? ` <button class="ghost" style="padding:.1rem .5rem;font-size:.8rem" type="button" onclick="openGuide('${n.modelId}')">Open guide</button>` : ""}</li>`).join("")}</ul>` : ""}</section>
+    ${g.nesting.length ? `<h3 style="margin-top:1rem">Nesting</h3><ul class="tight">${g.nesting.map(n => `<li>${n.role === "hosts" ? `Hosts <strong>${esc(M[n.modelId]?.name || n.modelId)}</strong>${n.phaseId ? ` in ${esc(phaseName(g,n.phaseId))}` : ""}` : `Nests inside <strong>${esc(M[n.modelId]?.name || n.modelId)}</strong>${n.phaseId ? ` at its ${esc(n.phaseId.replace(/-/g," "))} phase` : ""}`}: ${esc(n.how)}${G[n.modelId] ? ` <button class="ghost" style="padding:.1rem .5rem;font-size:.8rem" type="button" onclick="openGuide('${n.modelId}')">Open guide</button>` : ""}</li>`).join("")}</ul>` : ""}`)}
 
-  <section id="s-reflection"><h2>Reflection prompts</h2>
+  ${sec("reflection", "Reflection prompts", plural(g.reflectionPrompts.length,"prompt"), `
     ${["personal","critical","application"].map(t => `<h3 style="margin-top:.8rem">${t[0].toUpperCase()+t.slice(1)}${t==="critical"?" analysis":t==="application"?" in the classroom":" reflection"}</h3>
-      <ul class="tight">${g.reflectionPrompts.filter(p => p.type===t).map(p => `<li>${md(p.prompt)}</li>`).join("")}</ul>`).join("")}</section>
+      <ul class="tight">${g.reflectionPrompts.filter(p => p.type===t).map(p => `<li>${md(p.prompt)}</li>`).join("")}</ul>`).join("")}`)}
 
-  <section id="s-references"><h2>References</h2><ul class="tight">
+  ${sec("references", "References", plural(g.references.length,"reference"), `<ul class="tight">
     ${g.references.map(r => `<li>${esc(r.citation)}${r.url?` <a href="${esc(r.url)}">Link</a>`:""}${r.doi?` https://doi.org/${esc(r.doi)}`:""}</li>`).join("")}</ul>
-    <p class="hint">Outcome codes follow the <a href="https://curriculum.nsw.edu.au/learning-areas/science/science-7-10-2023/outcomes">NESA Science 7–10 (2023) outcomes</a>.</p></section>`;
+    <p class="hint">Outcome codes follow the <a href="https://curriculum.nsw.edu.au/learning-areas/science/science-7-10-2023/outcomes">NESA Science 7–10 (2023) outcomes</a>.</p>`)}`;
   document.getElementById("guideBody").innerHTML = body;
   renderGuideNav();
   wireGuide(g);
@@ -434,6 +459,12 @@ function sequenceHTML(g,s){
 }
 
 function wireGuide(g){
+  document.querySelectorAll("[data-density]").forEach(b => b.onclick = () => {
+    density = b.dataset.density; store.set("density", density); openSecs = new Set(); renderGuide(g.id); });
+  document.querySelectorAll("details.sec").forEach(d => d.addEventListener("toggle", () => {
+    if (printing) return;
+    d.open ? openSecs.add(d.dataset.sec) : openSecs.delete(d.dataset.sec); }));
+
   const stage = document.getElementById("ctxStage"), focus = document.getElementById("ctxFocus"), clear = document.getElementById("ctxClear");
   stage.onchange = () => { ctx = { stage: stage.value, focusArea: "" }; store.set("ctx", ctx); renderGuide(g.id); };
   focus.onchange = () => { ctx = { ...ctx, focusArea: focus.value }; store.set("ctx", ctx); renderGuide(g.id); };
@@ -469,6 +500,143 @@ function renderLibrary(){
       <div style="display:flex;gap:.5rem;align-items:flex-start">${m.hasGuide?`<span class="badge b-match">Guide available</span>`:""}${badge(m.scale)}</div></div>${modelBody(m)}</article>`).join("");
 }
 
+/* ---------- compare ---------- */
+const CMP_MAX = 4, CMP_DEFAULT = ["5e", "adi", "poe"];
+/** Rows in order: [id, label, cell renderer, clamped by default]. */
+const CMP_ROWS = [
+  ["scale", "Scale", m => badge(m.scale), false],
+  ["distinct", "Distinguishing feature", m => esc(m.distinct), true],
+  ["phases", "Phases", m => `<ol class="phases" aria-label="Phases">${m.phases.map(p => `<li>${esc(p)}</li>`).join("")}</ol>`, true],
+  ["teacher", "Teacher’s role", m => esc(m.teacher), true],
+  ["learner", "Learner’s role", m => esc(m.learner), true],
+  ["fit", "Best science fit", m => esc(m.fit), true],
+  ["pitfall", "Common pitfall", m => esc(m.pitfall), true],
+  ["guide", "Companion guide", m => m.hasGuide
+    ? `<button class="ghost" type="button" onclick="openGuide('${m.id}')">Open guide</button>` : `<span class="hint">Coming soon</span>`, false],
+];
+let cmpSel = null;            // null until the viewer chooses; then the ids in the order chosen
+const cmpOpen = new Set();    // rows expanded across every column
+function cmpDefault(){
+  const { a, imp } = detailAnswers(), r = rankAll(a, imp);
+  return r.length ? r.slice(0, 3).map(x => x.m.id) : CMP_DEFAULT.filter(id => M[id]);
+}
+const cmpSelected = () => cmpSel ?? cmpDefault();
+const cmpCell = (row, m) => row[3]
+  ? `<div class="${row[0] === "phases" ? "clamp-block" : "clamp"}">${row[2](m)}</div>` : row[2](m);
+const cmpToggle = id => `<button class="ghost rowtoggle" type="button" data-row="${id}" aria-expanded="${cmpOpen.has(id)}">${cmpOpen.has(id) ? "Show less" : "Show more"}</button>`;
+
+function renderCompare(){
+  const sel = cmpSelected();
+  document.getElementById("cmpPicker").innerHTML = Object.entries(SCALE).map(([k, s]) => {
+    const ms = DATA.models.filter(m => m.scale === k);
+    return ms.length ? `<div class="cmp-group"><p class="sub">${esc(s.label)}</p><div class="chips">${ms.map(m =>
+      `<label class="chip"><input type="checkbox" value="${m.id}"${sel.includes(m.id) ? " checked" : ""}><span>${esc(m.name)}${badge(m.scale)}</span></label>`).join("")}</div></div>` : "";
+  }).join("");
+  renderCompareView();
+}
+function renderCompareView(){
+  const models = cmpSelected().map(id => M[id]).filter(Boolean);
+  document.getElementById("cmpStatus").textContent = `${plural(models.length, "model")} selected`;
+  const table = document.getElementById("cmpTable"), cards = document.getElementById("cmpCards");
+  if (!models.length){
+    table.innerHTML = `<p class="empty">Select up to four models above.</p>`; cards.innerHTML = ""; return;
+  }
+  table.innerHTML = `<table class="cmp"><thead><tr><td></td>${models.map(m =>
+    `<th scope="col"><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></th>`).join("")}</tr></thead><tbody>${CMP_ROWS.map(row =>
+    `<tr data-row="${row[0]}" class="${cmpOpen.has(row[0]) ? "open" : ""}"><th scope="row">${row[1]}${row[3] ? cmpToggle(row[0]) : ""}</th>${models.map(m =>
+      `<td>${cmpCell(row, m)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+  cards.innerHTML = models.map(m => `<article class="card"><div class="card-head"><div><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></div></div>
+    ${CMP_ROWS.map(row => `<div class="cmp-row${cmpOpen.has(row[0]) ? " open" : ""}" data-row="${row[0]}"><p class="sub">${row[1]}</p>${cmpCell(row, m)}${row[3] ? cmpToggle(row[0]) : ""}</div>`).join("")}</article>`).join("");
+  document.querySelectorAll("#p-compare .rowtoggle").forEach(b => b.onclick = () => {
+    const id = b.dataset.row;
+    cmpOpen.has(id) ? cmpOpen.delete(id) : cmpOpen.add(id);
+    renderCompareView();
+    document.querySelector(`#p-compare .rowtoggle[data-row="${id}"]:not([hidden])`)?.focus?.();
+  });
+  cmpMeasure();
+}
+/** Offer "Show more" only on rows where some cell is actually cut off in the visible layout. */
+function cmpMeasure(){
+  CMP_ROWS.filter(r => r[3]).forEach(([id]) => {
+    if (cmpOpen.has(id)) return;
+    const cells = [...document.querySelectorAll(`#p-compare [data-row="${id}"] .clamp, #p-compare [data-row="${id}"] .clamp-block`)];
+    const cut = cells.some(c => c.scrollHeight > c.clientHeight + 1);
+    document.querySelectorAll(`#p-compare .rowtoggle[data-row="${id}"]`).forEach(b => b.hidden = !cut);
+  });
+}
+let cmpResize;
+addEventListener("resize", () => { clearTimeout(cmpResize); cmpResize = setTimeout(() => {
+  if (!document.getElementById("p-compare").hidden) cmpMeasure(); }, 150); });
+document.getElementById("cmpPicker").addEventListener("change", e => {
+  const t = e.target, note = document.getElementById("cmpNote");
+  let sel = [...cmpSelected()];
+  if (t.checked){
+    if (sel.length >= CMP_MAX){ t.checked = false; note.textContent = "Compare up to four at a time"; return; }
+    sel.push(t.value);
+  } else sel = sel.filter(id => id !== t.value);
+  note.textContent = "";
+  cmpSel = sel;
+  renderCompareView();
+});
+document.getElementById("cmpClear").onclick = () => {
+  cmpSel = []; document.getElementById("cmpNote").textContent = ""; renderCompare(); };
+
+/* ---------- entry points on the first screen ---------- */
+document.getElementById("goReckoner").onclick = () => {
+  quickForm.scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" });
+  quickForm.querySelector("input")?.focus({ preventScroll: true });
+};
+document.getElementById("goCompare").onclick = () => {
+  const t = document.getElementById("t-compare"); selectTab(t); t.focus(); };
+document.getElementById("goTour").onclick = () => startTour();
+
+/* ---------- walkthrough ---------- */
+const TOUR = [
+  { tab: "t-quick", target: () => quickForm,
+    text: "Start with what you’re planning. Three questions give you a model; eleven give you a ranked shortlist with reasons and watch-outs." },
+  { tab: "t-compare", target: () => document.getElementById("cmpTable"),
+    text: "Models work at different scales. A unit model like 5E holds routines like ADI, which can hold a single-lesson strategy like POE. The compare view shows the scale of each." },
+  { tab: "t-guides", target: () => document.getElementById("guideNav"),
+    text: "Open a companion guide for the model you choose. Each has phases with look-fors, worked examples done well and done badly, and a designer’s checklist you can tick off." },
+  { tab: "t-guides", target: () => document.querySelector("#guideBody .ctx"),
+    text: "Set your stage and focus area in any guide, and the examples matching your context are marked and shown first." },
+];
+const tourEl = document.getElementById("tour");
+let tourStep = -1, tourReturn = null;
+function startTour(auto = false){
+  tourReturn = document.activeElement;
+  tourEl.hidden = false; showTourStep(0, !auto); tourEl.focus({ preventScroll: true });
+}
+function showTourStep(i, scroll = true){
+  document.querySelector(".tour-target")?.classList.remove("tour-target");
+  tourStep = i; const s = TOUR[i];
+  const tab = document.getElementById(s.tab);
+  if (tab.getAttribute("aria-selected") !== "true") selectTab(tab, s.tab !== "t-guides");
+  document.getElementById("tourCount").textContent = `Step ${i + 1} of ${TOUR.length}`;
+  document.getElementById("tourText").textContent = s.text;
+  document.getElementById("tourNext").textContent = i === TOUR.length - 1 ? "Done" : "Next";
+  const el = s.target();
+  if (el){ el.classList.add("tour-target"); if (scroll) el.scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "center" }); }
+}
+function closeTour(){
+  document.querySelector(".tour-target")?.classList.remove("tour-target");
+  tourEl.hidden = true; tourStep = -1; store.set("tourDone", true);
+  if (tourReturn && document.contains(tourReturn)) tourReturn.focus?.({ preventScroll: true });
+}
+document.getElementById("tourNext").onclick = () => tourStep < TOUR.length - 1 ? showTourStep(tourStep + 1) : closeTour();
+document.getElementById("tourClose").onclick = closeTour;
+addEventListener("keydown", e => { if (e.key === "Escape" && !tourEl.hidden) closeTour(); });
+
+/* ---------- print: guides and comparisons always print in full ---------- */
+let printing = false, printRestore = null;
+addEventListener("beforeprint", () => {
+  printing = true;
+  const closed = [...document.querySelectorAll("details.sec:not([open])")];
+  closed.forEach(d => d.open = true);
+  printRestore = () => closed.forEach(d => d.open = false);
+});
+addEventListener("afterprint", () => { printRestore?.(); printRestore = null; setTimeout(() => { printing = false; }, 0); });
+
 /* ---------- review copy banner (npm run review) ---------- */
 if (DATA.review){
   const b = document.createElement("div");
@@ -481,3 +649,5 @@ renderQuick(); renderDetail(); renderLibrary();
 renderGuide(DATA.guides.length ? DATA.guides[0].id : null);
 routeFromHash();
 document.getElementById("bootMsg")?.remove();
+// First visit to the landing screen: offer the walkthrough once. Closing it at any step records that.
+if (!store.get("tourDone") && !location.hash && !DATA.review) startTour(true);
