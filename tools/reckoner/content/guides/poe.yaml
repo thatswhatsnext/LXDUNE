@@ -589,6 +589,7 @@ nesting:
   - { modelId: ast, role: nests-in, phaseId: elicit-models, how: 'Use a POE to prompt students'' first explanatory models.' }
   - { modelId: levels-of-inquiry, role: hosts, phaseId: observe, how: 'Use the guidance dial to decide whether students run the event themselves or observe a demonstration.' }
   - { modelId: adi, role: nests-in, phaseId: task-question, how: 'Use a POE before the guiding question is posed, to surface prior ideas.' }
+  - { modelId: 7e, role: nests-in, phaseId: engage, how: 'Use a POE as the 7E hook, once Elicit has shown which conception to target.' }
 
 reflectionPrompts:
   - id: refl-poe-personal

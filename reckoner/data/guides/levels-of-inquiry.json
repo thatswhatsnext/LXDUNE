@@ -995,6 +995,12 @@
       "role": "nests-in",
       "phaseId": "observe",
       "how": "Decide whether students run the event themselves or observe a demonstration."
+    },
+    {
+      "modelId": "7e",
+      "role": "nests-in",
+      "phaseId": "explore",
+      "how": "Set the guidance dial for the 7E Explore investigation to match learner readiness."
     }
   ],
   "reflectionPrompts": [
