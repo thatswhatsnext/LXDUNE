@@ -144,6 +144,26 @@ const cases: [string, () => void | Promise<void>][] = [
     catch (e) { if (/could not load its content/.test((e as Error).message)) return; throw e; }
     throw new Error("no error shown");
   }],
+  ["the focus-area index pairs each focus area only with its own stage", () => {
+    const man = JSON.parse(readFileSync(join(tmp, "a", "data", "manifest.json"), "utf8"));
+    const idx = man.focusIndex as Record<string, { sequences: unknown[]; examples: unknown[] }>;
+    for (const key of Object.keys(idx)) {
+      const [st, fa] = key.split("|");
+      if (!(man.focusAreas[st] ?? []).includes(fa)) throw new Error(`off-whitelist key ${key}`);
+    }
+    if (!idx["stage4|Forces"]?.sequences.length) throw new Error("stage4|Forces has no sequence");
+    if (idx["stage5|Living systems"] || idx["stage4|Environmental sustainability"]) throw new Error("cross-stage pairing leaked into the index");
+    const g = yaml.load(readFileSync(join(PKG_ROOT, "content", "guides", "5e.yaml"), "utf8")) as any;
+    const ex = g.phases[0].examples[0];
+    ex.context = { ...ex.context, stages: ["stage5"], focusAreas: ["Forces"] };
+    ex.outcomes = [];
+    const dir = join(tmp, "guides-mismatch");
+    cpSync(join(PKG_ROOT, "content", "guides"), dir, { recursive: true });
+    writeFileSync(join(dir, "5e.yaml"), yaml.dump(g));
+    try { buildSite({ mode: "site", outDir: join(tmp, "mismatch"), guidesDir: dir, log: quiet }); }
+    catch (e) { if (/is stage4, but the item is tagged stage5/.test((e as Error).message)) return; throw e; }
+    throw new Error("a focus area tagged with the wrong stage was accepted");
+  }],
   ["the Pages mirror removes a guide the build no longer produces", () => {
     const dest = join(tmp, "pages");
     mirror(join(tmp, "a"), dest);

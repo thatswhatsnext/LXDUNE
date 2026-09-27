@@ -23,6 +23,7 @@ import { dirname, join } from "node:path";
 import yaml from "js-yaml";
 import { ModelGuide } from "../../src/schema/model-guide";
 import { FIT_DIMENSIONS, FIT_DIMENSION_KEYS } from "../../src/schema/fit-dimensions";
+import { FOCUS_AREAS } from "../../src/schema/syllabus";
 
 export const PKG_ROOT = join(__dirname, "..", "..");
 
@@ -109,6 +110,8 @@ export function buildSite(opts: BuildOptions): BuildResult {
     purposePhrase: questions.PURPOSE_PHRASE,
     fitDimensions: FIT_DIMENSIONS,
     models,
+    focusAreas: FOCUS_AREAS,
+    focusIndex: buildFocusIndex(guides),
   };
 
   const template = readFileSync(join(templatesDir, "app.html"), "utf8");
@@ -158,6 +161,39 @@ export function buildSite(opts: BuildOptions): BuildResult {
     guides: guides.map((g) => ({ id: g.id, version: g.version, status: g.status })),
     models: models.length,
   };
+}
+
+export type FocusIndex = Record<string, { sequences: { guide: string; id: string }[]; examples: { guide: string; phase: string; id: string }[] }>;
+
+/**
+ * Derived from existing guide content; writes no new content. Keys are
+ * "stage|focus area", e.g. "stage4|Forces". Each focus area is paired only with
+ * the stage it belongs to on the syllabus whitelist, so an item tagged with both
+ * stages does not produce pairings such as "stage5|Living systems".
+ */
+export function buildFocusIndex(guides: ModelGuide[]): FocusIndex {
+  const stageOf = (fa: string) =>
+    (Object.keys(FOCUS_AREAS) as (keyof typeof FOCUS_AREAS)[]).find((st) => (FOCUS_AREAS[st] as readonly string[]).includes(fa));
+  const index: FocusIndex = {};
+  const add = (where: string, ctx: { stages: string[]; focusAreas?: string[] }, push: (e: FocusIndex[string]) => void) => {
+    for (const fa of ctx.focusAreas ?? []) {
+      const st = stageOf(fa);
+      if (!st) throw new Error(`${where}: focus area "${fa}" is not on the syllabus whitelist`);
+      if (!ctx.stages.includes(st)) throw new Error(`${where}: focus area "${fa}" is ${st}, but the item is tagged ${ctx.stages.join(", ")}`);
+      push((index[`${st}|${fa}`] ??= { sequences: [], examples: [] }));
+    }
+  };
+  for (const g of guides) {
+    for (const s of g.workedSequences) add(`${g.id} sequence ${s.id}`, s.context, (e) => e.sequences.push({ guide: g.id, id: s.id }));
+    for (const p of g.phases)
+      for (const e of p.examples) add(`${g.id} example ${e.id}`, e.context, (x) => x.examples.push({ guide: g.id, phase: p.id, id: e.id }));
+  }
+  // Every key must parse to a stage and a focus area on the whitelist.
+  for (const key of Object.keys(index)) {
+    const [st, fa] = key.split("|") as [keyof typeof FOCUS_AREAS, string];
+    if (!(FOCUS_AREAS[st] as readonly string[] | undefined)?.includes(fa)) throw new Error(`focusIndex key "${key}" is not a stage and focus area on the whitelist`);
+  }
+  return Object.fromEntries(Object.entries(index).sort(([a], [b]) => a.localeCompare(b)));
 }
 
 /**
