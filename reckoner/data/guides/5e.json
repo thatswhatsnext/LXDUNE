@@ -3,9 +3,9 @@
   "id": "5e",
   "name": "5E",
   "originators": "Bybee / BSCS (1987)",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "status": "published",
-  "lastReviewed": "2026-09-27",
+  "lastReviewed": "2026-09-28",
   "syllabus": "NSW Science 7–10 Syllabus (2023)",
   "provenance": {
     "source": "ai-drafted-reviewed",
@@ -1299,7 +1299,7 @@
         "The Engage scenario returns in Evaluate, so students can see how far their reasoning has moved"
       ],
       "watchFor": "Letting Elaborate become a poster about a disease. The recommendation must use transmission and immunity\nconcepts, and the claim evaluation must cite evidence.\n",
-      "safetyNotes": "Follow your school's chemical safety procedures for the simulation, and your sector's microbiology\nguidelines if you add culturing (sealed plates, no opening, correct disposal). Disease topics can touch\nstudents' experience of illness or loss: keep the Engage scenario hypothetical and give students choice\nof disease in Elaborate.\n",
+      "safetyNotes": "This guide does not carry safety advice and is not a substitute for your school's risk assessment.\nWhat this sequence introduces, so you know what to assess: a simulated outbreak in which students\nexchange a dilute sodium carbonate solution between cups and test it with an indicator, so a low-hazard\nchemical passes from hand to hand around the room; and microbiological culturing, if you extend the\nsequence that way. Take both to your head teacher or faculty safety contact and check them against your\nschool's chemical and practical procedures and current NSW guidance before you run anything.\n\nSeparate from the risk assessment, and a design question rather than a safety one: disease topics can\ntouch a student's own experience of illness or loss. Keeping the Engage scenario hypothetical and\nletting students choose their disease in Elaborate is one way to handle that, and it costs the sequence\nnothing. Read it alongside Inclusive design below, which is where the rest of this sequence's\nadjustments live — this is the same kind of decision, made for a reason the class roll will not tell\nyou.\n",
       "predictPrompt": "Before reading on, what does the simulation in lessons 2–3 let students experience that a lecture on herd immunity could not?",
       "provenance": {
         "source": "ai-drafted-reviewed",
@@ -1309,7 +1309,7 @@
         "reviewedBy": [
           "Steve Grant"
         ],
-        "reviewedOn": "2026-09-21"
+        "reviewedOn": "2026-09-28"
       }
     }
   ],

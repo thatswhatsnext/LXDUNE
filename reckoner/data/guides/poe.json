@@ -3,9 +3,9 @@
   "id": "poe",
   "name": "Predict–Observe–Explain",
   "originators": "White & Gunstone (1992)",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "status": "published",
-  "lastReviewed": "2026-09-27",
+  "lastReviewed": "2026-09-28",
   "syllabus": "NSW Science 7–10 Syllabus (2023)",
   "provenance": {
     "source": "ai-drafted-reviewed",
@@ -951,7 +951,7 @@
         "The episode leads directly into teaching on transmission and prevention"
       ],
       "watchFor": "Students concluding that sanitiser \"doesn't work\" because the lotion remains. Plan the explain step\naround this limitation rather than letting it slip past.\n",
-      "safetyNotes": "Check for skin sensitivities before using the lotion. Do not shine UV torches into eyes. Alcohol sanitiser\nis flammable; keep it away from ignition sources.\n",
+      "safetyNotes": "This guide does not carry safety advice and is not a substitute for your school's risk assessment.\nWhat this lesson introduces, so you know what to assess: a lotion applied to students' skin, which\nraises sensitivities and allergies; UV torches; and alcohol-based hand sanitiser, which is flammable.\nTake these to your head teacher or faculty safety contact and check them against your school's\npractical procedures and current NSW guidance before you run anything.\n\nOne point specific to POE, and it cuts the other way from the open models. You supply the event, so\nyou know in advance exactly what will be in the room, which makes this the most straightforward kind\nof practical to assess. The thing to watch is that the event is chosen to surprise the students — make\nsure it does not also surprise you, particularly if you have adapted someone else's discrepant event\nwithout running it first.\n",
       "predictPrompt": "Before reading on, where does the fluorescent-lotion model of germs break down, and why is that limitation useful in the explain step?",
       "provenance": {
         "source": "ai-drafted-reviewed",
@@ -961,7 +961,7 @@
         "reviewedBy": [
           "Steve Grant"
         ],
-        "reviewedOn": "2026-09-21"
+        "reviewedOn": "2026-09-28"
       }
     }
   ],

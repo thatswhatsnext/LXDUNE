@@ -3,9 +3,9 @@
   "id": "adi",
   "name": "Argument-Driven Inquiry",
   "originators": "Sampson, Grooms & Walker (2011)",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "status": "published",
-  "lastReviewed": "2026-09-27",
+  "lastReviewed": "2026-09-28",
   "syllabus": "NSW Science 7–10 Syllabus (2023)",
   "provenance": {
     "source": "ai-drafted-reviewed",
@@ -997,7 +997,7 @@
         "The same criteria run from stage 1 to stage 8, so students always know what quality means"
       ],
       "watchFor": "Groups that finish sampling early and treat analysis as filling in a table. Press for a representation\nthat answers the question, not a tidy results section.\n",
-      "safetyNotes": "Conduct a site risk assessment for the schoolyard, including hazardous plants, sharps and allergies.\nHandle invertebrates minimally and return them to the site.\n",
+      "safetyNotes": "This guide does not carry safety advice and is not a substitute for your school's risk assessment.\nWhat this sequence introduces, so you know what to assess: work outside the classroom, where the site\nitself carries the hazards — plants, soil, sharps, insects and stings, sun and heat, and whatever the\ngrounds happen to hold that week; students handling live invertebrates; and any allergies in the class\nthat the site makes relevant. Take these to your head teacher or faculty safety contact and check them\nagainst your school's excursion and practical procedures and current NSW guidance before you run\nanything.\n\nOne point specific to ADI. Groups design their own data collection, so the methods are not known when\nyou write the risk assessment. Walking the site yourself beforehand tells you what to rule in or out,\nand the design checkpoint is where those constraints reach students — as part of the problem rather\nthan as a limit imposed on it. The treatment of the invertebrates is a decision the class should make\nexplicitly rather than a rule they are handed.\n",
       "predictPrompt": "Before reading on, which stage would you cut first if you lost a lesson, and what would that cost students?",
       "provenance": {
         "source": "ai-drafted-reviewed",
@@ -1007,7 +1007,7 @@
         "reviewedBy": [
           "Steve Grant"
         ],
-        "reviewedOn": "2026-09-21"
+        "reviewedOn": "2026-09-28"
       }
     }
   ],
