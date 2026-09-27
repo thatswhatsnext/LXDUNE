@@ -5,9 +5,9 @@ schemaVersion: "1.3"
 id: adi
 name: Argument-Driven Inquiry
 originators: Sampson, Grooms & Walker (2011)
-version: 1.1.0
+version: 1.1.1
 status: published
-lastReviewed: 2026-09-27
+lastReviewed: 2026-09-28
 syllabus: NSW Science 7–10 Syllabus (2023)
 provenance:
   source: ai-drafted-reviewed
@@ -514,9 +514,20 @@ workedSequences:
       Groups that finish sampling early and treat analysis as filling in a table. Press for a representation
       that answers the question, not a tidy results section.
     safetyNotes: |
-      Conduct a site risk assessment for the schoolyard, including hazardous plants, sharps and allergies.
-      Handle invertebrates minimally and return them to the site.
-    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      This guide does not carry safety advice and is not a substitute for your school's risk assessment.
+      What this sequence introduces, so you know what to assess: work outside the classroom, where the site
+      itself carries the hazards — plants, soil, sharps, insects and stings, sun and heat, and whatever the
+      grounds happen to hold that week; students handling live invertebrates; and any allergies in the class
+      that the site makes relevant. Take these to your head teacher or faculty safety contact and check them
+      against your school's excursion and practical procedures and current NSW guidance before you run
+      anything.
+
+      One point specific to ADI. Groups design their own data collection, so the methods are not known when
+      you write the risk assessment. Walking the site yourself beforehand tells you what to rule in or out,
+      and the design checkpoint is where those constraints reach students — as part of the problem rather
+      than as a limit imposed on it. The treatment of the invertebrates is a decision the class should make
+      explicitly rather than a rule they are handed.
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
 
 misapplications:
   - id: mis-adi-closed-question
