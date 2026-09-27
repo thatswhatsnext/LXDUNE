@@ -1,0 +1,662 @@
+# Science Writing Heuristic companion guide
+# Tier A guide 2 of 5. Phase names follow the original student template in Keys, Hand,
+# Prain & Collins (1999), where each phase is the student-facing question itself.
+
+schemaVersion: "1.3"
+id: swh
+name: Science Writing Heuristic
+originators: Keys, Hand, Prain & Collins (1999)
+version: 1.0.0
+status: published
+lastReviewed: 2026-09-28
+syllabus: NSW Science 7–10 Syllabus (2023)
+provenance:
+  source: ai-drafted-reviewed
+  authors: ["Claude, drafted for S. Grant"]
+  reviewedBy: ["Steve Grant"]
+  reviewedOn: 2026-09-28
+
+reckoner:
+  scale: meso
+  fitProfile:
+    purpose: [2, 2, 2, 3, 0, 1, 1]
+    time:    [1, 3, 2, 1]
+    ready:   [3, 3, 2]
+    concept: [3, 3, 2, 1, 1]
+    misc:    [2, 2, 2]
+    ws:      [1, 3, 1, 2, 2, 3, 1, 3]
+    conf:    [2, 3, 3]
+    res:     [3, 2, 1]
+    assess:  [2, 3, 3, 0, 3]
+    lang:    [3, 2, 2]
+    place:   [1, 1, 1]
+  distinguishingFeature: A writing-to-learn scaffold that turns lab reports into reasoning.
+  bestScienceFit: 'Any practical where the claim is genuinely arguable. Particularly strong in EAL/D-rich classes, and it builds WS-06 and WS-08.'
+  commonPitfall: Using the student template as a fill-in form without the class negotiation of claims.
+  evidenceSummary: 'Classroom and quasi-experimental studies report gains; a 2025 longitudinal study found the benefit varies with socio-economic background and is largest when students meet it early. Most SWH-specific evidence comes from its developers, though writing to learn has wider support.'
+  evidenceStrength: moderate
+  evidenceReferenceIds: [keys-1999, graham-2020, hwang-2025]
+  theoryTags: ["Writing to learn", "Negotiation of meaning", "Social constructivism", "Metacognition"]
+
+introduction:
+  lead: The Science Writing Heuristic replaces the lab report with seven questions that make a student's reasoning visible, to themselves and to everyone else.
+  purposeStatement: |
+    This guide covers the seven questions students answer, what each is for, and the half that is easiest to
+    lose. SWH has two templates, not one. The student template is the seven questions. The teacher template
+    is four phases of negotiation, where meaning gets argued out with peers and with texts. The seven
+    questions are the half that photocopies, and the negotiation is the half that has to be timetabled, so
+    the second is the one that quietly disappears when a term gets tight.
+
+    The questions alone are not worth nothing. Asked to write their own beginning question and their own
+    claim, students are already doing more than a supplied procedure asks of them, and a first attempt that
+    gets that far is a reasonable place to start. What the negotiation adds is the pressure of an audience:
+    a claim nobody has to defend can stay vague, and usually does. What it costs is lesson time, roughly a
+    fifth of the sequence, spent on talk that can look unproductive from the back of the room.
+
+    That is the trade to weigh, and it is worth weighing rather than settling once. Read this guide for what
+    the seven questions ask, what the negotiation phases are for, and how to tell whether they happened.
+  audience: Pre-service teachers in secondary science method units, and teachers in their first years.
+  howToUse: |
+    Read the stage cards before you next run a practical. The Claims and Evidence cards are where students
+    struggle and where the marking effort goes, so start there if you are short of time. Use the checklist
+    when you build your template, and try the worked sequence's prediction question before reading the
+    analysis.
+
+theory:
+  summary: |
+    SWH rests on the idea that writing is not a way of recording thinking that has already happened. Made to
+    answer a question for an audience, writing forces reasoning to become explicit, and the gaps show. The
+    seven questions are ordered so that each one exposes a different gap.
+  foundations:
+    - tradition: "Writing to learn"
+      idea: Writing for a reader forces reasoning into the open, which is a different act from writing up a result.
+      designImplication: 'The questions are phrased in the first person — what can I claim, how do I know — because the writer has to own the reasoning rather than report a procedure.'
+      referenceIds: [keys-1999, graham-2020]
+    - tradition: "Negotiation of meaning"
+      idea: Understanding is argued into shape against other people's interpretations and against texts, not received from either.
+      designImplication: The teacher template's four negotiation phases are the mechanism. Without them the student template collects writing but negotiates nothing.
+      referenceIds: [keys-1999]
+    - tradition: "Metacognition"
+      idea: Learners improve when they can see their own thinking change.
+      designImplication: The final question asks how ideas have changed, which only works if the beginning ideas were written down and kept.
+      referenceIds: []
+  critiques:
+    - claim: Most of the evidence for SWH comes from the group that developed it.
+      response: |
+        Fair, and worth knowing before you cite it. Independent replications exist and writing to learn in
+        science has broader meta-analytic support, but the SWH-specific literature is concentrated around
+        Hand and colleagues. Treat the approach as well-motivated and promising rather than settled.
+      referenceIds: [graham-2020, hwang-2025]
+    - claim: The template becomes the lesson, and students fill boxes instead of reasoning.
+      response: |
+        This is the commonest failure and it is a design problem rather than a flaw in the model. The
+        safeguard is the teacher template: if no negotiation phase is timetabled, the boxes are all there is.
+      referenceIds: [keys-1999]
+
+roles:
+  teacher: Runs the four negotiation phases, presses on the gap between a claim and its evidence, and decides when students compare with texts rather than supplying the answer.
+  learner: Asks their own question, makes a claim they are prepared to defend, says how they know, and revises against what others and the texts say.
+
+sequence:
+  shape: linear
+  summary: |
+    Seven questions in three movements: what did I do and see, what can I claim and how do I know, and how
+    does that stand up against everyone else. The last movement is where the learning is, and it is the one
+    that gets cut.
+  scaleNote: SWH is a routine of about 4–6 lessons that replaces a practical and its report. It sits inside a unit model rather than structuring one.
+
+phaseGroups:
+  - id: in-the-lab
+    name: In the lab
+    summary: Beginning ideas, Tests and Observations. What students wondered, what they did about it, and what happened.
+  - id: make-the-claim
+    name: Make the claim
+    summary: Claims and Evidence. The reasoning core, and where the marking effort belongs.
+  - id: negotiate
+    name: Test it against others
+    summary: Reading and Reflection. Meaning is argued out against peers and texts, then students say what changed.
+
+phases:
+  - id: beginning-ideas
+    name: Beginning ideas
+    order: 1
+    group: in-the-lab
+    job: 'Students write their own question: what are my questions?'
+    essentialFeatures:
+      - Students generate the questions, from a shared phenomenon or materials
+      - The questions are theirs and are kept, not replaced by the teacher's
+      - A short conference makes a broad question investigable without taking it over
+      - The writing happens before any procedure is handed out
+    teacherMoves: [Provides a shared starting experience, Helps narrow a question without replacing it, Keeps the written questions for the Reflection phase]
+    learnerMoves: [Writes what they wonder, Narrows it to something testable]
+    typicalShare: { minPercent: 10, maxPercent: 15 }
+    formativeChecks: [Each student's written question, checked for investigability]
+    lookFors:
+      - id: swh-begin-own-question
+        question: Is the question the student's own?
+        strongEvidence: Questions differ across the room and are recognisably the students'.
+        weakEvidence: One question on the board, copied into every book.
+      - id: swh-begin-kept
+        question: Are the beginning ideas kept for later?
+        strongEvidence: They are collected or stay in the book, and come back at Reflection.
+        weakEvidence: They are written once and never seen again, which makes the last question unanswerable.
+    examples:
+      - id: swh-beginning-ideas-pos-dissolving
+        kind: positive
+        title: What do you want to find out about dissolving?
+        context: { stages: [stage4], focusAreas: [Solutions and mixtures], disciplines: [chemistry] }
+        outcomes: [SC4-SOL-01, SC4-WS-02]
+        body: |
+          Each group gets sugar, salt, warm and cold water, a spoon and a timer, and five minutes to play.
+          Students then write one question they want to answer. The teacher circulates with a single prompt:
+          could you actually test that this lesson? A question about whether sugar dissolves in petrol becomes
+          one about oil and water. A question about which dissolves fastest stays as it is. Eleven different
+          questions go into eleven books, and the teacher photographs the page so they can be handed back in
+          the final lesson.
+        diagnosis: |
+          The questions differ across the room and are recognisably the students' own, which is
+          swh-begin-own-question, and the conference narrows without substituting. Photographing the page is
+          what makes swh-begin-kept real: the last question in the heuristic cannot be answered if the first
+          one has been lost.
+        lookForIds: [swh-begin-own-question, swh-begin-kept]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+      - id: swh-beginning-ideas-neg-dissolving-copied
+        kind: negative
+        title: The question is already in the box
+        context: { stages: [stage4], focusAreas: [Solutions and mixtures], disciplines: [chemistry] }
+        outcomes: []
+        body: |
+          The worksheet is headed with the seven SWH questions, which is a good start, and the first box is
+          pre-printed: "Does temperature affect how fast sugar dissolves?" Students copy the method beneath it
+          and get on with the practical. The headings are all there and the books look like SWH. Nobody has
+          asked a question, so nothing in the room is anyone's to defend.
+        diagnosis: |
+          Supplying the question removes the only thing that made Beginning ideas a phase rather than a
+          heading, so swh-begin-own-question fails. The cost arrives six questions later: Reflection asks how
+          your ideas have changed, and a student who never had an idea of their own has nothing to compare.
+        lookForIds: [swh-begin-own-question, swh-begin-kept]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+
+  - id: tests
+    name: Tests
+    order: 2
+    group: in-the-lab
+    job: 'Students plan what they will do: what did I do?'
+    essentialFeatures:
+      - The method follows from the student's own question
+      - A plan checkpoint covers safety and feasibility, not correctness
+      - Methods may legitimately differ between groups
+    teacherMoves: [Conferences plans for safety and feasibility, Asks about reliability without redesigning]
+    learnerMoves: [Designs a method for their own question, Justifies the choices]
+    typicalShare: { minPercent: 10, maxPercent: 15 }
+    formativeChecks: [Plan conference before any equipment is issued]
+    lookFors:
+      - id: swh-tests-follows-question
+        question: Does the method answer the student's own question?
+        strongEvidence: Different questions have produced different methods.
+        weakEvidence: One supplied procedure, which makes the first phase decorative.
+
+  - id: observations
+    name: Observations
+    order: 3
+    group: in-the-lab
+    job: 'Students record what happened: what did I see?'
+    essentialFeatures:
+      - Observations are recorded as they happen, separately from interpretation
+      - Enough data to support a claim, which usually means repeats
+      - Anomalies are recorded rather than tidied away
+    teacherMoves: [Presses for what was seen rather than what it means, Asks how much data is enough]
+    learnerMoves: [Records observations, Keeps them apart from inferences]
+    typicalShare: { minPercent: 15, maxPercent: 20 }
+    formativeChecks: [Observation records checked for separation from interpretation]
+    lookFors:
+      - id: swh-obs-separate
+        question: Are observations kept separate from what they are taken to mean?
+        strongEvidence: The record says what happened; the meaning waits for Claims.
+        weakEvidence: Conclusions written into the observation column, so nothing is left to reason about.
+
+  - id: claims
+    name: Claims
+    order: 4
+    group: make-the-claim
+    job: 'Students state what they think is true: what can I claim?'
+    essentialFeatures:
+      - A claim is a statement someone could disagree with
+      - It answers the student's own beginning question
+      - Written individually, even after group work
+      - Tentative language is fine; vagueness is not
+    teacherMoves: [Presses a vague claim into a testable one, Resists supplying the right answer]
+    learnerMoves: [States a claim they are prepared to defend]
+    typicalShare: { minPercent: 10, maxPercent: 15 }
+    formativeChecks: [Each claim read for whether it could be argued with]
+    lookFors:
+      - id: swh-claim-arguable
+        question: Could someone disagree with this claim?
+        strongEvidence: A definite statement that the data could have contradicted.
+        weakEvidence: '"We found out about dissolving." Nothing there to defend or attack.'
+      - id: swh-claim-individual
+        question: Is the claim written individually?
+        strongEvidence: Each student writes their own, even from shared data.
+        weakEvidence: One claim per group, copied, so individual reasoning stays invisible.
+    examples:
+      - id: swh-claims-pos-pond-water
+        kind: positive
+        title: A claim about the thing on the slide
+        context: { stages: [stage4], focusAreas: [Cells and classification], disciplines: [biology] }
+        outcomes: [SC4-CLS-01, SC4-WS-06]
+        body: |
+          Groups examine pond water and prepared slides, and each student writes a claim about one organism
+          they chose. One writes that the organism in her third field of view is more likely an animal than a
+          plant, because it changed direction under its own power twice and she could see no cell wall at the
+          magnification available. She adds that she is less sure about the second organism, which did not
+          move in the time she watched it. Two students at her bench claimed the opposite about the same
+          sample, which is the argument the next phase takes up.
+        diagnosis: |
+          The claim is one someone could disagree with, and two people at her own bench do, which is
+          swh-claim-arguable. It is hedged to what she saw rather than to what the textbook says, and the
+          uncertainty about the second organism is stated rather than hidden. Four students share the sample
+          and write four claims, so swh-claim-individual holds.
+        lookForIds: [swh-claim-arguable, swh-claim-individual]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+      - id: swh-claims-neg-pond-water-all-cells
+        kind: negative
+        title: A claim the two slides could not have tested
+        context: { stages: [stage4], focusAreas: [Cells and classification], disciplines: [biology] }
+        outcomes: []
+        body: |
+          The same practical. The group discusses what they saw, agrees a sentence, and each of the four
+          copies it into their book: all single-celled organisms are animals because they move. Two slides
+          were examined. Nobody at the bench disagrees, because there is one claim and they wrote it
+          together, and the claim reaches well past anything the morning could have shown.
+        diagnosis: |
+          The sentence looks like a claim and reads confidently, but it generalises far beyond two slides, so
+          the data could not have contradicted it and swh-claim-arguable is not really met. One claim copied
+          four times also hides whether any individual reasoned at all, which is swh-claim-individual. The
+          Evidence phase then has nothing to select from, since the claim is not about the sample.
+        lookForIds: [swh-claim-arguable, swh-claim-individual]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+
+  - id: evidence
+    name: Evidence
+    order: 5
+    group: make-the-claim
+    job: 'Students justify the claim: how do I know? Why am I making these claims?'
+    essentialFeatures:
+      - The evidence is selected from the observations, not all of them recopied
+      - It explains why that data supports this claim
+      - Data that does not fit is addressed rather than dropped
+      - This is the phase that most needs teacher time
+    teacherMoves: [Asks why this data supports that claim, Points at data the student has skipped]
+    learnerMoves: [Selects relevant data, Explains the link, Accounts for what does not fit]
+    typicalShare: { minPercent: 15, maxPercent: 20 }
+    formativeChecks: [The link between claim and data, read on every student's work]
+    lookFors:
+      - id: swh-evidence-justifies
+        question: Does the evidence explain why the data supports the claim?
+        strongEvidence: The student says what about the data makes the claim follow.
+        weakEvidence: The observations recopied under a new heading, which is the commonest thing to see.
+      - id: swh-evidence-selected
+        question: Has the student chosen which data matters?
+        strongEvidence: Some results are used and others set aside, with a reason.
+        weakEvidence: Everything reproduced, so no judgement has been exercised.
+      - id: swh-evidence-anomalies
+        question: Is data that does not fit dealt with?
+        strongEvidence: The odd result is named and something is said about it.
+        weakEvidence: It quietly disappears between Observations and Evidence.
+    examples:
+      - id: swh-evidence-pos-bottle-steel
+        kind: positive
+        title: Why the steel bottle wins on my numbers
+        context: { stages: [stage5], focusAreas: [Materials], disciplines: [chemistry] }
+        outcomes: [SC5-MAT-01, SC5-WS-06, SC5-WS-08]
+        body: |
+          A student claims stainless steel is the best material for the school's reusable bottles. Under
+          Evidence she uses two of her four data sets: the cooling curves, where steel held temperature
+          longest, and the drop test, where it deformed rather than failed. She leaves out the mass
+          measurements and says why, that the difference of forty grams will not matter in a school bag. She
+          also notes that one steel trial cooled faster than the others and puts it down to the lid being left
+          loose, which she checked afterwards.
+        diagnosis: |
+          The writing says what about the data makes the claim follow rather than restating it, which is
+          swh-evidence-justifies. Two of four data sets are used with a reason for setting the others aside
+          (swh-evidence-selected), and the odd cooling trial is named and explained rather than dropped, which
+          is swh-evidence-anomalies doing exactly the work it exists for.
+        lookForIds: [swh-evidence-justifies, swh-evidence-selected, swh-evidence-anomalies]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+      - id: swh-evidence-neg-bottle-recopied
+        kind: negative
+        title: The observations again, under a new heading
+        context: { stages: [stage5], focusAreas: [Materials], disciplines: [chemistry] }
+        outcomes: []
+        body: |
+          The same practical. Under Claims a student writes that steel is best. Under Evidence he copies out
+          the whole results table again: every cooling time, every mass, every drop result, neatly ruled. The
+          two anomalous trials are copied too, without comment. The work is complete, legible and takes as long
+          as anyone else's, and it never says why any of it supports steel.
+        diagnosis: |
+          Recopying is not justifying, so swh-evidence-justifies fails, and reproducing everything means no
+          judgement has been exercised about relevance (swh-evidence-selected). This is the single most common
+          thing to see in SWH books, and it usually means the Evidence question has been read as "show your
+          results" rather than "how do I know".
+        lookForIds: [swh-evidence-justifies, swh-evidence-selected, swh-evidence-anomalies]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+
+  - id: reading
+    name: Reading
+    order: 6
+    group: negotiate
+    job: 'Students compare their thinking with others: how do my ideas compare with other ideas?'
+    essentialFeatures:
+      - Comparison happens with peers first, then with texts
+      - Students say where they agree, disagree and cannot tell
+      - The text is a party to the argument, not the answer key
+      - Something is allowed to change as a result
+    teacherMoves: [Runs the small-group comparison, Chooses when texts enter, Presses on disagreements rather than settling them]
+    learnerMoves: [Compares claims with other groups, Reads against their own claim, Records what changed]
+    typicalShare: { minPercent: 15, maxPercent: 20 }
+    formativeChecks: [Record of where each student agreed, disagreed and revised]
+    lookFors:
+      - id: swh-reading-peers-first
+        question: Do students compare with each other before reading the text?
+        strongEvidence: Small groups argue their claims out, then texts enter the discussion.
+        weakEvidence: Straight to the textbook, which ends the argument before it starts.
+      - id: swh-reading-not-answer-key
+        question: Is the text treated as another voice rather than the answer?
+        strongEvidence: Students say where they agree and disagree with what they read.
+        weakEvidence: '"Look it up and see if you were right", which teaches that the preceding four phases were the slow route to it.'
+      - id: swh-reading-something-changes
+        question: Is anything allowed to change?
+        strongEvidence: Revisions are recorded, with reasons.
+        weakEvidence: Claims are identical before and after, and nobody notices.
+    examples:
+      - id: swh-reading-pos-bottle-negotiation
+        kind: positive
+        title: Two groups, two claims, one afternoon
+        context: { stages: [stage5], focusAreas: [Materials], disciplines: [chemistry] }
+        outcomes: [SC5-MAT-01, SC5-WS-08]
+        body: |
+          Groups pair up and read each other's claims. One has argued for steel on thermal performance, the
+          other for the copolyester on mass and cost. Neither group's data contradicts the other's, and they
+          work out why: they have weighted different properties. Only then does the teacher hand out published
+          density, conductivity and recyclability figures. The steel group finds its conductivity claim needs
+          qualifying, because the vacuum layer rather than the steel is doing the work, and says so in writing.
+          The plastic group keeps its claim and adds the recyclability data as support.
+        diagnosis: |
+          Peers before texts, which is swh-reading-peers-first, and the published figures arrive as another
+          voice rather than a verdict (swh-reading-not-answer-key). One claim is qualified and one is
+          strengthened, both in writing, so swh-reading-something-changes holds. Discovering that they had
+          weighted different properties is the negotiation the teacher template is for.
+        lookForIds: [swh-reading-peers-first, swh-reading-not-answer-key, swh-reading-something-changes]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+      - id: swh-reading-neg-bottle-checkit
+        kind: negative
+        title: Look it up and see if you were right
+        context: { stages: [stage5], focusAreas: [Materials], disciplines: [chemistry] }
+        outcomes: []
+        body: |
+          With fifteen minutes left, the teacher puts the textbook page on the board and asks students to check
+          their claims against it. Those who match tick the box. Those who do not cross out what they wrote and
+          copy the textbook statement instead. Nobody talks to another group. The books end the lesson agreeing
+          with each other and with the text.
+        diagnosis: |
+          The text arrives as the answer key, so swh-reading-not-answer-key fails. The lesson is not wasted —
+          students have read a source and compared it with their own work — but what it teaches about the
+          four phases before it is that they were the slow way to reach something the book had all along.
+          With no peer comparison (swh-reading-peers-first), a student whose claim was defensible learns only
+          that it was not the one in the book. Crossing out is not revision: nothing changed for a reason.
+          Fifteen minutes is the constraint doing the damage here, and the cheaper fix is usually to compare
+          with the bench next door first, which costs five.
+        lookForIds: [swh-reading-not-answer-key, swh-reading-peers-first, swh-reading-something-changes]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+
+  - id: reflection
+    name: Reflection
+    order: 7
+    group: negotiate
+    job: 'Students look at their own change: how have my ideas changed?'
+    essentialFeatures:
+      - The beginning ideas are physically in front of the student
+      - The question is about their thinking, not about the topic
+      - No change is a legitimate answer if it is argued
+    teacherMoves: [Returns the beginning ideas, Asks what specifically changed and why]
+    learnerMoves: [Compares their first and last position, Names what moved them]
+    typicalShare: { minPercent: 10, maxPercent: 15 }
+    formativeChecks: [Written comparison of beginning ideas and final claim]
+    lookFors:
+      - id: swh-reflect-has-original
+        question: Do students have their own beginning ideas in front of them?
+        strongEvidence: The first page is open beside the last.
+        weakEvidence: Reflection written from memory, which produces a summary of the topic instead.
+      - id: swh-reflect-about-thinking
+        question: Is the reflection about their thinking rather than the content?
+        strongEvidence: 'The writing names what they believed, what shifted it and what they now hold.'
+        weakEvidence: A paragraph summarising what the class learned, which any student could have written.
+
+workedSequences:
+  - id: swh-seq-s5-bottles
+    title: Which material should the school use for reusable bottles?
+    context: { stages: [stage5], focusAreas: [Materials], disciplines: [chemistry] }
+    contentOutcomes: [SC5-MAT-01]
+    bigQuestion: Which material should the school choose for its reusable bottles, and how would we know?
+    learningIntentions:
+      - Material choice follows from properties, and which property matters depends on the purpose
+      - A claim is defended with selected evidence, not with all the data
+      - Comparing with others and with published figures can change a defensible claim
+    targetConceptions:
+      - There is one best material, independent of purpose
+      - The published figure settles it, so testing is a formality
+    predictPrompt: Before reading on, two groups could reach opposite claims from data that does not conflict. How is that possible, and why is it the most useful thing that can happen in lesson 5?
+    steps:
+      - lessons: "1"
+        phaseId: beginning-ideas
+        activity: |
+          Four bottles on each bench: stainless steel, aluminium, glass and a copolyester plastic. Ten minutes
+          to handle them, then each student writes what they would need to find out before recommending one.
+          Questions are conferenced briefly for testability and kept.
+        wsOutcomes: [SC5-WS-02]
+        formativeCheck: Each student's written question, checked for investigability
+      - lessons: "2"
+        phaseId: tests
+        activity: |
+          Groups design tests for the properties their questions named: cooling rate with hot water, mass,
+          and a contained drop test. The teacher conferences each plan for safety and feasibility without
+          redesigning it.
+        wsOutcomes: [SC5-WS-03]
+        formativeCheck: Plan conference before equipment is issued
+        scaffoldSlots:
+          - field: formativeCheck
+            prompt: A group wants to drop the glass bottle onto the concrete outside. What do you say, without simply refusing?
+      - lessons: "3–4"
+        phaseId: observations
+        activity: |
+          Groups run their tests, repeating where they can, and record what happened separately from what they
+          think it means. Anomalies are written down rather than repeated away.
+        wsOutcomes: [SC5-WS-01, SC5-WS-04, SC5-WS-05]
+        formativeCheck: Observation records checked for separation from interpretation
+      - lessons: "5"
+        phaseId: claims
+        activity: |
+          Each student writes an individual claim answering their own beginning question, in a form another
+          student could disagree with.
+        wsOutcomes: [SC5-WS-06]
+        formativeCheck: Each claim read for whether it could be argued with
+      - lessons: "5"
+        phaseId: evidence
+        activity: |
+          Students select the data that supports their claim, say why it supports it, and account for anything
+          that does not fit. The teacher spends this phase on the claim-to-data link rather than on
+          presentation.
+        wsOutcomes: [SC5-WS-06, SC5-WS-08]
+        formativeCheck: The link between claim and data, read on every student's work
+      - lessons: "6"
+        phaseId: reading
+        activity: |
+          Groups pair up and compare claims, working out where they disagree and why. Only then does the
+          teacher release published density, thermal conductivity, cost and recyclability figures. Revisions
+          are written, not just discussed.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Record of where each student agreed, disagreed and revised
+      - lessons: "6"
+        phaseId: reflection
+        activity: |
+          Beginning ideas are handed back. Students write what they first thought a good bottle was, what
+          moved them, and what they hold now.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Written comparison of beginning ideas and final claim
+    whyItWorks:
+      - Which property matters depends on the purpose, so two groups can reach opposite claims from data that does not conflict
+      - That disagreement is the negotiation, and it cannot be manufactured if the claim is not genuinely arguable
+      - Published figures arrive in lesson 6, after students have something of their own to set against them
+      - The beginning questions are kept from lesson 1, so the final question has something to compare against
+    watchFor: |
+      Lesson 5 is where the teacher's time should go, and it is the lesson that looks least like teaching.
+      Students will be writing quietly and it is tempting to mark books or set up equipment. The claim-to-data
+      link is the thing SWH exists to build, and it is built by asking one student at a time why their data
+      supports what they wrote.
+    safetyNotes: |
+      This guide does not carry safety advice and is not a substitute for your school's risk assessment.
+      What this sequence introduces, so you know what to assess: impact testing of rigid containers, at
+      least one of which may be glass; and hot water handled by students. Take these to your head teacher
+      or faculty safety contact and check them against your school's practical procedures and current NSW
+      guidance before you run anything.
+
+      One point specific to SWH. Students design the method from their own question, so the hazards are not
+      fully known when you write the risk assessment — the thing a supplied procedure gives you and this
+      does not. If the assessment rules part of a design out, that constraint belongs to the students at
+      the plan checkpoint, where working out what is testable within the rules is part of the task rather
+      than a limit imposed on it.
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+
+misapplications:
+  - id: mis-swh-no-negotiation
+    name: The student template without the teacher template
+    looksLike: The seven headings photocopied onto a worksheet, with no negotiation timetabled.
+    whyItUndermines: The negotiation is where a claim meets someone who might disagree. Without it the writing still helps, but claims can stay vague at no cost, which is the gap SWH exists to close.
+    fix: Timetable the peer comparison and the reading as their own phase and protect them when time runs short. If a first attempt has to be the questions alone, treat that as a starting point and add the peer comparison next time, which is the cheaper half to introduce.
+    lookForIds: [swh-reading-peers-first, swh-reading-something-changes]
+  - id: mis-swh-supplied-question
+    name: The question is supplied
+    looksLike: The first box is pre-printed, or one question goes on the board.
+    whyItUndermines: Nothing is the student's to defend, and the final reflection has nothing to compare against.
+    fix: Give a shared starting experience and let the questions differ.
+    lookForIds: [swh-begin-own-question]
+  - id: mis-swh-evidence-recopied
+    name: Evidence as a second results table
+    looksLike: The observations reproduced under the Evidence heading.
+    whyItUndermines: Restating data is not justifying a claim, so the reasoning step is skipped while looking complete.
+    fix: Ask what about this data makes the claim follow, and require some data to be set aside with a reason.
+    lookForIds: [swh-evidence-justifies, swh-evidence-selected]
+  - id: mis-swh-answer-key
+    name: The text as the answer key
+    looksLike: '"Look it up and see if you were right."'
+    whyItUndermines: Students read their own reasoning as the slow route to something the book already held, so next time they wait for it.
+    fix: Compare with peers first, then bring the text in as another voice to agree or disagree with.
+    lookForIds: [swh-reading-not-answer-key, swh-reading-peers-first]
+  - id: mis-swh-closed-practical
+    name: Using it on a practical with one right answer
+    looksLike: SWH applied to a confirmation practical where every group will claim the same thing.
+    whyItUndermines: With nothing arguable, the claim, evidence and reading phases have no work to do.
+    fix: Choose a practical where the claim depends on judgement, or open the question up first.
+    lookForIds: [swh-claim-arguable]
+  - id: mis-swh-lost-beginnings
+    name: The beginning ideas go missing
+    looksLike: Reflection written from memory at the end of the routine.
+    whyItUndermines: Students produce a summary of the topic instead of an account of their own change.
+    fix: Collect or photograph the first page and hand it back for the last phase.
+    lookForIds: [swh-reflect-has-original, swh-begin-kept]
+
+checklist:
+  - id: chk-swh-before
+    title: Before you start
+    items:
+      - { id: chk-swh-b-arguable, text: 'The practical supports more than one defensible claim', lookForId: swh-claim-arguable }
+      - { id: chk-swh-b-negotiation, text: 'Peer comparison and reading are timetabled as their own lesson, not squeezed into the end' }
+      - { id: chk-swh-b-keep, text: 'You have a way to keep and return the beginning ideas', lookForId: swh-begin-kept }
+      - { id: chk-swh-b-risk, text: 'Practical work has a risk assessment' }
+  - id: chk-swh-lab
+    title: In the lab
+    phaseId: beginning-ideas
+    items:
+      - { id: chk-swh-l-own, text: 'Questions differ across the room', lookForId: swh-begin-own-question }
+      - { id: chk-swh-l-method, text: 'Methods follow from the students own questions', lookForId: swh-tests-follows-question }
+      - { id: chk-swh-l-obs, text: 'Observations are recorded separately from interpretation', lookForId: swh-obs-separate }
+  - id: chk-swh-claim
+    title: Make the claim
+    phaseId: evidence
+    items:
+      - { id: chk-swh-c-arguable, text: 'Each claim is something another student could disagree with', lookForId: swh-claim-arguable }
+      - { id: chk-swh-c-individual, text: 'Claims are written individually, even from shared data', lookForId: swh-claim-individual }
+      - { id: chk-swh-c-justify, text: 'Evidence explains why the data supports the claim', lookForId: swh-evidence-justifies }
+      - { id: chk-swh-c-select, text: 'Some data is set aside, with a reason', lookForId: swh-evidence-selected }
+      - { id: chk-swh-c-anom, text: 'Results that do not fit are addressed', lookForId: swh-evidence-anomalies }
+  - id: chk-swh-negotiate
+    title: Test it against others
+    phaseId: reading
+    items:
+      - { id: chk-swh-n-peers, text: 'Peers are compared before texts are opened', lookForId: swh-reading-peers-first }
+      - { id: chk-swh-n-voice, text: 'The text is treated as another voice, not the verdict', lookForId: swh-reading-not-answer-key }
+      - { id: chk-swh-n-change, text: 'Revisions are written down with reasons', lookForId: swh-reading-something-changes }
+      - { id: chk-swh-n-back, text: 'Beginning ideas are in front of students for the final phase', lookForId: swh-reflect-has-original }
+
+syllabusAlignment:
+  wsMapping:
+    - { skill: 1, phaseIds: [observations] }
+    - { skill: 2, phaseIds: [beginning-ideas] }
+    - { skill: 3, phaseIds: [tests] }
+    - { skill: 4, phaseIds: [observations] }
+    - { skill: 5, phaseIds: [observations] }
+    - { skill: 6, phaseIds: [claims, evidence] }
+    - { skill: 7, phaseIds: [], note: 'SWH answers questions rather than solving problems. Pair it with a design task if WS-07 is a target.' }
+    - { skill: 8, phaseIds: [evidence, reading, reflection] }
+  depthStudies: The seven questions make a workable depth study structure, because they carry a student from their own question to a defended claim without a report template doing the thinking.
+  dataScience: 'The Evidence phase is where data selection is taught: which of your results bear on the claim, and why the rest do not.'
+  inclusion:
+    eald: 'This is where SWH earns its place. The questions are first-person and concrete, the writing is short and repeated, and the peer comparison rehearses the language before it is written. Provide the seven questions as sentence stems, and accept a labelled diagram under Observations.'
+    disability: Offer scribing or voice recording for the writing phases, and keep the seven questions visible rather than relying on recall of the sequence.
+    highPotential: Ask for a claim that accounts for another group's contradictory data as well as their own, which is a harder task than extending the practical.
+    aboriginalPerspectives: Where a claim touches on Country, materials or local knowledge, involve local Aboriginal community through the school's Aboriginal Education staff rather than treating community knowledge as another text to check against.
+
+nesting:
+  - { modelId: 5e, role: nests-in, phaseId: explain, how: 'Use the seven questions to structure sense-making in the 5E Explain phase.' }
+  - { modelId: 7e, role: nests-in, phaseId: explain, how: 'Use the seven questions to structure sense-making in the 7E Explain phase.' }
+  - { modelId: adi, role: nests-in, phaseId: report, how: 'Use the seven questions to scaffold the individual investigation report in ADI.' }
+  - { modelId: levels-of-inquiry, role: hosts, phaseId: tests, how: 'Set the guidance dial for the Tests phase; SWH assumes guided level or above, since students design from their own question.' }
+
+reflectionPrompts:
+  - id: refl-swh-personal
+    type: personal
+    prompt: Think about the lab reports you wrote as a student. Which of the seven questions did they actually ask you, and which did the template answer for you?
+    coachFollowUps: [What did writing them teach you?, What would have changed if you had chosen the question?]
+  - id: refl-swh-critical
+    type: critical
+    prompt: Most SWH evidence comes from the group that developed it. What would you want to see before recommending it to a faculty, and does that change how you would use it yourself?
+    coachFollowUps: [What does the broader writing-to-learn evidence support?, What would a fair trial in your school look like?]
+  - id: refl-swh-application
+    type: application
+    prompt: Take a confirmation practical you have seen and work out whether SWH could be used on it. If not, what would have to change about the practical first?
+    coachFollowUps: [Could two groups reach different defensible claims?, What would you stop specifying?]
+
+scaffold:
+  defaultMode: tutor
+  revealAfterAttempt: [swh-seq-s5-bottles]
+  ai:
+    groundedIn: [phases.examples, workedSequences, misapplications, checklist, reflectionPrompts]
+    allowed: [contextualise-examples, audit-program, coach-reflection, compare-models]
+    never:
+      - Never write the learner's beginning question or their claim in tutor mode
+      - Never judge whether a student claim is correct; the model's point is that students argue that out
+      - Never cite an outcome code that is not in the syllabus whitelist
+      - Never answer a reflection prompt; ask follow-up questions only
+    auditorFocus: [swh-begin-own-question, swh-evidence-justifies, swh-reading-not-answer-key, swh-reading-peers-first]
+
+references:
+  - id: keys-1999
+    citation: 'Keys, C. W., Hand, B., Prain, V., & Collins, S. (1999). Using the science writing heuristic as a tool for learning from laboratory investigations in secondary science. Journal of Research in Science Teaching, 36(10), 1065–1084.'
+  - id: hand-keys-1999
+    citation: 'Hand, B., & Keys, C. W. (1999). Inquiry investigation: A new approach to laboratory reports. The Science Teacher, 66(4), 27–29.'
+  - id: graham-2020
+    citation: 'Graham, S., Kiuhara, S. A., & MacKay, M. (2020). The effects of writing on learning in science, social studies, and mathematics: A meta-analysis. Review of Educational Research, 90(2), 179–226.'
+    doi: 10.3102/0034654320914744
+  - id: hwang-2025
+    citation: 'Hwang, J., Chanlen, N., Karaer, G., & Hand, B. (2025). Addressing the disadvantage gap through generative learning: A case for the Science Writing Heuristic approach. Educational Researcher.'
+    doi: 10.3102/0013189X251324141

@@ -1001,6 +1001,12 @@
       "role": "nests-in",
       "phaseId": "explore",
       "how": "Set the guidance dial for the 7E Explore investigation to match learner readiness."
+    },
+    {
+      "modelId": "swh",
+      "role": "nests-in",
+      "phaseId": "tests",
+      "how": "SWH assumes guided level or above, so use the dial to decide how much method support the Tests phase needs."
     }
   ],
   "reflectionPrompts": [

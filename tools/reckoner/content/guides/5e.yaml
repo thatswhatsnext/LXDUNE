@@ -6,9 +6,9 @@ schemaVersion: "1.3"
 id: 5e
 name: 5E
 originators: Bybee / BSCS (1987)
-version: 1.1.0
+version: 1.1.1
 status: published
-lastReviewed: 2026-09-27
+lastReviewed: 2026-09-28
 syllabus: NSW Science 7–10 Syllabus (2023)
 provenance:
   source: ai-drafted-reviewed
@@ -645,11 +645,20 @@ workedSequences:
       Letting Elaborate become a poster about a disease. The recommendation must use transmission and immunity
       concepts, and the claim evaluation must cite evidence.
     safetyNotes: |
-      Follow your school's chemical safety procedures for the simulation, and your sector's microbiology
-      guidelines if you add culturing (sealed plates, no opening, correct disposal). Disease topics can touch
-      students' experience of illness or loss: keep the Engage scenario hypothetical and give students choice
-      of disease in Elaborate.
-    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      This guide does not carry safety advice and is not a substitute for your school's risk assessment.
+      What this sequence introduces, so you know what to assess: a simulated outbreak in which students
+      exchange a dilute sodium carbonate solution between cups and test it with an indicator, so a low-hazard
+      chemical passes from hand to hand around the room; and microbiological culturing, if you extend the
+      sequence that way. Take both to your head teacher or faculty safety contact and check them against your
+      school's chemical and practical procedures and current NSW guidance before you run anything.
+
+      Separate from the risk assessment, and a design question rather than a safety one: disease topics can
+      touch a student's own experience of illness or loss. Keeping the Engage scenario hypothetical and
+      letting students choose their disease in Elaborate is one way to handle that, and it costs the sequence
+      nothing. Read it alongside Inclusive design below, which is where the rest of this sequence's
+      adjustments live — this is the same kind of decision, made for a reason the class roll will not tell
+      you.
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
 
 misapplications:
   - id: mis-labels

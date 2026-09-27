@@ -651,6 +651,47 @@
       }
     },
     {
+      "id": "swh",
+      "name": "Science Writing Heuristic",
+      "src": "Keys, Hand, Prain & Collins (1999)",
+      "scale": "meso",
+      "distinct": "A writing-to-learn scaffold that turns lab reports into reasoning.",
+      "fit": "Any practical where the claim is genuinely arguable. Particularly strong in EAL/D-rich classes, and it builds WS-06 and WS-08.",
+      "theory": [
+        "Writing to learn",
+        "Negotiation of meaning",
+        "Social constructivism",
+        "Metacognition"
+      ],
+      "teacher": "Runs the four negotiation phases, presses on the gap between a claim and its evidence, and decides when students compare with texts rather than supplying the answer.",
+      "learner": "Asks their own question, makes a claim they are prepared to defend, says how they know, and revises against what others and the texts say.",
+      "pitfall": "Using the student template as a fill-in form without the class negotiation of claims.",
+      "evidence": "Classroom and quasi-experimental studies report gains; a 2025 longitudinal study found the benefit varies with socio-economic background and is largest when students meet it early. Most SWH-specific evidence comes from its developers, though writing to learn has wider support.",
+      "phases": [
+        "Beginning ideas",
+        "Tests",
+        "Observations",
+        "Claims",
+        "Evidence",
+        "Reading",
+        "Reflection"
+      ],
+      "hasGuide": true,
+      "p": {
+        "purpose": "2223011",
+        "time": "1321",
+        "ready": "332",
+        "concept": "33211",
+        "misc": "222",
+        "ws": "13122313",
+        "conf": "233",
+        "res": "321",
+        "assess": "23303",
+        "lang": "322",
+        "place": "111"
+      }
+    },
+    {
       "id": "learning-cycle",
       "name": "Learning cycle",
       "src": "Karplus & Thier (1967); Lawson (1989)",
@@ -794,45 +835,6 @@
         "assess": "13112",
         "lang": "222",
         "place": "321"
-      },
-      "hasGuide": false
-    },
-    {
-      "id": "swh",
-      "name": "Science Writing Heuristic",
-      "src": "Keys, Hand, Prain & Collins (1999)",
-      "scale": "meso",
-      "phases": [
-        "Beginning questions",
-        "Tests and procedures",
-        "Observations",
-        "Claims",
-        "Evidence",
-        "Comparison with others and texts",
-        "Reflection on how ideas changed"
-      ],
-      "distinct": "A writing-to-learn scaffold that turns lab reports into reasoning.",
-      "fit": "Any practical; particularly strong in EAL/D-rich classes. Builds WS-06 and WS-08.",
-      "theory": [
-        "Writing to learn (Hand, Prain)",
-        "Social constructivism"
-      ],
-      "teacher": "Negotiates meaning in discussion and prompts comparison with the literature.",
-      "learner": "Writes questions, claims and evidence, and reflects on how their thinking changed.",
-      "pitfall": "Using the template as a fill-in form without the class negotiation of claims.",
-      "evidence": "Multiple studies report gains, often largest for lower-achieving students.",
-      "p": {
-        "purpose": "2223011",
-        "time": "1321",
-        "ready": "332",
-        "concept": "33211",
-        "misc": "222",
-        "ws": "13122313",
-        "conf": "233",
-        "res": "321",
-        "assess": "23303",
-        "lang": "322",
-        "place": "111"
       },
       "hasGuide": false
     },
@@ -1065,6 +1067,16 @@
           "guide": "levels-of-inquiry",
           "phase": "confirmation",
           "id": "loi-confirm-pos-microscope"
+        },
+        {
+          "guide": "swh",
+          "phase": "claims",
+          "id": "swh-claims-pos-pond-water"
+        },
+        {
+          "guide": "swh",
+          "phase": "claims",
+          "id": "swh-claims-neg-pond-water-all-cells"
         }
       ]
     },
@@ -1238,6 +1250,16 @@
           "guide": "poe",
           "phase": "observe",
           "id": "poe-observe-neg-narrated"
+        },
+        {
+          "guide": "swh",
+          "phase": "beginning-ideas",
+          "id": "swh-beginning-ideas-pos-dissolving"
+        },
+        {
+          "guide": "swh",
+          "phase": "beginning-ideas",
+          "id": "swh-beginning-ideas-neg-dissolving-copied"
         }
       ]
     },
@@ -1385,12 +1407,37 @@
       ]
     },
     "stage5|Materials": {
-      "sequences": [],
+      "sequences": [
+        {
+          "guide": "swh",
+          "id": "swh-seq-s5-bottles"
+        }
+      ],
       "examples": [
         {
           "guide": "levels-of-inquiry",
           "phase": "structured",
           "id": "loi-structured-pos-enzyme"
+        },
+        {
+          "guide": "swh",
+          "phase": "evidence",
+          "id": "swh-evidence-pos-bottle-steel"
+        },
+        {
+          "guide": "swh",
+          "phase": "evidence",
+          "id": "swh-evidence-neg-bottle-recopied"
+        },
+        {
+          "guide": "swh",
+          "phase": "reading",
+          "id": "swh-reading-pos-bottle-negotiation"
+        },
+        {
+          "guide": "swh",
+          "phase": "reading",
+          "id": "swh-reading-neg-bottle-checkit"
         }
       ]
     },
@@ -1444,37 +1491,44 @@
     {
       "id": "5e",
       "name": "5E",
-      "version": "1.1.0",
-      "lastReviewed": "2026-09-27",
-      "hash": "50393b73a62f"
+      "version": "1.1.1",
+      "lastReviewed": "2026-09-28",
+      "hash": "d427d847c0e5"
     },
     {
       "id": "7e",
       "name": "7E",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "lastReviewed": "2026-09-28",
-      "hash": "b7a7b219f481"
+      "hash": "f3768db84ea2"
     },
     {
       "id": "adi",
       "name": "Argument-Driven Inquiry",
-      "version": "1.1.0",
-      "lastReviewed": "2026-09-27",
-      "hash": "cdc13939f7eb"
+      "version": "1.1.1",
+      "lastReviewed": "2026-09-28",
+      "hash": "336b94a596f2"
     },
     {
       "id": "levels-of-inquiry",
       "name": "Levels of inquiry",
       "version": "1.1.0",
       "lastReviewed": "2026-09-27",
-      "hash": "8f1e721fa816"
+      "hash": "7b41aeb73d91"
     },
     {
       "id": "poe",
       "name": "Predict–Observe–Explain",
-      "version": "1.1.0",
-      "lastReviewed": "2026-09-27",
-      "hash": "c87ba8528187"
+      "version": "1.1.1",
+      "lastReviewed": "2026-09-28",
+      "hash": "3ec5273611cb"
+    },
+    {
+      "id": "swh",
+      "name": "Science Writing Heuristic",
+      "version": "1.0.0",
+      "lastReviewed": "2026-09-28",
+      "hash": "a1f0fe614c86"
     }
   ]
 }
