@@ -328,7 +328,7 @@ Built from the Reckoner Lite handoff spec, option B (the recommended front door)
 - [x] Fixed: every "Open guide" button rendered the guide twice, which could leave the scroll in the wrong place
 - Note: the walkthrough no longer opens by itself, because the landing view is now B; it is still available from the Quick reckoner's entry point
 - [ ] Ship B to a cohort and watch what students do (spec §10). A and C were built ahead of that; see items 32 and 33
-- [ ] Author the six empty focus areas: Observing the Universe; Periodic table and atomic structure; Change; Data science 1; Energy; Genetics and evolutionary change
+- [x] Author the six empty focus areas: Observing the Universe; Periodic table and atomic structure; Change; Data science 1; Energy; Genetics and evolutionary change (see item 34)
 
 ### 32. Reckoner Lite, option A: "Three taps" ✅ — 2026-09-27
 The "Not sure what you need?" route from the unit view (it previously went to the quick reckoner, which is still its own tab).
@@ -347,6 +347,14 @@ Replaces the Model library tab (now "Model map").
 - [x] Nesting lines read the guides' nesting[] in both directions: 8 of 15 models get at least one; the other 7 have no nesting data yet, so their panels omit the lines
 - Template only: no guide content, schema or build change
 - [x] Copy check: unit architectures are "6–15 lessons" everywhere (map band note and scale tooltip now match the time question) — 2026-09-27
+
+### 34. Reckoner: examples for the six empty focus areas ⬜ (open item remains) — 2026-09-27
+- [x] 14 reviewed examples added (drafted by Claude, reviewed and signed off by Steve Grant, 2026-09-27): a done-well and done-badly pair for Observing the Universe, Periodic table and atomic structure, Data science 1, Energy and Genetics and evolutionary change, and two pairs for Change (chemical and geological)
+- [x] All 16 focus areas now carry worked material: 6 with a ready plan, 10 with examples only, 0 empty. None shows "Start from 5E" any more
+- [x] Examples across the four guides: 30 → 44. ADI's `tentative-argument` phase gained its first examples
+- [x] Guides at v1.1.0 (lastReviewed 2026-09-27), still published
+- [x] Repaired the stage-group rule test, which adding a positive to ADI `tentative-argument` had made vacuous; it now strips positives from every phase in the group
+- [ ] Open: the 10 example-only focus areas each need a worked sequence to become a ready plan
 
 ---
 

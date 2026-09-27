@@ -3,9 +3,9 @@
   "id": "5e",
   "name": "5E",
   "originators": "Bybee / BSCS (1987)",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "published",
-  "lastReviewed": "2026-09-21",
+  "lastReviewed": "2026-09-27",
   "syllabus": "NSW Science 7–10 Syllabus (2023)",
   "provenance": {
     "source": "ai-drafted-reviewed",
@@ -526,6 +526,77 @@
             ],
             "reviewedOn": "2026-09-21"
           }
+        },
+        {
+          "id": "5e-explain-pos-element-cards",
+          "kind": "positive",
+          "title": "Building the table from the class's own sort",
+          "context": {
+            "stages": [
+              "stage4"
+            ],
+            "focusAreas": [
+              "Periodic table and atomic structure"
+            ],
+            "disciplines": [
+              "chemistry"
+            ]
+          },
+          "outcomes": [
+            "SC4-PRT-01",
+            "SC4-WS-06",
+            "SC4-WS-08"
+          ],
+          "body": "Last lesson, groups sorted twenty unnamed element cards into families of their own, using\nmelting point, density, appearance and reactivity with water. Each group now presents its sort\nand defends one grouping. The teacher builds the actual table from where the class agreed, and\nmarks the two places where groups split. Only then does she introduce electron shells, putting\nthree representations beside each other: a Bohr diagram, a dot diagram, and the element's\nposition in a group. She asks what each one shows and what it does not, drawing out that the\nshells are energy levels rather than shelves the electrons rest on, and that none of the\ndiagrams is a picture of an atom. Groups finish by annotating their original sort with the\ngroup numbers and noting which of their families held up.\n",
+          "diagnosis": "Groups present and defend their own sorts before any teaching, which is explain-students-first,\nand the table is built out of the class's groupings rather than alongside them\n(explain-links-data). Setting three representations against each other and naming the limits of\neach is explain-representations doing real work on the idea that shells are physical shelves.\n",
+          "lookForIds": [
+            "explain-students-first",
+            "explain-links-data",
+            "explain-representations"
+          ],
+          "provenance": {
+            "source": "ai-drafted-reviewed",
+            "authors": [
+              "Claude"
+            ],
+            "reviewedBy": [
+              "Steve Grant"
+            ],
+            "reviewedOn": "2026-09-27"
+          }
+        },
+        {
+          "id": "5e-explain-neg-shell-slides",
+          "kind": "negative",
+          "title": "Fourteen slides on shells",
+          "context": {
+            "stages": [
+              "stage4"
+            ],
+            "focusAreas": [
+              "Periodic table and atomic structure"
+            ],
+            "disciplines": [
+              "chemistry"
+            ]
+          },
+          "outcomes": [],
+          "body": "The card sort ran two lessons ago and the sheets are still in the tray. Today the teacher works\nthrough fourteen slides: groups and periods, then Bohr diagrams for the first twenty elements,\nwith students copying each diagram into their books. The explanation is clear and correct and\nthe diagrams are neatly drawn. No group is asked what it found, and the families the class\nbuilt are never mentioned. A student asks whether the shells are real. The teacher says they\nare energy levels and moves to the next slide.\n",
+          "diagnosis": "The teaching is accurate, but the class's own groupings are never used, so explain-links-data\nfails and the card sort becomes a warm-up rather than the evidence the explanation is built\nfrom. Nobody explains before the teacher does (explain-students-first), and the one question\nthat opens the shelf misconception is closed rather than taken up.\n",
+          "lookForIds": [
+            "explain-students-first",
+            "explain-links-data"
+          ],
+          "provenance": {
+            "source": "ai-drafted-reviewed",
+            "authors": [
+              "Claude"
+            ],
+            "reviewedBy": [
+              "Steve Grant"
+            ],
+            "reviewedOn": "2026-09-27"
+          }
         }
       ]
     },
@@ -646,6 +717,77 @@
               "Steve Grant"
             ],
             "reviewedOn": "2026-09-21"
+          }
+        },
+        {
+          "id": "5e-elaborate-pos-school-retrofit",
+          "kind": "positive",
+          "title": "Solar on the hall, or insulation in the demountables?",
+          "context": {
+            "stages": [
+              "stage5"
+            ],
+            "focusAreas": [
+              "Energy"
+            ],
+            "disciplines": [
+              "integrated"
+            ]
+          },
+          "outcomes": [
+            "SC5-EGY-01",
+            "SC5-WS-07",
+            "SC5-WS-08"
+          ],
+          "body": "In Explore, groups measured how fast model houses lost heat under different wall and ceiling\ntreatments. The school now has twenty thousand dollars and two options: rooftop solar on the\nhall, or insulating the four demountables. Groups use their own cooling curves to estimate what\ninsulation would save, take the solar quote and a term's electricity bill, and work out roughly\nhow long each option would take to pay for itself. They then argue a recommendation, weighing\ndollars saved against emissions avoided, and against the fact that the demountables are the\nhottest rooms in summer and hold the junior classes. Two groups recommend insulation on the\nsmaller saving, and say plainly that it is because of who sits in those rooms.\n",
+          "diagnosis": "The school's real decision is a genuinely different setting from the model houses, which is\nelaborate-new-context, and the cooling curves are load-bearing because the payback estimate\ncannot be made without them (elaborate-requires-concept). Moving from measuring a rate of heat\nloss to weighing cost, emissions and who is affected lifts the demand well past Explore\n(elaborate-demand).\n",
+          "lookForIds": [
+            "elaborate-new-context",
+            "elaborate-requires-concept",
+            "elaborate-demand"
+          ],
+          "provenance": {
+            "source": "ai-drafted-reviewed",
+            "authors": [
+              "Claude"
+            ],
+            "reviewedBy": [
+              "Steve Grant"
+            ],
+            "reviewedOn": "2026-09-27"
+          }
+        },
+        {
+          "id": "5e-elaborate-neg-energy-poster",
+          "kind": "negative",
+          "title": "A poster on renewable energy",
+          "context": {
+            "stages": [
+              "stage5"
+            ],
+            "focusAreas": [
+              "Energy"
+            ],
+            "disciplines": [
+              "integrated"
+            ]
+          },
+          "outcomes": [],
+          "body": "The model house investigation finished on Thursday. For Elaborate, students make a poster on\nrenewable energy, with one panel each for solar, wind and hydro, a picture and three facts\napiece. The posters are colourful and go up along the corridor. Most of the facts come from the\nfirst page of a search. No group opens its cooling curves, and nothing on any poster could not\nhave been produced in week one of the unit.\n",
+          "diagnosis": "A student could make the whole poster without the sequence having happened, so\nelaborate-requires-concept fails outright and the Explore data goes unused. Collecting facts\nsits below the analysis students had already done in Explore, so elaborate-demand fails as\nwell. This is the most common way an Elaborate phase collapses into filler.\n",
+          "lookForIds": [
+            "elaborate-requires-concept",
+            "elaborate-demand"
+          ],
+          "provenance": {
+            "source": "ai-drafted-reviewed",
+            "authors": [
+              "Claude"
+            ],
+            "reviewedBy": [
+              "Steve Grant"
+            ],
+            "reviewedOn": "2026-09-27"
           }
         }
       ]

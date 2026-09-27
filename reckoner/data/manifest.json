@@ -1067,6 +1067,46 @@
         }
       ]
     },
+    "stage4|Change": {
+      "sequences": [],
+      "examples": [
+        {
+          "guide": "poe",
+          "phase": "predict",
+          "id": "poe-predict-pos-steel-wool"
+        },
+        {
+          "guide": "poe",
+          "phase": "predict",
+          "id": "poe-predict-neg-steel-wool-cued"
+        },
+        {
+          "guide": "poe",
+          "phase": "explain",
+          "id": "poe-explain-pos-freeze-thaw"
+        },
+        {
+          "guide": "poe",
+          "phase": "explain",
+          "id": "poe-explain-neg-freeze-thaw-told"
+        }
+      ]
+    },
+    "stage4|Data science 1": {
+      "sequences": [],
+      "examples": [
+        {
+          "guide": "levels-of-inquiry",
+          "phase": "structured",
+          "id": "loi-structured-pos-reaction-time"
+        },
+        {
+          "guide": "levels-of-inquiry",
+          "phase": "structured",
+          "id": "loi-structured-neg-trend-given"
+        }
+      ]
+    },
     "stage4|Forces": {
       "sequences": [
         {
@@ -1127,6 +1167,36 @@
           "guide": "poe",
           "phase": "explain",
           "id": "poe-explain-neg-quiz"
+        }
+      ]
+    },
+    "stage4|Observing the Universe": {
+      "sequences": [],
+      "examples": [
+        {
+          "guide": "poe",
+          "phase": "observe",
+          "id": "poe-observe-pos-moon-phases"
+        },
+        {
+          "guide": "poe",
+          "phase": "observe",
+          "id": "poe-observe-neg-moon-narrated"
+        }
+      ]
+    },
+    "stage4|Periodic table and atomic structure": {
+      "sequences": [],
+      "examples": [
+        {
+          "guide": "5e",
+          "phase": "explain",
+          "id": "5e-explain-pos-element-cards"
+        },
+        {
+          "guide": "5e",
+          "phase": "explain",
+          "id": "5e-explain-neg-shell-slides"
         }
       ]
     },
@@ -1198,6 +1268,21 @@
         }
       ]
     },
+    "stage5|Energy": {
+      "sequences": [],
+      "examples": [
+        {
+          "guide": "5e",
+          "phase": "elaborate",
+          "id": "5e-elaborate-pos-school-retrofit"
+        },
+        {
+          "guide": "5e",
+          "phase": "elaborate",
+          "id": "5e-elaborate-neg-energy-poster"
+        }
+      ]
+    },
     "stage5|Environmental sustainability": {
       "sequences": [
         {
@@ -1240,6 +1325,21 @@
           "guide": "levels-of-inquiry",
           "phase": "open",
           "id": "loi-open-pos-depthstudy"
+        }
+      ]
+    },
+    "stage5|Genetics and evolutionary change": {
+      "sequences": [],
+      "examples": [
+        {
+          "guide": "adi",
+          "phase": "tentative-argument",
+          "id": "adi-tentative-argument-pos-beak"
+        },
+        {
+          "guide": "adi",
+          "phase": "tentative-argument",
+          "id": "adi-tentative-argument-neg-no-justification"
         }
       ]
     },
@@ -1303,30 +1403,30 @@
     {
       "id": "5e",
       "name": "5E",
-      "version": "1.0.0",
-      "lastReviewed": "2026-09-21",
-      "hash": "cc001060d93e"
+      "version": "1.1.0",
+      "lastReviewed": "2026-09-27",
+      "hash": "50393b73a62f"
     },
     {
       "id": "adi",
       "name": "Argument-Driven Inquiry",
-      "version": "1.0.0",
-      "lastReviewed": "2026-09-21",
-      "hash": "1c69eb7b4d0d"
+      "version": "1.1.0",
+      "lastReviewed": "2026-09-27",
+      "hash": "d84a3f3b2c69"
     },
     {
       "id": "levels-of-inquiry",
       "name": "Levels of inquiry",
-      "version": "1.0.0",
-      "lastReviewed": "2026-09-21",
-      "hash": "64df60f36780"
+      "version": "1.1.0",
+      "lastReviewed": "2026-09-27",
+      "hash": "28de2281b9dc"
     },
     {
       "id": "poe",
       "name": "Predict–Observe–Explain",
-      "version": "1.0.0",
-      "lastReviewed": "2026-09-21",
-      "hash": "0b63e859da14"
+      "version": "1.1.0",
+      "lastReviewed": "2026-09-27",
+      "hash": "c14eb0cca4a5"
     }
   ]
 }
