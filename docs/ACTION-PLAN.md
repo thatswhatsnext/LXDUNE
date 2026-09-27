@@ -346,7 +346,7 @@ Replaces the Model library tab (now "Model map").
 - [x] Tapping a tile opens a panel (toggle, aria-pressed): phases, distinguishing feature, teacher and learner roles (side by side from 620px), nesting lines and an action; models without a guide show a disabled "Guide not written yet"
 - [x] Nesting lines read the guides' nesting[] in both directions: 8 of 15 models get at least one; the other 7 have no nesting data yet, so their panels omit the lines
 - Template only: no guide content, schema or build change
-- [ ] Copy check: the unit band says "4 to 15 lessons" (spec wording), while the time question says a unit is "6–15 lessons"
+- [x] Copy check: unit architectures are "6–15 lessons" everywhere (map band note and scale tooltip now match the time question) — 2026-09-27
 
 ---
 
