@@ -493,16 +493,53 @@ function wireGuide(g){
   progress();
 }
 
-/* ---------- library ---------- */
-let libFilter = "all";
-function renderLibrary(){
-  const f = document.getElementById("libFilter");
-  const opts = [["all","All models"], ...Object.entries(SCALE).map(([k,v]) => [k,v.label])];
-  f.innerHTML = opts.map(([k,l]) => `<button type="button" class="ghost" aria-pressed="${libFilter===k}" data-f="${k}">${esc(l)}</button>`).join("");
-  f.querySelectorAll("button").forEach(b => b.onclick = () => { libFilter = b.dataset.f; renderLibrary(); });
-  document.getElementById("library").innerHTML = DATA.models.filter(m => libFilter==="all" || m.scale===libFilter)
-    .map(m => `<article class="card"><div class="card-head"><div><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></div>
-      <div style="display:flex;gap:.5rem;align-items:flex-start">${m.hasGuide?`<span class="badge b-match">Guide available</span>`:""}${badge(m.scale)}</div></div>${modelBody(m)}</article>`).join("");
+/* ---------- model map (Reckoner Lite, option C) ----------
+ * Every model on one screen, banded by scale so the nesting is the layout.
+ * Nesting lines come from the guides' nesting[], read in both directions. */
+const BANDS = [
+  ["macro", "Unit architectures", "Structures a whole sequence, 4 to 15 lessons", ""],
+  ["meso", "Routines", "A few lessons. Fits inside a unit.", "Fits inside a unit model"],
+  ["micro", "Single lesson", "One lesson. Fits inside a routine.", "Fits inside a routine, or straight into a unit model"],
+  ["dial", "Guidance dial", "Not a model. How much you specify, inside any of the above.", "Applies inside any of them"],
+];
+let mapSel = null;
+function mapNesting(m){
+  const lines = [], add = t => { if (!lines.includes(t)) lines.push(t); };
+  (G[m.id]?.nesting || []).forEach(n => add(`${n.role === "nests-in" ? "Fits inside" : "Holds"} ${M[n.modelId]?.name || n.modelId}`));
+  DATA.guides.forEach(g => g.nesting.filter(n => n.modelId === m.id)
+    .forEach(n => add(`${n.role === "hosts" ? "Fits inside" : "Holds"} ${g.name}`)));
+  return lines;
+}
+function renderMap(){
+  const guided = DATA.models.filter(m => m.hasGuide).length;
+  document.getElementById("mapLegend").innerHTML =
+    `<span class="gdot" aria-hidden="true"></span>Companion guide ready: ${guided} of ${DATA.models.length} so far`;
+  document.getElementById("mapBands").innerHTML = BANDS.map(([scale, title, note, cap]) => {
+    const ms = DATA.models.filter(m => m.scale === scale).sort((a, b) => (b.hasGuide ? 1 : 0) - (a.hasGuide ? 1 : 0));
+    return ms.length ? `<section class="band" aria-labelledby="band-${scale}">
+      <div class="band-head"><h3 id="band-${scale}">${title}</h3><p class="band-note">${note}</p></div>
+      ${cap ? `<p class="band-cap">${cap}</p>` : ""}
+      <div class="map-tiles">${ms.map(m => `<button type="button" class="tile s-${scale}" data-model="${m.id}" aria-pressed="${mapSel === m.id}">
+        <b>${esc(m.name)}</b><span class="tile-foot"><span>${plural(m.phases.length, scale === "dial" ? "level" : "phase")}</span>
+        ${m.hasGuide ? `<span class="gdot" aria-hidden="true"></span><span class="sr">Companion guide ready</span>` : ""}</span></button>`).join("")}</div></section>` : "";
+  }).join("");
+  document.querySelectorAll("#mapBands [data-model]").forEach(b => b.onclick = () => {
+    mapSel = mapSel === b.dataset.model ? null : b.dataset.model;
+    renderMap();
+    document.querySelector(`#mapBands [data-model="${b.dataset.model}"]`)?.focus();
+    if (mapSel) document.getElementById("mapPanelCard")?.scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "nearest" });
+  });
+  const m = mapSel && M[mapSel], panel = document.getElementById("mapPanel");
+  if (!m){ panel.innerHTML = ""; return; }
+  const nest = mapNesting(m);
+  panel.innerHTML = `<article class="card lead map-panel" id="mapPanelCard"><div class="card-head"><div><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></div>${badge(m.scale)}</div>
+    <ol class="phases" aria-label="${m.scale === "dial" ? "Levels" : "Phases"}">${m.phases.map(p => `<li>${esc(p)}</li>`).join("")}</ol>
+    <p><strong>Distinguishing feature.</strong> ${esc(m.distinct)}</p>
+    <div class="roles"><div><h4>Teacher’s role</h4><p>${esc(m.teacher)}</p></div><div><h4>Learner’s role</h4><p>${esc(m.learner)}</p></div></div>
+    ${nest.length ? `<ul class="tight">${nest.map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
+    <div class="lite-actions">${m.hasGuide
+      ? `<button type="button" class="pill primary" onclick="openGuide('${m.id}')">Open the ${esc(m.name)} guide</button>`
+      : `<button type="button" class="pill" disabled>Guide not written yet</button>`}</div></article>`;
 }
 
 /* ---------- start with your unit (Reckoner Lite, option B) ----------
@@ -821,7 +858,7 @@ if (DATA.review){
   document.querySelector("header.top .wrap").prepend(b);
 }
 
-renderUnit(false); renderQuick(); renderDetail(); renderLibrary();
+renderUnit(false); renderQuick(); renderDetail(); renderMap();
 renderGuide(DATA.guides.length ? DATA.guides[0].id : null);
 routeFromHash();
 document.getElementById("bootMsg")?.remove();

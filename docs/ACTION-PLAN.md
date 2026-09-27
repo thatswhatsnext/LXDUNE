@@ -327,7 +327,7 @@ Built from the Reckoner Lite handoff spec, option B (the recommended front door)
 - [x] §2 colour tokens applied across the app (new values, `--sunk`, `--line-soft`, `color-scheme` in dark). All used text pairs pass AA; fixed white-on-dial text in dark mode (was 2.2:1)
 - [x] Fixed: every "Open guide" button rendered the guide twice, which could leave the scroll in the wrong place
 - Note: the walkthrough no longer opens by itself, because the landing view is now B; it is still available from the Quick reckoner's entry point
-- [ ] Ship B to a cohort before building option C (the map), per the spec (A was built ahead of that; see item 32)
+- [ ] Ship B to a cohort and watch what students do (spec §10). A and C were built ahead of that; see items 32 and 33
 - [ ] Author the six empty focus areas: Observing the Universe; Periodic table and atomic structure; Change; Data science 1; Energy; Genetics and evolutionary change
 
 ### 32. Reckoner Lite, option A: "Three taps" ✅ — 2026-09-27
@@ -338,6 +338,15 @@ The "Not sure what you need?" route from the unit view (it previously went to th
 - [x] Result card: "Start here", model name, originators and scale, the why sentence, first three moves (the opening phase's first three essential features) and what good looks like (its first look-for), opening the guide at that phase
 - [x] Models without a guide (8 of the 11 the logic can return) show their phases and distinguishing feature and name the nearest guide at the same scale (ADI for routines, 5E for unit models); never an empty "first three moves"
 - Template only: no guide content, schema or build change
+
+### 33. Reckoner Lite, option C: "The map" ✅ — 2026-09-27
+Replaces the Model library tab (now "Model map").
+- [x] All 15 models on one screen in four bands by scale (unit architectures, routines, single lesson, guidance dial), each with a note and a nesting caption; guide models first in each band
+- [x] Tiles show name, phase count (levels for the dial) and a dot, with hidden text, when a guide exists; legend "Companion guide ready: 4 of 15 so far"
+- [x] Tapping a tile opens a panel (toggle, aria-pressed): phases, distinguishing feature, teacher and learner roles (side by side from 620px), nesting lines and an action; models without a guide show a disabled "Guide not written yet"
+- [x] Nesting lines read the guides' nesting[] in both directions: 8 of 15 models get at least one; the other 7 have no nesting data yet, so their panels omit the lines
+- Template only: no guide content, schema or build change
+- [ ] Copy check: the unit band says "4 to 15 lessons" (spec wording), while the time question says a unit is "6–15 lessons"
 
 ---
 
