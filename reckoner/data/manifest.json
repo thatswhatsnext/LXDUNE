@@ -1025,6 +1025,280 @@
       "hasGuide": false
     }
   ],
+  "focusAreas": {
+    "stage4": [
+      "Observing the Universe",
+      "Forces",
+      "Cells and classification",
+      "Solutions and mixtures",
+      "Living systems",
+      "Periodic table and atomic structure",
+      "Change",
+      "Data science 1"
+    ],
+    "stage5": [
+      "Energy",
+      "Disease",
+      "Materials",
+      "Environmental sustainability",
+      "Genetics and evolutionary change",
+      "Reactions",
+      "Waves and motion",
+      "Data science 2"
+    ]
+  },
+  "focusIndex": {
+    "stage4|Cells and classification": {
+      "sequences": [
+        {
+          "guide": "5e",
+          "id": "seq-s4-cells"
+        },
+        {
+          "guide": "levels-of-inquiry",
+          "id": "seq-s4-progression"
+        }
+      ],
+      "examples": [
+        {
+          "guide": "levels-of-inquiry",
+          "phase": "confirmation",
+          "id": "loi-confirm-pos-microscope"
+        }
+      ]
+    },
+    "stage4|Forces": {
+      "sequences": [
+        {
+          "guide": "5e",
+          "id": "seq-s4-forces"
+        }
+      ],
+      "examples": []
+    },
+    "stage4|Living systems": {
+      "sequences": [
+        {
+          "guide": "levels-of-inquiry",
+          "id": "seq-s4-progression"
+        },
+        {
+          "guide": "poe",
+          "id": "ep-s4-yeast"
+        }
+      ],
+      "examples": [
+        {
+          "guide": "5e",
+          "phase": "evaluate",
+          "id": "evaluate-pos-tree"
+        },
+        {
+          "guide": "5e",
+          "phase": "evaluate",
+          "id": "evaluate-neg-test"
+        },
+        {
+          "guide": "adi",
+          "phase": "report",
+          "id": "adi-write-pos-review"
+        },
+        {
+          "guide": "levels-of-inquiry",
+          "phase": "confirmation",
+          "id": "loi-confirm-neg-verify"
+        },
+        {
+          "guide": "levels-of-inquiry",
+          "phase": "guided",
+          "id": "loi-guided-pos-germination"
+        },
+        {
+          "guide": "levels-of-inquiry",
+          "phase": "guided",
+          "id": "loi-guided-neg-funnel"
+        },
+        {
+          "guide": "poe",
+          "phase": "explain",
+          "id": "poe-explain-pos-yeast"
+        },
+        {
+          "guide": "poe",
+          "phase": "explain",
+          "id": "poe-explain-neg-quiz"
+        }
+      ]
+    },
+    "stage4|Solutions and mixtures": {
+      "sequences": [],
+      "examples": [
+        {
+          "guide": "5e",
+          "phase": "engage",
+          "id": "engage-pos-dissolving"
+        },
+        {
+          "guide": "5e",
+          "phase": "engage",
+          "id": "engage-neg-video"
+        },
+        {
+          "guide": "5e",
+          "phase": "elaborate",
+          "id": "elaborate-pos-water"
+        },
+        {
+          "guide": "5e",
+          "phase": "elaborate",
+          "id": "elaborate-neg-questions"
+        },
+        {
+          "guide": "levels-of-inquiry",
+          "phase": "open",
+          "id": "loi-open-neg-cold"
+        },
+        {
+          "guide": "poe",
+          "phase": "observe",
+          "id": "poe-observe-pos-mass"
+        },
+        {
+          "guide": "poe",
+          "phase": "observe",
+          "id": "poe-observe-neg-narrated"
+        }
+      ]
+    },
+    "stage5|Data science 2": {
+      "sequences": [
+        {
+          "guide": "5e",
+          "id": "seq-s5-disease"
+        }
+      ],
+      "examples": []
+    },
+    "stage5|Disease": {
+      "sequences": [
+        {
+          "guide": "5e",
+          "id": "seq-s5-disease"
+        },
+        {
+          "guide": "poe",
+          "id": "ep-s5-handwashing"
+        }
+      ],
+      "examples": [
+        {
+          "guide": "levels-of-inquiry",
+          "phase": "structured",
+          "id": "loi-structured-pos-enzyme"
+        }
+      ]
+    },
+    "stage5|Environmental sustainability": {
+      "sequences": [
+        {
+          "guide": "adi",
+          "id": "seq-s5-microhabitats"
+        }
+      ],
+      "examples": [
+        {
+          "guide": "adi",
+          "phase": "task-question",
+          "id": "adi-inv-pos-microhabitats"
+        },
+        {
+          "guide": "adi",
+          "phase": "task-question",
+          "id": "adi-inv-neg-worksheet"
+        },
+        {
+          "guide": "adi",
+          "phase": "argumentation",
+          "id": "adi-argue-pos-roundrobin"
+        },
+        {
+          "guide": "adi",
+          "phase": "argumentation",
+          "id": "adi-argue-neg-presentations"
+        },
+        {
+          "guide": "adi",
+          "phase": "report",
+          "id": "adi-write-pos-review"
+        },
+        {
+          "guide": "adi",
+          "phase": "report",
+          "id": "adi-write-neg-ticks"
+        },
+        {
+          "guide": "levels-of-inquiry",
+          "phase": "open",
+          "id": "loi-open-pos-depthstudy"
+        }
+      ]
+    },
+    "stage5|Materials": {
+      "sequences": [],
+      "examples": [
+        {
+          "guide": "levels-of-inquiry",
+          "phase": "structured",
+          "id": "loi-structured-pos-enzyme"
+        }
+      ]
+    },
+    "stage5|Reactions": {
+      "sequences": [],
+      "examples": [
+        {
+          "guide": "5e",
+          "phase": "explore",
+          "id": "explore-pos-rates"
+        },
+        {
+          "guide": "5e",
+          "phase": "explore",
+          "id": "explore-neg-recipe"
+        },
+        {
+          "guide": "levels-of-inquiry",
+          "phase": "structured",
+          "id": "loi-structured-neg-blanks"
+        }
+      ]
+    },
+    "stage5|Waves and motion": {
+      "sequences": [],
+      "examples": [
+        {
+          "guide": "5e",
+          "phase": "explain",
+          "id": "explain-pos-trolleys"
+        },
+        {
+          "guide": "5e",
+          "phase": "explain",
+          "id": "explain-neg-notes"
+        },
+        {
+          "guide": "poe",
+          "phase": "predict",
+          "id": "poe-predict-pos-falling"
+        },
+        {
+          "guide": "poe",
+          "phase": "predict",
+          "id": "poe-predict-neg-cued"
+        }
+      ]
+    }
+  },
   "guides": [
     {
       "id": "5e",

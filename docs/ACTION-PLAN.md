@@ -319,6 +319,17 @@ Built in response (template only; no guide content, schema or build script chang
 - [x] Four-step in-app walkthrough: opens once on a first visit to the landing screen, dismissible at any step, repeatable from the entry point
 - [ ] Open: record a narrated walkthrough video (about 90 seconds, captioned, hosted on the Moodle page beside the reckoner link), only if the in-app walkthrough does not cover it
 
+### 31. Reckoner Lite, option B: "Start with your unit" ⬜ (open items remain) — 2026-09-27
+Built from the Reckoner Lite handoff spec, option B (the recommended front door).
+- [x] New first tab and landing view: stage → focus area → result. Three result cases chosen by what the guides hold: a ready worked sequence (6 focus areas), examples only (4), or nothing yet, which says "Start from 5E" and names the gap (6 of 16)
+- [x] Tiles mark "Ready plan" where a sequence exists and never show "coming soon"
+- [x] Build: derived `focusIndex` in `scripts/lib/build.ts` (reads existing guide fields, writes no content). Each focus area pairs only with its own stage, and the build fails on an off-whitelist or mismatched pairing. New build test covers it
+- [x] §2 colour tokens applied across the app (new values, `--sunk`, `--line-soft`, `color-scheme` in dark). All used text pairs pass AA; fixed white-on-dial text in dark mode (was 2.2:1)
+- [x] Fixed: every "Open guide" button rendered the guide twice, which could leave the scroll in the wrong place
+- Note: the walkthrough no longer opens by itself, because the landing view is now B; it is still available from the Quick reckoner's entry point
+- [ ] Ship B to a cohort before building option A (three taps) or C (the map), per the spec
+- [ ] Author the six empty focus areas: Observing the Universe; Periodic table and atomic structure; Change; Data science 1; Energy; Genetics and evolutionary change
+
 ---
 
 ## ✅ Completed
