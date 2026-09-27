@@ -184,6 +184,15 @@ button.pill{font:500 .92rem var(--sans);min-height:44px;padding:.55rem 1.15rem;b
 button.pill.primary{background:var(--accent);color:var(--accent-ink)}
 button.pill:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 @media (max-width:519px){ .lite-actions{flex-direction:column} .lite-actions button{width:100%} .lite-table table{min-width:30rem} }
+/* three taps */
+.opts.rows{grid-template-columns:1fr}
+.tap-progress{display:flex;align-items:center;gap:.6rem;margin:.2rem 0 .7rem;color:var(--muted);font-size:.85rem}
+.dots{display:inline-flex;gap:.35rem}
+.dots span{width:.6rem;height:.6rem;border-radius:50%;border:1.5px solid var(--accent)}
+.dots span.on{background:var(--accent)}
+.eyebrow{font:600 .78rem var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 .3rem}
+.lite-result h2.tap-name{font-size:2rem}
+ol.moves{margin:.3rem 0 .9rem;padding-left:1.3rem} ol.moves li{margin:.35rem 0}
 /* orientation */
 .orient{margin-bottom:1.25rem} .orient .toolbar{margin:.7rem 0 0}
 details.more{margin-top:2rem}
@@ -350,7 +359,7 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted)
         man.guides = guides;
         window.RECKONER_DATA = man;
         var s = document.createElement("script");
-        s.src = "app.js?v=c613fb8875cc";
+        s.src = "app.js?v=f25f4fdf3c6b";
         s.onerror = fail;
         document.body.appendChild(s);
       });
