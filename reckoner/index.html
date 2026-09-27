@@ -9,23 +9,26 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#F5F7F5; --surface:#FFFFFF; --ink:#1F2B2E; --muted:#56676A; --line:#D6DDDA;
-  --accent:#2E6A5C; --accent-soft:#E2EEE9; --accent-ink:#FFFFFF;
-  --macro:#2E6A5C; --meso:#3D5A98; --micro:#9C6419; --dial:#76578A;
-  --warn:#8A4B12; --warn-soft:#FBF1E4; --pos:#2E6A5C; --neg:#8A4B12;
+  --paper:#F3F6F4; --surface:#FFFFFF; --sunk:#E9EEEB; --ink:#16211F; --muted:#5A6B68; --line:#D7DEDA; --line-soft:#E6EBE8;
+  --accent:#1D6B56; --accent-soft:#DFEDE7; --accent-ink:#FFFFFF;
+  --macro:#1D6B56; --meso:#35538F; --micro:#96601A; --dial:#6F5088;
+  --warn:#8A4B12; --warn-soft:#FBF1E4; --pos:#1D6B56; --neg:#8A4B12;
+  --r:10px;
   --serif:"Source Serif 4", Georgia, serif; --sans:"IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#131A1B; --surface:#1B2426; --ink:#E4EBE9; --muted:#9DAEAB; --line:#2F3C3E;
-  --accent:#72BCA6; --accent-soft:#1E3530; --accent-ink:#0F1A18;
-  --macro:#72BCA6; --meso:#94AEEA; --micro:#E0A95A; --dial:#C6A6DA;
-  --warn:#F0B47A; --warn-soft:#2E2318; --pos:#72BCA6; --neg:#E0A95A;}}
+  --paper:#111917; --surface:#19231F; --sunk:#131C19; --ink:#E6EDE9; --muted:#9CADA8; --line:#2C3A35; --line-soft:#232F2B;
+  --accent:#6FC0A3; --accent-soft:#1B322A; --accent-ink:#0D1714;
+  --macro:#6FC0A3; --meso:#93ADE8; --micro:#DFA85C; --dial:#C2A3D8;
+  --warn:#EFB37A; --warn-soft:#2C2318; --pos:#6FC0A3; --neg:#DFA85C;
+  color-scheme:dark;}}
 :root[data-theme="dark"]{
-  --paper:#131A1B; --surface:#1B2426; --ink:#E4EBE9; --muted:#9DAEAB; --line:#2F3C3E;
-  --accent:#72BCA6; --accent-soft:#1E3530; --accent-ink:#0F1A18;
-  --macro:#72BCA6; --meso:#94AEEA; --micro:#E0A95A; --dial:#C6A6DA;
-  --warn:#F0B47A; --warn-soft:#2E2318; --pos:#72BCA6; --neg:#E0A95A;}
+  --paper:#111917; --surface:#19231F; --sunk:#131C19; --ink:#E6EDE9; --muted:#9CADA8; --line:#2C3A35; --line-soft:#232F2B;
+  --accent:#6FC0A3; --accent-soft:#1B322A; --accent-ink:#0D1714;
+  --macro:#6FC0A3; --meso:#93ADE8; --micro:#DFA85C; --dial:#C2A3D8;
+  --warn:#EFB37A; --warn-soft:#2C2318; --pos:#6FC0A3; --neg:#DFA85C;
+  color-scheme:dark;}
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:calc(1rem + env(safe-area-inset-top,0px))}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.55 var(--sans)}
@@ -104,11 +107,11 @@ details.why summary{cursor:pointer;color:var(--accent);font-weight:500;font-size
 @media (prefers-reduced-motion:reduce){.bar i{transition:none}}
 .dial{display:grid;grid-template-columns:repeat(4,1fr);gap:.25rem;margin:.6rem 0}
 .dial div{font-size:.78rem;text-align:center;padding:.45rem .2rem;border:1px solid var(--line);border-radius:6px;color:var(--muted);background:var(--paper)}
-.dial div.on{background:var(--dial);border-color:var(--dial);color:#fff;font-weight:600}
+.dial div.on{background:var(--dial);border-color:var(--dial);color:var(--accent-ink);font-weight:600}
 .matrix-wrap{overflow-x:auto;margin-top:1.25rem}
 table{border-collapse:separate;border-spacing:0;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-th,td{padding:.55rem .7rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-size:.9rem}
-thead th{background:var(--paper);font-weight:600}
+th,td{padding:.55rem .7rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-soft);font-size:.9rem}
+thead th{background:var(--sunk);font-weight:600}
 tr:last-child td,tr:last-child th{border-bottom:none}
 table.matrix{min-width:620px} table.matrix tbody th{font-weight:500;width:28%}
 .cellbtn{all:unset;cursor:pointer;display:block;padding:.35rem .5rem;border-radius:6px;border:1px solid transparent}
@@ -153,6 +156,34 @@ button.ghost[aria-pressed="true"]{background:var(--accent);color:var(--accent-in
 .flow .node small{display:block;color:var(--muted);font-size:.75rem;margin-top:.15rem}
 .flow .arrow{color:var(--muted);flex:0 0 auto;font-size:1.1rem}
 .flow .loop{flex-basis:100%;text-align:center;color:var(--muted);font-size:.82rem;border-top:1px dashed var(--line);padding-top:.45rem;margin-top:.2rem}
+/* start with your unit */
+.lite{max-width:50rem}
+.lite-q{font:600 1.55rem/1.2 var(--serif);margin:0 0 1rem}
+.lite-q:focus{outline:none} .lite-q:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+button.lite-back,button.lite-link{all:unset;box-sizing:border-box;cursor:pointer;color:var(--accent);font-weight:500;font-size:.92rem;min-height:44px;display:inline-flex;align-items:center;border-radius:6px}
+button.lite-back:focus-visible,button.lite-link:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+button.lite-link{text-decoration:underline;text-underline-offset:2px;min-height:0;display:inline}
+.opts{display:grid;gap:.75rem}
+@media (min-width:520px){.opts{grid-template-columns:1fr 1fr}}
+button.opt{all:unset;box-sizing:border-box;cursor:pointer;display:block;min-height:76px;padding:1rem 1.15rem;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);color:var(--ink)}
+button.opt:hover,button.opt:focus-visible{border-color:var(--accent);background:var(--accent-soft)}
+button.opt:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+button.opt b{display:block;font:600 1.05rem var(--sans)}
+button.opt.big b{font:600 1.35rem var(--serif)}
+button.opt small{display:block;color:var(--muted);font-size:.9rem;margin-top:.2rem}
+.ready{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);font-size:.82rem;font-weight:500;margin-top:.35rem}
+.ready::before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:var(--accent)}
+.lite-result{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:1.25rem 1.3rem}
+.lite-result h2{font-size:1.6rem;border:none;margin:0 0 .4rem}
+.lite-meta{display:flex;flex-wrap:wrap;gap:.4rem .6rem;align-items:center;color:var(--muted);font-size:.9rem}
+.pills{display:flex;flex-wrap:wrap;gap:.4rem;margin:.3rem 0 .6rem}
+.pills span{background:var(--sunk);border-radius:99px;padding:.25rem .75rem;font-size:.86rem}
+.lite-table{overflow-x:auto;margin:.8rem 0 .4rem}
+.lite-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.2rem}
+button.pill{font:500 .92rem var(--sans);min-height:44px;padding:.55rem 1.15rem;border-radius:99px;border:1.5px solid var(--accent);background:var(--surface);color:var(--accent);cursor:pointer}
+button.pill.primary{background:var(--accent);color:var(--accent-ink)}
+button.pill:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (max-width:519px){ .lite-actions{flex-direction:column} .lite-actions button{width:100%} .lite-table table{min-width:30rem} }
 /* orientation */
 .orient{margin-bottom:1.25rem} .orient .toolbar{margin:.7rem 0 0}
 details.more{margin-top:2rem}
@@ -165,7 +196,7 @@ details.more > summary{cursor:pointer;color:var(--accent);font-weight:500}
 .cmp-wrap{overflow-x:auto;margin-top:.75rem}
 table.cmp{table-layout:fixed;min-width:640px}
 table.cmp thead th{vertical-align:bottom}
-table.cmp thead td{width:10.5rem;background:var(--paper)}
+table.cmp thead td{width:10.5rem;background:var(--sunk)}
 table.cmp th[scope=row]{font-weight:600}
 .clamp{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
 .clamp-block{max-height:5.4rem;overflow:hidden}
@@ -213,7 +244,8 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted)
     <h1>Which constructivist model fits this science sequence?</h1>
     <p class="lede">A planning companion for pre-service and early career teachers working with the NSW Science 7–10 Syllabus (2023). Answer a few questions to see which teaching models fit and why, then open the companion guide for the model you choose.</p>
     <div class="tabs" role="tablist" aria-label="Views">
-      <button class="tab" role="tab" id="t-quick" aria-controls="p-quick" aria-selected="true">Quick reckoner</button>
+      <button class="tab" role="tab" id="t-unit" aria-controls="p-unit" aria-selected="true">Start with your unit</button>
+      <button class="tab" role="tab" id="t-quick" aria-controls="p-quick" aria-selected="false" tabindex="-1">Quick reckoner</button>
       <button class="tab" role="tab" id="t-compare" aria-controls="p-compare" aria-selected="false" tabindex="-1">Compare models</button>
       <button class="tab" role="tab" id="t-detail" aria-controls="p-detail" aria-selected="false" tabindex="-1">Detailed reckoner</button>
       <button class="tab" role="tab" id="t-guides" aria-controls="p-guides" aria-selected="false" tabindex="-1">Companion guides</button>
@@ -224,7 +256,12 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted)
 
 <main class="wrap">
   <p id="bootMsg" class="empty" role="status" style="margin:1rem 0 0"></p>
-  <section class="panel active" id="p-quick" role="tabpanel" aria-labelledby="t-quick">
+  <section class="panel active" id="p-unit" role="tabpanel" aria-labelledby="t-unit">
+    <p class="sr" id="unitLive" aria-live="polite"></p>
+    <div class="lite" id="unitView"></div>
+  </section>
+
+  <section class="panel" id="p-quick" role="tabpanel" aria-labelledby="t-quick" hidden>
     <div class="box orient">
       <p>Answer a few questions to see which teaching models fit and why, then open the companion guide for the model you choose.</p>
       <div class="toolbar">
@@ -313,7 +350,7 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted)
         man.guides = guides;
         window.RECKONER_DATA = man;
         var s = document.createElement("script");
-        s.src = "app.js?v=32eadaa429da";
+        s.src = "app.js?v=c613fb8875cc";
         s.onerror = fail;
         document.body.appendChild(s);
       });

@@ -39,16 +39,19 @@ function selectTab(t, push = true){
     const p = document.getElementById(x.getAttribute("aria-controls")); p.hidden = !on; p.classList.toggle("active", on); });
   if (push && t.id !== "t-guides") location.hash = "";
   if (t.id === "t-compare") renderCompare();
+  return t;
 }
 tabs.forEach((t,i) => { t.addEventListener("click", () => selectTab(t));
   t.addEventListener("keydown", e => { if(e.key==="ArrowRight") selectTab(tabs[(i+1)%tabs.length]).focus?.();
     if(e.key==="ArrowLeft") selectTab(tabs[(i-1+tabs.length)%tabs.length]); }); });
 
+let ownHash = null; // a hash this page just set, so the hashchange it fires does not render the guide twice
 function openGuide(id, section){
   if (!G[id]) return;
   selectTab(document.getElementById("t-guides"), false);
   renderGuide(id);
-  location.hash = `#/guide/${id}${section ? "/" + section : ""}`;
+  const hash = `#/guide/${id}${section ? "/" + section : ""}`;
+  if (location.hash !== hash){ ownHash = hash; location.hash = hash; }
   const target = section && document.getElementById("s-" + section);
   if (target) expandTo(target);
   requestAnimationFrame(() => {
@@ -59,6 +62,8 @@ function openGuide(id, section){
 }
 addEventListener("hashchange", routeFromHash);
 function routeFromHash(){
+  if (ownHash && location.hash === ownHash){ ownHash = null; return; }
+  ownHash = null;
   const m = location.hash.match(/^#\/guide\/([a-z0-9-]+)(?:\/([a-z0-9-]+))?/);
   if (m) openGuide(m[1], m[2]);
 }
@@ -500,6 +505,113 @@ function renderLibrary(){
       <div style="display:flex;gap:.5rem;align-items:flex-start">${m.hasGuide?`<span class="badge b-match">Guide available</span>`:""}${badge(m.scale)}</div></div>${modelBody(m)}</article>`).join("");
 }
 
+/* ---------- start with your unit (Reckoner Lite, option B) ----------
+ * Stage, then focus area, then whatever the guides hold for it: a worked sequence,
+ * examples only, or nothing yet. Reads the build's focusIndex; writes no content. */
+const FA = DATA.focusAreas || {}, FI = DATA.focusIndex || {};
+const STAGE_INFO = { stage4: ["Stage 4", "Years 7 and 8"], stage5: ["Stage 5", "Years 9 and 10"] };
+let unit = { stage: null, focus: null, seq: 0, all: false };
+const findSeq = r => G[r.guide]?.workedSequences.find(s => s.id === r.id);
+const findEx = r => G[r.guide]?.phases.find(p => p.id === r.phase)?.examples.find(e => e.id === r.id);
+/** "8 lessons" or "50 minutes", from the last step's timing. */
+function seqLength(s){
+  const last = s.steps[s.steps.length - 1], minutes = last.minutes !== undefined;
+  const n = Math.max(...String(minutes ? last.minutes : last.lessons).match(/\d+/g).map(Number));
+  return minutes ? `${n} minutes` : plural(n, "lesson");
+}
+function unitGo(next){ unit = { ...unit, ...next }; renderUnit(true); }
+
+function renderUnit(moveFocus){
+  const view = document.getElementById("unitView");
+  let q, html;
+  if (!unit.stage){
+    q = "Which stage are you teaching?";
+    html = `<h2 class="lite-q" tabindex="-1">${q}</h2>
+      <div class="opts">${Object.entries(STAGE_INFO).filter(([st]) => FA[st]).map(([st, [name, years]]) =>
+        `<button type="button" class="opt big" data-stage="${st}"><b>${name}</b><small>${years}</small></button>`).join("")}</div>
+      <p style="margin-top:1rem">Not sure what you need? <button type="button" class="lite-link" data-go="t-quick">Use the quick reckoner</button></p>`;
+  } else if (!unit.focus){
+    q = `Which ${STAGE_INFO[unit.stage][0]} focus area?`;
+    html = `<button type="button" class="lite-back" data-back="stage">← Change stage</button>
+      <h2 class="lite-q" tabindex="-1">${q}</h2>
+      <div class="opts">${FA[unit.stage].map(fa => {
+        const ready = FI[`${unit.stage}|${fa}`]?.sequences.length;
+        return `<button type="button" class="opt" data-focus="${esc(fa)}"><b>${esc(fa)}</b>${ready ? `<span class="ready">Ready plan</span>` : ""}</button>`;
+      }).join("")}</div>`;
+  } else {
+    const r = unitResult();
+    q = r.heading;
+    html = `<button type="button" class="lite-back" data-back="focus">← ${STAGE_INFO[unit.stage][0]} focus areas</button>
+      <article class="lite-result"><p class="sub" style="margin:0 0 .3rem">${STAGE_INFO[unit.stage][0]} · ${esc(unit.focus)}</p>
+      <h2 class="lite-q" tabindex="-1">${esc(r.heading)}</h2>${r.body}
+      <div class="lite-actions">${r.actions}<button type="button" class="pill" data-back="focus">Choose another focus area</button></div></article>`;
+  }
+  view.innerHTML = html;
+  document.getElementById("unitLive").textContent = q;
+  view.querySelectorAll("[data-stage]").forEach(b => b.onclick = () => unitGo({ stage: b.dataset.stage, focus: null }));
+  view.querySelectorAll("[data-focus]").forEach(b => b.onclick = () => unitGo({ focus: b.dataset.focus, seq: 0, all: false }));
+  view.querySelectorAll("[data-back]").forEach(b => b.onclick = () =>
+    unitGo(b.dataset.back === "stage" ? { stage: null, focus: null } : { focus: null }));
+  view.querySelectorAll("[data-go]").forEach(b => b.onclick = () => { const t = document.getElementById(b.dataset.go); selectTab(t); t.focus(); });
+  view.querySelectorAll("[data-guide]").forEach(b => b.onclick = () => openGuide(b.dataset.guide, b.dataset.at || undefined));
+  view.querySelector("[data-all]")?.addEventListener("click", () => { unit.all = !unit.all; renderUnit(false); });
+  view.querySelector("[data-seq]")?.addEventListener("click", e => { unit.seq = +e.currentTarget.dataset.seq; unit.all = false; renderUnit(true); });
+  if (moveFocus) view.querySelector(".lite-q")?.focus();
+}
+
+function unitResult(){
+  const entry = FI[`${unit.stage}|${unit.focus}`] || { sequences: [], examples: [] };
+  const seqs = entry.sequences.filter(findSeq);
+
+  if (seqs.length){ // a ready plan
+    const i = Math.min(unit.seq, seqs.length - 1), ref = seqs[i], g = G[ref.guide], s = findSeq(ref);
+    const minutes = s.steps[0].minutes !== undefined, rows = unit.all ? s.steps : s.steps.slice(0, 3);
+    const other = seqs.length > 1 ? seqs[(i + 1) % seqs.length] : null;
+    return {
+      heading: s.bigQuestion,
+      body: `<div class="lite-meta"><span>${esc(g.name)}</span><span>·</span><span>${seqLength(s)}</span>${badge(g.reckoner.scale)}</div>
+        ${s.targetConceptions.length ? `<p class="sub" style="margin-top:.9rem">Target alternative conceptions</p>
+          <div class="pills">${s.targetConceptions.map(c => `<span>${esc(c)}</span>`).join("")}</div>` : ""}
+        <div class="lite-table"><table><thead><tr><th>${minutes ? "Minutes" : "Lesson"}</th><th>Phase</th><th>What happens</th></tr></thead><tbody>
+          ${rows.map(st => `<tr><th scope="row">${esc(st.minutes ?? st.lessons)}</th><td>${esc(phaseName(g, st.phaseId))}</td><td>${md(st.activity)}</td></tr>`).join("")}
+        </tbody></table></div>
+        ${s.steps.length > 3 ? `<button type="button" class="ghost" data-all aria-expanded="${unit.all}">${unit.all ? "Show fewer steps" : `Show all ${s.steps.length} steps`}</button>` : ""}
+        ${other ? `<p class="hint" style="margin-top:.9rem">There is another plan for this focus area: <button type="button" class="lite-link" data-seq="${(i + 1) % seqs.length}">${esc(findSeq(other).title)} (${esc(G[other.guide].name)})</button></p>` : ""}`,
+      actions: `<button type="button" class="pill primary" data-guide="${g.id}" data-at="${s.id}">Open the full plan in the ${esc(g.name)} guide</button>`,
+    };
+  }
+
+  const exs = entry.examples.map(r => ({ ...r, e: findEx(r) })).filter(r => r.e);
+  if (exs.length){ // examples, but no plan yet
+    const tally = exs.reduce((t, r) => (t[r.guide] = (t[r.guide] || 0) + 1, t), {});
+    const top = Object.keys(tally).sort((a, b) => tally[b] - tally[a])[0];
+    const pick = exs.find(r => r.guide === top && r.e.kind === "positive") || exs.find(r => r.e.kind === "positive") || exs[0];
+    const g = G[pick.guide], e = pick.e;
+    return {
+      heading: "No ready plan yet",
+      body: `<div class="warnbox"><p>There isn’t a worked sequence for ${esc(unit.focus)} yet. The ${plural(exs.length, "example")} for it ${exs.length === 1 ? "comes" : "mostly come"} from <strong>${esc(G[top].name)}</strong>.</p></div>
+        <div class="ex ${e.kind}"><h4>${e.kind === "positive" ? "Done well" : "Done badly"}: ${esc(e.title)}</h4>
+          <p class="tagline">${esc(g.name)} · ${esc(phaseName(g, pick.phase))}${e.outcomes.length ? " · " + e.outcomes.join(", ") : ""}</p>
+          ${md(e.body)}<p><strong>Why.</strong> ${esc(e.diagnosis)}</p></div>`,
+      actions: `<button type="button" class="pill primary" data-guide="${g.id}" data-at="${pick.phase}">Open the ${esc(g.name)} guide at ${esc(phaseName(g, pick.phase))}</button>`,
+    };
+  }
+
+  // nothing yet: name the action, not the absence
+  const all = Object.entries(FA).flatMap(([st, fas]) => fas.map(fa => `${st}|${fa}`));
+  const empty = all.filter(k => !FI[k]).length;
+  const five = G["5e"], m = M["5e"];
+  const hosts = five ? five.nesting.filter(n => n.role === "hosts").map(n => M[n.modelId]?.name || n.modelId) : [];
+  return {
+    heading: "Start from 5E",
+    body: `<div class="warnbox"><p>${empty} of ${all.length} focus areas, including this one, don’t have a worked sequence or examples yet.
+        5E is the safe default: it is a ${esc(SCALE[m.scale].label.toLowerCase())}, so it gives the whole sequence a structure${hosts.length ? `, and it can hold ${esc(hosts.join(", "))}` : ""}.</p></div>
+      <ol class="phases" aria-label="Phases">${m.phases.map(p => `<li>${esc(p)}</li>`).join("")}</ol>
+      <p><strong>Distinguishing feature.</strong> ${esc(m.distinct)}</p>`,
+    actions: five ? `<button type="button" class="pill primary" data-guide="5e">Open the 5E guide</button>` : "",
+  };
+}
+
 /* ---------- compare ---------- */
 const CMP_MAX = 4, CMP_DEFAULT = ["5e", "adi", "poe"];
 /** Rows in order: [id, label, cell renderer, clamped by default]. */
@@ -645,9 +757,9 @@ if (DATA.review){
   document.querySelector("header.top .wrap").prepend(b);
 }
 
-renderQuick(); renderDetail(); renderLibrary();
+renderUnit(false); renderQuick(); renderDetail(); renderLibrary();
 renderGuide(DATA.guides.length ? DATA.guides[0].id : null);
 routeFromHash();
 document.getElementById("bootMsg")?.remove();
-// First visit to the landing screen: offer the walkthrough once. Closing it at any step records that.
-if (!store.get("tourDone") && !location.hash && !DATA.review) startTour(true);
+// The walkthrough starts from the quick reckoner, so it no longer opens by itself over the
+// "Start with your unit" landing view; it stays available from the quick reckoner's entry point.
