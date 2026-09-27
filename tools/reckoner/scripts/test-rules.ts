@@ -34,7 +34,10 @@ const cases: [string, (g: any) => void, RegExp, (() => any)?][] = [
   ["an unmapped WS skill without a note fails", (g) => delete g.syllabusAlignment.wsMapping[2].note, /needs a note/, poe],
   ["hosting at a phase the model lacks fails", (g) => (g.nesting[0].phaseId = "no-such-phase"), /Unknown phase/],
   // Added in schema 1.2, found by authoring the ADI guide (eight stages)
-  ["a stage group without a positive example fails", (g) => (g.phases[0].examples = g.phases[0].examples.filter((e: any) => e.kind !== "positive")), /needs at least one positive example/, adi],
+  // Strips positives from EVERY phase in the group, so the case stays real as examples are added
+  ["a stage group without a positive example fails", (g) => { const grp = g.phases[0].group;
+    g.phases.filter((p: any) => p.group === grp).forEach((p: any) => { p.examples = (p.examples ?? []).filter((e: any) => e.kind !== "positive"); }); },
+    /needs at least one positive example/, adi],
   ["a phase outside any declared group fails", (g) => (g.phases[3].group = "no-such-group"), /Unknown phase group/, adi],
   ["a grouped guide with an ungrouped phase fails", (g) => delete g.phases[2].group, /needs a group/, adi],
   ["an empty stage group fails", (g) => g.phaseGroups.push({ id: "spare", name: "Spare", summary: "Nothing here." }), /No phases in group/, adi],

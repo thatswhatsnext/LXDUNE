@@ -3,9 +3,9 @@
   "id": "poe",
   "name": "Predict–Observe–Explain",
   "originators": "White & Gunstone (1992)",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "published",
-  "lastReviewed": "2026-09-21",
+  "lastReviewed": "2026-09-27",
   "syllabus": "NSW Science 7–10 Syllabus (2023)",
   "provenance": {
     "source": "ai-drafted-reviewed",
@@ -286,6 +286,78 @@
             ],
             "reviewedOn": "2026-09-21"
           }
+        },
+        {
+          "id": "poe-predict-pos-steel-wool",
+          "kind": "positive",
+          "title": "Will burning make it lighter?",
+          "context": {
+            "stages": [
+              "stage4"
+            ],
+            "focusAreas": [
+              "Change"
+            ],
+            "disciplines": [
+              "chemistry"
+            ]
+          },
+          "outcomes": [
+            "SC4-CHG-01",
+            "SC4-WS-02"
+          ],
+          "body": "A loose ball of steel wool sits on a digital balance under the visualiser. The teacher records\nthe mass, says the wool will be heated and then weighed again, and asks every student to write\ndown what the balance will read afterwards and why. No hint is given that anything unusual is\ncoming. The slips are collected before anything is lit. Most of the class predicts the mass\nwill drop, because burning uses the material up. The teacher tallies the predictions on the\nboard without comment on any of them. Safety: teacher demonstration only, with eye protection,\ntongs and a heatproof mat, and the ignition source kept away from the balance until the first\nmass has been recorded.\n",
+          "diagnosis": "Burning steel wool gains mass, which contradicts what most of a Year 7 class will predict, so\npoe-discrepant holds. Collecting written slips before the demonstration runs is\npoe-commit-written, and requiring a reason is what makes the underlying idea available to work\non later (poe-reasons). The flat set-up, with no signal that the obvious answer is wrong,\nkeeps poe-no-cueing intact.\n",
+          "lookForIds": [
+            "poe-discrepant",
+            "poe-commit-written",
+            "poe-reasons",
+            "poe-no-cueing"
+          ],
+          "provenance": {
+            "source": "ai-drafted-reviewed",
+            "authors": [
+              "Claude"
+            ],
+            "reviewedBy": [
+              "Steve Grant"
+            ],
+            "reviewedOn": "2026-09-27"
+          }
+        },
+        {
+          "id": "poe-predict-neg-steel-wool-cued",
+          "kind": "negative",
+          "title": "Telling them the answer is surprising",
+          "context": {
+            "stages": [
+              "stage4"
+            ],
+            "focusAreas": [
+              "Change"
+            ],
+            "disciplines": [
+              "chemistry"
+            ]
+          },
+          "outcomes": [],
+          "body": "The teacher sets up the same demonstration and opens with, \"Most people think burning always\nmakes something lighter, so let's find out whether that is true.\" Hands go up for lighter,\nthen a scattering for heavier once the framing lands. The teacher counts the hands, heats the\nwool and weighs it again, and the result gets the reaction it deserves. Nobody has written\nanything down, and nobody has been asked why they chose what they chose.\n",
+          "diagnosis": "The opening signals that the obvious answer is wrong, so what follows is a guess at what the\nteacher wants rather than the student's own thinking, and poe-no-cueing fails. A show of hands\ncommits nobody in writing (poe-commit-written) and collects no reasons (poe-reasons), leaving\nno record of the idea for the explain phase to work against.\n",
+          "lookForIds": [
+            "poe-no-cueing",
+            "poe-commit-written",
+            "poe-reasons"
+          ],
+          "provenance": {
+            "source": "ai-drafted-reviewed",
+            "authors": [
+              "Claude"
+            ],
+            "reviewedBy": [
+              "Steve Grant"
+            ],
+            "reviewedOn": "2026-09-27"
+          }
         }
       ]
     },
@@ -406,6 +478,76 @@
               "Steve Grant"
             ],
             "reviewedOn": "2026-09-21"
+          }
+        },
+        {
+          "id": "poe-observe-pos-moon-phases",
+          "kind": "positive",
+          "title": "Why does the Moon change shape?",
+          "context": {
+            "stages": [
+              "stage4"
+            ],
+            "focusAreas": [
+              "Observing the Universe"
+            ],
+            "disciplines": [
+              "earth-environmental"
+            ]
+          },
+          "outcomes": [
+            "SC4-OTU-01",
+            "SC4-WS-01"
+          ],
+          "body": "Each student holds a polystyrene ball at arm's length, with one lamp at the front of a\ndarkened room. Turning slowly on the spot, they stop at each quarter turn and sketch the lit\npart of the ball as they see it from where they stand. Observations go in one column of the\nsheet and what they think it means in another. Several students say the classroom lights are\nspoiling the effect, so the teacher closes the blinds and the class runs it again. One student\nnotices that her own head never casts a shadow on the ball at first quarter, and says so. The\nteacher tells the class that next lesson they will look at how Moon and sky knowledge sits in a\nlocal seasonal calendar, a session being planned with the school's Aboriginal Education staff\nand local Aboriginal community.\n",
+          "diagnosis": "Every student sees the terminator from their own position instead of watching one\ndemonstration, and re-running it with the blinds down answers the doubt rather than\noverriding it: both are poe-observe-visible. Sketching at each quarter turn before any\ndiscussion meets poe-observe-record, and the two-column sheet holds poe-observe-inference.\nThe student noticing no shadow has produced exactly the observation the explain phase needs.\n",
+          "lookForIds": [
+            "poe-observe-visible",
+            "poe-observe-record",
+            "poe-observe-inference"
+          ],
+          "provenance": {
+            "source": "ai-drafted-reviewed",
+            "authors": [
+              "Claude"
+            ],
+            "reviewedBy": [
+              "Steve Grant"
+            ],
+            "reviewedOn": "2026-09-27"
+          }
+        },
+        {
+          "id": "poe-observe-neg-moon-narrated",
+          "kind": "negative",
+          "title": "One ball at the front bench",
+          "context": {
+            "stages": [
+              "stage4"
+            ],
+            "focusAreas": [
+              "Observing the Universe"
+            ],
+            "disciplines": [
+              "earth-environmental"
+            ]
+          },
+          "outcomes": [],
+          "body": "The teacher holds the only ball beside a lamp at the front bench and turns it slowly,\ndescribing what happens as she goes. \"You can see the shape changing, and notice there is no\nshadow from the Earth falling across it, so phases are not an eclipse.\" Students copy a\nlabelled diagram from the board into their books. Two students at the back cannot see the lit\nside of the ball from where they are sitting, and do not say so. Nobody records what they saw,\nbecause the teacher has already said what it means.\n",
+          "diagnosis": "Only the front of the room can check the result, so poe-observe-visible fails for the students\nwho most need it. The narration supplies the observation and its meaning together, before\nanyone writes anything down, which breaks poe-observe-record and removes the mismatch the\nexplain phase runs on.\n",
+          "lookForIds": [
+            "poe-observe-visible",
+            "poe-observe-record"
+          ],
+          "provenance": {
+            "source": "ai-drafted-reviewed",
+            "authors": [
+              "Claude"
+            ],
+            "reviewedBy": [
+              "Steve Grant"
+            ],
+            "reviewedOn": "2026-09-27"
           }
         }
       ]
@@ -535,6 +677,78 @@
               "Steve Grant"
             ],
             "reviewedOn": "2026-09-21"
+          }
+        },
+        {
+          "id": "poe-explain-pos-freeze-thaw",
+          "kind": "positive",
+          "title": "A dome of ice above the lid",
+          "context": {
+            "stages": [
+              "stage4"
+            ],
+            "focusAreas": [
+              "Change"
+            ],
+            "disciplines": [
+              "earth-environmental"
+            ]
+          },
+          "outcomes": [
+            "SC4-CHG-01",
+            "SC4-WS-06",
+            "SC4-WS-08"
+          ],
+          "body": "A sealed container filled to the brim with water came out of the freezer this morning with its\nlid pushed off and a dome of ice standing proud of the rim. Most of the class had predicted the\nwater would shrink, because cooling makes things contract. In pairs, students write what they\npredicted, what they can see, and what would have to be true for both. Several arrive at water\ntaking up more room as ice. The teacher then consolidates: water is unusual, expanding by about\na tenth as it freezes because of the open structure ice forms, and she names the idea that\neverything shrinks when it cools rather than leaving it unspoken. She finishes by asking what\nthat would do to water sitting in a crack in a rock through a frosty night, and keeps the\nprediction slips for next lesson.\n",
+          "diagnosis": "Pairs compare prediction with observation and say what would have to be true for both, so\npoe-reconcile and poe-revise happen before any teaching. The teacher then consolidates and\nnames the alternative conception directly, which is poe-consolidate. Asking about water in a\nrock crack, and keeping the slips, turns a one-off demonstration into the opening of the\nweathering sequence (poe-followup).\n",
+          "lookForIds": [
+            "poe-reconcile",
+            "poe-revise",
+            "poe-consolidate",
+            "poe-followup"
+          ],
+          "provenance": {
+            "source": "ai-drafted-reviewed",
+            "authors": [
+              "Claude"
+            ],
+            "reviewedBy": [
+              "Steve Grant"
+            ],
+            "reviewedOn": "2026-09-27"
+          }
+        },
+        {
+          "id": "poe-explain-neg-freeze-thaw-told",
+          "kind": "negative",
+          "title": "Explained before anyone revises",
+          "context": {
+            "stages": [
+              "stage4"
+            ],
+            "focusAreas": [
+              "Change"
+            ],
+            "disciplines": [
+              "earth-environmental"
+            ]
+          },
+          "outcomes": [],
+          "body": "The same container comes out of the freezer with its lid pushed off, and there is a good\nreaction from the class. The teacher explains straight away that water is unusual because ice\nforms an open structure held by hydrogen bonds, and that it expands by about nine per cent as\nit freezes. It is a clear and correct explanation, and students copy it into their books.\nNobody is asked to compare it with what they predicted. The lesson ends with the container back\non the bench, and rock, frost and weathering are not mentioned.\n",
+          "diagnosis": "The science is right but it arrives before students have done anything with their own\nprediction, so poe-revise never happens and the idea the demonstration was chosen to unsettle\nis left standing. With no link made to frost in a rock crack, poe-followup fails too, and a\nstrong discrepant event stays a curiosity about ice instead of becoming geological change.\n",
+          "lookForIds": [
+            "poe-revise",
+            "poe-followup"
+          ],
+          "provenance": {
+            "source": "ai-drafted-reviewed",
+            "authors": [
+              "Claude"
+            ],
+            "reviewedBy": [
+              "Steve Grant"
+            ],
+            "reviewedOn": "2026-09-27"
           }
         }
       ]

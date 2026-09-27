@@ -5,9 +5,9 @@ schemaVersion: "1.3"
 id: levels-of-inquiry
 name: Levels of inquiry
 originators: Banchi & Bell (2008), after Herron (1971)
-version: 1.0.0
+version: 1.1.0
 status: published
-lastReviewed: 2026-09-21
+lastReviewed: 2026-09-27
 syllabus: NSW Science 7–10 Syllabus (2023)
 provenance:
   source: ai-drafted-reviewed
@@ -208,6 +208,46 @@ phases:
         diagnosis: The interpretation is done for students, so the task drops to confirmation without saying so.
         lookForIds: [loi-structured-interpretation, loi-structured-unknown]
         provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-21 }
+      - id: loi-structured-pos-reaction-time
+        kind: positive
+        title: Which hand is faster?
+        context: { stages: [stage4], focusAreas: [Data science 1], disciplines: [integrated] }
+        outcomes: [SC4-DA1-01, SC4-WS-05, SC4-WS-06]
+        body: |
+          The question and the method are both supplied, because the ruler-catch technique is fiddly:
+          thumb and finger level with the zero mark, the dropper releasing without warning, ten trials
+          per hand. What the teacher does not say is which hand will do better, or by how much. Pairs
+          collect twenty results each and pool them as a class. Students then choose how to show the
+          data. Several go to a bar chart of averages; two groups use a dot plot per hand because they
+          want the spread visible. Each pair writes what they think their representation shows. Two pairs
+          report an overlap wide enough that they are not confident there is a difference at all, and say
+          so in their conclusion.
+        diagnosis: |
+          Supplying the method is the right call at structured level when the technique is fiddly, and it
+          costs nothing here because the outcome stays genuinely unknown to the class
+          (loi-structured-unknown). Choosing the representation and writing what it shows is left to
+          students, including the two pairs who conclude the difference is not clear, which is
+          loi-structured-interpretation working as intended.
+        lookForIds: [loi-structured-unknown, loi-structured-interpretation]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-27 }
+      - id: loi-structured-neg-trend-given
+        kind: negative
+        title: Naming the result before they measure
+        context: { stages: [stage4], focusAreas: [Data science 1], disciplines: [integrated] }
+        outcomes: []
+        body: |
+          The teacher introduces the same ruler-catch task with, "This will show that your dominant hand
+          is faster, so let's measure how much." The method is given, pairs collect ten trials per hand,
+          and the class pools the results. Students graph the averages and write a conclusion. One pair's
+          data has the non-dominant hand slightly ahead. They assume they have made a mistake somewhere
+          and swap the two columns before handing the sheet in.
+        diagnosis: |
+          Naming the result at the start removes the one thing that made this an investigation rather
+          than a demonstration, so loi-structured-unknown fails and the task has quietly dropped to
+          confirmation level. The pair who swapped their columns show what that costs: once the answer is
+          given, data that disagrees looks like an error rather than a finding.
+        lookForIds: [loi-structured-unknown, loi-structured-interpretation]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-27 }
 
   - id: guided
     name: Guided

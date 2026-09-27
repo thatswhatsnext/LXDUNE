@@ -5,9 +5,9 @@ schemaVersion: "1.3"
 id: adi
 name: Argument-Driven Inquiry
 originators: Sampson, Grooms & Walker (2011)
-version: 1.0.0
+version: 1.1.0
 status: published
-lastReviewed: 2026-09-21
+lastReviewed: 2026-09-27
 syllabus: NSW Science 7–10 Syllabus (2023)
 provenance:
   source: ai-drafted-reviewed
@@ -209,6 +209,49 @@ phases:
         question: Does the justification connect evidence to the claim using science?
         strongEvidence: Students explain why this evidence is relevant and sufficient.
         weakEvidence: "Because that's what we found."
+    examples:
+      - id: adi-tentative-argument-pos-beak
+        kind: positive
+        title: Why the pegs came to dominate
+        context: { stages: [stage5], focusAreas: [Genetics and evolutionary change], disciplines: [biology] }
+        outcomes: [SC5-GEV-01, SC5-WS-05, SC5-WS-06]
+        body: |
+          Groups have run four generations of a selection simulation, collecting seeds of three sizes
+          using tweezers, pegs and tongs as beak types, with the least successful beak type removed each
+          generation. On the whiteboard, one group writes its claim, that peg beaks came to dominate once
+          large seeds were most of what was left. Beneath it goes the evidence: a graph of beak numbers
+          per generation against the seed sizes available. The justification is where they spend the
+          time. The pegs did not get better at picking up large seeds, and no individual changed. The
+          pegs already in the population happened to suit what was left, so more of them survived into
+          the next round. One student adds that if there had been no pegs at the start, the population
+          would simply have declined.
+        diagnosis: |
+          Claim, evidence and justification are all present and distinguishable, which is adi-three-part,
+          and the tallies have been analysed into a graph rather than left as raw counts (adi-analysis).
+          The justification is the part that matters: it explains the result through differential
+          survival of variants already present rather than individuals improving, which is
+          adi-justification doing the work that keeps a Lamarckian reading out.
+        lookForIds: [adi-three-part, adi-analysis, adi-justification]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-27 }
+      - id: adi-tentative-argument-neg-no-justification
+        kind: negative
+        title: The claim above the tally sheet
+        context: { stages: [stage5], focusAreas: [Genetics and evolutionary change], disciplines: [biology] }
+        outcomes: []
+        body: |
+          The same simulation, and the group's whiteboard shows the claim, that peg beaks won, above the
+          tally sheet from all four generations copied out neatly underneath. Asked why the evidence
+          supports the claim, a student says the pegs got better at picking up the big seeds as they
+          practised. Another adds that the beaks adapted to the food that was there. Nobody writes a
+          justification, and the numbers are never turned into anything that shows the trend across
+          generations.
+        diagnosis: |
+          With no justification on the board, adi-three-part fails and the argumentation session has
+          nothing to critique. The reasoning the group offers aloud is Lamarckian, with individuals
+          improving and adapting within a lifetime, and because adi-justification was never required the
+          simulation has left that idea untouched rather than dislodged.
+        lookForIds: [adi-three-part, adi-justification]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-27 }
 
   - id: argumentation
     name: Argumentation session
