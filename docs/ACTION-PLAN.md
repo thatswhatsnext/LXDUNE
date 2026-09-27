@@ -356,6 +356,15 @@ Replaces the Model library tab (now "Model map").
 - [x] Repaired the stage-group rule test, which adding a positive to ADI `tentative-argument` had made vacuous; it now strips positives from every phase in the group
 - [ ] Open: the 10 example-only focus areas each need a worked sequence to become a ready plan
 
+### 35. Reckoner: 7E companion guide ⬜ (open items remain) — 2026-09-28
+- [x] 7E guide published (v1.0.0, reviewed and signed off by Steve Grant 2026-09-28), the first of five Tier A guides: 7 phases in 3 groups, 13 look-fors, 6 examples, 1 worked sequence (Stage 5 Energy, 9 lessons), 6 misapplications, 18 checklist items. Leans on the 5E guide for Explore, Explain and Elaborate
+- [x] Model id corrected from `e7` to `7e` (matches `MODEL_REGISTRY` and `5e`); the catalogue entry is removed in the same commit, so the reckoner still shows 15 models (catalogue 13 → 12, guides 4 → 5)
+- [x] Reciprocal nesting lines added to POE, ADI and Levels of inquiry (their versions unchanged)
+- [x] Followed the rename into the detailed reckoner's "needs a longer run" watch-out, which still listed `e7`
+- Guided coverage of reckoner recommendations: 17% → 36% (the handoff's measure)
+- [ ] Next: Science Writing Heuristic, which takes coverage to 48% and repairs the "coming soon" nesting references in 5E, 7E and ADI
+- [ ] Open (low severity): `scripts/lib/build.ts` uses `ModelGuide.parse()` and throws a raw stack on an invalid guide, where `scripts/validate.ts` uses `safeParse` and reports properly. `publish:pages` runs validate first, so this only bites a direct `npm run build`. Worth a one-line fix when that file is next touched
+
 ---
 
 ## ✅ Completed

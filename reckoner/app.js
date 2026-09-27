@@ -170,7 +170,7 @@ const rankAll = (a,imp) => RANKED.map(m => ({ m, f: fit(m,a,imp) })).filter(x =>
 const has = (a,id,v) => Array.isArray(a[id]) ? a[id].includes(v) : a[id] === v;
 function watchOuts(m,a){ const W = [];
   if (["pbl","project-based","interactive-approach"].includes(m.id) && a.ready==="novice") W.push("Novice learners: high cognitive load risk. Scaffold heavily, or start with a more structured model.");
-  if (["pbl","project-based","ast","interactive-approach","e7"].includes(m.id) && (a.time==="lesson"||a.time==="short")) W.push("This model needs a longer run than you have. Consider a shorter model or extend the sequence.");
+  if (["pbl","project-based","ast","interactive-approach","7e"].includes(m.id) && (a.time==="lesson"||a.time==="short")) W.push("This model needs a longer run than you have. Consider a shorter model or extend the sequence.");
   if (a.conf==="low" && ["ast","pbl","project-based","interactive-approach","case","glm"].includes(m.id)) W.push("Demanding to facilitate. Script your key questions, and observe or co-teach with a colleague first if you can.");
   if (a.res==="none" && ["design-cycle","learning-cycle","adi","interactive-approach"].includes(m.id)) W.push("Relies on hands-on work. Substitute simulations or secondary data sets.");
   if (a.lang==="high" && ["glm","case","ssi","adi","pbl"].includes(m.id)) W.push("Talk- and text-heavy. Add sentence frames, vocabulary pre-teaching or an SWH template.");

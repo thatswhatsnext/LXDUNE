@@ -1213,6 +1213,12 @@
       "role": "nests-in",
       "phaseId": "task-question",
       "how": "Use a POE before the guiding question is posed, to surface prior ideas."
+    },
+    {
+      "modelId": "7e",
+      "role": "nests-in",
+      "phaseId": "engage",
+      "how": "Use a POE as the 7E hook, once Elicit has shown which conception to target."
     }
   ],
   "reflectionPrompts": [

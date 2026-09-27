@@ -507,6 +507,47 @@
       }
     },
     {
+      "id": "7e",
+      "name": "7E",
+      "src": "Eisenkraft (2003)",
+      "scale": "macro",
+      "distinct": "Separates eliciting prior knowledge from engaging interest, and adds far transfer.",
+      "fit": "Topics with robust misconceptions and clear real-world transfer, such as Energy and Disease.",
+      "theory": [
+        "Ausubel: prior knowledge",
+        "Near and far transfer",
+        "Conceptual change",
+        "As for 5E"
+      ],
+      "teacher": "Diagnoses prior knowledge deliberately and acts on what it shows, then designs a transfer task into a context students would not reach by themselves.",
+      "learner": "Puts their existing ideas on record, builds and tests a better one, then recognises it working somewhere unfamiliar.",
+      "pitfall": "Treating Elicit as a quick brainstorm whose results are never used.",
+      "evidence": "Pooled with 5E and 3E in meta-analyses rather than tested on its own, so there is no evidence it beats 5E. The two added phases rest on well-evidenced principles about prior knowledge and transfer.",
+      "phases": [
+        "Elicit",
+        "Engage",
+        "Explore",
+        "Explain",
+        "Elaborate",
+        "Evaluate",
+        "Extend"
+      ],
+      "hasGuide": true,
+      "p": {
+        "purpose": "3321121",
+        "time": "0132",
+        "ready": "233",
+        "concept": "33222",
+        "misc": "321",
+        "ws": "23222222",
+        "conf": "233",
+        "res": "322",
+        "assess": "32123",
+        "lang": "322",
+        "place": "211"
+      }
+    },
+    {
       "id": "adi",
       "name": "Argument-Driven Inquiry",
       "src": "Sampson, Grooms & Walker (2011)",
@@ -641,46 +682,6 @@
         "assess": "32101",
         "lang": "322",
         "place": "111"
-      },
-      "hasGuide": false
-    },
-    {
-      "id": "e7",
-      "name": "7E",
-      "src": "Eisenkraft (2003)",
-      "scale": "macro",
-      "phases": [
-        "Elicit",
-        "Engage",
-        "Explore",
-        "Explain",
-        "Elaborate",
-        "Evaluate",
-        "Extend"
-      ],
-      "distinct": "Separates eliciting prior knowledge from engaging interest, and adds far transfer.",
-      "fit": "Topics with robust misconceptions and clear real-world transfer, such as Energy and Disease.",
-      "theory": [
-        "As for 5E",
-        "Ausubel: prior knowledge",
-        "Transfer of learning"
-      ],
-      "teacher": "Diagnoses prior knowledge deliberately and designs a far-transfer task.",
-      "learner": "Surfaces their own ideas and extends learning to unfamiliar contexts.",
-      "pitfall": "Treating Elicit as a quick brainstorm whose results are never used.",
-      "evidence": "Pooled with 5E in meta-analyses; the added phases rest on strong prior-knowledge and transfer research.",
-      "p": {
-        "purpose": "3321121",
-        "time": "0132",
-        "ready": "233",
-        "concept": "33222",
-        "misc": "321",
-        "ws": "23222222",
-        "conf": "233",
-        "res": "322",
-        "assess": "32123",
-        "lang": "322",
-        "place": "211"
       },
       "hasGuide": false
     },
@@ -1262,6 +1263,16 @@
       ],
       "examples": [
         {
+          "guide": "7e",
+          "phase": "elicit",
+          "id": "7e-elicit-pos-disease-cards"
+        },
+        {
+          "guide": "7e",
+          "phase": "elicit",
+          "id": "7e-elicit-neg-disease-brainstorm"
+        },
+        {
           "guide": "levels-of-inquiry",
           "phase": "structured",
           "id": "loi-structured-pos-enzyme"
@@ -1269,7 +1280,12 @@
       ]
     },
     "stage5|Energy": {
-      "sequences": [],
+      "sequences": [
+        {
+          "guide": "7e",
+          "id": "7e-seq-s5-energy"
+        }
+      ],
       "examples": [
         {
           "guide": "5e",
@@ -1280,6 +1296,26 @@
           "guide": "5e",
           "phase": "elaborate",
           "id": "5e-elaborate-neg-energy-poster"
+        },
+        {
+          "guide": "7e",
+          "phase": "elaborate",
+          "id": "7e-elaborate-pos-school-audit"
+        },
+        {
+          "guide": "7e",
+          "phase": "elaborate",
+          "id": "7e-elaborate-neg-textbook-set"
+        },
+        {
+          "guide": "7e",
+          "phase": "extend",
+          "id": "7e-extend-pos-food-chain"
+        },
+        {
+          "guide": "7e",
+          "phase": "extend",
+          "id": "7e-extend-neg-home-insulation"
         }
       ]
     },
@@ -1291,6 +1327,11 @@
         }
       ],
       "examples": [
+        {
+          "guide": "7e",
+          "phase": "extend",
+          "id": "7e-extend-pos-food-chain"
+        },
         {
           "guide": "adi",
           "phase": "task-question",
@@ -1408,25 +1449,32 @@
       "hash": "50393b73a62f"
     },
     {
+      "id": "7e",
+      "name": "7E",
+      "version": "1.0.0",
+      "lastReviewed": "2026-09-28",
+      "hash": "b7a7b219f481"
+    },
+    {
       "id": "adi",
       "name": "Argument-Driven Inquiry",
       "version": "1.1.0",
       "lastReviewed": "2026-09-27",
-      "hash": "d84a3f3b2c69"
+      "hash": "cdc13939f7eb"
     },
     {
       "id": "levels-of-inquiry",
       "name": "Levels of inquiry",
       "version": "1.1.0",
       "lastReviewed": "2026-09-27",
-      "hash": "28de2281b9dc"
+      "hash": "8f1e721fa816"
     },
     {
       "id": "poe",
       "name": "Predict–Observe–Explain",
       "version": "1.1.0",
       "lastReviewed": "2026-09-27",
-      "hash": "c14eb0cca4a5"
+      "hash": "c87ba8528187"
     }
   ]
 }

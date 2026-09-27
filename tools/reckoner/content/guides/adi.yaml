@@ -611,6 +611,7 @@ nesting:
   - { modelId: poe, role: hosts, phaseId: task-question, how: 'Open with a POE to surface prior ideas before the guiding question is posed.' }
   - { modelId: levels-of-inquiry, role: hosts, phaseId: design-data, how: 'Use the guidance dial to decide how much planning support groups need; ADI assumes guided level or above.' }
   - { modelId: swh, role: hosts, phaseId: report, how: 'Use an SWH template to scaffold claims and evidence in the report.' }
+  - { modelId: 7e, role: nests-in, phaseId: explore, how: 'Run ADI across 7E Explore and Explain when the sequence also targets argument from evidence.' }
 
 reflectionPrompts:
   - id: refl-adi-personal

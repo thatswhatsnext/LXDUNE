@@ -34,45 +34,6 @@
   }
  },
  {
-  "id": "e7",
-  "name": "7E",
-  "src": "Eisenkraft (2003)",
-  "scale": "macro",
-  "phases": [
-   "Elicit",
-   "Engage",
-   "Explore",
-   "Explain",
-   "Elaborate",
-   "Evaluate",
-   "Extend"
-  ],
-  "distinct": "Separates eliciting prior knowledge from engaging interest, and adds far transfer.",
-  "fit": "Topics with robust misconceptions and clear real-world transfer, such as Energy and Disease.",
-  "theory": [
-   "As for 5E",
-   "Ausubel: prior knowledge",
-   "Transfer of learning"
-  ],
-  "teacher": "Diagnoses prior knowledge deliberately and designs a far-transfer task.",
-  "learner": "Surfaces their own ideas and extends learning to unfamiliar contexts.",
-  "pitfall": "Treating Elicit as a quick brainstorm whose results are never used.",
-  "evidence": "Pooled with 5E in meta-analyses; the added phases rest on strong prior-knowledge and transfer research.",
-  "p": {
-   "purpose": "3321121",
-   "time": "0132",
-   "ready": "233",
-   "concept": "33222",
-   "misc": "321",
-   "ws": "23222222",
-   "conf": "233",
-   "res": "322",
-   "assess": "32123",
-   "lang": "322",
-   "place": "211"
-  }
- },
- {
   "id": "glm",
   "name": "Generative Learning Model",
   "src": "Osborne & Wittrock (1985); Cosgrove & Osborne (1985)",

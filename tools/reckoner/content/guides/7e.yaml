@@ -1,0 +1,618 @@
+# 7E companion guide
+# Tier A guide 1 of 5. Leans on the 5E guide rather than restating it, since 7E is 5E
+# plus an Elicit phase at the front and an Extend phase at the back.
+
+schemaVersion: "1.3"
+id: 7e
+name: 7E
+originators: Eisenkraft (2003)
+version: 1.0.0
+status: published
+lastReviewed: 2026-09-28
+syllabus: NSW Science 7–10 Syllabus (2023)
+provenance:
+  source: ai-drafted-reviewed
+  authors: ["Claude, drafted for S. Grant"]
+  reviewedBy: ["Steve Grant"]
+  reviewedOn: 2026-09-28
+
+reckoner:
+  scale: macro
+  fitProfile:
+    purpose: [3, 3, 2, 1, 1, 2, 1]
+    time:    [0, 1, 3, 2]
+    ready:   [2, 3, 3]
+    concept: [3, 3, 2, 2, 2]
+    misc:    [3, 2, 1]
+    ws:      [2, 3, 2, 2, 2, 2, 2, 2]
+    conf:    [2, 3, 3]
+    res:     [3, 2, 2]
+    assess:  [3, 2, 1, 2, 3]
+    lang:    [3, 2, 2]
+    place:   [2, 1, 1]
+  distinguishingFeature: Separates eliciting prior knowledge from engaging interest, and adds far transfer.
+  bestScienceFit: Topics with robust misconceptions and clear real-world transfer, such as Energy and Disease.
+  commonPitfall: Treating Elicit as a quick brainstorm whose results are never used.
+  evidenceSummary: 'Pooled with 5E and 3E in meta-analyses rather than tested on its own, so there is no evidence it beats 5E. The two added phases rest on well-evidenced principles about prior knowledge and transfer.'
+  evidenceStrength: moderate
+  evidenceReferenceIds: [eisenkraft-2003, air-2023]
+  theoryTags: ["Ausubel: prior knowledge", "Near and far transfer", "Conceptual change", "As for 5E"]
+
+introduction:
+  lead: '7E is 5E with two additions that fix two things teachers reliably get wrong: finding out what students already think, and moving the idea somewhere genuinely new.'
+  purposeStatement: |
+    This guide covers what 7E adds to 5E and how to tell whether you have actually added it. Eisenkraft's
+    argument was not that 5E is wrong but that two of its phases carry more than they can hold. Engage was
+    being read as "hook them", so prior knowledge went unexamined. Elaborate was being read as "one more
+    activity", so transfer stayed inside the topic. Splitting out Elicit and Extend makes both visible
+    enough to plan for and to check.
+    Explore, Explain and Elaborate work exactly as they do in 5E, so this guide does not restate them.
+    Read the 5E guide for those three and use this one for the rest.
+  audience: Pre-service teachers in secondary science method units, and teachers in their first years who already know 5E.
+  howToUse: |
+    If you have never planned a 5E sequence, start there. If you have, read the Elicit and Extend stage
+    cards, then look at the worked sequence to see how the two additions change a unit you could otherwise
+    have written as 5E. The checklist is the part to keep open while planning.
+
+theory:
+  summary: |
+    Both additions come from findings that predate the model. Students' existing ideas determine what new
+    teaching can attach to, and transfer to a distant context does not happen on its own unless it is
+    designed for. 7E is best understood as 5E with those two findings given a phase each.
+  foundations:
+    - tradition: "Ausubel: prior knowledge"
+      idea: What a learner already knows is the single largest influence on what they can learn next.
+      designImplication: Elicit exists because assuming prior knowledge and finding it out are different acts, and only the second can change your teaching.
+      referenceIds: [ausubel-1968]
+    - tradition: "Near and far transfer"
+      idea: 'Applying an idea to a nearby case is a different act from recognising it in an unfamiliar one, and the second rarely happens spontaneously.'
+      designImplication: Elaborate handles the nearby case. Extend has to be designed deliberately for a context students would not connect on their own.
+      referenceIds: [salomon-perkins-1989]
+    - tradition: "As for 5E"
+      idea: Disequilibrium, conceptual change and social construction sit under 7E exactly as they sit under 5E.
+      designImplication: The middle three phases are unchanged, so the 5E guide's theory section applies without amendment.
+      referenceIds: [bybee-2006]
+  critiques:
+    - claim: There is no evidence that 7E outperforms 5E.
+      response: |
+        True, and worth saying plainly. The meta-analytic evidence pools 3E, 5E and 7E together and does
+        not separate them, so the headline effect size is not a finding about 7E. What supports the two
+        extra phases is the underlying research on prior knowledge and transfer, not a trial of the model.
+        The practical cost is two more phases to plan, which for a first program may not be worth it.
+      referenceIds: [air-2023, eisenkraft-2003]
+
+roles:
+  teacher: Diagnoses prior knowledge deliberately and acts on what it shows, then designs a transfer task into a context students would not reach by themselves.
+  learner: Puts their existing ideas on record, builds and tests a better one, then recognises it working somewhere unfamiliar.
+
+sequence:
+  shape: cyclical
+  summary: |
+    Seven phases in three movements: find out what they think and give them a reason to care; build the
+    idea; check it and then move it somewhere new. The middle three are 5E unchanged.
+  scaleNote: A 7E sequence is a unit, usually 8–15 lessons. It is longer than a 5E sequence covering the same content, because Extend is additional teaching rather than a different way of using the same lessons.
+
+phaseGroups:
+  - id: find-out
+    name: Find out, then hook
+    summary: The two phases 5E compresses into one. Elicit collects what students already think; Engage gives them a reason to want a better answer.
+  - id: build
+    name: Build the idea
+    summary: Explore, Explain and Elaborate, working exactly as they do in 5E. Read that guide for these three.
+  - id: check-move
+    name: Check it, then move it
+    summary: Evaluate establishes what has been learned. Extend then asks students to recognise the same idea somewhere they would not have looked.
+
+phases:
+  - id: elicit
+    name: Elicit
+    order: 1
+    group: find-out
+    job: Find out what students already think, in a form you can act on before you teach.
+    essentialFeatures:
+      - Every student records their current thinking, not just the volunteers
+      - The prompt asks for an explanation, not a definition or a recall answer
+      - The teacher reads the responses and lets them change the plan
+      - It happens before the hook, so interest does not contaminate the diagnosis
+    teacherMoves: [Poses a diagnostic prompt, Collects from every student, Sorts the responses and adjusts the sequence]
+    learnerMoves: [States what they currently think, Gives a reason for it]
+    typicalShare: { minPercent: 5, maxPercent: 10 }
+    formativeChecks: [Sorted set of initial explanations, kept for Evaluate]
+    lookFors:
+      - id: 7e-elicit-every-student
+        question: Does every student put something on record?
+        strongEvidence: Individual written or drawn responses collected from the whole class.
+        weakEvidence: A discussion in which the same six students answer.
+      - id: 7e-elicit-explanatory
+        question: Does the prompt ask how or why, rather than what?
+        strongEvidence: Students have to explain a situation, so their reasoning is visible.
+        weakEvidence: A recall quiz, which shows what they can name but not what they believe.
+      - id: 7e-elicit-acted-on
+        question: Did what you found change what you then taught?
+        strongEvidence: A named change to the sequence, traceable to what the responses showed.
+        weakEvidence: The responses are collected, praised and filed.
+      - id: 7e-elicit-before-hook
+        question: Does Elicit come before the hook?
+        strongEvidence: Students commit to their thinking before anything is staged to impress them.
+        weakEvidence: A demonstration runs first, so the responses describe what they just saw.
+    examples:
+      - id: 7e-elicit-pos-disease-cards
+        kind: positive
+        title: What makes people get sick?
+        context: { stages: [stage5], focusAreas: [Disease], disciplines: [biology] }
+        outcomes: [SC5-DIS-01, SC5-WS-02]
+        body: |
+          Before any teaching, every student writes how each of six situations makes someone ill: a cut that
+          goes red, a shared water bottle, a cold day, food left out overnight, a mosquito bite, and a
+          relative with asthma. The teacher reads all of them that afternoon and finds two patterns she had
+          not planned for. Most of the class treats cold weather as a direct cause, and about a third use
+          "germs" for everything from bacteria to asthma. She adds a sorting task on pathogen types to the
+          following lesson and drops a starter she no longer needs. The responses go into a folder to be
+          handed back in the Evaluate phase.
+        diagnosis: |
+          Every student is on record with an explanation rather than a definition, which is
+          7e-elicit-every-student and 7e-elicit-explanatory. The test of Elicit is the next sentence: the
+          responses changed the sequence, which is 7e-elicit-acted-on. Nothing has been staged yet, so
+          7e-elicit-before-hook holds.
+        lookForIds: [7e-elicit-every-student, 7e-elicit-explanatory, 7e-elicit-acted-on, 7e-elicit-before-hook]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+      - id: 7e-elicit-neg-disease-brainstorm
+        kind: negative
+        title: Words on the board
+        context: { stages: [stage5], focusAreas: [Disease], disciplines: [biology] }
+        outcomes: []
+        body: |
+          The lesson opens with "what do you already know about disease?" and five minutes of hands up.
+          Bacteria, virus, vaccine, hygiene and immune system go on the board in a spider diagram, and the
+          teacher says it is a great list. The photo she takes of it is never opened again, and the unit runs
+          exactly as it was planned in the holidays. The student who believes antibiotics cure a cold does
+          not say so, because nobody asked her to explain anything.
+        diagnosis: |
+          A word list shows vocabulary rather than belief, so 7e-elicit-explanatory fails and the
+          conceptions the unit needed to reach stay hidden. Hands up leaves most of the class unrecorded
+          (7e-elicit-every-student), and because nothing changed in the planning, 7e-elicit-acted-on fails
+          too. This is the difference between Elicit and a warm-up, and it is the most common way 7E
+          collapses back into 5E.
+        lookForIds: [7e-elicit-explanatory, 7e-elicit-every-student, 7e-elicit-acted-on]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+
+  - id: engage
+    name: Engage
+    order: 2
+    group: find-out
+    job: Give students a reason to want a better answer than the one they just gave.
+    essentialFeatures:
+      - A phenomenon or question that the elicited ideas cannot comfortably explain
+      - It is chosen after reading the Elicit responses, not before
+      - It raises the question the sequence will answer
+      - Short, and it does not do the diagnostic work Elicit has already done
+    teacherMoves: [Selects a hook that targets what Elicit revealed, Poses the driving question]
+    learnerMoves: [Meets the phenomenon, Notices that their explanation does not cover it]
+    typicalShare: { minPercent: 5, maxPercent: 10 }
+    formativeChecks: [Students name what their own earlier answer cannot explain]
+    lookFors:
+      - id: 7e-engage-targets-elicit
+        question: Does the hook target what Elicit actually found?
+        strongEvidence: The phenomenon is chosen because of the responses, and is aimed at the commonest idea among them.
+        weakEvidence: A hook chosen during planning, before anyone knew what the class thought.
+      - id: 7e-engage-question
+        question: Does it raise the question the sequence answers?
+        strongEvidence: A driving question is posed and stays up for the unit.
+        weakEvidence: Interest without a question, so the hook entertains and then is over.
+
+  - id: explore
+    name: Explore
+    order: 3
+    group: build
+    job: Give every student a shared, concrete experience of the phenomenon before the explanation.
+    essentialFeatures:
+      - Students generate their own evidence
+      - The teacher questions and withholds the answer
+      - Identical in function to Explore in 5E
+    teacherMoves: [Sets up the investigation, Circulates and questions]
+    learnerMoves: [Investigates, Records observations, Identifies patterns]
+    typicalShare: { minPercent: 15, maxPercent: 25 }
+    formativeChecks: [Data tables and variable control checked mid-collection]
+    lookFors:
+      - id: 7e-explore-as-5e
+        question: Would this pass the 5E guide's Explore look-fors?
+        strongEvidence: Investigation precedes explanation, the data is the students' own, and it feeds Explain.
+        weakEvidence: A confirmation practical after the theory. The 5E guide covers this in full.
+
+  - id: explain
+    name: Explain
+    order: 4
+    group: build
+    job: Build the scientific explanation from what students found, and return to the elicited ideas by name.
+    essentialFeatures:
+      - Students explain first, using their Explore evidence
+      - The teacher introduces concepts and representations, linked to that evidence
+      - The specific ideas Elicit surfaced are named and addressed, not addressed in general
+    teacherMoves: [Invites student explanations, Introduces concepts, Names the elicited conceptions directly]
+    learnerMoves: [Explains from evidence, Revises, Uses the new terms]
+    typicalShare: { minPercent: 15, maxPercent: 20 }
+    formativeChecks: [Mini-whiteboard explanations of the phenomenon from Engage]
+    lookFors:
+      - id: 7e-explain-addresses-elicited
+        question: Are the specific ideas from Elicit addressed by name?
+        strongEvidence: The teacher says which idea the class held and what is wrong with it.
+        weakEvidence: A correct explanation that never meets the belief it was meant to displace.
+
+  - id: elaborate
+    name: Elaborate
+    order: 5
+    group: build
+    job: Apply the idea to a new problem inside the same topic.
+    essentialFeatures:
+      - A new context, but a nearby one, still recognisably the same subject
+      - The task cannot be completed without the concept
+      - Higher demand than Explore
+    teacherMoves: [Poses a new problem in the same domain, Coaches application]
+    learnerMoves: [Applies the concept, Justifies decisions with evidence]
+    typicalShare: { minPercent: 15, maxPercent: 20 }
+    formativeChecks: [Checkpoints on the application task]
+    lookFors:
+      - id: 7e-elaborate-near-transfer
+        question: Is this a nearby application, and is it labelled as one?
+        strongEvidence: A new problem students recognise as the same topic, treated as Elaborate rather than claimed as transfer.
+        weakEvidence: Textbook questions, or a task a student could finish without the sequence having happened.
+    examples:
+      - id: 7e-elaborate-pos-school-audit
+        kind: positive
+        title: Where is this school losing energy?
+        context: { stages: [stage5], focusAreas: [Energy], disciplines: [physics] }
+        outcomes: [SC5-EGY-01, SC5-WS-07]
+        body: |
+          Groups have measured input and useful output for a kettle, a motor lifting a mass and a torch, and
+          calculated efficiency for each. They now audit the school: the demountables in February, the hall
+          lights, the canteen fridges. Using their own efficiency figures they estimate where the largest
+          losses are and what each would cost to reduce, then recommend one change to the principal with the
+          numbers behind it. Two groups argue for the demountables on smaller savings, because those rooms
+          hold the junior classes.
+        diagnosis: |
+          The audit is a new problem but still plainly about energy transfer, which is exactly what
+          Elaborate is for, and the guide labels it that way rather than calling it transfer
+          (7e-elaborate-near-transfer). The efficiency figures are load-bearing: the recommendation cannot
+          be made without them.
+        lookForIds: [7e-elaborate-near-transfer]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+      - id: 7e-elaborate-neg-textbook-set
+        kind: negative
+        title: Questions 1 to 20
+        context: { stages: [stage5], focusAreas: [Energy], disciplines: [physics] }
+        outcomes: []
+        body: |
+          The efficiency practical finished on Tuesday. For Elaborate, students work through the end-of-chapter
+          questions on energy transfer, twenty of them, most asking for a definition or a single substitution
+          into the efficiency formula. The answers are marked from the back of the book and most of the class
+          scores well. One student asks whether her kettle result counts as an answer to question fourteen, and
+          is told to use the textbook figure instead. Nobody opens their own data from Tuesday.
+        diagnosis: |
+          There is no new context, so nothing is applied anywhere (7e-elaborate-near-transfer). Substituting
+          into a formula sits below the analysis students had already done in Explore, and their own data goes
+          unused, so the phase adds nothing the sequence did not already have.
+        lookForIds: [7e-elaborate-near-transfer]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+
+  - id: evaluate
+    name: Evaluate
+    order: 6
+    group: check-move
+    job: Establish what has been learned, and let students see their own thinking change.
+    essentialFeatures:
+      - The Elicit responses are handed back and rewritten
+      - Assessment is aligned to the outcomes actually taught
+      - Formative checks have run throughout, not only here
+    teacherMoves: [Returns the Elicit responses, Assesses against the success criteria]
+    learnerMoves: [Rewrites their initial explanation, Says what changed and why]
+    typicalShare: { minPercent: 10, maxPercent: 15 }
+    formativeChecks: [Comparison of the initial and rewritten explanations]
+    lookFors:
+      - id: 7e-evaluate-returns-elicit
+        question: Do students get their own Elicit responses back?
+        strongEvidence: Students rewrite what they wrote in lesson one and explain the difference.
+        weakEvidence: A test with no reference to where the class started, so conceptual change is invisible to the student who made it.
+
+  - id: extend
+    name: Extend
+    order: 7
+    group: check-move
+    job: Have students recognise the same idea in a context they would not have connected to it.
+    essentialFeatures:
+      - A genuinely distant context, usually another discipline or another scale
+      - The teacher has prepared that context, since it is often not the one they teach most
+      - Students are asked what is the same and what is different, rather than told
+      - It is taught, not set as an extension task for whoever finishes early
+      - The structural similarity is made explicit by the end
+    teacherMoves: [Chooses a far context, Prepares subject matter that often sits outside their own discipline, Asks what carries across, Names the shared structure]
+    learnerMoves: [Meets an unfamiliar situation, Recognises the idea in it, Says what does and does not carry]
+    typicalShare: { minPercent: 10, maxPercent: 20 }
+    formativeChecks: [Students state the shared principle in their own words across both contexts]
+    lookFors:
+      - id: 7e-extend-far-context
+        question: Is the context genuinely far, or just another instance of the same thing?
+        strongEvidence: Students would not have thought to look there; often another discipline or scale.
+        weakEvidence: A second example from the same topic, which is Elaborate wearing a different label.
+      - id: 7e-extend-students-connect
+        question: Do students find the connection, or is it announced?
+        strongEvidence: They are asked what is the same before anyone tells them.
+        weakEvidence: The teacher states the analogy and students record it.
+      - id: 7e-extend-taught
+        question: Is Extend taught, or is it an optional extra?
+        strongEvidence: Lessons are timetabled for it, and everyone does it.
+        weakEvidence: A challenge sheet for fast finishers, so the students least likely to transfer never do.
+    examples:
+      - id: 7e-extend-pos-food-chain
+        kind: positive
+        title: Why is there so little at the top?
+        context: { stages: [stage5], focusAreas: [Energy, Environmental sustainability], disciplines: [physics, biology] }
+        outcomes: [SC5-EGY-01, SC5-WS-06]
+        body: |
+          After the school audit, the class is given biomass figures for a local food chain and asked why each
+          level holds so much less than the one below. Nobody mentions efficiency. Groups work on it for
+          fifteen minutes, and two arrive at the idea that energy is lost at every transfer and that the loss
+          compounds. The teacher then names the structure they have found: the same dissipation they measured
+          in a kettle, running through an ecosystem. The closing question asks what carries across and what
+          does not, and several students note that an organism cannot be redesigned for efficiency the way a
+          building can.
+        diagnosis: |
+          Ecology is far enough from a kettle that students would not have gone looking, which is
+          7e-extend-far-context. They are asked what is the same before being told, so the recognition is
+          theirs (7e-extend-students-connect), and the closing question about what does not carry across is
+          what keeps the analogy honest.
+        lookForIds: [7e-extend-far-context, 7e-extend-students-connect, 7e-extend-taught]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+      - id: 7e-extend-neg-home-insulation
+        kind: negative
+        title: Now do it for your own house
+        context: { stages: [stage5], focusAreas: [Energy], disciplines: [physics] }
+        outcomes: []
+        body: |
+          The school energy audit went well, so for Extend the teacher sets the same task at home: find where
+          your house loses heat, and suggest one improvement. Students who want a challenge can cost it over
+          five years. The reports come back careful and well presented, and several students clearly enjoyed
+          doing it. Nobody has to think about what the idea would look like anywhere other than a building,
+          because the task never asks them to. It is the audit again, in a different building.
+        diagnosis: |
+          A house is not far from a school hall. Students recognise the task on sight and apply the method
+          they already have, so nothing transfers and 7e-extend-far-context fails. Note that this is the same
+          activity as 7e-elaborate-pos-school-audit, which is a strong Elaborate: the task has not got worse,
+          it has been put in the wrong phase, and the sequence now has two Elaborates and no Extend. Offering
+          the costing only to fast finishers fails 7e-extend-taught as well.
+        lookForIds: [7e-extend-far-context, 7e-extend-taught]
+        provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+
+workedSequences:
+  - id: 7e-seq-s5-energy
+    title: Where does the energy go?
+    context: { stages: [stage5], focusAreas: [Energy], disciplines: [physics] }
+    contentOutcomes: [SC5-EGY-01]
+    bigQuestion: Where does the energy go when something stops, cools or goes flat?
+    learningIntentions:
+      - Energy is transferred and dissipated, not consumed
+      - Efficiency compares useful output with total input, and is never total
+      - The same accounting applies to systems that look nothing alike
+    targetConceptions:
+      - Energy is used up
+      - A flat battery has run out of energy that no longer exists
+      - Losing energy means it has gone nowhere
+    predictPrompt: Before reading on, lessons 8 and 9 could be cut without touching the rest of the sequence. What exactly would students lose if they were?
+    steps:
+      - lessons: "1"
+        phaseId: elicit
+        activity: |
+          Every student writes what happens to the energy in three cases: a ball that stops bouncing, a phone
+          battery that goes flat, a car that brakes. The teacher sorts the responses into used up, changed
+          form and went somewhere before planning the rest of the unit.
+        wsOutcomes: [SC5-WS-02]
+        formativeCheck: Sorted set of initial explanations, kept for lesson 7
+        scaffoldSlots:
+          - field: activity
+            prompt: If two thirds of the class writes that the energy is used up, what would you change about lessons 2 to 4?
+      - lessons: "1"
+        phaseId: engage
+        activity: |
+          A hand-crank generator with a bulb attached. Students take turns and feel the crank get harder the
+          moment the bulb lights. Driving question for the unit goes on the wall: if energy is not used up,
+          where is it?
+        wsOutcomes: [SC5-WS-01]
+        formativeCheck: Each student names what their lesson 1 answer cannot explain
+      - lessons: "2–3"
+        phaseId: explore
+        activity: |
+          Groups measure energy in and useful energy out for three transfers: a motor lifting a mass, a kettle
+          heating water, a torch. They calculate efficiency for each and note where the rest went.
+        wsOutcomes: [SC5-WS-04, SC5-WS-05]
+        formativeCheck: Data tables checked mid-collection
+      - lessons: "4"
+        phaseId: explain
+        activity: |
+          Groups present their efficiency figures. The teacher introduces transfer, dissipation and
+          degradation using the class's own numbers, and addresses the used-up idea by name, tracing where the
+          missing energy went in each set-up.
+        wsOutcomes: [SC5-WS-06, SC5-WS-08]
+        formativeCheck: Mini-whiteboard accounts of the generator from lesson 1
+      - lessons: "5–6"
+        phaseId: elaborate
+        activity: |
+          Students audit the school for energy losses, estimate the largest using their own efficiency
+          figures, and recommend one change with the numbers behind it.
+        wsOutcomes: [SC5-WS-07, SC5-WS-08]
+        formativeCheck: Draft recommendation conference
+      - lessons: "7"
+        phaseId: evaluate
+        activity: |
+          Lesson 1 responses are handed back. Students rewrite all three and explain what changed. Short task:
+          account for the energy in an unfamiliar situation.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Initial and rewritten explanations compared against the success criteria
+      - lessons: "8–9"
+        phaseId: extend
+        activity: |
+          Biomass figures for a local food chain, with the question of why each level holds so much less than
+          the one below. Groups work on it before anything is named. The teacher then draws out that this is
+          the same dissipation, and the class discusses what carries across and what does not.
+        wsOutcomes: [SC5-WS-06, SC5-WS-08]
+        formativeCheck: Each student states the shared principle across both contexts
+        scaffoldSlots:
+          - field: formativeCheck
+            prompt: What would a student say that shows they have matched the two contexts on surface features rather than on the underlying idea?
+    whyItWorks:
+      - Elicit runs before the generator, so the responses record what students think rather than what they have just seen
+      - The sort into used up, changed form and went somewhere gives the teacher something to act on by lesson 2
+      - Elaborate stays inside energy and is labelled as such, which leaves Extend a real job to do
+      - Ecology is far enough from a kettle that the connection has to be found rather than recalled
+      - Lesson 7 returns the lesson 1 answers, so conceptual change is visible to the student who made it
+    watchFor: |
+      The crank generator is the hook, not the diagnosis. If it runs before the writing in lesson 1, students
+      describe the demonstration instead of their own thinking and the Elicit data is worthless.
+      Lessons 8 and 9 cross from physics into ecology. That is the point rather than a problem, because a
+      genuinely far context usually sits in another discipline, but it does mean preparing subject matter you
+      may not teach often. Check the biomass figures and the trophic reasoning before the lesson, not during
+      it, and be ready for the question about why the losses are so large between levels.
+    safetyNotes: |
+      Kettle work involves near-boiling water: use a fixed station, keep cords clear of the bench edge and do
+      not let students carry filled kettles. The hand-crank generator should be turned by hand only, never
+      driven.
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
+
+misapplications:
+  - id: mis-7e-elicit-decor
+    name: Elicit as decoration
+    looksLike: Prior knowledge is collected and then filed.
+    whyItUndermines: The phase costs a lesson and changes nothing, so 7E becomes 5E with extra admin.
+    fix: Read the responses before you finish planning, and name one thing you changed because of them.
+    lookForIds: [7e-elicit-acted-on]
+  - id: mis-7e-elicit-merged
+    name: Elicit and Engage run together
+    looksLike: A demonstration, then "so what do you already know?"
+    whyItUndermines: Students describe what they just saw, so the diagnosis records the hook rather than their prior thinking.
+    fix: Collect the writing before anything is staged.
+    lookForIds: [7e-elicit-before-hook, 7e-engage-targets-elicit]
+  - id: mis-7e-vocab-elicit
+    name: A vocabulary list instead of an explanation
+    looksLike: A spider diagram of words the class can already name.
+    whyItUndermines: Vocabulary shows exposure, not belief, and the conceptions that need shifting stay hidden.
+    fix: Ask how or why about a specific situation.
+    lookForIds: [7e-elicit-explanatory]
+  - id: mis-7e-extend-is-elaborate
+    name: An Extend that is really a second Elaborate
+    looksLike: Another example from the same topic, labelled Extend.
+    whyItUndermines: Nothing transfers, and the phase 7E exists to add is absent while appearing on the program.
+    fix: Choose a context in another discipline or at another scale, and ask what carries across.
+    lookForIds: [7e-extend-far-context]
+  - id: mis-7e-extend-optional
+    name: Extend as an extension task
+    looksLike: A challenge sheet for students who finish early.
+    whyItUndermines: Far transfer is hardest for the students least likely to opt in, so it reaches those who need it least.
+    fix: Timetable it and teach it to everyone.
+    lookForIds: [7e-extend-taught]
+  - id: mis-7e-unnecessary
+    name: 7E where 5E would have done
+    looksLike: Seven phases on a topic with no documented misconceptions and no obvious far context.
+    whyItUndermines: Two phases are planned and taught for no gain, and there is no evidence 7E beats 5E in general.
+    fix: Use 7E when prior conceptions are robust and a distant context genuinely exists. Otherwise use 5E.
+    lookForIds: [7e-elicit-acted-on, 7e-extend-far-context]
+
+checklist:
+  - id: chk-7e-whole
+    title: Before you start
+    items:
+      - { id: chk-7e-whole-why, text: 'This topic has robust prior conceptions and a genuinely distant context, so the two extra phases earn their place' }
+      - { id: chk-7e-whole-time, text: 'Eight to fifteen lessons are timetabled, including Extend' }
+      - { id: chk-7e-whole-5e, text: 'You have read the 5E guide for Explore, Explain and Elaborate' }
+  - id: chk-7e-findout
+    title: Find out, then hook
+    phaseId: elicit
+    items:
+      - { id: chk-7e-fo-all, text: 'Every student records their thinking, not just volunteers', lookForId: 7e-elicit-every-student }
+      - { id: chk-7e-fo-why, text: 'The prompt asks how or why about a situation', lookForId: 7e-elicit-explanatory }
+      - { id: chk-7e-fo-first, text: 'Elicit happens before the hook', lookForId: 7e-elicit-before-hook }
+      - { id: chk-7e-fo-acted, text: 'You can name one thing you changed after reading the responses', lookForId: 7e-elicit-acted-on }
+      - { id: chk-7e-fo-hook, text: 'The hook was chosen after reading them', lookForId: 7e-engage-targets-elicit }
+  - id: chk-7e-build
+    title: Build the idea
+    phaseId: elaborate
+    items:
+      - { id: chk-7e-b-5e, text: 'Explore and Explain pass the 5E guide look-fors', lookForId: 7e-explore-as-5e }
+      - { id: chk-7e-b-named, text: 'Explain addresses the elicited ideas by name', lookForId: 7e-explain-addresses-elicited }
+      - { id: chk-7e-b-near, text: 'Elaborate is a nearby application, and is labelled as one', lookForId: 7e-elaborate-near-transfer }
+  - id: chk-7e-checkmove
+    title: Check it, then move it
+    phaseId: extend
+    items:
+      - { id: chk-7e-cm-return, text: 'The Elicit responses are handed back and rewritten', lookForId: 7e-evaluate-returns-elicit }
+      - { id: chk-7e-cm-far, text: 'The Extend context is in another discipline or at another scale', lookForId: 7e-extend-far-context }
+      - { id: chk-7e-cm-find, text: 'Students are asked what is the same before being told', lookForId: 7e-extend-students-connect }
+      - { id: chk-7e-cm-all, text: 'Extend is timetabled and taught to everyone', lookForId: 7e-extend-taught }
+  - id: chk-7e-inclusion
+    title: Inclusion
+    items:
+      - { id: chk-7e-inc-elicit, text: 'Elicit allows drawing, labelling or speaking, so writing fluency does not mask understanding' }
+      - { id: chk-7e-inc-extend, text: 'The Extend context does not assume experience some students will not have' }
+      - { id: chk-7e-inc-risk, text: 'Practical work has a risk assessment' }
+
+syllabusAlignment:
+  wsMapping:
+    - { skill: 1, phaseIds: [engage, explore] }
+    - { skill: 2, phaseIds: [elicit, engage] }
+    - { skill: 3, phaseIds: [explore] }
+    - { skill: 4, phaseIds: [explore] }
+    - { skill: 5, phaseIds: [explore] }
+    - { skill: 6, phaseIds: [explain, extend] }
+    - { skill: 7, phaseIds: [elaborate] }
+    - { skill: 8, phaseIds: [explain, evaluate, extend] }
+  depthStudies: An Extend phase makes a natural depth study, because a far context gives students a question that is genuinely theirs to investigate rather than a repeat of the unit.
+  dataScience: Elicit responses are a class data set. Sorting and counting them with students, then revisiting the counts at Evaluate, is an accessible way into modelling change over time.
+  inclusion:
+    eald: Elicit is a writing task at the start of a unit, which is where language load bites hardest. Accept drawings, labelled diagrams or a spoken response recorded by a peer.
+    disability: Offer the Elicit prompt in more than one mode, and check that the Extend context does not rely on a shared experience some students will not have.
+    highPotential: Ask for a second far context of the student's own choosing in Extend, with a written account of what carries across.
+    aboriginalPerspectives: Where a far context could draw on Aboriginal and Torres Strait Islander knowledges, develop it with local Aboriginal community through the school's Aboriginal Education staff rather than supplying it yourself.
+
+nesting:
+  - { modelId: poe, role: hosts, phaseId: engage, how: 'Use a Predict–Observe–Explain as the hook, once Elicit has shown which conception to target.' }
+  - { modelId: levels-of-inquiry, role: hosts, phaseId: explore, how: 'Set the guidance dial for the Explore investigation to match learner readiness.' }
+  - { modelId: adi, role: hosts, phaseId: explore, how: 'Run an Argument-Driven Inquiry across Explore and Explain when the sequence also targets argument from evidence.' }
+  - { modelId: swh, role: hosts, phaseId: explain, how: 'Use a Science Writing Heuristic template to structure claims and evidence in Explain.' }
+
+reflectionPrompts:
+  - id: refl-7e-personal
+    type: personal
+    prompt: Think of a unit you have seen taught. What did the teacher assume students already knew, and what would an Elicit phase have shown instead?
+    coachFollowUps: [How would you have found out?, What would you have changed if you had?]
+  - id: refl-7e-critical
+    type: critical
+    prompt: There is no evidence that 7E outperforms 5E, because the meta-analyses pool them. What would justify spending two extra phases on a unit, and when would you not?
+    coachFollowUps: [What does the evidence actually support?, Which topics have a genuinely far context available?]
+  - id: refl-7e-application
+    type: application
+    prompt: Take a Stage 4 or Stage 5 focus area and write an Extend that is genuinely far from its Elaborate. Then say how you would know a student had made the connection rather than matched surface features.
+    coachFollowUps: [What discipline does your far context sit in?, What would a surface-level match look like?]
+
+scaffold:
+  defaultMode: tutor
+  revealAfterAttempt: [7e-seq-s5-energy]
+  ai:
+    groundedIn: [phases.examples, workedSequences, misapplications, checklist, reflectionPrompts]
+    allowed: [contextualise-examples, audit-program, coach-reflection, compare-models]
+    never:
+      - Never write the learner's Elicit prompt or choose their Extend context in tutor mode
+      - Never judge whether a proposed Extend is far enough; ask what discipline it sits in and let the learner decide
+      - Never cite an outcome code that is not in the syllabus whitelist
+      - Never answer a reflection prompt; ask follow-up questions only
+    auditorFocus: [7e-elicit-acted-on, 7e-elicit-explanatory, 7e-extend-far-context, 7e-extend-taught]
+
+references:
+  - id: eisenkraft-2003
+    citation: 'Eisenkraft, A. (2003). Expanding the 5E model: A proposed 7E model emphasizes transfer of learning and the importance of eliciting prior understanding. The Science Teacher, 70(6), 56–59.'
+  - id: ausubel-1968
+    citation: 'Ausubel, D. P. (1968). Educational psychology: A cognitive view. Holt, Rinehart and Winston.'
+  - id: salomon-perkins-1989
+    citation: 'Salomon, G., & Perkins, D. N. (1989). Rocky roads to transfer: Rethinking mechanisms of a neglected phenomenon. Educational Psychologist, 24(2), 113–142.'
+    doi: 10.1207/s15326985ep2402_1
+  - id: air-2023
+    citation: 'Polanin, J. R., et al. (2023). The 5E instructional model: An evidence gap map analysis. American Institutes for Research.'
+    url: https://air.org/sites/default/files/2023-10/5E-EGM-brief-Oct-2023.pdf
+  - id: bybee-2006
+    citation: 'Bybee, R. W., Taylor, J. A., Gardner, A., Van Scotter, P., Powell, J. C., Westbrook, A., & Landes, N. (2006). The BSCS 5E instructional model: Origins and effectiveness. BSCS.'
