@@ -497,7 +497,7 @@ function wireGuide(g){
  * Every model on one screen, banded by scale so the nesting is the layout.
  * Nesting lines come from the guides' nesting[], read in both directions. */
 const BANDS = [
-  ["macro", "Unit architectures", "Structures a whole sequence, 4 to 15 lessons", ""],
+  ["macro", "Unit architectures", "Structures a whole sequence, 6 to 15 lessons", ""],
   ["meso", "Routines", "A few lessons. Fits inside a unit.", "Fits inside a unit model"],
   ["micro", "Single lesson", "One lesson. Fits inside a routine.", "Fits inside a routine, or straight into a unit model"],
   ["dial", "Guidance dial", "Not a model. How much you specify, inside any of the above.", "Applies inside any of them"],
