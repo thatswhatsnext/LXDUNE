@@ -207,44 +207,6 @@
   }
  },
  {
-  "id": "swh",
-  "name": "Science Writing Heuristic",
-  "src": "Keys, Hand, Prain & Collins (1999)",
-  "scale": "meso",
-  "phases": [
-   "Beginning questions",
-   "Tests and procedures",
-   "Observations",
-   "Claims",
-   "Evidence",
-   "Comparison with others and texts",
-   "Reflection on how ideas changed"
-  ],
-  "distinct": "A writing-to-learn scaffold that turns lab reports into reasoning.",
-  "fit": "Any practical; particularly strong in EAL/D-rich classes. Builds WS-06 and WS-08.",
-  "theory": [
-   "Writing to learn (Hand, Prain)",
-   "Social constructivism"
-  ],
-  "teacher": "Negotiates meaning in discussion and prompts comparison with the literature.",
-  "learner": "Writes questions, claims and evidence, and reflects on how their thinking changed.",
-  "pitfall": "Using the template as a fill-in form without the class negotiation of claims.",
-  "evidence": "Multiple studies report gains, often largest for lower-achieving students.",
-  "p": {
-   "purpose": "2223011",
-   "time": "1321",
-   "ready": "332",
-   "concept": "33211",
-   "misc": "222",
-   "ws": "13122313",
-   "conf": "233",
-   "res": "321",
-   "assess": "23303",
-   "lang": "322",
-   "place": "111"
-  }
- },
- {
   "id": "ast",
   "name": "Ambitious Science Teaching",
   "src": "Windschitl, Thompson & Braaten (2018)",

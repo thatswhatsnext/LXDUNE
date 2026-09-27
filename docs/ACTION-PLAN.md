@@ -362,8 +362,20 @@ Replaces the Model library tab (now "Model map").
 - [x] Reciprocal nesting lines added to POE, ADI and Levels of inquiry (their versions unchanged)
 - [x] Followed the rename into the detailed reckoner's "needs a longer run" watch-out, which still listed `e7`
 - Guided coverage of reckoner recommendations: 17% → 36% (the handoff's measure)
-- [ ] Next: Science Writing Heuristic, which takes coverage to 48% and repairs the "coming soon" nesting references in 5E, 7E and ADI
+- [x] Next: Science Writing Heuristic, which takes coverage to 48% and repairs the "coming soon" nesting references in 5E, 7E and ADI (see item 36)
 - [ ] Open (low severity): `scripts/lib/build.ts` uses `ModelGuide.parse()` and throws a raw stack on an invalid guide, where `scripts/validate.ts` uses `safeParse` and reports properly. `publish:pages` runs validate first, so this only bites a direct `npm run build`. Worth a one-line fix when that file is next touched
+
+### 36. Reckoner: SWH companion guide and safety sweep ⬜ (open items remain) — 2026-09-28
+- [x] Science Writing Heuristic guide published (v1.0.0, reviewed by Steve Grant 2026-09-28), the second of five Tier A guides: 7 phases in 3 groups, 14 look-fors, 8 examples across three focus areas, 1 worked sequence (Stage 5 Materials, 6 lessons). Guided coverage 36% → 49% (the handoff's measure)
+- [x] Catalogue entry removed in the same commit (catalogue 12 → 11, guides 5 → 6, still 15 models); reciprocal nesting line added to Levels of inquiry (version unchanged)
+- [x] Repairs the "coming soon" nesting links to SWH in 5E, 7E and ADI. Remaining coming-soon links: SSI (from 5E), GLM and AST (from POE)
+- [x] Safety sweep across all five guides with worked-sequence safety notes: the reckoner no longer prescribes safety controls. Each block says it is not a substitute for the school's risk assessment, names what the sequence introduces, points at the head teacher and current NSW guidance, and says what the model does to the assessment. 5E, ADI, POE → v1.1.1; 7E → v1.0.1
+- Note: the handoff's attached 5E, ADI, POE and Levels of inquiry files predated item 34 and would have deleted its 14 reviewed examples if copied over. Only the intended changes (safety blocks, versions, one nesting line) were applied to the current files; all 58 examples are intact
+- [ ] Next is the plan's stage-3 pause. Two Tier A guides are in; choose the next guide on what the cohort actually lands on rather than the frequency table. SSI is next on the table, at +13%
+- [ ] Open: the draft banner in `templates/app.js` (line 338) reads "This guide is a in-review draft". Review and drafts builds only
+- [ ] Open: a `wellbeing` key on the `inclusion` block would give 5E's illness-and-loss consideration a proper home; it currently lives in `safetyNotes` with a cross-reference. Schema 1.4, optional field so existing guides stay valid
+- [ ] Open: the last case in `scripts/test-rules.ts` still reads "unmodified 5E, POE, ADI and Levels of inquiry guides are valid" and does not cover 7E or SWH. Both validate; the test is not watching them
+- (The `ModelGuide.parse()` vs `safeParse` open item is already recorded in item 35.)
 
 ---
 

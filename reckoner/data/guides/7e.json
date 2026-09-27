@@ -3,7 +3,7 @@
   "id": "7e",
   "name": "7E",
   "originators": "Eisenkraft (2003)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "status": "published",
   "lastReviewed": "2026-09-28",
   "syllabus": "NSW Science 7–10 Syllabus (2023)",
@@ -816,7 +816,7 @@
         "Lesson 7 returns the lesson 1 answers, so conceptual change is visible to the student who made it"
       ],
       "watchFor": "The crank generator is the hook, not the diagnosis. If it runs before the writing in lesson 1, students\ndescribe the demonstration instead of their own thinking and the Elicit data is worthless.\nLessons 8 and 9 cross from physics into ecology. That is the point rather than a problem, because a\ngenuinely far context usually sits in another discipline, but it does mean preparing subject matter you\nmay not teach often. Check the biomass figures and the trophic reasoning before the lesson, not during\nit, and be ready for the question about why the losses are so large between levels.\n",
-      "safetyNotes": "Kettle work involves near-boiling water: use a fixed station, keep cords clear of the bench edge and do\nnot let students carry filled kettles. The hand-crank generator should be turned by hand only, never\ndriven.\n",
+      "safetyNotes": "This guide does not carry safety advice and is not a substitute for your school's risk assessment.\nWhat this sequence introduces, so you know what to assess: near-boiling water from a kettle, handled in\na room of moving students; mains-powered equipment on benches; and a hand-crank generator. Take these\nto your head teacher or faculty safety contact and check them against your school's practical\nprocedures and current NSW guidance before you run anything.\n\nOne point specific to 7E. Extend deliberately moves the idea into a context the sequence has not been\nin before, which means the risk assessment written for Explore may not cover what Extend ends up doing.\nWhatever the class extends into needs assessing on its own terms, and that is easy to miss precisely\nbecause Extend feels like the end of the unit rather than a new practical.\n",
       "predictPrompt": "Before reading on, lessons 8 and 9 could be cut without touching the rest of the sequence. What exactly would students lose if they were?",
       "provenance": {
         "source": "ai-drafted-reviewed",
