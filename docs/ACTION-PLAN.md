@@ -327,8 +327,17 @@ Built from the Reckoner Lite handoff spec, option B (the recommended front door)
 - [x] §2 colour tokens applied across the app (new values, `--sunk`, `--line-soft`, `color-scheme` in dark). All used text pairs pass AA; fixed white-on-dial text in dark mode (was 2.2:1)
 - [x] Fixed: every "Open guide" button rendered the guide twice, which could leave the scroll in the wrong place
 - Note: the walkthrough no longer opens by itself, because the landing view is now B; it is still available from the Quick reckoner's entry point
-- [ ] Ship B to a cohort before building option A (three taps) or C (the map), per the spec
+- [ ] Ship B to a cohort before building option C (the map), per the spec (A was built ahead of that; see item 32)
 - [ ] Author the six empty focus areas: Observing the Universe; Periodic table and atomic structure; Change; Data science 1; Energy; Genetics and evolutionary change
+
+### 32. Reckoner Lite, option A: "Three taps" ✅ — 2026-09-27
+The "Not sure what you need?" route from the unit view (it previously went to the quick reckoner, which is still its own tab).
+- [x] One question per screen: what to shift (7), how long (4), how much investigating (3). Plain-language labels and glosses per the spec; any option without one uses the payload's own label (all four time options do)
+- [x] Progress dots with "n of 3"; Back on steps 2–3 clears the answer being revisited; answers advance immediately
+- [x] Decision logic is the quick matrix, unchanged: all 84 answer combinations give the same model as the Quick reckoner tab
+- [x] Result card: "Start here", model name, originators and scale, the why sentence, first three moves (the opening phase's first three essential features) and what good looks like (its first look-for), opening the guide at that phase
+- [x] Models without a guide (8 of the 11 the logic can return) show their phases and distinguishing feature and name the nearest guide at the same scale (ADI for routines, 5E for unit models); never an empty "first three moves"
+- Template only: no guide content, schema or build change
 
 ---
 

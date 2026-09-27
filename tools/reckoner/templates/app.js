@@ -521,15 +521,70 @@ function seqLength(s){
 }
 function unitGo(next){ unit = { ...unit, ...next }; renderUnit(true); }
 
+/* ---------- three taps (Reckoner Lite, option A) ----------
+ * The "not sure what you need?" route from the unit view: one question per screen,
+ * the quick-matrix decision unchanged, and a result card built from the guide. */
+const TAP_QS = [["purpose", "What do you most want to shift?"], ["time", "How long have you got?"], ["ready", "How much investigating have they done?"]];
+/** Plain-language labels for option ids. UI copy, not guide content; an id without an entry uses the payload's own label. */
+const TAP_WORDS = {
+  misc: ["A stubborn wrong idea", "They believe something that isn’t right, and it keeps coming back"],
+  model: ["Explaining why it happens", "They can describe the phenomenon but not the mechanism"],
+  investigate: ["Planning an investigation", "They can follow a method, but not design one"],
+  argue: ["Backing up a claim", "They state conclusions without evidence"],
+  design: ["Solving a real problem", "They need to design, build or fix something"],
+  ssi: ["Weighing up an issue", "The science is contested, or values are in play"],
+  reason: ["Reasoning it through", "Controlling variables, proportion, probability"],
+  novice: ["Not much yet", "They’re used to following instructions"],
+  developing: ["Some", "They’ve planned a fair test before"],
+  experienced: ["Plenty", "They design their own investigations"],
+};
+let tap = null; // { step: 0–3, a: { purpose, time, ready } } while in the three-tap route
+function tapGo(next){ tap = next; renderUnit(true); }
+/** The published guide at the same scale, falling back to 5E. */
+const nearestGuide = scale => DATA.guides.find(g => g.reckoner.scale === scale) || G["5e"];
+
+function tapView(){
+  const i = tap.step;
+  if (i < TAP_QS.length){
+    const [dim, q] = TAP_QS[i], d = dimById[dim];
+    return { q, html: `${i ? `<button type="button" class="lite-back" data-tapback>← Back</button>` : ""}
+      <div class="tap-progress"><span class="dots" aria-hidden="true">${TAP_QS.map((_, n) => `<span class="${n <= i ? "on" : ""}"></span>`).join("")}</span><span>${i + 1} of ${TAP_QS.length}</span></div>
+      <h2 class="lite-q" tabindex="-1">${q}</h2>
+      <div class="opts rows">${d.options.map(([id, label]) => { const w = TAP_WORDS[id];
+        return `<button type="button" class="opt" data-tap="${id}"><b>${esc(w ? w[0] : label)}</b>${w ? `<small>${esc(w[1])}</small>` : ""}</button>`; }).join("")}</div>
+      ${i === 0 ? `<p style="margin-top:1rem"><button type="button" class="lite-link" data-tapexit>Start with your unit instead</button></p>` : ""}` };
+  }
+  const r = quickCompute(tap.a), m = M[r.id], g = G[r.id];
+  const first = g && g.phases.slice().sort((a, b) => a.order - b.order)[0];
+  const moves = first ? first.essentialFeatures.slice(0, 3) : [];
+  const near = moves.length ? null : nearestGuide(m.scale);
+  const body = moves.length
+    ? `<p class="sub" style="margin-top:1rem">Your first three moves</p><ol class="moves">${moves.map(f => `<li>${esc(f)}</li>`).join("")}</ol>
+       ${first.lookFors.length ? `<p class="sub">What good looks like</p><div class="lookfor"><p class="q">${esc(first.lookFors[0].question)}</p>
+         <p class="hint" style="margin:0">${esc(first.name)}, the opening ${g.phaseGroups.length ? "stage" : "phase"}</p></div>` : ""}`
+    : `<ol class="phases" aria-label="Phases">${m.phases.map(p => `<li>${esc(p)}</li>`).join("")}</ol>
+       <p><strong>Distinguishing feature.</strong> ${esc(m.distinct)}</p>
+       <div class="warnbox"><p>There isn’t a companion guide for ${esc(m.name)} yet. The nearest one is <strong>${esc(near.name)}</strong>${near.reckoner.scale === m.scale ? `, also a ${esc(SCALE[m.scale].label.toLowerCase())}` : ""}.</p></div>`;
+  const open = moves.length ? g : near;
+  return { q: m.name, html: `<article class="lite-result"><p class="eyebrow">Start here</p>
+      <h2 class="lite-q tap-name" tabindex="-1">${esc(m.name)}</h2>
+      <div class="lite-meta"><span>${esc(m.src)}</span>${badge(m.scale)}</div>
+      <p style="margin-top:.8rem">${esc(r.why)}</p>${body}
+      <div class="lite-actions"><button type="button" class="pill primary" data-guide="${open.id}"${moves.length ? ` data-at="${first.id}"` : ""}>Open the ${esc(open.name)} guide</button>
+        <button type="button" class="pill" data-tapreset>Start again</button></div></article>` };
+}
+
 function renderUnit(moveFocus){
   const view = document.getElementById("unitView");
   let q, html;
-  if (!unit.stage){
+  if (tap){
+    ({ q, html } = tapView());
+  } else if (!unit.stage){
     q = "Which stage are you teaching?";
     html = `<h2 class="lite-q" tabindex="-1">${q}</h2>
       <div class="opts">${Object.entries(STAGE_INFO).filter(([st]) => FA[st]).map(([st, [name, years]]) =>
         `<button type="button" class="opt big" data-stage="${st}"><b>${name}</b><small>${years}</small></button>`).join("")}</div>
-      <p style="margin-top:1rem">Not sure what you need? <button type="button" class="lite-link" data-go="t-quick">Use the quick reckoner</button></p>`;
+      <p style="margin-top:1rem">Not sure what you need? <button type="button" class="lite-link" data-tapstart>Answer three quick questions</button></p>`;
   } else if (!unit.focus){
     q = `Which ${STAGE_INFO[unit.stage][0]} focus area?`;
     html = `<button type="button" class="lite-back" data-back="stage">← Change stage</button>
@@ -552,6 +607,15 @@ function renderUnit(moveFocus){
   view.querySelectorAll("[data-focus]").forEach(b => b.onclick = () => unitGo({ focus: b.dataset.focus, seq: 0, all: false }));
   view.querySelectorAll("[data-back]").forEach(b => b.onclick = () =>
     unitGo(b.dataset.back === "stage" ? { stage: null, focus: null } : { focus: null }));
+  view.querySelector("[data-tapstart]")?.addEventListener("click", () => tapGo({ step: 0, a: {} }));
+  view.querySelector("[data-tapexit]")?.addEventListener("click", () => tapGo(null));
+  view.querySelector("[data-tapreset]")?.addEventListener("click", () => tapGo({ step: 0, a: {} }));
+  view.querySelectorAll("[data-tap]").forEach(b => b.onclick = () =>
+    tapGo({ step: tap.step + 1, a: { ...tap.a, [TAP_QS[tap.step][0]]: b.dataset.tap } }));
+  view.querySelector("[data-tapback]")?.addEventListener("click", () => {
+    const a = { ...tap.a }; TAP_QS.slice(tap.step - 1).forEach(([dim]) => delete a[dim]);
+    tapGo({ step: tap.step - 1, a });
+  });
   view.querySelectorAll("[data-go]").forEach(b => b.onclick = () => { const t = document.getElementById(b.dataset.go); selectTab(t); t.focus(); });
   view.querySelectorAll("[data-guide]").forEach(b => b.onclick = () => openGuide(b.dataset.guide, b.dataset.at || undefined));
   view.querySelector("[data-all]")?.addEventListener("click", () => { unit.all = !unit.all; renderUnit(false); });
