@@ -476,6 +476,7 @@ nesting:
   - { modelId: 5e, role: nests-in, phaseId: explore, how: 'Set the level of the Explore investigation to match learner readiness.' }
   - { modelId: adi, role: nests-in, phaseId: design-data, how: 'ADI assumes guided level or above, so use the dial to decide how much planning support groups need.' }
   - { modelId: poe, role: nests-in, phaseId: observe, how: 'Decide whether students run the event themselves or observe a demonstration.' }
+  - { modelId: 7e, role: nests-in, phaseId: explore, how: 'Set the guidance dial for the 7E Explore investigation to match learner readiness.' }
 
 reflectionPrompts:
   - id: refl-loi-personal

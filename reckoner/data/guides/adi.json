@@ -1265,6 +1265,12 @@
       "role": "hosts",
       "phaseId": "report",
       "how": "Use an SWH template to scaffold claims and evidence in the report."
+    },
+    {
+      "modelId": "7e",
+      "role": "nests-in",
+      "phaseId": "explore",
+      "how": "Run ADI across 7E Explore and Explain when the sequence also targets argument from evidence."
     }
   ],
   "reflectionPrompts": [
