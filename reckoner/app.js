@@ -9,6 +9,14 @@ const optLabel = (d, v) => dimById[d].options.find(o => o[0] === v)[1];
 const reducedMotion = () => typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const badge = s => `<span class="badge ${SCALE[s].cls}" title="${esc(SCALE[s].tip)}">${SCALE[s].label}</span>`;
+/* Anonymous Moodle Feedback activity for the reckoner survey. Empty string hides every feedback link. */
+const FEEDBACK_URL = "";
+/* One feedback paragraph with the link between `before` and `after`, or "" when FEEDBACK_URL is empty. */
+const feedbackLine = (before, after = ".") => FEEDBACK_URL
+  ? `<p class="hint feedback">${before} <a href="${esc(FEEDBACK_URL)}" target="_blank" rel="noopener">Tell us how it went<span class="sr"> (opens in a new tab)</span></a>${after}</p>`
+  : "";
+document.getElementById("buildStamp").insertAdjacentHTML("beforebegin",
+  feedbackLine("Used the reckoner for your planning?", " (six questions, about three minutes, anonymous)."));
 document.getElementById("buildStamp").textContent =
   `Guides: ${DATA.guides.map(g => `${g.name} v${g.version}, reviewed ${g.lastReviewed}`).join("; ")}.`;
 
@@ -119,7 +127,7 @@ function renderQuick(){
       <p class="hint" style="margin:0 0 .2rem">${previewing ? "Previewing from the matrix" : "Recommended for your answers"}</p>
       <h2>${esc(rec.label)}</h2><p class="src">${esc(m.name)} · ${esc(m.src)}</p></div>${badge(m.scale)}</div>
       ${rec.why ? `<p style="margin-top:.7rem">${esc(rec.why)}</p>` : ""}${modelBody(m)}
-      ${previewing ? `<p><button class="ghost" type="button" id="backRec">Back to my recommendation</button></p>` : ""}</article>`;
+      ${previewing ? `<p><button class="ghost" type="button" id="backRec">Back to my recommendation</button></p>` : ""}${feedbackLine("Was this useful?")}</article>`;
     const b = document.getElementById("backRec"); if (b) b.onclick = () => { quickPreview = null; renderQuick(); };
   }
   renderMatrix(r);
@@ -269,7 +277,7 @@ function renderDetail(){
       ${W.length?`<div class="warnbox"><p class="sub">Watch-outs</p><ul class="tight">${W.map(s=>`<li>${esc(s)}</li>`).join("")}</ul></div>`:""}
       ${N.length?`<p class="sub">Nest inside it</p><ul class="tight">${N.map(n=>`<li>${esc(n.text)}${n.guide&&G[n.guide]?` <button class="ghost" style="padding:.1rem .5rem;font-size:.8rem" type="button" onclick="openGuide('${n.guide}')">Open guide</button>`:""}</li>`).join("")}</ul>`:""}
       ${i===0&&sens.length?`<p class="sub">If one answer changed</p><ul class="tight">${sens.map(o=>`<li>If ${esc(o.d.short)} were “${esc(optLabel(o.d.id,o.v))}”, ${esc(o.m.name)} would rank first.</li>`).join("")}</ul>`:""}
-      ${modelBody(m)}</article>`; }).join("");
+      ${modelBody(m)}${i===0 ? feedbackLine("Was this useful?") : ""}</article>`; }).join("");
 }
 detailForm.addEventListener("change", e => {
   const t = e.target;
@@ -608,7 +616,7 @@ function tapView(){
       <div class="lite-meta"><span>${esc(m.src)}</span>${badge(m.scale)}</div>
       <p style="margin-top:.8rem">${esc(r.why)}</p>${body}
       <div class="lite-actions"><button type="button" class="pill primary" data-guide="${open.id}"${moves.length ? ` data-at="${first.id}"` : ""}>Open the ${esc(open.name)} guide</button>
-        <button type="button" class="pill" data-tapreset>Start again</button></div></article>` };
+        <button type="button" class="pill" data-tapreset>Start again</button></div>${feedbackLine("Was this useful?")}</article>` };
 }
 
 function renderUnit(moveFocus){
@@ -636,7 +644,7 @@ function renderUnit(moveFocus){
     html = `<button type="button" class="lite-back" data-back="focus">← ${STAGE_INFO[unit.stage][0]} focus areas</button>
       <article class="lite-result"><p class="sub" style="margin:0 0 .3rem">${STAGE_INFO[unit.stage][0]} · ${esc(unit.focus)}</p>
       <h2 class="lite-q" tabindex="-1">${esc(r.heading)}</h2>${r.body}
-      <div class="lite-actions">${r.actions}<button type="button" class="pill" data-back="focus">Choose another focus area</button></div></article>`;
+      <div class="lite-actions">${r.actions}<button type="button" class="pill" data-back="focus">Choose another focus area</button></div>${feedbackLine("Was this useful?")}</article>`;
   }
   view.innerHTML = html;
   document.getElementById("unitLive").textContent = q;
