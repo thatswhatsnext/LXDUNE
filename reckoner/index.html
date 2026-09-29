@@ -249,6 +249,7 @@ details.sec[open] > summary::before{content:"\25BE"}
 .tour p{margin:.2rem 0}
 .tour-target{outline:3px solid var(--accent);outline-offset:4px;border-radius:8px}
 footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted);font-size:.88rem}
+footer .feedback{color:inherit;font-size:inherit;margin:.4rem 0} footer .feedback a{font-weight:700}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @page{size:A4;margin:18mm}
 @media print{
@@ -263,6 +264,7 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted)
   .clamp,.clamp-block{display:block!important;-webkit-line-clamp:unset!important;line-clamp:unset!important;max-height:none!important;overflow:visible!important}
   details.sec > summary::before{content:none}
   .tour-target{outline:none}
+  .feedback{display:none!important}
 }
 </style>
 </head>
@@ -379,7 +381,7 @@ footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted)
         man.guides = guides;
         window.RECKONER_DATA = man;
         var s = document.createElement("script");
-        s.src = "app.js?v=7bd945a037f6";
+        s.src = "app.js?v=fe06edaabd5a";
         s.onerror = fail;
         document.body.appendChild(s);
       });
