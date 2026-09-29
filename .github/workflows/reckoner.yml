@@ -28,6 +28,8 @@ jobs:
         working-directory: tools/reckoner
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # the regression check reads guides from the base branch with git show
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -39,3 +41,6 @@ jobs:
       - run: npm run typecheck
       - name: reckoner/ and docs/reckoner-state.md match the YAML
         run: npm run check:pages
+      - name: Nothing goes backwards compared with the base branch
+        # Pull requests compare with their base branch; pushes compare with dev.
+        run: npm run check:regressions -- "${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || 'origin/dev' }}"
