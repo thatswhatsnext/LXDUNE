@@ -4,7 +4,7 @@
  *
  *   npm test
  */
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import yaml from "js-yaml";
 import { ModelGuide } from "../src/schema/model-guide";
@@ -64,6 +64,13 @@ for (const [name, mutate, expect, from = base] of cases) {
   if (!ok) failed++;
   console.log(`${ok ? "✓" : "✗"} ${name}${ok ? "" : `  (got: ${msgs || "valid"})`}`);
 }
-const clean = [base, poe, adi, loi].every((f) => ModelGuide.safeParse(f()).success);
-console.log(`${clean ? "✓" : "✗"} unmodified 5E, POE, ADI and Levels of inquiry guides are valid`);
+// Every guide on disk, so adding a guide adds its check automatically
+const guidesDir = join(__dirname, "..", "content", "guides");
+let clean = true;
+for (const f of readdirSync(guidesDir).filter((f) => /\.ya?ml$/.test(f)).sort()) {
+  const r = ModelGuide.safeParse(yaml.load(readFileSync(join(guidesDir, f), "utf8")));
+  const id = f.replace(/\.ya?ml$/, "");
+  if (!r.success) clean = false;
+  console.log(`${r.success ? "✓" : "✗"} unmodified ${id} is valid${r.success ? "" : `  (${r.error.issues.map((i) => i.message).join(" | ")})`}`);
+}
 process.exit(failed || !clean ? 1 : 0);
