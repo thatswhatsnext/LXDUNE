@@ -297,8 +297,8 @@ Session note: added the reckoner as a standalone tool, separate from `blocks.js`
 - [x] Editing workflow: change `tools/reckoner/content/guides/*.yaml`, then `cd tools/reckoner && npm run publish:pages`. Never edit anything in `reckoner/` by hand (see item 29)
 - [x] Only guides with `status: published` reach students (`--drafts` builds a review copy to `dist/site/review.html` only)
 - [x] Four guides published at v1.0.0: 5E, POE, ADI, Levels of inquiry. The other eleven models show "guide coming soon"
-- [ ] Open: the 13 catalogue models in `tools/reckoner/content/catalogue.json` still carry unvalidated fit profiles
-- [ ] After dev → main merge: confirm `https://thatswhatsnext.github.io/LXDUNE/reckoner/` serves, then link from a Moodle block with `target="_blank"`
+- [ ] Open: the 9 catalogue models in `tools/reckoner/content/catalogue.json` (was 13; four now have guides and the stale entries were removed in item 38) still carry unvalidated fit profiles
+- [x] After dev → main merge: confirm `https://thatswhatsnext.github.io/LXDUNE/reckoner/` serves, then link from a Moodle block with `target="_blank"` — linked from EDSE362's home page, see item 39
 
 ### 29. Reckoner: split content from the page ✅ — 2026-09-24
 Session note: `reckoner/` is now a shell plus data files, so one guide edit changes one file.
@@ -354,7 +354,7 @@ Replaces the Model library tab (now "Model map").
 - [x] Examples across the four guides: 30 → 44. ADI's `tentative-argument` phase gained its first examples
 - [x] Guides at v1.1.0 (lastReviewed 2026-09-27), still published
 - [x] Repaired the stage-group rule test, which adding a positive to ADI `tentative-argument` had made vacuous; it now strips positives from every phase in the group
-- [ ] Open: the 10 example-only focus areas each need a worked sequence to become a ready plan
+- [ ] Open: the example-only focus areas each need a worked sequence to become a ready plan (8 as of item 36; `docs/reckoner-state.md` has the current list)
 
 ### 35. Reckoner: 7E companion guide ⬜ (open items remain) — 2026-09-28
 - [x] 7E guide published (v1.0.0, reviewed and signed off by Steve Grant 2026-09-28), the first of five Tier A guides: 7 phases in 3 groups, 13 look-fors, 6 examples, 1 worked sequence (Stage 5 Energy, 9 lessons), 6 misapplications, 18 checklist items. Leans on the 5E guide for Explore, Explain and Elaborate
@@ -397,6 +397,12 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [ ] Open: the `app.js` id check finds model ids by context (lists checked with `.includes(m.id)`, `m.id` comparisons, `G`/`M` lookups, `openGuide`, `id:`/`guide:` fields, compare defaults). New model-id logic written in a different shape needs a pattern added to `APP_ID_SITES` in `scripts/validate.ts`
 - [ ] Open question: should a deliberate removal (retiring a weak example) be allowed? If so, add an allow-list such as `--allow-removal <id>`, named in the handoff. For now any removal fails
 - [ ] Open question: `check:regressions` compares pull requests with their base branch, which covers a `dev` → `main` PR too; releases currently merge locally, where CI compares `main` pushes with `dev`
+
+### 39. Reckoner: linked from EDSE362 ⬜ (open items remain) — 2026-09-29
+- [x] "Model Reckoner" added as the fourth key link on EDSE362's unit home page (`config/units/EDSE362.json` → `keyLinks`), opening `https://thatswhatsnext.github.io/LXDUNE/reckoner/` in a new tab. Config only: `renderUnitKeyInfo` already renders `keyLinks`, so the button appears on the next page load with no Moodle re-paste and no `blocks.js` change
+- [x] Appended last, so the gap-audit tools that read `keyLinks.0`–`.2` by position are unaffected. Rendered locally: four buttons in the house style; EDSE357 unchanged
+- [ ] Open: EDSE357 and EDSE358 (Stage 6 units) later. The reckoner is built on the NSW Science 7–10 syllabus, so decide whether it helps students planning 11–12 before adding it there
+- [ ] Open: put it in front of a cohort and decide how to learn from use (item 31). The reckoner records nothing; a short Moodle poll or forum prompt is the simplest route, and any automatic tracking needs a privacy decision first
 
 ---
 
