@@ -17,6 +17,7 @@ npm run publish:pages  # validate, test, build, then mirror dist/site/ into reck
 npm run check:pages    # confirm reckoner/ matches the YAML (what CI runs)
 npm run review -- poe  # review copy of one guide, drafts included -> dist/review/poe-review.html
 npm run build:single   # self-contained single file for offline use -> dist/single/index.html
+npm run status         # regenerate docs/reckoner-state.md (also run by publish:pages)
 ```
 
 ## Files
@@ -36,6 +37,7 @@ npm run build:single   # self-contained single file for offline use -> dist/sing
 | `scripts/export-json-schema.ts` | Writes `dist/*.schema.json` |
 | `scripts/build-site.ts` | Command line for the builds in `scripts/lib/build.ts` (site, single file, review copy) |
 | `scripts/copy-to-pages.ts` | Mirrors `dist/site/` into `reckoner/`; `--check` compares only |
+| `scripts/status.ts` | Writes `docs/reckoner-state.md`, the generated snapshot of guides, coverage and the next action-plan item; `--check` compares only |
 | `templates/app.html` | Page shell: markup and styles; `<!--__BOOT__-->` is replaced with the loader or inline data |
 | `templates/app.js` | App code: reckoner scoring, guide rendering, routing |
 | `content/catalogue.json` | Reckoner entries for models with no guide yet |
