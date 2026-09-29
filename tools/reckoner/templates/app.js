@@ -9,12 +9,12 @@ const optLabel = (d, v) => dimById[d].options.find(o => o[0] === v)[1];
 const reducedMotion = () => typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const badge = s => `<span class="badge ${SCALE[s].cls}" title="${esc(SCALE[s].tip)}">${SCALE[s].label}</span>`;
-/* Anonymous Moodle Feedback activity for the reckoner survey. Empty string hides every feedback link. */
+/* Anonymous Moodle Feedback activity for the reckoner survey. Empty string shows "coming soon" in place of every link. */
 const FEEDBACK_URL = "";
-/* One feedback paragraph with the link between `before` and `after`, or "" when FEEDBACK_URL is empty. */
-const feedbackLine = (before, after = ".") => FEEDBACK_URL
-  ? `<p class="hint feedback">${before} <a href="${esc(FEEDBACK_URL)}" target="_blank" rel="noopener">Tell us how it went<span class="sr"> (opens in a new tab)</span></a>${after}</p>`
-  : "";
+/* One feedback paragraph: the link between `before` and `after`, or a "coming soon" note while FEEDBACK_URL is empty. */
+const feedbackLine = (before, after = ".") => `<p class="hint feedback">${before} ${FEEDBACK_URL
+  ? `<a href="${esc(FEEDBACK_URL)}" target="_blank" rel="noopener">Tell us how it went<span class="sr"> (opens in a new tab)</span></a>${after}`
+  : "A short feedback survey is coming soon."}</p>`;
 document.getElementById("buildStamp").insertAdjacentHTML("beforebegin",
   feedbackLine("Used the reckoner for your planning?", " (six questions, about three minutes, anonymous)."));
 document.getElementById("buildStamp").textContent =
