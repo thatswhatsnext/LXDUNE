@@ -9,11 +9,15 @@ on:
     paths:
       - 'tools/reckoner/**'
       - 'reckoner/**'
+      - 'docs/ACTION-PLAN.md'
+      - 'docs/reckoner-state.md'
       - '.github/workflows/reckoner.yml'
   pull_request:
     paths:
       - 'tools/reckoner/**'
       - 'reckoner/**'
+      - 'docs/ACTION-PLAN.md'
+      - 'docs/reckoner-state.md'
       - '.github/workflows/reckoner.yml'
 
 jobs:
@@ -33,5 +37,5 @@ jobs:
       - run: npm run validate
       - run: npm test
       - run: npm run typecheck
-      - name: reckoner/ matches the YAML
+      - name: reckoner/ and docs/reckoner-state.md match the YAML
         run: npm run check:pages
