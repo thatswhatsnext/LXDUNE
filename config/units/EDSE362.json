@@ -953,6 +953,10 @@
       "label": "Assessment Portal",
       "url": "https://mylearn.une.edu.au/course/section.php?id=485764",
       "external": false
+    },
+    {
+      "label": "Model Reckoner",
+      "url": "https://thatswhatsnext.github.io/LXDUNE/reckoner/"
     }
   ],
   "contacts": {
