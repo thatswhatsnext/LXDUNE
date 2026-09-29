@@ -24,11 +24,11 @@ broken lesson. The Pages CDN caches files for up to 10 minutes after a deploy.
 
 - New work goes on `feature/<name>` or `fix/<name>`, branched from an up-to-date `dev`. Never commit
   directly to `dev` or `main`.
-- Only merge or release when Steve asks. The release sequence is:
+- Only merge or release when Steve asks. `/ship` runs the whole release; the sequence it follows is:
   1. PR into `dev`, merged once the `Reckoner` check (and any other CI) passes.
   2. Merge `dev` into `main` with `--no-ff` and the message `Merge dev: <summary>`, then push.
-  3. Wait for the Pages deploy, then confirm the live files match the repo byte for byte. Retry a single
-     failed download before calling it a problem.
+  3. Wait for the Pages deploy, then confirm the live files match the repo byte for byte:
+     `.claude/scripts/verify-pages.sh <main before> origin/main` does this, retrying through CDN lag.
 - Commit messages end with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`, plus a
   `Claude-Session:` line when a handoff supplies one. PR descriptions end with the Claude Code line.
 
@@ -69,6 +69,8 @@ broken lesson. The Pages CDN caches files for up to 10 minutes after a deploy.
 
 ## Handoffs from Claude chat
 
+- Use `docs/handoffs/TEMPLATE.md`, and save handoffs as `docs/handoffs/YYYY-MM-DD-<name>.md`. Claude Code
+  applies them with `/apply-handoff <file>`.
 - Draft against the synced repo files and `docs/reckoner-state.md`, not against memory of earlier chats.
 - Send **new guides** as whole files. Send **changes to existing guides** as id-keyed blocks, for example
   "append example X to phase Y of guide Z" or "replace the `safetyNotes` block on sequence S".
