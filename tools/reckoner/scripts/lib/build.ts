@@ -49,11 +49,31 @@ const hash = (s: string) => createHash("sha256").update(s).digest("hex").slice(0
 /** JSON that is safe to place inside an inline <script>. */
 const inlineJson = (v: unknown) => JSON.stringify(v).replace(/</g, "\\u003c");
 
+/**
+ * Parse one guide file. An invalid guide throws a single readable Error naming the file and
+ * listing each issue as "path: message", the same format `npm run validate` prints.
+ */
+function parseGuide(guidesDir: string, file: string): ModelGuide {
+  let raw: unknown;
+  try {
+    raw = yaml.load(readFileSync(join(guidesDir, file), "utf8"));
+  } catch (e: any) {
+    const where = e.mark ? ` (line ${e.mark.line + 1}, column ${e.mark.column + 1})` : "";
+    throw new Error(`${file}: YAML syntax error\n  ${e.reason || e.message}${where}\n  Run npm run validate for details.`);
+  }
+  const result = ModelGuide.safeParse(raw);
+  if (!result.success) {
+    const issues = result.error.issues.map((i) => `  ${i.path.join(".") || "(root)"}: ${i.message}`).join("\n");
+    throw new Error(`${file}: invalid guide (${result.error.issues.length} issue${result.error.issues.length === 1 ? "" : "s"})\n${issues}`);
+  }
+  return result.data;
+}
+
 export function loadGuides(guidesDir: string, includeDrafts: boolean, log: (m: string) => void) {
   return readdirSync(guidesDir)
     .filter((f) => /\.ya?ml$/.test(f))
     .sort()
-    .map((f) => ModelGuide.parse(yaml.load(readFileSync(join(guidesDir, f), "utf8"))))
+    .map((f) => parseGuide(guidesDir, f))
     .filter((g) => {
       const ok = g.status === "published" || includeDrafts;
       if (!ok) log(`! skipping ${g.id}: status is ${g.status}`);

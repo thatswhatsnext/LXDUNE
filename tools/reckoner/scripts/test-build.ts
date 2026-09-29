@@ -122,6 +122,27 @@ const cases: [string, () => void | Promise<void>][] = [
     if (!(page.doc.getElementById("guideBody").textContent ?? "").includes("Not yet reviewed")) throw new Error("draft guide not marked");
     page.dom.window.close();
   }],
+  ["an invalid guide stops the build with a readable report", () => {
+    const dir = join(tmp, "guides-invalid");
+    cpSync(join(PKG_ROOT, "content", "guides"), dir, { recursive: true });
+    const g = yaml.load(readFileSync(join(dir, "poe.yaml"), "utf8")) as any;
+    g.status = "finished";
+    g.phases[0].lookfors = [];
+    writeFileSync(join(dir, "poe.yaml"), yaml.dump(g));
+    const expectReadable = (want: RegExp) => {
+      try { buildSite({ mode: "site", outDir: join(tmp, "invalid"), guidesDir: dir, log: quiet }); }
+      catch (e) {
+        const msg = (e as Error).message;
+        if (/ZodError|at .*\(.*:\d+:\d+\)/.test(msg)) throw new Error(`raw error leaked: ${msg.slice(0, 120)}`);
+        if (!want.test(msg)) throw new Error(`unexpected message: ${msg.slice(0, 200)}`);
+        return;
+      }
+      throw new Error("the build did not fail");
+    };
+    expectReadable(/^poe\.yaml: invalid guide \(\d+ issues?\)\n  status: .*\n[\s\S]*phases\.0: Unrecognized key/);
+    writeFileSync(join(dir, "poe.yaml"), "id: poe\nname: [unclosed\n");
+    expectReadable(/^poe\.yaml: YAML syntax error\n  .*\(line \d+, column \d+\)/);
+  }],
   ["a review of an unknown guide id fails clearly", () => {
     try { buildSite({ mode: "review", reviewId: "nope", outDir: join(tmp, "x"), log: quiet }); }
     catch (e) { if (/No guide with id "nope"/.test((e as Error).message)) return; throw e; }
