@@ -8,6 +8,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import yaml from "js-yaml";
 import { ModelGuide } from "../src/schema/model-guide";
+import { checkModelIds, loadIdInputs } from "./validate";
 
 const load = (id: string) => () => yaml.load(readFileSync(join(__dirname, "..", `content/guides/${id}.yaml`), "utf8")) as any;
 const base = load("5e");
@@ -64,6 +65,30 @@ for (const [name, mutate, expect, from = base] of cases) {
   if (!ok) failed++;
   console.log(`${ok ? "✓" : "✗"} ${name}${ok ? "" : `  (got: ${msgs || "valid"})`}`);
 }
+// Model-id cross-checks (validate.ts): registry, catalogue, template and quick matrix.
+// Each case mutates an in-memory copy of the real inputs; nothing on disk changes.
+const guideFiles = readdirSync(join(__dirname, "..", "content", "guides")).filter((f) => /\.ya?ml$/.test(f));
+const idInputs = () => structuredClone({ ...loadIdInputs(guideFiles.map((f) => f.replace(/\.ya?ml$/, ""))), registry: [...loadIdInputs([]).registry] });
+const idCases: [string, (x: ReturnType<typeof idInputs>) => void, RegExp][] = [
+  ["a catalogue id not in the registry fails", (x) => x.catalogue.push({ id: "made-up-model" }), /catalogue\.json: "made-up-model" is not in MODEL_REGISTRY/],
+  ["a catalogue entry that also has a guide fails", (x) => x.catalogue.push({ id: "5e" }), /catalogue\.json: "5e" also has a guide/],
+  ["a registry id with no guide or catalogue entry fails", (x) => x.catalogue.splice(x.catalogue.findIndex((m) => m.id === "ssi"), 1), /MODEL_REGISTRY: "ssi" has neither a guide nor a catalogue entry/],
+  ["a duplicate catalogue id fails", (x) => x.catalogue.push({ ...x.catalogue[0] }), /catalogue\.json: duplicate id/],
+  ["a stale model id in an app.js list fails", (x) => (x.appJs += '\nif (["pbl","e7"].includes(m.id)) {}'), /templates\/app\.js line \d+: model id "e7" \(list checked against m\.id\)/],
+  ["a stale model id in an app.js lookup fails", (x) => (x.appJs += '\nconst old = G["e7"];'), /templates\/app\.js line \d+: model id "e7" \(guide or model lookup\)/],
+  ["a quick-matrix id not in the registry fails", (x) => (x.quick.misc.left[0] = "e7"), /questions\.json QUICK\.misc\.left: model id "e7"/],
+];
+const cleanIds = checkModelIds(idInputs());
+if (cleanIds.errors.length) failed++;
+console.log(`${cleanIds.errors.length ? "✗" : "✓"} current model ids pass the cross-checks${cleanIds.errors.length ? `  (${cleanIds.errors.join(" | ")})` : ""}`);
+for (const [name, mutate, expect] of idCases) {
+  const x = idInputs(); mutate(x);
+  const msgs = checkModelIds(x).errors.join(" | ");
+  const ok = expect.test(msgs);
+  if (!ok) failed++;
+  console.log(`${ok ? "✓" : "✗"} ${name}${ok ? "" : `  (got: ${msgs || "no errors"})`}`);
+}
+
 // Every guide on disk, so adding a guide adds its check automatically
 const guidesDir = join(__dirname, "..", "content", "guides");
 let clean = true;
