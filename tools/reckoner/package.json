@@ -12,7 +12,8 @@
     "review": "tsx scripts/build-site.ts --review",
     "publish:pages": "npm run validate && npm test && npm run build && tsx scripts/copy-to-pages.ts && tsx scripts/status.ts",
     "check:pages": "npm run build && tsx scripts/copy-to-pages.ts --check && tsx scripts/status.ts --check",
-    "status": "tsx scripts/status.ts"
+    "status": "tsx scripts/status.ts",
+    "check:regressions": "tsx scripts/check-regressions.ts"
   },
   "author": "",
   "license": "ISC",

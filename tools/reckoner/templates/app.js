@@ -335,7 +335,7 @@ function renderGuide(id){
       <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
         <div class="density" role="group" aria-label="Guide layout">${["compact","full"].map(d => `<button class="ghost" type="button" data-density="${d}" aria-pressed="${density===d}">${d==="compact"?"Compact":"Full"}</button>`).join("")}</div>
         ${badge(g.reckoner.scale)}</div></div>
-    ${g.status === "published" ? "" : `<div class="warnbox"><p class="sub">Not yet reviewed</p><p>This guide is a ${esc(g.status)} draft, included in this review copy only. Do not use it with students until it is signed off.</p></div>`}
+    ${g.status === "published" ? "" : `<div class="warnbox"><p class="sub">Not yet reviewed</p><p>${g.status === "in-review" ? "This guide is in review" : "This guide is a draft"}, included in this review copy only. Do not use it with students until it is signed off.</p></div>`}
     <p style="margin-top:.6rem">${esc(g.introduction.lead)}</p>
     <div class="ctx" style="margin-top:.8rem">
       <span class="sub" style="margin:0">Your planning context</span>
