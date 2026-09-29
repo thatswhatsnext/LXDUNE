@@ -15,7 +15,26 @@ import { mirror } from "./lib/mirror";
 
 // jsdom ships without bundled types; only a few calls are used here.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { JSDOM, VirtualConsole } = require("jsdom");
+const { JSDOM, VirtualConsole, requestInterceptor } = require("jsdom");
+
+/**
+ * Keeps the page tests off the network. The page's own files (file: URLs, such as app.js) are loaded
+ * normally, so a missing local file is still an error. Anything remote (the Google Fonts stylesheet) is
+ * answered with an empty response and recorded in `remote`.
+ */
+function offlineResources() {
+  const remote: string[] = [];
+  const resources = {
+    interceptors: [
+      requestInterceptor((request: { url: string }) => {
+        if (request.url.startsWith("file:")) return undefined;
+        remote.push(request.url);
+        return new Response("", { status: 200, headers: { "Content-Type": "text/css" } });
+      }),
+    ],
+  };
+  return { resources, remote };
+}
 
 const tmp = mkdtempSync(join(tmpdir(), "reckoner-test-"));
 const quiet = () => {};
@@ -42,13 +61,14 @@ const wait = async (cond: () => boolean, what: string, ms = 8000) => {
 /** Load a built page in jsdom. For the site build, fetch() is served from the build directory. */
 async function openPage(file: string, siteDir?: string) {
   const errors: string[] = [];
+  const offline = offlineResources();
   const vc = new VirtualConsole();
   vc.on("jsdomError", (e: Error) => errors.push(e.message));
   vc.on("error", (e: unknown) => errors.push(String(e)));
   const dom = new JSDOM(readFileSync(file, "utf8"), {
     url: pathToFileURL(file).href,
     runScripts: "dangerously",
-    resources: "usable",
+    resources: offline.resources,
     pretendToBeVisual: true,
     virtualConsole: vc,
     beforeParse(window: any) {
@@ -65,7 +85,7 @@ async function openPage(file: string, siteDir?: string) {
   await wait(() => !doc.getElementById("bootMsg") || errors.length > 0 || /could not load/.test(doc.getElementById("bootMsg").textContent), "the app to start");
   if (errors.length) throw new Error(errors.join("; "));
   if (doc.getElementById("bootMsg")) throw new Error(doc.getElementById("bootMsg").textContent);
-  return { dom, doc, errors };
+  return { dom, doc, errors, remote: offline.remote };
 }
 
 /** Route to each guide by URL hash and check it renders with its full section list. */
@@ -150,6 +170,8 @@ const cases: [string, () => void | Promise<void>][] = [
   }],
   ["the split site loads its data and renders every guide", async () => {
     const page = await openPage(join(tmp, "a", "index.html"), join(tmp, "a"));
+    if (!page.remote.some((u) => u.startsWith("https://fonts.googleapis.com/")))
+      throw new Error(`the fonts stylesheet was not answered offline (remote: ${page.remote.join(", ") || "none"})`);
     await checkGuides(page, guideIds);
     page.dom.window.close();
   }],
