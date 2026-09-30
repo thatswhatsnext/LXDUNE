@@ -1081,7 +1081,12 @@
       ]
     },
     "stage4|Change": {
-      "sequences": [],
+      "sequences": [
+        {
+          "guide": "poe",
+          "id": "ep-s4-steel-wool"
+        }
+      ],
       "examples": [
         {
           "guide": "poe",
@@ -1106,7 +1111,12 @@
       ]
     },
     "stage4|Data science 1": {
-      "sequences": [],
+      "sequences": [
+        {
+          "guide": "levels-of-inquiry",
+          "id": "seq-s4-reaction-time"
+        }
+      ],
       "examples": [
         {
           "guide": "levels-of-inquiry",
@@ -1184,7 +1194,12 @@
       ]
     },
     "stage4|Observing the Universe": {
-      "sequences": [],
+      "sequences": [
+        {
+          "guide": "7e",
+          "id": "7e-seq-s4-moon"
+        }
+      ],
       "examples": [
         {
           "guide": "poe",
@@ -1199,7 +1214,12 @@
       ]
     },
     "stage4|Periodic table and atomic structure": {
-      "sequences": [],
+      "sequences": [
+        {
+          "guide": "5e",
+          "id": "seq-s4-elements"
+        }
+      ],
       "examples": [
         {
           "guide": "5e",
@@ -1214,7 +1234,12 @@
       ]
     },
     "stage4|Solutions and mixtures": {
-      "sequences": [],
+      "sequences": [
+        {
+          "guide": "swh",
+          "id": "swh-seq-s4-separation"
+        }
+      ],
       "examples": [
         {
           "guide": "5e",
@@ -1392,7 +1417,12 @@
       ]
     },
     "stage5|Genetics and evolutionary change": {
-      "sequences": [],
+      "sequences": [
+        {
+          "guide": "7e",
+          "id": "7e-seq-s5-evolution"
+        }
+      ],
       "examples": [
         {
           "guide": "adi",
@@ -1442,7 +1472,12 @@
       ]
     },
     "stage5|Reactions": {
-      "sequences": [],
+      "sequences": [
+        {
+          "guide": "5e",
+          "id": "seq-s5-rates"
+        }
+      ],
       "examples": [
         {
           "guide": "5e",
@@ -1462,7 +1497,12 @@
       ]
     },
     "stage5|Waves and motion": {
-      "sequences": [],
+      "sequences": [
+        {
+          "guide": "5e",
+          "id": "seq-s5-motion"
+        }
+      ],
       "examples": [
         {
           "guide": "5e",
@@ -1491,16 +1531,16 @@
     {
       "id": "5e",
       "name": "5E",
-      "version": "1.1.1",
-      "lastReviewed": "2026-09-28",
-      "hash": "d427d847c0e5"
+      "version": "1.2.0",
+      "lastReviewed": "2026-09-30",
+      "hash": "9c2cd317b60d"
     },
     {
       "id": "7e",
       "name": "7E",
-      "version": "1.0.1",
-      "lastReviewed": "2026-09-28",
-      "hash": "f3768db84ea2"
+      "version": "1.1.0",
+      "lastReviewed": "2026-09-30",
+      "hash": "95537ab9119e"
     },
     {
       "id": "adi",
@@ -1512,23 +1552,23 @@
     {
       "id": "levels-of-inquiry",
       "name": "Levels of inquiry",
-      "version": "1.1.0",
-      "lastReviewed": "2026-09-27",
-      "hash": "7b41aeb73d91"
+      "version": "1.2.0",
+      "lastReviewed": "2026-09-30",
+      "hash": "44b27736b636"
     },
     {
       "id": "poe",
       "name": "Predict–Observe–Explain",
-      "version": "1.1.1",
-      "lastReviewed": "2026-09-28",
-      "hash": "3ec5273611cb"
+      "version": "1.2.0",
+      "lastReviewed": "2026-09-30",
+      "hash": "bf950de00963"
     },
     {
       "id": "swh",
       "name": "Science Writing Heuristic",
-      "version": "1.0.0",
-      "lastReviewed": "2026-09-28",
-      "hash": "a1f0fe614c86"
+      "version": "1.1.0",
+      "lastReviewed": "2026-09-30",
+      "hash": "0b0e90875233"
     }
   ]
 }

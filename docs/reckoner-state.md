@@ -13,8 +13,8 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Models still in the catalogue (no guide) | 9 |
 | Draft or in-review guides (not shown to students) | 0 |
 | Examples across published guides | 58 (29 positive, 29 negative) |
-| Worked sequences | 9 |
-| Focus areas with a ready plan / examples only / empty | 8 / 8 / 0 of 16 |
+| Worked sequences | 17 |
+| Focus areas with a ready plan / examples only / empty | 16 / 0 / 0 of 16 |
 | **Next action-plan item number** | **42** |
 
 ## Published guides
@@ -24,12 +24,12 @@ no bump for a cross-reference (nesting) line only.
 
 | Guide | id | Scale | Version | Last reviewed | Phases | Examples | Worked sequences |
 |---|---|---|---|---|---|---|---|
-| 5E | `5e` | Unit architecture | 1.1.1 | 2026-09-28 | 5 | 14 | `seq-s4-forces`, `seq-s4-cells`, `seq-s5-disease` |
-| 7E | `7e` | Unit architecture | 1.0.1 | 2026-09-28 | 7 in 3 groups | 6 | `7e-seq-s5-energy` |
+| 5E | `5e` | Unit architecture | 1.2.0 | 2026-09-30 | 5 | 14 | `seq-s4-forces`, `seq-s4-cells`, `seq-s5-disease`, `seq-s4-elements`, `seq-s5-rates`, `seq-s5-motion` |
+| 7E | `7e` | Unit architecture | 1.1.0 | 2026-09-30 | 7 in 3 groups | 6 | `7e-seq-s5-energy`, `7e-seq-s4-moon`, `7e-seq-s5-evolution` |
 | Argument-Driven Inquiry | `adi` | Multi-lesson routine | 1.1.1 | 2026-09-28 | 8 in 3 groups | 8 | `seq-s5-microhabitats` |
-| Levels of inquiry | `levels-of-inquiry` | Guidance dial | 1.1.0 | 2026-09-27 | 4 | 10 | `seq-s4-progression` |
-| Predict–Observe–Explain | `poe` | Single lesson | 1.1.1 | 2026-09-28 | 3 | 12 | `ep-s4-yeast`, `ep-s5-handwashing` |
-| Science Writing Heuristic | `swh` | Multi-lesson routine | 1.0.0 | 2026-09-28 | 7 in 3 groups | 8 | `swh-seq-s5-bottles` |
+| Levels of inquiry | `levels-of-inquiry` | Guidance dial | 1.2.0 | 2026-09-30 | 4 | 10 | `seq-s4-progression`, `seq-s4-reaction-time` |
+| Predict–Observe–Explain | `poe` | Single lesson | 1.2.0 | 2026-09-30 | 3 | 12 | `ep-s4-yeast`, `ep-s5-handwashing`, `ep-s4-steel-wool` |
+| Science Writing Heuristic | `swh` | Multi-lesson routine | 1.1.0 | 2026-09-30 | 7 in 3 groups | 8 | `swh-seq-s5-bottles`, `swh-seq-s4-separation` |
 
 ## Models without a guide
 
@@ -76,21 +76,21 @@ What "Start with your unit" shows for each NSW Science 7–10 (2023) focus area.
 
 | Stage | Focus area | Shows | Worked sequences | Examples |
 |---|---|---|---|---|
-| Stage 4 | Observing the Universe | Examples only | — | 2 |
+| Stage 4 | Observing the Universe | Ready plan | `7e:7e-seq-s4-moon` | 2 |
 | Stage 4 | Forces | Ready plan | `5e:seq-s4-forces` | 0 |
 | Stage 4 | Cells and classification | Ready plan | `5e:seq-s4-cells`, `levels-of-inquiry:seq-s4-progression` | 3 |
-| Stage 4 | Solutions and mixtures | Examples only | — | 9 |
+| Stage 4 | Solutions and mixtures | Ready plan | `swh:swh-seq-s4-separation` | 9 |
 | Stage 4 | Living systems | Ready plan | `levels-of-inquiry:seq-s4-progression`, `poe:ep-s4-yeast` | 8 |
-| Stage 4 | Periodic table and atomic structure | Examples only | — | 2 |
-| Stage 4 | Change | Examples only | — | 4 |
-| Stage 4 | Data science 1 | Examples only | — | 2 |
+| Stage 4 | Periodic table and atomic structure | Ready plan | `5e:seq-s4-elements` | 2 |
+| Stage 4 | Change | Ready plan | `poe:ep-s4-steel-wool` | 4 |
+| Stage 4 | Data science 1 | Ready plan | `levels-of-inquiry:seq-s4-reaction-time` | 2 |
 | Stage 5 | Energy | Ready plan | `7e:7e-seq-s5-energy` | 6 |
 | Stage 5 | Disease | Ready plan | `5e:seq-s5-disease`, `poe:ep-s5-handwashing` | 3 |
 | Stage 5 | Materials | Ready plan | `swh:swh-seq-s5-bottles` | 5 |
 | Stage 5 | Environmental sustainability | Ready plan | `adi:seq-s5-microhabitats` | 8 |
-| Stage 5 | Genetics and evolutionary change | Examples only | — | 2 |
-| Stage 5 | Reactions | Examples only | — | 3 |
-| Stage 5 | Waves and motion | Examples only | — | 4 |
+| Stage 5 | Genetics and evolutionary change | Ready plan | `7e:7e-seq-s5-evolution` | 2 |
+| Stage 5 | Reactions | Ready plan | `5e:seq-s5-rates` | 3 |
+| Stage 5 | Waves and motion | Ready plan | `5e:seq-s5-motion` | 4 |
 | Stage 5 | Data science 2 | Ready plan | `5e:seq-s5-disease` | 0 |
 
 ## Phases with no examples

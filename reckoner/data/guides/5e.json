@@ -3,9 +3,9 @@
   "id": "5e",
   "name": "5E",
   "originators": "Bybee / BSCS (1987)",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "status": "published",
-  "lastReviewed": "2026-09-28",
+  "lastReviewed": "2026-09-30",
   "syllabus": "NSW Science 7–10 Syllabus (2023)",
   "provenance": {
     "source": "ai-drafted-reviewed",
@@ -1311,6 +1311,393 @@
         ],
         "reviewedOn": "2026-09-28"
       }
+    },
+    {
+      "id": "seq-s4-elements",
+      "title": "Why copper for wires and helium for balloons?",
+      "context": {
+        "stages": [
+          "stage4"
+        ],
+        "focusAreas": [
+          "Periodic table and atomic structure"
+        ],
+        "disciplines": [
+          "chemistry"
+        ]
+      },
+      "contentOutcomes": [
+        "SC4-PRT-01"
+      ],
+      "bigQuestion": "Why do we use the elements and compounds we do, and how did we come to know which to use?",
+      "learningIntentions": [
+        "Elements are made of one kind of atom; compounds contain atoms of different elements joined together",
+        "The periodic table groups elements with similar properties, and its layout reflects the structure of their atoms",
+        "The use of a substance follows from its properties, and new discoveries about properties have changed how substances are used"
+      ],
+      "targetConceptions": [
+        "Atoms of an element have the element's properties, so copper atoms are orange and bendy",
+        "The periodic table is arranged alphabetically or at random",
+        "Atom diagrams are pictures of what atoms look like",
+        "Elements and compounds are the same thing"
+      ],
+      "steps": [
+        {
+          "lessons": "1",
+          "phaseId": "engage",
+          "activity": "A tray of everyday things: copper wire, aluminium foil, a pencil, a photo of a helium balloon and one\nof a neon sign, table salt and a glass of water. Students write what each is made of, whether it is\nan element or not, and why that material was chosen for the job. Answers go on a class thinking wall.\n",
+          "wsOutcomes": [
+            "SC4-WS-02"
+          ],
+          "formativeCheck": "Individual prediction cards, kept for lesson 8",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "2",
+          "phaseId": "explore",
+          "activity": "Stations with sealed samples of common elements to observe, and supplied strips and rods, such as\ncopper, aluminium, zinc and a carbon rod, to test. Groups record lustre, whether each strip bends or\nsnaps, and whether it conducts in a low-voltage circuit, in a shared table.\n",
+          "wsOutcomes": [
+            "SC4-WS-01",
+            "SC4-WS-04",
+            "SC4-WS-05"
+          ],
+          "formativeCheck": "Shared results table checked for consistency across groups",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "3",
+          "phaseId": "explore",
+          "activity": "Groups sort twenty unnamed element cards into families of their own, using melting point, density,\nappearance and reactivity with water, and write the rule behind each family.\n",
+          "wsOutcomes": [
+            "SC4-WS-05",
+            "SC4-WS-06"
+          ],
+          "formativeCheck": "Each group's families and rules photographed before lesson 4",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "4",
+          "phaseId": "explain",
+          "activity": "Groups present their sort and defend one family. The teacher builds the actual table from where the\nclass agreed, marks where groups split, and then introduces protons, neutrons and electrons, with a\nBohr diagram, a dot diagram and the element's position side by side, asking what each shows and what\nit does not.\n",
+          "wsOutcomes": [
+            "SC4-WS-06",
+            "SC4-WS-08"
+          ],
+          "formativeCheck": "Mini-whiteboard; place an unfamiliar element in its group from its properties",
+          "scaffoldSlots": [
+            {
+              "field": "activity",
+              "prompt": "Which group's sort would you start from, and which split between groups would you use to introduce electron shells?"
+            }
+          ]
+        },
+        {
+          "lessons": "5",
+          "phaseId": "explain",
+          "activity": "Elements, compounds and mixtures from the lesson 1 tray, with particle diagrams. Then Mendeleev's\ngaps: he left spaces for elements not yet found and predicted their properties, and later discoveries\nmatched. Guided practice classifying substances and reading the table for properties.\n",
+          "wsOutcomes": [
+            "SC4-WS-06",
+            "SC4-WS-08"
+          ],
+          "formativeCheck": "Exit ticket classifying five substances with a reason for each",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "6–7",
+          "phaseId": "elaborate",
+          "activity": "Each group investigates how knowledge of one substance changed its use, for example aluminium, once\ntoo costly to extract to use widely and now in cans and foil, or an element used in phone\nbatteries. Groups present the property, the discovery and the use, and link each to the table.\n",
+          "wsOutcomes": [
+            "SC4-WS-07",
+            "SC4-WS-08"
+          ],
+          "formativeCheck": "Research log checkpoints; peer feedback on the property-to-use link",
+          "scaffoldSlots": [
+            {
+              "field": "formativeCheck",
+              "prompt": "What would show that a group has linked the use to a property, rather than listing facts about the element?"
+            }
+          ]
+        },
+        {
+          "lessons": "8",
+          "phaseId": "evaluate",
+          "activity": "Students revisit their lesson 1 cards and correct them, then explain an unfamiliar choice, such as\nwhy tungsten was used in old light-bulb filaments, using its position in the table and its properties.\n",
+          "wsOutcomes": [
+            "SC4-WS-08"
+          ],
+          "formativeCheck": "Summative task against success criteria",
+          "scaffoldSlots": []
+        }
+      ],
+      "whyItWorks": [
+        "Students build families from data before seeing the table, so the table arrives as an answer to their own question",
+        "Three representations are shown side by side, so no one diagram is mistaken for a picture of an atom",
+        "Mendeleev's gaps show discovery driven by the table's pattern, which is the outcome's point about knowledge shaping use",
+        "The Engage tray is the thing Evaluate returns to, so the storyline closes"
+      ],
+      "watchFor": "Lesson 4 can become a lecture on atomic structure. Keep the shells tied to the families the class\nbuilt, and hold back anything the sort does not need.\n",
+      "safetyNotes": "This guide does not carry safety advice and is not a substitute for your school's risk assessment.\nWhat this sequence introduces, so you know what to assess: students handling element samples, some of\nwhich may be toxic or reactive in the open, which is why this sequence uses sealed samples and supplied\nstrips; and a low-voltage circuit. Reactivity with water appears on the cards as data, not as a\ndemonstration. Take these to your head teacher or faculty safety contact and check them against your\nschool's chemical and practical procedures and current NSW guidance before you run anything.\n",
+      "predictPrompt": "Before reading on, the class builds its own families in lesson 3 before seeing the periodic table. What does that make possible in lesson 4 that showing the table first would not?",
+      "provenance": {
+        "source": "ai-drafted-reviewed",
+        "authors": [
+          "Claude"
+        ],
+        "reviewedBy": [
+          "Steve Grant"
+        ],
+        "reviewedOn": "2026-09-30"
+      }
+    },
+    {
+      "id": "seq-s5-rates",
+      "title": "Why do some reactions go faster than others?",
+      "context": {
+        "stages": [
+          "stage5"
+        ],
+        "focusAreas": [
+          "Reactions"
+        ],
+        "disciplines": [
+          "chemistry"
+        ]
+      },
+      "contentOutcomes": [
+        "SC5-RXN-02"
+      ],
+      "bigQuestion": "What controls how fast a chemical reaction happens, and how can we use that?",
+      "learningIntentions": [
+        "Temperature, concentration, surface area and catalysts change the rate of a reaction",
+        "Collision theory explains these effects in terms of how often, and how energetically, particles collide",
+        "Rate can be measured and compared by tracking a product or a reactant over time"
+      ],
+      "targetConceptions": [
+        "Heating makes particles bigger, so they react more",
+        "A catalyst is used up in the reaction",
+        "Crushing a solid changes what it is made of"
+      ],
+      "steps": [
+        {
+          "lessons": "1",
+          "phaseId": "engage",
+          "activity": "Three glow sticks are activated at once; one goes into iced water, one into warm water and one stays\non the bench. Students predict and explain the brightness of each over five minutes, then write what\nthey think is happening inside the stick.\n",
+          "wsOutcomes": [
+            "SC5-WS-02"
+          ],
+          "formativeCheck": "Individual prediction cards, kept for lesson 8",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "2–3",
+          "phaseId": "explore",
+          "activity": "Groups time effervescent tablets dissolving in water at four temperatures, then crushed versus whole.\nA second station tracks the mass lost as marble chips react with dilute acid at two concentrations.\nGroups graph their results. The teacher asks what might be happening to the particles, without\nintroducing collision theory yet.\n",
+          "wsOutcomes": [
+            "SC5-WS-03",
+            "SC5-WS-04",
+            "SC5-WS-05"
+          ],
+          "formativeCheck": "Questioning; check graphs and variable control",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "4",
+          "phaseId": "explain",
+          "activity": "Groups present their graphs. The teacher introduces collision theory from the class data, using a\nreactions-and-rates simulation to show collision frequency and energy, and addresses the idea that\nheating makes particles bigger by name.\n",
+          "wsOutcomes": [
+            "SC5-WS-06",
+            "SC5-WS-08"
+          ],
+          "formativeCheck": "Mini-whiteboard particle diagrams for one factor",
+          "scaffoldSlots": [
+            {
+              "field": "activity",
+              "prompt": "Which group's graph would you use first to introduce collision theory, and why that factor?"
+            }
+          ]
+        },
+        {
+          "lessons": "5",
+          "phaseId": "explain",
+          "activity": "Teacher demonstration of hydrogen peroxide decomposing with and without a catalyst. The catalyst is\nweighed before, then filtered out and dried overnight and weighed again, so students can see it is\nnot used up. Guided practice explaining\neach factor with collision theory.\n",
+          "wsOutcomes": [
+            "SC5-WS-01",
+            "SC5-WS-06",
+            "SC5-WS-08"
+          ],
+          "formativeCheck": "Exit ticket with one factor explained in particle terms",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "6–7",
+          "phaseId": "elaborate",
+          "activity": "Design challenge: slow the browning of cut apple. Groups choose one factor to test, run the test and\nexplain the result with collision theory, then connect it to one real use of rate control, such as\nrefrigerating food or storing flour away from ignition sources.\n",
+          "wsOutcomes": [
+            "SC5-WS-03",
+            "SC5-WS-07"
+          ],
+          "formativeCheck": "Design log checkpoints; peer feedback",
+          "scaffoldSlots": [
+            {
+              "field": "formativeCheck",
+              "prompt": "What evidence would show a group is using collision theory to choose its factor, not just picking lemon juice because it has heard of it?"
+            }
+          ]
+        },
+        {
+          "lessons": "8",
+          "phaseId": "evaluate",
+          "activity": "Students revisit their lesson 1 glow-stick cards and explain the result in particle terms, then\nexplain an unfamiliar case with collision theory, such as why fine grain dust in a silo can explode\nwhen whole grain does not.\n",
+          "wsOutcomes": [
+            "SC5-WS-08"
+          ],
+          "formativeCheck": "Summative task against success criteria",
+          "scaffoldSlots": []
+        }
+      ],
+      "whyItWorks": [
+        "Every factor is measured by the class before it is explained, so collision theory arrives as an explanation of their own data",
+        "Recovering the catalyst tackles the used-up idea with evidence rather than assertion",
+        "The glow sticks open and close the unit, so students can see their own explanation change",
+        "Elaborate hands the choice of factor to students, which raises the cognitive demand"
+      ],
+      "watchFor": "Rate graphs where every group measured something different. Agree a common measure before lesson 2\n(time to finish, or mass lost per minute) so the class data can be compared in lesson 4.\nApple browning is an enzyme-driven reaction; a student who asks why heat eventually stops it has\nfound something worth following, not a flaw in collision theory.\n",
+      "safetyNotes": "This guide does not carry safety advice and is not a substitute for your school's risk assessment.\nWhat this sequence introduces, so you know what to assess: dilute acid and marble chips handled by\nstudents; hot water; hydrogen peroxide with a catalyst, as a teacher demonstration, where the\nconcentration matters; and cut fruit, which brings knives and any allergies in the class into the room.\nDust explosions appear only as a case to explain, never as a demonstration. Take these to your head\nteacher or faculty safety contact and check them against your school's chemical and practical\nprocedures and current NSW guidance before you run anything.\n",
+      "predictPrompt": "Before reading on, collision theory is not named until lesson 4, although the class has been measuring rates since lesson 2. What is gained by waiting?",
+      "provenance": {
+        "source": "ai-drafted-reviewed",
+        "authors": [
+          "Claude"
+        ],
+        "reviewedBy": [
+          "Steve Grant"
+        ],
+        "reviewedOn": "2026-09-30"
+      }
+    },
+    {
+      "id": "seq-s5-motion",
+      "title": "What does it take to change how something moves?",
+      "context": {
+        "stages": [
+          "stage5"
+        ],
+        "focusAreas": [
+          "Waves and motion"
+        ],
+        "disciplines": [
+          "physics"
+        ]
+      },
+      "contentOutcomes": [
+        "SC5-WAM-02"
+      ],
+      "bigQuestion": "Why do moving things keep going, speed up, slow down or turn?",
+      "learningIntentions": [
+        "An object keeps moving at constant velocity unless an unbalanced force acts on it",
+        "The acceleration of an object depends on the net force and on its mass",
+        "Forces come in pairs acting on different objects"
+      ],
+      "targetConceptions": [
+        "A moving object needs a force to keep it moving",
+        "In a collision, the bigger object pushes harder"
+      ],
+      "steps": [
+        {
+          "lessons": "1",
+          "phaseId": "engage",
+          "activity": "A coin on a card over a cup: flick the card and the coin drops in. Then a slow-motion crash-test clip\nwith an unbelted dummy. Students predict and explain what happens to the coin and the dummy, and\nwhether a moving thing needs a push to keep moving.\n",
+          "wsOutcomes": [
+            "SC5-WS-02"
+          ],
+          "formativeCheck": "Individual prediction cards, kept for lesson 8",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "2–3",
+          "phaseId": "explore",
+          "activity": "Trolleys pulled by a falling mass over a pulley. Groups vary the pulling force with the mass kept\nconstant, then the trolley's mass with the force kept constant, measuring acceleration with light\ngates or slow-motion phone video, and graph both.\n",
+          "wsOutcomes": [
+            "SC5-WS-03",
+            "SC5-WS-04",
+            "SC5-WS-05"
+          ],
+          "formativeCheck": "Questioning; check tables, graphs and variable control",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "4",
+          "phaseId": "explain",
+          "activity": "Groups present their trolley graphs. The teacher introduces F = ma using the class data, draws force\ndiagrams on the groups' own set-ups, and addresses the idea that a moving object needs a force to\nkeep moving, returning to the coin and the dummy.\n",
+          "wsOutcomes": [
+            "SC5-WS-06",
+            "SC5-WS-08"
+          ],
+          "formativeCheck": "Mini-whiteboard force diagrams with net force labelled",
+          "scaffoldSlots": [
+            {
+              "field": "activity",
+              "prompt": "Which of the two graphs would you present first, and how would you get from it to the first law?"
+            }
+          ]
+        },
+        {
+          "lessons": "5",
+          "phaseId": "explain",
+          "activity": "Force pairs: two students on skateboards or wheeled chairs push off each other, and balloon rockets\non a string. The teacher introduces the third law, and the class tests the bigger-pushes-harder idea\nwith two spring balances hooked together.\n",
+          "wsOutcomes": [
+            "SC5-WS-01",
+            "SC5-WS-06"
+          ],
+          "formativeCheck": "Exit ticket identifying both forces in a pair and the objects they act on",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "6–7",
+          "phaseId": "elaborate",
+          "activity": "Design challenge: a crumple zone that protects a passenger (a water balloon) on a trolley that runs\ninto a wall. Groups test designs and justify them with the laws of motion, explaining why a longer\nstopping time means a smaller force on the passenger.\n",
+          "wsOutcomes": [
+            "SC5-WS-07",
+            "SC5-WS-03"
+          ],
+          "formativeCheck": "Design log checkpoints; peer feedback",
+          "scaffoldSlots": [
+            {
+              "field": "formativeCheck",
+              "prompt": "What evidence would show a group is using force and acceleration to justify its design, rather than adding padding until it works?"
+            }
+          ]
+        },
+        {
+          "lessons": "8",
+          "phaseId": "evaluate",
+          "activity": "Students revisit their lesson 1 cards and explain the coin and the dummy, then explain a rocket launch\nor a seatbelt using all three laws with force diagrams.\n",
+          "wsOutcomes": [
+            "SC5-WS-08"
+          ],
+          "formativeCheck": "Summative task against success criteria",
+          "scaffoldSlots": []
+        }
+      ],
+      "whyItWorks": [
+        "The Engage question is the one Evaluate answers, so the storyline closes",
+        "Explore varies force and mass separately, so the relationship is built from data rather than recalled",
+        "The spring balance test lets students check the third law against their own intuition",
+        "Elaborate moves to design, where the laws have to be used to make a decision"
+      ],
+      "watchFor": "Friction on the trolleys hides the relationship. Tilt the track slightly until an unpulled trolley just\nkeeps rolling, and show students why. When varying the force, move masses from the trolley to the\nhanger so the total mass being accelerated stays the same.\nThis sequence covers motion only. Waves, the other half of the focus area, needs its own sequence.\n",
+      "safetyNotes": "This guide does not carry safety advice and is not a substitute for your school's risk assessment.\nWhat this sequence introduces, so you know what to assess: falling masses on pulleys at bench edges;\nmoving trolleys; students pushing off each other on wheels, which needs space and a supervised surface;\nand water balloons bursting on impact. Take these to your head teacher or faculty safety contact and\ncheck them against your school's practical procedures and current NSW guidance before you run anything.\n",
+      "predictPrompt": "Before reading on, the trolley data is collected in lessons 2 and 3 but F = ma is not named until lesson 4. What would change if the teacher gave the equation first and asked students to confirm it?",
+      "provenance": {
+        "source": "ai-drafted-reviewed",
+        "authors": [
+          "Claude"
+        ],
+        "reviewedBy": [
+          "Steve Grant"
+        ],
+        "reviewedOn": "2026-09-30"
+      }
     }
   ],
   "misapplications": [
@@ -1657,7 +2044,10 @@
     "revealAfterAttempt": [
       "seq-s4-forces",
       "seq-s4-cells",
-      "seq-s5-disease"
+      "seq-s5-disease",
+      "seq-s4-elements",
+      "seq-s5-rates",
+      "seq-s5-motion"
     ],
     "ai": {
       "groundedIn": [

@@ -3,9 +3,9 @@
   "id": "levels-of-inquiry",
   "name": "Levels of inquiry",
   "originators": "Banchi & Bell (2008), after Herron (1971)",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "published",
-  "lastReviewed": "2026-09-27",
+  "lastReviewed": "2026-09-30",
   "syllabus": "NSW Science 7–10 Syllabus (2023)",
   "provenance": {
     "source": "ai-drafted-reviewed",
@@ -782,6 +782,113 @@
         ],
         "reviewedOn": "2026-09-21"
       }
+    },
+    {
+      "id": "seq-s4-reaction-time",
+      "title": "Can we predict how fast someone will react?",
+      "context": {
+        "stages": [
+          "stage4"
+        ],
+        "focusAreas": [
+          "Data science 1"
+        ],
+        "disciplines": [
+          "integrated"
+        ]
+      },
+      "contentOutcomes": [
+        "SC4-DA1-01"
+      ],
+      "bigQuestion": "How can data help us describe, model and predict something as variable as human reaction time?",
+      "learningIntentions": [
+        "Repeated measurements vary, and averages and spread describe that variation",
+        "A trend in data can be modelled, for example with a line of best fit, and the model used to make a prediction",
+        "A prediction is tested by collecting new data, and its accuracy depends on the data behind it"
+      ],
+      "targetConceptions": [
+        "One measurement tells you someone's reaction time",
+        "If two averages differ, there is a real difference",
+        "A graph shows the answer; it does not need interpreting"
+      ],
+      "steps": [
+        {
+          "lessons": "1",
+          "phaseId": "confirmation",
+          "activity": "Ruler-catch technique with the method and the expected pattern supplied: thumb and finger level with\nzero, release without warning, ten trials. Students convert catch distance to reaction time using a\nsupplied conversion graph, and the teacher points out that the graph is itself a model.\n",
+          "wsOutcomes": [
+            "SC4-WS-01",
+            "SC4-WS-04"
+          ],
+          "formativeCheck": "Observation of technique against a checklist; conversions checked",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "2–3",
+          "phaseId": "structured",
+          "activity": "Supplied question and method: is your dominant hand faster? Pairs collect twenty results each and pool\nthem as a class. Students choose how to represent the data and write what their representation shows,\nincluding whether the spread makes them confident there is a difference.\n",
+          "wsOutcomes": [
+            "SC4-WS-05",
+            "SC4-WS-06"
+          ],
+          "formativeCheck": "Representations and conclusions checked against the data and its spread",
+          "scaffoldSlots": [
+            {
+              "field": "activity",
+              "prompt": "Several groups draw a bar chart of averages and two draw dot plots. Which would you put side by side for the class, and what question would you ask?"
+            }
+          ]
+        },
+        {
+          "lessons": "4–6",
+          "phaseId": "guided",
+          "activity": "Question supplied: does practice improve reaction time, and can we predict a score after thirty\ntrials? Groups design the method, plot reaction time against trial number in a spreadsheet, fit a\ntrend line, and use it to predict later trials. They then collect the new trials and compare with the\nprediction.\n",
+          "wsOutcomes": [
+            "SC4-WS-03",
+            "SC4-WS-05",
+            "SC4-WS-06"
+          ],
+          "formativeCheck": "Plan conference on trials, rest and recording; each group's prediction written before the new trials",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "7–10",
+          "phaseId": "open",
+          "activity": "Students pose their own question about reaction time, such as a sound cue against a light cue, or\ncatching with and without a distraction. They conference it for feasibility and ethics, then plan,\ncollect, model and report, ending with a prediction their data supports and how confident they are in\nit.\n",
+          "wsOutcomes": [
+            "SC4-WS-02",
+            "SC4-WS-03",
+            "SC4-WS-07",
+            "SC4-WS-08"
+          ],
+          "formativeCheck": "Question conference and plan review before work starts",
+          "scaffoldSlots": [
+            {
+              "field": "formativeCheck",
+              "prompt": "A group wants to test whether an energy drink makes people faster. What do you say, and what question could they ask instead?"
+            }
+          ]
+        }
+      ],
+      "whyItWorks": [
+        "Technique is taught at confirmation level, where it is the actual target, so later data is worth modelling",
+        "The structured task makes spread visible before any model is built, so students meet variation before trend",
+        "At guided level the model is tested against new data, which is what makes it a prediction rather than a description",
+        "The same context runs throughout, so the increase in independence is not also an increase in content load"
+      ],
+      "watchFor": "Reaction time data from students is data about students. Pool it without names, never rank individuals\nin front of the class, and let a student sit out as the tester rather than the subject.\nIf groups at guided level cannot yet control rest and warm-up between trials, spend another cycle there\nrather than moving to open on schedule.\n",
+      "safetyNotes": "This guide does not carry safety advice and is not a substitute for your school's risk assessment.\nWhat this sequence introduces, so you know what to assess: very little equipment, but students\ncollecting data on each other, which raises consent and privacy rather than physical hazards; and, at\nopen level, questions students choose themselves. Rule out any question involving food, drink or other\nsubstances, lost sleep, or physical exertion. Take the sequence to your head teacher or faculty safety\ncontact and check it against your school's procedures and current NSW guidance before you run anything.\n\nOne point specific to Levels of inquiry. At open level the question belongs to the students, so the\nhazards are not known when you write the risk assessment. The question conference is where those limits\nreach students, as part of working out what is investigable.\n",
+      "predictPrompt": "Before reading on, the model students build in lessons 4 to 6 is tested against data they have not yet collected. Why does that matter more than how well the line fits the data it came from?",
+      "provenance": {
+        "source": "ai-drafted-reviewed",
+        "authors": [
+          "Claude"
+        ],
+        "reviewedBy": [
+          "Steve Grant"
+        ],
+        "reviewedOn": "2026-09-30"
+      }
     }
   ],
   "misapplications": [
@@ -1041,7 +1148,8 @@
   "scaffold": {
     "defaultMode": "tutor",
     "revealAfterAttempt": [
-      "seq-s4-progression"
+      "seq-s4-progression",
+      "seq-s4-reaction-time"
     ],
     "ai": {
       "groundedIn": [
