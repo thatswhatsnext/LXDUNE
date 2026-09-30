@@ -3,9 +3,9 @@
   "id": "7e",
   "name": "7E",
   "originators": "Eisenkraft (2003)",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "status": "published",
-  "lastReviewed": "2026-09-28",
+  "lastReviewed": "2026-09-30",
   "syllabus": "NSW Science 7–10 Syllabus (2023)",
   "provenance": {
     "source": "ai-drafted-reviewed",
@@ -828,6 +828,306 @@
         ],
         "reviewedOn": "2026-09-28"
       }
+    },
+    {
+      "id": "7e-seq-s4-moon",
+      "title": "Why does the Moon change shape, and how do we know?",
+      "context": {
+        "stages": [
+          "stage4"
+        ],
+        "focusAreas": [
+          "Observing the Universe"
+        ],
+        "disciplines": [
+          "earth-environmental"
+        ]
+      },
+      "contentOutcomes": [
+        "SC4-OTU-01"
+      ],
+      "bigQuestion": "What can careful watching of the sky tell us, and how far can it take us?",
+      "learningIntentions": [
+        "The Moon's phases come from how much of its sunlit half we see from Earth as it orbits, not from Earth's shadow",
+        "Observations made systematically over time reveal patterns that a model then has to explain",
+        "New observations, from people and from instruments, have changed what is known about the Universe"
+      ],
+      "targetConceptions": [
+        "The phases are Earth's shadow falling on the Moon",
+        "The Moon only appears at night",
+        "Knowledge of the sky comes from telescopes, not from watching"
+      ],
+      "steps": [
+        {
+          "lessons": "1",
+          "phaseId": "elicit",
+          "activity": "Every student draws the Moon as it looks at four points in a month and writes why its shape changes,\nthen answers one more question: can you ever see the Moon in daylight? Responses are sorted into\nEarth's shadow, something covering it, and where it is compared with the Sun, before the rest of the\nunit is planned.\n",
+          "wsOutcomes": [
+            "SC4-WS-02"
+          ],
+          "formativeCheck": "Sorted set of initial explanations, kept for lesson 7",
+          "scaffoldSlots": [
+            {
+              "field": "activity",
+              "prompt": "If most of the class says Earth's shadow, what would you make sure the lamp-and-ball model in lesson 2 lets them test?"
+            }
+          ]
+        },
+        {
+          "lessons": "1",
+          "phaseId": "engage",
+          "activity": "If the Moon is up during the lesson (check a moonrise table beforehand), the class goes outside to see\nit in daylight; otherwise, a photo of a daytime Moon taken from the school. Each student starts a Moon\ndiary: every evening or morning they can, a sketch of its shape, where it sits in the sky, and the\ntime. Driving question on the wall: why does it change, and how could we be sure?\n",
+          "wsOutcomes": [
+            "SC4-WS-01"
+          ],
+          "formativeCheck": "First diary entry checked for shape, direction and time",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "2",
+          "phaseId": "explore",
+          "activity": "A Predict–Observe–Explain with a lamp at the front of a darkened room and a polystyrene ball per\nstudent. Students predict the shape they will see at each quarter turn, then turn on the spot,\nsketch the lit part as they see it, and keep observation and interpretation in separate columns.\n",
+          "wsOutcomes": [
+            "SC4-WS-01",
+            "SC4-WS-02"
+          ],
+          "formativeCheck": "Prediction sheets compared with sketches; who has noticed that their head never shadows the ball at first quarter",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "3",
+          "phaseId": "explore",
+          "activity": "Groups use the model to predict what tonight's Moon should look like and roughly when and where it\nwill be visible, then check their prediction against the class diaries so far and a planetarium app.\n",
+          "wsOutcomes": [
+            "SC4-WS-05",
+            "SC4-WS-06"
+          ],
+          "formativeCheck": "Each group's written prediction and whether the diaries support it",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "4",
+          "phaseId": "explain",
+          "activity": "Groups report where the model worked and where it did not. The teacher names the phases and\nintroduces orbit and illumination from the class's own sketches, then takes on the shadow idea by\nname: Earth's shadow points away from the Sun, so it can only reach the Moon when the Moon is opposite\nthe Sun, near full Moon, and when it does that is a lunar eclipse. A crescent appears when the Moon is close to the\nSun in the sky, where no shadow of Earth could fall.\n",
+          "wsOutcomes": [
+            "SC4-WS-06",
+            "SC4-WS-08"
+          ],
+          "formativeCheck": "Mini-whiteboard diagram placing Sun, Earth and Moon for a phase named by the teacher",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "5",
+          "phaseId": "elaborate",
+          "activity": "Galileo's telescope observations of Venus. Groups use the lamp and ball to predict which shapes Venus\ncould show if it always stayed between Earth and the Sun, as the Earth-centred model required, and\nwhich if it circled the Sun, then compare both with images of the\nphases of Venus. The point is an observation deciding between two models, not the history.\n",
+          "wsOutcomes": [
+            "SC4-WS-02",
+            "SC4-WS-06"
+          ],
+          "formativeCheck": "Each group states which model the images support and which shape rules the other out",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "6",
+          "phaseId": "elaborate",
+          "activity": "How the Moon and stars sit within a local Aboriginal seasonal calendar, as a session planned and led\nwith the school's Aboriginal Education staff and local Aboriginal community. Students hear how\nlong-term observation of the sky is tied to seasonal events on Country, and record what they learn in\nthe words used by the people sharing it.\n",
+          "wsOutcomes": [
+            "SC4-WS-01",
+            "SC4-WS-08"
+          ],
+          "formativeCheck": "Students record one connection between a sky observation and a seasonal event, as it was shared with them",
+          "scaffoldSlots": [
+            {
+              "field": "activity",
+              "prompt": "What would you need to have settled with your Aboriginal Education staff before this lesson, and whose decision is each of those things?"
+            }
+          ]
+        },
+        {
+          "lessons": "7",
+          "phaseId": "evaluate",
+          "activity": "Lesson 1 drawings and the diaries are handed back. Students rewrite their explanation using what the\ndiary recorded, then explain a photo of a thin crescent Moon near the setting Sun with a labelled\ndiagram.\n",
+          "wsOutcomes": [
+            "SC4-WS-05",
+            "SC4-WS-08"
+          ],
+          "formativeCheck": "Initial and rewritten explanations compared against the success criteria",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "8–9",
+          "phaseId": "extend",
+          "activity": "A light curve from a distant star: brightness against time, dipping by a tiny, regular amount. Groups\nwork out what could cause a regular dip before the word transit is used. The teacher then draws out\nthe shared idea: in both cases knowledge comes from watching how light changes over time and asking\nwhat arrangement would produce it.\n",
+          "wsOutcomes": [
+            "SC4-WS-05",
+            "SC4-WS-06",
+            "SC4-WS-08"
+          ],
+          "formativeCheck": "Each student states the shared idea across the Moon and the star",
+          "scaffoldSlots": [
+            {
+              "field": "formativeCheck",
+              "prompt": "What would a student say that shows they have matched the Moon and the star on surface features, such as both being in space, rather than on the underlying idea?"
+            }
+          ]
+        }
+      ],
+      "whyItWorks": [
+        "Elicit runs before any model is shown, so the shadow idea is recorded rather than hidden",
+        "The diary gives every student data of their own that the model must fit, and it is still running when Explain arrives",
+        "Venus gives the model a real test, where the observation decides between two pictures of the Solar System",
+        "Extend moves to evidence no one can see directly, so the idea of reading changes in light has to be found rather than recalled"
+      ],
+      "watchFor": "Cloud, and the fact that the Moon is a morning object for part of every month, will leave gaps in the\ndiaries. Plan for them: pool the class's entries and fill the rest from published images, and make\nthe gaps part of the discussion about how observers work.\nLesson 6 depends on relationships you build well before the unit. If it cannot be planned with your\nAboriginal Education staff and local community, leave it out rather than teaching it from a website.\n",
+      "safetyNotes": "This guide does not carry safety advice and is not a substitute for your school's risk assessment.\nWhat this sequence introduces, so you know what to assess: observing the sky outdoors during the day,\nwhen the Sun is nearby and students must never look at it, directly or through anything; a lamp in a\ndarkened room full of students turning on the spot; and diary entries made at home in the evening,\noutside school supervision. Take these to your head teacher or faculty safety contact and check them\nagainst your school's practical and homework procedures and current NSW guidance before you run\nanything.\n\nOne point specific to 7E. Extend moves the idea into a context the sequence has not been in before.\nHere that is secondary data only, so it adds little to assess, but if the class takes it further, such\nas into a night viewing, that needs assessing on its own terms.\n",
+      "predictPrompt": "Before reading on, the Moon diary starts in lesson 1, before any model is shown, and runs to lesson 7. Why start it so early, and what would be lost if it began in lesson 4?",
+      "provenance": {
+        "source": "ai-drafted-reviewed",
+        "authors": [
+          "Claude"
+        ],
+        "reviewedBy": [
+          "Steve Grant"
+        ],
+        "reviewedOn": "2026-09-30"
+      }
+    },
+    {
+      "id": "7e-seq-s5-evolution",
+      "title": "How does a population change when no individual can?",
+      "context": {
+        "stages": [
+          "stage5"
+        ],
+        "focusAreas": [
+          "Genetics and evolutionary change"
+        ],
+        "disciplines": [
+          "biology"
+        ]
+      },
+      "contentOutcomes": [
+        "SC5-GEV-01"
+      ],
+      "bigQuestion": "How do populations come to suit their environment, and why is there so much variety in living things?",
+      "learningIntentions": [
+        "Natural selection acts on variation that already exists in a population; individuals do not change to suit their environment",
+        "Over many generations, selection changes how common inherited characteristics are in a population",
+        "Shared ancestry followed by divergence accounts for much of the diversity of living things"
+      ],
+      "targetConceptions": [
+        "Organisms change because they need to, or because they try to",
+        "Characteristics gained during a lifetime are passed on",
+        "Individuals evolve"
+      ],
+      "steps": [
+        {
+          "lessons": "1",
+          "phaseId": "elicit",
+          "activity": "Every student writes how each of three things came to be: a polar bear's white coat, a fast\ncheetah, and a stick insect that looks like a twig. The teacher sorts the responses into needed\nit, used it, and some already had it and survived, before planning the rest of the unit.\n",
+          "wsOutcomes": [
+            "SC5-WS-02"
+          ],
+          "formativeCheck": "Sorted set of initial explanations, kept for lesson 7",
+          "scaffoldSlots": [
+            {
+              "field": "activity",
+              "prompt": "If most responses say the animals changed because they needed to, what must the simulation in lessons 2 and 3 make impossible to miss?"
+            }
+          ]
+        },
+        {
+          "lessons": "1",
+          "phaseId": "engage",
+          "activity": "The rabbit and myxoma virus story in Australia: the virus released to control rabbits killed almost\nall of them at first, and within a decade far fewer infected rabbits were dying. Driving question for\nthe unit goes on the wall: what changed, the rabbits, the virus, or both, and how?\n",
+          "wsOutcomes": [
+            "SC5-WS-01",
+            "SC5-WS-02"
+          ],
+          "formativeCheck": "Each student writes which of their lesson 1 ideas could explain the rabbits and which could not",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "2–3",
+          "phaseId": "explore",
+          "activity": "A camouflage simulation. Paper \"prey\" in several colours are scattered on a patterned fabric\nhabitat; \"predators\" collect as many as they can in a set time; survivors each add offspring of their\nown colour. Groups run four or more generations, record the count of each colour, and graph the\nchange. A second round changes the habitat fabric partway through.\n",
+          "wsOutcomes": [
+            "SC5-WS-04",
+            "SC5-WS-05"
+          ],
+          "formativeCheck": "Data tables and graphs checked mid-collection; each group asked whether any single prey changed colour",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "4",
+          "phaseId": "explain",
+          "activity": "Groups present their graphs. The teacher introduces variation, inheritance, selection and time from\nthe class's own results, and addresses the needed-it idea by name: no paper square changed colour,\nyet the population did. Mutation is named as where new variation comes from. The rabbit story is\nrevisited with the same four ideas.\n",
+          "wsOutcomes": [
+            "SC5-WS-06",
+            "SC5-WS-08"
+          ],
+          "formativeCheck": "Mini-whiteboard account of the rabbits using variation, inheritance, selection and time",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "5–6",
+          "phaseId": "elaborate",
+          "activity": "From one population to many kinds. Groups compare forelimb bones across a set of mammals and read a\nsimplified evolutionary tree of a familiar Australian group, then explain how shared ancestry and\ndifferent selection pressures could produce the diversity they see. Each group writes a short\nexplanation another group checks against the tree.\n",
+          "wsOutcomes": [
+            "SC5-WS-05",
+            "SC5-WS-06",
+            "SC5-WS-08"
+          ],
+          "formativeCheck": "Peer check of each explanation against the tree and the limb evidence",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "7",
+          "phaseId": "evaluate",
+          "activity": "Lesson 1 responses are handed back. Students rewrite all three and explain what changed. Short task:\nexplain a documented change in an unfamiliar population, such as sheep blowflies in a district where\nthe same insecticide has been used for many years becoming harder to kill with it.\n",
+          "wsOutcomes": [
+            "SC5-WS-08"
+          ],
+          "formativeCheck": "Initial and rewritten explanations compared against the success criteria",
+          "scaffoldSlots": []
+        },
+        {
+          "lessons": "8–9",
+          "phaseId": "extend",
+          "activity": "Antibiotic resistance, from secondary data on infections that no longer respond to a first-choice\nantibiotic. Groups work out why resistance rises and why stopping a course early or overusing\nantibiotics might matter, before anything is named. The teacher then draws out that this is the same\nselection, on a timescale of days, and the class discusses what carries across and what does not.\n",
+          "wsOutcomes": [
+            "SC5-WS-06",
+            "SC5-WS-07",
+            "SC5-WS-08"
+          ],
+          "formativeCheck": "Each student states the shared principle across the rabbits, the paper prey and the bacteria",
+          "scaffoldSlots": [
+            {
+              "field": "formativeCheck",
+              "prompt": "A student says the bacteria \"became immune\" to the antibiotic. What does that tell you, and what would you ask next?"
+            }
+          ]
+        }
+      ],
+      "whyItWorks": [
+        "Elicit runs before the rabbit story, so the needed-it idea is on paper before anything could correct it",
+        "In the simulation no individual can change, so the population change has to be explained by selection",
+        "The rabbit story returns in Explain and Evaluate, so the unit answers the question it opened with",
+        "Extend moves to bacteria and to medical decisions, far enough from paper squares that the idea has to transfer"
+      ],
+      "watchFor": "The simulation fails quietly if the first generation has only one colour or if \"offspring\" are added\nin a colour the survivors did not have. Check both before groups start, because the whole argument\nrests on variation being there at the beginning.\nSome students and families hold views about evolution that come from faith. Teach the science as\nscience, respectfully, and keep the question on evidence rather than on belief.\n",
+      "safetyNotes": "This guide does not carry safety advice and is not a substitute for your school's risk assessment.\nWhat this sequence introduces, so you know what to assess: very little in the room, as the practical\nwork is a paper simulation. Extend uses secondary data only; if you are tempted to culture bacteria to\nshow resistance, that is a microbiology practical in its own right and needs assessing as one. Take\nthe sequence to your head teacher or faculty safety contact and check it against your school's\npractical procedures and current NSW guidance before you run anything.\n\nSeparate from the risk assessment: the rabbit story involves a disease deliberately released to kill\nanimals, and antibiotic resistance can touch a student's own experience of illness. Neither needs\navoiding, but both are worth introducing with that in mind.\n",
+      "predictPrompt": "Before reading on, the camouflage simulation in lessons 2 and 3 only works if one thing is true of the first generation. What is it, and what happens to the argument if a group forgets it?",
+      "provenance": {
+        "source": "ai-drafted-reviewed",
+        "authors": [
+          "Claude"
+        ],
+        "reviewedBy": [
+          "Steve Grant"
+        ],
+        "reviewedOn": "2026-09-30"
+      }
     }
   ],
   "misapplications": [
@@ -1136,7 +1436,9 @@
   "scaffold": {
     "defaultMode": "tutor",
     "revealAfterAttempt": [
-      "7e-seq-s5-energy"
+      "7e-seq-s5-energy",
+      "7e-seq-s4-moon",
+      "7e-seq-s5-evolution"
     ],
     "ai": {
       "groundedIn": [

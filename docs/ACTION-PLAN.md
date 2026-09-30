@@ -354,7 +354,7 @@ Replaces the Model library tab (now "Model map").
 - [x] Examples across the four guides: 30 → 44. ADI's `tentative-argument` phase gained its first examples
 - [x] Guides at v1.1.0 (lastReviewed 2026-09-27), still published
 - [x] Repaired the stage-group rule test, which adding a positive to ADI `tentative-argument` had made vacuous; it now strips positives from every phase in the group
-- [ ] Open: the example-only focus areas each need a worked sequence to become a ready plan (8 as of item 36; `docs/reckoner-state.md` has the current list)
+- [x] The example-only focus areas each need a worked sequence to become a ready plan (8 as of item 36). Done in item 42: all 16 focus areas have a ready plan
 
 ### 35. Reckoner: 7E companion guide ⬜ (open items remain) — 2026-09-28
 - [x] 7E guide published (v1.0.0, reviewed and signed off by Steve Grant 2026-09-28), the first of five Tier A guides: 7 phases in 3 groups, 13 look-fors, 6 examples, 1 worked sequence (Stage 5 Energy, 9 lessons), 6 misapplications, 18 checklist items. Leans on the 5E guide for Explore, Explain and Elaborate
@@ -425,6 +425,18 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [ ] Open: run the follow-up survey with the same six questions once the feedback link is live
 - [ ] Open: F6 visible weights, F7 glossary tooltips and F8 walkthrough refresh, shaped by survey answers
 - Note: the rule-labelling pattern keeps the shapes `APP_ID_SITES` in `scripts/validate.ts` matches (still 48 model-id references found)
+
+### 42. Reckoner: ready plans for all 16 focus areas ⬜ (open items remain) — 2026-09-30
+- [x] One worked sequence for each of the eight example-only focus areas, reviewed and signed off by Steve Grant on 2026-09-30 (`docs/handoffs/2026-09-30-ready-plans.md`): 7E `7e-seq-s4-moon` (Observing the Universe) and `7e-seq-s5-evolution` (Genetics and evolutionary change); 5E `seq-s4-elements` (Periodic table and atomic structure), `seq-s5-rates` (Reactions) and `seq-s5-motion` (Waves and motion); POE `ep-s4-steel-wool` (Change); SWH `swh-seq-s4-separation` (Solutions and mixtures); Levels of inquiry `seq-s4-reaction-time` (Data science 1)
+- [x] Appended in place, new ids added to each guide's `revealAfterAttempt`. Minor bumps: 5e 1.2.0, 7e 1.1.0, levels-of-inquiry 1.2.0, poe 1.2.0, swh 1.1.0; `lastReviewed` 2026-09-30. ADI untouched (`adi.json` byte-identical)
+- [x] Results: worked sequences 9 → 17; focus areas 16 ready plan / 0 examples only / 0 empty; examples 58, unchanged. The "7e: no Biology worked sequence" warning is cleared. Every existing id is intact (`check:regressions`); validate, tests, typecheck and check:pages pass. Each of the eight focus areas renders its new plan in Start with your unit
+- Nothing adapted: the handoff matched the repo (versions, sequence ids, phase ids, outcome codes, insertion points)
+- [ ] Open: Change. `ep-s4-steel-wool` covers the chemical half; the geological half (energy driving weathering and the rock cycle) needs its own sequence. POE's freeze–thaw example (`poe-explain-pos-freeze-thaw`) is a starting point
+- [ ] Open: Waves and motion. `seq-s5-motion` covers motion only; waves needs its own sequence
+- [ ] Open: SWH still has no Biology worked sequence
+- [ ] Open: `7e-seq-s4-moon` lesson 6 depends on a session planned with the school's Aboriginal Education staff and local Aboriginal community; the sequence says to leave it out rather than teach it from secondary sources
+- [x] `md()` in `templates/app.js` turned every line of a multi-line field into its own paragraph, so wrapped activities broke mid-sentence on the live site. Fixed on this branch (Steve asked for it before release): consecutive lines join into one paragraph, a blank line or list item starts a new block, and a line straight after a list item continues it. Across all 4,306 content strings the text is identical and paragraphs drop from 4,990 to 4,322; a build test covers the rules, including lists, which no current content uses
+- Resolved: the handoff asked whether the result cards' "A short feedback survey is coming soon." line was intended. It is: Steve chose the placeholder over hiding the line (item 40)
 
 ---
 
