@@ -1,83 +1,102 @@
 # How the reckoner works: methodology notes shown on the "How it works" page (F1) and, later, the glossary (F7).
-# Drafted in Claude chat. Stays status: draft, source: ai-generated, reviewedBy: [] until Steve signs off.
+# v1.0.0 approved by Steve Grant on 2026-09-30; v1.1.0 rewrites it for reading on the web, keeping its meaning,
+# and was approved and published by Steve Grant on 2026-09-30.
 # Counts (models, guides) are deliberately left out: the page computes them from the manifest, so this file never goes stale.
 schemaVersion: '1.0'
 id: methodology
-version: 1.0.0
-status: draft
+version: 1.1.0
+status: published
 lastReviewed: '2026-09-30'
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: ['Claude, drafted for S. Grant']
-  reviewedBy: []
+  reviewedBy: ['Steve Grant']
+  reviewedOn: '2026-09-30'
 
 intro:
-  lead: 'The reckoner helps you reason about which constructivist teaching model suits a sequence you are planning. It shows its working so you can check that reasoning, and disagree with it.'
+  lead: 'The reckoner helps you decide which constructivist teaching model suits the sequence you are planning. It shows its working, so you can check its reasoning and disagree with it.'
   purpose: |
-    The reckoner is a learning scaffold for pre-service science teachers planning NSW Science 7–10 sequences. It is not a planning shortcut. Its job is to make a design decision visible: what you want students to learn, how much time you have, how ready your learners are for inquiry, and which model's structure fits those conditions.
-
-    Every recommendation is a starting point for your judgement. Strong programs often combine models, and the companion guides show you how to check whether a sequence you have written actually does what its model intends.
+    - **What it is:** a learning scaffold for pre-service science teachers planning NSW Science 7–10 sequences. It is not a planning shortcut.
+    - **What it does:** makes a design decision visible: what you want students to learn, how much time you have, how ready your learners are for inquiry, and which model's structure fits those conditions.
+    - **What you get:** a starting point for your judgement. Strong programs often combine models, and the companion guides help you check that a sequence you have written does what its model intends.
 
 principles:
   - id: judgement-not-prescription
     title: Judgement, not prescription
-    body: 'The reckoner ranks models and explains why. It never tells you which model you must use, and a lower-ranked model can be the right choice for reasons it cannot see, such as your school''s scope and sequence or what your class did last term.'
+    body: 'The reckoner ranks models and explains why, but never tells you which one to use. A lower-ranked model can be the right choice for reasons it cannot see, such as your school''s scope and sequence or what your class did last term.'
     referenceIds: []
   - id: purpose-first
     title: Purpose drives the choice
-    body: 'The learning purpose counts most in every route. A sequence built to shift a misconception needs cognitive conflict; one built to develop argument needs structured critique. Time and learner readiness come next; the other conditions refine the choice.'
+    body: 'Learning purpose counts most in every route. A sequence built to shift a misconception needs cognitive conflict; one built to develop argument needs structured critique. Time and learner readiness come next, and the other conditions refine the choice.'
     referenceIds: []
   - id: guidance-matched-to-readiness
     title: Guidance matched to readiness
-    body: 'Novice learners lack the knowledge to manage open-ended tasks, so low-guidance models overload them. The reckoner favours more structured models for novices and short timeframes, and the guidance dial never recommends more than structured inquiry for novices.'
+    body: 'Novice learners do not yet have the knowledge to manage open-ended tasks, so low-guidance models overload them. The reckoner favours more structured models for novices and short timeframes, and the guidance dial never recommends more than structured inquiry for novices.'
     referenceIds: [kirschner-2006, furtak-2012]
   - id: look-fors
     title: Look-fors define quality
-    body: 'Each companion guide defines what good practice looks like in each phase as a set of look-for questions, with strong and weak evidence. Examples, misapplications and the designer''s checklist all point back to the same look-fors, so a judgement is defined once and used everywhere.'
+    body: 'Each companion guide defines good practice in each phase as look-for questions, with what strong and weak evidence looks like. Examples, misapplications and the designer''s checklist all point back to the same look-fors, so each judgement is defined once and used everywhere.'
     referenceIds: []
   - id: done-well-done-badly
     title: Examples done well and done badly
-    body: 'Every phase has at least one example of the phase done well and one done badly, so you learn to recognise the difference rather than copy a template. Examples are tagged by stage and focus area so the ones closest to your context appear first.'
+    body: 'Each phase, or each stage in models with many phases, has an example done well and one done badly, so you learn to recognise the difference rather than copy a template. Examples are tagged by stage and focus area, and the ones closest to your context appear first.'
     referenceIds: []
   - id: syllabus-anchored
     title: Anchored to the syllabus
-    body: 'Worked sequences cite NSW Science 7–10 (2023) outcome codes and map every Working scientifically skill. The reckoner cites codes rather than quoting outcome wording: check the syllabus itself for the wording.'
+    body: 'Worked sequences cite NSW Science 7–10 (2023) outcome codes and map every Working scientifically skill. The reckoner cites codes rather than quoting outcome wording, so check the syllabus itself for the wording.'
     referenceIds: []
 
 routes:
   - id: unit
     title: Start with your unit
+    summary: 'Shows what the companion guides already hold for your focus area. It does not score models.'
     body: |
-      This route does not score models. You choose a stage and focus area, and it shows what the companion guides already hold for that focus area: a ready worked sequence if one exists, otherwise tagged examples. The model it names is the one whose guide has material for your focus area, not necessarily the best fit for your class. Use one of the other routes to test that fit.
+      - You choose a stage and a focus area.
+      - You see a ready worked sequence if one exists, otherwise tagged examples.
+      - The model it names is the one whose guide has material for that focus area, not necessarily the best fit for your class. To test the fit, use the Quick or Detailed reckoner.
   - id: three-taps
     title: Not sure? Three taps
+    summary: 'Three quick questions, read against the same table as the Quick reckoner, so the two always agree.'
     body: |
-      Three questions: what you want to shift, how long you have, and how much investigating your students have done. The answers are read against the same purpose-by-readiness table as the Quick reckoner, so the two always agree.
+      - What do you want to shift?
+      - How long have you got?
+      - How much investigating have your students done?
   - id: quick
     title: Quick reckoner
+    summary: 'Three questions place you in a table that suggests a model for each learning purpose.'
     body: |
-      Three questions (purpose, time, readiness) place you in a table. Each purpose has two suggested models: a more structured one for novice learners or a short timeframe, and a more open one for experienced learners with a longer timeframe. With only one lesson, the table gives way to a single-lesson strategy. You can open the table to see every cell.
+      - You answer three questions: purpose, time and learner readiness.
+      - Each purpose has two suggested models: a more structured one for novice learners or a short timeframe, and a more open one for experienced learners with a longer timeframe.
+      - With only one lesson, the table gives way to a single-lesson strategy.
+      - You can open the table to see every cell.
   - id: detailed
     title: Detailed reckoner
+    summary: 'Scores every model against your answers and ranks them by weighted average.'
     body: |
-      Each model has a fit profile: a score from 0 (poor fit) to 3 (strong fit) for every answer to every question. The reckoner takes the model's score for each answer you give, weights it by how much that question counts and by the importance you set, and reports the weighted average as a percentage. Purpose counts three times as much as the least important questions; time and readiness twice; place-based learning half. Questions you leave blank are left out rather than counted as zero.
-
-      "Show the working" under each result lists every term in that sum.
+      - Each model has a fit profile: a score from 0 (poor fit) to 3 (strong fit) for every answer to every question.
+      - For each answer you give, the reckoner takes the model's score, weights it by how much that question counts and by the importance you set, and reports the weighted average as a percentage.
+      - Purpose counts most: three times as much as most questions. Time and readiness count twice, and place-based learning half.
+      - Questions you leave blank are left out, not counted as zero.
+      - **Show the working**, under each result, lists every term in the sum.
   - id: rules
     title: Watch-outs and nesting suggestions
+    summary: 'Written rules, separate from the score. Each is labelled Rule and names the answer that triggered it.'
     body: |
-      These are not part of the score. They are written rules triggered by particular answers, for example "novice learners with a problem-based model" or "a robust misconception with a model that does not target misconceptions". Each one is labelled Rule and names the answer that triggered it.
+      - A rule fires on particular answers, for example novice learners with a problem-based model, or a robust misconception with a model that does not target misconceptions.
+      - Rules add advice to a result. They do not change the ranking.
   - id: dial
     title: Guidance dial
+    summary: 'Recommends how much to guide students inside whichever model you choose, from confirmation to open inquiry.'
     body: |
-      The dial recommends how much to guide students within whichever model you choose, from confirmation to open inquiry. It scores readiness, facilitation confidence and time using the Levels of inquiry guide, shows the evidence behind each factor, and applies caps, such as never going above structured inquiry for novices.
+      - It scores learner readiness, your facilitation confidence and time, using the Levels of inquiry guide.
+      - It shows the evidence behind each factor.
+      - It applies caps, such as never going above structured inquiry for novices.
 
 review: |
-  Companion guides are written against a strict schema that checks, among other things, that every phase has examples done well and done badly, that every worked sequence visits every phase, and that every outcome code is on the syllabus list.
-
-  Content is drafted, often with AI assistance, then reviewed by a science educator before it is published. Each guide shows its version, its review date and who reviewed it. Nothing unreviewed reaches students: drafts appear only in review copies.
-
-  Models marked **Provisional** do not have a companion guide yet. Their fit profiles are initial estimates that have not been checked against a guide, so treat their rankings with more caution.
+  - **Checked against a schema.** Every companion guide is written against a strict schema. Among other things, it checks that every phase or stage has examples done well and done badly, that every worked sequence visits every phase, and that every outcome code is on the syllabus list.
+  - **Reviewed before publishing.** Content is drafted, often with AI assistance, then reviewed by a science educator. Each guide shows its version, its review date and who reviewed it.
+  - **Nothing unreviewed reaches students.** Drafts appear only in review copies.
+  - **Provisional models.** Models marked Provisional do not have a companion guide yet. Their fit profiles are initial estimates that have not been checked against a guide, so treat their rankings with more caution.
 
 evidenceStrength:
   strong: 'Supported by several controlled studies or meta-analyses in science education.'
@@ -86,10 +105,10 @@ evidenceStrength:
   framework: 'A practical or professional principle, not a research claim.'
 
 limits:
-  - 'It does not know your students, your school''s scope and sequence, or your resources beyond what you tell it.'
+  - 'It does not know your students, your school''s scope and sequence, or your resources, beyond what you tell it.'
   - 'It does not write your program or fill in the scaffolds for you.'
   - 'It does not replace the NSW Science 7–10 Syllabus (2023), your school''s risk assessment, or advice from your supervising teacher.'
-  - 'It records nothing about you. Feedback goes through an anonymous Moodle survey.'
+  - 'It records nothing about you. Feedback will go through an anonymous Moodle survey.'
 
 glossary:
   - term: Scale
@@ -103,7 +122,7 @@ glossary:
   - term: Worked sequence
     definition: 'A complete example of a model applied to a focus area, timed in lessons. A single-lesson model''s worked example is an episode, timed in minutes.'
   - term: Misapplication
-    definition: 'A common way a model is used that looks right but undermines its purpose, with a fix.'
+    definition: 'A common way of using a model that looks right but undermines its purpose, with a fix.'
   - term: Guidance dial
     definition: 'How much the teacher structures the question, method and explanation, from confirmation to open inquiry.'
   - term: Provisional

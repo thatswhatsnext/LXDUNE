@@ -120,43 +120,109 @@ function routeFromHash(e){
  * review copy. Tabs keep their selected state; Back returns to where the reader was. */
 let howFrom = "";
 const ROUTE_ORDER = ["unit", "three-taps", "quick", "detailed", "rules", "dial"];
+/**
+ * A flip card for the How it works page. The front carries the number, title and anything that should be
+ * seen while scanning; the back carries the detail, headed by the title again so the reader keeps their
+ * place. The back starts inert; flipCard() below turns cards and keeps inert and focus in step.
+ */
+function flipCard({ id, cls = "", num, title, front = "", back, more, less }){
+  return `<article class="flip ${cls}" id="how-${id}" data-flipped="false"><div class="flip-inner">
+    <div class="face front"><span class="flip-num" aria-hidden="true">${num}</span>
+      <div class="flip-main"><h4 id="how-${id}-t">${esc(title)}</h4>${front}</div>
+      <button type="button" class="flip-btn" aria-expanded="false" aria-controls="how-${id}-b" aria-describedby="how-${id}-t">${more}</button></div>
+    <div class="face back" id="how-${id}-b" role="group" aria-labelledby="how-${id}-t" inert>
+      <p class="flip-back-title" aria-hidden="true">${esc(title)}</p>${back}
+      <button type="button" class="flip-btn">${less}</button></div></div></article>`;
+}
+/** A lead-in line, a Show all switch for this section's cards, and the cards in a grid. */
+const flipSection = (lead, cards) => `<div class="flip-bar"><p class="hint">${lead}</p>
+  <button type="button" class="ghost" data-flipall aria-pressed="false">Show all</button></div>
+  <div class="how-grid">${cards.join("")}</div>`;
+/** Turn a card; the hidden face is inert, so keyboard and screen-reader users only meet the side on show. */
+function turnCard(card, on, focus){
+  card.dataset.flipped = on;
+  card.querySelector(".front").toggleAttribute("inert", on); card.querySelector(".back").toggleAttribute("inert", !on);
+  card.querySelector(".front .flip-btn").setAttribute("aria-expanded", on);
+  if (focus) card.querySelector(on ? ".back .flip-btn" : ".front .flip-btn").focus({ preventScroll: true });
+}
 function renderHow(){
   const meth = DATA.methodology, el = document.getElementById("howBody");
   const refs = new Map(meth.references.map(r => [r.id, r]));
-  const cite = id => { const r = refs.get(id); return r ? `<a href="#how-ref-${id}" data-howref="${id}">${esc(r.citation.split(" (")[0].replace(/,? &.*| et al\..*/, " et al."))} (${esc((r.citation.match(/\((\d{4})/) || [])[1] || "n.d.")})</a>` : ""; };
+  /** APA in-text form from the reference: Kirschner et al. (2006), Smith & Jones (2010), Smith (2010). */
+  const cite = id => { const r = refs.get(id); if (!r) return "";
+    const names = [...r.citation.split(" (")[0].matchAll(/([A-Z][A-Za-z'’-]+), (?:[A-Z]\.[ -]?)+/g)].map(m => m[1]);
+    const who = names.length > 2 ? `${names[0]} et al.` : names.join(" & ") || r.citation.split(" (")[0];
+    return `<a href="#how-ref-${id}" data-howref="${id}">${esc(who)} (${esc((r.citation.match(/\((\d{4})/) || [])[1] || "n.d.")})</a>`; };
   const guided = DATA.models.filter(m => m.hasGuide).length, prov = DATA.models.length - guided;
   const dates = DATA.guides.map(g => g.lastReviewed).sort();
-  const weights = `<table class="weights"><thead><tr><th scope="col">Question</th><th scope="col">Counts</th></tr></thead><tbody>
-    ${DIMS.map(d => `<tr><th scope="row">${esc(d.short[0].toUpperCase() + d.short.slice(1))}</th><td>×${+d.weight}</td></tr>`).join("")}</tbody></table>
-    <p class="hint">Read from the reckoner's own settings, so this table always matches the ranking. Your importance setting multiplies these: low ×0.5, high ×2.</p>`;
+  const cap = t => t[0].toUpperCase() + t.slice(1);
+  const weights = `<details class="why how-weights"><summary>See how much each question counts in the Detailed reckoner</summary>
+    <table class="weights"><thead><tr><th scope="col">Question</th><th scope="col">Counts</th></tr></thead><tbody>
+    ${DIMS.map(d => `<tr><th scope="row">${esc(cap(d.short))}</th><td>×${+d.weight}</td></tr>`).join("")}</tbody></table>
+    <p class="hint">Read from the reckoner's own settings, so this table always matches the ranking. Your importance setting multiplies these: low ×0.5, high ×2.</p></details>`;
   const routes = ROUTE_ORDER.map(id => meth.routes.find(r => r.id === id)).filter(Boolean);
-  el.innerHTML = `<div class="how-head"><h2 id="howTitle" tabindex="-1">How the reckoner works</h2>
-      <button type="button" class="ghost" id="howBack">Back</button></div>
+  // Sections in reading order; the contents bar is built from the same list, so it cannot miss one.
+  const SECS = [
+    ["glance", "At a glance", `<p class="hint">The diagram shows where every recommendation comes from.</p><template-slot></template-slot>`],
+    ["routes", "How each route decides", flipSection(`${plural(routes.length, "way")} into the reckoner. Turn a card to see how it decides.`,
+      routes.map((r, i) => flipCard({ id: r.id, cls: "how-route", num: i + 1, title: r.title, front: `<p class="route-sum">${esc(r.summary)}</p>`,
+        back: md(r.body), more: "How it decides", less: "Back to the summary" }))) + weights],
+    ["principles", "Principles", flipSection(`${plural(meth.principles.length, "idea")} the reckoner is built on. Turn a card to read it.`,
+      meth.principles.map((p, i) => flipCard({ id: `p-${p.id}`, num: i + 1, title: p.title,
+        back: md(p.body) + (p.referenceIds.length ? `<p class="hint">See ${p.referenceIds.map(cite).join("; ")}.</p>` : ""), more: "Read more", less: "Back to the title" })))],
+    ["review", "How content is made", `<p class="how-now">Right now: ${guided} of ${DATA.models.length} models have a companion guide; ${prov} ${prov === 1 ? "is" : "are"} provisional.${dates.length ? ` Guides were last reviewed ${dates[0] === dates[dates.length - 1] ? `on ${dates[0]}` : `between ${dates[0]} and ${dates[dates.length - 1]}`}.` : ""}</p>${md(meth.review)}`],
+    ["evidence", "Evidence strength", `<p class="hint">The label on each companion guide says how strong the research behind the model is.</p>
+      <div class="how-ev">${Object.entries(meth.evidenceStrength).map(([k, v]) => `<span class="badge b-evidence">Evidence: ${esc(k)}</span><p>${esc(v)}</p>`).join("")}</div>`],
+    ["limits", "What it does not do", `<ul class="tight">${meth.limits.map(l => `<li>${esc(l)}</li>`).join("")}</ul>`],
+    ["glossary", "Glossary", `<dl class="how-gloss">${meth.glossary.map(g => `<div><dt>${esc(g.term)}</dt><dd>${esc(g.definition)}</dd></div>`).join("")}</dl>`],
+    ...(meth.references.length ? [["refs", "References", `<ul class="refs">${meth.references.map(r => `<li id="how-ref-${r.id}">${esc(r.citation)}${r.doi ? ` <a href="https://doi.org/${esc(r.doi)}">https://doi.org/${esc(r.doi)}</a>` : r.url ? ` <a href="${esc(r.url)}">${esc(r.url)}</a>` : ""}</li>`).join("")}</ul>`]] : []),
+  ];
+  el.innerHTML = `<div class="how-head"><h2 id="howTitle" tabindex="-1">How the reckoner works</h2></div>
     ${meth.status === "published" ? "" : `<div class="warnbox"><p class="sub">Not yet reviewed</p><p>This page is ${meth.status === "in-review" ? "in review" : "a draft"}, included in this review copy only. Students do not see it until it is signed off.</p></div>`}
     <p class="lede">${esc(meth.intro.lead)}</p>${md(meth.intro.purpose)}
-    <h3>How each route decides</h3>
-    ${routes.map(r => `<section id="how-${r.id}"><h4>${esc(r.title)}</h4>${md(r.body)}${r.id === "detailed" ? weights : ""}</section>`).join("")}
-    <template-slot></template-slot>
-    <h3>Principles</h3>
-    ${meth.principles.map(p => `<section id="how-p-${p.id}"><h4>${esc(p.title)}</h4>${md(p.body)}${p.referenceIds.length ? `<p class="hint">See ${p.referenceIds.map(cite).join("; ")}.</p>` : ""}</section>`).join("")}
-    <h3>How content is made</h3>
-    <p class="hint">Right now: ${guided} of ${DATA.models.length} models have a companion guide; ${prov} ${prov === 1 ? "is" : "are"} provisional.${dates.length ? ` Guides were last reviewed ${dates[0] === dates[dates.length - 1] ? `on ${dates[0]}` : `between ${dates[0]} and ${dates[dates.length - 1]}`}.` : ""}</p>
-    ${md(meth.review)}
-    <h3>Evidence strength</h3>
-    <dl>${Object.entries(meth.evidenceStrength).map(([k, v]) => `<dt>${esc(k[0].toUpperCase() + k.slice(1))}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
-    <h3>What it does not do</h3><ul class="tight">${meth.limits.map(l => `<li>${esc(l)}</li>`).join("")}</ul>
-    <h3>Glossary</h3><dl>${meth.glossary.map(g => `<dt>${esc(g.term)}</dt><dd>${esc(g.definition)}</dd>`).join("")}</dl>
-    ${meth.references.length ? `<h3>References</h3><ul class="refs">${meth.references.map(r => `<li id="how-ref-${r.id}">${esc(r.citation)}${r.doi ? ` <a href="https://doi.org/${esc(r.doi)}">https://doi.org/${esc(r.doi)}</a>` : r.url ? ` <a href="${esc(r.url)}">${esc(r.url)}</a>` : ""}</li>`).join("")}</ul>` : ""}
+    <nav class="how-toc" aria-label="On this page"><button type="button" class="how-back" id="howBack">← Back</button>
+      <span class="sub">On this page</span><div class="how-pills">${SECS.map(([id, title]) => `<button type="button" class="pill-link" data-howjump="how-sec-${id}">${title}</button>`).join("")}</div></nav>
+    ${SECS.map(([id, title, inner]) => `<section class="how-sec" id="how-sec-${id}"><h3>${title}</h3>${inner}</section>`).join("")}
     <p class="hint">Methodology v${esc(meth.version)}, reviewed ${esc(meth.lastReviewed)}.</p>`;
   el.querySelector("template-slot").replaceWith(document.getElementById("howDiagram").content.cloneNode(true));
   document.getElementById("howBack").onclick = () => { location.hash = howFrom; };
-  el.querySelectorAll("[data-howref]").forEach(a => a.onclick = e => { e.preventDefault();
-    document.getElementById("how-ref-" + a.dataset.howref)?.scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "center" }); });
+  const jump = target => target?.scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" });
+  // A tapped pill is marked at once; scrolling then keeps the mark in step with what is being read.
+  el.querySelectorAll("[data-howjump]").forEach(b => b.onclick = () => { mark(b.dataset.howjump); jump(document.getElementById(b.dataset.howjump)); });
+  el.querySelectorAll("[data-howref]").forEach(a => a.onclick = e => { e.preventDefault(); jump(document.getElementById("how-ref-" + a.dataset.howref)); });
+
+  // Flip cards: the whole card turns on a click, except on a link, button or disclosure inside it
+  el.querySelectorAll(".flip").forEach(card => {
+    card.querySelectorAll(".flip-btn").forEach(b => b.onclick = e => { e.stopPropagation(); turnCard(card, card.dataset.flipped !== "true", true); });
+    card.onclick = e => { if (!e.target.closest("a, button, details")) turnCard(card, card.dataset.flipped !== "true", false); };
+  });
+  el.querySelectorAll("[data-flipall]").forEach(all => all.onclick = () => {
+    const on = all.getAttribute("aria-pressed") !== "true";
+    all.setAttribute("aria-pressed", on); all.textContent = on ? "Show fronts only" : "Show all";
+    all.closest("section").querySelectorAll(".flip").forEach(c => turnCard(c, on, false));
+  });
+
+  // Sticky contents bar: mark the section being read, and keep its pill in view on narrow screens.
+  howSpy?.disconnect();
+  const pills = new Map([...el.querySelectorAll("[data-howjump]")].map(b => [b.dataset.howjump, b]));
+  const mark = id => pills.forEach((b, k) => { const on = k === id; b.classList.toggle("on", on);
+    on ? b.setAttribute("aria-current", "location") : b.removeAttribute("aria-current");
+    if (on) b.parentElement.scrollTo?.({ left: b.offsetLeft - 8, behavior: reducedMotion() ? "auto" : "smooth" }); });
+  if (typeof IntersectionObserver === "function") {
+    howSpy = new IntersectionObserver(entries => {
+      const hit = entries.filter(x => x.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (hit) mark(hit.target.id);
+    }, { rootMargin: "-80px 0px -55% 0px" });
+    el.querySelectorAll("section.how-sec").forEach(sec => howSpy.observe(sec));
+  }
 }
+let howSpy = null;
 function showHow(route){
   renderHow();
   document.querySelectorAll(".panel").forEach(p => { const on = p.id === "p-how"; p.hidden = !on; p.classList.toggle("active", on); });
   const target = route && document.getElementById("how-" + route);
+  // Arriving from a result's "How it works" link: open that route's card at its detail
+  if (target?.classList.contains("flip")) turnCard(target, true, false);
   requestAnimationFrame(() => {
     (target || document.getElementById("p-how")).scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" });
     if (!target) document.getElementById("howTitle")?.focus({ preventScroll: true });
@@ -164,6 +230,7 @@ function showHow(route){
 }
 /** Leaving How it works: show the selected tab's panel again, without touching the hash. */
 function leaveHow(){
+  howSpy?.disconnect();
   if (document.getElementById("p-how").hidden) return;
   const t = tabs.find(x => x.getAttribute("aria-selected") === "true") || tabs[0];
   selectTab(t, false);
@@ -982,7 +1049,7 @@ addEventListener("keydown", e => { if (e.key === "Escape" && !tourEl.hidden) clo
 let printing = false, printRestore = null;
 addEventListener("beforeprint", () => {
   printing = true;
-  const closed = [...document.querySelectorAll("details.sec:not([open])")];
+  const closed = [...document.querySelectorAll("details.sec:not([open]), #howBody details:not([open])")];
   closed.forEach(d => d.open = true);
   printRestore = () => closed.forEach(d => d.open = false);
 });

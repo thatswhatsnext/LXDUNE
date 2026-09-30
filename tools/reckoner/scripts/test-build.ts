@@ -172,6 +172,11 @@ const cases: [string, () => void | Promise<void>][] = [
     const f = join(contentDir, "methodology.yaml");
     const m = yaml.load(readFileSync(f, "utf8")) as any;
     const lead = m.intro.lead as string;
+    // Start from a draft copy, whatever the committed file's status
+    m.status = "draft";
+    m.provenance = { ...m.provenance, source: "ai-generated", reviewedBy: [] };
+    delete m.provenance.reviewedOn;
+    writeFileSync(f, yaml.dump(m));
     const builds = (tag: string) => {
       const out = (mode: string) => join(tmp, `meth-${tag}-${mode}`);
       buildSite({ mode: "site", outDir: out("site"), contentDir, log: quiet });
@@ -186,7 +191,6 @@ const cases: [string, () => void | Promise<void>][] = [
       };
     };
     const draft = builds("draft");
-    if (m.status === "published") throw new Error("expected the committed methodology to be a draft");
     if ("methodology" in draft.manifest) throw new Error("draft methodology in the site manifest");
     if (draft.single.includes(lead)) throw new Error("draft methodology in the single-file build");
     if (!draft.review.includes(lead)) throw new Error("draft methodology missing from the review copy");
@@ -210,11 +214,22 @@ const cases: [string, () => void | Promise<void>][] = [
     if (!doc.getElementById("howFoot")) throw new Error("no footer link");
     dom.window.location.hash = "#/how-it-works/detailed";
     await wait(() => !doc.getElementById("p-how").hidden, "the How it works page");
-    const routes = [...doc.querySelectorAll("#howBody section[id^='how-']")].map((s: any) => s.id).filter((id: string) => !id.startsWith("how-p-"));
+    const routes = [...doc.querySelectorAll("#howBody .how-route")].map((s: any) => s.id);
+    const toc = doc.querySelectorAll("#howBody [data-howjump]").length, secs = doc.querySelectorAll("#howBody section.how-sec").length;
+    if (!secs || toc !== secs) throw new Error(`contents bar has ${toc} links for ${secs} sections`);
     if (routes.join() !== "how-unit,how-three-taps,how-quick,how-detailed,how-rules,how-dial") throw new Error(`routes: ${routes.join()}`);
     if (doc.querySelectorAll("#howBody table.weights tbody tr").length !== doc.querySelectorAll("#detailForm fieldset").length) throw new Error("weights table does not list every question");
     if (!doc.querySelector("#howBody svg[role=img]")) throw new Error("no diagram");
     if (doc.querySelector(".tab[aria-selected=true]")?.id !== "t-unit") throw new Error("the selected tab changed");
+    if ((doc.getElementById("how-detailed") as any).dataset.flipped !== "true") throw new Error("arriving at #/how-it-works/detailed did not turn its card");
+    const card = doc.querySelector("#how-unit") as any;
+    if (!card || !card.querySelector(".back").hasAttribute("inert")) throw new Error("a principle card's back is not inert before it is turned");
+    card.querySelector(".front .flip-btn").click();
+    if (card.dataset.flipped !== "true" || card.querySelector(".back").hasAttribute("inert") || !card.querySelector(".front").hasAttribute("inert"))
+      throw new Error("Read more did not turn the card");
+    (doc.querySelector("#how-sec-principles [data-flipall]") as any).click();
+    if ([...doc.querySelectorAll("#how-sec-principles .flip")].some((c: any) => c.dataset.flipped !== "true")) throw new Error("Show all did not turn every principle card");
+    if ((doc.getElementById("how-quick") as any).dataset.flipped === "true") throw new Error("Show all in Principles turned a route card");
     (doc.getElementById("howBack") as any).click();
     await wait(() => doc.getElementById("p-how").hidden && !doc.getElementById("p-unit").hidden, "Back to the selected tab");
     dom.window.close();
