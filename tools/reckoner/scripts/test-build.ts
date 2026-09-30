@@ -5,6 +5,7 @@
  *
  *   npm test   (runs after the schema rule tests)
  */
+import { createHash } from "node:crypto";
 import { cpSync, existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -40,6 +41,8 @@ const tmp = mkdtempSync(join(tmpdir(), "reckoner-test-"));
 const quiet = () => {};
 const guideIds = readdirSync(join(PKG_ROOT, "content", "guides")).filter((f) => f.endsWith(".yaml")).map((f) => f.replace(/\.yaml$/, "")).sort();
 const SECTION_COUNT = 10;
+/** Hash of every watch-out and nesting text for fixed answers; see the rules test. */
+const RULES_HASH = "f928e6d457994b16";
 
 const read = (dir: string) =>
   Object.fromEntries(
@@ -215,6 +218,44 @@ const cases: [string, () => void | Promise<void>][] = [
     const page = await openPage(join(tmp, "single", "index.html"));
     await checkGuides(page, guideIds);
     page.dom.window.close();
+  }],
+  ["watch-out and nesting rules fire word for word as before", async () => {
+    // Every model against 49 fixed answer sets (each option alone, plus two combinations). The hash is of the
+    // rule texts from before the rules carried their triggers; change it only when rule wording changes on purpose.
+    const page = await openPage(join(tmp, "single", "index.html"));
+    const snap = page.dom.window.eval(`(() => {
+      const blank = () => Object.fromEntries(DIMS.map(d => [d.id, d.multi ? [] : null]));
+      const sets = [];
+      DIMS.forEach(d => d.options.forEach(([v]) => { const a = blank(); a[d.id] = d.multi ? [v] : v; sets.push(a); }));
+      sets.push(Object.assign(blank(), { purpose: ["reason"], ws: ["8"], ready: "novice", time: "short", conf: "low", res: "none", lang: "high", misc: "robust", concept: "abstract", place: "yes" }));
+      sets.push(Object.assign(blank(), { concept: "value", time: "lesson", ready: "novice" }));
+      const txt = x => typeof x === "string" ? x : x.text;
+      return JSON.stringify(sets.map(a => DATA.models.map(m => [m.id, watchOuts(m, a).map(txt), nesting(m, a).map(n => txt(n) + (n.guide ? "|" + n.guide : ""))])));
+    })()`);
+    const hash = createHash("sha256").update(snap).digest("hex").slice(0, 16);
+    if (hash !== RULES_HASH) throw new Error(`rule texts changed (hash ${hash}, expected ${RULES_HASH})`);
+    page.dom.window.close();
+  }],
+  ["show the working totals equal the card percentages", async () => {
+    const page = await openPage(join(tmp, "single", "index.html"));
+    const { doc, dom } = page;
+    const pick = (name: string, value: string) => {
+      const el = doc.querySelector(`#detailForm input[name="${name}"][value="${value}"]`) as any;
+      el.checked = true; el.dispatchEvent(new dom.window.Event("change", { bubbles: true }));
+    };
+    pick("d-purpose", "misc"); pick("d-purpose", "model"); pick("d-time", "unit"); pick("d-ready", "novice"); pick("d-misc", "robust"); pick("d-place", "yes");
+    const imp = doc.querySelector('#detailForm [data-imp="time"]') as any;
+    imp.value = "2"; imp.dispatchEvent(new dom.window.Event("change", { bubbles: true }));
+    const cards = [...doc.querySelectorAll("#topCards article")] as any[];
+    if (cards.length !== 3) throw new Error(`${cards.length} top cards`);
+    for (const c of cards) {
+      const card = c.querySelector(".fitnum").textContent.replace("fit", "").trim();
+      const work = c.querySelector("table.work tfoot strong")?.textContent;
+      if (card !== work) throw new Error(`${c.querySelector("h3").textContent}: card ${card}, working ${work}`);
+      if (c.querySelectorAll("table.work tbody tr").length !== 5) throw new Error("expected one row per answered question (5)");
+    }
+    if (!doc.querySelector("#topCards .b-rule")) throw new Error("no Rule label on the watch-outs or nesting lines");
+    dom.window.close();
   }],
   ["the page reports missing data instead of failing silently", async () => {
     rmSync(join(tmp, "b", "data", "manifest.json"));

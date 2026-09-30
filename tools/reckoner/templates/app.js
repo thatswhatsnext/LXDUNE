@@ -176,23 +176,47 @@ function fit(m,a,imp){ let num=0, den=0;
   return den ? num/den : null; }
 const rankAll = (a,imp) => RANKED.map(m => ({ m, f: fit(m,a,imp) })).filter(x => x.f !== null).sort((x,y) => y.f - x.f);
 const has = (a,id,v) => Array.isArray(a[id]) ? a[id].includes(v) : a[id] === v;
+/** The answer that fired a rule, for its "Rule" label: you chose “Novice” for learner readiness. */
+const chose = (id, v) => `you chose “${optLabel(id, v)}” for ${dimById[id].short}`;
+/* Watch-outs and nesting are hand-written rules, not part of the score. Each line carries the answer that triggered it. */
 function watchOuts(m,a){ const W = [];
-  if (["pbl","project-based","interactive-approach"].includes(m.id) && a.ready==="novice") W.push("Novice learners: high cognitive load risk. Scaffold heavily, or start with a more structured model.");
-  if (["pbl","project-based","ast","interactive-approach","7e"].includes(m.id) && (a.time==="lesson"||a.time==="short")) W.push("This model needs a longer run than you have. Consider a shorter model or extend the sequence.");
-  if (a.conf==="low" && ["ast","pbl","project-based","interactive-approach","case","glm"].includes(m.id)) W.push("Demanding to facilitate. Script your key questions, and observe or co-teach with a colleague first if you can.");
-  if (a.res==="none" && ["design-cycle","learning-cycle","adi","interactive-approach"].includes(m.id)) W.push("Relies on hands-on work. Substitute simulations or secondary data sets.");
-  if (a.lang==="high" && ["glm","case","ssi","adi","pbl"].includes(m.id)) W.push("Talk- and text-heavy. Add sentence frames, vocabulary pre-teaching or an SWH template.");
-  if (a.misc==="robust" && ["pbl","project-based","design-cycle","ssi","interactive-approach"].includes(m.id)) W.push("Does not target misconceptions directly. Embed a POE early in the sequence.");
-  if (a.concept==="abstract" && ["design-cycle","learning-cycle","interactive-approach"].includes(m.id)) W.push("Abstract concept: add an explicit modelling task so students can represent what they cannot see.");
-  if (a.concept==="value" && m.id!=="ssi") W.push("Value-laden topic: include an SSI deliberation, for example in the application phase.");
+  if (["pbl","project-based","interactive-approach"].includes(m.id) && a.ready==="novice") W.push({ text:"Novice learners: high cognitive load risk. Scaffold heavily, or start with a more structured model.", because:chose("ready",a.ready) });
+  if (["pbl","project-based","ast","interactive-approach","7e"].includes(m.id) && (a.time==="lesson"||a.time==="short")) W.push({ text:"This model needs a longer run than you have. Consider a shorter model or extend the sequence.", because:chose("time",a.time) });
+  if (a.conf==="low" && ["ast","pbl","project-based","interactive-approach","case","glm"].includes(m.id)) W.push({ text:"Demanding to facilitate. Script your key questions, and observe or co-teach with a colleague first if you can.", because:chose("conf",a.conf) });
+  if (a.res==="none" && ["design-cycle","learning-cycle","adi","interactive-approach"].includes(m.id)) W.push({ text:"Relies on hands-on work. Substitute simulations or secondary data sets.", because:chose("res",a.res) });
+  if (a.lang==="high" && ["glm","case","ssi","adi","pbl"].includes(m.id)) W.push({ text:"Talk- and text-heavy. Add sentence frames, vocabulary pre-teaching or an SWH template.", because:chose("lang",a.lang) });
+  if (a.misc==="robust" && ["pbl","project-based","design-cycle","ssi","interactive-approach"].includes(m.id)) W.push({ text:"Does not target misconceptions directly. Embed a POE early in the sequence.", because:chose("misc",a.misc) });
+  if (a.concept==="abstract" && ["design-cycle","learning-cycle","interactive-approach"].includes(m.id)) W.push({ text:"Abstract concept: add an explicit modelling task so students can represent what they cannot see.", because:chose("concept",a.concept) });
+  if (a.concept==="value" && m.id!=="ssi") W.push({ text:"Value-laden topic: include an SSI deliberation, for example in the application phase.", because:chose("concept",a.concept) });
   return W.slice(0,3); }
 function nesting(m,a){ const N = [];
-  if (a.misc==="robust" && m.id!=="poe") N.push({ text:"Open with a Predict–Observe–Explain to surface and challenge the target misconception.", guide:"poe" });
-  if (has(a,"ws","8") && !["adi","swh"].includes(m.id)) N.push({ text:"Add a Science Writing Heuristic template or an ADI argumentation session to the sense-making phase (WS-08)." });
-  if (a.concept==="abstract" && m.id!=="ast") N.push({ text:"Add a model-drafting and revision task, borrowed from Ambitious Science Teaching." });
-  if (has(a,"purpose","reason") && m.id!=="case") N.push({ text:"Run a CASE-style lesson on the reasoning pattern before the main investigation." });
-  if (a.place==="yes") N.push({ text:"Build a place-based context developed with local Aboriginal community, through your school’s Aboriginal Education staff." });
+  if (a.misc==="robust" && m.id!=="poe") N.push({ text:"Open with a Predict–Observe–Explain to surface and challenge the target misconception.", guide:"poe", because:chose("misc",a.misc) });
+  if (has(a,"ws","8") && !["adi","swh"].includes(m.id)) N.push({ text:"Add a Science Writing Heuristic template or an ADI argumentation session to the sense-making phase (WS-08).", because:chose("ws","8") });
+  if (a.concept==="abstract" && m.id!=="ast") N.push({ text:"Add a model-drafting and revision task, borrowed from Ambitious Science Teaching.", because:chose("concept",a.concept) });
+  if (has(a,"purpose","reason") && m.id!=="case") N.push({ text:"Run a CASE-style lesson on the reasoning pattern before the main investigation.", because:chose("purpose","reason") });
+  if (a.place==="yes") N.push({ text:"Build a place-based context developed with local Aboriginal community, through your school’s Aboriginal Education staff.", because:chose("place",a.place) });
   return N; }
+const ruleTag = r => `<span class="rule-tag"><span class="badge b-rule">Rule</span> because ${esc(r.because)}</span>`;
+/**
+ * "Show the working": every term in fit() for one model, one row per answered question.
+ * Reads dimScore() and the same weights fit() uses; the total row shows fit() itself.
+ */
+function working(m,a,imp,f){
+  const num = n => String(+n.toFixed(2));
+  const rows = DIMS.map(d => ({ d, s: dimScore(m,d,a), w: d.weight*imp[d.id] })).filter(r => r.s !== null);
+  const total = rows.reduce((t,r) => t + r.w*r.s, 0), max = rows.reduce((t,r) => t + r.w*3, 0);
+  const IMP = { 0.5: "low", 1: "", 2: "high" };
+  return `<details class="why working"><summary>Show the working</summary>
+    <div class="table-scroll"><table class="work"><thead><tr><th scope="col">Question</th><th scope="col">Your answer</th><th scope="col">Fit (0–3)</th><th scope="col">Weight</th><th scope="col">Points</th><th scope="col">Share</th></tr></thead><tbody>
+    ${rows.map(({d,s,w}) => `<tr><th scope="row">${esc(d.short[0].toUpperCase()+d.short.slice(1))}</th>
+      <td>${esc(d.multi ? a[d.id].map(v => optLabel(d.id,v)).join("; ") : optLabel(d.id,a[d.id]))}</td>
+      <td>${num(s)}${d.multi && a[d.id].length > 1 ? ` <small>(mean)</small>` : ""}</td>
+      <td>${num(d.weight)}${imp[d.id] !== 1 ? ` × ${num(imp[d.id])} <small>(${IMP[imp[d.id]]} importance)</small>` : ""}</td>
+      <td>${num(w*s)} of ${num(w*3)}</td><td>${total ? Math.round(w*s/total*100) : 0}%</td></tr>`).join("")}
+    </tbody><tfoot><tr><th scope="row">Fit</th><td colspan="3"></td><td>${num(total)} of ${num(max)}</td><td><strong>${Math.round(f*100)}%</strong></td></tr></tfoot></table></div>
+    <p class="hint">Points are fit × weight; the fit percentage is total points out of the maximum. Share is each question’s part of the points. Questions you left blank are not counted.</p>
+    ${m.hasGuide ? "" : `<p class="hint">Provisional: this model’s scores have not yet been checked against a companion guide.</p>`}</details>`;
+}
 function reasons(m,a){ const strong=[], weak=[];
   DIMS.forEach(d => { const s = dimScore(m,d,a); if (s===null) return;
     const ans = d.multi ? a[d.id].map(v => optLabel(d.id,v)).join(", ") : optLabel(d.id,a[d.id]);
@@ -274,8 +298,9 @@ function renderDetail(){
       <div style="display:flex;gap:.8rem;align-items:flex-start">${badge(m.scale)}<div class="fitnum">${Math.round(x.f*100)}%<small>fit</small></div></div></div>
       ${rs.strong.length?`<p class="sub" style="margin-top:.8rem">Why this fits</p><ul class="tight">${rs.strong.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>`:""}
       ${rs.weak.length?`<p class="sub">Less suited to</p><ul class="tight">${rs.weak.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>`:""}
-      ${W.length?`<div class="warnbox"><p class="sub">Watch-outs</p><ul class="tight">${W.map(s=>`<li>${esc(s)}</li>`).join("")}</ul></div>`:""}
-      ${N.length?`<p class="sub">Nest inside it</p><ul class="tight">${N.map(n=>`<li>${esc(n.text)}${n.guide&&G[n.guide]?` <button class="ghost" style="padding:.1rem .5rem;font-size:.8rem" type="button" onclick="openGuide('${n.guide}')">Open guide</button>`:""}</li>`).join("")}</ul>`:""}
+      ${working(m,a,imp,x.f)}
+      ${W.length?`<div class="warnbox"><p class="sub">Watch-outs</p><ul class="tight">${W.map(w=>`<li>${esc(w.text)} ${ruleTag(w)}</li>`).join("")}</ul></div>`:""}
+      ${N.length?`<p class="sub">Nest inside it</p><ul class="tight">${N.map(n=>`<li>${esc(n.text)} ${ruleTag(n)}${n.guide&&G[n.guide]?` <button class="ghost" style="padding:.1rem .5rem;font-size:.8rem" type="button" onclick="openGuide('${n.guide}')">Open guide</button>`:""}</li>`).join("")}</ul>`:""}
       ${i===0&&sens.length?`<p class="sub">If one answer changed</p><ul class="tight">${sens.map(o=>`<li>If ${esc(o.d.short)} were “${esc(optLabel(o.d.id,o.v))}”, ${esc(o.m.name)} would rank first.</li>`).join("")}</ul>`:""}
       ${modelBody(m)}${i===0 ? feedbackLine("Was this useful?") : ""}</article>`; }).join("");
 }
