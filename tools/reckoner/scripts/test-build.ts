@@ -163,6 +163,41 @@ const cases: [string, () => void | Promise<void>][] = [
     writeFileSync(join(dir, "poe.yaml"), "id: poe\nname: [unclosed\n");
     expectReadable(/^poe\.yaml: YAML syntax error\n  .*\(line \d+, column \d+\)/);
   }],
+  ["a draft methodology appears only in review copies; a published one appears everywhere", () => {
+    const contentDir = join(tmp, "content-meth");
+    cpSync(join(PKG_ROOT, "content"), contentDir, { recursive: true });
+    const f = join(contentDir, "methodology.yaml");
+    const m = yaml.load(readFileSync(f, "utf8")) as any;
+    const lead = m.intro.lead as string;
+    const builds = (tag: string) => {
+      const out = (mode: string) => join(tmp, `meth-${tag}-${mode}`);
+      buildSite({ mode: "site", outDir: out("site"), contentDir, log: quiet });
+      buildSite({ mode: "single", outDir: out("single"), contentDir, log: quiet });
+      buildSite({ mode: "review", reviewId: "5e", outDir: out("review"), contentDir, log: quiet });
+      const site = read(out("site"));
+      return {
+        guides: Object.fromEntries(Object.entries(site).filter(([k]) => k.startsWith(join("data", "guides")))),
+        manifest: JSON.parse(site[join("data", "manifest.json")]),
+        single: readFileSync(join(out("single"), "index.html"), "utf8"),
+        review: readFileSync(join(out("review"), "5e-review.html"), "utf8"),
+      };
+    };
+    const draft = builds("draft");
+    if (m.status === "published") throw new Error("expected the committed methodology to be a draft");
+    if ("methodology" in draft.manifest) throw new Error("draft methodology in the site manifest");
+    if (draft.single.includes(lead)) throw new Error("draft methodology in the single-file build");
+    if (!draft.review.includes(lead)) throw new Error("draft methodology missing from the review copy");
+
+    m.status = "published";
+    m.provenance = { ...m.provenance, source: "ai-drafted-reviewed", reviewedBy: ["Test Reviewer"], reviewedOn: "2026-09-30" };
+    writeFileSync(f, yaml.dump(m));
+    const pub = builds("published");
+    if (pub.manifest.methodology?.intro?.lead !== lead) throw new Error("published methodology missing from the site manifest");
+    if (!pub.single.includes(lead)) throw new Error("published methodology missing from the single-file build");
+    if (!pub.review.includes(lead)) throw new Error("published methodology missing from the review copy");
+    if (JSON.stringify(pub.guides) !== JSON.stringify(draft.guides) || !Object.keys(draft.guides).length)
+      throw new Error("guide data files changed with the methodology's status");
+  }],
   ["a review of an unknown guide id fails clearly", () => {
     try { buildSite({ mode: "review", reviewId: "nope", outDir: join(tmp, "x"), log: quiet }); }
     catch (e) { if (/No guide with id "nope"/.test((e as Error).message)) return; throw e; }

@@ -8,6 +8,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import yaml from "js-yaml";
 import { ModelGuide } from "../src/schema/model-guide";
+import { Methodology } from "../src/schema/methodology";
 import { checkModelIds, loadIdInputs } from "./validate";
 
 const load = (id: string) => () => yaml.load(readFileSync(join(__dirname, "..", `content/guides/${id}.yaml`), "utf8")) as any;
@@ -88,6 +89,26 @@ for (const [name, mutate, expect] of idCases) {
   if (!ok) failed++;
   console.log(`${ok ? "✓" : "✗"} ${name}${ok ? "" : `  (got: ${msgs || "no errors"})`}`);
 }
+
+// Methodology (content/methodology.yaml): each case breaks an in-memory copy
+const meth = () => yaml.load(readFileSync(join(__dirname, "..", "content", "methodology.yaml"), "utf8")) as any;
+const methCases: [string, (m: any) => void, RegExp][] = [
+  ["a methodology missing a route fails", (m) => (m.routes = m.routes.filter((r: any) => r.id !== "rules")), /Missing route "rules"/],
+  ["a methodology with a duplicate route fails", (m) => m.routes.push({ ...m.routes[0] }), /Route "unit" appears 2 times/],
+  ["an unresolved methodology reference fails", (m) => m.principles[0].referenceIds.push("not-a-ref"), /Unknown reference "not-a-ref"/],
+  ["publishing an unreviewed methodology is blocked", (m) => { m.status = "published"; m.provenance = { source: "ai-generated", authors: ["Claude"], reviewedBy: [] }; }, /Published methodology must be reviewed/],
+];
+for (const [name, mutate, expect] of methCases) {
+  const m = meth(); mutate(m);
+  const r = Methodology.safeParse(m);
+  const msgs = r.success ? "" : r.error.issues.map((i) => i.message).join(" | ");
+  const ok = !r.success && expect.test(msgs);
+  if (!ok) failed++;
+  console.log(`${ok ? "✓" : "✗"} ${name}${ok ? "" : `  (got: ${msgs || "valid"})`}`);
+}
+const methClean = Methodology.safeParse(meth());
+if (!methClean.success) failed++;
+console.log(`${methClean.success ? "✓" : "✗"} unmodified methodology is valid${methClean.success ? "" : `  (${methClean.error.issues.map((i) => i.message).join(" | ")})`}`);
 
 // Every guide on disk, so adding a guide adds its check automatically
 const guidesDir = join(__dirname, "..", "content", "guides");

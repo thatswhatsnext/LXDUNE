@@ -22,6 +22,7 @@ import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "nod
 import { dirname, join } from "node:path";
 import yaml from "js-yaml";
 import { ModelGuide } from "../../src/schema/model-guide";
+import { Methodology } from "../../src/schema/methodology";
 import { FIT_DIMENSIONS, FIT_DIMENSION_KEYS } from "../../src/schema/fit-dimensions";
 import { FOCUS_AREAS } from "../../src/schema/syllabus";
 
@@ -50,24 +51,28 @@ const hash = (s: string) => createHash("sha256").update(s).digest("hex").slice(0
 const inlineJson = (v: unknown) => JSON.stringify(v).replace(/</g, "\\u003c");
 
 /**
- * Parse one guide file. An invalid guide throws a single readable Error naming the file and
- * listing each issue as "path: message", the same format `npm run validate` prints.
+ * Parse one YAML content file against its schema. An invalid file throws a single readable Error
+ * naming the file and listing each issue as "path: message", the same format `npm run validate` prints.
  */
-function parseGuide(guidesDir: string, file: string): ModelGuide {
+function parseYaml<T>(dir: string, file: string, schema: { safeParse(v: unknown): any }, what: string): T {
   let raw: unknown;
   try {
-    raw = yaml.load(readFileSync(join(guidesDir, file), "utf8"));
+    raw = yaml.load(readFileSync(join(dir, file), "utf8"));
   } catch (e: any) {
+    if (e.code === "ENOENT") throw new Error(`${file}: file not found in ${dir}`);
     const where = e.mark ? ` (line ${e.mark.line + 1}, column ${e.mark.column + 1})` : "";
     throw new Error(`${file}: YAML syntax error\n  ${e.reason || e.message}${where}\n  Run npm run validate for details.`);
   }
-  const result = ModelGuide.safeParse(raw);
+  const result = schema.safeParse(raw);
   if (!result.success) {
-    const issues = result.error.issues.map((i) => `  ${i.path.join(".") || "(root)"}: ${i.message}`).join("\n");
-    throw new Error(`${file}: invalid guide (${result.error.issues.length} issue${result.error.issues.length === 1 ? "" : "s"})\n${issues}`);
+    const issues = result.error.issues.map((i: any) => `  ${i.path.join(".") || "(root)"}: ${i.message}`).join("\n");
+    throw new Error(`${file}: invalid ${what} (${result.error.issues.length} issue${result.error.issues.length === 1 ? "" : "s"})\n${issues}`);
   }
   return result.data;
 }
+const parseGuide = (guidesDir: string, file: string) => parseYaml<ModelGuide>(guidesDir, file, ModelGuide, "guide");
+/** content/methodology.yaml, the prose behind the "How it works" page. */
+export const loadMethodology = (contentDir: string) => parseYaml<Methodology>(contentDir, "methodology.yaml", Methodology, "methodology");
 
 export function loadGuides(guidesDir: string, includeDrafts: boolean, log: (m: string) => void) {
   return readdirSync(guidesDir)
@@ -96,6 +101,10 @@ export function buildSite(opts: BuildOptions): BuildResult {
 
   const catalogue = JSON.parse(readFileSync(join(contentDir, "catalogue.json"), "utf8"));
   const questions = JSON.parse(readFileSync(join(contentDir, "questions.json"), "utf8"));
+  // Published methodology reaches students; a draft appears only in review copies, like a draft guide.
+  const methodology = loadMethodology(contentDir);
+  const showMethodology = methodology.status === "published" || review;
+  if (!showMethodology) log(`! skipping methodology: status is ${methodology.status}`);
 
   /** Reckoner entry from an authored guide: fit profile arrays become the digit strings the UI uses. */
   const fromGuide = (g: ModelGuide) => ({
@@ -132,6 +141,7 @@ export function buildSite(opts: BuildOptions): BuildResult {
     models,
     focusAreas: FOCUS_AREAS,
     focusIndex: buildFocusIndex(guides),
+    ...(showMethodology ? { methodology } : {}),
   };
 
   const template = readFileSync(join(templatesDir, "app.html"), "utf8");
