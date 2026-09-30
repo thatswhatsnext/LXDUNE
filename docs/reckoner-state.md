@@ -13,7 +13,7 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Models still in the catalogue (no guide) | 9 |
 | Draft or in-review guides (not shown to students) | 0 |
 | Examples across published guides | 58 (29 positive, 29 negative) |
-| Worked sequences | 17 |
+| Worked sequences | 20 |
 | Focus areas with a ready plan / examples only / empty | 16 / 0 / 0 of 16 |
 | **Next action-plan item number** | **44** |
 
@@ -26,10 +26,10 @@ no bump for a cross-reference (nesting) line only.
 |---|---|---|---|---|---|---|---|
 | 5E | `5e` | Unit architecture | 1.2.0 | 2026-09-30 | 5 | 14 | `seq-s4-forces`, `seq-s4-cells`, `seq-s5-disease`, `seq-s4-elements`, `seq-s5-rates`, `seq-s5-motion` |
 | 7E | `7e` | Unit architecture | 1.1.0 | 2026-09-30 | 7 in 3 groups | 6 | `7e-seq-s5-energy`, `7e-seq-s4-moon`, `7e-seq-s5-evolution` |
-| Argument-Driven Inquiry | `adi` | Multi-lesson routine | 1.1.1 | 2026-09-28 | 8 in 3 groups | 8 | `seq-s5-microhabitats` |
+| Argument-Driven Inquiry | `adi` | Multi-lesson routine | 1.2.0 | 2026-09-30 | 8 in 3 groups | 8 | `seq-s5-microhabitats`, `seq-s5-sound` |
 | Levels of inquiry | `levels-of-inquiry` | Guidance dial | 1.2.0 | 2026-09-30 | 4 | 10 | `seq-s4-progression`, `seq-s4-reaction-time` |
-| Predict–Observe–Explain | `poe` | Single lesson | 1.2.0 | 2026-09-30 | 3 | 12 | `ep-s4-yeast`, `ep-s5-handwashing`, `ep-s4-steel-wool` |
-| Science Writing Heuristic | `swh` | Multi-lesson routine | 1.1.0 | 2026-09-30 | 7 in 3 groups | 8 | `swh-seq-s5-bottles`, `swh-seq-s4-separation` |
+| Predict–Observe–Explain | `poe` | Single lesson | 1.3.0 | 2026-09-30 | 3 | 12 | `ep-s4-yeast`, `ep-s5-handwashing`, `ep-s4-steel-wool`, `ep-s4-freeze-thaw` |
+| Science Writing Heuristic | `swh` | Multi-lesson routine | 1.2.0 | 2026-09-30 | 7 in 3 groups | 8 | `swh-seq-s5-bottles`, `swh-seq-s4-separation`, `swh-seq-s5-duckweed` |
 
 ## Models without a guide
 
@@ -82,15 +82,15 @@ What "Start with your unit" shows for each NSW Science 7–10 (2023) focus area.
 | Stage 4 | Solutions and mixtures | Ready plan | `swh:swh-seq-s4-separation` | 9 |
 | Stage 4 | Living systems | Ready plan | `levels-of-inquiry:seq-s4-progression`, `poe:ep-s4-yeast` | 8 |
 | Stage 4 | Periodic table and atomic structure | Ready plan | `5e:seq-s4-elements` | 2 |
-| Stage 4 | Change | Ready plan | `poe:ep-s4-steel-wool` | 4 |
+| Stage 4 | Change | Ready plan | `poe:ep-s4-steel-wool`, `poe:ep-s4-freeze-thaw` | 4 |
 | Stage 4 | Data science 1 | Ready plan | `levels-of-inquiry:seq-s4-reaction-time` | 2 |
 | Stage 5 | Energy | Ready plan | `7e:7e-seq-s5-energy` | 6 |
 | Stage 5 | Disease | Ready plan | `5e:seq-s5-disease`, `poe:ep-s5-handwashing` | 3 |
 | Stage 5 | Materials | Ready plan | `swh:swh-seq-s5-bottles` | 5 |
-| Stage 5 | Environmental sustainability | Ready plan | `adi:seq-s5-microhabitats` | 8 |
+| Stage 5 | Environmental sustainability | Ready plan | `adi:seq-s5-microhabitats`, `swh:swh-seq-s5-duckweed` | 8 |
 | Stage 5 | Genetics and evolutionary change | Ready plan | `7e:7e-seq-s5-evolution` | 2 |
 | Stage 5 | Reactions | Ready plan | `5e:seq-s5-rates` | 3 |
-| Stage 5 | Waves and motion | Ready plan | `5e:seq-s5-motion` | 4 |
+| Stage 5 | Waves and motion | Ready plan | `5e:seq-s5-motion`, `adi:seq-s5-sound` | 4 |
 | Stage 5 | Data science 2 | Ready plan | `5e:seq-s5-disease` | 0 |
 
 ## Phases with no examples
