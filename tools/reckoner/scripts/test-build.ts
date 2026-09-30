@@ -201,6 +201,24 @@ const cases: [string, () => void | Promise<void>][] = [
     if (JSON.stringify(pub.guides) !== JSON.stringify(draft.guides) || !Object.keys(draft.guides).length)
       throw new Error("guide data files changed with the methodology's status");
   }],
+  ["How it works appears only with a published methodology, and Back restores the tab", async () => {
+    const draft = await openPage(join(tmp, "meth-draft-single", "index.html"));
+    if (draft.doc.getElementById("howFoot") || draft.doc.querySelector(".how-link")) throw new Error("How it works link shown for a draft methodology");
+    draft.dom.window.close();
+    const page = await openPage(join(tmp, "meth-published-single", "index.html"));
+    const { doc, dom } = page;
+    if (!doc.getElementById("howFoot")) throw new Error("no footer link");
+    dom.window.location.hash = "#/how-it-works/detailed";
+    await wait(() => !doc.getElementById("p-how").hidden, "the How it works page");
+    const routes = [...doc.querySelectorAll("#howBody section[id^='how-']")].map((s: any) => s.id).filter((id: string) => !id.startsWith("how-p-"));
+    if (routes.join() !== "how-unit,how-three-taps,how-quick,how-detailed,how-rules,how-dial") throw new Error(`routes: ${routes.join()}`);
+    if (doc.querySelectorAll("#howBody table.weights tbody tr").length !== doc.querySelectorAll("#detailForm fieldset").length) throw new Error("weights table does not list every question");
+    if (!doc.querySelector("#howBody svg[role=img]")) throw new Error("no diagram");
+    if (doc.querySelector(".tab[aria-selected=true]")?.id !== "t-unit") throw new Error("the selected tab changed");
+    (doc.getElementById("howBack") as any).click();
+    await wait(() => doc.getElementById("p-how").hidden && !doc.getElementById("p-unit").hidden, "Back to the selected tab");
+    dom.window.close();
+  }],
   ["a review of an unknown guide id fails clearly", () => {
     try { buildSite({ mode: "review", reviewId: "nope", outDir: join(tmp, "x"), log: quiet }); }
     catch (e) { if (/No guide with id "nope"/.test((e as Error).message)) return; throw e; }

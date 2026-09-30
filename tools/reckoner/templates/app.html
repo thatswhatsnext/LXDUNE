@@ -266,6 +266,19 @@ details.sec[open] > summary::before{content:"\25BE"}
 .tour-target{outline:3px solid var(--accent);outline-offset:4px;border-radius:8px}
 footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted);font-size:.88rem}
 footer .feedback{color:inherit;font-size:inherit;margin:.4rem 0} footer .feedback a{font-weight:700}
+.how h3{margin-top:1.4rem} .how section{scroll-margin-top:1rem}
+.how-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap}
+.how dl{margin:.4rem 0} .how dt{font-weight:600;margin-top:.6rem} .how dd{margin:.1rem 0 0}
+.how .refs li{margin:.35rem 0}
+.how-diagram{margin:1rem 0;max-width:34rem} .how-diagram svg{width:100%;height:auto;display:block}
+.how-diagram figcaption{color:var(--muted);font-size:.85rem;margin-top:.4rem}
+.dg-box rect{fill:var(--surface);stroke:var(--muted);stroke-width:1.2} .dg-box rect.dg-key{fill:var(--accent-soft);stroke:var(--accent)}
+.dg-box rect.dg-prov{stroke-dasharray:5 4;stroke:var(--warn);fill:var(--warn-soft)}
+.dg-text text{fill:var(--ink);font:500 12.5px var(--sans)} .dg-note text{fill:var(--muted);font:italic 11px var(--sans)}
+.dg-line path{fill:none;stroke:var(--muted);stroke-width:1.4} .dg-line path.dg-dash{stroke:var(--warn);stroke-dasharray:5 4}
+.dg-head{fill:var(--muted)}
+table.weights{border-collapse:collapse;font-size:.88rem;margin:.5rem 0}
+table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;border-bottom:1px solid var(--line)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @page{size:A4;margin:18mm}
 @media print{
@@ -369,7 +382,39 @@ footer .feedback{color:inherit;font-size:inherit;margin:.4rem 0} footer .feedbac
     <div id="mapBands"></div>
     <div id="mapPanel" aria-live="polite"></div>
   </section>
+  <section class="panel how" id="p-how" role="region" aria-labelledby="howTitle" hidden>
+    <div id="howBody"></div>
+  </section>
 </main>
+
+<template id="howDiagram">
+  <figure class="how-diagram">
+    <svg viewBox="0 0 420 306" role="img" aria-label="Every recommendation traces to a reviewed guide or a named rule" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="dgArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="dg-head"/></marker></defs>
+      <g class="dg-box"><rect x="0" y="10" width="120" height="46" rx="8"/><rect x="150" y="10" width="120" height="46" rx="8"/><rect x="300" y="10" width="120" height="46" rx="8" class="dg-key"/>
+        <rect x="150" y="90" width="120" height="46" rx="8" class="dg-prov"/>
+        <rect x="0" y="170" width="120" height="46" rx="8"/><rect x="300" y="170" width="120" height="46" rx="8" class="dg-key"/>
+        <rect x="0" y="250" width="120" height="46" rx="8"/><rect x="300" y="250" width="120" height="46" rx="8"/></g>
+      <g class="dg-text" text-anchor="middle">
+        <text x="60" y="30">Research<tspan x="60" dy="15">literature</tspan></text>
+        <text x="210" y="30">Companion<tspan x="210" dy="15">guide</tspan></text>
+        <text x="360" y="38">Fit profile</text>
+        <text x="210" y="118">Catalogue entry</text>
+        <text x="60" y="198">Your answers</text>
+        <text x="360" y="190">Ranked<tspan x="360" dy="15">shortlist</tspan></text>
+        <text x="60" y="270">Hand-written<tspan x="60" dy="15">rules</tspan></text>
+        <text x="360" y="270">Watch-outs<tspan x="360" dy="15">and nesting</tspan></text>
+      </g>
+      <g class="dg-line" marker-end="url(#dgArrow)">
+        <path d="M120 33H147"/><path d="M270 33H297"/>
+        <path d="M270 113C305 113 330 100 336 60" class="dg-dash"/>
+        <path d="M360 56V167"/><path d="M120 193H297"/><path d="M120 273H297"/>
+      </g>
+      <g class="dg-note"><text x="290" y="134">provisional</text><text x="210" y="186" text-anchor="middle">weighted mean</text></g>
+    </svg>
+    <figcaption>Every recommendation traces to a reviewed guide or a named rule</figcaption>
+  </figure>
+</template>
 
 <footer><div class="wrap">
   <p><strong>Use with judgement.</strong> The reckoner prompts reasoning; it does not prescribe a choice. Strong programs often combine models. Check any sequence against the NSW Science 7–10 Syllabus (2023) and your school's scope and sequence.</p>

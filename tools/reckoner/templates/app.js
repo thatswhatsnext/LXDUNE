@@ -65,9 +65,10 @@ const store = {
 /* ---------- tabs and routing ---------- */
 const tabs = [...document.querySelectorAll(".tab")];
 function selectTab(t, push = true){
+  const how = document.getElementById("p-how"); how.hidden = true; how.classList.remove("active");
   tabs.forEach(x => { const on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1;
     const p = document.getElementById(x.getAttribute("aria-controls")); p.hidden = !on; p.classList.toggle("active", on); });
-  if (push && t.id !== "t-guides") location.hash = "";
+  if (push && (t.id !== "t-guides" || /^#\/how-it-works/.test(location.hash))) location.hash = "";
   if (t.id === "t-compare") renderCompare();
   return t;
 }
@@ -91,12 +92,76 @@ function openGuide(id, section){
   });
 }
 addEventListener("hashchange", routeFromHash);
-function routeFromHash(){
+function routeFromHash(e){
   if (ownHash && location.hash === ownHash){ ownHash = null; return; }
   ownHash = null;
+  const how = location.hash.match(/^#\/how-it-works(?:\/([a-z-]+))?$/);
+  if (how && DATA.methodology){
+    const from = e && e.oldURL ? new URL(e.oldURL).hash : "";
+    if (!/^#\/how-it-works/.test(from)) howFrom = from;
+    return showHow(how[1]);
+  }
+  leaveHow();
   const m = location.hash.match(/^#\/guide\/([a-z0-9-]+)(?:\/([a-z0-9-]+))?/);
   if (m) openGuide(m[1], m[2]);
 }
+
+/* ---------- How it works (F1): the methodology, reached from the footer ----------
+ * Prose comes from content/methodology.yaml; counts and weights are computed here, so the
+ * page cannot disagree with the data. Only built when the methodology is published, or in a
+ * review copy. Tabs keep their selected state; Back returns to where the reader was. */
+let howFrom = "";
+const ROUTE_ORDER = ["unit", "three-taps", "quick", "detailed", "rules", "dial"];
+function renderHow(){
+  const meth = DATA.methodology, el = document.getElementById("howBody");
+  const refs = new Map(meth.references.map(r => [r.id, r]));
+  const cite = id => { const r = refs.get(id); return r ? `<a href="#how-ref-${id}" data-howref="${id}">${esc(r.citation.split(" (")[0].replace(/,? &.*| et al\..*/, " et al."))} (${esc((r.citation.match(/\((\d{4})/) || [])[1] || "n.d.")})</a>` : ""; };
+  const guided = DATA.models.filter(m => m.hasGuide).length, prov = DATA.models.length - guided;
+  const dates = DATA.guides.map(g => g.lastReviewed).sort();
+  const weights = `<table class="weights"><thead><tr><th scope="col">Question</th><th scope="col">Counts</th></tr></thead><tbody>
+    ${DIMS.map(d => `<tr><th scope="row">${esc(d.short[0].toUpperCase() + d.short.slice(1))}</th><td>×${+d.weight}</td></tr>`).join("")}</tbody></table>
+    <p class="hint">Read from the reckoner's own settings, so this table always matches the ranking. Your importance setting multiplies these: low ×0.5, high ×2.</p>`;
+  const routes = ROUTE_ORDER.map(id => meth.routes.find(r => r.id === id)).filter(Boolean);
+  el.innerHTML = `<div class="how-head"><h2 id="howTitle" tabindex="-1">How the reckoner works</h2>
+      <button type="button" class="ghost" id="howBack">Back</button></div>
+    ${meth.status === "published" ? "" : `<div class="warnbox"><p class="sub">Not yet reviewed</p><p>This page is ${meth.status === "in-review" ? "in review" : "a draft"}, included in this review copy only. Students do not see it until it is signed off.</p></div>`}
+    <p class="lede">${esc(meth.intro.lead)}</p>${md(meth.intro.purpose)}
+    <h3>How each route decides</h3>
+    ${routes.map(r => `<section id="how-${r.id}"><h4>${esc(r.title)}</h4>${md(r.body)}${r.id === "detailed" ? weights : ""}</section>`).join("")}
+    <template-slot></template-slot>
+    <h3>Principles</h3>
+    ${meth.principles.map(p => `<section id="how-p-${p.id}"><h4>${esc(p.title)}</h4>${md(p.body)}${p.referenceIds.length ? `<p class="hint">See ${p.referenceIds.map(cite).join("; ")}.</p>` : ""}</section>`).join("")}
+    <h3>How content is made</h3>
+    <p class="hint">Right now: ${guided} of ${DATA.models.length} models have a companion guide; ${prov} ${prov === 1 ? "is" : "are"} provisional.${dates.length ? ` Guides were last reviewed ${dates[0] === dates[dates.length - 1] ? `on ${dates[0]}` : `between ${dates[0]} and ${dates[dates.length - 1]}`}.` : ""}</p>
+    ${md(meth.review)}
+    <h3>Evidence strength</h3>
+    <dl>${Object.entries(meth.evidenceStrength).map(([k, v]) => `<dt>${esc(k[0].toUpperCase() + k.slice(1))}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+    <h3>What it does not do</h3><ul class="tight">${meth.limits.map(l => `<li>${esc(l)}</li>`).join("")}</ul>
+    <h3>Glossary</h3><dl>${meth.glossary.map(g => `<dt>${esc(g.term)}</dt><dd>${esc(g.definition)}</dd>`).join("")}</dl>
+    ${meth.references.length ? `<h3>References</h3><ul class="refs">${meth.references.map(r => `<li id="how-ref-${r.id}">${esc(r.citation)}${r.doi ? ` <a href="https://doi.org/${esc(r.doi)}">https://doi.org/${esc(r.doi)}</a>` : r.url ? ` <a href="${esc(r.url)}">${esc(r.url)}</a>` : ""}</li>`).join("")}</ul>` : ""}
+    <p class="hint">Methodology v${esc(meth.version)}, reviewed ${esc(meth.lastReviewed)}.</p>`;
+  el.querySelector("template-slot").replaceWith(document.getElementById("howDiagram").content.cloneNode(true));
+  document.getElementById("howBack").onclick = () => { location.hash = howFrom; };
+  el.querySelectorAll("[data-howref]").forEach(a => a.onclick = e => { e.preventDefault();
+    document.getElementById("how-ref-" + a.dataset.howref)?.scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "center" }); });
+}
+function showHow(route){
+  renderHow();
+  document.querySelectorAll(".panel").forEach(p => { const on = p.id === "p-how"; p.hidden = !on; p.classList.toggle("active", on); });
+  const target = route && document.getElementById("how-" + route);
+  requestAnimationFrame(() => {
+    (target || document.getElementById("p-how")).scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" });
+    if (!target) document.getElementById("howTitle")?.focus({ preventScroll: true });
+  });
+}
+/** Leaving How it works: show the selected tab's panel again, without touching the hash. */
+function leaveHow(){
+  if (document.getElementById("p-how").hidden) return;
+  const t = tabs.find(x => x.getAttribute("aria-selected") === "true") || tabs[0];
+  selectTab(t, false);
+}
+if (DATA.methodology) document.getElementById("buildStamp").insertAdjacentHTML("beforebegin",
+  `<p><a href="#/how-it-works" id="howFoot">How the reckoner works</a>: how each route decides, how content is reviewed, and what it cannot do.</p>`);
 
 /* ---------- shared model card body ---------- */
 function modelBody(m){
@@ -237,7 +302,7 @@ function working(m,a,imp,f){
       <td>${num(d.weight)}${imp[d.id] !== 1 ? ` × ${num(imp[d.id])} <small>(${IMP[imp[d.id]]} importance)</small>` : ""}</td>
       <td>${num(w*s)} of ${num(w*3)}</td><td>${total ? Math.round(w*s/total*100) : 0}%</td></tr>`).join("")}
     </tbody><tfoot><tr><th scope="row">Fit</th><td colspan="3"></td><td>${num(total)} of ${num(max)}</td><td><strong>${Math.round(f*100)}%</strong></td></tr></tfoot></table></div>
-    <p class="hint">Points are fit × weight; the fit percentage is total points out of the maximum. Share is each question’s part of the points. Questions you left blank are not counted.</p>
+    <p class="hint">Points are fit × weight; the fit percentage is total points out of the maximum. Share is each question’s part of the points. Questions you left blank are not counted.${howLink("detailed")}</p>
     ${m.hasGuide ? "" : `<p class="hint">Provisional: this model’s scores have not yet been checked against a companion guide.</p>`}</details>`;
 }
 function reasons(m,a){ const strong=[], weak=[];
