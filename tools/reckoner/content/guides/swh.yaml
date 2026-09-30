@@ -6,9 +6,9 @@ schemaVersion: "1.3"
 id: swh
 name: Science Writing Heuristic
 originators: Keys, Hand, Prain & Collins (1999)
-version: 1.0.0
+version: 1.1.0
 status: published
-lastReviewed: 2026-09-28
+lastReviewed: 2026-09-30
 syllabus: NSW Science 7–10 Syllabus (2023)
 provenance:
   source: ai-drafted-reviewed
@@ -527,6 +527,103 @@ workedSequences:
       than a limit imposed on it.
     provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
 
+  - id: swh-seq-s4-separation
+    title: How much of each can we get back?
+    context: { stages: [stage4], focusAreas: [Solutions and mixtures], disciplines: [chemistry] }
+    contentOutcomes: [SC4-SOL-01]
+    bigQuestion: How do we separate a mixture, and how would we know we got everything back?
+    learningIntentions:
+      - Each separation technique works because of a property that differs between the substances in a mixture
+      - The order of separation steps matters, and follows from those properties
+      - A claim about how well a method worked is defended with measured evidence
+    targetConceptions:
+      - Dissolved salt has disappeared, so it cannot be got back
+      - Filtering removes everything that is not water
+      - A method either works or does not; how well it works cannot be measured
+    predictPrompt: Before reading on, the teacher knows exactly how much of each substance went into the mixture but does not say until lesson 6. What does holding that back make possible?
+    steps:
+      - lessons: "1"
+        phaseId: beginning-ideas
+        activity: |
+          Each bench gets a beaker of murky mixture: sand, salt, iron filings and water. The teacher weighed
+          every component in and keeps the figures. Ten minutes to look, stir and handle a sample, then each
+          student writes what they would need to find out to get each substance back, and conferences it
+          briefly for testability.
+        wsOutcomes: [SC4-WS-02]
+        formativeCheck: Each student's written question, checked for investigability
+      - lessons: "2"
+        phaseId: tests
+        activity: |
+          Groups plan a separation from the equipment available: magnets in sealed bags, filter funnels and
+          papers, evaporating basins, and a heat source. Each plan names the property each step relies on and
+          how the recovered substances will be measured. The teacher conferences each plan for safety and
+          feasibility without redesigning it.
+        wsOutcomes: [SC4-WS-03]
+        formativeCheck: Plan conference before equipment is issued
+        scaffoldSlots:
+          - field: formativeCheck
+            prompt: A group plans to evaporate all the water first. What do you ask so they work out what that will leave them with, without telling them?
+      - lessons: "3–4"
+        phaseId: observations
+        activity: |
+          Groups carry out their separation, dry and weigh what they recover, and record what happened
+          separately from what they think it means. Losses and contamination, such as salt left on the sand, are
+          written down rather than hidden.
+        wsOutcomes: [SC4-WS-01, SC4-WS-04, SC4-WS-05]
+        formativeCheck: Observation records checked for measured masses and separation from interpretation
+      - lessons: "5"
+        phaseId: claims
+        activity: |
+          Each student writes an individual claim answering their own beginning question, such as which step
+          lost the most salt and why, in a form another student could disagree with.
+        wsOutcomes: [SC4-WS-06]
+        formativeCheck: Each claim read for whether it could be argued with
+      - lessons: "5"
+        phaseId: evidence
+        activity: |
+          Students select the masses and observations that support their claim, name the property behind each
+          step, and account for anything that does not fit, such as recovering more "sand" than went in.
+        wsOutcomes: [SC4-WS-06, SC4-WS-08]
+        formativeCheck: The link between claim and data, read on every student's work
+      - lessons: "6"
+        phaseId: reading
+        activity: |
+          Groups pair up and compare claims, working out where they differ and why. Only then does the teacher
+          release the masses that went in, and a short reading on how a water treatment plant or a desalination
+          plant separates what it takes out. Revisions are written, not just discussed.
+        wsOutcomes: [SC4-WS-06, SC4-WS-08]
+        formativeCheck: Record of where each student agreed, disagreed and revised
+      - lessons: "6"
+        phaseId: reflection
+        activity: |
+          Beginning questions are handed back. Students write what they first thought happened to the salt,
+          what changed their mind, and which property they would now say matters most in their method.
+        wsOutcomes: [SC4-WS-08]
+        formativeCheck: Written comparison of beginning ideas and final claim
+    whyItWorks:
+      - Measuring what is recovered turns "it worked" into a claim that can be argued with numbers
+      - Groups choose the order of steps, so disagreements about order are about properties, not instructions
+      - The true masses arrive in lesson 6, after students have their own results to set against them
+      - Beginning questions are kept from lesson 1, so the final reflection has something to compare against
+    watchFor: |
+      Groups that finish the separation and treat the rest as tidying up. The claim and evidence lesson is
+      where the teacher's time goes, asking one student at a time why their numbers support what they
+      wrote. Expect recovered masses that are too high: damp sand and salt caught in the filter paper are
+      the discussion, not a failure.
+    safetyNotes: |
+      This guide does not carry safety advice and is not a substitute for your school's risk assessment.
+      What this sequence introduces, so you know what to assess: evaporating salt solution to dryness, which
+      can spit hot crystals near the end; a heat source used by students; iron filings, which are a nuisance
+      in eyes and on magnets; and glassware. Take these to your head teacher or faculty safety contact and
+      check them against your school's chemical and practical procedures and current NSW guidance before you
+      run anything.
+
+      One point specific to SWH. Students design the method from their own question, so the hazards are not
+      fully known when you write the risk assessment. If the assessment rules part of a design out, that
+      constraint belongs to the students at the plan checkpoint, where working out what is testable within
+      the rules is part of the task.
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-30 }
+
 misapplications:
   - id: mis-swh-no-negotiation
     name: The student template without the teacher template
@@ -638,7 +735,7 @@ reflectionPrompts:
 
 scaffold:
   defaultMode: tutor
-  revealAfterAttempt: [swh-seq-s5-bottles]
+  revealAfterAttempt: [swh-seq-s5-bottles, swh-seq-s4-separation]
   ai:
     groundedIn: [phases.examples, workedSequences, misapplications, checklist, reflectionPrompts]
     allowed: [contextualise-examples, audit-program, coach-reflection, compare-models]

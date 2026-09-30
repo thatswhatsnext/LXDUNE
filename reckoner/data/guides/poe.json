@@ -3,9 +3,9 @@
   "id": "poe",
   "name": "Predict–Observe–Explain",
   "originators": "White & Gunstone (1992)",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "status": "published",
-  "lastReviewed": "2026-09-28",
+  "lastReviewed": "2026-09-30",
   "syllabus": "NSW Science 7–10 Syllabus (2023)",
   "provenance": {
     "source": "ai-drafted-reviewed",
@@ -963,6 +963,113 @@
         ],
         "reviewedOn": "2026-09-28"
       }
+    },
+    {
+      "id": "ep-s4-steel-wool",
+      "title": "Will burning make it lighter?",
+      "context": {
+        "stages": [
+          "stage4"
+        ],
+        "focusAreas": [
+          "Change"
+        ],
+        "disciplines": [
+          "chemistry"
+        ]
+      },
+      "contentOutcomes": [
+        "SC4-CHG-01"
+      ],
+      "bigQuestion": "When something burns, where does the matter go, and what does energy have to do with it?",
+      "learningIntentions": [
+        "Burning is a chemical change in which substances combine to form new ones",
+        "Mass is not lost in a chemical change; it can come from, or go into, the air",
+        "Energy is needed to start some chemical changes, and some changes release energy as they happen"
+      ],
+      "targetConceptions": [
+        "Burning destroys matter, so things always get lighter",
+        "Gases have no mass",
+        "A flame is a substance that is used up"
+      ],
+      "steps": [
+        {
+          "minutes": "0–5",
+          "phaseId": "predict",
+          "activity": "A loose ball of steel wool on a heatproof mat on a digital balance, under the visualiser. The teacher\nrecords the mass, says it will be heated and weighed again, and every student writes what the balance\nwill read afterwards and why. Slips are collected before anything is lit.\n",
+          "wsOutcomes": [
+            "SC4-WS-02"
+          ],
+          "formativeCheck": "Written predictions with reasons, collected unseen",
+          "scaffoldSlots": [
+            {
+              "field": "activity",
+              "prompt": "A student predicts the mass will go up \"because burnt things are heavier\". Is that the same understanding as the scientific one? What would you ask?"
+            }
+          ]
+        },
+        {
+          "minutes": "5–10",
+          "phaseId": "predict",
+          "activity": "The class tallies predictions (goes down, stays the same, goes up) without discussion. The teacher\nadds one more question: what will it take to get it burning at all, and once it starts, will it\nneed more help to keep going?\n",
+          "wsOutcomes": [
+            "SC4-WS-02"
+          ],
+          "formativeCheck": "Class tally on the board",
+          "scaffoldSlots": []
+        },
+        {
+          "minutes": "10–25",
+          "phaseId": "observe",
+          "activity": "The teacher touches a 9 V battery to the steel wool, or holds a flame to it briefly, and lets the glow\nspread. Students record the balance reading every thirty seconds, the colour and texture before and\nafter, and whether the glow keeps going on its own, in an observation column separate from their\ninterpretation.\n",
+          "wsOutcomes": [
+            "SC4-WS-01",
+            "SC4-WS-05"
+          ],
+          "formativeCheck": "Observation tables checked for separation of observation and inference",
+          "scaffoldSlots": []
+        },
+        {
+          "minutes": "25–42",
+          "phaseId": "explain",
+          "activity": "Pairs compare prediction with observation and write what would have to be true for both. The teacher\nconsolidates: the iron combined with oxygen from the air to form a new substance, iron oxide, so the\nmass gained is oxygen. The spark supplied the energy to start the change, and the glow spreading\non its own shows the change releases energy as it goes. She then asks why paper gets lighter when it\nburns, and lets pairs answer with the same idea.\n",
+          "wsOutcomes": [
+            "SC4-WS-06",
+            "SC4-WS-08"
+          ],
+          "formativeCheck": "Revised explanations shared; the paper question answered by each pair",
+          "scaffoldSlots": []
+        },
+        {
+          "minutes": "42–50",
+          "phaseId": "explain",
+          "activity": "Exit ticket: \"I predicted… I observed… Now I think… The energy came from…\"",
+          "wsOutcomes": [
+            "SC4-WS-08"
+          ],
+          "formativeCheck": "Exit tickets sorted to plan the next lesson",
+          "scaffoldSlots": []
+        }
+      ],
+      "whyItWorks": [
+        "The result is the opposite of what most students expect, and it is read off a balance everyone can see",
+        "The energy question is asked before lighting, so what starts and sustains the change is observed rather than told",
+        "The paper question after the explanation checks whether students have the idea or only the result",
+        "The exit ticket gives the teacher evidence to plan the next lesson"
+      ],
+      "watchFor": "Steel wool that is packed too tightly will not burn through and gives a tiny change. Tease it out\nloosely and run the demonstration beforehand on the same balance.\nThis episode covers the chemical half of Change. The geological half, energy driving weathering and the\nrock cycle, needs its own lesson; the freeze–thaw example in the Explain phase is a ready starting point.\n",
+      "safetyNotes": "This guide does not carry safety advice and is not a substitute for your school's risk assessment.\nWhat this sequence introduces, so you know what to assess: burning steel wool, which glows and can\ndrop hot fragments, beside a digital balance, with a battery or flame as the ignition source. Take this\nto your head teacher or faculty safety contact and check it against your school's chemical and practical\nprocedures and current NSW guidance before you run anything.\n\nOne point specific to POE. You supply the event, so you know in advance exactly what will be in the\nroom. The thing to watch is that the event is chosen to surprise the students; make sure it does not\nalso surprise you by running it first with the same steel wool and balance.\n",
+      "predictPrompt": "Before reading on, most of the class will predict the mass goes down. Why is it important that the slips are collected before the steel wool is lit, rather than discussed first?",
+      "provenance": {
+        "source": "ai-drafted-reviewed",
+        "authors": [
+          "Claude"
+        ],
+        "reviewedBy": [
+          "Steve Grant"
+        ],
+        "reviewedOn": "2026-09-30"
+      }
     }
   ],
   "misapplications": [
@@ -1254,7 +1361,8 @@
     "defaultMode": "tutor",
     "revealAfterAttempt": [
       "ep-s4-yeast",
-      "ep-s5-handwashing"
+      "ep-s5-handwashing",
+      "ep-s4-steel-wool"
     ],
     "ai": {
       "groundedIn": [
