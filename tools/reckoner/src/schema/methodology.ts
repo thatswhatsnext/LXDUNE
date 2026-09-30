@@ -36,7 +36,8 @@ export const Methodology = obj({
   principles: z
     .array(obj({ id: Slug, title: ShortText, body: Markdown, referenceIds: z.array(Slug).default([]) }))
     .min(3),
-  routes: z.array(obj({ id: z.enum(ROUTE_IDS), title: ShortText, body: Markdown })),
+  // summary: the one line a reader scanning the page takes away; body: the detail, as short bullets
+  routes: z.array(obj({ id: z.enum(ROUTE_IDS), title: ShortText, summary: ShortText, body: Markdown })),
   review: Markdown,
   evidenceStrength: obj(evidenceStrengthShape),
   limits: z.array(ShortText).min(1),

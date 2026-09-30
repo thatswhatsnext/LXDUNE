@@ -1527,6 +1527,165 @@
       ]
     }
   },
+  "methodology": {
+    "schemaVersion": "1.0",
+    "id": "methodology",
+    "version": "1.1.0",
+    "status": "published",
+    "lastReviewed": "2026-09-30",
+    "provenance": {
+      "source": "ai-drafted-reviewed",
+      "authors": [
+        "Claude, drafted for S. Grant"
+      ],
+      "reviewedBy": [
+        "Steve Grant"
+      ],
+      "reviewedOn": "2026-09-30"
+    },
+    "intro": {
+      "lead": "The reckoner helps you decide which constructivist teaching model suits the sequence you are planning. It shows its working, so you can check its reasoning and disagree with it.",
+      "purpose": "- **What it is:** a learning scaffold for pre-service science teachers planning NSW Science 7–10 sequences. It is not a planning shortcut.\n- **What it does:** makes a design decision visible: what you want students to learn, how much time you have, how ready your learners are for inquiry, and which model's structure fits those conditions.\n- **What you get:** a starting point for your judgement. Strong programs often combine models, and the companion guides help you check that a sequence you have written does what its model intends.\n"
+    },
+    "principles": [
+      {
+        "id": "judgement-not-prescription",
+        "title": "Judgement, not prescription",
+        "body": "The reckoner ranks models and explains why, but never tells you which one to use. A lower-ranked model can be the right choice for reasons it cannot see, such as your school's scope and sequence or what your class did last term.",
+        "referenceIds": []
+      },
+      {
+        "id": "purpose-first",
+        "title": "Purpose drives the choice",
+        "body": "Learning purpose counts most in every route. A sequence built to shift a misconception needs cognitive conflict; one built to develop argument needs structured critique. Time and learner readiness come next, and the other conditions refine the choice.",
+        "referenceIds": []
+      },
+      {
+        "id": "guidance-matched-to-readiness",
+        "title": "Guidance matched to readiness",
+        "body": "Novice learners do not yet have the knowledge to manage open-ended tasks, so low-guidance models overload them. The reckoner favours more structured models for novices and short timeframes, and the guidance dial never recommends more than structured inquiry for novices.",
+        "referenceIds": [
+          "kirschner-2006",
+          "furtak-2012"
+        ]
+      },
+      {
+        "id": "look-fors",
+        "title": "Look-fors define quality",
+        "body": "Each companion guide defines good practice in each phase as look-for questions, with what strong and weak evidence looks like. Examples, misapplications and the designer's checklist all point back to the same look-fors, so each judgement is defined once and used everywhere.",
+        "referenceIds": []
+      },
+      {
+        "id": "done-well-done-badly",
+        "title": "Examples done well and done badly",
+        "body": "Each phase, or each stage in models with many phases, has an example done well and one done badly, so you learn to recognise the difference rather than copy a template. Examples are tagged by stage and focus area, and the ones closest to your context appear first.",
+        "referenceIds": []
+      },
+      {
+        "id": "syllabus-anchored",
+        "title": "Anchored to the syllabus",
+        "body": "Worked sequences cite NSW Science 7–10 (2023) outcome codes and map every Working scientifically skill. The reckoner cites codes rather than quoting outcome wording, so check the syllabus itself for the wording.",
+        "referenceIds": []
+      }
+    ],
+    "routes": [
+      {
+        "id": "unit",
+        "title": "Start with your unit",
+        "summary": "Shows what the companion guides already hold for your focus area. It does not score models.",
+        "body": "- You choose a stage and a focus area.\n- You see a ready worked sequence if one exists, otherwise tagged examples.\n- The model it names is the one whose guide has material for that focus area, not necessarily the best fit for your class. To test the fit, use the Quick or Detailed reckoner.\n"
+      },
+      {
+        "id": "three-taps",
+        "title": "Not sure? Three taps",
+        "summary": "Three quick questions, read against the same table as the Quick reckoner, so the two always agree.",
+        "body": "- What do you want to shift?\n- How long have you got?\n- How much investigating have your students done?\n"
+      },
+      {
+        "id": "quick",
+        "title": "Quick reckoner",
+        "summary": "Three questions place you in a table that suggests a model for each learning purpose.",
+        "body": "- You answer three questions: purpose, time and learner readiness.\n- Each purpose has two suggested models: a more structured one for novice learners or a short timeframe, and a more open one for experienced learners with a longer timeframe.\n- With only one lesson, the table gives way to a single-lesson strategy.\n- You can open the table to see every cell.\n"
+      },
+      {
+        "id": "detailed",
+        "title": "Detailed reckoner",
+        "summary": "Scores every model against your answers and ranks them by weighted average.",
+        "body": "- Each model has a fit profile: a score from 0 (poor fit) to 3 (strong fit) for every answer to every question.\n- For each answer you give, the reckoner takes the model's score, weights it by how much that question counts and by the importance you set, and reports the weighted average as a percentage.\n- Purpose counts most: three times as much as most questions. Time and readiness count twice, and place-based learning half.\n- Questions you leave blank are left out, not counted as zero.\n- **Show the working**, under each result, lists every term in the sum.\n"
+      },
+      {
+        "id": "rules",
+        "title": "Watch-outs and nesting suggestions",
+        "summary": "Written rules, separate from the score. Each is labelled Rule and names the answer that triggered it.",
+        "body": "- A rule fires on particular answers, for example novice learners with a problem-based model, or a robust misconception with a model that does not target misconceptions.\n- Rules add advice to a result. They do not change the ranking.\n"
+      },
+      {
+        "id": "dial",
+        "title": "Guidance dial",
+        "summary": "Recommends how much to guide students inside whichever model you choose, from confirmation to open inquiry.",
+        "body": "- It scores learner readiness, your facilitation confidence and time, using the Levels of inquiry guide.\n- It shows the evidence behind each factor.\n- It applies caps, such as never going above structured inquiry for novices.\n"
+      }
+    ],
+    "review": "- **Checked against a schema.** Every companion guide is written against a strict schema. Among other things, it checks that every phase or stage has examples done well and done badly, that every worked sequence visits every phase, and that every outcome code is on the syllabus list.\n- **Reviewed before publishing.** Content is drafted, often with AI assistance, then reviewed by a science educator. Each guide shows its version, its review date and who reviewed it.\n- **Nothing unreviewed reaches students.** Drafts appear only in review copies.\n- **Provisional models.** Models marked Provisional do not have a companion guide yet. Their fit profiles are initial estimates that have not been checked against a guide, so treat their rankings with more caution.\n",
+    "evidenceStrength": {
+      "strong": "Supported by several controlled studies or meta-analyses in science education.",
+      "moderate": "Supported by some controlled studies, or consistent findings from related fields.",
+      "emerging": "Promising studies, but few, small, or from limited contexts.",
+      "framework": "A practical or professional principle, not a research claim."
+    },
+    "limits": [
+      "It does not know your students, your school's scope and sequence, or your resources, beyond what you tell it.",
+      "It does not write your program or fill in the scaffolds for you.",
+      "It does not replace the NSW Science 7–10 Syllabus (2023), your school's risk assessment, or advice from your supervising teacher.",
+      "It records nothing about you. Feedback will go through an anonymous Moodle survey."
+    ],
+    "glossary": [
+      {
+        "term": "Scale",
+        "definition": "How much of a program a model structures: a unit architecture (6–15 lessons), a multi-lesson routine, a single lesson, or a guidance dial applied inside any model."
+      },
+      {
+        "term": "Fit profile",
+        "definition": "A model's scores from 0 to 3 for every answer to every reckoner question. The detailed reckoner ranks models from these."
+      },
+      {
+        "term": "Nesting",
+        "definition": "Using one model inside another, such as a Predict–Observe–Explain inside the Explore phase of a 5E unit."
+      },
+      {
+        "term": "Look-for",
+        "definition": "A question that defines good practice in a phase, with what strong and weak evidence of it looks like."
+      },
+      {
+        "term": "Worked sequence",
+        "definition": "A complete example of a model applied to a focus area, timed in lessons. A single-lesson model's worked example is an episode, timed in minutes."
+      },
+      {
+        "term": "Misapplication",
+        "definition": "A common way of using a model that looks right but undermines its purpose, with a fix."
+      },
+      {
+        "term": "Guidance dial",
+        "definition": "How much the teacher structures the question, method and explanation, from confirmation to open inquiry."
+      },
+      {
+        "term": "Provisional",
+        "definition": "A model without a companion guide. Its fit profile has not yet been checked against one."
+      }
+    ],
+    "references": [
+      {
+        "id": "kirschner-2006",
+        "citation": "Kirschner, P. A., Sweller, J., & Clark, R. E. (2006). Why minimal guidance during instruction does not work. Educational Psychologist, 41(2), 75–86.",
+        "doi": "10.1207/s15326985ep4102_1"
+      },
+      {
+        "id": "furtak-2012",
+        "citation": "Furtak, E. M., Seidel, T., Iverson, H., & Briggs, D. C. (2012). Experimental and quasi-experimental studies of inquiry-based science teaching: A meta-analysis. Review of Educational Research, 82(3), 300–329.",
+        "doi": "10.3102/0034654312457206"
+      }
+    ]
+  },
   "guides": [
     {
       "id": "5e",
