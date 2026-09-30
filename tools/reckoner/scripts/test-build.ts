@@ -210,7 +210,9 @@ const cases: [string, () => void | Promise<void>][] = [
     if (!doc.getElementById("howFoot")) throw new Error("no footer link");
     dom.window.location.hash = "#/how-it-works/detailed";
     await wait(() => !doc.getElementById("p-how").hidden, "the How it works page");
-    const routes = [...doc.querySelectorAll("#howBody section[id^='how-']")].map((s: any) => s.id).filter((id: string) => !id.startsWith("how-p-"));
+    const routes = [...doc.querySelectorAll("#howBody .how-route")].map((s: any) => s.id);
+    const toc = doc.querySelectorAll("#howBody [data-howjump]").length, secs = doc.querySelectorAll("#howBody section.how-sec").length;
+    if (!secs || toc !== secs) throw new Error(`contents bar has ${toc} links for ${secs} sections`);
     if (routes.join() !== "how-unit,how-three-taps,how-quick,how-detailed,how-rules,how-dial") throw new Error(`routes: ${routes.join()}`);
     if (doc.querySelectorAll("#howBody table.weights tbody tr").length !== doc.querySelectorAll("#detailForm fieldset").length) throw new Error("weights table does not list every question");
     if (!doc.querySelector("#howBody svg[role=img]")) throw new Error("no diagram");

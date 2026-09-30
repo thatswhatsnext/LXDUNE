@@ -123,35 +123,45 @@ const ROUTE_ORDER = ["unit", "three-taps", "quick", "detailed", "rules", "dial"]
 function renderHow(){
   const meth = DATA.methodology, el = document.getElementById("howBody");
   const refs = new Map(meth.references.map(r => [r.id, r]));
-  const cite = id => { const r = refs.get(id); return r ? `<a href="#how-ref-${id}" data-howref="${id}">${esc(r.citation.split(" (")[0].replace(/,? &.*| et al\..*/, " et al."))} (${esc((r.citation.match(/\((\d{4})/) || [])[1] || "n.d.")})</a>` : ""; };
+  /** APA in-text form from the reference: Kirschner et al. (2006), Smith & Jones (2010), Smith (2010). */
+  const cite = id => { const r = refs.get(id); if (!r) return "";
+    const names = [...r.citation.split(" (")[0].matchAll(/([A-Z][A-Za-z'’-]+), (?:[A-Z]\.[ -]?)+/g)].map(m => m[1]);
+    const who = names.length > 2 ? `${names[0]} et al.` : names.join(" & ") || r.citation.split(" (")[0];
+    return `<a href="#how-ref-${id}" data-howref="${id}">${esc(who)} (${esc((r.citation.match(/\((\d{4})/) || [])[1] || "n.d.")})</a>`; };
   const guided = DATA.models.filter(m => m.hasGuide).length, prov = DATA.models.length - guided;
   const dates = DATA.guides.map(g => g.lastReviewed).sort();
-  const weights = `<table class="weights"><thead><tr><th scope="col">Question</th><th scope="col">Counts</th></tr></thead><tbody>
-    ${DIMS.map(d => `<tr><th scope="row">${esc(d.short[0].toUpperCase() + d.short.slice(1))}</th><td>×${+d.weight}</td></tr>`).join("")}</tbody></table>
-    <p class="hint">Read from the reckoner's own settings, so this table always matches the ranking. Your importance setting multiplies these: low ×0.5, high ×2.</p>`;
+  const cap = t => t[0].toUpperCase() + t.slice(1);
+  const weights = `<details class="why"><summary>See how much each question counts</summary>
+    <table class="weights"><thead><tr><th scope="col">Question</th><th scope="col">Counts</th></tr></thead><tbody>
+    ${DIMS.map(d => `<tr><th scope="row">${esc(cap(d.short))}</th><td>×${+d.weight}</td></tr>`).join("")}</tbody></table>
+    <p class="hint">Read from the reckoner's own settings, so this table always matches the ranking. Your importance setting multiplies these: low ×0.5, high ×2.</p></details>`;
   const routes = ROUTE_ORDER.map(id => meth.routes.find(r => r.id === id)).filter(Boolean);
+  // Sections in reading order; the contents bar is built from the same list, so it cannot miss one.
+  const SECS = [
+    ["glance", "At a glance", `<p class="hint">The diagram shows where every recommendation comes from.</p><template-slot></template-slot>`],
+    ["routes", "How each route decides", routes.map(r => `<article class="card how-route" id="how-${r.id}"><h4>${esc(r.title)}</h4>
+      <p class="route-sum">${esc(r.summary)}</p>${md(r.body)}${r.id === "detailed" ? weights : ""}</article>`).join("")],
+    ["principles", "Principles", `<div class="how-grid">${meth.principles.map(p => `<article class="how-card" id="how-p-${p.id}"><h4>${esc(p.title)}</h4>${md(p.body)}
+      ${p.referenceIds.length ? `<p class="hint">See ${p.referenceIds.map(cite).join("; ")}.</p>` : ""}</article>`).join("")}</div>`],
+    ["review", "How content is made", `<p class="how-now">Right now: ${guided} of ${DATA.models.length} models have a companion guide; ${prov} ${prov === 1 ? "is" : "are"} provisional.${dates.length ? ` Guides were last reviewed ${dates[0] === dates[dates.length - 1] ? `on ${dates[0]}` : `between ${dates[0]} and ${dates[dates.length - 1]}`}.` : ""}</p>${md(meth.review)}`],
+    ["evidence", "Evidence strength", `<p class="hint">The label on each companion guide says how strong the research behind the model is.</p>
+      <div class="how-ev">${Object.entries(meth.evidenceStrength).map(([k, v]) => `<span class="badge b-evidence">Evidence: ${esc(k)}</span><p>${esc(v)}</p>`).join("")}</div>`],
+    ["limits", "What it does not do", `<ul class="tight">${meth.limits.map(l => `<li>${esc(l)}</li>`).join("")}</ul>`],
+    ["glossary", "Glossary", `<dl class="how-gloss">${meth.glossary.map(g => `<div><dt>${esc(g.term)}</dt><dd>${esc(g.definition)}</dd></div>`).join("")}</dl>`],
+    ...(meth.references.length ? [["refs", "References", `<ul class="refs">${meth.references.map(r => `<li id="how-ref-${r.id}">${esc(r.citation)}${r.doi ? ` <a href="https://doi.org/${esc(r.doi)}">https://doi.org/${esc(r.doi)}</a>` : r.url ? ` <a href="${esc(r.url)}">${esc(r.url)}</a>` : ""}</li>`).join("")}</ul>`]] : []),
+  ];
   el.innerHTML = `<div class="how-head"><h2 id="howTitle" tabindex="-1">How the reckoner works</h2>
       <button type="button" class="ghost" id="howBack">Back</button></div>
     ${meth.status === "published" ? "" : `<div class="warnbox"><p class="sub">Not yet reviewed</p><p>This page is ${meth.status === "in-review" ? "in review" : "a draft"}, included in this review copy only. Students do not see it until it is signed off.</p></div>`}
     <p class="lede">${esc(meth.intro.lead)}</p>${md(meth.intro.purpose)}
-    <h3>How each route decides</h3>
-    ${routes.map(r => `<section id="how-${r.id}"><h4>${esc(r.title)}</h4>${md(r.body)}${r.id === "detailed" ? weights : ""}</section>`).join("")}
-    <template-slot></template-slot>
-    <h3>Principles</h3>
-    ${meth.principles.map(p => `<section id="how-p-${p.id}"><h4>${esc(p.title)}</h4>${md(p.body)}${p.referenceIds.length ? `<p class="hint">See ${p.referenceIds.map(cite).join("; ")}.</p>` : ""}</section>`).join("")}
-    <h3>How content is made</h3>
-    <p class="hint">Right now: ${guided} of ${DATA.models.length} models have a companion guide; ${prov} ${prov === 1 ? "is" : "are"} provisional.${dates.length ? ` Guides were last reviewed ${dates[0] === dates[dates.length - 1] ? `on ${dates[0]}` : `between ${dates[0]} and ${dates[dates.length - 1]}`}.` : ""}</p>
-    ${md(meth.review)}
-    <h3>Evidence strength</h3>
-    <dl>${Object.entries(meth.evidenceStrength).map(([k, v]) => `<dt>${esc(k[0].toUpperCase() + k.slice(1))}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
-    <h3>What it does not do</h3><ul class="tight">${meth.limits.map(l => `<li>${esc(l)}</li>`).join("")}</ul>
-    <h3>Glossary</h3><dl>${meth.glossary.map(g => `<dt>${esc(g.term)}</dt><dd>${esc(g.definition)}</dd>`).join("")}</dl>
-    ${meth.references.length ? `<h3>References</h3><ul class="refs">${meth.references.map(r => `<li id="how-ref-${r.id}">${esc(r.citation)}${r.doi ? ` <a href="https://doi.org/${esc(r.doi)}">https://doi.org/${esc(r.doi)}</a>` : r.url ? ` <a href="${esc(r.url)}">${esc(r.url)}</a>` : ""}</li>`).join("")}</ul>` : ""}
+    <nav class="how-toc" aria-label="On this page"><span class="sub">On this page</span>${SECS.map(([id, title]) => `<button type="button" class="ghost" data-howjump="how-sec-${id}">${title}</button>`).join("")}</nav>
+    ${SECS.map(([id, title, inner]) => `<section class="how-sec" id="how-sec-${id}"><h3>${title}</h3>${inner}</section>`).join("")}
     <p class="hint">Methodology v${esc(meth.version)}, reviewed ${esc(meth.lastReviewed)}.</p>`;
   el.querySelector("template-slot").replaceWith(document.getElementById("howDiagram").content.cloneNode(true));
   document.getElementById("howBack").onclick = () => { location.hash = howFrom; };
-  el.querySelectorAll("[data-howref]").forEach(a => a.onclick = e => { e.preventDefault();
-    document.getElementById("how-ref-" + a.dataset.howref)?.scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "center" }); });
+  const jump = target => target?.scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" });
+  el.querySelectorAll("[data-howjump]").forEach(b => b.onclick = () => jump(document.getElementById(b.dataset.howjump)));
+  el.querySelectorAll("[data-howref]").forEach(a => a.onclick = e => { e.preventDefault(); jump(document.getElementById("how-ref-" + a.dataset.howref)); });
 }
 function showHow(route){
   renderHow();
@@ -982,7 +992,7 @@ addEventListener("keydown", e => { if (e.key === "Escape" && !tourEl.hidden) clo
 let printing = false, printRestore = null;
 addEventListener("beforeprint", () => {
   printing = true;
-  const closed = [...document.querySelectorAll("details.sec:not([open])")];
+  const closed = [...document.querySelectorAll("details.sec:not([open]), #howBody details:not([open])")];
   closed.forEach(d => d.open = true);
   printRestore = () => closed.forEach(d => d.open = false);
 });

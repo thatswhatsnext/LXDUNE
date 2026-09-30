@@ -266,10 +266,23 @@ details.sec[open] > summary::before{content:"\25BE"}
 .tour-target{outline:3px solid var(--accent);outline-offset:4px;border-radius:8px}
 footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted);font-size:.88rem}
 footer .feedback{color:inherit;font-size:inherit;margin:.4rem 0} footer .feedback a{font-weight:700}
-.how h3{margin-top:1.4rem} .how section{scroll-margin-top:1rem}
+/* How it works: a readable measure, a contents bar, summaries first, short cards */
+#howBody{max-width:46rem} .how p,.how li{line-height:1.6}
+.how h3{margin:2rem 0 .6rem;padding-bottom:.3rem;border-bottom:1px solid var(--line)} .how h4{margin:0 0 .3rem}
+.how section,.how article{scroll-margin-top:1rem}
 .how-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap}
-.how dl{margin:.4rem 0} .how dt{font-weight:600;margin-top:.6rem} .how dd{margin:.1rem 0 0}
-.how .refs li{margin:.35rem 0}
+.how-toc{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:1.2rem 0 0;padding:.7rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.how-toc .sub{margin:0 .3rem 0 0} .how-toc button{padding:.25rem .65rem;font-size:.85rem}
+.how-route{margin:.7rem 0} .route-sum{font-weight:500;font-size:1.05rem;margin:.1rem 0 .4rem}
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:.7rem}
+.how-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1rem}
+.how-card p{margin:.3rem 0}
+.how-now{background:var(--accent-soft);border-radius:8px;padding:.5rem .8rem}
+.how-ev{display:grid;grid-template-columns:max-content 1fr;gap:.5rem .8rem;align-items:baseline} .how-ev p{margin:0}
+@media (max-width:30rem){ .how-ev{grid-template-columns:1fr;gap:.2rem} .how-ev p{margin-bottom:.5rem} }
+.how-gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:.3rem 1.4rem;margin:0}
+.how-gloss dt{font-weight:600;margin-top:.5rem} .how-gloss dd{margin:.1rem 0 0}
+.how .refs li{margin:.35rem 0} .how .refs a{overflow-wrap:anywhere}
 .how-diagram{margin:1rem 0;max-width:34rem} .how-diagram svg{width:100%;height:auto;display:block}
 .how-diagram figcaption{color:var(--muted);font-size:.85rem;margin-top:.4rem}
 .dg-box rect{fill:var(--surface);stroke:var(--muted);stroke-width:1.2} .dg-box rect.dg-key{fill:var(--accent-soft);stroke:var(--accent)}
@@ -294,6 +307,7 @@ table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;
   details.sec > summary::before{content:none}
   .tour-target{outline:none}
   .feedback{display:none!important}
+  .how-toc,#howBack{display:none!important} #howBody{max-width:none}
 }
 </style>
 </head>
