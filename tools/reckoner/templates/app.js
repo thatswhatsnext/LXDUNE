@@ -20,6 +20,28 @@ document.getElementById("buildStamp").insertAdjacentHTML("beforebegin",
 document.getElementById("buildStamp").textContent =
   `Guides: ${DATA.guides.map(g => `${g.name} v${g.version}, reviewed ${g.lastReviewed}`).join("; ")}.`;
 
+/* ---------- trust chips and route lines ---------- */
+const PROV_TIP = "No companion guide yet; fit scores not yet checked against one.";
+/** "Provisional" on a catalogue model (no companion guide); nothing on a guided one. */
+const provChip = m => m.hasGuide ? "" : `<span class="badge b-prov" title="${PROV_TIP}">Provisional<span class="sr">: ${PROV_TIP}</span></span>`;
+/** Evidence strength and review status for a guided model, from its guide; Provisional for a catalogue model. */
+function trustChips(m){
+  const g = G[m.id];
+  if (!g) return provChip(m);
+  const strength = g.reckoner.evidenceStrength, def = DATA.methodology?.evidenceStrength?.[strength];
+  const pv = g.provenance;
+  const made = pv.source === "authored" ? `Written by ${pv.authors.join(", ")}`
+    : pv.source === "ai-drafted-reviewed" ? `AI-drafted, reviewed by ${pv.reviewedBy.join(", ")}${pv.reviewedOn ? `, ${pv.reviewedOn}` : ""}`
+    : "AI-generated, not yet reviewed";
+  return `<span class="badge b-evidence"${def ? ` title="${esc(def)}"` : ""}>Evidence: ${esc(strength)}</span><span class="badge b-review">${esc(made)}</span>`;
+}
+/** A link to one route's section of the How it works page, once the methodology is published. */
+const howLink = route => DATA.methodology ? ` <a class="how-link" href="#/how-it-works/${route}">How it works</a>` : "";
+/** How the Quick reckoner and three taps chose: the purpose table, or the one-lesson rule. */
+const quickRoute = (purpose, side) => `<p class="hint route">${side
+  ? `Chosen from the purpose table: ${esc(optLabel("purpose", purpose))}, ${side === "left" ? "structured" : "open"} column (${side === "left" ? "novice learners or a short timeframe" : "experienced learners and a longer timeframe"}).`
+  : "Chosen because you have one lesson: a single-lesson strategy."}${howLink("quick")}</p>`;
+
 /* tiny markdown: paragraphs, bold, italics, lists */
 function md(t){
   const lines = String(t).trim().split("\n");
@@ -125,8 +147,9 @@ function renderQuick(){
     const m = M[rec.id];
     out.innerHTML = `<article class="card lead"><div class="card-head"><div>
       <p class="hint" style="margin:0 0 .2rem">${previewing ? "Previewing from the matrix" : "Recommended for your answers"}</p>
-      <h2>${esc(rec.label)}</h2><p class="src">${esc(m.name)} · ${esc(m.src)}</p></div>${badge(m.scale)}</div>
-      ${rec.why ? `<p style="margin-top:.7rem">${esc(rec.why)}</p>` : ""}${modelBody(m)}
+      <h2>${esc(rec.label)}</h2><p class="src">${esc(m.name)} · ${esc(m.src)}</p></div><div class="head-badges">${badge(m.scale)}${provChip(m)}</div></div>
+      ${quickRoute(previewing ? rec.key : quickAnswers().purpose, rec.side)}
+      ${rec.why ? `<p style="margin-top:.3rem">${esc(rec.why)}</p>` : ""}${modelBody(m)}
       ${previewing ? `<p><button class="ghost" type="button" id="backRec">Back to my recommendation</button></p>` : ""}${feedbackLine("Was this useful?")}</article>`;
     const b = document.getElementById("backRec"); if (b) b.onclick = () => { quickPreview = null; renderQuick(); };
   }
@@ -286,7 +309,7 @@ function renderDetail(){
     ? `<p class="hint" style="margin-top:.6rem">${unranked.map(m => esc(m.name)).join(", ")} ${unranked.length>1?"are":"is"} not ranked: ${unranked.length>1?"they are settings":"it is a setting"} you apply inside another model. See the guidance dial below.</p>`
     : "";
   rk.innerHTML = (r.length
-    ? `<ol class="rank">${r.map((x,i)=>`<li class="${i<3?"top":""}"><span class="nm" title="${esc(x.m.name)}">${esc(x.m.name)}</span><span class="bar" aria-hidden="true"><i style="width:${Math.round(x.f*100)}%"></i></span><span class="pc">${Math.round(x.f*100)}%</span></li>`).join("")}</ol>`
+    ? `<ol class="rank">${r.map((x,i)=>`<li class="${i<3?"top":""}"><span class="nm" title="${esc(x.m.name)}"><span class="n">${esc(x.m.name)}</span>${provChip(x.m)}</span><span class="bar" aria-hidden="true"><i style="width:${Math.round(x.f*100)}%"></i></span><span class="pc">${Math.round(x.f*100)}%</span></li>`).join("")}</ol>`
     : `<p class="empty">Answer a question to see how the models rank.</p>`) + unrankedNote;
   renderDial(a);
   const tc = document.getElementById("topCards");
@@ -295,7 +318,7 @@ function renderDetail(){
   tc.innerHTML = r.slice(0,3).map((x,i) => { const m = x.m, rs = reasons(m,a), W = watchOuts(m,a), N = nesting(m,a);
     return `<article class="card${i===0?" lead":""}"><div class="card-head">
       <div><p class="hint" style="margin:0 0 .2rem">${["Best fit","Second","Third"][i]}</p><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></div>
-      <div style="display:flex;gap:.8rem;align-items:flex-start">${badge(m.scale)}<div class="fitnum">${Math.round(x.f*100)}%<small>fit</small></div></div></div>
+      <div style="display:flex;gap:.8rem;align-items:flex-start"><div class="head-badges">${badge(m.scale)}${provChip(m)}</div><div class="fitnum">${Math.round(x.f*100)}%<small>fit</small></div></div></div>
       ${rs.strong.length?`<p class="sub" style="margin-top:.8rem">Why this fits</p><ul class="tight">${rs.strong.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>`:""}
       ${rs.weak.length?`<p class="sub">Less suited to</p><ul class="tight">${rs.weak.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>`:""}
       ${working(m,a,imp,x.f)}
@@ -364,7 +387,8 @@ function renderGuide(id){
   const body = `
   <div class="box" style="margin-bottom:1.25rem">
     <div class="card-head"><div><h2 style="border:none">${esc(g.name)} companion guide</h2>
-      <p class="src">${esc(g.originators)} · ${esc(g.syllabus)} · v${esc(g.version)}, reviewed ${esc(g.lastReviewed)}</p></div>
+      <p class="src">${esc(g.originators)} · ${esc(g.syllabus)} · v${esc(g.version)}, reviewed ${esc(g.lastReviewed)}</p>
+      <p class="trust">${trustChips(M[g.id] || { id: g.id, hasGuide: true })}</p></div>
       <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
         <div class="density" role="group" aria-label="Guide layout">${["compact","full"].map(d => `<button class="ghost" type="button" data-density="${d}" aria-pressed="${density===d}">${d==="compact"?"Compact":"Full"}</button>`).join("")}</div>
         ${badge(g.reckoner.scale)}</div></div>
@@ -554,7 +578,7 @@ function renderMap(){
       ${cap ? `<p class="band-cap">${cap}</p>` : ""}
       <div class="map-tiles">${ms.map(m => `<button type="button" class="tile s-${scale}" data-model="${m.id}" aria-pressed="${mapSel === m.id}">
         <b>${esc(m.name)}</b><span class="tile-foot"><span>${plural(m.phases.length, scale === "dial" ? "level" : "phase")}</span>
-        ${m.hasGuide ? `<span class="gdot" aria-hidden="true"></span><span class="sr">Companion guide ready</span>` : ""}</span></button>`).join("")}</div></section>` : "";
+        ${m.hasGuide ? `<span class="gdot" aria-hidden="true"></span><span class="sr">Companion guide ready</span>` : provChip(m)}</span></button>`).join("")}</div></section>` : "";
   }).join("");
   document.querySelectorAll("#mapBands [data-model]").forEach(b => b.onclick = () => {
     mapSel = mapSel === b.dataset.model ? null : b.dataset.model;
@@ -566,6 +590,7 @@ function renderMap(){
   if (!m){ panel.innerHTML = ""; return; }
   const nest = mapNesting(m);
   panel.innerHTML = `<article class="card lead map-panel" id="mapPanelCard"><div class="card-head"><div><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></div>${badge(m.scale)}</div>
+    <p class="trust">${trustChips(m)}</p>
     <ol class="phases" aria-label="${m.scale === "dial" ? "Levels" : "Phases"}">${m.phases.map(p => `<li>${esc(p)}</li>`).join("")}</ol>
     <p><strong>Distinguishing feature.</strong> ${esc(m.distinct)}</p>
     <div class="roles"><div><h4>Teacher’s role</h4><p>${esc(m.teacher)}</p></div><div><h4>Learner’s role</h4><p>${esc(m.learner)}</p></div></div>
@@ -638,8 +663,9 @@ function tapView(){
   const open = moves.length ? g : near;
   return { q: m.name, html: `<article class="lite-result"><p class="eyebrow">Start here</p>
       <h2 class="lite-q tap-name" tabindex="-1">${esc(m.name)}</h2>
-      <div class="lite-meta"><span>${esc(m.src)}</span>${badge(m.scale)}</div>
-      <p style="margin-top:.8rem">${esc(r.why)}</p>${body}
+      <div class="lite-meta"><span>${esc(m.src)}</span>${badge(m.scale)}${provChip(m)}</div>
+      ${quickRoute(tap.a.purpose, r.side).replace("#/how-it-works/quick", "#/how-it-works/three-taps")}
+      <p style="margin-top:.3rem">${esc(r.why)}</p>${body}
       <div class="lite-actions"><button type="button" class="pill primary" data-guide="${open.id}"${moves.length ? ` data-at="${first.id}"` : ""}>Open the ${esc(open.name)} guide</button>
         <button type="button" class="pill" data-tapreset>Start again</button></div>${feedbackLine("Was this useful?")}</article>` };
 }
@@ -668,7 +694,7 @@ function renderUnit(moveFocus){
     q = r.heading;
     html = `<button type="button" class="lite-back" data-back="focus">← ${STAGE_INFO[unit.stage][0]} focus areas</button>
       <article class="lite-result"><p class="sub" style="margin:0 0 .3rem">${STAGE_INFO[unit.stage][0]} · ${esc(unit.focus)}</p>
-      <h2 class="lite-q" tabindex="-1">${esc(r.heading)}</h2>${r.body}
+      <h2 class="lite-q" tabindex="-1">${esc(r.heading)}</h2>${r.route}${r.body}
       <div class="lite-actions">${r.actions}<button type="button" class="pill" data-back="focus">Choose another focus area</button></div>${feedbackLine("Was this useful?")}</article>`;
   }
   view.innerHTML = html;
@@ -693,6 +719,9 @@ function renderUnit(moveFocus){
   if (moveFocus) view.querySelector(".lite-q")?.focus();
 }
 
+/** This route picks by what the guides hold, not by fit, and says so. */
+const unitRoute = why => `<p class="hint route">Chosen because ${esc(why)}. To check the fit for your class, try the Quick or Detailed reckoner.
+  <button type="button" class="lite-link" data-go="t-quick">Open the Quick reckoner</button>${howLink("unit")}</p>`;
 function unitResult(){
   const entry = FI[`${unit.stage}|${unit.focus}`] || { sequences: [], examples: [] };
   const seqs = entry.sequences.filter(findSeq);
@@ -711,6 +740,7 @@ function unitResult(){
         </tbody></table></div>
         ${s.steps.length > 3 ? `<button type="button" class="ghost" data-all aria-expanded="${unit.all}">${unit.all ? "Show fewer steps" : `Show all ${s.steps.length} steps`}</button>` : ""}
         ${other ? `<p class="hint" style="margin-top:.9rem">There is another plan for this focus area: <button type="button" class="lite-link" data-seq="${(i + 1) % seqs.length}">${esc(findSeq(other).title)} (${esc(G[other.guide].name)})</button></p>` : ""}`,
+      route: unitRoute(`the ${g.name} guide has a worked sequence for ${unit.focus}`),
       actions: `<button type="button" class="pill primary" data-guide="${g.id}" data-at="${s.id}">Open the full plan in the ${esc(g.name)} guide</button>`,
     };
   }
@@ -727,6 +757,7 @@ function unitResult(){
         <div class="ex ${e.kind}"><h4>${e.kind === "positive" ? "Done well" : "Done badly"}: ${esc(e.title)}</h4>
           <p class="tagline">${esc(g.name)} · ${esc(phaseName(g, pick.phase))}${e.outcomes.length ? " · " + e.outcomes.join(", ") : ""}</p>
           ${md(e.body)}<p><strong>Why.</strong> ${esc(e.diagnosis)}</p></div>`,
+      route: unitRoute(`the ${G[top].name} guide has examples for ${unit.focus}`),
       actions: `<button type="button" class="pill primary" data-guide="${g.id}" data-at="${pick.phase}">Open the ${esc(g.name)} guide at ${esc(phaseName(g, pick.phase))}</button>`,
     };
   }
@@ -742,6 +773,7 @@ function unitResult(){
         5E is the safe default: it is a ${esc(SCALE[m.scale].label.toLowerCase())}, so it gives the whole sequence a structure${hosts.length ? `, and it can hold ${esc(hosts.join(", "))}` : ""}.</p></div>
       <ol class="phases" aria-label="Phases">${m.phases.map(p => `<li>${esc(p)}</li>`).join("")}</ol>
       <p><strong>Distinguishing feature.</strong> ${esc(m.distinct)}</p>`,
+    route: unitRoute(`no guide has material for ${unit.focus} yet, and 5E is the safe default`),
     actions: five ? `<button type="button" class="pill primary" data-guide="5e">Open the 5E guide</button>` : "",
   };
 }
@@ -776,7 +808,7 @@ function renderCompare(){
   document.getElementById("cmpPicker").innerHTML = Object.entries(SCALE).map(([k, s]) => {
     const ms = DATA.models.filter(m => m.scale === k);
     return ms.length ? `<div class="cmp-group"><p class="sub">${esc(s.label)}</p><div class="chips">${ms.map(m =>
-      `<label class="chip"><input type="checkbox" value="${m.id}"${sel.includes(m.id) ? " checked" : ""}><span>${esc(m.name)}${badge(m.scale)}</span></label>`).join("")}</div></div>` : "";
+      `<label class="chip"><input type="checkbox" value="${m.id}"${sel.includes(m.id) ? " checked" : ""}><span>${esc(m.name)}${badge(m.scale)}${provChip(m)}</span></label>`).join("")}</div></div>` : "";
   }).join("");
   renderCompareView();
 }
@@ -788,10 +820,10 @@ function renderCompareView(){
     table.innerHTML = `<p class="empty">Select up to four models above.</p>`; cards.innerHTML = ""; return;
   }
   table.innerHTML = `<table class="cmp"><thead><tr><td></td>${models.map(m =>
-    `<th scope="col"><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></th>`).join("")}</tr></thead><tbody>${CMP_ROWS.map(row =>
+    `<th scope="col"><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p><p class="trust">${trustChips(m)}</p></th>`).join("")}</tr></thead><tbody>${CMP_ROWS.map(row =>
     `<tr data-row="${row[0]}" class="${cmpOpen.has(row[0]) ? "open" : ""}"><th scope="row">${row[1]}${row[3] ? cmpToggle(row[0]) : ""}</th>${models.map(m =>
       `<td>${cmpCell(row, m)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
-  cards.innerHTML = models.map(m => `<article class="card"><div class="card-head"><div><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></div></div>
+  cards.innerHTML = models.map(m => `<article class="card"><div class="card-head"><div><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p><p class="trust">${trustChips(m)}</p></div></div>
     ${CMP_ROWS.map(row => `<div class="cmp-row${cmpOpen.has(row[0]) ? " open" : ""}" data-row="${row[0]}"><p class="sub">${row[1]}</p>${cmpCell(row, m)}${row[3] ? cmpToggle(row[0]) : ""}</div>`).join("")}</article>`).join("");
   document.querySelectorAll("#p-compare .rowtoggle").forEach(b => b.onclick = () => {
     const id = b.dataset.row;
