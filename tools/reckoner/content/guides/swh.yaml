@@ -6,7 +6,7 @@ schemaVersion: "1.3"
 id: swh
 name: Science Writing Heuristic
 originators: Keys, Hand, Prain & Collins (1999)
-version: 1.1.0
+version: 1.2.0
 status: published
 lastReviewed: 2026-09-30
 syllabus: NSW Science 7–10 Syllabus (2023)
@@ -624,6 +624,108 @@ workedSequences:
       the rules is part of the task.
     provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-30 }
 
+  - id: swh-seq-s5-duckweed
+    title: What does run-off do to a waterway?
+    context: { stages: [stage5], focusAreas: [Environmental sustainability], disciplines: [biology] }
+    contentOutcomes: [SC5-ENV-01]
+    bigQuestion: How do substances that humans wash into waterways affect the living things in them, and how would we know?
+    learningIntentions:
+      - Human activity changes water quality, and living things respond to those changes in measurable ways
+      - A change that helps one organism can harm the ecosystem around it
+      - A claim about impact is defended with selected, measured evidence, and revised when compared with others and with published findings
+    targetConceptions:
+      - A pollutant always makes living things grow less
+      - If something is not visible in the water, it has no effect
+      - One container of duckweed is enough to show an effect
+    predictPrompt: Before reading on, some groups will find that fertiliser makes the duckweed grow faster. Why is that the most useful result the class could get?
+    steps:
+      - lessons: "1"
+        phaseId: beginning-ideas
+        activity: |
+          Groups look at duckweed under hand lenses, then at photos of the same creek after heavy rain and in a
+          dry spell. Each student writes what they would want to find out about how things washed off roads,
+          gardens and homes affect life in the creek. Questions are conferenced briefly for testability and kept.
+        wsOutcomes: [SC5-WS-02]
+        formativeCheck: Each student's written question, checked for investigability
+      - lessons: "2"
+        phaseId: tests
+        activity: |
+          Groups design a test using duckweed in cups of pond or aged tap water, with substances from an approved
+          list at chosen concentrations: garden fertiliser, dishwashing detergent, and table salt. Plans name what
+          will be counted (fronds), how often, how many cups, and where they will be kept. The teacher conferences
+          each plan for safety and feasibility without redesigning it.
+        wsOutcomes: [SC5-WS-03]
+        formativeCheck: Plan conference before duckweed is issued
+        scaffoldSlots:
+          - field: formativeCheck
+            prompt: A group has one cup for each substance and no cup with plain water. What do you ask, without telling them what is missing?
+      - lessons: "3–4"
+        phaseId: observations
+        activity: |
+          Over about two weeks, groups count fronds at the start of each science lesson and note colour and
+          condition, recording what they see separately from what they think it means. Lessons 3 and 4 fall at
+          the end of that period, when groups finish counting and organise their data.
+        wsOutcomes: [SC5-WS-01, SC5-WS-04, SC5-WS-05]
+        formativeCheck: Count records checked at each lesson for consistency and separation from interpretation
+      - lessons: "5"
+        phaseId: claims
+        activity: |
+          Each student writes an individual claim answering their own beginning question, in a form another
+          student could disagree with.
+        wsOutcomes: [SC5-WS-06]
+        formativeCheck: Each claim read for whether it could be argued with
+      - lessons: "5"
+        phaseId: evidence
+        activity: |
+          Students select the counts that support their claim, say why they support it, and account for anything
+          that does not fit, such as one cup that behaved differently from its repeats.
+        wsOutcomes: [SC5-WS-06, SC5-WS-08]
+        formativeCheck: The link between claim and data, read on every student's work
+      - lessons: "6"
+        phaseId: reading
+        activity: |
+          Groups pair up and compare claims, working out where they differ and why. Only then does the teacher
+          release a short reading on nutrient run-off and algal blooms, and on salinity in Australian waterways.
+          Groups that found fertiliser helped the duckweed revise their claim about impact in the light of what
+          a bloom does to the rest of a waterway. Revisions are written, not just discussed.
+        wsOutcomes: [SC5-WS-07, SC5-WS-08]
+        formativeCheck: Record of where each student agreed, disagreed and revised
+      - lessons: "6"
+        phaseId: reflection
+        activity: |
+          Beginning questions are handed back. Students write what they first thought pollution did, what
+          changed their mind, and one change to what goes down drains at home or school that their evidence
+          supports.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Written comparison of beginning ideas and final claim
+    whyItWorks:
+      - Fertiliser can increase duckweed growth, so "impact" has to be argued about the ecosystem, not just one plant
+      - Claims come from the students' own counts, so the reading in lesson 6 has something to be set against
+      - Repeated cups make variation visible, which gives the evidence phase real work to do
+      - Beginning questions are kept from lesson 1, so the reflection has something to compare against
+    watchFor: |
+      The two-week growth period sits across other lessons, so counting takes five minutes at the start of each
+      science lesson rather than a lesson of its own. Plan the unit around it, and keep the cups in one place
+      with even light, or light will decide the result.
+      Lesson 5 is where the teacher's time goes, asking one student at a time why their counts support what
+      they wrote.
+    safetyNotes: |
+      This guide does not carry safety advice and is not a substitute for your school's risk assessment.
+      What this sequence introduces, so you know what to assess: household chemicals (fertiliser and
+      detergent) handled and diluted by students; pond water, if used, and hygiene after handling it; and the
+      disposal of duckweed and treated water. Take these to your head teacher or faculty safety contact and
+      check them against your school's chemical and practical procedures and current NSW guidance before you
+      run anything.
+
+      A biosecurity point as well as a safety one: duckweed and treated water must not go into drains,
+      gardens or waterways at the end. Agree the disposal method before the plants arrive; it is also a fair
+      question to put to the class, given what the sequence is about.
+
+      One point specific to SWH. Students design the method from their own question, so the hazards are not
+      fully known when you write the risk assessment. The approved substance list is the limit, and it belongs
+      to the students at the plan checkpoint.
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-30 }
+
 misapplications:
   - id: mis-swh-no-negotiation
     name: The student template without the teacher template
@@ -735,7 +837,7 @@ reflectionPrompts:
 
 scaffold:
   defaultMode: tutor
-  revealAfterAttempt: [swh-seq-s5-bottles, swh-seq-s4-separation]
+  revealAfterAttempt: [swh-seq-s5-bottles, swh-seq-s4-separation, swh-seq-s5-duckweed]
   ai:
     groundedIn: [phases.examples, workedSequences, misapplications, checklist, reflectionPrompts]
     allowed: [contextualise-examples, audit-program, coach-reflection, compare-models]

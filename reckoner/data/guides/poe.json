@@ -3,7 +3,7 @@
   "id": "poe",
   "name": "Predict–Observe–Explain",
   "originators": "White & Gunstone (1992)",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "status": "published",
   "lastReviewed": "2026-09-30",
   "syllabus": "NSW Science 7–10 Syllabus (2023)",
@@ -1070,6 +1070,113 @@
         ],
         "reviewedOn": "2026-09-30"
       }
+    },
+    {
+      "id": "ep-s4-freeze-thaw",
+      "title": "Can water break a rock?",
+      "context": {
+        "stages": [
+          "stage4"
+        ],
+        "focusAreas": [
+          "Change"
+        ],
+        "disciplines": [
+          "earth-environmental"
+        ]
+      },
+      "contentOutcomes": [
+        "SC4-CHG-01"
+      ],
+      "bigQuestion": "How can something as soft as water break something as hard as rock?",
+      "learningIntentions": [
+        "Water expands as it freezes, which is unusual; most substances contract as they cool",
+        "Freezing changes volume but not mass",
+        "Repeated freezing and thawing of water in cracks breaks rock apart, as energy is removed and added over and over"
+      ],
+      "targetConceptions": [
+        "Everything shrinks when it gets cold",
+        "Ice is heavier than the water it came from",
+        "Rock is too hard for water to break"
+      ],
+      "steps": [
+        {
+          "minutes": "0–5",
+          "phaseId": "predict",
+          "activity": "Two identical plastic bottles, each filled to the brim with water and capped. The teacher says one\nwent into the freezer yesterday afternoon and is still there. Every student writes what that bottle\nwill look like now, whether it will weigh more, less or the same as this one, and why.\n",
+          "wsOutcomes": [
+            "SC4-WS-02"
+          ],
+          "formativeCheck": "Written predictions with reasons, collected unseen",
+          "scaffoldSlots": [
+            {
+              "field": "activity",
+              "prompt": "A student predicts the frozen bottle will be heavier \"because ice is solid\". What does that tell you, and which part of the Observe phase will test it?"
+            }
+          ]
+        },
+        {
+          "minutes": "5–10",
+          "phaseId": "predict",
+          "activity": "The class tallies predictions for shape (smaller, the same, bigger) and for mass, without discussion.\nMost will predict it shrinks, because cooling makes things contract.\n",
+          "wsOutcomes": [
+            "SC4-WS-02"
+          ],
+          "formativeCheck": "Class tallies on the board",
+          "scaffoldSlots": []
+        },
+        {
+          "minutes": "10–25",
+          "phaseId": "observe",
+          "activity": "The frozen bottle comes out: bulging, the cap forced up, a dome of ice standing proud of the rim. Both\nbottles go on the balance in turn. Then a plastic measuring cylinder, marked at its water level before it\nwas frozen, shows how far the ice has risen. Students record shape, mass and the two levels in an\nobservation column, separate from what they think it means.\n",
+          "wsOutcomes": [
+            "SC4-WS-01",
+            "SC4-WS-05"
+          ],
+          "formativeCheck": "Observation tables checked for measurements and for separation of observation and inference",
+          "scaffoldSlots": []
+        },
+        {
+          "minutes": "25–42",
+          "phaseId": "explain",
+          "activity": "Pairs write what they predicted, what they saw and what would have to be true for both. The teacher\nconsolidates: water expands by about a tenth as it freezes, because ice forms an open structure; the\nmass stays the same because nothing was added or taken away. She names the everything-shrinks idea\nrather than leaving it unspoken. Then a photo of shattered rock on an alpine slope: pairs explain what\nwater in a crack would do on a frosty night, and what happens when it thaws and freezes again.\n",
+          "wsOutcomes": [
+            "SC4-WS-06",
+            "SC4-WS-08"
+          ],
+          "formativeCheck": "Each pair's explanation of the alpine photo, shared and compared",
+          "scaffoldSlots": []
+        },
+        {
+          "minutes": "42–50",
+          "phaseId": "explain",
+          "activity": "Exit ticket: \"I predicted… I observed… Now I think… A rock with water in its cracks, after a hundred frosty nights, would…\"",
+          "wsOutcomes": [
+            "SC4-WS-08"
+          ],
+          "formativeCheck": "Exit tickets sorted to plan the next lesson",
+          "scaffoldSlots": []
+        }
+      ],
+      "whyItWorks": [
+        "The prediction runs against a rule students already trust, that cooling makes things shrink, so the result cannot be absorbed without thinking",
+        "Weighing both bottles separates volume from mass, which the heavier-ice idea confuses",
+        "The measuring cylinder turns a dramatic effect into a quantity, so \"about a tenth\" is something they saw",
+        "The alpine photo carries the result into geology, so the lesson answers the question it opened with"
+      ],
+      "watchFor": "Freezing takes hours, so the frozen bottle and cylinder are prepared the day before, and a spare of\neach is worth having in case one has leaked. Glass must not be used: it can shatter in the freezer.\nThis episode covers the geological half of Change. The chemical half is `ep-s4-steel-wool`; run the two\ntogether and ask students where the energy went in each.\n",
+      "safetyNotes": "This guide does not carry safety advice and is not a substitute for your school's risk assessment.\nWhat this sequence introduces, so you know what to assess: sealed plastic containers frozen until they\nsplit, which can leave sharp edges; ice handled by students; and water on the floor near the balance.\nTake these to your head teacher or faculty safety contact and check them against your school's practical\nprocedures and current NSW guidance before you run anything.\n\nOne point specific to POE. You supply the event, so you know in advance exactly what will be in the\nroom. Make sure the event does not also surprise you: freeze a test bottle first, in the same freezer.\n",
+      "predictPrompt": "Before reading on, students predict the frozen bottle and weigh it in the same lesson. Why ask about mass as well as shape, when the lesson is about breaking rock?",
+      "provenance": {
+        "source": "ai-drafted-reviewed",
+        "authors": [
+          "Claude"
+        ],
+        "reviewedBy": [
+          "Steve Grant"
+        ],
+        "reviewedOn": "2026-09-30"
+      }
     }
   ],
   "misapplications": [
@@ -1362,7 +1469,8 @@
     "revealAfterAttempt": [
       "ep-s4-yeast",
       "ep-s5-handwashing",
-      "ep-s4-steel-wool"
+      "ep-s4-steel-wool",
+      "ep-s4-freeze-thaw"
     ],
     "ai": {
       "groundedIn": [

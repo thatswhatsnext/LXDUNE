@@ -5,9 +5,9 @@ schemaVersion: "1.3"
 id: adi
 name: Argument-Driven Inquiry
 originators: Sampson, Grooms & Walker (2011)
-version: 1.1.1
+version: 1.2.0
 status: published
-lastReviewed: 2026-09-28
+lastReviewed: 2026-09-30
 syllabus: NSW Science 7–10 Syllabus (2023)
 provenance:
   source: ai-drafted-reviewed
@@ -529,6 +529,117 @@ workedSequences:
       explicitly rather than a rule they are handed.
     provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-28 }
 
+  - id: seq-s5-sound
+    title: Which material would keep the noise out of a classroom?
+    context: { stages: [stage5], focusAreas: [Waves and motion], disciplines: [physics] }
+    contentOutcomes: [SC5-WAM-01]
+    bigQuestion: Which material best reduces the sound reaching a classroom, and does the answer depend on the sound?
+    learningIntentions:
+      - Sound is a wave that transfers energy through a medium; its amplitude relates to loudness and its frequency to pitch
+      - When sound meets a material it is reflected, absorbed or transmitted, in proportions that depend on the material and the frequency
+      - A scientific argument links a claim to analysed evidence with a justification
+    targetConceptions:
+      - Sound cannot travel through solids
+      - Soft materials always block sound best
+      - Loudness and pitch are the same thing
+    predictPrompt: Before reading on, the guiding question ends "does the answer depend on the sound?". What would be lost from the argumentation session if it stopped at "which material"?
+    steps:
+      - lessons: "1"
+        phaseId: task-question
+        activity: |
+          Introduce the guiding question and the set-up: a small speaker playing a steady tone inside a box whose
+          lining can be changed, and a sound-level meter app on a phone at a fixed distance outside it. Tool talk
+          on the tone generator, reading decibels, and keeping the volume moderate. Display the argument
+          criteria.
+        wsOutcomes: [SC5-WS-02]
+        formativeCheck: Each group states what evidence would answer the question
+      - lessons: "2"
+        phaseId: design-data
+        activity: |
+          Groups choose materials to compare from what is available (foam, felt, cardboard, bubble wrap,
+          timber, egg cartons) and decide how to keep thickness, distance and volume fair, how many readings to
+          take, and which frequencies to test. The teacher conferences each plan for safety and feasibility,
+          asking about fairness without correcting the design.
+        wsOutcomes: [SC5-WS-03]
+        formativeCheck: Plan approval conference
+        scaffoldSlots:
+          - field: formativeCheck
+            prompt: A group plans to test one frequency only. What would you ask, without telling them the result depends on it?
+      - lessons: "3"
+        phaseId: design-data
+        activity: |
+          Groups collect readings with and without each lining, at their chosen frequencies, and record the
+          reduction in decibels, noting anything else that could affect the meter, such as other groups' noise.
+        wsOutcomes: [SC5-WS-04, SC5-WS-05]
+        formativeCheck: Data tables checked mid-collection for repeats and a no-lining baseline
+      - lessons: "4"
+        phaseId: tentative-argument
+        activity: |
+          Groups analyse their data, choosing how to represent the reduction for each material and frequency,
+          and build a whiteboard argument with claim, evidence and justification.
+        wsOutcomes: [SC5-WS-05, SC5-WS-06]
+        formativeCheck: Whiteboard check for all three parts
+      - lessons: "5"
+        phaseId: argumentation
+        activity: |
+          Round robin: one presenter stays with each whiteboard while others circulate and critique using
+          displayed stems. Groups that tested different frequencies are paired on purpose. Groups log the
+          questions asked and the changes they make.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Record of questions and revisions
+      - lessons: "6"
+        phaseId: reflective-discussion
+        activity: |
+          Whole-class discussion consolidates the wave ideas: amplitude and loudness, frequency and pitch,
+          and reflection, absorption and transmission, using the class's results. It addresses the idea that
+          soft always wins, and connects to applications students have met: noise barriers beside motorways,
+          hearing protection, and ultrasound imaging, which depends on sound reflecting from boundaries.
+        wsOutcomes: [SC5-WS-06, SC5-WS-08]
+        formativeCheck: Exit ticket on one wave feature and on what made an argument stronger
+      - lessons: "7"
+        phaseId: report
+        activity: Each student writes an individual report answering the guiding question, within a word limit, including a recommendation for a real classroom.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Draft justification paragraph checked
+      - lessons: "8"
+        phaseId: peer-review
+        activity: |
+          Anonymised reports are reviewed by another group against the review guide. The teacher samples
+          reviews and returns any that are not specific enough.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Sampled reviews
+        scaffoldSlots:
+          - field: activity
+            prompt: Which three criteria would you put on the review guide for this investigation, and why those three?
+      - lessons: "8"
+        phaseId: revision
+        activity: Authors revise, respond to each review point, and submit the final report with the review attached.
+        wsOutcomes: [SC5-WS-08]
+        formativeCheck: Draft and final compared against the shared criteria
+    whyItWorks:
+      - The question is open enough that groups reach different defensible conclusions, especially across frequencies
+      - Design choices are the students', so critique about fairness and repeats lands on their own decisions
+      - The soft-always-wins idea surfaces in critique, where data from other groups can challenge it
+      - Applications come after the investigation, so they arrive as uses of an idea students have evidence for
+    watchFor: |
+      Decibels are a logarithmic scale, so a fall from 80 to 70 is not "a bit less" and averages of decibel
+      readings mislead. Decide before lesson 4 whether to raise this or to have groups compare reductions
+      only, and be consistent in the reflective discussion.
+      This sequence covers waves only. Motion, the other half of the focus area, is `seq-s5-motion` in the 5E
+      guide.
+    safetyNotes: |
+      This guide does not carry safety advice and is not a substitute for your school's risk assessment.
+      What this sequence introduces, so you know what to assess: sustained tones from several speakers in one
+      room, where volume matters for hearing and for students with sound sensitivity; students' own phones
+      used as instruments; and handling of insulation materials, some of which shed fibres. Take these to
+      your head teacher or faculty safety contact and check them against your school's practical procedures
+      and current NSW guidance before you run anything.
+
+      One point specific to ADI. Groups design their own data collection, so the methods are not known when
+      you write the risk assessment. Setting a maximum volume and an approved materials list before lesson 2
+      gives groups the limits as part of the problem rather than as a rule imposed after they have planned.
+    provenance: { source: ai-drafted-reviewed, authors: ["Claude"], reviewedBy: ["Steve Grant"], reviewedOn: 2026-09-30 }
+
 misapplications:
   - id: mis-adi-closed-question
     name: A closed guiding question
@@ -640,7 +751,7 @@ reflectionPrompts:
 
 scaffold:
   defaultMode: tutor
-  revealAfterAttempt: [seq-s5-microhabitats]
+  revealAfterAttempt: [seq-s5-microhabitats, seq-s5-sound]
   ai:
     groundedIn: [phases.examples, workedSequences, misapplications, checklist, reflectionPrompts]
     allowed: [contextualise-examples, audit-program, coach-reflection, compare-models]
