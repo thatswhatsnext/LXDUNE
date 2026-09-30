@@ -431,9 +431,9 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [x] Appended in place, new ids added to each guide's `revealAfterAttempt`. Minor bumps: 5e 1.2.0, 7e 1.1.0, levels-of-inquiry 1.2.0, poe 1.2.0, swh 1.1.0; `lastReviewed` 2026-09-30. ADI untouched (`adi.json` byte-identical)
 - [x] Results: worked sequences 9 → 17; focus areas 16 ready plan / 0 examples only / 0 empty; examples 58, unchanged. The "7e: no Biology worked sequence" warning is cleared. Every existing id is intact (`check:regressions`); validate, tests, typecheck and check:pages pass. Each of the eight focus areas renders its new plan in Start with your unit
 - Nothing adapted: the handoff matched the repo (versions, sequence ids, phase ids, outcome codes, insertion points)
-- [ ] Open: Change. `ep-s4-steel-wool` covers the chemical half; the geological half (energy driving weathering and the rock cycle) needs its own sequence. POE's freeze–thaw example (`poe-explain-pos-freeze-thaw`) is a starting point
-- [ ] Open: Waves and motion. `seq-s5-motion` covers motion only; waves needs its own sequence
-- [ ] Open: SWH still has no Biology worked sequence
+- [x] Change: `ep-s4-steel-wool` covers the chemical half; the geological half is now `ep-s4-freeze-thaw` (item 44)
+- [x] Waves and motion: `seq-s5-motion` covers motion; waves is now `seq-s5-sound` in ADI (item 44)
+- [x] SWH Biology worked sequence: `swh-seq-s5-duckweed` (item 44)
 - [ ] Open: `7e-seq-s4-moon` lesson 6 depends on a session planned with the school's Aboriginal Education staff and local Aboriginal community; the sequence says to leave it out rather than teach it from secondary sources
 - [x] `md()` in `templates/app.js` turned every line of a multi-line field into its own paragraph, so wrapped activities broke mid-sentence on the live site. Fixed on this branch (Steve asked for it before release): consecutive lines join into one paragraph, a blank line or list item starts a new block, and a line straight after a list item continues it. Across all 4,306 content strings the text is identical and paragraphs drop from 4,990 to 4,322; a build test covers the rules, including lists, which no current content uses
 - Resolved: the handoff asked whether the result cards' "A short feedback survey is coming soon." line was intended. It is: Steve chose the placeholder over hiding the line (item 40)
@@ -447,6 +447,14 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [x] Steve's layout requests: Principles are flip cards (title and number on the front; turn by clicking the card or "Read more" to reveal the text and citations; "Show all" turns every card; the hidden face is `inert`, focus follows the turn, no spin under reduced motion, both faces print). The "On this page" bar is sticky, with "← Back" always on its left and the section being read highlighted; on narrow screens the pills are one swipeable row. "How each route decides" uses the same flip cards (number, title and one-line summary on the front; the detail bullets on the back; its own Show all); a route-line "How it works" link opens that route's card already turned; the weights table sits below the route cards
 - [x] Steve approved v1.1.0 and its layout on 2026-09-30: `status: published`, `source: ai-drafted-reviewed`, `reviewedBy: [Steve Grant]`, `reviewedOn: 2026-09-30`. The footer link "How the reckoner works" and the route lines' "How it works" links now show on the site; the methodology rides in `data/manifest.json`
 - [ ] Open: when the feedback survey URL is set (item 40), change the limits line back to "Feedback goes through an anonymous Moodle survey"
+
+### 44. Reckoner: item 42's content gaps closed (freeze–thaw, sound, duckweed) ✅ — 2026-09-30
+- [x] Three worked sequences, reviewed and signed off by Steve Grant on 2026-09-30 (`docs/handoffs/2026-09-30-item-42-gaps.md`): POE `ep-s4-freeze-thaw` (the geological half of Change, Stage 4); ADI `seq-s5-sound` (the waves half of Waves and motion, Stage 5; ADI's first physics sequence); SWH `swh-seq-s5-duckweed` (Environmental sustainability, Stage 5; SWH's first Biology sequence)
+- [x] Appended in place, new ids added to each guide's `revealAfterAttempt`. Minor bumps: poe 1.3.0, adi 1.2.0, swh 1.2.0; `lastReviewed` 2026-09-30. 5E, 7E and Levels of inquiry untouched
+- [x] Results: worked sequences 17 → 20; focus areas still 16 ready plan / 0 / 0, with Change, Waves and motion and Environmental sustainability each offering two plans; examples 58, unchanged. The "swh: no Biology worked sequence" warning is cleared, so no guide now warns. Every existing id intact; validate, tests, typecheck, check:pages and check:regressions pass. Each new plan renders as the second plan for its focus area
+- Nothing adapted: the handoff matched the repo (versions, sequence ids, phase ids, outcome codes, insertion points)
+- Note: `swh-seq-s5-duckweed` needs a growth period of about two weeks, counted at the start of each science lesson; duckweed and treated water must not go into drains, gardens or waterways
+- Note: `seq-s5-sound`: decide per class whether to teach the logarithmic decibel scale or compare reductions only
 
 ---
 
