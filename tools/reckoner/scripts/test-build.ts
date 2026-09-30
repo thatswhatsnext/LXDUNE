@@ -217,6 +217,13 @@ const cases: [string, () => void | Promise<void>][] = [
     if (doc.querySelectorAll("#howBody table.weights tbody tr").length !== doc.querySelectorAll("#detailForm fieldset").length) throw new Error("weights table does not list every question");
     if (!doc.querySelector("#howBody svg[role=img]")) throw new Error("no diagram");
     if (doc.querySelector(".tab[aria-selected=true]")?.id !== "t-unit") throw new Error("the selected tab changed");
+    const card = doc.querySelector("#howBody .flip") as any;
+    if (!card || !card.querySelector(".back").hasAttribute("inert")) throw new Error("a principle card's back is not inert before it is turned");
+    card.querySelector(".front .flip-btn").click();
+    if (card.dataset.flipped !== "true" || card.querySelector(".back").hasAttribute("inert") || !card.querySelector(".front").hasAttribute("inert"))
+      throw new Error("Read more did not turn the card");
+    (doc.getElementById("flipAll") as any).click();
+    if ([...doc.querySelectorAll("#howBody .flip")].some((c: any) => c.dataset.flipped !== "true")) throw new Error("Show all did not turn every card");
     (doc.getElementById("howBack") as any).click();
     await wait(() => doc.getElementById("p-how").hidden && !doc.getElementById("p-unit").hidden, "Back to the selected tab");
     dom.window.close();
