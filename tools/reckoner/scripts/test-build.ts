@@ -172,6 +172,11 @@ const cases: [string, () => void | Promise<void>][] = [
     const f = join(contentDir, "methodology.yaml");
     const m = yaml.load(readFileSync(f, "utf8")) as any;
     const lead = m.intro.lead as string;
+    // Start from a draft copy, whatever the committed file's status
+    m.status = "draft";
+    m.provenance = { ...m.provenance, source: "ai-generated", reviewedBy: [] };
+    delete m.provenance.reviewedOn;
+    writeFileSync(f, yaml.dump(m));
     const builds = (tag: string) => {
       const out = (mode: string) => join(tmp, `meth-${tag}-${mode}`);
       buildSite({ mode: "site", outDir: out("site"), contentDir, log: quiet });
@@ -186,7 +191,6 @@ const cases: [string, () => void | Promise<void>][] = [
       };
     };
     const draft = builds("draft");
-    if (m.status === "published") throw new Error("expected the committed methodology to be a draft");
     if ("methodology" in draft.manifest) throw new Error("draft methodology in the site manifest");
     if (draft.single.includes(lead)) throw new Error("draft methodology in the single-file build");
     if (!draft.review.includes(lead)) throw new Error("draft methodology missing from the review copy");

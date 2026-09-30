@@ -1,17 +1,17 @@
 # How the reckoner works: methodology notes shown on the "How it works" page (F1) and, later, the glossary (F7).
-# Version 1.0.0 was approved by Steve Grant on 2026-09-30. Version 1.1.0 rewrites it for reading on the web
-# (summary lines, short bullets, front-loaded sentences), keeping its meaning, and corrects two lines. It stays
-# status: in-review, source: ai-generated, reviewedBy: [] until Steve signs off the new wording.
+# v1.0.0 approved by Steve Grant on 2026-09-30; v1.1.0 rewrites it for reading on the web, keeping its meaning,
+# and was approved and published by Steve Grant on 2026-09-30.
 # Counts (models, guides) are deliberately left out: the page computes them from the manifest, so this file never goes stale.
 schemaVersion: '1.0'
 id: methodology
 version: 1.1.0
-status: in-review
+status: published
 lastReviewed: '2026-09-30'
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: ['Claude, drafted for S. Grant']
-  reviewedBy: []
+  reviewedBy: ['Steve Grant']
+  reviewedOn: '2026-09-30'
 
 intro:
   lead: 'The reckoner helps you decide which constructivist teaching model suits the sequence you are planning. It shows its working, so you can check its reasoning and disagree with it.'
