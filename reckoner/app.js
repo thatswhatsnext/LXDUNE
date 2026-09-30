@@ -42,15 +42,23 @@ const quickRoute = (purpose, side) => `<p class="hint route">${side
   ? `Chosen from the purpose table: ${esc(optLabel("purpose", purpose))}, ${side === "left" ? "structured" : "open"} column (${side === "left" ? "novice learners or a short timeframe" : "experienced learners and a longer timeframe"}).`
   : "Chosen because you have one lesson: a single-lesson strategy."}${howLink("quick")}</p>`;
 
-/* tiny markdown: paragraphs, bold, italics, lists */
+/* tiny markdown: paragraphs, bold, italics, lists. As in Markdown, consecutive lines join into one
+   paragraph (YAML block text wraps mid-sentence); a blank line or a list item starts a new block, and a
+   line straight after a list item continues that item. */
 function md(t){
-  const lines = String(t).trim().split("\n");
+  const blocks = [];
+  for (const raw of String(t).trim().split("\n")){
+    const l = raw.trim(), last = blocks[blocks.length - 1];
+    if (!l) blocks.push(null);
+    else if (/^[-*] /.test(l)) blocks.push({ li: true, text: l.slice(2) });
+    else if (last) last.text += " " + l;
+    else blocks.push({ li: false, text: l });
+  }
   let html = "", list = false;
-  for (const raw of lines){
-    const l = raw.trim();
-    if (/^[-*] /.test(l)){ if(!list){html+="<ul class='tight'>";list=true;} html += `<li>${inline(l.slice(2))}</li>`; continue; }
-    if (list){ html += "</ul>"; list = false; }
-    if (l) html += `<p>${inline(l)}</p>`;
+  for (const b of blocks){
+    if (b && b.li && !list){ html += "<ul class='tight'>"; list = true; }
+    if ((!b || !b.li) && list){ html += "</ul>"; list = false; }
+    if (b) html += b.li ? `<li>${inline(b.text)}</li>` : `<p>${inline(b.text)}</p>`;
   }
   return html + (list ? "</ul>" : "");
 }

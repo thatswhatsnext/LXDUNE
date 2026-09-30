@@ -254,6 +254,15 @@ const cases: [string, () => void | Promise<void>][] = [
     if (hash !== RULES_HASH) throw new Error(`rule texts changed (hash ${hash}, expected ${RULES_HASH})`);
     page.dom.window.close();
   }],
+  ["md() joins wrapped lines into paragraphs and keeps lists", async () => {
+    const page = await openPage(join(tmp, "single", "index.html"));
+    const got = page.dom.window.eval(`md("One line\\n  wrapped here.\\n\\nSecond **bold\\nacross** lines.\\n- item one\\n  continued\\n- item two\\nAfter.")`);
+    const want = "<p>One line wrapped here.</p><p>Second <strong>bold across</strong> lines.</p><ul class='tight'><li>item one continued</li><li>item two After.</li></ul>";
+    if (got !== want) throw new Error(`got ${got}`);
+    const blank = page.dom.window.eval(`md("A\\n\\n- x\\n\\nB")`);
+    if (blank !== "<p>A</p><ul class='tight'><li>x</li></ul><p>B</p>") throw new Error(`got ${blank}`);
+    page.dom.window.close();
+  }],
   ["show the working totals equal the card percentages", async () => {
     const page = await openPage(join(tmp, "single", "index.html"));
     const { doc, dom } = page;

@@ -435,7 +435,7 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [ ] Open: Waves and motion. `seq-s5-motion` covers motion only; waves needs its own sequence
 - [ ] Open: SWH still has no Biology worked sequence
 - [ ] Open: `7e-seq-s4-moon` lesson 6 depends on a session planned with the school's Aboriginal Education staff and local Aboriginal community; the sequence says to leave it out rather than teach it from secondary sources
-- [ ] Open (template, separate fix): `md()` in `templates/app.js` turns every line of a multi-line field into its own paragraph, so wrapped activities break mid-sentence on the live site. Join consecutive non-blank lines into one paragraph; a blank line starts a new one
+- [x] `md()` in `templates/app.js` turned every line of a multi-line field into its own paragraph, so wrapped activities broke mid-sentence on the live site. Fixed on this branch (Steve asked for it before release): consecutive lines join into one paragraph, a blank line or list item starts a new block, and a line straight after a list item continues it. Across all 4,306 content strings the text is identical and paragraphs drop from 4,990 to 4,322; a build test covers the rules, including lists, which no current content uses
 - Resolved: the handoff asked whether the result cards' "A short feedback survey is coming soon." line was intended. It is: Steve chose the placeholder over hiding the line (item 40)
 
 ---
