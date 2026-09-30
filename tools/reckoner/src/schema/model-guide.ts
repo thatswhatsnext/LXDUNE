@@ -18,16 +18,16 @@ import { ALL_FOCUS_AREAS, OUTCOMES, OUTCOME_CODES, STAGES } from "./syllabus";
 import { FIT_DIMENSIONS, FIT_DIMENSION_KEYS, type FitDimension } from "./fit-dimensions";
 
 /** Strict object: unknown keys are errors, so authoring typos are never silently dropped. */
-const obj = <T extends z.ZodRawShape>(shape: T) => z.object(shape).strict();
+export const obj = <T extends z.ZodRawShape>(shape: T) => z.object(shape).strict();
 
 /* ------------------------------------------------------------------ */
 /* Primitives                                                          */
 /* ------------------------------------------------------------------ */
 
-const Slug = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "Use lower-case kebab-case ids");
-const Markdown = z.string().min(1);
-const ShortText = z.string().min(1).max(280);
-const IsoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Use YYYY-MM-DD");
+export const Slug = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "Use lower-case kebab-case ids");
+export const Markdown = z.string().min(1);
+export const ShortText = z.string().min(1).max(280);
+export const IsoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Use YYYY-MM-DD");
 
 export const Stage = z.enum(STAGES);
 export const FocusArea = z.enum(ALL_FOCUS_AREAS);

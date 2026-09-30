@@ -413,6 +413,19 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [ ] Open: open the survey once students have planned with the reckoner; close it a week later. This is the baseline for the transparency release (`docs/handoffs/2026-09-30-reckoner-transparency.md`). Keep questions 3 and 4 word-for-word for the follow-up
 - Note: responses are for reckoner improvement only (quality improvement, not research). If that changes, seek ethics approval before the next round
 
+### 41. Reckoner: transparency release (show the working, route lines, trust chips, How it works) ⬜ (open items remain) — 2026-09-30
+- [x] **Show the working (F2):** each detailed-reckoner top card lists every term of its fit score (answer, fit 0–3, weight × importance, points, share), totalling to the card's percentage. Watch-outs and nesting lines carry a "Rule" badge and the answer that triggered them; `watchOuts()` and `nesting()` return `{ text, because }` with the same lines firing word for word
+- [x] **Route lines (F3):** Quick and three-taps results name the purpose-table cell (or the one-lesson rule); Start with your unit says it chose by what the guides hold, not by fit, and offers the Quick reckoner
+- [x] **Trust chips (F4):** evidence strength and review status on guided models (guide header, map panel, compare view); Provisional on catalogue models wherever they appear as a result or choice. AA contrast checked in both themes (lowest 5.62:1); no horizontal scroll at 360px
+- [x] **How it works (F1):** `content/methodology.yaml` with schema `src/schema/methodology.ts`, validation, rule tests and build wiring; a page behind the footer link (`#/how-it-works`), with a computed weights table, live model counts and an SVG diagram. The file lands as a **draft**, so students do not see the page or its links yet
+- [x] Checks: ranking order and every percentage identical for 49 fixed answer sets before and after; rule texts hash-checked in `test-build.ts`; `reckoner/data/` (manifest included) byte-identical to `dev`; validate, 48 rule checks, 15 build tests, typecheck, check:pages and check:regressions pass
+- Adapted from the handoff: released without the baseline survey (Steve, 2026-09-30), so the survey will measure the reckoner after this change and question 4 has no before/after comparison. `model-guide.ts` gained `export` on five primitives the methodology schema reuses, as change 1 asks; nothing else in it changed. Unit results with no material for the focus area (the Start from 5E case) also get a route line. "Show the working" links to the detailed route of How it works
+- [ ] Open: Steve reviews `content/methodology.yaml` in a review copy (`npm run review -- 5e`, then open How the reckoner works in the footer), then set `status: published`, `source: ai-drafted-reviewed`, `reviewedBy`, `reviewedOn`, and publish. The footer link and route-line links appear then
+- [ ] Open, for that review: the evidence-strength definitions are drafted, not taken from how strengths were assigned in the guides; "Purpose counts three times as much as the least important questions" is loose, since place-based (0.5) is the least important; the limits line "Feedback goes through an anonymous Moodle survey" is not yet true while the feedback link is parked (item 40); confirm the Start with your unit wording and the Provisional wording
+- [ ] Open: run the follow-up survey with the same six questions once the feedback link is live
+- [ ] Open: F6 visible weights, F7 glossary tooltips and F8 walkthrough refresh, shaped by survey answers
+- Note: the rule-labelling pattern keeps the shapes `APP_ID_SITES` in `scripts/validate.ts` matches (still 48 model-id references found)
+
 ---
 
 ## ✅ Completed

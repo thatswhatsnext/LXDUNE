@@ -20,6 +20,28 @@ document.getElementById("buildStamp").insertAdjacentHTML("beforebegin",
 document.getElementById("buildStamp").textContent =
   `Guides: ${DATA.guides.map(g => `${g.name} v${g.version}, reviewed ${g.lastReviewed}`).join("; ")}.`;
 
+/* ---------- trust chips and route lines ---------- */
+const PROV_TIP = "No companion guide yet; fit scores not yet checked against one.";
+/** "Provisional" on a catalogue model (no companion guide); nothing on a guided one. */
+const provChip = m => m.hasGuide ? "" : `<span class="badge b-prov" title="${PROV_TIP}">Provisional<span class="sr">: ${PROV_TIP}</span></span>`;
+/** Evidence strength and review status for a guided model, from its guide; Provisional for a catalogue model. */
+function trustChips(m){
+  const g = G[m.id];
+  if (!g) return provChip(m);
+  const strength = g.reckoner.evidenceStrength, def = DATA.methodology?.evidenceStrength?.[strength];
+  const pv = g.provenance;
+  const made = pv.source === "authored" ? `Written by ${pv.authors.join(", ")}`
+    : pv.source === "ai-drafted-reviewed" ? `AI-drafted, reviewed by ${pv.reviewedBy.join(", ")}${pv.reviewedOn ? `, ${pv.reviewedOn}` : ""}`
+    : "AI-generated, not yet reviewed";
+  return `<span class="badge b-evidence"${def ? ` title="${esc(def)}"` : ""}>Evidence: ${esc(strength)}</span><span class="badge b-review">${esc(made)}</span>`;
+}
+/** A link to one route's section of the How it works page, once the methodology is published. */
+const howLink = route => DATA.methodology ? ` <a class="how-link" href="#/how-it-works/${route}">How it works</a>` : "";
+/** How the Quick reckoner and three taps chose: the purpose table, or the one-lesson rule. */
+const quickRoute = (purpose, side) => `<p class="hint route">${side
+  ? `Chosen from the purpose table: ${esc(optLabel("purpose", purpose))}, ${side === "left" ? "structured" : "open"} column (${side === "left" ? "novice learners or a short timeframe" : "experienced learners and a longer timeframe"}).`
+  : "Chosen because you have one lesson: a single-lesson strategy."}${howLink("quick")}</p>`;
+
 /* tiny markdown: paragraphs, bold, italics, lists */
 function md(t){
   const lines = String(t).trim().split("\n");
@@ -43,9 +65,10 @@ const store = {
 /* ---------- tabs and routing ---------- */
 const tabs = [...document.querySelectorAll(".tab")];
 function selectTab(t, push = true){
+  const how = document.getElementById("p-how"); how.hidden = true; how.classList.remove("active");
   tabs.forEach(x => { const on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1;
     const p = document.getElementById(x.getAttribute("aria-controls")); p.hidden = !on; p.classList.toggle("active", on); });
-  if (push && t.id !== "t-guides") location.hash = "";
+  if (push && (t.id !== "t-guides" || /^#\/how-it-works/.test(location.hash))) location.hash = "";
   if (t.id === "t-compare") renderCompare();
   return t;
 }
@@ -69,12 +92,76 @@ function openGuide(id, section){
   });
 }
 addEventListener("hashchange", routeFromHash);
-function routeFromHash(){
+function routeFromHash(e){
   if (ownHash && location.hash === ownHash){ ownHash = null; return; }
   ownHash = null;
+  const how = location.hash.match(/^#\/how-it-works(?:\/([a-z-]+))?$/);
+  if (how && DATA.methodology){
+    const from = e && e.oldURL ? new URL(e.oldURL).hash : "";
+    if (!/^#\/how-it-works/.test(from)) howFrom = from;
+    return showHow(how[1]);
+  }
+  leaveHow();
   const m = location.hash.match(/^#\/guide\/([a-z0-9-]+)(?:\/([a-z0-9-]+))?/);
   if (m) openGuide(m[1], m[2]);
 }
+
+/* ---------- How it works (F1): the methodology, reached from the footer ----------
+ * Prose comes from content/methodology.yaml; counts and weights are computed here, so the
+ * page cannot disagree with the data. Only built when the methodology is published, or in a
+ * review copy. Tabs keep their selected state; Back returns to where the reader was. */
+let howFrom = "";
+const ROUTE_ORDER = ["unit", "three-taps", "quick", "detailed", "rules", "dial"];
+function renderHow(){
+  const meth = DATA.methodology, el = document.getElementById("howBody");
+  const refs = new Map(meth.references.map(r => [r.id, r]));
+  const cite = id => { const r = refs.get(id); return r ? `<a href="#how-ref-${id}" data-howref="${id}">${esc(r.citation.split(" (")[0].replace(/,? &.*| et al\..*/, " et al."))} (${esc((r.citation.match(/\((\d{4})/) || [])[1] || "n.d.")})</a>` : ""; };
+  const guided = DATA.models.filter(m => m.hasGuide).length, prov = DATA.models.length - guided;
+  const dates = DATA.guides.map(g => g.lastReviewed).sort();
+  const weights = `<table class="weights"><thead><tr><th scope="col">Question</th><th scope="col">Counts</th></tr></thead><tbody>
+    ${DIMS.map(d => `<tr><th scope="row">${esc(d.short[0].toUpperCase() + d.short.slice(1))}</th><td>×${+d.weight}</td></tr>`).join("")}</tbody></table>
+    <p class="hint">Read from the reckoner's own settings, so this table always matches the ranking. Your importance setting multiplies these: low ×0.5, high ×2.</p>`;
+  const routes = ROUTE_ORDER.map(id => meth.routes.find(r => r.id === id)).filter(Boolean);
+  el.innerHTML = `<div class="how-head"><h2 id="howTitle" tabindex="-1">How the reckoner works</h2>
+      <button type="button" class="ghost" id="howBack">Back</button></div>
+    ${meth.status === "published" ? "" : `<div class="warnbox"><p class="sub">Not yet reviewed</p><p>This page is ${meth.status === "in-review" ? "in review" : "a draft"}, included in this review copy only. Students do not see it until it is signed off.</p></div>`}
+    <p class="lede">${esc(meth.intro.lead)}</p>${md(meth.intro.purpose)}
+    <h3>How each route decides</h3>
+    ${routes.map(r => `<section id="how-${r.id}"><h4>${esc(r.title)}</h4>${md(r.body)}${r.id === "detailed" ? weights : ""}</section>`).join("")}
+    <template-slot></template-slot>
+    <h3>Principles</h3>
+    ${meth.principles.map(p => `<section id="how-p-${p.id}"><h4>${esc(p.title)}</h4>${md(p.body)}${p.referenceIds.length ? `<p class="hint">See ${p.referenceIds.map(cite).join("; ")}.</p>` : ""}</section>`).join("")}
+    <h3>How content is made</h3>
+    <p class="hint">Right now: ${guided} of ${DATA.models.length} models have a companion guide; ${prov} ${prov === 1 ? "is" : "are"} provisional.${dates.length ? ` Guides were last reviewed ${dates[0] === dates[dates.length - 1] ? `on ${dates[0]}` : `between ${dates[0]} and ${dates[dates.length - 1]}`}.` : ""}</p>
+    ${md(meth.review)}
+    <h3>Evidence strength</h3>
+    <dl>${Object.entries(meth.evidenceStrength).map(([k, v]) => `<dt>${esc(k[0].toUpperCase() + k.slice(1))}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+    <h3>What it does not do</h3><ul class="tight">${meth.limits.map(l => `<li>${esc(l)}</li>`).join("")}</ul>
+    <h3>Glossary</h3><dl>${meth.glossary.map(g => `<dt>${esc(g.term)}</dt><dd>${esc(g.definition)}</dd>`).join("")}</dl>
+    ${meth.references.length ? `<h3>References</h3><ul class="refs">${meth.references.map(r => `<li id="how-ref-${r.id}">${esc(r.citation)}${r.doi ? ` <a href="https://doi.org/${esc(r.doi)}">https://doi.org/${esc(r.doi)}</a>` : r.url ? ` <a href="${esc(r.url)}">${esc(r.url)}</a>` : ""}</li>`).join("")}</ul>` : ""}
+    <p class="hint">Methodology v${esc(meth.version)}, reviewed ${esc(meth.lastReviewed)}.</p>`;
+  el.querySelector("template-slot").replaceWith(document.getElementById("howDiagram").content.cloneNode(true));
+  document.getElementById("howBack").onclick = () => { location.hash = howFrom; };
+  el.querySelectorAll("[data-howref]").forEach(a => a.onclick = e => { e.preventDefault();
+    document.getElementById("how-ref-" + a.dataset.howref)?.scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "center" }); });
+}
+function showHow(route){
+  renderHow();
+  document.querySelectorAll(".panel").forEach(p => { const on = p.id === "p-how"; p.hidden = !on; p.classList.toggle("active", on); });
+  const target = route && document.getElementById("how-" + route);
+  requestAnimationFrame(() => {
+    (target || document.getElementById("p-how")).scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" });
+    if (!target) document.getElementById("howTitle")?.focus({ preventScroll: true });
+  });
+}
+/** Leaving How it works: show the selected tab's panel again, without touching the hash. */
+function leaveHow(){
+  if (document.getElementById("p-how").hidden) return;
+  const t = tabs.find(x => x.getAttribute("aria-selected") === "true") || tabs[0];
+  selectTab(t, false);
+}
+if (DATA.methodology) document.getElementById("buildStamp").insertAdjacentHTML("beforebegin",
+  `<p><a href="#/how-it-works" id="howFoot">How the reckoner works</a>: how each route decides, how content is reviewed, and what it cannot do.</p>`);
 
 /* ---------- shared model card body ---------- */
 function modelBody(m){
@@ -125,8 +212,9 @@ function renderQuick(){
     const m = M[rec.id];
     out.innerHTML = `<article class="card lead"><div class="card-head"><div>
       <p class="hint" style="margin:0 0 .2rem">${previewing ? "Previewing from the matrix" : "Recommended for your answers"}</p>
-      <h2>${esc(rec.label)}</h2><p class="src">${esc(m.name)} · ${esc(m.src)}</p></div>${badge(m.scale)}</div>
-      ${rec.why ? `<p style="margin-top:.7rem">${esc(rec.why)}</p>` : ""}${modelBody(m)}
+      <h2>${esc(rec.label)}</h2><p class="src">${esc(m.name)} · ${esc(m.src)}</p></div><div class="head-badges">${badge(m.scale)}${provChip(m)}</div></div>
+      ${quickRoute(previewing ? rec.key : quickAnswers().purpose, rec.side)}
+      ${rec.why ? `<p style="margin-top:.3rem">${esc(rec.why)}</p>` : ""}${modelBody(m)}
       ${previewing ? `<p><button class="ghost" type="button" id="backRec">Back to my recommendation</button></p>` : ""}${feedbackLine("Was this useful?")}</article>`;
     const b = document.getElementById("backRec"); if (b) b.onclick = () => { quickPreview = null; renderQuick(); };
   }
@@ -176,23 +264,47 @@ function fit(m,a,imp){ let num=0, den=0;
   return den ? num/den : null; }
 const rankAll = (a,imp) => RANKED.map(m => ({ m, f: fit(m,a,imp) })).filter(x => x.f !== null).sort((x,y) => y.f - x.f);
 const has = (a,id,v) => Array.isArray(a[id]) ? a[id].includes(v) : a[id] === v;
+/** The answer that fired a rule, for its "Rule" label: you chose “Novice” for learner readiness. */
+const chose = (id, v) => `you chose “${optLabel(id, v)}” for ${dimById[id].short}`;
+/* Watch-outs and nesting are hand-written rules, not part of the score. Each line carries the answer that triggered it. */
 function watchOuts(m,a){ const W = [];
-  if (["pbl","project-based","interactive-approach"].includes(m.id) && a.ready==="novice") W.push("Novice learners: high cognitive load risk. Scaffold heavily, or start with a more structured model.");
-  if (["pbl","project-based","ast","interactive-approach","7e"].includes(m.id) && (a.time==="lesson"||a.time==="short")) W.push("This model needs a longer run than you have. Consider a shorter model or extend the sequence.");
-  if (a.conf==="low" && ["ast","pbl","project-based","interactive-approach","case","glm"].includes(m.id)) W.push("Demanding to facilitate. Script your key questions, and observe or co-teach with a colleague first if you can.");
-  if (a.res==="none" && ["design-cycle","learning-cycle","adi","interactive-approach"].includes(m.id)) W.push("Relies on hands-on work. Substitute simulations or secondary data sets.");
-  if (a.lang==="high" && ["glm","case","ssi","adi","pbl"].includes(m.id)) W.push("Talk- and text-heavy. Add sentence frames, vocabulary pre-teaching or an SWH template.");
-  if (a.misc==="robust" && ["pbl","project-based","design-cycle","ssi","interactive-approach"].includes(m.id)) W.push("Does not target misconceptions directly. Embed a POE early in the sequence.");
-  if (a.concept==="abstract" && ["design-cycle","learning-cycle","interactive-approach"].includes(m.id)) W.push("Abstract concept: add an explicit modelling task so students can represent what they cannot see.");
-  if (a.concept==="value" && m.id!=="ssi") W.push("Value-laden topic: include an SSI deliberation, for example in the application phase.");
+  if (["pbl","project-based","interactive-approach"].includes(m.id) && a.ready==="novice") W.push({ text:"Novice learners: high cognitive load risk. Scaffold heavily, or start with a more structured model.", because:chose("ready",a.ready) });
+  if (["pbl","project-based","ast","interactive-approach","7e"].includes(m.id) && (a.time==="lesson"||a.time==="short")) W.push({ text:"This model needs a longer run than you have. Consider a shorter model or extend the sequence.", because:chose("time",a.time) });
+  if (a.conf==="low" && ["ast","pbl","project-based","interactive-approach","case","glm"].includes(m.id)) W.push({ text:"Demanding to facilitate. Script your key questions, and observe or co-teach with a colleague first if you can.", because:chose("conf",a.conf) });
+  if (a.res==="none" && ["design-cycle","learning-cycle","adi","interactive-approach"].includes(m.id)) W.push({ text:"Relies on hands-on work. Substitute simulations or secondary data sets.", because:chose("res",a.res) });
+  if (a.lang==="high" && ["glm","case","ssi","adi","pbl"].includes(m.id)) W.push({ text:"Talk- and text-heavy. Add sentence frames, vocabulary pre-teaching or an SWH template.", because:chose("lang",a.lang) });
+  if (a.misc==="robust" && ["pbl","project-based","design-cycle","ssi","interactive-approach"].includes(m.id)) W.push({ text:"Does not target misconceptions directly. Embed a POE early in the sequence.", because:chose("misc",a.misc) });
+  if (a.concept==="abstract" && ["design-cycle","learning-cycle","interactive-approach"].includes(m.id)) W.push({ text:"Abstract concept: add an explicit modelling task so students can represent what they cannot see.", because:chose("concept",a.concept) });
+  if (a.concept==="value" && m.id!=="ssi") W.push({ text:"Value-laden topic: include an SSI deliberation, for example in the application phase.", because:chose("concept",a.concept) });
   return W.slice(0,3); }
 function nesting(m,a){ const N = [];
-  if (a.misc==="robust" && m.id!=="poe") N.push({ text:"Open with a Predict–Observe–Explain to surface and challenge the target misconception.", guide:"poe" });
-  if (has(a,"ws","8") && !["adi","swh"].includes(m.id)) N.push({ text:"Add a Science Writing Heuristic template or an ADI argumentation session to the sense-making phase (WS-08)." });
-  if (a.concept==="abstract" && m.id!=="ast") N.push({ text:"Add a model-drafting and revision task, borrowed from Ambitious Science Teaching." });
-  if (has(a,"purpose","reason") && m.id!=="case") N.push({ text:"Run a CASE-style lesson on the reasoning pattern before the main investigation." });
-  if (a.place==="yes") N.push({ text:"Build a place-based context developed with local Aboriginal community, through your school’s Aboriginal Education staff." });
+  if (a.misc==="robust" && m.id!=="poe") N.push({ text:"Open with a Predict–Observe–Explain to surface and challenge the target misconception.", guide:"poe", because:chose("misc",a.misc) });
+  if (has(a,"ws","8") && !["adi","swh"].includes(m.id)) N.push({ text:"Add a Science Writing Heuristic template or an ADI argumentation session to the sense-making phase (WS-08).", because:chose("ws","8") });
+  if (a.concept==="abstract" && m.id!=="ast") N.push({ text:"Add a model-drafting and revision task, borrowed from Ambitious Science Teaching.", because:chose("concept",a.concept) });
+  if (has(a,"purpose","reason") && m.id!=="case") N.push({ text:"Run a CASE-style lesson on the reasoning pattern before the main investigation.", because:chose("purpose","reason") });
+  if (a.place==="yes") N.push({ text:"Build a place-based context developed with local Aboriginal community, through your school’s Aboriginal Education staff.", because:chose("place",a.place) });
   return N; }
+const ruleTag = r => `<span class="rule-tag"><span class="badge b-rule">Rule</span> because ${esc(r.because)}</span>`;
+/**
+ * "Show the working": every term in fit() for one model, one row per answered question.
+ * Reads dimScore() and the same weights fit() uses; the total row shows fit() itself.
+ */
+function working(m,a,imp,f){
+  const num = n => String(+n.toFixed(2));
+  const rows = DIMS.map(d => ({ d, s: dimScore(m,d,a), w: d.weight*imp[d.id] })).filter(r => r.s !== null);
+  const total = rows.reduce((t,r) => t + r.w*r.s, 0), max = rows.reduce((t,r) => t + r.w*3, 0);
+  const IMP = { 0.5: "low", 1: "", 2: "high" };
+  return `<details class="why working"><summary>Show the working</summary>
+    <div class="table-scroll"><table class="work"><thead><tr><th scope="col">Question</th><th scope="col">Your answer</th><th scope="col">Fit (0–3)</th><th scope="col">Weight</th><th scope="col">Points</th><th scope="col">Share</th></tr></thead><tbody>
+    ${rows.map(({d,s,w}) => `<tr><th scope="row">${esc(d.short[0].toUpperCase()+d.short.slice(1))}</th>
+      <td>${esc(d.multi ? a[d.id].map(v => optLabel(d.id,v)).join("; ") : optLabel(d.id,a[d.id]))}</td>
+      <td>${num(s)}${d.multi && a[d.id].length > 1 ? ` <small>(mean)</small>` : ""}</td>
+      <td>${num(d.weight)}${imp[d.id] !== 1 ? ` × ${num(imp[d.id])} <small>(${IMP[imp[d.id]]} importance)</small>` : ""}</td>
+      <td>${num(w*s)} of ${num(w*3)}</td><td>${total ? Math.round(w*s/total*100) : 0}%</td></tr>`).join("")}
+    </tbody><tfoot><tr><th scope="row">Fit</th><td colspan="3"></td><td>${num(total)} of ${num(max)}</td><td><strong>${Math.round(f*100)}%</strong></td></tr></tfoot></table></div>
+    <p class="hint">Points are fit × weight; the fit percentage is total points out of the maximum. Share is each question’s part of the points. Questions you left blank are not counted.${howLink("detailed")}</p>
+    ${m.hasGuide ? "" : `<p class="hint">Provisional: this model’s scores have not yet been checked against a companion guide.</p>`}</details>`;
+}
 function reasons(m,a){ const strong=[], weak=[];
   DIMS.forEach(d => { const s = dimScore(m,d,a); if (s===null) return;
     const ans = d.multi ? a[d.id].map(v => optLabel(d.id,v)).join(", ") : optLabel(d.id,a[d.id]);
@@ -262,7 +374,7 @@ function renderDetail(){
     ? `<p class="hint" style="margin-top:.6rem">${unranked.map(m => esc(m.name)).join(", ")} ${unranked.length>1?"are":"is"} not ranked: ${unranked.length>1?"they are settings":"it is a setting"} you apply inside another model. See the guidance dial below.</p>`
     : "";
   rk.innerHTML = (r.length
-    ? `<ol class="rank">${r.map((x,i)=>`<li class="${i<3?"top":""}"><span class="nm" title="${esc(x.m.name)}">${esc(x.m.name)}</span><span class="bar" aria-hidden="true"><i style="width:${Math.round(x.f*100)}%"></i></span><span class="pc">${Math.round(x.f*100)}%</span></li>`).join("")}</ol>`
+    ? `<ol class="rank">${r.map((x,i)=>`<li class="${i<3?"top":""}"><span class="nm" title="${esc(x.m.name)}"><span class="n">${esc(x.m.name)}</span>${provChip(x.m)}</span><span class="bar" aria-hidden="true"><i style="width:${Math.round(x.f*100)}%"></i></span><span class="pc">${Math.round(x.f*100)}%</span></li>`).join("")}</ol>`
     : `<p class="empty">Answer a question to see how the models rank.</p>`) + unrankedNote;
   renderDial(a);
   const tc = document.getElementById("topCards");
@@ -271,11 +383,12 @@ function renderDetail(){
   tc.innerHTML = r.slice(0,3).map((x,i) => { const m = x.m, rs = reasons(m,a), W = watchOuts(m,a), N = nesting(m,a);
     return `<article class="card${i===0?" lead":""}"><div class="card-head">
       <div><p class="hint" style="margin:0 0 .2rem">${["Best fit","Second","Third"][i]}</p><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></div>
-      <div style="display:flex;gap:.8rem;align-items:flex-start">${badge(m.scale)}<div class="fitnum">${Math.round(x.f*100)}%<small>fit</small></div></div></div>
+      <div style="display:flex;gap:.8rem;align-items:flex-start"><div class="head-badges">${badge(m.scale)}${provChip(m)}</div><div class="fitnum">${Math.round(x.f*100)}%<small>fit</small></div></div></div>
       ${rs.strong.length?`<p class="sub" style="margin-top:.8rem">Why this fits</p><ul class="tight">${rs.strong.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>`:""}
       ${rs.weak.length?`<p class="sub">Less suited to</p><ul class="tight">${rs.weak.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>`:""}
-      ${W.length?`<div class="warnbox"><p class="sub">Watch-outs</p><ul class="tight">${W.map(s=>`<li>${esc(s)}</li>`).join("")}</ul></div>`:""}
-      ${N.length?`<p class="sub">Nest inside it</p><ul class="tight">${N.map(n=>`<li>${esc(n.text)}${n.guide&&G[n.guide]?` <button class="ghost" style="padding:.1rem .5rem;font-size:.8rem" type="button" onclick="openGuide('${n.guide}')">Open guide</button>`:""}</li>`).join("")}</ul>`:""}
+      ${working(m,a,imp,x.f)}
+      ${W.length?`<div class="warnbox"><p class="sub">Watch-outs</p><ul class="tight">${W.map(w=>`<li>${esc(w.text)} ${ruleTag(w)}</li>`).join("")}</ul></div>`:""}
+      ${N.length?`<p class="sub">Nest inside it</p><ul class="tight">${N.map(n=>`<li>${esc(n.text)} ${ruleTag(n)}${n.guide&&G[n.guide]?` <button class="ghost" style="padding:.1rem .5rem;font-size:.8rem" type="button" onclick="openGuide('${n.guide}')">Open guide</button>`:""}</li>`).join("")}</ul>`:""}
       ${i===0&&sens.length?`<p class="sub">If one answer changed</p><ul class="tight">${sens.map(o=>`<li>If ${esc(o.d.short)} were “${esc(optLabel(o.d.id,o.v))}”, ${esc(o.m.name)} would rank first.</li>`).join("")}</ul>`:""}
       ${modelBody(m)}${i===0 ? feedbackLine("Was this useful?") : ""}</article>`; }).join("");
 }
@@ -339,7 +452,8 @@ function renderGuide(id){
   const body = `
   <div class="box" style="margin-bottom:1.25rem">
     <div class="card-head"><div><h2 style="border:none">${esc(g.name)} companion guide</h2>
-      <p class="src">${esc(g.originators)} · ${esc(g.syllabus)} · v${esc(g.version)}, reviewed ${esc(g.lastReviewed)}</p></div>
+      <p class="src">${esc(g.originators)} · ${esc(g.syllabus)} · v${esc(g.version)}, reviewed ${esc(g.lastReviewed)}</p>
+      <p class="trust">${trustChips(M[g.id] || { id: g.id, hasGuide: true })}</p></div>
       <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
         <div class="density" role="group" aria-label="Guide layout">${["compact","full"].map(d => `<button class="ghost" type="button" data-density="${d}" aria-pressed="${density===d}">${d==="compact"?"Compact":"Full"}</button>`).join("")}</div>
         ${badge(g.reckoner.scale)}</div></div>
@@ -529,7 +643,7 @@ function renderMap(){
       ${cap ? `<p class="band-cap">${cap}</p>` : ""}
       <div class="map-tiles">${ms.map(m => `<button type="button" class="tile s-${scale}" data-model="${m.id}" aria-pressed="${mapSel === m.id}">
         <b>${esc(m.name)}</b><span class="tile-foot"><span>${plural(m.phases.length, scale === "dial" ? "level" : "phase")}</span>
-        ${m.hasGuide ? `<span class="gdot" aria-hidden="true"></span><span class="sr">Companion guide ready</span>` : ""}</span></button>`).join("")}</div></section>` : "";
+        ${m.hasGuide ? `<span class="gdot" aria-hidden="true"></span><span class="sr">Companion guide ready</span>` : provChip(m)}</span></button>`).join("")}</div></section>` : "";
   }).join("");
   document.querySelectorAll("#mapBands [data-model]").forEach(b => b.onclick = () => {
     mapSel = mapSel === b.dataset.model ? null : b.dataset.model;
@@ -541,6 +655,7 @@ function renderMap(){
   if (!m){ panel.innerHTML = ""; return; }
   const nest = mapNesting(m);
   panel.innerHTML = `<article class="card lead map-panel" id="mapPanelCard"><div class="card-head"><div><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></div>${badge(m.scale)}</div>
+    <p class="trust">${trustChips(m)}</p>
     <ol class="phases" aria-label="${m.scale === "dial" ? "Levels" : "Phases"}">${m.phases.map(p => `<li>${esc(p)}</li>`).join("")}</ol>
     <p><strong>Distinguishing feature.</strong> ${esc(m.distinct)}</p>
     <div class="roles"><div><h4>Teacher’s role</h4><p>${esc(m.teacher)}</p></div><div><h4>Learner’s role</h4><p>${esc(m.learner)}</p></div></div>
@@ -613,8 +728,9 @@ function tapView(){
   const open = moves.length ? g : near;
   return { q: m.name, html: `<article class="lite-result"><p class="eyebrow">Start here</p>
       <h2 class="lite-q tap-name" tabindex="-1">${esc(m.name)}</h2>
-      <div class="lite-meta"><span>${esc(m.src)}</span>${badge(m.scale)}</div>
-      <p style="margin-top:.8rem">${esc(r.why)}</p>${body}
+      <div class="lite-meta"><span>${esc(m.src)}</span>${badge(m.scale)}${provChip(m)}</div>
+      ${quickRoute(tap.a.purpose, r.side).replace("#/how-it-works/quick", "#/how-it-works/three-taps")}
+      <p style="margin-top:.3rem">${esc(r.why)}</p>${body}
       <div class="lite-actions"><button type="button" class="pill primary" data-guide="${open.id}"${moves.length ? ` data-at="${first.id}"` : ""}>Open the ${esc(open.name)} guide</button>
         <button type="button" class="pill" data-tapreset>Start again</button></div>${feedbackLine("Was this useful?")}</article>` };
 }
@@ -643,7 +759,7 @@ function renderUnit(moveFocus){
     q = r.heading;
     html = `<button type="button" class="lite-back" data-back="focus">← ${STAGE_INFO[unit.stage][0]} focus areas</button>
       <article class="lite-result"><p class="sub" style="margin:0 0 .3rem">${STAGE_INFO[unit.stage][0]} · ${esc(unit.focus)}</p>
-      <h2 class="lite-q" tabindex="-1">${esc(r.heading)}</h2>${r.body}
+      <h2 class="lite-q" tabindex="-1">${esc(r.heading)}</h2>${r.route}${r.body}
       <div class="lite-actions">${r.actions}<button type="button" class="pill" data-back="focus">Choose another focus area</button></div>${feedbackLine("Was this useful?")}</article>`;
   }
   view.innerHTML = html;
@@ -668,6 +784,9 @@ function renderUnit(moveFocus){
   if (moveFocus) view.querySelector(".lite-q")?.focus();
 }
 
+/** This route picks by what the guides hold, not by fit, and says so. */
+const unitRoute = why => `<p class="hint route">Chosen because ${esc(why)}. To check the fit for your class, try the Quick or Detailed reckoner.
+  <button type="button" class="lite-link" data-go="t-quick">Open the Quick reckoner</button>${howLink("unit")}</p>`;
 function unitResult(){
   const entry = FI[`${unit.stage}|${unit.focus}`] || { sequences: [], examples: [] };
   const seqs = entry.sequences.filter(findSeq);
@@ -686,6 +805,7 @@ function unitResult(){
         </tbody></table></div>
         ${s.steps.length > 3 ? `<button type="button" class="ghost" data-all aria-expanded="${unit.all}">${unit.all ? "Show fewer steps" : `Show all ${s.steps.length} steps`}</button>` : ""}
         ${other ? `<p class="hint" style="margin-top:.9rem">There is another plan for this focus area: <button type="button" class="lite-link" data-seq="${(i + 1) % seqs.length}">${esc(findSeq(other).title)} (${esc(G[other.guide].name)})</button></p>` : ""}`,
+      route: unitRoute(`the ${g.name} guide has a worked sequence for ${unit.focus}`),
       actions: `<button type="button" class="pill primary" data-guide="${g.id}" data-at="${s.id}">Open the full plan in the ${esc(g.name)} guide</button>`,
     };
   }
@@ -702,6 +822,7 @@ function unitResult(){
         <div class="ex ${e.kind}"><h4>${e.kind === "positive" ? "Done well" : "Done badly"}: ${esc(e.title)}</h4>
           <p class="tagline">${esc(g.name)} · ${esc(phaseName(g, pick.phase))}${e.outcomes.length ? " · " + e.outcomes.join(", ") : ""}</p>
           ${md(e.body)}<p><strong>Why.</strong> ${esc(e.diagnosis)}</p></div>`,
+      route: unitRoute(`the ${G[top].name} guide has examples for ${unit.focus}`),
       actions: `<button type="button" class="pill primary" data-guide="${g.id}" data-at="${pick.phase}">Open the ${esc(g.name)} guide at ${esc(phaseName(g, pick.phase))}</button>`,
     };
   }
@@ -717,6 +838,7 @@ function unitResult(){
         5E is the safe default: it is a ${esc(SCALE[m.scale].label.toLowerCase())}, so it gives the whole sequence a structure${hosts.length ? `, and it can hold ${esc(hosts.join(", "))}` : ""}.</p></div>
       <ol class="phases" aria-label="Phases">${m.phases.map(p => `<li>${esc(p)}</li>`).join("")}</ol>
       <p><strong>Distinguishing feature.</strong> ${esc(m.distinct)}</p>`,
+    route: unitRoute(`no guide has material for ${unit.focus} yet, and 5E is the safe default`),
     actions: five ? `<button type="button" class="pill primary" data-guide="5e">Open the 5E guide</button>` : "",
   };
 }
@@ -751,7 +873,7 @@ function renderCompare(){
   document.getElementById("cmpPicker").innerHTML = Object.entries(SCALE).map(([k, s]) => {
     const ms = DATA.models.filter(m => m.scale === k);
     return ms.length ? `<div class="cmp-group"><p class="sub">${esc(s.label)}</p><div class="chips">${ms.map(m =>
-      `<label class="chip"><input type="checkbox" value="${m.id}"${sel.includes(m.id) ? " checked" : ""}><span>${esc(m.name)}${badge(m.scale)}</span></label>`).join("")}</div></div>` : "";
+      `<label class="chip"><input type="checkbox" value="${m.id}"${sel.includes(m.id) ? " checked" : ""}><span>${esc(m.name)}${badge(m.scale)}${provChip(m)}</span></label>`).join("")}</div></div>` : "";
   }).join("");
   renderCompareView();
 }
@@ -763,10 +885,10 @@ function renderCompareView(){
     table.innerHTML = `<p class="empty">Select up to four models above.</p>`; cards.innerHTML = ""; return;
   }
   table.innerHTML = `<table class="cmp"><thead><tr><td></td>${models.map(m =>
-    `<th scope="col"><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></th>`).join("")}</tr></thead><tbody>${CMP_ROWS.map(row =>
+    `<th scope="col"><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p><p class="trust">${trustChips(m)}</p></th>`).join("")}</tr></thead><tbody>${CMP_ROWS.map(row =>
     `<tr data-row="${row[0]}" class="${cmpOpen.has(row[0]) ? "open" : ""}"><th scope="row">${row[1]}${row[3] ? cmpToggle(row[0]) : ""}</th>${models.map(m =>
       `<td>${cmpCell(row, m)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
-  cards.innerHTML = models.map(m => `<article class="card"><div class="card-head"><div><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></div></div>
+  cards.innerHTML = models.map(m => `<article class="card"><div class="card-head"><div><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p><p class="trust">${trustChips(m)}</p></div></div>
     ${CMP_ROWS.map(row => `<div class="cmp-row${cmpOpen.has(row[0]) ? " open" : ""}" data-row="${row[0]}"><p class="sub">${row[1]}</p>${cmpCell(row, m)}${row[3] ? cmpToggle(row[0]) : ""}</div>`).join("")}</article>`).join("");
   document.querySelectorAll("#p-compare .rowtoggle").forEach(b => b.onclick = () => {
     const id = b.dataset.row;

@@ -10,6 +10,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import yaml from "js-yaml";
 import { ModelGuide } from "../src/schema/model-guide";
+import { Methodology } from "../src/schema/methodology";
 import { FOCUS_AREAS } from "../src/schema/syllabus";
 
 /** Every model the reckoner knows about. Nesting may only point at these. */
@@ -119,6 +120,21 @@ function main() {
     }
     guides.push(g);
     console.log(`✓ ${file}  (${g.status}, v${g.version})`);
+  }
+
+  // Methodology: the prose behind the How it works page, validated like a guide. A missing file is an error.
+  const methFile = join(__dirname, "..", "content", "methodology.yaml");
+  try {
+    const result = Methodology.safeParse(yaml.load(readFileSync(methFile, "utf8")));
+    if (!result.success) {
+      console.error(`\n✗ methodology.yaml`);
+      for (const i of result.error.issues) console.error(`  ${i.path.join(".") || "(root)"}: ${i.message}`);
+      errors += result.error.issues.length;
+    } else console.log(`✓ methodology.yaml  (${result.data.status}, v${result.data.version})`);
+  } catch (e: any) {
+    if (e.code === "ENOENT") console.error(`\n✗ methodology.yaml: missing (content/methodology.yaml is required)`);
+    else console.error(`\n✗ methodology.yaml: YAML syntax error\n  ${e.reason || e.message}${e.mark ? ` (line ${e.mark.line + 1}, column ${e.mark.column + 1})` : ""}\n  Check for an unquoted value containing ": " or a comma inside { }.`);
+    errors++;
   }
 
   // Model ids: registry, catalogue, template and quick matrix must agree

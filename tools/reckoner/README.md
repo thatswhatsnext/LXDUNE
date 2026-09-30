@@ -26,20 +26,22 @@ npm run status         # regenerate docs/reckoner-state.md (also run by publish:
 | --- | --- |
 | `src/schema/model-guide.ts` | The schema (Zod), including every cross-field quality rule |
 | `src/schema/syllabus.ts` | NSW Science 7–10 (2023) whitelist: stages, focus areas, outcome codes |
+| `src/schema/methodology.ts` | Schema for `content/methodology.yaml`: every route once, citations resolve, published means reviewed |
 | `src/schema/fit-dimensions.ts` | Reckoner questions and option order, shared with the reckoner UI |
 | `content/guides/5e.yaml` | The 5E guide: reference instance for unit (macro) models |
 | `content/guides/poe.yaml` | The POE guide: reference instance for single-lesson (micro) models |
 | `content/guides/adi.yaml` | The ADI guide: reference instance for multi-lesson routines with stage groups |
 | `content/guides/levels-of-inquiry.yaml` | The Levels of inquiry guide: reference instance for unranked guidance-dial models |
 | `scripts/validate.ts` | Validates all guides, checks nesting links, reports coverage gaps |
-| `scripts/test-rules.ts` | Breaks the guides in 30 ways and checks each is caught |
-| `scripts/test-build.ts` | Build tests: deterministic output, drafts excluded, every guide renders (jsdom), stale files removed |
+| `scripts/test-rules.ts` | Breaks the guides, model ids and methodology file in many ways and checks each is caught |
+| `scripts/test-build.ts` | Build tests: deterministic output, drafts (guides and methodology) excluded, every guide renders (jsdom), rule texts unchanged, working totals match, How it works, stale files removed |
 | `scripts/export-json-schema.ts` | Writes `dist/*.schema.json` |
 | `scripts/build-site.ts` | Command line for the builds in `scripts/lib/build.ts` (site, single file, review copy) |
 | `scripts/copy-to-pages.ts` | Mirrors `dist/site/` into `reckoner/`; `--check` compares only |
 | `scripts/status.ts` | Writes `docs/reckoner-state.md`, the generated snapshot of guides, coverage and the next action-plan item; `--check` compares only |
 | `templates/app.html` | Page shell: markup and styles; `<!--__BOOT__-->` is replaced with the loader or inline data |
 | `templates/app.js` | App code: reckoner scoring, guide rendering, routing |
+| `content/methodology.yaml` | Prose for the How it works page (routes, principles, review, evidence strength, limits, glossary). Published only after review, like a guide |
 | `content/catalogue.json` | Reckoner entries for models with no guide yet |
 | `content/questions.json` | Reckoner question text, quick matrix and scale labels |
 
@@ -129,6 +131,15 @@ Only guides with `status: published` are included, so unreviewed content cannot 
 | Levels of inquiry | Guidance dial | published, v1.0.0 | Stage 4 Biology (Living systems, progression across a unit) | Reviewed; no fit profile; owns the reckoner's guidance dial and its evidence |
 
 ## Changelog
+
+**1.4** (the reckoner shows its working; the guide schema stays at 1.3)
+
+- Methodology file and How it works page; show the working; route lines; trust chips. No guide content or scoring changed.
+- `content/methodology.yaml` (schema `src/schema/methodology.ts`, version 1.0) holds the How it works prose. Like a guide, it reaches students only once published and reviewed; review copies always include it.
+- The detailed reckoner's top cards show every term of the fit score, and watch-outs and nesting lines are labelled as rules with the answer that triggered them.
+- Guided models carry evidence-strength and review chips; catalogue models carry a Provisional chip.
+
+
 
 **1.3** (the dial heuristic becomes evidence-bearing)
 
