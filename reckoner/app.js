@@ -120,6 +120,31 @@ function routeFromHash(e){
  * review copy. Tabs keep their selected state; Back returns to where the reader was. */
 let howFrom = "";
 const ROUTE_ORDER = ["unit", "three-taps", "quick", "detailed", "rules", "dial"];
+/**
+ * A flip card for the How it works page. The front carries the number, title and anything that should be
+ * seen while scanning; the back carries the detail, headed by the title again so the reader keeps their
+ * place. The back starts inert; flipCard() below turns cards and keeps inert and focus in step.
+ */
+function flipCard({ id, cls = "", num, title, front = "", back, more, less }){
+  return `<article class="flip ${cls}" id="how-${id}" data-flipped="false"><div class="flip-inner">
+    <div class="face front"><span class="flip-num" aria-hidden="true">${num}</span>
+      <div class="flip-main"><h4 id="how-${id}-t">${esc(title)}</h4>${front}</div>
+      <button type="button" class="flip-btn" aria-expanded="false" aria-controls="how-${id}-b" aria-describedby="how-${id}-t">${more}</button></div>
+    <div class="face back" id="how-${id}-b" role="group" aria-labelledby="how-${id}-t" inert>
+      <p class="flip-back-title" aria-hidden="true">${esc(title)}</p>${back}
+      <button type="button" class="flip-btn">${less}</button></div></div></article>`;
+}
+/** A lead-in line, a Show all switch for this section's cards, and the cards in a grid. */
+const flipSection = (lead, cards) => `<div class="flip-bar"><p class="hint">${lead}</p>
+  <button type="button" class="ghost" data-flipall aria-pressed="false">Show all</button></div>
+  <div class="how-grid">${cards.join("")}</div>`;
+/** Turn a card; the hidden face is inert, so keyboard and screen-reader users only meet the side on show. */
+function turnCard(card, on, focus){
+  card.dataset.flipped = on;
+  card.querySelector(".front").toggleAttribute("inert", on); card.querySelector(".back").toggleAttribute("inert", !on);
+  card.querySelector(".front .flip-btn").setAttribute("aria-expanded", on);
+  if (focus) card.querySelector(on ? ".back .flip-btn" : ".front .flip-btn").focus({ preventScroll: true });
+}
 function renderHow(){
   const meth = DATA.methodology, el = document.getElementById("howBody");
   const refs = new Map(meth.references.map(r => [r.id, r]));
@@ -131,7 +156,7 @@ function renderHow(){
   const guided = DATA.models.filter(m => m.hasGuide).length, prov = DATA.models.length - guided;
   const dates = DATA.guides.map(g => g.lastReviewed).sort();
   const cap = t => t[0].toUpperCase() + t.slice(1);
-  const weights = `<details class="why"><summary>See how much each question counts</summary>
+  const weights = `<details class="why how-weights"><summary>See how much each question counts in the Detailed reckoner</summary>
     <table class="weights"><thead><tr><th scope="col">Question</th><th scope="col">Counts</th></tr></thead><tbody>
     ${DIMS.map(d => `<tr><th scope="row">${esc(cap(d.short))}</th><td>×${+d.weight}</td></tr>`).join("")}</tbody></table>
     <p class="hint">Read from the reckoner's own settings, so this table always matches the ranking. Your importance setting multiplies these: low ×0.5, high ×2.</p></details>`;
@@ -139,16 +164,12 @@ function renderHow(){
   // Sections in reading order; the contents bar is built from the same list, so it cannot miss one.
   const SECS = [
     ["glance", "At a glance", `<p class="hint">The diagram shows where every recommendation comes from.</p><template-slot></template-slot>`],
-    ["routes", "How each route decides", routes.map(r => `<article class="card how-route" id="how-${r.id}"><h4>${esc(r.title)}</h4>
-      <p class="route-sum">${esc(r.summary)}</p>${md(r.body)}${r.id === "detailed" ? weights : ""}</article>`).join("")],
-    ["principles", "Principles", `<div class="flip-bar"><p class="hint">Six ideas the reckoner is built on. Turn a card to read it.</p>
-      <button type="button" class="ghost" id="flipAll" aria-pressed="false">Show all</button></div>
-      <div class="how-grid">${meth.principles.map((p, i) => `<article class="flip" id="how-p-${p.id}" data-flipped="false"><div class="flip-inner">
-        <div class="face front"><span class="flip-num" aria-hidden="true">${i + 1}</span><h4 id="how-pt-${p.id}">${esc(p.title)}</h4>
-          <button type="button" class="flip-btn" aria-expanded="false" aria-controls="how-pb-${p.id}" aria-describedby="how-pt-${p.id}">Read more</button></div>
-        <div class="face back" id="how-pb-${p.id}" role="group" aria-labelledby="how-pt-${p.id}" inert>${md(p.body)}
-          ${p.referenceIds.length ? `<p class="hint">See ${p.referenceIds.map(cite).join("; ")}.</p>` : ""}
-          <button type="button" class="flip-btn">Back to the title</button></div></div></article>`).join("")}</div>`],
+    ["routes", "How each route decides", flipSection(`${plural(routes.length, "way")} into the reckoner. Turn a card to see how it decides.`,
+      routes.map((r, i) => flipCard({ id: r.id, cls: "how-route", num: i + 1, title: r.title, front: `<p class="route-sum">${esc(r.summary)}</p>`,
+        back: md(r.body), more: "How it decides", less: "Back to the summary" }))) + weights],
+    ["principles", "Principles", flipSection(`${plural(meth.principles.length, "idea")} the reckoner is built on. Turn a card to read it.`,
+      meth.principles.map((p, i) => flipCard({ id: `p-${p.id}`, num: i + 1, title: p.title,
+        back: md(p.body) + (p.referenceIds.length ? `<p class="hint">See ${p.referenceIds.map(cite).join("; ")}.</p>` : ""), more: "Read more", less: "Back to the title" })))],
     ["review", "How content is made", `<p class="how-now">Right now: ${guided} of ${DATA.models.length} models have a companion guide; ${prov} ${prov === 1 ? "is" : "are"} provisional.${dates.length ? ` Guides were last reviewed ${dates[0] === dates[dates.length - 1] ? `on ${dates[0]}` : `between ${dates[0]} and ${dates[dates.length - 1]}`}.` : ""}</p>${md(meth.review)}`],
     ["evidence", "Evidence strength", `<p class="hint">The label on each companion guide says how strong the research behind the model is.</p>
       <div class="how-ev">${Object.entries(meth.evidenceStrength).map(([k, v]) => `<span class="badge b-evidence">Evidence: ${esc(k)}</span><p>${esc(v)}</p>`).join("")}</div>`],
@@ -170,21 +191,16 @@ function renderHow(){
   el.querySelectorAll("[data-howjump]").forEach(b => b.onclick = () => { mark(b.dataset.howjump); jump(document.getElementById(b.dataset.howjump)); });
   el.querySelectorAll("[data-howref]").forEach(a => a.onclick = e => { e.preventDefault(); jump(document.getElementById("how-ref-" + a.dataset.howref)); });
 
-  // Flip cards: the hidden face is inert, so keyboard and screen-reader users only meet the side on show.
-  const flip = (card, on, focus) => {
-    card.dataset.flipped = on;
-    card.querySelector(".front").toggleAttribute("inert", on); card.querySelector(".back").toggleAttribute("inert", !on);
-    card.querySelector(".front .flip-btn").setAttribute("aria-expanded", on);
-    if (focus) card.querySelector(on ? ".back .flip-btn" : ".front .flip-btn").focus({ preventScroll: true });
-  };
-  const cards = [...el.querySelectorAll(".flip")], all = document.getElementById("flipAll");
-  cards.forEach(card => {
-    card.querySelectorAll(".flip-btn").forEach(b => b.onclick = e => { e.stopPropagation(); flip(card, card.dataset.flipped !== "true", true); });
-    // The whole card turns on a click, except on a link inside it
-    card.onclick = e => { if (!e.target.closest("a, button")) flip(card, card.dataset.flipped !== "true", false); };
+  // Flip cards: the whole card turns on a click, except on a link, button or disclosure inside it
+  el.querySelectorAll(".flip").forEach(card => {
+    card.querySelectorAll(".flip-btn").forEach(b => b.onclick = e => { e.stopPropagation(); turnCard(card, card.dataset.flipped !== "true", true); });
+    card.onclick = e => { if (!e.target.closest("a, button, details")) turnCard(card, card.dataset.flipped !== "true", false); };
   });
-  all.onclick = () => { const on = all.getAttribute("aria-pressed") !== "true";
-    all.setAttribute("aria-pressed", on); all.textContent = on ? "Show titles only" : "Show all"; cards.forEach(c => flip(c, on, false)); };
+  el.querySelectorAll("[data-flipall]").forEach(all => all.onclick = () => {
+    const on = all.getAttribute("aria-pressed") !== "true";
+    all.setAttribute("aria-pressed", on); all.textContent = on ? "Show fronts only" : "Show all";
+    all.closest("section").querySelectorAll(".flip").forEach(c => turnCard(c, on, false));
+  });
 
   // Sticky contents bar: mark the section being read, and keep its pill in view on narrow screens.
   howSpy?.disconnect();
@@ -205,6 +221,8 @@ function showHow(route){
   renderHow();
   document.querySelectorAll(".panel").forEach(p => { const on = p.id === "p-how"; p.hidden = !on; p.classList.toggle("active", on); });
   const target = route && document.getElementById("how-" + route);
+  // Arriving from a result's "How it works" link: open that route's card at its detail
+  if (target?.classList.contains("flip")) turnCard(target, true, false);
   requestAnimationFrame(() => {
     (target || document.getElementById("p-how")).scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" });
     if (!target) document.getElementById("howTitle")?.focus({ preventScroll: true });

@@ -285,7 +285,7 @@ footer .feedback{color:inherit;font-size:inherit;margin:.4rem 0} footer .feedbac
   .how-pills{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:2px;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
   .how-pills::-webkit-scrollbar{display:none}
 }
-.how-route{margin:.7rem 0} .route-sum{font-weight:500;font-size:1.05rem;margin:.1rem 0 .4rem}
+.route-sum{font-weight:500;margin:0;color:var(--ink)}
 .how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:.7rem}
 /* Principles as flip cards: both faces share one grid cell, so the card is as tall as its longer side */
 .flip-bar{display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex-wrap:wrap;margin-bottom:.6rem} .flip-bar .hint{margin:0}
@@ -295,7 +295,10 @@ footer .feedback{color:inherit;font-size:inherit;margin:.4rem 0} footer .feedbac
 .face{grid-area:1/1;display:flex;flex-direction:column;gap:.35rem;min-height:9.5rem;padding:.9rem 1rem;border-radius:var(--r);border:1px solid var(--line);background:var(--surface);-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .face p{margin:.2rem 0}
 .face.front{justify-content:space-between;border-top:4px solid var(--accent)}
-.face.front h4{font-size:1.2rem;margin:0;flex:1;display:flex;align-items:center}
+.flip-main{flex:1;display:flex;flex-direction:column;justify-content:center;gap:.4rem}
+.face.front h4{font-size:1.2rem;margin:0}
+.flip-back-title{font:600 .8rem var(--sans);color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:0 0 .1rem}
+.face.back ul{margin:.2rem 0;padding-left:1.1rem} .how-weights{margin-top:.9rem}
 .face.back{transform:rotateY(180deg);background:var(--accent-soft);border-color:var(--accent)}
 .flip-num{font:600 .8rem var(--sans);color:var(--muted)}
 .flip-btn{all:unset;box-sizing:border-box;cursor:pointer;align-self:flex-start;margin-top:auto;font-size:.85rem;font-weight:600;color:var(--accent);padding:.15rem 0;border-bottom:1px solid currentColor}
@@ -332,9 +335,9 @@ table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;
   details.sec > summary::before{content:none}
   .tour-target{outline:none}
   .feedback{display:none!important}
-  .how-toc,#flipAll{display:none!important} #howBody{max-width:none}
+  .how-toc,[data-flipall]{display:none!important} #howBody{max-width:none}
   .flip-inner{transform:none!important;display:block} .face{backface-visibility:visible;transform:none!important;min-height:0;border:none;padding:0;background:none}
-  .flip-btn,.flip-num{display:none!important} .flip{break-inside:avoid;margin-bottom:.6rem}
+  .flip-btn,.flip-num,.flip-back-title{display:none!important} .flip{break-inside:avoid;margin-bottom:.6rem}
 }
 </style>
 </head>
@@ -483,7 +486,7 @@ table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;
         man.guides = guides;
         window.RECKONER_DATA = man;
         var s = document.createElement("script");
-        s.src = "app.js?v=387b861b45a6";
+        s.src = "app.js?v=7c9d73a516ff";
         s.onerror = fail;
         document.body.appendChild(s);
       });
