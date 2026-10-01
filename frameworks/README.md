@@ -151,6 +151,14 @@ where relevant, `supersededBy` — content authored against a superseded syllabu
 (e.g. the 2017 Stage 6 modules) must set `acknowledgedSuperseded: true` on the
 item, which is how the deprecation path is made explicit rather than silent.
 
+The reckoner (`tools/reckoner`) reads the same file for its syllabus whitelist:
+stages, Stage 4/5 focus areas, `workingScientificallySkills` and `outcomes`
+(outcome codes only, never outcome wording). Adding keys or ids is safe for both
+readers. Changing or removing a stage, focus area, skill or outcome changes what
+every reckoner guide is validated against: its parity test
+(`tools/reckoner/scripts/test-syllabus.ts`) fails until it is updated in the
+same commit, and the Reckoner CI check runs whenever this file changes.
+
 ## Attribution
 
 Each framework's `attribution` string is a licence obligation, not decoration —

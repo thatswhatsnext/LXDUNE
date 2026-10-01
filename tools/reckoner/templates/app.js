@@ -485,8 +485,8 @@ const SECTIONS = [
   ["sequences","Worked sequences"],["misapplications","Misapplications"],["checklist","Checklist"],
   ["alignment","Syllabus alignment"],["reflection","Reflection"],["references","References"]
 ];
-const FOCUS = { stage4:["Observing the Universe","Forces","Cells and classification","Solutions and mixtures","Living systems","Periodic table and atomic structure","Change","Data science 1"],
-  stage5:["Energy","Disease","Materials","Environmental sustainability","Genetics and evolutionary change","Reactions","Waves and motion","Data science 2"] };
+/* Stage → focus areas, from the build (syllabus.ts, read from curriculum.vocab.json). */
+const FOCUS = DATA.focusAreas;
 /**
  * Density. Compact collapses the long sections to a heading and a count; Full opens
  * everything. Sections opened by hand stay open while the same guide is re-rendered.

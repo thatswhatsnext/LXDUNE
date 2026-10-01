@@ -6,7 +6,7 @@
     "validate": "tsx scripts/validate.ts",
     "export-schema": "tsx scripts/export-json-schema.ts",
     "typecheck": "tsc --noEmit",
-    "test": "tsx scripts/test-rules.ts && tsx scripts/test-build.ts",
+    "test": "tsx scripts/test-syllabus.ts && tsx scripts/test-rules.ts && tsx scripts/test-build.ts",
     "build": "tsx scripts/build-site.ts",
     "build:single": "tsx scripts/build-site.ts --single-file",
     "review": "tsx scripts/build-site.ts --review",
