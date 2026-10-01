@@ -111,6 +111,11 @@ const VIEWS = {
 };
 
 // ── deep-dive view (HITS shape) ─────────────────────────────────────────────────
+// Layout version of this view, stamped as data-fx-renderer. It is separate from
+// the framework's content version (data-fx-version), which feeds the content
+// hash: a layout change bumps this, never the content version.
+const DEEPDIVE_RENDERER = 'deep-dive@2.0.0';
+
 async function loadDeepDive(dir, fw) {
   if (!Array.isArray(fw.items) || !fw.items.length) throw new Error('framework has no items manifest');
   const [items, labels] = await Promise.all([
@@ -142,177 +147,360 @@ async function loadVocabLabels(dir, fw) {
   return labels;
 }
 
-function renderDeepDive(mount, fw, { items, labels }) {
-  injectStyles('lxd-fx-dd-styles', DEEPDIVE_STYLES);
-  mount.className = 'lxd-fx';
-  mount.innerHTML = SHELL(fw);
-  const $ = (sel) => mount.querySelector(sel);
+// Section model: key, pill label, panel heading. A section (and its pill) is
+// rendered only when the item has data for it.
+const DD_SECTIONS = {
+  faculty: { pill: 'In a science faculty', heading: 'In a science faculty' },
+  exemplar: { pill: 'The sustained exemplar', heading: 'The sustained exemplar' },
+  indicators: { pill: 'Indicators', heading: 'Indicators in a science classroom' },
+  continuum: { pill: 'Continuum of practice', heading: 'Continuum of practice' },
+  evidence: { pill: 'Evidence & transfer', heading: 'Evidence & transfer' },
+};
 
-  const state = { cur: 0 }; // in-memory only — no storage
+const DD_INDICATORS = [
+  ['t', 'teacher', 'Teacher', 'Demonstrated when the teacher…'],
+  ['n', 'notDemonstrated', 'Not demonstrated', 'Not demonstrated when…'],
+  ['s', 'student', 'Students', 'Demonstrated when students…'],
+];
 
-  const total = items.length;
-  const byId = new Map(items.map((it) => [it.id, it]));
+// Each mount gets its own id prefix, so two explorers on one page never share
+// ids (aria-controls, tab panels, section anchors).
+let ddMounts = 0;
 
-  function scrollToPanel() {
-    const p = $('.lxd-fx-panel');
-    if (p) p.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  function renderRail() {
-    const rail = $('.lxd-fx-rail');
-    rail.innerHTML = '';
-    items.forEach((it, i) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'lxd-fx-sbtn' + (i === state.cur ? ' on' : '');
-      b.setAttribute('aria-pressed', String(i === state.cur));
-      const top = it.badges[0];
-      b.innerHTML =
-        `<span class="lxd-fx-num">${esc(String(it.ordinal).padStart(2, '0'))}</span>` +
-        `<span class="lxd-fx-nm">${esc(it.name)}</span>` +
-        `<span class="lxd-fx-es">${esc(top.value || top.label)}</span>`;
-      b.addEventListener('click', () => {
-        state.cur = i;
-        renderAll();
-        scrollToPanel();
-      });
-      rail.appendChild(b);
-    });
-  }
-
-  function highlight(i) {
-    mount.querySelectorAll('.lxd-fx-phase').forEach((p) => p.classList.toggle('hot', +p.dataset.i === i));
-    mount.querySelectorAll('.lxd-fx-rseg').forEach((sg, j) => sg.classList.toggle('dim', j !== i));
-    const target = mount.querySelector(`.lxd-fx-phase[data-i="${i}"]`);
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-
-  function renderPanel() {
-    const it = items[state.cur];
-
-    $('.lxd-fx-crumb').textContent = `Strategy ${it.ordinal} of ${total}`;
-    $('.lxd-fx-sname').textContent = it.name;
-    $('.lxd-fx-headline').innerHTML = it.headline;
-
-    // badges
-    const badges = $('.lxd-fx-badges');
-    badges.innerHTML = '';
-    it.badges.forEach((bd, i) => {
-      const s = document.createElement('span');
-      const mop = bd.kind === 'monthsProgress';
-      s.className = 'lxd-fx-badge' + (mop ? ' mop' : i === 0 ? ' hero-b' : '');
-      s.textContent = bd.value ? `${bd.label} · ${bd.value}` : bd.label;
-      badges.appendChild(s);
-    });
-
-    $('.lxd-fx-incontext').innerHTML = it.inContext;
-
-    // exemplar meta chips
-    const ctx = it.exemplar.context;
-    const chips = contextChips(ctx, labels);
-    const em = $('.lxd-fx-exmeta');
-    em.innerHTML = '';
-    chips.forEach(({ text, dur }) => {
-      const s = document.createElement('span');
-      s.className = 'lxd-fx-chip' + (dur ? ' dur' : '');
-      s.textContent = text;
-      em.appendChild(s);
-    });
-    $('.lxd-fx-problem-text').innerHTML = it.exemplar.problem;
-
-    // week ruler
-    const phases = it.exemplar.phases;
-    const maxW = Math.max(...phases.map((p) => p.span.end));
-    const ruler = $('.lxd-fx-ruler');
-    ruler.innerHTML = '';
-    phases.forEach((p, i) => {
-      const grow = Math.max(p.span.end - p.span.start, 0.6);
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'lxd-fx-rseg';
-      b.style.flexGrow = String(grow);
-      b.style.background = PHASE_COLOURS[i % PHASE_COLOURS.length];
-      b.textContent = p.weekLabel;
-      b.title = p.label;
-      b.setAttribute('aria-label', `${p.weekLabel}: ${p.label}`);
-      b.addEventListener('click', () => highlight(i));
-      ruler.appendChild(b);
-    });
-    $('.lxd-fx-ruler-axis').innerHTML =
-      `<span>start of unit</span><span>${maxW > 11 ? 'across the year' : 'end of unit'}</span>`;
-
-    // phases timeline
-    const ph = $('.lxd-fx-phases');
-    ph.innerHTML = '';
-    phases.forEach((p, i) => {
-      const d = document.createElement('div');
-      d.className = 'lxd-fx-phase';
-      d.dataset.i = String(i);
-      d.style.setProperty('--pc', PHASE_COLOURS[i % PHASE_COLOURS.length]);
-      d.innerHTML =
-        `<div class="lxd-fx-pcard">` +
-        `<div class="lxd-fx-ptop"><span class="lxd-fx-pwk">${esc(p.weekLabel)}</span>` +
-        `<span class="lxd-fx-plab">${esc(p.label)}</span></div>` +
-        `<p class="lxd-fx-pwhat">${p.what}</p>` +
-        `<p class="lxd-fx-pdet">${p.detail}</p></div>`;
-      ph.appendChild(d);
-    });
-
-    $('.lxd-fx-impact-text').innerHTML = it.exemplar.impact;
-    $('.lxd-fx-transfer-label').textContent = it.transfer.label;
-    $('.lxd-fx-transfer-text').innerHTML = it.transfer.text;
-
-    fillList($('.lxd-fx-ind-t'), it.indicators.teacher);
-    fillList($('.lxd-fx-ind-n'), it.indicators.notDemonstrated);
-    fillList($('.lxd-fx-ind-s'), it.indicators.student);
-
-    // continuum
-    const cont = $('.lxd-fx-cont');
-    cont.innerHTML = '';
-    [...it.continuum]
-      .sort((a, b) => a.level - b.level)
-      .forEach((c) => {
-        const d = document.createElement('div');
-        d.className = 'lxd-fx-cstep';
-        d.innerHTML = `<div class="lxd-fx-ch">${esc(c.level + '. ' + c.label)}</div>` + `<div class="lxd-fx-cb">${c.text}</div>`;
-        cont.appendChild(d);
-      });
-
-    // related
-    const pairs = $('.lxd-fx-pairs');
-    pairs.innerHTML = '';
-    it.related.forEach((rid) => {
-      const t = byId.get(rid);
-      if (!t) return; // validator guarantees resolution at full-set build
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'lxd-fx-pair';
-      b.textContent = `${t.ordinal}. ${t.name} →`;
-      b.addEventListener('click', () => {
-        state.cur = items.indexOf(t);
-        renderAll();
-        scrollToPanel();
-      });
-      pairs.appendChild(b);
-    });
-
-    $('.lxd-fx-evidence').innerHTML = it.evidence;
-  }
-
-  function renderAll() {
-    renderRail();
-    renderPanel();
-  }
-  renderAll();
+const pad2 = (n) => String(n).padStart(2, '0');
+const reduceMotion = () =>
+  typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+function go(el, block = 'start') {
+  if (el) el.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block });
 }
 
-function fillList(ul, arr) {
-  ul.innerHTML = '';
-  (arr || []).forEach((t) => {
-    const li = document.createElement('li');
-    li.innerHTML = t;
-    ul.appendChild(li);
+function renderDeepDive(mount, fw, { items, labels }) {
+  injectStyles('lxd-fx-dd-styles', DEEPDIVE_STYLES);
+  mount.className = 'lxd-fx lxd-fx-dd';
+  mount.dataset.fxRenderer = DEEPDIVE_RENDERER;
+  const uid = `lxd-fx-dd${++ddMounts}`;
+  mount.innerHTML = SHELL(fw, items, uid);
+
+  const $ = (sel) => mount.querySelector(sel);
+  const $$ = (sel) => [...mount.querySelectorAll(sel)];
+  const itemBox = $('.lxd-fx-dd-item');
+  const byId = new Map(items.map((it, i) => [it.id, i]));
+  // In-memory state only (no browser storage); reset on every strategy switch.
+  const state = { cur: 0, tab: 't', level: 1 };
+  let spy = null;
+
+  function select(i) {
+    const hadFocus = itemBox.contains(document.activeElement);
+    Object.assign(state, { cur: i, tab: 't', level: 1 });
+    renderItem();
+    const head = $('.lxd-fx-dd-head');
+    // A works-with chip is destroyed by the re-render: move focus to the new
+    // strategy's header rather than losing it to <body>.
+    if (hadFocus) head.focus({ preventScroll: true });
+    go(head);
+  }
+
+  function renderItem() {
+    const it = items[state.cur];
+    $$('.lxd-fx-dd-chip').forEach((c) => {
+      const on = +c.dataset.i === state.cur;
+      c.classList.toggle('on', on);
+      if (on) c.setAttribute('aria-current', 'true');
+      else c.removeAttribute('aria-current');
+    });
+    const sections = [
+      ['faculty', facultyHTML(it)],
+      ['exemplar', exemplarHTML(it, labels, uid)],
+      ['indicators', indicatorsHTML(it, uid, state.tab)],
+      ['continuum', continuumHTML(it, uid)],
+      ['evidence', evidenceHTML(it, items, byId)],
+    ].filter(([, html]) => html);
+    itemBox.innerHTML =
+      headerHTML(it, items.length) +
+      pillsHTML(sections, uid) +
+      sections.map(([key, html]) => panelHTML(key, html, uid)).join('');
+    setLevel(state.level);
+    syncAll();
+    wireSpy();
+  }
+
+  // ── exemplar phases ──
+  function setPhase(i, open) {
+    const ph = $(`.lxd-fx-dd-phase[data-i="${i}"]`);
+    if (!ph) return;
+    ph.classList.toggle('open', open);
+    ph.querySelector('.lxd-fx-dd-phd').setAttribute('aria-expanded', String(open));
+    ph.querySelector('.lxd-fx-dd-pdetail').hidden = !open;
+    syncAll();
+  }
+  function syncAll() {
+    const btn = $('.lxd-fx-dd-all');
+    if (!btn) return;
+    const all = $$('.lxd-fx-dd-phase').length;
+    const open = $$('.lxd-fx-dd-phase.open').length;
+    btn.querySelector('.lxd-fx-dd-all-t').textContent = open === all ? 'Collapse all phases' : 'Expand all phases';
+    btn.setAttribute('aria-expanded', String(open === all));
+  }
+
+  // ── indicator tabs ──
+  function setTab(k) {
+    state.tab = k;
+    $$('.lxd-fx-dd-tab').forEach((t) => {
+      const on = t.dataset.tab === k;
+      t.classList.toggle('on', on);
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+    });
+    $$('.lxd-fx-dd-tabpane').forEach((p) => (p.hidden = p.dataset.tab !== k));
+  }
+
+  // ── continuum maturity track ──
+  function setLevel(lv) {
+    const levels = sortedLevels(items[state.cur]);
+    const detail = $('.lxd-fx-dd-cdetail');
+    if (!levels.length || !detail) return;
+    const idx = Math.max(0, levels.findIndex((c) => c.level === lv));
+    const c = levels[idx];
+    state.level = c.level;
+    $$('.lxd-fx-dd-node').forEach((n, j) => {
+      n.classList.toggle('active', j === idx);
+      n.setAttribute('aria-pressed', String(j === idx));
+    });
+    const n = levels.length;
+    $('.lxd-fx-dd-fill').style.width = n > 1 ? `calc((100% - 100% / ${n}) * ${idx / (n - 1)})` : '0';
+    detail.innerHTML =
+      `<div class="lxd-fx-dd-mdh"><span class="lxd-fx-dd-mdlv">Level ${esc(c.level)}</span>` +
+      `<span class="lxd-fx-dd-mdname">${esc(c.label)}</span></div><p>${c.text}</p>`;
+  }
+
+  // ── section pills: jump + scrollspy ──
+  function setPill(key) {
+    $$('.lxd-fx-dd-pill').forEach((p) => {
+      const on = p.dataset.sec === key;
+      p.classList.toggle('active', on);
+      if (on) p.setAttribute('aria-current', 'true');
+      else p.removeAttribute('aria-current');
+    });
+  }
+  // IntersectionObserver against the viewport, so it works whichever element
+  // scrolls (Moodle may scroll inside #page rather than the document).
+  function wireSpy() {
+    if (spy) spy.disconnect();
+    if (typeof IntersectionObserver !== 'function') return;
+    const panels = $$('.lxd-fx-dd-panel');
+    const inBand = new Set();
+    spy = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => (en.isIntersecting ? inBand.add(en.target) : inBand.delete(en.target)));
+        const first = panels.find((p) => inBand.has(p));
+        if (first) setPill(first.dataset.sec);
+      },
+      { rootMargin: '-80px 0px -55% 0px' },
+    );
+    panels.forEach((p) => spy.observe(p));
+  }
+
+  // One delegated listener per mount, so re-rendering never orphans handlers.
+  mount.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-act]');
+    if (!t || !mount.contains(t)) return;
+    const i = Number(t.dataset.i);
+    switch (t.dataset.act) {
+      case 'select':
+        return select(i);
+      case 'pill':
+        setPill(t.dataset.sec);
+        return go(mount.querySelector(`#${uid}-sec-${t.dataset.sec}`));
+      case 'phase':
+        return setPhase(i, t.getAttribute('aria-expanded') !== 'true');
+      case 'rseg':
+        $$('.lxd-fx-dd-rseg').forEach((s) => s.classList.toggle('on', s === t));
+        setPhase(i, true);
+        return go($(`.lxd-fx-dd-phase[data-i="${i}"]`), 'center');
+      case 'all': {
+        const phases = $$('.lxd-fx-dd-phase');
+        const want = $$('.lxd-fx-dd-phase.open').length < phases.length;
+        return phases.forEach((p) => setPhase(Number(p.dataset.i), want));
+      }
+      case 'tab':
+        return setTab(t.dataset.tab);
+      case 'level':
+        return setLevel(Number(t.dataset.lv));
+    }
   });
+  // Tabs: arrow keys, Home and End move between tabs (roving tabindex).
+  mount.addEventListener('keydown', (e) => {
+    const t = e.target.closest('[role="tab"]');
+    if (!t || !mount.contains(t)) return;
+    const tabs = [...t.parentElement.querySelectorAll('[role="tab"]')];
+    let j = tabs.indexOf(t);
+    if (e.key === 'ArrowRight') j = (j + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft') j = (j - 1 + tabs.length) % tabs.length;
+    else if (e.key === 'Home') j = 0;
+    else if (e.key === 'End') j = tabs.length - 1;
+    else return;
+    e.preventDefault();
+    setTab(tabs[j].dataset.tab);
+    tabs[j].focus();
+  });
+
+  renderItem();
+}
+
+function sortedLevels(it) {
+  return [...(it.continuum || [])].sort((a, b) => a.level - b.level);
+}
+
+// ── section builders: each returns '' when the item has no data for it ──────────
+function headerHTML(it, total) {
+  const badges = (it.badges || [])
+    .map((bd, i) => {
+      const cls = bd.kind === 'monthsProgress' ? ' mop' : i === 0 ? ' hero' : '';
+      return `<span class="lxd-fx-dd-badge${cls}">${esc(bd.value ? `${bd.label} · ${bd.value}` : bd.label)}</span>`;
+    })
+    .join('');
+  return (
+    `<div class="lxd-fx-dd-head" tabindex="-1">` +
+    `<p class="lxd-fx-dd-eye">High Impact Teaching Strategy ${pad2(it.ordinal)} of ${pad2(total)}</p>` +
+    `<h2 class="lxd-fx-dd-name">${esc(it.name)}</h2>` +
+    (it.headline ? `<p class="lxd-fx-dd-hl">${it.headline}</p>` : '') +
+    (badges ? `<div class="lxd-fx-dd-badges">${badges}</div>` : '') +
+    `</div>`
+  );
+}
+
+function pillsHTML(sections, uid) {
+  const pills = sections
+    .map(
+      ([key], i) =>
+        `<button type="button" class="lxd-fx-dd-pill${i === 0 ? ' active' : ''}" data-act="pill" data-sec="${key}"` +
+        ` aria-controls="${uid}-sec-${key}"${i === 0 ? ' aria-current="true"' : ''}>${esc(DD_SECTIONS[key].pill)}</button>`,
+    )
+    .join('');
+  return `<nav class="lxd-fx-dd-pillbar" aria-label="Sections of this strategy"><div class="lxd-fx-dd-pills">${pills}</div></nav>`;
+}
+
+function panelHTML(key, body, uid) {
+  return (
+    `<section class="lxd-fx-dd-panel" id="${uid}-sec-${key}" data-sec="${key}" aria-labelledby="${uid}-h-${key}">` +
+    `<h3 class="lxd-fx-dd-ph lxd-fx-dd-ph-${key}" id="${uid}-h-${key}">${esc(DD_SECTIONS[key].heading)}</h3>` +
+    `<div class="lxd-fx-dd-pbody">${body}</div></section>`
+  );
+}
+
+function facultyHTML(it) {
+  return it.inContext ? `<p>${it.inContext}</p>` : '';
+}
+
+function exemplarHTML(it, labels, uid) {
+  const ex = it.exemplar;
+  if (!ex) return '';
+  const meta = contextChips(ex.context || {}, labels)
+    .map(({ text }) => esc(text))
+    .join(' · ');
+  const phases = ex.phases || [];
+  const colour = (i) => PHASE_COLOURS[i % PHASE_COLOURS.length];
+  let arc = '';
+  if (phases.length) {
+    const ruler = phases
+      .map(
+        (p, i) =>
+          `<button type="button" class="lxd-fx-dd-rseg" data-act="rseg" data-i="${i}" aria-controls="${uid}-ph-${i}"` +
+          ` style="flex-grow:${Math.max(p.span.end - p.span.start, 0.6)};background:${colour(i)}"` +
+          ` aria-label="${esc(`${p.weekLabel}: ${p.label}`)}">${esc(p.weekLabel)}</button>`,
+      )
+      .join('');
+    const acc = phases
+      .map(
+        (p, i) =>
+          `<div class="lxd-fx-dd-phase" data-i="${i}" style="--pc:${colour(i)}">` +
+          `<h4 class="lxd-fx-dd-phh"><button type="button" class="lxd-fx-dd-phd" data-act="phase" data-i="${i}"` +
+          ` aria-expanded="false" aria-controls="${uid}-ph-${i}">` +
+          `<span class="lxd-fx-dd-pwk">${esc(p.weekLabel)}</span><span class="lxd-fx-dd-plab">${esc(p.label)}</span>` +
+          `<span class="lxd-fx-dd-pchev" aria-hidden="true">&#9656;</span></button></h4>` +
+          `<div class="lxd-fx-dd-pdetail" id="${uid}-ph-${i}" hidden>` +
+          `<p class="lxd-fx-dd-what">${p.what}</p><p class="lxd-fx-dd-det">${p.detail}</p></div></div>`,
+      )
+      .join('');
+    arc =
+      `<div class="lxd-fx-dd-ruler" role="group" aria-label="Phases at a glance">${ruler}</div>` +
+      `<p class="lxd-fx-dd-hint">The arc at a glance — select a band, or a phase below, to open it.</p>` +
+      `<button type="button" class="lxd-fx-dd-all" data-act="all" aria-expanded="false">` +
+      `<span class="lxd-fx-dd-all-t">Expand all phases</span></button>` +
+      `<div class="lxd-fx-dd-phases">${acc}</div>`;
+  }
+  return (
+    (meta ? `<p class="lxd-fx-dd-meta">${meta}</p>` : '') +
+    (ex.problem ? `<div class="lxd-fx-dd-prob"><b>Problem of practice.</b> ${ex.problem}</div>` : '') +
+    arc +
+    (ex.impact
+      ? `<div class="lxd-fx-dd-impact"><span class="lxd-fx-dd-il">How the teacher knew it worked</span><p>${ex.impact}</p></div>`
+      : '')
+  );
+}
+
+function indicatorsHTML(it, uid, tab) {
+  const ind = it.indicators || {};
+  const present = DD_INDICATORS.filter(([, field]) => (ind[field] || []).length);
+  if (!present.length) return '';
+  const sel = present.some(([k]) => k === tab) ? tab : present[0][0];
+  const tabs = present
+    .map(
+      ([k, , label]) =>
+        `<button type="button" role="tab" class="lxd-fx-dd-tab ${k}${k === sel ? ' on' : ''}" id="${uid}-tab-${k}"` +
+        ` aria-controls="${uid}-tp-${k}" aria-selected="${k === sel}" tabindex="${k === sel ? 0 : -1}"` +
+        ` data-act="tab" data-tab="${k}">${label}</button>`,
+    )
+    .join('');
+  const panes = present
+    .map(
+      ([k, field, , lead]) =>
+        `<div role="tabpanel" class="lxd-fx-dd-tabpane ${k}" id="${uid}-tp-${k}" aria-labelledby="${uid}-tab-${k}"` +
+        ` data-tab="${k}" tabindex="0"${k === sel ? '' : ' hidden'}>` +
+        `<p class="lxd-fx-dd-lead">${lead}</p><ul>${ind[field].map((t) => `<li>${t}</li>`).join('')}</ul></div>`,
+    )
+    .join('');
+  return `<div class="lxd-fx-dd-tabs" role="tablist" aria-label="Indicators">${tabs}</div>${panes}`;
+}
+
+function continuumHTML(it, uid) {
+  const levels = sortedLevels(it);
+  if (!levels.length) return '';
+  const nodes = levels
+    .map(
+      (c, i) =>
+        `<button type="button" class="lxd-fx-dd-node l${Math.min(i + 1, 4)}" data-act="level" data-lv="${esc(c.level)}"` +
+        ` aria-pressed="false" aria-controls="${uid}-cd"><span class="lxd-fx-dd-dot" aria-hidden="true"></span>` +
+        `<span class="lxd-fx-dd-nlb"><span class="lxd-fx-dd-nlv">Level ${esc(c.level)}</span> ${esc(c.label)}</span></button>`,
+    )
+    .join('');
+  return (
+    `<div class="lxd-fx-dd-track" style="--n:${levels.length}"><div class="lxd-fx-dd-fill"></div>${nodes}</div>` +
+    `<p class="lxd-fx-dd-cap">A faculty moves left to right over years — select a level to see what it looks like in science.</p>` +
+    `<div class="lxd-fx-dd-cdetail" id="${uid}-cd" aria-live="polite"></div>`
+  );
+}
+
+function evidenceHTML(it, items, byId) {
+  const tr = it.transfer;
+  const rel = (it.related || [])
+    .map((id) => byId.get(id))
+    .filter((i) => i !== undefined) // validator guarantees resolution at full-set build
+    .map((i) => {
+      const t = items[i];
+      return `<button type="button" class="lxd-fx-dd-relchip" data-act="select" data-i="${i}">${esc(`${t.ordinal}. ${t.name}`)} <span aria-hidden="true">→</span></button>`;
+    })
+    .join('');
+  const html =
+    (tr && (tr.label || tr.text)
+      ? `<div class="lxd-fx-dd-transfer">` +
+        (tr.label ? `<p class="lxd-fx-dd-tl">${esc(tr.label)}</p>` : '') +
+        (tr.text ? `<p>${tr.text}</p>` : '') +
+        `</div>`
+      : '') +
+    (it.evidence ? `<p class="lxd-fx-dd-ev">${it.evidence}</p>` : '') +
+    (rel ? `<div class="lxd-fx-dd-rel"><p class="lxd-fx-dd-rl">Works with</p>${rel}</div>` : '');
+  return html;
 }
 
 // Build the context chips shown above an exemplar. A cross-context exemplar
@@ -339,8 +527,22 @@ function prettyId(id) {
 }
 
 // ── shell markup ────────────────────────────────────────────────────────────────
-function SHELL(fw) {
+// Framework intro and footer (sources, CC BY attribution) are unchanged; the
+// strategy switcher is built once, and the current strategy renders into
+// .lxd-fx-dd-item.
+function SHELL(fw, items, uid) {
   const sources = (fw.sources || []).map((s) => `<li>${s}</li>`).join('');
+  const chips = items
+    .map((it, i) => {
+      const top = (it.badges || [])[0];
+      return (
+        `<button type="button" class="lxd-fx-dd-chip" data-act="select" data-i="${i}">` +
+        `<span class="lxd-fx-dd-o">${esc(pad2(it.ordinal))}</span><span class="lxd-fx-dd-nm">${esc(it.name)}</span>` +
+        (top ? `<span class="lxd-fx-dd-es">${esc(top.value || top.label)}</span>` : '') +
+        `</button>`
+      );
+    })
+    .join('');
   return `
   <div class="lxd-fx-wrap">
     ${fw.kicker ? `<p class="lxd-fx-kicker">${fw.kicker}</p>` : ''}
@@ -354,73 +556,15 @@ function SHELL(fw) {
         : ''
     }
 
-    <div class="lxd-fx-rail-head">
-      <h2 class="lxd-fx-rail-h2">Choose a strategy</h2>
-      <span>Effect sizes as reported in the source resource</span>
+    <div class="lxd-fx-dd-switch">
+      <div class="lxd-fx-dd-switch-head">
+        <h2 class="lxd-fx-dd-sl" id="${uid}-sl">Choose a strategy</h2>
+        <span>Effect sizes as reported in the source resource</span>
+      </div>
+      <div class="lxd-fx-dd-chips" role="group" aria-labelledby="${uid}-sl">${chips}</div>
     </div>
-    <div class="lxd-fx-rail" role="group" aria-label="Choose a strategy"></div>
 
-    <div class="lxd-fx-panel">
-      <div class="lxd-fx-phead">
-        <div class="lxd-fx-crumb"></div>
-        <h3 class="lxd-fx-sname"></h3>
-        <p class="lxd-fx-headline"></p>
-        <div class="lxd-fx-badges"></div>
-      </div>
-
-      <div class="lxd-fx-block">
-        <span class="lxd-fx-blabel">What this looks like in a science faculty</span>
-        <p class="lxd-fx-incontext"></p>
-      </div>
-
-      <div class="lxd-fx-block">
-        <span class="lxd-fx-blabel">Sustained exemplar</span>
-        <div class="lxd-fx-exmeta"></div>
-        <div class="lxd-fx-problem">
-          <span class="lxd-fx-pl">The problem of practice</span>
-          <p class="lxd-fx-problem-text"></p>
-        </div>
-        <div class="lxd-fx-ruler-wrap">
-          <div class="lxd-fx-ruler" role="group" aria-label="Phase timeline"></div>
-          <div class="lxd-fx-ruler-axis"></div>
-        </div>
-        <div class="lxd-fx-phases"></div>
-      </div>
-
-      <div class="lxd-fx-block">
-        <span class="lxd-fx-blabel">How the teacher knew whether it worked</span>
-        <div class="lxd-fx-impact"><span class="lxd-fx-il">Monitoring &amp; evaluation</span><p class="lxd-fx-impact-text"></p></div>
-      </div>
-
-      <div class="lxd-fx-block">
-        <span class="lxd-fx-blabel">The same strategy in another context</span>
-        <div class="lxd-fx-transfer"><span class="lxd-fx-tl lxd-fx-transfer-label"></span><p class="lxd-fx-transfer-text"></p></div>
-      </div>
-
-      <div class="lxd-fx-block">
-        <span class="lxd-fx-blabel">Indicators in a science classroom</span>
-        <div class="lxd-fx-ind-grid">
-          <div class="lxd-fx-ind t"><h4>Demonstrated when the teacher…</h4><ul class="lxd-fx-ind-t"></ul></div>
-          <div class="lxd-fx-ind n"><h4>Not demonstrated when…</h4><ul class="lxd-fx-ind-n"></ul></div>
-          <div class="lxd-fx-ind s"><h4>Demonstrated when students…</h4><ul class="lxd-fx-ind-s"></ul></div>
-        </div>
-      </div>
-
-      <div class="lxd-fx-block">
-        <span class="lxd-fx-blabel">Continuum of practice — science faculty</span>
-        <div class="lxd-fx-cont"></div>
-      </div>
-
-      <div class="lxd-fx-block">
-        <span class="lxd-fx-blabel">Works with</span>
-        <div class="lxd-fx-pairs"></div>
-      </div>
-
-      <div class="lxd-fx-block">
-        <span class="lxd-fx-blabel">Evidence base</span>
-        <p class="lxd-fx-evidence"></p>
-      </div>
-    </div>
+    <div class="lxd-fx-dd-item"></div>
 
     <div class="lxd-fx-footer">
       <h4>Sources</h4>
@@ -431,9 +575,10 @@ function SHELL(fw) {
 }
 
 // ── scoped styles ────────────────────────────────────────────────────────────────
-// Every selector is prefixed .lxd-fx; every custom property is defined on
-// .lxd-fx (not :root) and used with an inline fallback so a theme that strips
-// or overrides variables still degrades to legible colour.
+// Every selector is scoped to .lxd-fx.lxd-fx-dd, so a matrix or grid explorer on
+// the same page is never restyled. Every custom property is defined on that root
+// (not :root) and used with an inline fallback, so a theme that strips or
+// overrides variables still degrades to legible colour.
 const DEEPDIVE_STYLES = `
 .lxd-fx{
   --fx-bg:#E7EBEE; --fx-card:#FFFFFF; --fx-card-sunk:#F4F6F8;
