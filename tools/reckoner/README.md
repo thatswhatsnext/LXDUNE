@@ -25,7 +25,7 @@ npm run status         # regenerate docs/reckoner-state.md (also run by publish:
 | Path | Purpose |
 | --- | --- |
 | `src/schema/model-guide.ts` | The schema (Zod), including every cross-field quality rule |
-| `src/schema/syllabus.ts` | NSW Science 7–10 (2023) whitelist: stages, focus areas, outcome codes |
+| `src/schema/syllabus.ts` | NSW Science 7–10 (2023) whitelist: stages, focus areas, outcome codes. Read from `frameworks/_schema/curriculum.vocab.json`, the one syllabus vocabulary shared with the Framework Explorer; edit that file, not this one. `scripts/test-syllabus.ts` pins the values |
 | `src/schema/methodology.ts` | Schema for `content/methodology.yaml`: every route once, citations resolve, published means reviewed |
 | `src/schema/fit-dimensions.ts` | Reckoner questions and option order, shared with the reckoner UI |
 | `content/guides/5e.yaml` | The 5E guide: reference instance for unit (macro) models |
