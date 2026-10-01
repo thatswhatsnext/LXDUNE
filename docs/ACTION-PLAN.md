@@ -456,6 +456,15 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - Note: `swh-seq-s5-duckweed` needs a growth period of about two weeks, counted at the start of each science lesson; duckweed and treated water must not go into drains, gardens or waterways
 - Note: `seq-s5-sound`: decide per class whether to teach the logarithmic decibel scale or compare reductions only
 
+### 45. One syllabus vocabulary for the reckoner and the Framework Explorer ✅ — 2026-10-01
+- [x] Found in the Framework Explorer close-out: the syllabus whitelist lived in three places that nothing kept in step: `frameworks/_schema/curriculum.vocab.json`, `tools/reckoner/src/schema/syllabus.ts` and a hard-coded `FOCUS` list in `tools/reckoner/templates/app.js`. Steve approved making the vocab file the single source of truth
+- [x] Checked first that both vocab readers (`scripts/validate-frameworks.js`, `moodle-blocks/framework-explorer.js`) ignore unknown top-level keys: with extra keys added, the validator's output and all three frameworks' rendered HTML and content hashes were identical
+- [x] Vocab 1.1.0, additive only: `workingScientificallySkills`, `outcomes` (codes only, never outcome wording) and the Science 7–10 `outcomesUrl`; the eight Investigating Science Stage 6 (2017) modules, checked against NESA, close that TODO (57 → 65 controlled ids)
+- [x] `syllabus.ts` now reads the vocab file and keeps its exports and the reckoner's ids (`stage4`, focus areas by label). The `FOCUS` list in `app.js` uses `DATA.focusAreas` from the build. No guide content or versions changed
+- [x] New parity test `scripts/test-syllabus.ts` (runs first in `npm test`) pins the whitelist by hand, order included, so a vocab edit that changes it fails CI. The Reckoner workflow now also runs when the vocab file changes
+- Note: `Stage` and `FocusArea` are now `string` types rather than literal unions; the zod enums still enforce the same values at runtime, and `npm run typecheck` found nothing that relied on the literals
+- Note: the 2025 Stage 6 module lists remain a TODO in the vocab file, to be added when content is written against them
+
 ---
 
 ## ✅ Completed

@@ -1,10 +1,9 @@
 {
   "_meta": {
-    "description": "Controlled vocabulary for NSW science curriculum references. Every stage/syllabus/focusArea/module/theme id used in a framework item MUST resolve here. Verified against NESA during authoring, July 2026 (handoff §8). The validator (scripts/validate-frameworks.js) fails the build on: an unknown reference; a superseded reference used without acknowledgedSuperseded:true on the item.",
-    "verifiedAt": "2026-07",
-    "version": "1.0.0",
+    "description": "Controlled vocabulary for NSW science curriculum references — the single source of truth for both the Framework Explorer and the reckoner. Every stage/syllabus/focusArea/module/theme id used in a framework item MUST resolve here. Verified against NESA during authoring, July 2026 (handoff §8); Investigating Science Stage 6 (2017) modules verified against NESA, October 2026. The validator (scripts/validate-frameworks.js) fails the build on: an unknown reference; a superseded reference used without acknowledgedSuperseded:true on the item. The reckoner reads stages, focus areas, workingScientificallySkills and outcomes through tools/reckoner/src/schema/syllabus.ts; its parity test fails if they change.",
+    "verifiedAt": "2026-10",
+    "version": "1.1.0",
     "TODO": [
-      "investigating-science-stage6-2017 modules are NOT enumerated here — §8 verified the Bio/Chem/Physics module lists but not Investigating Science. Steve to supply, or leave unreferenced. Do not fabricate.",
       "2025 Stage 6 syllabuses (successors) are represented as supersededBy targets only; enumerate their modules when content is authored against them (implemented 2027, first HSC 2028)."
     ]
   },
@@ -21,7 +20,8 @@
       "authority": "NESA",
       "activeFrom": "2024",
       "stages": ["stage-4", "stage-5"],
-      "note": "Staged rollout. 16 focus areas across Stages 4–5; depth study each year; at least 50% of course time on scientific investigations."
+      "note": "Staged rollout. 16 focus areas across Stages 4–5; depth study each year; at least 50% of course time on scientific investigations.",
+      "outcomesUrl": "https://curriculum.nsw.edu.au/learning-areas/science/science-7-10-2023/outcomes"
     },
     "biology-stage6-2017": {
       "label": "Biology Stage 6 (2017)",
@@ -49,7 +49,6 @@
       "authority": "NESA",
       "activeFrom": "2018",
       "stages": ["stage-6"],
-      "modulesEnumerated": false,
       "supersededBy": "investigating-science-stage6-2025"
     },
     "biology-stage6-2025": {
@@ -141,6 +140,16 @@
       { "id": "phys-m6", "label": "M6 Electromagnetism" },
       { "id": "phys-m7", "label": "M7 The Nature of Light" },
       { "id": "phys-m8", "label": "M8 From the Universe to the Atom" }
+    ],
+    "investigating-science-stage6-2017": [
+      { "id": "inv-m1", "label": "M1 Cause and Effect – Observing" },
+      { "id": "inv-m2", "label": "M2 Cause and Effect – Inferences and Generalisations" },
+      { "id": "inv-m3", "label": "M3 Scientific Models" },
+      { "id": "inv-m4", "label": "M4 Theories and Laws" },
+      { "id": "inv-m5", "label": "M5 Scientific Investigations" },
+      { "id": "inv-m6", "label": "M6 Technologies" },
+      { "id": "inv-m7", "label": "M7 Fact or Fallacy?" },
+      { "id": "inv-m8", "label": "M8 Science and Society" }
     ]
   },
 
@@ -151,5 +160,57 @@
     "energy-transfer": { "label": "Energy transfer" },
     "working-scientifically": { "label": "Working Scientifically", "note": "NESA outcome strand across Science 7–10 and Stage 6." },
     "depth-study": { "label": "Depth study", "note": "NESA requires 15 hours of course time in each of Year 11 and Year 12." }
+  },
+
+  "workingScientificallySkills": [
+    { "id": "observing", "label": "Observing" },
+    { "id": "questioning-and-predicting", "label": "Questioning and predicting" },
+    { "id": "planning-investigations", "label": "Planning investigations" },
+    { "id": "conducting-investigations", "label": "Conducting investigations" },
+    { "id": "processing-data-and-information", "label": "Processing data and information" },
+    { "id": "analysing-data-and-information", "label": "Analysing data and information" },
+    { "id": "problem-solving", "label": "Problem-solving" },
+    { "id": "communicating", "label": "Communicating" }
+  ],
+
+  "outcomes": {
+    "science-7-10-2023": {
+      "_note": "Outcome codes only. Outcome wording is deliberately NOT stored — link to the syllabus outcomesUrl for the official text. kind ws names a workingScientificallySkills id; kind content names a focus-area id.",
+      "SC4-WS-01": { "stage": "stage-4", "kind": "ws", "skill": "observing" },
+      "SC4-WS-02": { "stage": "stage-4", "kind": "ws", "skill": "questioning-and-predicting" },
+      "SC4-WS-03": { "stage": "stage-4", "kind": "ws", "skill": "planning-investigations" },
+      "SC4-WS-04": { "stage": "stage-4", "kind": "ws", "skill": "conducting-investigations" },
+      "SC4-WS-05": { "stage": "stage-4", "kind": "ws", "skill": "processing-data-and-information" },
+      "SC4-WS-06": { "stage": "stage-4", "kind": "ws", "skill": "analysing-data-and-information" },
+      "SC4-WS-07": { "stage": "stage-4", "kind": "ws", "skill": "problem-solving" },
+      "SC4-WS-08": { "stage": "stage-4", "kind": "ws", "skill": "communicating" },
+      "SC5-WS-01": { "stage": "stage-5", "kind": "ws", "skill": "observing" },
+      "SC5-WS-02": { "stage": "stage-5", "kind": "ws", "skill": "questioning-and-predicting" },
+      "SC5-WS-03": { "stage": "stage-5", "kind": "ws", "skill": "planning-investigations" },
+      "SC5-WS-04": { "stage": "stage-5", "kind": "ws", "skill": "conducting-investigations" },
+      "SC5-WS-05": { "stage": "stage-5", "kind": "ws", "skill": "processing-data-and-information" },
+      "SC5-WS-06": { "stage": "stage-5", "kind": "ws", "skill": "analysing-data-and-information" },
+      "SC5-WS-07": { "stage": "stage-5", "kind": "ws", "skill": "problem-solving" },
+      "SC5-WS-08": { "stage": "stage-5", "kind": "ws", "skill": "communicating" },
+      "SC4-OTU-01": { "stage": "stage-4", "kind": "content", "focusArea": "observing-the-universe" },
+      "SC4-FOR-01": { "stage": "stage-4", "kind": "content", "focusArea": "forces" },
+      "SC4-CLS-01": { "stage": "stage-4", "kind": "content", "focusArea": "cells-and-classification" },
+      "SC4-SOL-01": { "stage": "stage-4", "kind": "content", "focusArea": "solutions-and-mixtures" },
+      "SC4-LIV-01": { "stage": "stage-4", "kind": "content", "focusArea": "living-systems" },
+      "SC4-PRT-01": { "stage": "stage-4", "kind": "content", "focusArea": "periodic-table-and-atomic-structure" },
+      "SC4-CHG-01": { "stage": "stage-4", "kind": "content", "focusArea": "change" },
+      "SC4-DA1-01": { "stage": "stage-4", "kind": "content", "focusArea": "data-science-1" },
+      "SC5-EGY-01": { "stage": "stage-5", "kind": "content", "focusArea": "energy" },
+      "SC5-DIS-01": { "stage": "stage-5", "kind": "content", "focusArea": "disease" },
+      "SC5-MAT-01": { "stage": "stage-5", "kind": "content", "focusArea": "materials" },
+      "SC5-ENV-01": { "stage": "stage-5", "kind": "content", "focusArea": "environmental-sustainability" },
+      "SC5-GEV-01": { "stage": "stage-5", "kind": "content", "focusArea": "genetics-and-evolutionary-change" },
+      "SC5-GEV-02": { "stage": "stage-5", "kind": "content", "focusArea": "genetics-and-evolutionary-change" },
+      "SC5-RXN-01": { "stage": "stage-5", "kind": "content", "focusArea": "reactions" },
+      "SC5-RXN-02": { "stage": "stage-5", "kind": "content", "focusArea": "reactions" },
+      "SC5-WAM-01": { "stage": "stage-5", "kind": "content", "focusArea": "waves-and-motion" },
+      "SC5-WAM-02": { "stage": "stage-5", "kind": "content", "focusArea": "waves-and-motion" },
+      "SC5-DA2-01": { "stage": "stage-5", "kind": "content", "focusArea": "data-science-2" }
+    }
   }
 }

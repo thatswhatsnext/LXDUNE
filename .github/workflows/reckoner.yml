@@ -9,6 +9,7 @@ on:
     paths:
       - 'tools/reckoner/**'
       - 'reckoner/**'
+      - 'frameworks/_schema/curriculum.vocab.json'
       - 'docs/ACTION-PLAN.md'
       - 'docs/reckoner-state.md'
       - '.github/workflows/reckoner.yml'
@@ -16,6 +17,7 @@ on:
     paths:
       - 'tools/reckoner/**'
       - 'reckoner/**'
+      - 'frameworks/_schema/curriculum.vocab.json'
       - 'docs/ACTION-PLAN.md'
       - 'docs/reckoner-state.md'
       - '.github/workflows/reckoner.yml'

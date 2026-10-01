@@ -15,7 +15,7 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Examples across published guides | 58 (29 positive, 29 negative) |
 | Worked sequences | 20 |
 | Focus areas with a ready plan / examples only / empty | 16 / 0 / 0 of 16 |
-| **Next action-plan item number** | **45** |
+| **Next action-plan item number** | **46** |
 
 ## Published guides
 
