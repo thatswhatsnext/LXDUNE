@@ -1,0 +1,598 @@
+<title>The Willow Problem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow lesson column, game HUD on top, a 5E phase rail showing where the learner's own lesson sits, and a fixed check/feedback bar at the bottom */
+:root{
+  --bg:#eef2f0; --surface:#ffffff; --surface-2:#e4ebe8; --ink:#16252a; --muted:#56686c; --line:#cfdad6;
+  --accent:#1d4f7a; --on-accent:#ffffff;
+  --good:#1f7446; --good-bg:#dff2e6; --bad:#ad3d2b; --bad-bg:#fae6e1;
+  --engage:#b06e0c; --explore:#0d7c6f; --explain:#2a5cad; --elaborate:#7046ad; --evaluate:#ad4166;
+  --f-display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f171a; --surface:#162226; --surface-2:#1d2c31; --ink:#e4ecea; --muted:#9aaeb1; --line:#2b3c41;
+  --accent:#8ab7e6; --on-accent:#0b1a27;
+  --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
+  --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f171a; --surface:#162226; --surface-2:#1d2c31; --ink:#e4ecea; --muted:#9aaeb1; --line:#2b3c41;
+  --accent:#8ab7e6; --on-accent:#0b1a27;
+  --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
+  --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.5}
+.wrap{max-width:660px;margin:0 auto;padding-inline:16px;padding-block:14px 300px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* HUD */
+.hud{display:flex;align-items:center;gap:12px}
+.bar{flex:1;height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--good);border-radius:99px;transition:width .4s ease}
+.pill{display:inline-flex;align-items:center;gap:5px;font-family:var(--f-mono);font-size:14px;padding:4px 10px;border-radius:99px;background:var(--surface);border:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill svg{width:15px;height:15px}
+.pill.streak{color:var(--engage)}
+.pill.xp{color:var(--accent)}
+
+/* phase rail */
+.rail{margin-top:14px;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.rail div{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding-top:7px;border-top:4px solid var(--line);color:var(--muted);transition:color .3s,border-color .3s}
+.rail div.done{border-color:var(--pc);color:var(--muted)}
+.rail div.now{border-color:var(--pc);color:var(--pc);font-weight:500}
+.railnote{font-size:13px;color:var(--muted);margin:6px 0 0}
+
+/* card */
+.card{margin-top:22px;animation:rise .35s ease both}
+@keyframes rise{from{transform:translateY(8px);opacity:.4}to{transform:none;opacity:1}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chip{font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;padding:3px 9px;border-radius:6px;background:var(--surface-2);color:var(--muted)}
+.chip.ph{color:var(--pc);background:color-mix(in srgb,var(--pc) 14%,transparent)}
+.chip.rev{color:var(--bad);background:var(--bad-bg)}
+.kind{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+.card h2{font-size:clamp(22px,5vw,27px);line-height:1.2;font-weight:800}
+.vignette{margin:14px 0 0;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--muted);border-radius:4px var(--r) var(--r) 4px;font-size:16px}
+.vignette .who{display:block;font-family:var(--f-mono);font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.q{margin:16px 0 0;font-weight:700}
+
+.opts{display:grid;gap:10px;margin-top:14px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;padding:13px 14px;border-radius:var(--r);border:2px solid var(--line);border-bottom-width:4px;background:var(--surface);cursor:pointer;transition:border-color .15s,transform .05s}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:active:not(:disabled){transform:translateY(2px)}
+.opt .k{flex:none;width:26px;height:26px;border-radius:7px;border:1.5px solid var(--line);display:grid;place-items:center;font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.opt .t{min-width:0}
+.opt.sel{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
+.opt.sel .k{border-color:var(--accent);color:var(--accent)}
+.opt.right{border-color:var(--good);background:var(--good-bg)}
+.opt.right .k{border-color:var(--good);color:var(--good)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt.wrong .k{border-color:var(--bad);color:var(--bad)}
+.opt:disabled{cursor:default}
+.opt .ofb{display:block;font-size:14.5px;color:var(--ink);margin-top:6px}
+.opts.phases{grid-template-columns:repeat(auto-fit,minmax(118px,1fr))}
+.opts.phases .opt{justify-content:center;font-family:var(--f-display);font-weight:600;font-size:18px;border-color:color-mix(in srgb,var(--pc) 45%,var(--line));color:var(--pc)}
+.opts.phases .opt.sel{background:color-mix(in srgb,var(--pc) 12%,var(--surface));border-color:var(--pc)}
+.opts.phases .opt.right{color:var(--good)} .opts.phases .opt.wrong{color:var(--bad)}
+
+.slider{margin-top:18px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.slider label{display:flex;justify-content:space-between;font-size:15px;font-weight:700}
+.slider output{font-family:var(--f-mono);color:var(--accent);font-variant-numeric:tabular-nums}
+.slider input{width:100%;accent-color:var(--accent);margin-top:8px}
+.slider small{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}
+
+.hint{margin-top:12px}
+.hint summary,.why summary{cursor:pointer;font-size:15px;color:var(--accent);font-weight:700;list-style:none;display:inline-flex;align-items:center;gap:6px}
+.hint summary::-webkit-details-marker,.why summary::-webkit-details-marker{display:none}
+.hint summary::before,.why summary::before{content:"+";font-family:var(--f-mono);display:inline-grid;place-items:center;width:20px;height:20px;border-radius:5px;border:1.5px solid currentColor;font-size:14px}
+.hint[open] summary::before,.why[open] summary::before{content:"−"}
+.hint p{margin:8px 0 0;font-size:15px;color:var(--muted)}
+
+/* order task */
+.slots{display:grid;gap:8px;margin-top:14px;counter-reset:s}
+.slot{display:flex;gap:12px;align-items:center;min-height:54px;padding:10px 12px;border-radius:var(--r);border:2px dashed var(--line);color:var(--muted);font-size:15px}
+.slot .n{flex:none;font-family:var(--f-mono);font-size:13px;width:24px;text-align:center}
+.slot.filled{border-style:solid;background:var(--surface);color:var(--ink);cursor:pointer}
+.slot.filled:disabled{cursor:default}
+.slot.right{border-color:var(--good);background:var(--good-bg)}
+.slot.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.slot .tag{margin-left:auto;flex:none;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--pc)}
+.slot .txt{min-width:0}
+.pool{display:grid;gap:8px;margin-top:16px}
+.pool .lbl{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* plan */
+.plan{margin:14px 0 0;padding:0;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.plan li{display:grid;grid-template-columns:96px 1fr;gap:10px;padding:10px 14px;border-top:1px solid var(--line);font-size:15.5px}
+.plan li:first-child{border-top:0}
+.plan b{font-family:var(--f-mono);font-weight:500;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--pc);padding-top:2px}
+.plan .min{min-width:0}
+
+/* concept */
+.concept{margin-top:14px;display:grid;gap:8px}
+.concept .row{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.concept .row h3{font-size:19px;color:var(--pc)}
+.concept .row p{margin:0;font-size:15.5px;min-width:0}
+.concept .row em{display:block;font-style:normal;font-size:14px;color:var(--muted);margin-top:3px}
+.lead{margin:12px 0 0;font-size:16.5px}
+.cite{font-size:13px;color:var(--muted);margin-top:10px}
+
+textarea{width:100%;min-height:110px;margin-top:12px;padding:12px;border-radius:var(--r);border:2px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:16px;resize:vertical}
+textarea:focus{border-color:var(--accent);outline:none}
+.recall{margin-top:12px;padding:12px 14px;border-radius:var(--r);background:color-mix(in srgb,var(--engage) 12%,var(--surface));font-size:15.5px}
+.recall b{color:var(--engage)}
+
+/* bottom bar */
+.dock{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px));transition:background .2s}
+.dock.good{background:var(--good-bg);border-color:var(--good)}
+.dock.bad{background:var(--bad-bg);border-color:var(--bad)}
+.dock-in{max-width:660px;margin:0 auto;display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap}
+.fb{flex:1 1 300px;min-width:0;max-height:38vh;overflow:auto}
+.fb h3{font-size:20px;font-weight:800}
+.dock.good .fb h3{color:var(--good)} .dock.bad .fb h3{color:var(--bad)}
+.fb p{margin:4px 0 0;font-size:15.5px}
+.why{margin-top:8px}
+.why p{margin:6px 0 0;font-size:15px;color:var(--ink);padding-left:10px;border-left:3px solid var(--line)}
+.go{flex:0 0 auto;margin-left:auto;min-width:150px;padding:13px 22px;border:0;border-radius:var(--r);background:var(--accent);color:var(--on-accent);font-family:var(--f-display);font-weight:800;font-size:17px;letter-spacing:.02em;box-shadow:0 4px 0 color-mix(in srgb,var(--accent) 60%,#000);cursor:pointer}
+.go:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 color-mix(in srgb,var(--accent) 60%,#000)}
+.go:disabled{background:var(--surface-2);color:var(--muted);box-shadow:none;cursor:not-allowed}
+.dock.good .go{background:var(--good);color:var(--surface);box-shadow:0 4px 0 color-mix(in srgb,var(--good) 60%,#000)}
+.dock.bad .go{background:var(--bad);color:var(--surface);box-shadow:0 4px 0 color-mix(in srgb,var(--bad) 60%,#000)}
+a.go.fbk{display:inline-block;margin-top:12px;text-decoration:none;text-align:center}
+.keys{font-size:12.5px;color:var(--muted);flex-basis:100%;margin:0}
+
+/* summary */
+.sum-head{text-align:left}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.stat{padding:12px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line)}
+.stat b{display:block;font-family:var(--f-display);font-size:28px;font-weight:800;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+.skills{margin-top:18px;display:grid;gap:10px}
+.skill{display:grid;grid-template-columns:100px 1fr 46px;gap:10px;align-items:center;font-size:15px}
+.skill .track{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.skill .track i{display:block;height:100%;background:var(--pc);border-radius:99px}
+.skill .v{font-family:var(--f-mono);font-size:13px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.crowns{margin-top:20px;padding:14px 16px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line)}
+.crowns h3{font-size:18px}
+.lv{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.lv div{font-size:12.5px;text-align:center;padding:8px 4px;border-radius:8px;background:var(--surface-2);color:var(--muted)}
+.lv div.got{background:var(--good-bg);color:var(--good);font-weight:700}
+.lv div.next{outline:2px dashed var(--accent);outline-offset:-2px;color:var(--accent)}
+.note{font-size:15px;color:var(--muted);margin-top:12px}
+@media (max-width:440px){
+  .concept .row{grid-template-columns:1fr;gap:2px}
+  .plan li{grid-template-columns:1fr;gap:0}
+  .skill{grid-template-columns:84px 1fr 40px}
+  .stats{gap:6px} .stat b{font-size:23px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+  <div class="hud">
+    <div class="bar" role="progressbar" aria-label="Lesson progress" aria-valuemin="0" aria-valuemax="100"><i id="prog"></i></div>
+    <span class="pill streak" title="Correct in a row"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1c.5 2.6 3.8 4.2 3.8 8A3.8 3.8 0 0 1 4.2 9c0-1.6.8-2.7 1.7-3.5.1 1.2.6 2 1.4 2.4C7.1 5.6 7.3 3.1 8 1z"/></svg><span id="streak">0</span></span>
+    <span class="pill xp" title="Experience points"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1l2 4.6 5 .5-3.8 3.3 1.1 4.9L8 11.8 3.7 14.3l1.1-4.9L1 6.1l5-.5z"/></svg><span id="xp">0</span> XP</span>
+  </div>
+  <div class="rail" id="rail" aria-label="Phase of this lesson"></div>
+  <p class="railnote" id="railnote"></p>
+  <main id="stage" aria-live="polite"></main>
+</div>
+
+<div class="dock" id="dock">
+  <div class="dock-in">
+    <div class="fb" id="fb"></div>
+    <button class="go" id="go" disabled>Check</button>
+    <p class="keys" id="keys">Keys: 1–5 to choose, Enter to check</p>
+  </div>
+</div>
+
+<script>
+/* Pilot feedback. Paste the Google Form link into `url`. For the automatic game summary, make a
+   pre-filled link in Forms (⋮ > Get pre-filled link), and copy the entry id of the
+   "Game summary" question into `summaryEntry`, e.g. "entry.123456789". Leave both empty to hide the button. */
+const FEEDBACK = { url: "", summaryEntry: "" };
+const VERSION = "pilot-1";
+
+const PH = {
+  engage:{label:"Engage", c:"var(--engage)"},
+  explore:{label:"Explore", c:"var(--explore)"},
+  explain:{label:"Explain", c:"var(--explain)"},
+  elaborate:{label:"Elaborate", c:"var(--elaborate)"},
+  evaluate:{label:"Evaluate", c:"var(--evaluate)"}
+};
+const ORDER = ["engage","explore","explain","elaborate","evaluate"];
+const RAILNOTE = {
+  engage:"This lesson is itself a 5E sequence. You start where your students would: with a prediction.",
+  explore:"Explore: you work with classroom cases before any formal explanation.",
+  explain:"Explain: the model is named and connected to the cases you just sorted.",
+  elaborate:"Elaborate: apply the model to students' thinking and teacher moves.",
+  evaluate:"Evaluate: diagnose a real plan, then look back at your own first idea."
+};
+const PHASE_OPTS = ORDER.map(k=>({t:PH[k].label, ph:k}));
+
+const ITEMS = [
+ {id:"predict", type:"predict", at:"engage", level:"Retrieval", kind:"Predict",
+  title:"A 2 kg willow sapling is planted in a tub of dried, weighed soil. Five years of watering later, the tree weighs about 77 kg.",
+  q:"Where did most of that extra mass come from?",
+  options:[{t:"The soil"},{t:"The water"},{t:"Carbon dioxide from the air"},{t:"Sunlight"}],
+  answer:2,
+  reveal:"Jan Baptist van Helmont ran this experiment in the 1640s. The soil lost only about 57 g. He concluded the mass came from water. Most of a tree's dry mass is actually carbon, fixed from atmospheric CO₂ during photosynthesis.",
+  why:"You've just been through Engage. Making a committed prediction, with a confidence rating, brings prior ideas into the open before any teaching. In a Year 7 class, many students choose soil. Their ideas become the raw material for the rest of the sequence, so Engage elicits them and leaves them uncorrected."},
+
+ {id:"spot1", type:"mc", phaseGrid:true, at:"explore", level:"Comprehension", kind:"Spot the phase", tests:"explore",
+  vignette:{who:"Year 7 · Living world", text:"Pairs place spinach leaf discs in bicarbonate solution under a lamp and count how many float each minute. The teacher moves between groups asking “What are you noticing? What might be causing it?” and gives no answers."},
+  q:"Which 5E phase is this?",
+  options:PHASE_OPTS.map(o=>({...o, fb:{
+    engage:"Engage hooks interest and draws out ideas. These students are already collecting data.",
+    explore:"Students work with the phenomenon first-hand while the teacher asks questions and holds back answers. That restraint defines Explore.",
+    explain:"No terms or scientific account have been introduced, and the teacher is deliberately withholding answers.",
+    elaborate:"Elaborate applies a concept students already have. They don't have one to apply yet.",
+    evaluate:"Nothing is being judged against a learning goal yet."}[o.ph]})),
+  answer:1,
+  hint:"Ask who is doing the explaining, and whether students have the scientific concept yet.",
+  why:"Pre-service teachers often explain during Explore because silence feels unhelpful. Holding back gives the class a shared first-hand experience for the explanation to attach to later."},
+
+ {id:"spot2", type:"mc", phaseGrid:true, at:"explore", level:"Comprehension", kind:"Spot the phase", tests:"explain",
+  vignette:{who:"Year 7 · Living world", text:"Using the class's float-count graph, the teacher introduces the term photosynthesis and builds the word equation on the board. Students annotate the graph to show where the gas in the floating discs came from."},
+  q:"Which 5E phase is this?",
+  options:PHASE_OPTS.map(o=>({...o, fb:{
+    engage:"Students are past the hook. They are being given the scientific account.",
+    explore:"The investigation is finished. The teacher is now supplying the canonical explanation.",
+    explain:"Formal terms and the scientific explanation arrive here, tied directly to data the students produced.",
+    elaborate:"The concept is still being built. It isn't yet being transferred to a new context.",
+    evaluate:"The annotation here is sense-making, not assessment."}[o.ph]})),
+  answer:2,
+  hint:"New vocabulary is a strong signal.",
+  why:"In 5E the explanation is anchored to students' own observations. Teaching the word equation without that experience behind it turns the prac into a confirmation exercise."},
+
+ {id:"concept", type:"concept", at:"explain", level:"Retrieval", kind:"The model",
+  title:"The 5E instructional model",
+  lead:"Students build understanding by reconciling new experiences with what they already think. 5E puts that process in order, and gives each phase a defining teacher move.",
+  rows:[
+   ["engage","Access prior ideas and raise a question worth answering.","Teacher move: elicit, don't correct."],
+   ["explore","A shared, first-hand experience of the phenomenon.","Teacher move: question, don't tell."],
+   ["explain","Scientific concepts and terms, linked to that experience.","Teacher move: name it and connect it."],
+   ["elaborate","Apply the concept in a new context.","Teacher move: stretch and transfer."],
+   ["evaluate","Students and teacher judge how understanding has changed.","Teacher move: look for change, throughout the sequence."]],
+  cite:"Bybee et al. (2006), The BSCS 5E Instructional Model: Origins and Effectiveness. BSCS."},
+
+ {id:"why5e", type:"multi", at:"explain", level:"Comprehension", kind:"Select all that apply", tests:"explain",
+  title:"Why does 5E put Explore before Explain?",
+  q:"Select every reason that holds.",
+  options:[
+   {t:"Students get a concrete experience that new terms can attach to", ok:true, fb:"Yes. Vocabulary sticks better when it names something students have already seen."},
+   {t:"Students' existing ideas are tested against evidence before they are replaced", ok:true, fb:"Yes. This is the conceptual-change logic at the heart of the model."},
+   {t:"It saves lesson time by skipping direct instruction", ok:false, fb:"No. Explain still includes direct instruction. 5E reorders it."},
+   {t:"The teacher's explanation can refer back to what students observed", ok:true, fb:"Yes. “Remember when the discs floated faster near the lamp?” is a powerful Explain move."},
+   {t:"Students should discover the scientific concept without help", ok:false, fb:"No. 5E is guided inquiry. The teacher supplies the scientific explanation in Explain."}],
+  hint:"Three are correct. Watch for the common misreading of constructivism as discovery learning.",
+  why:"Critiques of minimal guidance (Kirschner, Sweller & Clark, 2006) target unguided discovery. 5E answers them with a structured, teacher-led Explain phase that follows the experience."},
+
+ {id:"order", type:"order", at:"elaborate", level:"Comprehension", kind:"Sequence it", tests:"sequence",
+  title:"Put this Stage 4 photosynthesis sequence in 5E order.",
+  q:"Tap each activity in the order you'd teach it. Tap a placed activity to remove it.",
+  items:[
+   {t:"Students predict where a tree's mass comes from, then think-pair-share", ph:"engage"},
+   {t:"Leaf-disc investigation with the lamp at different distances", ph:"explore"},
+   {t:"Class builds the word equation from its own float-count data", ph:"explain"},
+   {t:"Students advise a local nursery on greenhouse lighting", ph:"elaborate"},
+   {t:"Students revisit their first prediction and explain what changed their thinking", ph:"evaluate"}],
+  why:"Look at Evaluate here: students return to their own earlier idea. Evaluating against a learner's starting point is what makes it constructivist rather than a generic test."},
+
+ {id:"move1", type:"mc", at:"elaborate", level:"Analysis", kind:"Teacher move", tests:"explore",
+  vignette:{who:"During Explore", text:"A student says: “The discs float because the lamp heats them up.”"},
+  q:"What is the best response at this point?",
+  options:[
+   {t:"“Not quite. It's oxygen from photosynthesis.”", fb:"Correct science at the wrong moment. Telling cuts off the student's reasoning before the class has evidence. Save it for Explain."},
+   {t:"“How could you test whether it's the heat or the light?”", fb:"This treats the idea as a hypothesis worth testing. A heat filter, or a water bath to hold the temperature, would separate light from heat."},
+   {t:"“Good idea! Write that down.”", fb:"Accepting the idea without challenge leaves it untested, and the class may treat it as confirmed."},
+   {t:"“We'll cover that next lesson.”", fb:"Deferring tells the student the idea doesn't matter. Explore is exactly where it should be tested."}],
+  answer:1,
+  hint:"Which response keeps the student doing the thinking?",
+  why:"Alternative ideas are useful data during Explore. Turning them into testable questions models scientific reasoning and keeps the cognitive work with students."},
+
+ {id:"says", type:"mc", at:"elaborate", level:"Analysis", kind:"Student says", tests:"engage",
+  vignette:{who:"Mia, Year 7 · Engage response", text:"“Plants get their food from the soil through their roots.”"},
+  q:"What does this tell you about Mia's thinking?",
+  options:[
+   {t:"She's correct: roots absorb nutrients", fb:"Roots take up water and mineral ions, but these aren't the plant's food. Sugars are made in the leaves."},
+   {t:"She treats water and minerals as food, so she sees soil as the source of the plant's mass", fb:"Yes. This is one of the most persistent conceptions in school biology, and many adults still hold it."},
+   {t:"She has mixed up photosynthesis and respiration", fb:"That is a separate common conception. Mia's idea is about where food comes from, not how energy is released."},
+   {t:"She doesn't think plants need food", fb:"She clearly thinks plants need food. She has the wrong source."}],
+  answer:1,
+  why:"Naming a conception precisely tells you what evidence will challenge it. “Mia is wrong” gives you nothing to plan with. “Mia thinks the mass comes from soil” points straight at the next activity."},
+
+ {id:"conflict", type:"mc", at:"elaborate", level:"Knowledge utilisation", kind:"Choose the activity", tests:"explore",
+  title:"Which activity is most likely to create productive conflict with Mia's idea?",
+  options:[
+   {t:"Give students van Helmont's data: the willow gained about 74 kg while the soil lost about 57 g. Ask them to account for the difference.", fb:"The numbers clash directly with her model. Posner et al. (1982) argue that dissatisfaction with an existing idea is the first condition for conceptual change."},
+   {t:"Give her the correct definition of photosynthesis to copy into her book.", fb:"A definition can sit alongside her soil idea without displacing it. Students often hold both at once."},
+   {t:"Set a labelling worksheet on root structure.", fb:"This keeps the focus on roots and may reinforce the soil-as-food idea."},
+   {t:"Show a time-lapse of a bean seedling growing.", fb:"Engaging, but nothing in it challenges where the mass comes from."}],
+  answer:0,
+  why:"Conceptual change needs four conditions: dissatisfaction with the current idea, and a new idea that is intelligible, plausible and fruitful. Data that the old idea can't explain supplies the first."},
+
+ {id:"fix", type:"mc", at:"evaluate", level:"Knowledge utilisation", kind:"Fix the plan", tests:"sequence",
+  title:"A pre-service teacher submits this 5E sequence.",
+  plan:[["engage","3-minute video on rainforests"],["explain","Teacher notes on photosynthesis and the word equation"],["explore","Leaf-disc prac to confirm the equation"],["elaborate","Greenhouse design task"],["evaluate","End-of-topic test"]],
+  q:"What is the most important problem?",
+  options:[
+   {t:"Explain comes before Explore, so the prac only confirms what students were told", fb:"Students have no experience to reason from before the explanation, and the prac becomes a recipe."},
+   {t:"The Engage video is too short", fb:"Length isn't the issue. A better question is whether it draws out students' ideas. This one probably doesn't, but the ordering problem matters more."},
+   {t:"Elaborate should come last", fb:"Evaluate usually closes the sequence, and it also runs throughout."},
+   {t:"Evaluate should be a quiz, not a test", fb:"Format matters less than timing and purpose. In 5E, evaluation runs throughout and includes students reviewing their own thinking."}],
+  answer:0,
+  hint:"Check whether each phase can do its job given what came before it.",
+  why:"This is the most common error in pre-service 5E plans. A quick check: could students do the Explore activity without already knowing the answer? If not, it isn't Explore."},
+
+ {id:"reflect", type:"reflect", at:"evaluate", level:"Metacognition", kind:"Look back",
+  title:"Back to the willow.",
+  q:"A Year 7 student tells you the tree's mass came from the soil. Write one question you'd ask them. Make it an Engage or Explore move, not an answer.",
+  model:"Example: “If the tree took 74 kg from the soil, what would you expect to happen to the soil? How could we check?”"}
+];
+
+const MAIN = ITEMS.map(i=>i.id);
+const byId = Object.fromEntries(ITEMS.map(i=>[i.id,i]));
+
+let S;
+function fresh(){
+  return {queue:MAIN.filter(id=>id!=="reflect"), pos:0, phase:"main", review:[], xp:0, streak:0, best:0,
+          results:{}, pred:null, conf:60, reflection:"", done:false, started:false, t0:0};
+}
+S = fresh();
+
+const $ = s=>document.querySelector(s);
+const stage=$("#stage"), go=$("#go"), dock=$("#dock"), fb=$("#fb");
+let cur=null, sel=null, multi=new Set(), placed=[], pool=[], checked=false;
+
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+function totalSteps(){return MAIN.length + S.review.length}
+function stepsDone(){
+  if(S.done) return totalSteps();
+  if(S.phase==="main") return S.pos;
+  if(S.phase==="review") return MAIN.length-1 + S.pos;
+  return MAIN.length-1 + S.review.length;
+}
+function hud(){
+  $("#prog").style.width = (100*stepsDone()/totalSteps())+"%";
+  $("#xp").textContent=S.xp; $("#streak").textContent=S.streak;
+  const at = S.done ? "done" : cur?.at;
+  const idx = ORDER.indexOf(at);
+  $("#rail").innerHTML = ORDER.map((k,i)=>`<div style="--pc:${PH[k].c}" class="${at==="done"||i<idx?"done":i===idx?"now":""}">${PH[k].label}</div>`).join("");
+  $("#railnote").textContent = S.done ? "Lesson complete. Your journey followed all five phases." : S.phase==="review" ? "Review round: items you missed come back once, with the options shuffled." : RAILNOTE[at];
+}
+
+function currentId(){
+  if(S.phase==="main") return S.queue[S.pos];
+  if(S.phase==="review") return S.review[S.pos];
+  return "reflect";
+}
+
+function render(){
+  checked=false; sel=null; multi=new Set(); placed=[];
+  dock.className="dock"; fb.innerHTML="";
+  if(!S.started){ cur=null; return intro(); }
+  if(S.done){ cur=null; hud(); return summary(); }
+  cur = byId[currentId()];
+  const isReview = S.phase==="review";
+  hud();
+  let h = `<section class="card" style="--pc:${PH[cur.at].c}">
+    <div class="chips"><span class="chip ph">${PH[cur.at].label} phase</span><span class="chip">${esc(cur.level)}</span>${isReview?'<span class="chip rev">Review</span>':""}</div>
+    <p class="kind">${esc(cur.kind)}</p>`;
+  if(cur.title) h+=`<h2>${esc(cur.title)}</h2>`;
+  if(cur.vignette) h+=`<div class="vignette"><span class="who">${esc(cur.vignette.who)}</span>${esc(cur.vignette.text)}</div>`;
+  if(cur.plan) h+=`<ol class="plan">${cur.plan.map(([p,t])=>`<li style="--pc:${PH[p].c}"><b>${PH[p].label}</b><span class="min">${esc(t)}</span></li>`).join("")}</ol>`;
+  if(cur.q && cur.type!=="reflect") h+=`<p class="q">${esc(cur.q)}</p>`;
+
+  if(cur.type==="mc"||cur.type==="predict"||cur.type==="multi"){
+    let opts = cur.options.map((o,i)=>({...o,i}));
+    if(isReview && !cur.phaseGrid) opts=shuffle(opts);
+    cur._view = opts;
+    h+=`<div class="opts ${cur.phaseGrid?"phases":""}" role="${cur.type==="multi"?"group":"radiogroup"}">${opts.map((o,n)=>
+      `<button class="opt" data-i="${o.i}" ${o.ph?`style="--pc:${PH[o.ph].c}"`:""} role="${cur.type==="multi"?"checkbox":"radio"}" aria-checked="false">${cur.phaseGrid?"":`<span class="k">${n+1}</span>`}<span class="t">${esc(o.t)}<span class="ofb" hidden></span></span></button>`).join("")}</div>`;
+  }
+  if(cur.type==="predict"){
+    h+=`<div class="slider"><label for="conf">How confident are you? <output id="confout">${S.conf}%</output></label>
+      <input type="range" id="conf" min="0" max="100" step="10" value="${S.conf}">
+      <small><span>Pure guess</span><span>Certain</span></small></div>`;
+  }
+  if(cur.type==="order"){
+    pool = cur._pool && isReview===cur._poolReview ? cur._pool : shuffle(cur.items.map((o,i)=>({...o,i})));
+    cur._pool=pool; cur._poolReview=isReview;
+    h+=`<div class="slots" id="slots"></div><div class="pool" id="pool"></div>`;
+  }
+  if(cur.type==="concept"){
+    h+=`<p class="lead">${esc(cur.lead)}</p><div class="concept">${cur.rows.map(([k,a,b])=>
+      `<div class="row" style="--pc:${PH[k].c}"><h3>${PH[k].label}</h3><p>${esc(a)}<em>${esc(b)}</em></p></div>`).join("")}</div>
+      <p class="cite">${esc(cur.cite)}</p>`;
+  }
+  if(cur.type==="reflect"){
+    const p = S.pred!=null ? byId.predict.options[S.pred].t.toLowerCase() : null;
+    h+= p ? `<div class="recall">At the start you chose <b>${esc(p)}</b> with <b>${S.conf}%</b> confidence.${S.pred===2?" You were right. Many adults choose soil or water.":" Your first idea was the same kind of idea your students will bring."}</div>`:"";
+    h+=`<p class="q">${esc(cur.q)}</p><label for="refl" class="kind" style="display:block;margin-top:10px">Your question</label><textarea id="refl" placeholder="Start with “What would…” or “How could we…”">${esc(S.reflection)}</textarea>`;
+  }
+  if(cur.hint) h+=`<details class="hint"><summary>Hint</summary><p>${esc(cur.hint)}</p></details>`;
+  h+=`</section>`;
+  stage.innerHTML=h;
+  window.scrollTo({top:0});
+
+  if(cur.type==="concept"){ go.textContent="Got it"; go.disabled=false; $("#keys").textContent="Enter to continue"; }
+  else if(cur.type==="reflect"){ go.textContent="Finish lesson"; go.disabled=false; $("#keys").textContent="Your answer isn't marked. Writing it is the point.";
+    $("#refl").addEventListener("input",e=>S.reflection=e.target.value); }
+  else { go.textContent="Check"; go.disabled=true; $("#keys").textContent = cur.type==="order"?"Tap activities in order":"Keys: 1–"+(cur.options?.length||4)+" to choose, Enter to check"; }
+
+  stage.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>choose(+b.dataset.i)));
+  if(cur.type==="predict"){ const r=$("#conf"); r.addEventListener("input",()=>{S.conf=+r.value;$("#confout").textContent=S.conf+"%"}); }
+  if(cur.type==="order") drawOrder();
+}
+
+function choose(i){
+  if(checked) return;
+  if(cur.type==="multi"){ multi.has(i)?multi.delete(i):multi.add(i); }
+  else sel=i;
+  stage.querySelectorAll(".opt").forEach(b=>{
+    const on = cur.type==="multi" ? multi.has(+b.dataset.i) : +b.dataset.i===sel;
+    b.classList.toggle("sel",on); b.setAttribute("aria-checked",on);
+  });
+  go.disabled = cur.type==="multi" ? multi.size===0 : sel==null;
+}
+
+function drawOrder(){
+  const slots=$("#slots"), pl=$("#pool");
+  slots.innerHTML = cur.items.map((_,n)=>{
+    const o=placed[n];
+    return o ? `<button class="slot filled" data-n="${n}" ${checked?"disabled":""} style="--pc:${PH[o.ph].c}"><span class="n">${n+1}</span><span class="txt">${esc(o.t)}</span>${checked?`<span class="tag">${PH[o.ph].label}</span>`:""}</button>`
+             : `<div class="slot"><span class="n">${n+1}</span><span>${PH[ORDER[n]] && n===placed.length ? "Tap an activity below" : ""}</span></div>`;
+  }).join("");
+  const left = pool.filter(o=>!placed.includes(o));
+  pl.innerHTML = left.length ? `<span class="lbl">Activities</span>`+left.map(o=>`<button class="opt" data-p="${o.i}"><span class="t">${esc(o.t)}</span></button>`).join("") : "";
+  pl.querySelectorAll("[data-p]").forEach(b=>b.addEventListener("click",()=>{placed.push(pool.find(o=>o.i===+b.dataset.p));drawOrder();}));
+  slots.querySelectorAll("[data-n]").forEach(b=>b.addEventListener("click",()=>{if(checked)return;placed.splice(+b.dataset.n,1);drawOrder();}));
+  go.disabled = placed.length!==cur.items.length;
+  if(checked) slots.querySelectorAll(".slot").forEach((el,n)=>el.classList.add(placed[n].ph===ORDER[n]?"right":"wrong"));
+}
+
+function check(){
+  checked=true;
+  let ok=true, head, body="";
+  if(cur.type==="predict"){
+    S.pred=sel;
+    markOpts(i=>i===cur.answer, i=>i===sel && i!==cur.answer, false);
+    S.xp+=5;
+    head = sel===cur.answer ? "Good prediction" : "Predictions aren't marked";
+    body = `<p>${esc(cur.reveal)}</p>`;
+    dock.className="dock "+(sel===cur.answer?"good":"");
+    return showFb(head, body, cur.why, "Continue");
+  }
+  if(cur.type==="mc"){
+    ok = sel===cur.answer;
+    markOpts(i=>i===cur.answer, i=>i===sel && !ok, true, i=>i===sel||i===cur.answer);
+  }
+  if(cur.type==="multi"){
+    const want=new Set(cur.options.map((o,i)=>o.ok?i:null).filter(i=>i!=null));
+    ok = want.size===multi.size && [...want].every(i=>multi.has(i));
+    markOpts(i=>cur.options[i].ok && multi.has(i), i=>multi.has(i) && !cur.options[i].ok, true, ()=>true);
+    stage.querySelectorAll(".opt").forEach(b=>{const i=+b.dataset.i; if(cur.options[i].ok && !multi.has(i)) b.classList.add("right");});
+  }
+  if(cur.type==="order"){
+    ok = placed.every((o,n)=>o.ph===ORDER[n]);
+    drawOrder();
+  }
+  const first = S.phase==="main";
+  if(first) S.results[cur.id]={ok, tests:cur.tests, level:cur.level};
+  else if(ok) S.results[cur.id].recovered=true;
+  if(ok){ S.streak++; S.best=Math.max(S.best,S.streak); S.xp += first?10:5; if(S.streak%3===0){S.xp+=5;} }
+  else { S.streak=0; if(first) S.review.push(cur.id); }
+  hud();
+  dock.className="dock "+(ok?"good":"bad");
+  head = ok ? pick(["Nicely judged.","That's it.","Spot on.","Exactly right."]) : (first ? "Not this time. It'll come back in review." : "Still not quite.");
+  if(cur.type==="mc" && cur.phaseGrid) body=`<p>${esc(cur.options[cur.answer].fb)}</p>`;
+  if(cur.type==="order" && !ok) body=`<p>Engage → Explore → Explain → Elaborate → Evaluate. Check the colour tags on each placed activity.</p>`;
+  if(ok && S.streak>0 && S.streak%3===0) head+=` +5 streak bonus`;
+  showFb(head, body, cur.why, "Continue");
+}
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function markOpts(isRight,isWrong,showFbText,showWhich=()=>false){
+  stage.querySelectorAll(".opt").forEach(b=>{
+    const i=+b.dataset.i; b.disabled=true; b.classList.remove("sel");
+    if(isRight(i)) b.classList.add("right"); else if(isWrong(i)) b.classList.add("wrong");
+    const f=b.querySelector(".ofb");
+    if(showFbText && f && cur.options[i].fb && showWhich(i) && !cur.phaseGrid){ f.textContent=cur.options[i].fb; f.hidden=false; }
+    if(showFbText && f && cur.phaseGrid && (i===sel) && i!==cur.answer){ f.textContent=cur.options[i].fb; f.hidden=false; }
+  });
+}
+function showFb(head, body, why, label){
+  fb.innerHTML=`<h3>${esc(head)}</h3>${body}${why?`<details class="why"><summary>Why this matters in the classroom</summary><p>${esc(why)}</p></details>`:""}`;
+  go.textContent=label; go.disabled=false; $("#keys").textContent="Enter to continue";
+  go.focus({preventScroll:true});
+}
+
+function advance(){
+  if(cur.type==="reflect"){ S.xp+=10; S.done=true; return render(); }
+  if(cur.type==="concept"){ S.xp+=5; }
+  S.pos++;
+  if(S.phase==="main" && S.pos>=S.queue.length){ S.phase = S.review.length?"review":"reflect"; S.pos=0; }
+  else if(S.phase==="review" && S.pos>=S.review.length){ S.phase="reflect"; S.pos=0; }
+  render();
+}
+
+go.addEventListener("click",()=>{
+  if(!S.started || S.done){ S=fresh(); S.started=true; S.t0=Date.now(); return render(); }
+  if(cur.type==="concept"||cur.type==="reflect"||checked) advance(); else check();
+});
+document.addEventListener("keydown",e=>{
+  if(e.target.tagName==="TEXTAREA"||e.target.tagName==="INPUT") return;
+  if(e.key==="Enter" && !go.disabled && document.activeElement!==go){ e.preventDefault(); go.click(); }
+  const n=parseInt(e.key,10);
+  if(cur && !checked && cur._view && n>=1 && n<=cur._view.length) choose(cur._view[n-1].i);
+});
+
+function intro(){
+  $("#prog").style.width="0%"; $("#xp").textContent=0; $("#streak").textContent=0;
+  $("#rail").innerHTML = ORDER.map(k=>`<div style="--pc:${PH[k].c}">${PH[k].label}</div>`).join("");
+  $("#railnote").textContent = "The lesson moves through all five phases of 5E.";
+  dock.className="dock"; fb.innerHTML="";
+  go.textContent="Start lesson"; go.disabled=false; $("#keys").textContent="About 10 minutes. Works on a phone.";
+  stage.innerHTML=`<section class="card">
+    <div class="chips"><span class="chip">Prototype</span><span class="chip">5E path · Lesson 1</span></div>
+    <h2>The Willow Problem</h2>
+    <p class="lead">A short game about the 5E model, set in a Stage 4 photosynthesis sequence. You'll spot phases in classroom vignettes, choose teacher moves, read students' ideas and fix a flawed plan.</p>
+    <p class="lead">Wrong answers cost nothing. Anything you miss comes back once at the end, and every answer explains itself.</p>
+    <div class="recall" style="--engage:var(--explain)"><b>About this pilot.</b> This is an early prototype being trialled to improve EDSE science education units. Nothing you do in the game is recorded or sent anywhere. At the end you can give anonymous feedback through a short form. It's optional and has no bearing on your grades.</div>
+  </section>`;
+}
+
+function feedbackLink(){
+  if(!FEEDBACK.url) return "";
+  const r=Object.values(S.results);
+  const missed=Object.entries(S.results).filter(([,v])=>!v.ok).map(([k])=>k);
+  const mins=S.t0?Math.max(1,Math.round((Date.now()-S.t0)/60000)):0;
+  const pred = S.pred!=null ? byId.predict.options[S.pred].t : "none";
+  const sumText=`${VERSION} | first-try ${r.filter(x=>x.ok).length}/${r.length} | missed: ${missed.join(", ")||"none"} | prediction: ${pred} @ ${S.conf}% | reflection written: ${S.reflection.trim()?"yes":"no"} | minutes: ${mins}`;
+  let u=FEEDBACK.url;
+  if(FEEDBACK.summaryEntry){ u += (u.includes("?")?"&":"?") + "usp=pp_url&" + encodeURIComponent(FEEDBACK.summaryEntry) + "=" + encodeURIComponent(sumText); }
+  return `<a class="go fbk" href="${esc(u)}" target="_blank" rel="noopener">Give feedback (2 minutes)</a>`;
+}
+
+function summary(){
+  const r=Object.values(S.results), right=r.filter(x=>x.ok).length;
+  const groups=[["explore","Explore moves"],["explain","Explain logic"],["engage","Reading student ideas"],["sequence","Sequencing"]];
+  const sk=groups.map(([k,l])=>{const g=r.filter(x=>x.tests===k);const v=g.filter(x=>x.ok).length;return {k,l,v,n:g.length}}).filter(x=>x.n);
+  const levels=["Recognise","Explain","Select","Design"];
+  const predRight = S.pred===2;
+  const calib = S.pred==null ? "" : predRight
+    ? (S.conf>=70?"You predicted correctly and confidently.":"You predicted correctly but held back on confidence. Trust that reasoning.")
+    : (S.conf>=70?`You were ${S.conf}% sure of a wrong answer. That's exactly how confident Year 7s are about soil, which is why Engage elicits before it corrects.`:"Your first idea was tentative. That's the best moment to meet evidence.");
+  go.textContent="Play again"; go.disabled=false; $("#keys").textContent="Next in this path: 5E · Select (choosing 5E versus POE for a given class).";
+  fb.innerHTML=""; dock.className="dock";
+  stage.innerHTML=`<section class="card sum-head">
+    <p class="kind">Lesson complete</p>
+    <h2>5E path · Lesson 1: The Willow Problem</h2>
+    <div class="stats">
+      <div class="stat"><b>${S.xp}</b><span>XP earned</span></div>
+      <div class="stat"><b>${right}/${r.length}</b><span>right first time</span></div>
+      <div class="stat"><b>${S.best}</b><span>best streak</span></div>
+    </div>
+    <div class="skills">${sk.map(s=>`<div class="skill" style="--pc:${PH[s.k]?.c||"var(--accent)"}"><span>${s.l}</span><span class="track"><i style="width:${100*s.v/s.n}%"></i></span><span class="v">${s.v}/${s.n}</span></div>`).join("")}</div>
+    ${calib?`<p class="note"><b>Calibration.</b> ${esc(calib)}</p>`:""}
+    <div class="crowns"><h3>Mastery on the 5E path</h3>
+      <div class="lv">${levels.map((l,i)=>`<div class="${i===0||(i===1&&right>=6)?"got":(i===(right>=6?2:1))?"next":""}">${l}</div>`).join("")}</div>
+      <p class="note">Levels follow Marzano &amp; Kendall: retrieval, comprehension, analysis, then knowledge utilisation. Prac Day, a branching classroom simulation, unlocks at Select.</p>
+    </div>
+    ${S.reflection?`<div class="recall" style="--engage:var(--evaluate)"><b>Your question:</b> ${esc(S.reflection)}</div>`:""}
+    <p class="note">${esc(byId.reflect.model)}</p>
+    ${FEEDBACK.url?`<div class="crowns"><h3>Help shape the next lesson</h3><p class="note">Tell us what worked and what didn't. The form is anonymous and includes your game summary (scores and timing only, never your written answer).</p>${feedbackLink()}</div>`:""}
+  </section>`;
+}
+
+render();
+</script>
