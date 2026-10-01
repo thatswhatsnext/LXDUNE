@@ -176,6 +176,42 @@ function go(el, block = 'start') {
   if (el) el.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block });
 }
 
+// The element that actually scrolls `el` vertically: Moodle's Boost theme may
+// scroll #page rather than the document. Moodle's .no-overflow wrapper has
+// overflow:auto but never scrolls vertically, so it is skipped.
+function scrollerOf(el) {
+  for (let e = el.parentElement; e && e !== document.body && e !== document.documentElement; e = e.parentElement) {
+    const oy = window.getComputedStyle(e).overflowY;
+    if ((oy === 'auto' || oy === 'scroll') && e.scrollHeight > e.clientHeight + 1) return e;
+  }
+  return window;
+}
+
+// Scroll so `el`'s top lands `gap` px below the top of the viewport.
+function scrollToGap(el, gap) {
+  if (!el) return;
+  scrollerOf(el).scrollBy({ top: el.getBoundingClientRect().top - gap, behavior: reduceMotion() ? 'auto' : 'smooth' });
+}
+
+// Bottom edge of any fixed or sticky header across the top of the viewport
+// (Boost's navbar), ignoring the explorer's own elements; 0 on a plain page.
+function headerBottom(own) {
+  if (typeof document.elementsFromPoint !== 'function') return 0;
+  let bottom = 0;
+  for (const el of document.elementsFromPoint(Math.round(window.innerWidth / 2), 1)) {
+    if (own.contains(el)) continue;
+    for (let e = el; e && e !== document.body && e !== document.documentElement; e = e.parentElement) {
+      const pos = window.getComputedStyle(e).position;
+      if (pos === 'fixed' || pos === 'sticky') {
+        const r = e.getBoundingClientRect();
+        if (r.top <= 1 && r.bottom > bottom && r.height < window.innerHeight / 3) bottom = r.bottom;
+        break;
+      }
+    }
+  }
+  return Math.round(bottom);
+}
+
 function renderDeepDive(mount, fw, { items, labels }) {
   injectStyles('lxd-fx-dd-styles', DEEPDIVE_STYLES);
   mount.className = 'lxd-fx lxd-fx-dd';
@@ -189,17 +225,18 @@ function renderDeepDive(mount, fw, { items, labels }) {
   const byId = new Map(items.map((it, i) => [it.id, i]));
   // In-memory state only (no browser storage); reset on every strategy switch.
   const state = { cur: 0, tab: 't', level: 1 };
-  let spy = null;
+  let frame = 0;
 
   function select(i) {
     const hadFocus = itemBox.contains(document.activeElement);
     Object.assign(state, { cur: i, tab: 't', level: 1 });
+    lock = null;
     renderItem();
     const head = $('.lxd-fx-dd-head');
     // A works-with chip is destroyed by the re-render: move focus to the new
     // strategy's header rather than losing it to <body>.
     if (hadFocus) head.focus({ preventScroll: true });
-    go(head);
+    scrollToGap(head, headerBottom(mount) + 12);
   }
 
   function renderItem() {
@@ -223,7 +260,7 @@ function renderDeepDive(mount, fw, { items, labels }) {
       sections.map(([key, html]) => panelHTML(key, html, uid)).join('');
     setLevel(state.level);
     syncAll();
-    wireSpy();
+    layout();
   }
 
   // ── exemplar phases ──
@@ -279,28 +316,69 @@ function renderDeepDive(mount, fw, { items, labels }) {
   function setPill(key) {
     $$('.lxd-fx-dd-pill').forEach((p) => {
       const on = p.dataset.sec === key;
+      if (on && !p.classList.contains('active')) revealPill(p);
       p.classList.toggle('active', on);
       if (on) p.setAttribute('aria-current', 'true');
       else p.removeAttribute('aria-current');
     });
   }
-  // IntersectionObserver against the viewport, so it works whichever element
-  // scrolls (Moodle may scroll inside #page rather than the document).
-  function wireSpy() {
-    if (spy) spy.disconnect();
-    if (typeof IntersectionObserver !== 'function') return;
-    const panels = $$('.lxd-fx-dd-panel');
-    const inBand = new Set();
-    spy = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((en) => (en.isIntersecting ? inBand.add(en.target) : inBand.delete(en.target)));
-        const first = panels.find((p) => inBand.has(p));
-        if (first) setPill(first.dataset.sec);
-      },
-      { rootMargin: '-80px 0px -55% 0px' },
-    );
-    panels.forEach((p) => spy.observe(p));
+  // On narrow screens the pill row scrolls sideways: keep the active pill in
+  // view by scrolling the row only (scrollIntoView would also move the page).
+  function revealPill(p) {
+    const row = p.parentElement;
+    if (row.scrollWidth <= row.clientWidth) return;
+    const left = p.offsetLeft - row.offsetLeft;
+    if (left < row.scrollLeft || left + p.offsetWidth > row.scrollLeft + row.clientWidth)
+      row.scrollTo({ left: Math.max(0, left - 12), behavior: reduceMotion() ? 'auto' : 'smooth' });
   }
+  // Pinning and scrollspy, worked out from viewport geometry whenever anything
+  // scrolls. CSS sticky can't be used: Moodle wraps Page content in .no-overflow
+  // (overflow:auto), which stops sticky ever engaging, and Boost's fixed navbar
+  // covers the top of the viewport, so the bar pins just below that navbar.
+  function layout() {
+    frame = 0;
+    const slot = $('.lxd-fx-dd-pillslot');
+    const bar = slot && slot.firstElementChild;
+    if (!bar || !mount.isConnected) return;
+    const top = headerBottom(mount);
+    const s = slot.getBoundingClientRect();
+    const box = itemBox.getBoundingClientRect();
+    const h = bar.offsetHeight;
+    const pin = s.top < top && box.bottom > top + h;
+    bar.classList.toggle('pinned', pin);
+    slot.style.height = pin ? `${h}px` : '';
+    bar.style.top = pin ? `${top}px` : '';
+    bar.style.left = pin ? `${s.left}px` : '';
+    bar.style.width = pin ? `${s.width}px` : '';
+    // A pill click holds its section until the reader next scrolls by hand.
+    if (lock) return setPill(lock);
+    // Otherwise the active section is the last panel whose top has passed a
+    // reading line a quarter of the way down the visible area, and the last
+    // panel once the page is scrolled to the very end.
+    const panels = $$('.lxd-fx-dd-panel');
+    if (!panels.length) return;
+    const line = top + h + (window.innerHeight - top - h) / 4;
+    let cur = panels[0];
+    for (const p of panels) if (p.getBoundingClientRect().top <= line) cur = p;
+    const last = panels[panels.length - 1];
+    const sc = scrollerOf(itemBox);
+    const atEnd =
+      sc === window
+        ? window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2
+        : sc.scrollTop + sc.clientHeight >= sc.scrollHeight - 2;
+    if (atEnd && last.getBoundingClientRect().top < window.innerHeight) cur = last;
+    setPill(cur.dataset.sec);
+  }
+  let lock = null;
+  const onScroll = () => {
+    if (!frame) frame = window.requestAnimationFrame(layout);
+  };
+  // Capture phase catches a scroll on any element, whichever one Moodle scrolls.
+  document.addEventListener('scroll', onScroll, { capture: true, passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  // Any hand-driven scroll releases a pill click's hold on the highlight.
+  for (const type of ['wheel', 'touchstart', 'keydown', 'mousedown'])
+    document.addEventListener(type, () => (lock = null), { capture: true, passive: true });
 
   // One delegated listener per mount, so re-rendering never orphans handlers.
   mount.addEventListener('click', (e) => {
@@ -310,9 +388,13 @@ function renderDeepDive(mount, fw, { items, labels }) {
     switch (t.dataset.act) {
       case 'select':
         return select(i);
-      case 'pill':
-        setPill(t.dataset.sec);
-        return go(mount.querySelector(`#${uid}-sec-${t.dataset.sec}`));
+      case 'pill': {
+        // Land the panel just below the pinned bar (and any fixed navbar above it).
+        const bar = $('.lxd-fx-dd-pillbar');
+        lock = t.dataset.sec;
+        setPill(lock);
+        return scrollToGap(mount.querySelector(`#${uid}-sec-${t.dataset.sec}`), headerBottom(mount) + bar.offsetHeight + 8);
+      }
       case 'phase':
         return setPhase(i, t.getAttribute('aria-expanded') !== 'true');
       case 'rseg':
@@ -379,7 +461,11 @@ function pillsHTML(sections, uid) {
         ` aria-controls="${uid}-sec-${key}"${i === 0 ? ' aria-current="true"' : ''}>${esc(DD_SECTIONS[key].pill)}</button>`,
     )
     .join('');
-  return `<nav class="lxd-fx-dd-pillbar" aria-label="Sections of this strategy"><div class="lxd-fx-dd-pills">${pills}</div></nav>`;
+  // The slot holds the bar's place in the layout while the bar is pinned.
+  return (
+    `<div class="lxd-fx-dd-pillslot"><nav class="lxd-fx-dd-pillbar" aria-label="Sections of this strategy">` +
+    `<div class="lxd-fx-dd-pills">${pills}</div></nav></div>`
+  );
 }
 
 function panelHTML(key, body, uid) {
@@ -655,7 +741,9 @@ const DEEPDIVE_STYLES = `
 .lxd-fx.lxd-fx-dd .lxd-fx-dd-badge.mop{background:var(--fx-pos-soft,#E5EFE9);color:var(--fx-pos,#2C6046);border-color:#CBDED3;}
 
 /* sticky section pills */
-.lxd-fx.lxd-fx-dd .lxd-fx-dd-pillbar{position:sticky;top:0;z-index:20;background:#F2F0EA;background:rgba(242,240,234,.94);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);margin:0 0 16px;padding:8px 0;border-bottom:1px solid var(--fx-line,#E2DDD2);}
+.lxd-fx.lxd-fx-dd .lxd-fx-dd-pillslot{margin:0 0 16px;}
+.lxd-fx.lxd-fx-dd .lxd-fx-dd-pillbar{background:#F2F0EA;background:rgba(242,240,234,.94);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:8px 0;border-bottom:1px solid var(--fx-line,#E2DDD2);}
+.lxd-fx.lxd-fx-dd .lxd-fx-dd-pillbar.pinned{position:fixed;z-index:1020;padding:8px 10px;box-shadow:0 2px 6px rgba(25,40,47,.08);}
 .lxd-fx.lxd-fx-dd .lxd-fx-dd-pills{display:flex;gap:7px;flex-wrap:wrap;}
 .lxd-fx.lxd-fx-dd .lxd-fx-dd-pill{min-height:44px;font-size:13px;font-weight:600;color:var(--fx-body,#3B474F);background:var(--fx-card,#FFFFFF);border:1.5px solid var(--fx-line,#E2DDD2);border-radius:999px;padding:8px 15px;cursor:pointer;transition:border-color .14s;white-space:nowrap;}
 .lxd-fx.lxd-fx-dd .lxd-fx-dd-pill:hover{border-color:var(--fx-accent-line,#B7D0D6);}
@@ -703,7 +791,7 @@ const DEEPDIVE_STYLES = `
 
 /* indicator tabs */
 .lxd-fx.lxd-fx-dd .lxd-fx-dd-tabs{display:flex;gap:6px;margin-bottom:14px;}
-.lxd-fx.lxd-fx-dd .lxd-fx-dd-tab{flex:1;min-width:0;min-height:44px;font-size:12.5px;font-weight:600;padding:9px 6px;border-radius:8px;border:1.5px solid var(--fx-line,#E2DDD2);background:var(--fx-card-sunk,#F6F4EF);cursor:pointer;color:var(--fx-body,#3B474F);}
+.lxd-fx.lxd-fx-dd .lxd-fx-dd-tab{flex:1;min-width:0;min-height:44px;font-size:12.5px;font-weight:600;line-height:1.25;overflow-wrap:normal;word-break:normal;hyphens:manual;padding:9px 4px;border-radius:8px;border:1.5px solid var(--fx-line,#E2DDD2);background:var(--fx-card-sunk,#F6F4EF);cursor:pointer;color:var(--fx-body,#3B474F);}
 .lxd-fx.lxd-fx-dd .lxd-fx-dd-tab.on.t{background:var(--fx-pos-soft,#E5EFE9);border-color:var(--fx-pos,#2C6046);color:var(--fx-pos,#2C6046);}
 .lxd-fx.lxd-fx-dd .lxd-fx-dd-tab.on.n{background:var(--fx-neg-soft,#F4E7E2);border-color:var(--fx-neg,#8B4232);color:var(--fx-neg,#8B4232);}
 .lxd-fx.lxd-fx-dd .lxd-fx-dd-tab.on.s{background:var(--fx-stu-soft,#E8EAF4);border-color:var(--fx-stu,#3F4E86);color:var(--fx-stu,#3F4E86);}
@@ -766,7 +854,7 @@ const DEEPDIVE_STYLES = `
   .lxd-fx.lxd-fx-dd .lxd-fx-dd-nlb{font-size:11px;}
   .lxd-fx.lxd-fx-dd .lxd-fx-dd-dot{width:34px;height:34px;}
   .lxd-fx.lxd-fx-dd .lxd-fx-dd-track::before,.lxd-fx.lxd-fx-dd .lxd-fx-dd-fill{top:17px;}
-  .lxd-fx.lxd-fx-dd .lxd-fx-dd-tab{font-size:12px;}
+  .lxd-fx.lxd-fx-dd .lxd-fx-dd-tab{font-size:11.5px;}
 }
 @media(prefers-reduced-motion:reduce){
   .lxd-fx.lxd-fx-dd *,.lxd-fx.lxd-fx-dd *::before,.lxd-fx.lxd-fx-dd *::after{transition:none !important;scroll-behavior:auto !important;}
