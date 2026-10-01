@@ -10,9 +10,9 @@
 
 - ✅ **HITS in NSW Science** — deep-dive view. Live on `main`.
 - ✅ **Metacognition in Science** — matrix view (13 topics × 9 habits = 117 cells). Live on `main`.
-- ✅ **Metacognition — starter** — grid view (4 contexts × 9 habits = 36 cells). Lighter on-ramp to the full matrix.
+- 🗄️ **Metacognition — starter** — grid view (4 contexts × 9 habits = 36 cells). *Retired from the EDSE362 page 2026-10-01: superseded, the page is consolidated to one metacognition explorer (the full matrix).* Retained in the repo as a reference on-ramp: files unchanged, still validated and served. See its `CHANGELOG.md`.
 - ⏳ **Real-Moodle verification** — paste into a myLearn Page, confirm §7 theme interaction at desktop + mobile. *The last open item before the model is fully proven in situ.*
-- ⏳ **EDSE362 "Teaching frameworks" page** — all three explorers on one page. Shells ready in `docs/EDSE362-framework-explorer-shells.html`.
+- ⏳ **EDSE362 "Teaching frameworks" page** — HITS and the full Metacognition matrix on one page (the starter was retired from it 2026-10-01). Shells ready in `docs/EDSE362-framework-explorer-shells.html`.
 
 ---
 
