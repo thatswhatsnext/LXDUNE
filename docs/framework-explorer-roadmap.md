@@ -39,6 +39,7 @@ Each maps cleanly onto an existing view shape (deep-dive = rich per-item arcs; m
 - **App / plugin pivot** — *not now.* A Moodle plugin (or an activity module / LTI tool) would unlock gradebook integration, server-side identity, persistence, and native reporting. Trigger signals in *Delivery-model limits*.
 - **2025 Stage 6 syllabus migration** — *scheduled 2027* (first HSC 2028). Re-author Stage 6 content against the 2025 modules; the vocab already carries `supersededBy`/`activeFrom` and the content is flagged `acknowledgedSuperseded: true`.
 - **Constructive-alignment maps** — *explicitly NOT part of this pipeline* (handoff D2c declined). Tracked separately as the `blocks.js` `renderAlignmentMap()` renderer.
+- **Debt: deep-dive eyebrow is HITS-specific** — *logged 2026-10-01, renderer `deep-dive@2.0.0`.* The deep-dive view's eyebrow reads "High Impact Teaching Strategy NN of 10", hard-coded in `headerHTML()` in `moodle-blocks/framework-explorer.js` (as the redesign spec required, with no new fields). **Trigger:** the second deep-dive framework (e.g. *What Works Best* or Rosenshine from *Next*), which would otherwise inherit the HITS wording. **Fix then:** an optional framework-level label in `framework.json` (e.g. `itemNoun`, "High Impact Teaching Strategy"), defined in the schema, defaulting to the current HITS text so HITS renders unchanged. The switcher's "Choose a strategy" heading and the pill and panel labels ("In a science faculty") need the same treatment.
 
 ---
 
