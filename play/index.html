@@ -1,3 +1,10 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#eef2f0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f171a" media="(prefers-color-scheme: dark)">
 <title>The Willow Problem</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@500&display=swap">
@@ -27,7 +34,8 @@
   color-scheme:dark}
 
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.5}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.5}
 .wrap{max-width:660px;margin:0 auto;padding-inline:16px;padding-block:14px 300px}
 h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
 button{font:inherit;color:inherit}
@@ -174,6 +182,8 @@ button.go.fbk{margin-top:12px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
+</head>
+<body>
 
 <div class="wrap">
   <div class="hud">
@@ -468,7 +478,7 @@ function check(){
   if(cur.type==="predict"){
     S.pred=sel;
     markOpts(i=>i===cur.answer, i=>i===sel && i!==cur.answer, false);
-    S.xp+=5;
+    S.xp+=5; hud();
     head = sel===cur.answer ? "Good prediction" : "Predictions aren't marked";
     body = `<p>${esc(cur.reveal)}</p>`;
     dock.className="dock "+(sel===cur.answer?"good":"");
@@ -598,3 +608,5 @@ function summary(){
 
 render();
 </script>
+</body>
+</html>
