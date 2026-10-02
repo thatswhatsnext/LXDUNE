@@ -1,0 +1,268 @@
+# 5E path, lesson 3. Built on the 5E guide's worked sequence seq-s5-disease. Draft: not shown to students until reviewed.
+schemaVersion: 1
+id: 5e-3-outbreak
+path: 5e
+order: 3
+title: Outbreak
+summary: Why does the simulation come before herd immunity is named? Explain why each phase sits where it does.
+level: explain
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-02
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage5]
+  focusAreas: [Disease, Data science 2]
+  disciplines: [biology]
+outcomes: [SC5-DIS-01, SC5-DA2-01]
+builtOn:
+  sequenceIds: [seq-s5-disease]
+  lookForIds: [explain-links-data, explain-conceptions, elaborate-requires-concept, evaluate-revisit]
+guideSection: sequences
+items:
+  - id: predict
+    type: predict
+    at: engage
+    processing: Retrieval
+    kind: Predict
+    title: In a classroom outbreak simulation, a third of the students are “vaccinated”. Their cups can't be infected, so they can't pass the infection on.
+    q: Compared with a class where nobody is vaccinated, what happens to the unvaccinated students' chance of being infected?
+    options:
+      - text: It stays the same. Vaccines only protect the person vaccinated.
+      - text: It goes down
+      - text: It goes up
+      - text: It depends only on who washes their hands
+    answer: 1
+    reveal: >-
+      It goes down. Every vaccinated student is a link the infection can't pass through, so chains of
+      transmission break and fewer infections reach the unvaccinated. That's herd immunity, and the
+      simulation lets students see it happen before anyone names it.
+    why: >-
+      “Vaccines only protect the person vaccinated” is one of this sequence's target conceptions. A committed
+      prediction makes the idea visible, so the simulation has something to challenge.
+
+  - id: why-sim-first
+    type: choice
+    at: explore
+    processing: Comprehension
+    kind: Why here?
+    tests: explore
+    vignette:
+      who: Year 9 · Lessons 2–3
+      text: >-
+        Each student has a cup of clear liquid. One is secretly “infected” with dilute sodium carbonate. Over
+        three rounds students swap liquid, test with indicator, and use their swap records to trace patient zero.
+    q: Why does this simulation come before the teacher explains herd immunity?
+    options:
+      - text: Students experience spread and protection first, so the term herd immunity names something they've seen
+        fb: Yes. The guide's case for this sequence is that students feel exponential spread and herd immunity before they hear the terms.
+      - text: It saves time, because students will work out the immunology themselves
+        fb: No. The teacher still explains pathogens, transmission and immunity in lessons 5 and 6. The simulation gives that explanation something to attach to.
+      - text: Simulations are more engaging than explanations
+        fb: Engagement matters, but it isn't why the simulation sits here. A fun simulation placed after the explanation would only confirm it.
+      - text: Students need practice with indicators before the chemistry unit
+        fb: The indicator is just a way to make infection visible. This sequence isn't about indicators.
+    answer: 0
+    why: >-
+      At the Explain level, the question isn't just which phase this is, but why it's in that position. The
+      answer is nearly always about what students need to have experienced before a concept is named.
+    refs:
+      sequenceIds: [seq-s5-disease]
+      lookForIds: [explore-before-explain]
+
+  - id: spot-data
+    type: spot
+    at: explore
+    processing: Comprehension
+    kind: Spot the phase
+    tests: explore
+    vignette:
+      who: Year 9 · Lesson 4
+      text: >-
+        Groups analyse real data on measles cases against vaccination coverage, describe the pattern they see,
+        and write a hypothesis to explain it. No one has introduced the immune system yet.
+    q: Which 5E phase is this?
+    answer: explore
+    fb:
+      engage: Students' first ideas were collected in lesson 1. This is new evidence.
+      explore: Analysing real data is still Explore. Students generate their own patterns and hypotheses before the scientific explanation.
+      explain: The explanation hasn't arrived. Students are writing hypotheses, not receiving the account.
+      elaborate: Elaborate transfers a concept students already have. The immune system hasn't been taught yet.
+      evaluate: Hypotheses are reviewed, but the job here is investigating.
+    hint: Explore isn't only practical work. What matters is that students make sense of evidence before they're told.
+    why: >-
+      Explore can include real data sets. It moves the investigation beyond the lab and builds towards the
+      Stage 5 data outcomes.
+
+  - id: why-antibiotics
+    type: choice
+    at: explain
+    processing: Comprehension
+    kind: Why here?
+    tests: explain
+    vignette:
+      who: Year 9 · Lessons 5–6
+      text: >-
+        Introducing pathogen types, the teacher explicitly raises the idea that antibiotics cure viral infections,
+        and asks groups to test it against what they now know about bacteria and viruses.
+    q: Why name this idea in Explain rather than just teaching pathogen types?
+    options:
+      - text: A target conception that is never named tends to survive alongside the new learning
+        fb: Yes. Students can learn the correct account and keep the old idea for everyday use. Naming it gives them the chance to reject it.
+      - text: It fills time while groups finish presenting
+        fb: It's there on purpose. The guide lists it as one of the sequence's target conceptions.
+      - text: Antibiotics are the main content outcome for the unit
+        fb: The idea matters because it's a common misconception, not because antibiotics are the focus of the unit.
+      - text: It's an Engage activity placed in the wrong lesson
+        fb: Engage elicits ideas. Here the teacher is confronting one with the scientific account, which is Explain's job.
+    answer: 0
+    why: >-
+      Explain is where the scientific view meets students' ideas directly. If you plan Explain as content
+      delivery only, misconceptions stay hidden and persist.
+
+  - id: lf-links
+    type: lookfor
+    at: explain
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 9 · Lesson 5
+      text: >-
+        Introducing herd immunity, the teacher points to Group 3's transmission table and asks, “Your chain stopped
+        at Mia's cup. Why?”
+    answer: explain-links-data
+    distractors: [explore-own-data, engage-link, elaborate-demand]
+    strong: true
+    variants:
+      - vignette:
+          who: Year 9 · Lesson 6
+          text: >-
+            Explaining transmission by contact, the teacher replays two rounds of the class's swap records on the
+            board and asks students to find the moment the infection jumped between groups.
+
+  - id: lf-annotate
+    type: lookfor
+    at: explain
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 9 · Lesson 7
+      text: >-
+        After a case study of John Snow's cholera map, students take out their lesson 1 camp answers and annotate
+        them with the new concepts.
+    answer: explain-conceptions
+    distractors: [engage-question, explore-feeds-explain, elaborate-requires-concept]
+    strong: true
+    why: >-
+      Revisiting Engage ideas belongs in Explain as well as in Evaluate. Students name what has changed while the
+      new concepts are fresh.
+
+  - id: why-elaborate
+    type: choice
+    at: elaborate
+    processing: Analysis
+    kind: Why here?
+    tests: elaborate
+    vignette:
+      who: Year 9 · Lessons 8–10
+      text: >-
+        Students choose a disease relevant to a community and write an evidence-based public health recommendation,
+        including a check of one online claim about the disease.
+    q: Why does this task come after Explain rather than before it?
+    options:
+      - text: The recommendation needs transmission and immunity concepts, applied to a new setting
+        fb: Yes. The task demands the concept in a new context, which is what Elaborate is for. Before Explain, students wouldn't have the science to do it.
+      - text: Written tasks always go at the end of a unit
+        fb: Placement depends on what the task demands, not its format.
+      - text: It's the summative assessment
+        fb: Evaluate holds the summative task. This is a transfer task with its own formative checkpoints.
+      - text: Students need a break from data before the test
+        fb: The task is demanding. It's there to extend the concept, not to rest.
+    answer: 0
+    refs:
+      lookForIds: [elaborate-new-context, elaborate-requires-concept]
+
+  - id: poster
+    type: choice
+    at: elaborate
+    processing: Analysis
+    kind: Fix the plan
+    tests: elaborate
+    vignette:
+      who: A pre-service teacher's Elaborate
+      text: Groups make a poster about a disease of their choice, with key facts, pictures and a slogan.
+    q: What is the main problem?
+    options:
+      - text: Nothing in the task requires transmission or immunity concepts, so students can succeed without the science
+        fb: Yes. This is the guide's watch-for for this sequence. The task must use the concepts and cite evidence.
+      - text: Posters take too long to make
+        fb: Time matters, but the bigger problem is what the task asks students to think about.
+      - text: Students shouldn't choose their own disease
+        fb: Choice is a strength here. The guide suggests it partly so students can avoid a disease that touches their own experience.
+      - text: Elaborate should be done individually
+        fb: Group work is fine. The problem is the cognitive demand of the task.
+    answer: 0
+    why: >-
+      A poster can be completed by copying facts. Ask whether a student who missed lessons 5 and 6 could still do
+      the task well. If they could, it isn't Elaborate.
+    refs:
+      lookForIds: [elaborate-requires-concept]
+
+  - id: why-revisit
+    type: multi
+    at: evaluate
+    processing: Comprehension
+    kind: Select all that apply
+    tests: evaluate
+    title: Lesson 11 brings back the camp scenario from lesson 1. Why?
+    q: Select every reason that holds.
+    options:
+      - text: Students can see how far their own reasoning has moved
+        ok: true
+        fb: Yes. The guide's case for this sequence says exactly this.
+      - text: It assesses understanding against the student's own starting point
+        ok: true
+        fb: Yes. That comparison is what makes Evaluate constructivist.
+      - text: It saves writing a new assessment task
+        ok: false
+        fb: No. Lesson 11 also includes a new outbreak scenario, so students must transfer the concepts as well.
+      - text: Students should give the same answer they gave in lesson 1
+        ok: false
+        fb: No. The point is that their answers change, with scientific reasoning behind them.
+    refs:
+      lookForIds: [evaluate-revisit]
+
+  - id: order
+    type: order
+    at: evaluate
+    processing: Comprehension
+    kind: Sequence it
+    tests: sequence
+    title: Put the outbreak sequence in 5E order.
+    q: Tap each activity in the order you'd teach it. Tap a placed activity to remove it.
+    steps:
+      - text: Students explain a camp outbreak in their own words, and answers are kept
+        phaseId: engage
+      - text: Cup simulation with indicator, tracing patient zero
+        phaseId: explore
+      - text: Pathogen types and herd immunity, linked to the simulation and the data
+        phaseId: explain
+      - text: An evidence-based public health recommendation for a chosen community
+        phaseId: elaborate
+      - text: Rewrite the camp answer with scientific reasoning, then explain a new outbreak
+        phaseId: evaluate
+
+  - id: reflect
+    type: reflect
+    at: evaluate
+    processing: Metacognition
+    kind: Look back
+    title: Every phase earns its place.
+    q: Pick one phase of the outbreak sequence and say in one or two sentences why it sits where it does.
+    model: "Example: “The simulation comes before herd immunity is named, so the term has something students have seen to attach to.”"
+    recall: predict

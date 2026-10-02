@@ -1,0 +1,13 @@
+# Settings for the game at /play/. Lessons live beside this file, one YAML per lesson.
+schemaVersion: 1
+paths:
+  - id: 5e
+    title: 5E path
+    blurb: From spotting the five phases in a classroom to explaining why each one sits where it does.
+feedback:
+  # Google Form link. "placeholder" shows an inactive button until the form is ready.
+  url: placeholder
+notice: >-
+  This is an early version being trialled to improve EDSE science education units. Nothing you do in
+  the game is recorded or sent anywhere: your progress is kept in this browser only. Feedback is
+  optional, anonymous and has no bearing on your grades.

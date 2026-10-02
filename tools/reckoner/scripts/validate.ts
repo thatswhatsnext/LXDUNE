@@ -12,6 +12,7 @@ import yaml from "js-yaml";
 import { ModelGuide } from "../src/schema/model-guide";
 import { Methodology } from "../src/schema/methodology";
 import { FOCUS_AREAS } from "../src/schema/syllabus";
+import { loadGame } from "./lib/game";
 
 /** Every model the reckoner knows about. Nesting may only point at these. */
 export const MODEL_REGISTRY = [
@@ -207,7 +208,14 @@ function main() {
       console.warn(`! ${g.id}: no Biology worked sequence yet (priority for this cohort)`);
   }
 
-  console.log(errors ? `\n${errors} error(s)` : `\nAll ${guides.length} guide(s) valid`);
+  // Game lessons (content/game): schema, and every reference into the guides
+  const game = loadGame();
+  for (const e of game.errors) console.error(`✗ game ${e}`);
+  errors += game.errors.length;
+  if (!game.errors.length)
+    for (const l of game.lessons) console.log(`✓ game ${l.id}  (${l.status}, v${l.version}, ${l.items.length} items)`);
+
+  console.log(errors ? `\n${errors} error(s)` : `\nAll ${guides.length} guide(s) and ${game.lessons.length} game lesson(s) valid`);
   process.exit(errors ? 1 : 0);
 }
 
