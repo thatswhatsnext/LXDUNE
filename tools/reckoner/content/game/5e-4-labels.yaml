@@ -1,0 +1,205 @@
+# 5E path, lesson 4. Built on the 5E guide's misapplications. Draft: not shown to students until reviewed.
+schemaVersion: 1
+id: 5e-4-labels
+path: 5e
+order: 4
+title: Labels without logic
+summary: Diagnose re-badged and broken 5E plans using the guide's misapplications, then repair one.
+level: explain
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-02
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4, stage5]
+  focusAreas: [Living systems, Cells and classification, Disease]
+  disciplines: [biology]
+builtOn:
+  misapplicationIds: [mis-labels, mis-one-lesson, mis-entertainment, mis-confirmation, mis-monologue, mis-no-elaborate, mis-end-only]
+guideSection: misapplications
+items:
+  - id: predict
+    type: predict
+    at: engage
+    processing: Retrieval
+    kind: Predict
+    title: A teacher adds an E heading to each of her existing Year 8 lessons and changes nothing else.
+    q: Will her students learn any differently?
+    options:
+      - text: Yes, the structure alone helps them
+      - text: Barely. The order of experience and explanation hasn't changed.
+      - text: They'll learn less, because the headings confuse them
+      - text: Only if she adds a better hook
+    answer: 1
+    reveal: >-
+      Barely. The guide calls this labels without logic: explanation still comes before experience, so there's no
+      mechanism for conceptual change. A model is a sequence of jobs, not a set of headings.
+    why: >-
+      Every item in this lesson is a plan someone could plausibly submit. Learning the guide's names for what goes
+      wrong gives you a vocabulary for checking your own plans.
+
+  - id: dx-confirmation
+    type: diagnose
+    at: explore
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    plan:
+      - phaseId: engage
+        text: The camp outbreak scenario, answers kept
+      - phaseId: explain
+        text: Two lessons on pathogens and the immune system
+      - phaseId: explore
+        text: Cup simulation “to see herd immunity in action”
+      - phaseId: elaborate
+        text: Public health recommendation
+      - phaseId: evaluate
+        text: Revisit the camp scenario
+    answer: mis-confirmation
+    distractors: [mis-monologue, mis-no-elaborate, mis-entertainment]
+    variants:
+      - plan:
+          - phaseId: engage
+            text: Predict where a tree's mass comes from
+          - phaseId: explain
+            text: Notes on photosynthesis and the word equation
+          - phaseId: explore
+            text: Leaf-disc prac to prove the equation
+          - phaseId: elaborate
+            text: Greenhouse lighting advice
+          - phaseId: evaluate
+            text: Revisit the prediction
+
+  - id: dx-entertainment
+    type: diagnose
+    at: explore
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Year 8 · Engage
+      text: >-
+        The unit on food webs opens with a dramatic clip of a cheetah chasing a gazelle. Students then copy the
+        definition of a food chain from the board.
+    answer: mis-entertainment
+    distractors: [mis-confirmation, mis-no-elaborate, mis-monologue]
+    hint: Was anyone's thinking recorded?
+
+  - id: dx-monologue
+    type: diagnose
+    at: explain
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Year 9 · Explain
+      text: >-
+        After the outbreak simulation, the next three lessons are slides on the immune system. Students copy notes.
+        The simulation results aren't mentioned again.
+    answer: mis-monologue
+    distractors: [mis-labels, mis-end-only, mis-one-lesson]
+
+  - id: dx-one-lesson
+    type: diagnose
+    at: explain
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Year 7 · Every lesson
+      text: >-
+        Every lesson of a cells unit runs all five phases: a ten-minute hook, ten minutes at the microscope,
+        ten minutes of notes, ten minutes of questions and a five-minute quiz.
+    answer: mis-one-lesson
+    distractors: [mis-labels, mis-end-only, mis-entertainment]
+
+  - id: dx-no-elaborate
+    type: diagnose
+    at: elaborate
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    plan:
+      - phaseId: engage
+        text: Alive or not alive card sort, rules recorded
+      - phaseId: explore
+        text: Microscope rotation over three lessons
+      - phaseId: explain
+        text: Cell theory from the class's drawings, with exit tickets each lesson
+      - phaseId: evaluate
+        text: Topic test on cell structures
+    answer: mis-no-elaborate
+    distractors: [mis-end-only, mis-confirmation, mis-monologue]
+    hint: Count the phases. Then look at the formative checks before you decide.
+    why: >-
+      Without Elaborate, understanding stays tied to the one context students met it in. The exit tickets show
+      evaluation isn't only at the end, so that isn't the main problem here.
+
+  - id: dx-end-only
+    type: diagnose
+    at: evaluate
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Year 8 · Assessment
+      text: >-
+        All five phases run over eight weeks. Apart from marking books, the only check on learning is a
+        30-question test in week 8.
+    answer: mis-end-only
+    distractors: [mis-no-elaborate, mis-one-lesson, mis-labels]
+
+  - id: dx-labels
+    type: diagnose
+    at: evaluate
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    plan:
+      - phaseId: engage
+        text: Notes on the parts of a cell
+      - phaseId: explore
+        text: Textbook questions on cell parts
+      - phaseId: explain
+        text: Worksheet labelling a plant cell
+      - phaseId: elaborate
+        text: Microscope prac to find the parts
+      - phaseId: evaluate
+        text: Topic test
+    answer: mis-labels
+    distractors: [mis-one-lesson, mis-entertainment, mis-no-elaborate]
+    hint: Ignore the headings. What actually happens, in what order?
+
+  - id: repair
+    type: choice
+    at: evaluate
+    processing: Knowledge utilisation
+    kind: Repair it
+    tests: misapplication
+    title: Which single change does most to repair that re-badged cells unit?
+    options:
+      - text: Rebuild it around one big question, and move the microscope work before the notes
+        fb: Yes. This is the guide's fix for labels without logic. Practical work before explanation is what gives the model its mechanism.
+      - text: Replace the notes with a more engaging video
+        fb: A better hook doesn't change the order. Explanation would still come before experience.
+      - text: Add a quiz at the end of each lesson
+        fb: Formative checks help, but they don't fix the order.
+      - text: Rename the phases to match what each lesson really does
+        fb: Honest labels are a start, but the unit would still teach before students investigate.
+    answer: 0
+    refs:
+      misapplicationIds: [mis-labels]
+      lookForIds: [explore-before-explain]
+
+  - id: reflect
+    type: reflect
+    at: evaluate
+    processing: Metacognition
+    kind: Look back
+    title: Check your own plan.
+    q: Think of a sequence you've planned or seen. Which misapplication is it most at risk of, and what's one change that would prevent it?
+    model: "Example: “Mine risks Explore as confirmation: I teach the concept first. I'd run the investigation first and hold back the answer.”"
+    recall: predict

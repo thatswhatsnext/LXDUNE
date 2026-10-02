@@ -11,6 +11,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { buildFocusIndex, loadGuides, PKG_ROOT } from "./lib/build";
 import { FOCUS_AREAS } from "../src/schema/syllabus";
+import { loadGame } from "./lib/game";
 
 const REPO = resolve(PKG_ROOT, "..", "..");
 const OUT = join(REPO, "docs", "reckoner-state.md");
@@ -52,6 +53,8 @@ const registryRows = registry.map((id) => {
   const where = guideIds.has(id) ? "guide" : drafts.some((g) => g.id === id) ? "draft guide (not shown to students)" : catalogue.some((m) => m.id === id) ? "catalogue" : "MISSING";
   return `| \`${id}\` | ${nameOf(id)} | ${where} |`;
 });
+const game = loadGame();
+const gamePublished = game.lessons.filter((l) => l.status === "published");
 const strays = catalogue.filter((m) => !registry.includes(m.id)).map((m) => m.id);
 
 const md = `# Reckoner state
@@ -71,6 +74,7 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Examples across published guides | ${examples.length} (${examples.filter((e) => e.kind === "positive").length} positive, ${examples.filter((e) => e.kind === "negative").length} negative) |
 | Worked sequences | ${sequences.length} |
 | Focus areas with a ready plan / examples only / empty | ${count("Ready plan")} / ${count("Examples only")} / ${count("Start from 5E (empty)")} of ${coverage.length} |
+| Game lessons at /play/ (published / draft or in review) | ${gamePublished.length} / ${game.lessons.length - gamePublished.length} |
 | **Next action-plan item number** | **${nextItem}** |
 
 ## Published guides
@@ -82,6 +86,15 @@ no bump for a cross-reference (nesting) line only.
 |---|---|---|---|---|---|---|---|
 ${published.map((g) => `| ${g.name} | \`${g.id}\` | ${scale(g.reckoner.scale)} | ${g.version} | ${g.lastReviewed} | ${g.phases.length}${g.phaseGroups.length ? ` in ${g.phaseGroups.length} groups` : ""} | ${g.phases.reduce((n, p) => n + p.examples.length, 0)} | ${g.workedSequences.map((s) => `\`${s.id}\``).join(", ") || "none"} |`).join("\n")}
 ${drafts.length ? `\n## Draft and in-review guides\n\n${drafts.map((g) => `- \`${g.id}\` ${g.name}, v${g.version}, ${g.status}`).join("\n")}\n` : ""}
+## Game lessons
+
+Lessons for the game at \`/play/\`, from \`content/game/\`. Only published lessons reach students; bump
+versions the same way as guides.
+
+| Lesson | id | Path | Order | Level | Version | Status | Last reviewed | Items |
+|---|---|---|---|---|---|---|---|---|
+${game.lessons.map((l) => `| ${l.title} | \`${l.id}\` | \`${l.path}\` | ${l.order} | ${l.level} | ${l.version} | ${l.status} | ${l.lastReviewed} | ${l.items.length} |`).join("\n")}
+
 ## Models without a guide
 
 These appear in the reckoner from \`content/catalogue.json\`, marked "guide coming soon". Adding a guide for

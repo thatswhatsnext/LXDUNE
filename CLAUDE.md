@@ -43,8 +43,10 @@ broken lesson. The Pages CDN caches files for up to 10 minutes after a deploy.
 
 - **Source of truth:** `tools/reckoner/content/` (guide YAML, `catalogue.json`, `questions.json`). Schema in
   `src/schema/`, page code in `templates/app.html` and `templates/app.js`, build in `scripts/lib/build.ts`.
-- **Generated, never edited by hand:** everything in `reckoner/` and `docs/reckoner-state.md`.
-  `npm run publish:pages` rebuilds both.
+- **Generated, never edited by hand:** everything in `reckoner/`, `play/` (the game) and
+  `docs/reckoner-state.md`. `npm run publish:pages` rebuilds all three.
+- **Game lessons** live in `tools/reckoner/content/game/` (schema `src/schema/game-lesson.ts`) and follow the
+  same review rules as guides. `npm run review:game` makes a review copy with drafts included.
 - **Checks**, run from `tools/reckoner`: `npm run validate`, `npm test`, `npm run typecheck`,
   `npm run check:pages`. CI runs the same. Use these rather than one-off scripts. If a handoff's check
   script assumes an older file layout, run these instead and report the difference.
