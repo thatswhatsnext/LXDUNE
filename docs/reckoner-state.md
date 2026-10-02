@@ -15,6 +15,7 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Examples across published guides | 58 (29 positive, 29 negative) |
 | Worked sequences | 20 |
 | Focus areas with a ready plan / examples only / empty | 16 / 0 / 0 of 16 |
+| Game lessons at /play/ (published / draft or in review) | 1 / 3 |
 | **Next action-plan item number** | **46** |
 
 ## Published guides
@@ -30,6 +31,18 @@ no bump for a cross-reference (nesting) line only.
 | Levels of inquiry | `levels-of-inquiry` | Guidance dial | 1.2.0 | 2026-09-30 | 4 | 10 | `seq-s4-progression`, `seq-s4-reaction-time` |
 | Predict–Observe–Explain | `poe` | Single lesson | 1.3.0 | 2026-09-30 | 3 | 12 | `ep-s4-yeast`, `ep-s5-handwashing`, `ep-s4-steel-wool`, `ep-s4-freeze-thaw` |
 | Science Writing Heuristic | `swh` | Multi-lesson routine | 1.2.0 | 2026-09-30 | 7 in 3 groups | 8 | `swh-seq-s5-bottles`, `swh-seq-s4-separation`, `swh-seq-s5-duckweed` |
+
+## Game lessons
+
+Lessons for the game at `/play/`, from `content/game/`. Only published lessons reach students; bump
+versions the same way as guides.
+
+| Lesson | id | Path | Order | Level | Version | Status | Last reviewed | Items |
+|---|---|---|---|---|---|---|---|---|
+| The Willow Problem | `5e-1-willow` | `5e` | 1 | recognise | 1.0.0 | published | 2026-10-02 | 11 |
+| Cells under the lens | `5e-2-cells` | `5e` | 2 | recognise | 0.1.0 | draft | 2026-10-02 | 11 |
+| Outbreak | `5e-3-outbreak` | `5e` | 3 | explain | 0.1.0 | draft | 2026-10-02 | 11 |
+| Labels without logic | `5e-4-labels` | `5e` | 4 | explain | 0.1.0 | draft | 2026-10-02 | 10 |
 
 ## Models without a guide
 
@@ -119,4 +132,4 @@ These show as "guide coming soon" links inside published guides.
 
 ## Scripts
 
-Run from `tools/reckoner`: `npm run validate`, `npm run export-schema`, `npm run typecheck`, `npm run test`, `npm run build`, `npm run build:single`, `npm run review`, `npm run publish:pages`, `npm run check:pages`, `npm run status`, `npm run check:regressions`.
+Run from `tools/reckoner`: `npm run validate`, `npm run export-schema`, `npm run typecheck`, `npm run test`, `npm run build`, `npm run build:single`, `npm run review`, `npm run review:game`, `npm run publish:pages`, `npm run check:pages`, `npm run status`, `npm run check:regressions`.

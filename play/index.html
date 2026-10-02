@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#eef2f0" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f171a" media="(prefers-color-scheme: dark)">
-<title>The Willow Problem</title>
+<title>Teaching Models Play</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
@@ -181,432 +181,479 @@ button.go.fbk{margin-top:12px}
   .stats{gap:6px} .stat b{font-size:23px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* path map */
+.top{display:flex;align-items:center;gap:10px;min-height:36px}
+.top .back{border:0;background:none;color:var(--accent);font-weight:700;font-size:15px;cursor:pointer;padding:6px 0}
+.top .grow{flex:1}
+.banner{margin-top:12px;padding:10px 14px;border-radius:var(--r);background:var(--bad-bg);color:var(--bad);font-weight:700;font-size:15px}
+.mapHead h1{font-size:clamp(26px,6vw,34px);font-weight:800;line-height:1.15;margin-top:18px}
+.mapHead p{margin:8px 0 0;color:var(--muted)}
+.path{margin-top:26px}
+.pathHead{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+.pathHead h2{font-size:24px;font-weight:800}
+.pathHead a{font-size:15px;color:var(--accent);font-weight:700}
+.path > p{margin:4px 0 0;color:var(--muted);font-size:15.5px}
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px}
+.ladder div{font-size:12.5px;text-align:center;padding:7px 4px;border-radius:8px;background:var(--surface-2);color:var(--muted)}
+.ladder div.got{background:var(--good-bg);color:var(--good);font-weight:700}
+.lessons{display:grid;gap:10px;margin-top:14px}
+.lesson{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start;padding:14px;border-radius:var(--r);background:var(--surface);border:2px solid var(--line);border-bottom-width:4px;text-align:left;width:100%;cursor:pointer}
+.lesson:hover:not(:disabled){border-color:var(--accent)}
+.lesson:disabled{cursor:not-allowed;opacity:.62}
+.lesson .num{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:19px;background:var(--surface-2);color:var(--muted)}
+.lesson.done .num{background:var(--good);color:var(--surface)}
+.lesson.next .num{background:var(--accent);color:var(--on-accent)}
+.lesson h3{font-size:19px;font-weight:800}
+.lesson .sum{display:block;font-size:15px;color:var(--muted);margin-top:2px}
+.lesson .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.lesson .min{min-width:0}
+.chip.good{color:var(--good);background:var(--good-bg)}
+.chip.warn{color:var(--bad);background:var(--bad-bg)}
+.upcoming{padding:12px 14px;border-radius:var(--r);border:2px dashed var(--line);color:var(--muted);font-size:15px}
+.warm{color:var(--engage)}
+.row2{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.ghost{display:inline-block;padding:12px 18px;border-radius:var(--r);border:2px solid var(--line);background:var(--surface);color:var(--accent);font-weight:700;text-decoration:none;font-size:16px;cursor:pointer}
+.reset{margin-top:28px;font-size:13.5px;color:var(--muted)}
+.reset button{border:0;background:none;color:var(--accent);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+.lfq{display:block;font-size:13px;color:var(--muted);font-family:var(--f-mono);letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}
 </style>
 </head>
 <body>
-
 <div class="wrap">
-  <div class="hud">
-    <div class="bar" role="progressbar" aria-label="Lesson progress" aria-valuemin="0" aria-valuemax="100"><i id="prog"></i></div>
-    <span class="pill streak" title="Correct in a row"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1c.5 2.6 3.8 4.2 3.8 8A3.8 3.8 0 0 1 4.2 9c0-1.6.8-2.7 1.7-3.5.1 1.2.6 2 1.4 2.4C7.1 5.6 7.3 3.1 8 1z"/></svg><span id="streak">0</span></span>
-    <span class="pill xp" title="Experience points"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1l2 4.6 5 .5-3.8 3.3 1.1 4.9L8 11.8 3.7 14.3l1.1-4.9L1 6.1l5-.5z"/></svg><span id="xp">0</span> XP</span>
+  <div class="top" id="top"></div>
+  <div id="banner"></div>
+  <div id="hud" hidden>
+    <div class="hud">
+      <div class="bar" role="progressbar" aria-label="Lesson progress" aria-valuemin="0" aria-valuemax="100"><i id="prog"></i></div>
+      <span class="pill streak" title="Correct in a row"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1c.5 2.6 3.8 4.2 3.8 8A3.8 3.8 0 0 1 4.2 9c0-1.6.8-2.7 1.7-3.5.1 1.2.6 2 1.4 2.4C7.1 5.6 7.3 3.1 8 1z"/></svg><span id="streak">0</span></span>
+      <span class="pill xp" title="Experience points"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1l2 4.6 5 .5-3.8 3.3 1.1 4.9L8 11.8 3.7 14.3l1.1-4.9L1 6.1l5-.5z"/></svg><span id="xp">0</span> XP</span>
+    </div>
+    <div class="rail" id="rail" aria-label="Phase of this lesson"></div>
+    <p class="railnote" id="railnote"></p>
   </div>
-  <div class="rail" id="rail" aria-label="Phase of this lesson"></div>
-  <p class="railnote" id="railnote"></p>
-  <main id="stage" aria-live="polite"></main>
+  <main id="stage" aria-live="polite"><p class="lead" id="bootMsg">Loading…</p></main>
 </div>
-
-<div class="dock" id="dock">
+<div class="dock" id="dock" hidden>
   <div class="dock-in">
     <div class="fb" id="fb"></div>
     <button class="go" id="go" disabled>Check</button>
-    <p class="keys" id="keys">Keys: 1–5 to choose, Enter to check</p>
+    <p class="keys" id="keys"></p>
   </div>
 </div>
-
+<script>window.GAME_DATA = {"mastery":["recognise","explain","select","design"],"notice":"This is an early version being trialled to improve EDSE science education units. Nothing you do in the game is recorded or sent anywhere: your progress is kept in this browser only. Feedback is optional, anonymous and has no bearing on your grades.","feedback":{"url":"placeholder"},"paths":[{"id":"5e","title":"5E path","blurb":"From spotting the five phases in a classroom to explaining why each one sits where it does.","guide":{"name":"5E","phases":[{"id":"engage","name":"Engage"},{"id":"explore","name":"Explore"},{"id":"explain","name":"Explain"},{"id":"elaborate","name":"Elaborate"},{"id":"evaluate","name":"Evaluate"}],"misapplications":{"mis-labels":{"name":"Labels without logic","looksLike":"Existing lessons re-badged with E headings; order unchanged.","why":"Explanation still precedes experience, so there is no mechanism for conceptual change.","fix":"Rebuild around one big question and move practical work before explanation."},"mis-one-lesson":{"name":"Five Es in one lesson","looksLike":"Ten minutes per phase, every lesson.","why":"No time to explore or transfer; phases become rituals.","fix":"Plan 5E across 4–12 lessons."},"mis-entertainment":{"name":"Engage as entertainment","looksLike":"A fun video or demonstration with no link to the concept.","why":"Motivation without elicitation; prior ideas stay hidden.","fix":"Require a prediction or explanation and record it."},"mis-confirmation":{"name":"Explore as confirmation","looksLike":"A recipe practical run after the theory.","why":"Students verify rather than investigate.","fix":"Run the investigation first and hold back the answer."},"mis-monologue":{"name":"Explain as teacher monologue","looksLike":"Lessons of slides and notes with no student talk.","why":"Students' ideas are bypassed and misconceptions persist.","fix":"Students explain first; build on their data."},"mis-no-explain":{"name":"Explore without Explain","looksLike":"Open inquiry with no consolidation.","why":"Students leave with vague or wrong ideas.","fix":"Always follow Explore with explicit sense-making."},"mis-no-elaborate":{"name":"Missing Elaborate","looksLike":"The sequence ends at Explain, then a test.","why":"No transfer; understanding stays bound to one context.","fix":"Plan a new context that demands the concept."},"mis-end-only":{"name":"Evaluate only at the end","looksLike":"One summative test.","why":"No chance to respond to misconceptions during the sequence.","fix":"Embed formative checks in every phase."}},"lookFors":{"engage-link":{"phaseId":"engage","question":"Is the hook conceptually linked to the big idea, or just entertaining?","strong":"The phenomenon is the one the sequence will explain.","weak":"An unrelated video or demonstration used for attention only."},"engage-elicit":{"phaseId":"engage","question":"Are student ideas elicited and recorded?","strong":"Predictions are written down and kept for later comparison.","weak":"Student thinking is never surfaced."},"engage-question":{"phaseId":"engage","question":"Does Engage raise the question the sequence will answer?","strong":"A driving question is posed and displayed.","weak":"The lesson moves straight to definitions."},"explore-before-explain":{"phaseId":"explore","question":"Does the investigation come before the formal explanation?","strong":"Students would still need to think even if they knew the answer.","weak":"A confirmation practical run after the theory."},"explore-own-data":{"phaseId":"explore","question":"Is the data the students' own?","strong":"Students generate and record their own evidence.","weak":"Results are given or a conclusion is pre-scaffolded."},"explore-feeds-explain":{"phaseId":"explore","question":"Does the activity produce the evidence Explain will draw on?","strong":"Explain explicitly uses the Explore results.","weak":"Explore and Explain are disconnected."},"explain-students-first":{"phaseId":"explain","question":"Do students explain first, before the teacher?","strong":"Groups present and interpret their own data.","weak":"The teacher explains and students copy notes."},"explain-links-data":{"phaseId":"explain","question":"Does the explanation refer back to the class's own data?","strong":"The teacher cites group results when introducing concepts.","weak":"Explanation is disconnected from the investigation."},"explain-representations":{"phaseId":"explain","question":"Are multiple representations used?","strong":"Macroscopic, particulate, symbolic and graphical views are connected.","weak":"One representation, usually text."},"explain-conceptions":{"phaseId":"explain","question":"Are the Engage ideas explicitly revisited?","strong":"Students name what has changed in their thinking.","weak":"Prior ideas are never returned to."},"elaborate-new-context":{"phaseId":"elaborate","question":"Is the context genuinely different from Explore?","strong":"A new setting that requires transfer.","weak":"A repeat of the Explore activity or textbook questions."},"elaborate-requires-concept":{"phaseId":"elaborate","question":"Does the task demand the concept?","strong":"The task cannot be completed without using the concept.","weak":"Students can succeed without the science."},"elaborate-demand":{"phaseId":"elaborate","question":"Is cognitive demand higher than in Explore?","strong":"Students apply, analyse, design or evaluate.","weak":"Students recall definitions."},"evaluate-aligned":{"phaseId":"evaluate","question":"Is the assessment aligned with the outcomes actually taught?","strong":"Tasks map to the stated outcomes and success criteria.","weak":"Assessment covers content not taught, or omits Working scientifically."},"evaluate-understanding":{"phaseId":"evaluate","question":"Does it test understanding and application, not just recall?","strong":"Students explain an unfamiliar scenario.","weak":"Recall-only multiple choice."},"evaluate-revisit":{"phaseId":"evaluate","question":"Do students return to their initial ideas?","strong":"I used to think… now I think… because…","weak":"No metacognitive comparison."},"evaluate-formative":{"phaseId":"evaluate","question":"Are formative checks built into every phase?","strong":"Checks appear throughout and inform adjustment.","weak":"One test at the end."}}},"upcoming":3}],"lessons":[{"id":"5e-1-willow","path":"5e","order":1,"title":"The Willow Problem","summary":"Where does a tree's mass come from? Spot the 5E phases in a photosynthesis sequence, then fix a flawed plan.","level":"recognise","version":"1.0.0","status":"published","guideSection":"phases","items":[{"id":"predict","at":"engage","processing":"Retrieval","kind":"Predict","title":"A 2 kg willow sapling is planted in a tub of dried, weighed soil. Five years of watering later, the tree weighs about 77 kg.","q":"Where did most of that extra mass come from?","why":"You've just been through Engage. Making a committed prediction, with a confidence rating, brings prior ideas into the open before any teaching. In a Year 7 class, many students choose soil. Their ideas become the raw material for the rest of the sequence, so Engage elicits them and leaves them uncorrected.","type":"predict","options":[{"text":"The soil"},{"text":"The water"},{"text":"Carbon dioxide from the air"},{"text":"Sunlight"}],"answer":2,"reveal":"Jan Baptist van Helmont ran this experiment in the 1640s. The soil lost only about 57 g. He concluded the mass came from water. Most of a tree's dry mass is actually carbon, fixed from atmospheric CO₂ during photosynthesis."},{"id":"spot1","at":"explore","processing":"Comprehension","kind":"Spot the phase","tests":"explore","vignette":{"who":"Year 7 · Living world","text":"Pairs place spinach leaf discs in bicarbonate solution under a lamp and count how many float each minute. The teacher moves between groups asking “What are you noticing? What might be causing it?” and gives no answers."},"q":"Which 5E phase is this?","hint":"Ask who is doing the explaining, and whether students have the scientific concept yet.","why":"Pre-service teachers often explain during Explore because silence feels unhelpful. Holding back gives the class a shared first-hand experience for the explanation to attach to later.","type":"spot","answer":"explore","fb":{"engage":"Engage hooks interest and draws out ideas. These students are already collecting data.","explore":"Students work with the phenomenon first-hand while the teacher asks questions and holds back answers. That restraint defines Explore.","explain":"No terms or scientific account have been introduced, and the teacher is deliberately withholding answers.","elaborate":"Elaborate applies a concept students already have. They don't have one to apply yet.","evaluate":"Nothing is being judged against a learning goal yet."},"variants":[]},{"id":"spot2","at":"explore","processing":"Comprehension","kind":"Spot the phase","tests":"explain","vignette":{"who":"Year 7 · Living world","text":"Using the class's float-count graph, the teacher introduces the term photosynthesis and builds the word equation on the board. Students annotate the graph to show where the gas in the floating discs came from."},"q":"Which 5E phase is this?","hint":"New vocabulary is a strong signal.","why":"In 5E the explanation is anchored to students' own observations. Teaching the word equation without that experience behind it turns the prac into a confirmation exercise.","type":"spot","answer":"explain","fb":{"engage":"Students are past the hook. They are being given the scientific account.","explore":"The investigation is finished. The teacher is now supplying the canonical explanation.","explain":"Formal terms and the scientific explanation arrive here, tied directly to data the students produced.","elaborate":"The concept is still being built. It isn't yet being transferred to a new context.","evaluate":"The annotation here is sense-making, not assessment."},"variants":[]},{"id":"concept","at":"explain","processing":"Retrieval","kind":"The model","title":"The 5E instructional model","type":"concept","lead":"Students build understanding by reconciling new experiences with what they already think. 5E puts that process in order, and gives each phase a defining teacher move.","rows":[{"phaseId":"engage","does":"Access prior ideas and raise a question worth answering.","move":"Teacher move: elicit, don't correct."},{"phaseId":"explore","does":"A shared, first-hand experience of the phenomenon.","move":"Teacher move: question, don't tell."},{"phaseId":"explain","does":"Scientific concepts and terms, linked to that experience.","move":"Teacher move: name it and connect it."},{"phaseId":"elaborate","does":"Apply the concept in a new context.","move":"Teacher move: stretch and transfer."},{"phaseId":"evaluate","does":"Students and teacher judge how understanding has changed.","move":"Teacher move: look for change, throughout the sequence."}],"cite":"Bybee et al. (2006), The BSCS 5E Instructional Model: Origins and Effectiveness. BSCS."},{"id":"why5e","at":"explain","processing":"Comprehension","kind":"Select all that apply","tests":"explain","title":"Why does 5E put Explore before Explain?","q":"Select every reason that holds.","hint":"Three are correct. Watch for the common misreading of constructivism as discovery learning.","why":"Critiques of minimal guidance (Kirschner, Sweller & Clark, 2006) target unguided discovery. 5E answers them with a structured, teacher-led Explain phase that follows the experience.","refs":{"phaseIds":[],"lookForIds":["explore-before-explain"],"exampleIds":[],"sequenceIds":[],"misapplicationIds":[]},"type":"multi","options":[{"text":"Students get a concrete experience that new terms can attach to","ok":true,"fb":"Yes. Vocabulary sticks better when it names something students have already seen."},{"text":"Students' existing ideas are tested against evidence before they are replaced","ok":true,"fb":"Yes. This is the conceptual-change logic at the heart of the model."},{"text":"It saves lesson time by skipping direct instruction","ok":false,"fb":"No. Explain still includes direct instruction. 5E reorders it."},{"text":"The teacher's explanation can refer back to what students observed","ok":true,"fb":"Yes. “Remember when the discs floated faster near the lamp?” is a powerful Explain move."},{"text":"Students should discover the scientific concept without help","ok":false,"fb":"No. 5E is guided inquiry. The teacher supplies the scientific explanation in Explain."}]},{"id":"order","at":"elaborate","processing":"Comprehension","kind":"Sequence it","tests":"sequence","title":"Put this Stage 4 photosynthesis sequence in 5E order.","q":"Tap each activity in the order you'd teach it. Tap a placed activity to remove it.","why":"Look at Evaluate here: students return to their own earlier idea. Evaluating against a learner's starting point is what makes it constructivist rather than a generic test.","refs":{"phaseIds":[],"lookForIds":[],"exampleIds":["evaluate-pos-tree"],"sequenceIds":[],"misapplicationIds":[]},"type":"order","steps":[{"text":"Students predict where a tree's mass comes from, then think-pair-share","phaseId":"engage"},{"text":"Leaf-disc investigation with the lamp at different distances","phaseId":"explore"},{"text":"Class builds the word equation from its own float-count data","phaseId":"explain"},{"text":"Students advise a local nursery on greenhouse lighting","phaseId":"elaborate"},{"text":"Students revisit their first prediction and explain what changed their thinking","phaseId":"evaluate"}],"variants":[]},{"id":"move1","at":"elaborate","processing":"Analysis","kind":"Teacher move","tests":"explore","vignette":{"who":"During Explore","text":"A student says: “The discs float because the lamp heats them up.”"},"q":"What is the best response at this point?","hint":"Which response keeps the student doing the thinking?","why":"Alternative ideas are useful data during Explore. Turning them into testable questions models scientific reasoning and keeps the cognitive work with students.","type":"choice","options":[{"text":"“Not quite. It's oxygen from photosynthesis.”","fb":"Correct science at the wrong moment. Telling cuts off the student's reasoning before the class has evidence. Save it for Explain."},{"text":"“How could you test whether it's the heat or the light?”","fb":"This treats the idea as a hypothesis worth testing. A heat filter, or a water bath to hold the temperature, would separate light from heat."},{"text":"“Good idea! Write that down.”","fb":"Accepting the idea without challenge leaves it untested, and the class may treat it as confirmed."},{"text":"“We'll cover that next lesson.”","fb":"Deferring tells the student the idea doesn't matter. Explore is exactly where it should be tested."}],"answer":1,"variants":[]},{"id":"says","at":"elaborate","processing":"Analysis","kind":"Student says","tests":"engage","vignette":{"who":"Mia, Year 7 · Engage response","text":"“Plants get their food from the soil through their roots.”"},"q":"What does this tell you about Mia's thinking?","why":"Naming a conception precisely tells you what evidence will challenge it. “Mia is wrong” gives you nothing to plan with. “Mia thinks the mass comes from soil” points straight at the next activity.","type":"choice","options":[{"text":"She's correct: roots absorb nutrients","fb":"Roots take up water and mineral ions, but these aren't the plant's food. Sugars are made in the leaves."},{"text":"She treats water and minerals as food, so she sees soil as the source of the plant's mass","fb":"Yes. This is one of the most persistent conceptions in school biology, and many adults still hold it."},{"text":"She has mixed up photosynthesis and respiration","fb":"That is a separate common conception. Mia's idea is about where food comes from, not how energy is released."},{"text":"She doesn't think plants need food","fb":"She clearly thinks plants need food. She has the wrong source."}],"answer":1,"variants":[]},{"id":"conflict","at":"elaborate","processing":"Knowledge utilisation","kind":"Choose the activity","tests":"explore","title":"Which activity is most likely to create productive conflict with Mia's idea?","why":"Conceptual change needs four conditions: dissatisfaction with the current idea, and a new idea that is intelligible, plausible and fruitful. Data that the old idea can't explain supplies the first.","type":"choice","options":[{"text":"Give students van Helmont's data: the willow gained about 74 kg while the soil lost about 57 g. Ask them to account for the difference.","fb":"The numbers clash directly with her model. Posner et al. (1982) argue that dissatisfaction with an existing idea is the first condition for conceptual change."},{"text":"Give her the correct definition of photosynthesis to copy into her book.","fb":"A definition can sit alongside her soil idea without displacing it. Students often hold both at once."},{"text":"Set a labelling worksheet on root structure.","fb":"This keeps the focus on roots and may reinforce the soil-as-food idea."},{"text":"Show a time-lapse of a bean seedling growing.","fb":"Engaging, but nothing in it challenges where the mass comes from."}],"answer":0,"variants":[]},{"id":"fix","at":"evaluate","processing":"Knowledge utilisation","kind":"Fix the plan","tests":"sequence","title":"A pre-service teacher submits this 5E sequence.","plan":[{"phaseId":"engage","text":"3-minute video on rainforests"},{"phaseId":"explain","text":"Teacher notes on photosynthesis and the word equation"},{"phaseId":"explore","text":"Leaf-disc prac to confirm the equation"},{"phaseId":"elaborate","text":"Greenhouse design task"},{"phaseId":"evaluate","text":"End-of-topic test"}],"q":"What is the most important problem?","hint":"Check whether each phase can do its job given what came before it.","why":"This is the most common error in pre-service 5E plans. A quick check: could students do the Explore activity without already knowing the answer? If not, it isn't Explore.","refs":{"phaseIds":[],"lookForIds":["explore-before-explain"],"exampleIds":[],"sequenceIds":[],"misapplicationIds":["mis-confirmation"]},"type":"choice","options":[{"text":"Explain comes before Explore, so the prac only confirms what students were told","fb":"Students have no experience to reason from before the explanation, and the prac becomes a recipe."},{"text":"The Engage video is too short","fb":"Length isn't the issue. A better question is whether it draws out students' ideas. This one probably doesn't, but the ordering problem matters more."},{"text":"Elaborate should come last","fb":"Evaluate usually closes the sequence, and it also runs throughout."},{"text":"Evaluate should be a quiz, not a test","fb":"Format matters less than timing and purpose. In 5E, evaluation runs throughout and includes students reviewing their own thinking."}],"answer":0,"variants":[]},{"id":"reflect","at":"evaluate","processing":"Metacognition","kind":"Look back","title":"Back to the willow.","q":"A Year 7 student tells you the tree's mass came from the soil. Write one question you'd ask them. Make it an Engage or Explore move, not an answer.","type":"reflect","model":"Example: “If the tree took 74 kg from the soil, what would you expect to happen to the soil? How could we check?”","recall":"predict"}]}],"review":false};</script>
 <script>
-/* Pilot feedback. Paste the Google Form link into `url`. For the automatic game summary, make a
-   pre-filled link in Forms (⋮ > Get pre-filled link), and copy the entry id of the
-   "Game summary" question into `summaryEntry`, e.g. "entry.123456789". Set url to "" to hide the section; "placeholder" shows it with the button inactive. */
-const FEEDBACK = { url: "placeholder", summaryEntry: "" };
-const VERSION = "pilot-1";
+/* Teaching models game: path map, lessons, on-device progress.
+ * Content arrives as window.GAME_DATA from scripts/lib/game.ts. Nothing is sent anywhere:
+ * progress lives in this browser only (localStorage, guarded), and feedback is an optional form link. */
+(function(){
+"use strict";
+const D = window.GAME_DATA;
+const $ = s => document.querySelector(s);
+const stage = $("#stage"), go = $("#go"), dock = $("#dock"), fb = $("#fb"), keys = $("#keys");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pick = a => a[Math.floor(Math.random() * a.length)];
+const JOURNEY = ["engage","explore","explain","elaborate","evaluate"];
+const JNAME = {engage:"Engage",explore:"Explore",explain:"Explain",elaborate:"Elaborate",evaluate:"Evaluate"};
+const PCOL = {engage:"var(--engage)",explore:"var(--explore)",explain:"var(--explain)",elaborate:"var(--elaborate)",evaluate:"var(--evaluate)"};
+const LEVEL = {recognise:"Recognise",explain:"Explain",select:"Select",design:"Design"};
+const UNSCORED = ["predict","concept","reflect"];
+const pathOf = id => D.paths.find(p => p.id === id);
+const phaseName = (path, id) => (pathOf(path).guide.phases.find(p => p.id === id) || {name:id}).name;
+const pc = id => PCOL[id] || "var(--accent)";
 
-const PH = {
-  engage:{label:"Engage", c:"var(--engage)"},
-  explore:{label:"Explore", c:"var(--explore)"},
-  explain:{label:"Explain", c:"var(--explain)"},
-  elaborate:{label:"Elaborate", c:"var(--elaborate)"},
-  evaluate:{label:"Evaluate", c:"var(--evaluate)"}
+/* ---------- progress, kept in this browser only ---------- */
+const KEY = "lxdune-play-v1";
+const store = {
+  load(){ try { const v = JSON.parse(localStorage.getItem(KEY)); return v && v.lessons ? v : {lessons:{}}; } catch(e){ return {lessons:{}}; } },
+  save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
 };
-const ORDER = ["engage","explore","explain","elaborate","evaluate"];
-const RAILNOTE = {
-  engage:"This lesson is itself a 5E sequence. You start where your students would: with a prediction.",
-  explore:"Explore: you work with classroom cases before any formal explanation.",
-  explain:"Explain: the model is named and connected to the cases you just sorted.",
-  elaborate:"Elaborate: apply the model to students' thinking and teacher moves.",
-  evaluate:"Evaluate: diagnose a real plan, then look back at your own first idea."
-};
-const PHASE_OPTS = ORDER.map(k=>({t:PH[k].label, ph:k}));
+let P = store.load();
+const rec = id => (P.lessons[id] = P.lessons[id] || {completed:false, plays:0, best:null, of:0, missed:[]});
 
-const ITEMS = [
- {id:"predict", type:"predict", at:"engage", level:"Retrieval", kind:"Predict",
-  title:"A 2 kg willow sapling is planted in a tub of dried, weighed soil. Five years of watering later, the tree weighs about 77 kg.",
-  q:"Where did most of that extra mass come from?",
-  options:[{t:"The soil"},{t:"The water"},{t:"Carbon dioxide from the air"},{t:"Sunlight"}],
-  answer:2,
-  reveal:"Jan Baptist van Helmont ran this experiment in the 1640s. The soil lost only about 57 g. He concluded the mass came from water. Most of a tree's dry mass is actually carbon, fixed from atmospheric CO₂ during photosynthesis.",
-  why:"You've just been through Engage. Making a committed prediction, with a confidence rating, brings prior ideas into the open before any teaching. In a Year 7 class, many students choose soil. Their ideas become the raw material for the rest of the sequence, so Engage elicits them and leaves them uncorrected."},
+/* ---------- screens ---------- */
+let S = null;   // the lesson being played
+let cur = null, sel = null, multi = new Set(), placed = [], pool = [], checked = false;
 
- {id:"spot1", type:"mc", phaseGrid:true, at:"explore", level:"Comprehension", kind:"Spot the phase", tests:"explore",
-  vignette:{who:"Year 7 · Living world", text:"Pairs place spinach leaf discs in bicarbonate solution under a lamp and count how many float each minute. The teacher moves between groups asking “What are you noticing? What might be causing it?” and gives no answers."},
-  q:"Which 5E phase is this?",
-  options:PHASE_OPTS.map(o=>({...o, fb:{
-    engage:"Engage hooks interest and draws out ideas. These students are already collecting data.",
-    explore:"Students work with the phenomenon first-hand while the teacher asks questions and holds back answers. That restraint defines Explore.",
-    explain:"No terms or scientific account have been introduced, and the teacher is deliberately withholding answers.",
-    elaborate:"Elaborate applies a concept students already have. They don't have one to apply yet.",
-    evaluate:"Nothing is being judged against a learning goal yet."}[o.ph]})),
-  answer:1,
-  hint:"Ask who is doing the explaining, and whether students have the scientific concept yet.",
-  why:"Pre-service teachers often explain during Explore because silence feels unhelpful. Holding back gives the class a shared first-hand experience for the explanation to attach to later."},
-
- {id:"spot2", type:"mc", phaseGrid:true, at:"explore", level:"Comprehension", kind:"Spot the phase", tests:"explain",
-  vignette:{who:"Year 7 · Living world", text:"Using the class's float-count graph, the teacher introduces the term photosynthesis and builds the word equation on the board. Students annotate the graph to show where the gas in the floating discs came from."},
-  q:"Which 5E phase is this?",
-  options:PHASE_OPTS.map(o=>({...o, fb:{
-    engage:"Students are past the hook. They are being given the scientific account.",
-    explore:"The investigation is finished. The teacher is now supplying the canonical explanation.",
-    explain:"Formal terms and the scientific explanation arrive here, tied directly to data the students produced.",
-    elaborate:"The concept is still being built. It isn't yet being transferred to a new context.",
-    evaluate:"The annotation here is sense-making, not assessment."}[o.ph]})),
-  answer:2,
-  hint:"New vocabulary is a strong signal.",
-  why:"In 5E the explanation is anchored to students' own observations. Teaching the word equation without that experience behind it turns the prac into a confirmation exercise."},
-
- {id:"concept", type:"concept", at:"explain", level:"Retrieval", kind:"The model",
-  title:"The 5E instructional model",
-  lead:"Students build understanding by reconciling new experiences with what they already think. 5E puts that process in order, and gives each phase a defining teacher move.",
-  rows:[
-   ["engage","Access prior ideas and raise a question worth answering.","Teacher move: elicit, don't correct."],
-   ["explore","A shared, first-hand experience of the phenomenon.","Teacher move: question, don't tell."],
-   ["explain","Scientific concepts and terms, linked to that experience.","Teacher move: name it and connect it."],
-   ["elaborate","Apply the concept in a new context.","Teacher move: stretch and transfer."],
-   ["evaluate","Students and teacher judge how understanding has changed.","Teacher move: look for change, throughout the sequence."]],
-  cite:"Bybee et al. (2006), The BSCS 5E Instructional Model: Origins and Effectiveness. BSCS."},
-
- {id:"why5e", type:"multi", at:"explain", level:"Comprehension", kind:"Select all that apply", tests:"explain",
-  title:"Why does 5E put Explore before Explain?",
-  q:"Select every reason that holds.",
-  options:[
-   {t:"Students get a concrete experience that new terms can attach to", ok:true, fb:"Yes. Vocabulary sticks better when it names something students have already seen."},
-   {t:"Students' existing ideas are tested against evidence before they are replaced", ok:true, fb:"Yes. This is the conceptual-change logic at the heart of the model."},
-   {t:"It saves lesson time by skipping direct instruction", ok:false, fb:"No. Explain still includes direct instruction. 5E reorders it."},
-   {t:"The teacher's explanation can refer back to what students observed", ok:true, fb:"Yes. “Remember when the discs floated faster near the lamp?” is a powerful Explain move."},
-   {t:"Students should discover the scientific concept without help", ok:false, fb:"No. 5E is guided inquiry. The teacher supplies the scientific explanation in Explain."}],
-  hint:"Three are correct. Watch for the common misreading of constructivism as discovery learning.",
-  why:"Critiques of minimal guidance (Kirschner, Sweller & Clark, 2006) target unguided discovery. 5E answers them with a structured, teacher-led Explain phase that follows the experience."},
-
- {id:"order", type:"order", at:"elaborate", level:"Comprehension", kind:"Sequence it", tests:"sequence",
-  title:"Put this Stage 4 photosynthesis sequence in 5E order.",
-  q:"Tap each activity in the order you'd teach it. Tap a placed activity to remove it.",
-  items:[
-   {t:"Students predict where a tree's mass comes from, then think-pair-share", ph:"engage"},
-   {t:"Leaf-disc investigation with the lamp at different distances", ph:"explore"},
-   {t:"Class builds the word equation from its own float-count data", ph:"explain"},
-   {t:"Students advise a local nursery on greenhouse lighting", ph:"elaborate"},
-   {t:"Students revisit their first prediction and explain what changed their thinking", ph:"evaluate"}],
-  why:"Look at Evaluate here: students return to their own earlier idea. Evaluating against a learner's starting point is what makes it constructivist rather than a generic test."},
-
- {id:"move1", type:"mc", at:"elaborate", level:"Analysis", kind:"Teacher move", tests:"explore",
-  vignette:{who:"During Explore", text:"A student says: “The discs float because the lamp heats them up.”"},
-  q:"What is the best response at this point?",
-  options:[
-   {t:"“Not quite. It's oxygen from photosynthesis.”", fb:"Correct science at the wrong moment. Telling cuts off the student's reasoning before the class has evidence. Save it for Explain."},
-   {t:"“How could you test whether it's the heat or the light?”", fb:"This treats the idea as a hypothesis worth testing. A heat filter, or a water bath to hold the temperature, would separate light from heat."},
-   {t:"“Good idea! Write that down.”", fb:"Accepting the idea without challenge leaves it untested, and the class may treat it as confirmed."},
-   {t:"“We'll cover that next lesson.”", fb:"Deferring tells the student the idea doesn't matter. Explore is exactly where it should be tested."}],
-  answer:1,
-  hint:"Which response keeps the student doing the thinking?",
-  why:"Alternative ideas are useful data during Explore. Turning them into testable questions models scientific reasoning and keeps the cognitive work with students."},
-
- {id:"says", type:"mc", at:"elaborate", level:"Analysis", kind:"Student says", tests:"engage",
-  vignette:{who:"Mia, Year 7 · Engage response", text:"“Plants get their food from the soil through their roots.”"},
-  q:"What does this tell you about Mia's thinking?",
-  options:[
-   {t:"She's correct: roots absorb nutrients", fb:"Roots take up water and mineral ions, but these aren't the plant's food. Sugars are made in the leaves."},
-   {t:"She treats water and minerals as food, so she sees soil as the source of the plant's mass", fb:"Yes. This is one of the most persistent conceptions in school biology, and many adults still hold it."},
-   {t:"She has mixed up photosynthesis and respiration", fb:"That is a separate common conception. Mia's idea is about where food comes from, not how energy is released."},
-   {t:"She doesn't think plants need food", fb:"She clearly thinks plants need food. She has the wrong source."}],
-  answer:1,
-  why:"Naming a conception precisely tells you what evidence will challenge it. “Mia is wrong” gives you nothing to plan with. “Mia thinks the mass comes from soil” points straight at the next activity."},
-
- {id:"conflict", type:"mc", at:"elaborate", level:"Knowledge utilisation", kind:"Choose the activity", tests:"explore",
-  title:"Which activity is most likely to create productive conflict with Mia's idea?",
-  options:[
-   {t:"Give students van Helmont's data: the willow gained about 74 kg while the soil lost about 57 g. Ask them to account for the difference.", fb:"The numbers clash directly with her model. Posner et al. (1982) argue that dissatisfaction with an existing idea is the first condition for conceptual change."},
-   {t:"Give her the correct definition of photosynthesis to copy into her book.", fb:"A definition can sit alongside her soil idea without displacing it. Students often hold both at once."},
-   {t:"Set a labelling worksheet on root structure.", fb:"This keeps the focus on roots and may reinforce the soil-as-food idea."},
-   {t:"Show a time-lapse of a bean seedling growing.", fb:"Engaging, but nothing in it challenges where the mass comes from."}],
-  answer:0,
-  why:"Conceptual change needs four conditions: dissatisfaction with the current idea, and a new idea that is intelligible, plausible and fruitful. Data that the old idea can't explain supplies the first."},
-
- {id:"fix", type:"mc", at:"evaluate", level:"Knowledge utilisation", kind:"Fix the plan", tests:"sequence",
-  title:"A pre-service teacher submits this 5E sequence.",
-  plan:[["engage","3-minute video on rainforests"],["explain","Teacher notes on photosynthesis and the word equation"],["explore","Leaf-disc prac to confirm the equation"],["elaborate","Greenhouse design task"],["evaluate","End-of-topic test"]],
-  q:"What is the most important problem?",
-  options:[
-   {t:"Explain comes before Explore, so the prac only confirms what students were told", fb:"Students have no experience to reason from before the explanation, and the prac becomes a recipe."},
-   {t:"The Engage video is too short", fb:"Length isn't the issue. A better question is whether it draws out students' ideas. This one probably doesn't, but the ordering problem matters more."},
-   {t:"Elaborate should come last", fb:"Evaluate usually closes the sequence, and it also runs throughout."},
-   {t:"Evaluate should be a quiz, not a test", fb:"Format matters less than timing and purpose. In 5E, evaluation runs throughout and includes students reviewing their own thinking."}],
-  answer:0,
-  hint:"Check whether each phase can do its job given what came before it.",
-  why:"This is the most common error in pre-service 5E plans. A quick check: could students do the Explore activity without already knowing the answer? If not, it isn't Explore."},
-
- {id:"reflect", type:"reflect", at:"evaluate", level:"Metacognition", kind:"Look back",
-  title:"Back to the willow.",
-  q:"A Year 7 student tells you the tree's mass came from the soil. Write one question you'd ask them. Make it an Engage or Explore move, not an answer.",
-  model:"Example: “If the tree took 74 kg from the soil, what would you expect to happen to the soil? How could we check?”"}
-];
-
-const MAIN = ITEMS.map(i=>i.id);
-const byId = Object.fromEntries(ITEMS.map(i=>[i.id,i]));
-
-let S;
-function fresh(){
-  return {queue:MAIN.filter(id=>id!=="reflect"), pos:0, phase:"main", review:[], xp:0, streak:0, best:0,
-          results:{}, pred:null, conf:60, reflection:"", done:false, started:false, t0:0};
+function chrome(mode, title){
+  $("#hud").hidden = mode !== "play";
+  dock.hidden = mode === "map";
+  document.querySelector(".wrap").style.paddingBlockEnd = mode === "map" ? "48px" : "";
+  $("#top").innerHTML = mode === "map" ? "" : `<button class="back" id="toMap" type="button">← All lessons</button><span class="grow"></span>${title ? `<span class="chip">${esc(title)}</span>` : ""}`;
+  const b = $("#toMap"); if (b) b.addEventListener("click", showMap);
+  $("#banner").innerHTML = D.review ? `<div class="banner">Review copy: includes lessons not yet published. Not for students.</div>` : "";
 }
-S = fresh();
 
-const $ = s=>document.querySelector(s);
-const stage=$("#stage"), go=$("#go"), dock=$("#dock"), fb=$("#fb");
-let cur=null, sel=null, multi=new Set(), placed=[], pool=[], checked=false;
-
-function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-
-function totalSteps(){return MAIN.length + S.review.length}
-function stepsDone(){
-  if(S.done) return totalSteps();
-  if(S.phase==="main") return S.pos;
-  if(S.phase==="review") return MAIN.length-1 + S.pos;
-  return MAIN.length-1 + S.review.length;
+function unlocked(l){
+  if (D.review || l.order === 1) return true;
+  const prev = D.lessons.find(x => x.path === l.path && x.order === l.order - 1);
+  return !prev || rec(prev.id).completed;
 }
+function levelReached(pathId){
+  const done = D.lessons.filter(l => l.path === pathId && rec(l.id).completed).map(l => D.mastery.indexOf(l.level));
+  return done.length ? Math.max(...done) : -1;
+}
+
+function showMap(){
+  S = null; cur = null;
+  chrome("map");
+  stage.innerHTML = `<section class="mapHead card"><h1>Teaching models, in practice</h1><p>Short lessons on constructivist teaching models in NSW Science 7–10. Each lesson takes about 10 minutes and works on a phone.</p></section>
+  ${D.paths.map(p => {
+    const lv = levelReached(p.id);
+    const ls = D.lessons.filter(l => l.path === p.id);
+    const nextL = ls.find(l => !rec(l.id).completed && unlocked(l));
+    return `<section class="path" style="--pc:${pc("explore")}">
+      <div class="pathHead"><h2>${esc(p.title)}</h2><a href="../reckoner/#/guide/${esc(p.id)}">Open the ${esc(p.guide.name)} companion guide</a></div>
+      <p>${esc(p.blurb)}</p>
+      <div class="ladder" aria-label="Mastery reached">${D.mastery.map((m,i) => `<div class="${i <= lv ? "got" : ""}">${LEVEL[m]}</div>`).join("")}</div>
+      <div class="lessons">${ls.map(l => {
+        const r = rec(l.id), open = unlocked(l);
+        const state = r.completed ? "done" : (l === nextL ? "next" : "");
+        const chips = [`<span class="chip">${LEVEL[l.level]}</span>`];
+        if (r.completed) chips.push(`<span class="chip good">Done · best ${r.best}/${r.of} first try</span>`);
+        else if (!open) chips.push(`<span class="chip">Finish lesson ${l.order - 1} first</span>`);
+        if (l.status !== "published") chips.push(`<span class="chip warn">${esc(l.status)}</span>`);
+        if (r.missed.length && r.completed) chips.push(`<span class="chip">${r.missed.length} to review</span>`);
+        return `<button class="lesson ${state}" data-l="${esc(l.id)}" ${open ? "" : "disabled"} type="button"><span class="num">${l.order}</span><span class="min"><h3>${esc(l.title)}</h3><span class="sum">${esc(l.summary)}</span><span class="meta">${chips.join("")}</span></span></button>`;
+      }).join("")}
+      ${p.upcoming ? `<div class="upcoming">${p.upcoming === 1 ? "One more lesson is" : `${p.upcoming} more lessons are`} being reviewed and will appear here soon.</div>` : ""}</div>
+    </section>`;
+  }).join("")}
+  <div class="recall" style="margin-top:26px;--engage:var(--explain)"><b>About this pilot.</b> ${esc(D.notice)}</div>
+  <p class="reset">Your progress is saved in this browser only. <button type="button" id="reset">Start again from scratch</button></p>`;
+  stage.querySelectorAll("[data-l]").forEach(b => b.addEventListener("click", () => showIntro(b.dataset.l)));
+  const rs = $("#reset");
+  rs.addEventListener("click", () => {
+    if (rs.dataset.armed){ P = {lessons:{}}; store.save(P); showMap(); }
+    else { rs.dataset.armed = "1"; rs.textContent = "Tap again to clear your progress"; }
+  });
+  window.scrollTo({top:0});
+}
+
+function showIntro(id){
+  const l = D.lessons.find(x => x.id === id), r = rec(id);
+  chrome("intro", `${pathOf(l.path).title} · Lesson ${l.order}`);
+  dock.className = "dock"; fb.innerHTML = "";
+  const warm = warmupFor(l).length;
+  stage.innerHTML = `<section class="card">
+    <div class="chips"><span class="chip">${LEVEL[l.level]}</span><span class="chip">Lesson ${l.order}</span>${r.plays ? `<span class="chip">Attempt ${r.plays + 1}</span>` : ""}</div>
+    <h2>${esc(l.title)}</h2>
+    <p class="lead">${esc(l.summary)}</p>
+    <p class="lead">Wrong answers cost nothing. Anything you miss comes back once at the end, and every answer explains itself.${r.plays ? " Replays shuffle the options and may use a different case." : ""}</p>
+    ${warm ? `<p class="lead warm"><b>Warm-up:</b> ${warm === 1 ? "one item" : `${warm} items`} you missed in an earlier lesson come first.</p>` : ""}
+  </section>`;
+  go.textContent = r.plays ? "Play again" : "Start lesson"; go.disabled = false; keys.textContent = "About 10 minutes.";
+  go.onclick = () => startLesson(l);
+  window.scrollTo({top:0});
+}
+
+/* ---------- building a run ---------- */
+function warmupFor(l){
+  const earlier = D.lessons.filter(x => x.path === l.path && x.order < l.order).reverse();
+  const out = [];
+  for (const e of earlier) for (const mid of rec(e.id).missed){
+    const it = e.items.find(i => i.id === mid);
+    if (it && !UNSCORED.includes(it.type) && out.length < 2) out.push({...it, _from:e.id, _warm:true});
+  }
+  return out;
+}
+function variantFor(it, plays){
+  const vs = it.variants || [];
+  if (!vs.length || !plays) return it;
+  const k = plays % (vs.length + 1);
+  return k ? {...it, ...vs[k - 1]} : it;
+}
+function startLesson(l){
+  const r = rec(l.id);
+  const plays = r.plays;
+  const items = l.items.map(it => ({...variantFor(it, plays), _from:l.id}));
+  S = {
+    lesson:l, plays, warm:warmupFor(l),
+    main:items.filter(i => i.type !== "reflect"), reflect:items.filter(i => i.type === "reflect"),
+    review:[], phase:"warm", pos:0, xp:0, streak:0, best:0, results:{}, warmRes:[],
+    pred:null, conf:60, reflection:"", t0:Date.now(), done:false
+  };
+  if (!S.warm.length) S.phase = "main";
+  r.plays = plays + 1; store.save(P);
+  render();
+}
+const list = () => S.phase === "warm" ? S.warm : S.phase === "main" ? S.main : S.phase === "review" ? S.review : S.reflect;
+function total(){ return S.warm.length + S.main.length + S.review.length + S.reflect.length; }
+function doneCount(){
+  const order = ["warm","main","review","reflect"], idx = order.indexOf(S.phase);
+  if (S.done) return total();
+  return order.slice(0, idx).reduce((n, k) => n + ({warm:S.warm, main:S.main, review:S.review, reflect:S.reflect})[k].length, 0) + S.pos;
+}
+
+/* ---------- HUD ---------- */
 function hud(){
-  $("#prog").style.width = (100*stepsDone()/totalSteps())+"%";
-  $("#xp").textContent=S.xp; $("#streak").textContent=S.streak;
-  const at = S.done ? "done" : cur?.at;
-  const idx = ORDER.indexOf(at);
-  $("#rail").innerHTML = ORDER.map((k,i)=>`<div style="--pc:${PH[k].c}" class="${at==="done"||i<idx?"done":i===idx?"now":""}">${PH[k].label}</div>`).join("");
-  $("#railnote").textContent = S.done ? "Lesson complete. Your journey followed all five phases." : S.phase==="review" ? "Review round: items you missed come back once, with the options shuffled." : RAILNOTE[at];
+  $("#prog").style.width = (100 * doneCount() / Math.max(1, total())) + "%";
+  $("#xp").textContent = S.xp; $("#streak").textContent = S.streak;
+  const at = S.done ? "done" : cur && cur.at, idx = JOURNEY.indexOf(at);
+  $("#rail").innerHTML = JOURNEY.map((k,i) => `<div style="--pc:${pc(k)}" class="${at === "done" || i < idx ? "done" : i === idx ? "now" : ""}">${JNAME[k]}</div>`).join("");
+  $("#railnote").textContent = S.done ? "Lesson complete. Your own journey ran through all five phases."
+    : S.phase === "warm" ? "Warm-up: items you missed in an earlier lesson, once more."
+    : S.phase === "review" ? "Review round: items you missed come back once, with the options shuffled."
+    : "This lesson is itself a 5E sequence. The bar shows where you are in it.";
 }
 
-function currentId(){
-  if(S.phase==="main") return S.queue[S.pos];
-  if(S.phase==="review") return S.review[S.pos];
-  return "reflect";
+/* ---------- rendering an item ---------- */
+function options(it){
+  if (it.type === "spot") return pathOf(S.lesson.path).guide.phases.map(p => ({t:p.name, ph:p.id, fb:it.fb[p.id]}));
+  if (it.type === "lookfor"){
+    const lf = pathOf(S.lesson.path).guide.lookFors;
+    return [it.answer, ...it.distractors].map(id => ({t:lf[id].question, lf:id, ph:lf[id].phaseId}));
+  }
+  if (it.type === "diagnose"){
+    const mi = pathOf(S.lesson.path).guide.misapplications;
+    return [it.answer, ...it.distractors].map(id => ({t:mi[id].name, mi:id}));
+  }
+  return (it.options || []).map(o => ({t:o.text, fb:o.fb, ok:o.ok}));
 }
-
 function render(){
-  checked=false; sel=null; multi=new Set(); placed=[];
-  dock.className="dock"; fb.innerHTML="";
-  if(!S.started){ cur=null; return intro(); }
-  if(S.done){ cur=null; hud(); return summary(); }
-  cur = byId[currentId()];
-  const isReview = S.phase==="review";
+  checked = false; sel = null; multi = new Set(); placed = [];
+  dock.className = "dock"; fb.innerHTML = "";
+  if (S.done) return summary();
+  const L = list();
+  if (S.pos >= L.length) return advancePhase();
+  cur = L[S.pos];
+  chrome("play", `${pathOf(S.lesson.path).title} · Lesson ${S.lesson.order}`);
   hud();
-  let h = `<section class="card" style="--pc:${PH[cur.at].c}">
-    <div class="chips"><span class="chip ph">${PH[cur.at].label} phase</span><span class="chip">${esc(cur.level)}</span>${isReview?'<span class="chip rev">Review</span>':""}</div>
+  const reshuffle = S.plays > 0 || S.phase === "review" || cur._warm;
+  let opts = options(cur).map((o,i) => ({...o, i}));
+  if (cur.type !== "spot" && (reshuffle || cur.type === "lookfor" || cur.type === "diagnose")) opts = shuffle(opts);
+  cur._view = opts;
+  const chip = S.phase === "warm" ? `<span class="chip warn">Warm-up</span>` : S.phase === "review" ? `<span class="chip warn">Review</span>` : "";
+  let h = `<section class="card" style="--pc:${pc(cur.at)}">
+    <div class="chips"><span class="chip ph">${JNAME[cur.at]} phase</span><span class="chip">${esc(cur.processing)}</span>${chip}</div>
     <p class="kind">${esc(cur.kind)}</p>`;
-  if(cur.title) h+=`<h2>${esc(cur.title)}</h2>`;
-  if(cur.vignette) h+=`<div class="vignette"><span class="who">${esc(cur.vignette.who)}</span>${esc(cur.vignette.text)}</div>`;
-  if(cur.plan) h+=`<ol class="plan">${cur.plan.map(([p,t])=>`<li style="--pc:${PH[p].c}"><b>${PH[p].label}</b><span class="min">${esc(t)}</span></li>`).join("")}</ol>`;
-  if(cur.q && cur.type!=="reflect") h+=`<p class="q">${esc(cur.q)}</p>`;
-
-  if(cur.type==="mc"||cur.type==="predict"||cur.type==="multi"){
-    let opts = cur.options.map((o,i)=>({...o,i}));
-    if(isReview && !cur.phaseGrid) opts=shuffle(opts);
-    cur._view = opts;
-    h+=`<div class="opts ${cur.phaseGrid?"phases":""}" role="${cur.type==="multi"?"group":"radiogroup"}">${opts.map((o,n)=>
-      `<button class="opt" data-i="${o.i}" ${o.ph?`style="--pc:${PH[o.ph].c}"`:""} role="${cur.type==="multi"?"checkbox":"radio"}" aria-checked="false">${cur.phaseGrid?"":`<span class="k">${n+1}</span>`}<span class="t">${esc(o.t)}<span class="ofb" hidden></span></span></button>`).join("")}</div>`;
+  if (cur.title) h += `<h2>${esc(cur.title)}</h2>`;
+  if (cur.vignette) h += `<div class="vignette"><span class="who">${esc(cur.vignette.who)}</span>${esc(cur.vignette.text)}</div>`;
+  if (cur.plan) h += `<ol class="plan">${cur.plan.map(r => `<li style="--pc:${pc(r.phaseId)}"><b>${esc(phaseName(S.lesson.path, r.phaseId))}</b><span class="min">${esc(r.text)}</span></li>`).join("")}</ol>`;
+  if (cur.type === "lookfor") h += `<p class="q">${cur.strong ? "This is strong evidence for one look-for in the guide. Which one?" : "This is weak evidence for one look-for in the guide: it shows what's missing. Which one?"}</p>`;
+  if (cur.type === "diagnose" && !cur.q) h += `<p class="q">Which misapplication from the guide is this?</p>`;
+  if (cur.q && cur.type !== "reflect") h += `<p class="q">${esc(cur.q)}</p>`;
+  if (["predict","choice","spot","multi","lookfor","diagnose"].includes(cur.type)){
+    const grid = cur.type === "spot";
+    h += `<div class="opts ${grid ? "phases" : ""}" role="${cur.type === "multi" ? "group" : "radiogroup"}">${opts.map((o,n) =>
+      `<button class="opt" type="button" data-i="${o.i}" ${o.ph && grid ? `style="--pc:${pc(o.ph)}"` : ""} role="${cur.type === "multi" ? "checkbox" : "radio"}" aria-checked="false">${grid ? "" : `<span class="k">${n + 1}</span>`}<span class="t">${cur.type === "lookfor" ? `<span class="lfq">${esc(phaseName(S.lesson.path, o.ph))} look-for</span>` : ""}${esc(o.t)}<span class="ofb" hidden></span></span></button>`).join("")}</div>`;
   }
-  if(cur.type==="predict"){
-    h+=`<div class="slider"><label for="conf">How confident are you? <output id="confout">${S.conf}%</output></label>
-      <input type="range" id="conf" min="0" max="100" step="10" value="${S.conf}">
-      <small><span>Pure guess</span><span>Certain</span></small></div>`;
+  if (cur.type === "predict") h += `<div class="slider"><label for="conf">How confident are you? <output id="confout">${S.conf}%</output></label><input type="range" id="conf" min="0" max="100" step="10" value="${S.conf}"><small><span>Pure guess</span><span>Certain</span></small></div>`;
+  if (cur.type === "order"){ pool = shuffle(cur.steps.map((o,i) => ({...o, i}))); h += `<div class="slots" id="slots"></div><div class="pool" id="pool"></div>`; }
+  if (cur.type === "concept") h += `<p class="lead">${esc(cur.lead)}</p><div class="concept">${cur.rows.map(r => `<div class="row" style="--pc:${pc(r.phaseId)}"><h3>${esc(phaseName(S.lesson.path, r.phaseId))}</h3><p>${esc(r.does)}<em>${esc(r.move)}</em></p></div>`).join("")}</div>${cur.cite ? `<p class="cite">${esc(cur.cite)}</p>` : ""}`;
+  if (cur.type === "reflect"){
+    const pr = S.lesson.items.find(i => i.id === cur.recall);
+    if (pr && S.pred != null) h += `<div class="recall">At the start you chose <b>${esc(pr.options[S.pred].text.toLowerCase())}</b> with <b>${S.conf}%</b> confidence.${S.pred === pr.answer ? " You were right. Many adults are not." : " Your first idea was the same kind of idea your students will bring."}</div>`;
+    h += `<p class="q">${esc(cur.q)}</p><label for="refl" class="kind" style="display:block;margin-top:10px">Your answer</label><textarea id="refl" placeholder="Write a sentence or two">${esc(S.reflection)}</textarea>`;
   }
-  if(cur.type==="order"){
-    pool = cur._pool && isReview===cur._poolReview ? cur._pool : shuffle(cur.items.map((o,i)=>({...o,i})));
-    cur._pool=pool; cur._poolReview=isReview;
-    h+=`<div class="slots" id="slots"></div><div class="pool" id="pool"></div>`;
-  }
-  if(cur.type==="concept"){
-    h+=`<p class="lead">${esc(cur.lead)}</p><div class="concept">${cur.rows.map(([k,a,b])=>
-      `<div class="row" style="--pc:${PH[k].c}"><h3>${PH[k].label}</h3><p>${esc(a)}<em>${esc(b)}</em></p></div>`).join("")}</div>
-      <p class="cite">${esc(cur.cite)}</p>`;
-  }
-  if(cur.type==="reflect"){
-    const p = S.pred!=null ? byId.predict.options[S.pred].t.toLowerCase() : null;
-    h+= p ? `<div class="recall">At the start you chose <b>${esc(p)}</b> with <b>${S.conf}%</b> confidence.${S.pred===2?" You were right. Many adults choose soil or water.":" Your first idea was the same kind of idea your students will bring."}</div>`:"";
-    h+=`<p class="q">${esc(cur.q)}</p><label for="refl" class="kind" style="display:block;margin-top:10px">Your question</label><textarea id="refl" placeholder="Start with “What would…” or “How could we…”">${esc(S.reflection)}</textarea>`;
-  }
-  if(cur.hint) h+=`<details class="hint"><summary>Hint</summary><p>${esc(cur.hint)}</p></details>`;
-  h+=`</section>`;
-  stage.innerHTML=h;
+  if (cur.hint) h += `<details class="hint"><summary>Hint</summary><p>${esc(cur.hint)}</p></details>`;
+  stage.innerHTML = h + `</section>`;
   window.scrollTo({top:0});
 
-  if(cur.type==="concept"){ go.textContent="Got it"; go.disabled=false; $("#keys").textContent="Enter to continue"; }
-  else if(cur.type==="reflect"){ go.textContent="Finish lesson"; go.disabled=false; $("#keys").textContent="Your answer isn't marked. Writing it is the point.";
-    $("#refl").addEventListener("input",e=>S.reflection=e.target.value); }
-  else { go.textContent="Check"; go.disabled=true; $("#keys").textContent = cur.type==="order"?"Tap activities in order":"Keys: 1–"+(cur.options?.length||4)+" to choose, Enter to check"; }
-
-  stage.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>choose(+b.dataset.i)));
-  if(cur.type==="predict"){ const r=$("#conf"); r.addEventListener("input",()=>{S.conf=+r.value;$("#confout").textContent=S.conf+"%"}); }
-  if(cur.type==="order") drawOrder();
+  go.onclick = onGo;
+  if (cur.type === "concept"){ go.textContent = "Got it"; go.disabled = false; keys.textContent = "Enter to continue"; }
+  else if (cur.type === "reflect"){ go.textContent = "Finish lesson"; go.disabled = false; keys.textContent = "Not marked. Writing it is the point.";
+    $("#refl").addEventListener("input", e => S.reflection = e.target.value); }
+  else { go.textContent = "Check"; go.disabled = true; keys.textContent = cur.type === "order" ? "Tap activities in order" : `Keys: 1–${opts.length} to choose, Enter to check`; }
+  stage.querySelectorAll(".opt[data-i]").forEach(b => b.addEventListener("click", () => choose(+b.dataset.i)));
+  if (cur.type === "predict"){ const r = $("#conf"); r.addEventListener("input", () => { S.conf = +r.value; $("#confout").textContent = S.conf + "%"; }); }
+  if (cur.type === "order") drawOrder();
 }
 
 function choose(i){
-  if(checked) return;
-  if(cur.type==="multi"){ multi.has(i)?multi.delete(i):multi.add(i); }
-  else sel=i;
-  stage.querySelectorAll(".opt").forEach(b=>{
-    const on = cur.type==="multi" ? multi.has(+b.dataset.i) : +b.dataset.i===sel;
-    b.classList.toggle("sel",on); b.setAttribute("aria-checked",on);
+  if (checked) return;
+  if (cur.type === "multi") multi.has(i) ? multi.delete(i) : multi.add(i); else sel = i;
+  stage.querySelectorAll(".opt[data-i]").forEach(b => {
+    const on = cur.type === "multi" ? multi.has(+b.dataset.i) : +b.dataset.i === sel;
+    b.classList.toggle("sel", on); b.setAttribute("aria-checked", on);
   });
-  go.disabled = cur.type==="multi" ? multi.size===0 : sel==null;
+  go.disabled = cur.type === "multi" ? multi.size === 0 : sel == null;
 }
 
 function drawOrder(){
-  const slots=$("#slots"), pl=$("#pool");
-  slots.innerHTML = cur.items.map((_,n)=>{
-    const o=placed[n];
-    return o ? `<button class="slot filled" data-n="${n}" ${checked?"disabled":""} style="--pc:${PH[o.ph].c}"><span class="n">${n+1}</span><span class="txt">${esc(o.t)}</span>${checked?`<span class="tag">${PH[o.ph].label}</span>`:""}</button>`
-             : `<div class="slot"><span class="n">${n+1}</span><span>${PH[ORDER[n]] && n===placed.length ? "Tap an activity below" : ""}</span></div>`;
+  const slots = $("#slots"), pl = $("#pool"), N = cur.steps.length;
+  slots.innerHTML = cur.steps.map((_,n) => {
+    const o = placed[n];
+    return o ? `<button class="slot filled" type="button" data-n="${n}" ${checked ? "disabled" : ""} style="--pc:${pc(o.phaseId)}"><span class="n">${n + 1}</span><span class="txt">${esc(o.text)}</span>${checked ? `<span class="tag">${esc(phaseName(S.lesson.path, o.phaseId))}</span>` : ""}</button>`
+             : `<div class="slot"><span class="n">${n + 1}</span><span>${n === placed.length ? "Tap an activity below" : ""}</span></div>`;
   }).join("");
-  const left = pool.filter(o=>!placed.includes(o));
-  pl.innerHTML = left.length ? `<span class="lbl">Activities</span>`+left.map(o=>`<button class="opt" data-p="${o.i}"><span class="t">${esc(o.t)}</span></button>`).join("") : "";
-  pl.querySelectorAll("[data-p]").forEach(b=>b.addEventListener("click",()=>{placed.push(pool.find(o=>o.i===+b.dataset.p));drawOrder();}));
-  slots.querySelectorAll("[data-n]").forEach(b=>b.addEventListener("click",()=>{if(checked)return;placed.splice(+b.dataset.n,1);drawOrder();}));
-  go.disabled = placed.length!==cur.items.length;
-  if(checked) slots.querySelectorAll(".slot").forEach((el,n)=>el.classList.add(placed[n].ph===ORDER[n]?"right":"wrong"));
+  const left = pool.filter(o => !placed.includes(o));
+  pl.innerHTML = left.length ? `<span class="lbl">Activities</span>` + left.map(o => `<button class="opt" type="button" data-p="${o.i}"><span class="t">${esc(o.text)}</span></button>`).join("") : "";
+  pl.querySelectorAll("[data-p]").forEach(b => b.addEventListener("click", () => { placed.push(pool.find(o => o.i === +b.dataset.p)); drawOrder(); }));
+  slots.querySelectorAll("[data-n]").forEach(b => b.addEventListener("click", () => { if (checked) return; placed.splice(+b.dataset.n, 1); drawOrder(); }));
+  go.disabled = placed.length !== N;
+  if (checked) slots.querySelectorAll(".slot").forEach((el,n) => el.classList.add(placed[n].phaseId === cur.steps[n].phaseId ? "right" : "wrong"));
 }
 
-function check(){
-  checked=true;
-  let ok=true, head, body="";
-  if(cur.type==="predict"){
-    S.pred=sel;
-    markOpts(i=>i===cur.answer, i=>i===sel && i!==cur.answer, false);
-    S.xp+=5; hud();
-    head = sel===cur.answer ? "Good prediction" : "Predictions aren't marked";
-    body = `<p>${esc(cur.reveal)}</p>`;
-    dock.className="dock "+(sel===cur.answer?"good":"");
-    return showFb(head, body, cur.why, "Continue");
-  }
-  if(cur.type==="mc"){
-    ok = sel===cur.answer;
-    markOpts(i=>i===cur.answer, i=>i===sel && !ok, true, i=>i===sel||i===cur.answer);
-  }
-  if(cur.type==="multi"){
-    const want=new Set(cur.options.map((o,i)=>o.ok?i:null).filter(i=>i!=null));
-    ok = want.size===multi.size && [...want].every(i=>multi.has(i));
-    markOpts(i=>cur.options[i].ok && multi.has(i), i=>multi.has(i) && !cur.options[i].ok, true, ()=>true);
-    stage.querySelectorAll(".opt").forEach(b=>{const i=+b.dataset.i; if(cur.options[i].ok && !multi.has(i)) b.classList.add("right");});
-  }
-  if(cur.type==="order"){
-    ok = placed.every((o,n)=>o.ph===ORDER[n]);
-    drawOrder();
-  }
-  const first = S.phase==="main";
-  if(first) S.results[cur.id]={ok, tests:cur.tests, level:cur.level};
-  else if(ok) S.results[cur.id].recovered=true;
-  if(ok){ S.streak++; S.best=Math.max(S.best,S.streak); S.xp += first?10:5; if(S.streak%3===0){S.xp+=5;} }
-  else { S.streak=0; if(first) S.review.push(cur.id); }
-  hud();
-  dock.className="dock "+(ok?"good":"bad");
-  head = ok ? pick(["Nicely judged.","That's it.","Spot on.","Exactly right."]) : (first ? "Not this time. It'll come back in review." : "Still not quite.");
-  if(cur.type==="mc" && cur.phaseGrid) body=`<p>${esc(cur.options[cur.answer].fb)}</p>`;
-  if(cur.type==="order" && !ok) body=`<p>Engage → Explore → Explain → Elaborate → Evaluate. Check the colour tags on each placed activity.</p>`;
-  if(ok && S.streak>0 && S.streak%3===0) head+=` +5 streak bonus`;
-  showFb(head, body, cur.why, "Continue");
+/* ---------- checking ---------- */
+function correctIndex(it){
+  if (it.type === "spot") return pathOf(S.lesson.path).guide.phases.findIndex(p => p.id === it.answer);
+  if (it.type === "lookfor" || it.type === "diagnose") return 0;
+  return it.answer;
 }
-function pick(a){return a[Math.floor(Math.random()*a.length)]}
-function markOpts(isRight,isWrong,showFbText,showWhich=()=>false){
-  stage.querySelectorAll(".opt").forEach(b=>{
-    const i=+b.dataset.i; b.disabled=true; b.classList.remove("sel");
-    if(isRight(i)) b.classList.add("right"); else if(isWrong(i)) b.classList.add("wrong");
-    const f=b.querySelector(".ofb");
-    if(showFbText && f && cur.options[i].fb && showWhich(i) && !cur.phaseGrid){ f.textContent=cur.options[i].fb; f.hidden=false; }
-    if(showFbText && f && cur.phaseGrid && (i===sel) && i!==cur.answer){ f.textContent=cur.options[i].fb; f.hidden=false; }
+function onGo(){
+  if (cur.type === "concept"){ S.xp += 5; return next(); }
+  if (cur.type === "reflect"){ S.xp += 10; S.done = true; return render(); }
+  if (checked) return next();
+  check();
+}
+function check(){
+  checked = true;
+  const opts = options(cur);
+  if (cur.type === "predict"){
+    S.pred = sel; S.xp += 5; hud();
+    mark(i => i === cur.answer, i => i === sel && i !== cur.answer, () => false);
+    dock.className = "dock " + (sel === cur.answer ? "good" : "");
+    return feedback(sel === cur.answer ? "Good prediction" : "Predictions aren't marked", `<p>${esc(cur.reveal)}</p>`);
+  }
+  let ok = true, body = "";
+  if (["choice","spot","lookfor","diagnose"].includes(cur.type)){
+    const ans = correctIndex(cur); ok = sel === ans;
+    if (cur.type === "spot") mark(i => i === ans, i => i === sel && !ok, i => i === sel && !ok);
+    else mark(i => i === ans, i => i === sel && !ok, i => i === sel || i === ans);
+    if (cur.type === "spot") body = `<p>${esc(cur.fb[cur.answer])}</p>`;
+    if (cur.type === "diagnose"){
+      const m = pathOf(S.lesson.path).guide.misapplications[cur.answer];
+      body = `<p><b>${esc(m.name)}.</b> ${esc(m.why)}</p><p><b>The fix:</b> ${esc(m.fix)}</p>`;
+      if (!ok){ const w = pathOf(S.lesson.path).guide.misapplications[opts[sel].mi]; body += `<p>${esc(w.name)} looks different. In the guide's words: ${esc(w.looksLike)}</p>`; }
+    }
+    if (cur.type === "lookfor"){
+      const lf = pathOf(S.lesson.path).guide.lookFors[cur.answer];
+      body = `<p><b>${cur.strong ? "Strong evidence" : "Weak evidence"} for this look-for:</b> ${esc(cur.strong ? lf.strong : lf.weak)}</p>`;
+      if (!ok){ const wrong = pathOf(S.lesson.path).guide.lookFors[opts[sel].lf]; body += `<p>The one you chose is about something else. Strong evidence for it would be: ${esc(wrong.strong.charAt(0).toLowerCase() + wrong.strong.slice(1))}</p>`; }
+    }
+  }
+  if (cur.type === "multi"){
+    ok = opts.every((o,i) => !!o.ok === multi.has(i));
+    mark(i => opts[i].ok && multi.has(i), i => multi.has(i) && !opts[i].ok, () => true);
+    stage.querySelectorAll(".opt[data-i]").forEach(b => { const i = +b.dataset.i; if (opts[i].ok && !multi.has(i)) b.classList.add("right"); });
+  }
+  if (cur.type === "order"){
+    ok = placed.every((o,n) => o.phaseId === cur.steps[n].phaseId); drawOrder();
+    if (!ok) body = `<p>The correct order follows the guide's phases. Check the tag on each placed activity.</p>`;
+  }
+  score(ok);
+  dock.className = "dock " + (ok ? "good" : "bad");
+  let head = ok ? pick(["Nicely judged.","That's it.","Spot on.","Exactly right."])
+    : (S.phase === "main" ? "Not this time. It'll come back in review." : "Still not quite.");
+  if (ok && S.streak && S.streak % 3 === 0) head += " +5 streak bonus";
+  feedback(head, body);
+}
+function score(ok){
+  const key = cur.id, L = rec(cur._from);
+  if (S.phase === "warm"){
+    S.warmRes.push(ok);
+    if (ok) L.missed = L.missed.filter(m => m !== key);
+  } else if (S.phase === "main"){
+    S.results[key] = {ok, tests:cur.tests};
+    if (!ok) S.review.push({...cur});
+  } else if (S.phase === "review" && ok) S.results[key].recovered = true;
+  if (ok){ S.streak++; S.best = Math.max(S.best, S.streak); S.xp += S.phase === "main" ? 10 : 5; if (S.streak % 3 === 0) S.xp += 5; }
+  else S.streak = 0;
+  store.save(P); hud();
+}
+function mark(isRight, isWrong, showFb){
+  const opts = options(cur);
+  stage.querySelectorAll(".opt[data-i]").forEach(b => {
+    const i = +b.dataset.i; b.disabled = true; b.classList.remove("sel");
+    if (isRight(i)) b.classList.add("right"); else if (isWrong(i)) b.classList.add("wrong");
+    const f = b.querySelector(".ofb");
+    if (f && opts[i].fb && showFb(i)){ f.textContent = opts[i].fb; f.hidden = false; }
   });
 }
-function showFb(head, body, why, label){
-  fb.innerHTML=`<h3>${esc(head)}</h3>${body}${why?`<details class="why"><summary>Why this matters in the classroom</summary><p>${esc(why)}</p></details>`:""}`;
-  go.textContent=label; go.disabled=false; $("#keys").textContent="Enter to continue";
+function feedback(head, body){
+  fb.innerHTML = `<h3>${esc(head)}</h3>${body}${cur.why ? `<details class="why"><summary>Why this matters in the classroom</summary><p>${esc(cur.why)}</p></details>` : ""}`;
+  go.textContent = "Continue"; go.disabled = false; keys.textContent = "Enter to continue";
   go.focus({preventScroll:true});
 }
-
-function advance(){
-  if(cur.type==="reflect"){ S.xp+=10; S.done=true; return render(); }
-  if(cur.type==="concept"){ S.xp+=5; }
-  S.pos++;
-  if(S.phase==="main" && S.pos>=S.queue.length){ S.phase = S.review.length?"review":"reflect"; S.pos=0; }
-  else if(S.phase==="review" && S.pos>=S.review.length){ S.phase="reflect"; S.pos=0; }
+function next(){ S.pos++; render(); }
+function advancePhase(){
+  S.pos = 0;
+  if (S.phase === "warm") S.phase = "main";
+  else if (S.phase === "main") S.phase = S.review.length ? "review" : "reflect";
+  else if (S.phase === "review") S.phase = "reflect";
+  else { S.done = true; }
+  if (S.phase === "reflect" && !S.reflect.length) S.done = true;
   render();
 }
 
-go.addEventListener("click",()=>{
-  if(!S.started || S.done){ S=fresh(); S.started=true; S.t0=Date.now(); return render(); }
-  if(cur.type==="concept"||cur.type==="reflect"||checked) advance(); else check();
-});
-document.addEventListener("keydown",e=>{
-  if(e.target.tagName==="TEXTAREA"||e.target.tagName==="INPUT") return;
-  if(e.key==="Enter" && !go.disabled && document.activeElement!==go){ e.preventDefault(); go.click(); }
-  const n=parseInt(e.key,10);
-  if(cur && !checked && cur._view && n>=1 && n<=cur._view.length) choose(cur._view[n-1].i);
-});
-
-function intro(){
-  $("#prog").style.width="0%"; $("#xp").textContent=0; $("#streak").textContent=0;
-  $("#rail").innerHTML = ORDER.map(k=>`<div style="--pc:${PH[k].c}">${PH[k].label}</div>`).join("");
-  $("#railnote").textContent = "The lesson moves through all five phases of 5E.";
-  dock.className="dock"; fb.innerHTML="";
-  go.textContent="Start lesson"; go.disabled=false; $("#keys").textContent="About 10 minutes. Works on a phone.";
-  stage.innerHTML=`<section class="card">
-    <div class="chips"><span class="chip">Prototype</span><span class="chip">5E path · Lesson 1</span></div>
-    <h2>The Willow Problem</h2>
-    <p class="lead">A short game about the 5E model, set in a Stage 4 photosynthesis sequence. You'll spot phases in classroom vignettes, choose teacher moves, read students' ideas and fix a flawed plan.</p>
-    <p class="lead">Wrong answers cost nothing. Anything you miss comes back once at the end, and every answer explains itself.</p>
-    <div class="recall" style="--engage:var(--explain)"><b>About this pilot.</b> This is an early prototype being trialled to improve EDSE science education units. Nothing you do in the game is recorded or sent anywhere. At the end you can give anonymous feedback through a short form. It's optional and has no bearing on your grades.</div>
-  </section>`;
-}
-
-function feedbackLink(){
-  if(!FEEDBACK.url) return "";
-  if(FEEDBACK.url==="placeholder") return `<button class="go fbk" disabled>Feedback form opening soon</button>`;
-  const r=Object.values(S.results);
-  const missed=Object.entries(S.results).filter(([,v])=>!v.ok).map(([k])=>k);
-  const mins=S.t0?Math.max(1,Math.round((Date.now()-S.t0)/60000)):0;
-  const pred = S.pred!=null ? byId.predict.options[S.pred].t : "none";
-  const sumText=`${VERSION} | first-try ${r.filter(x=>x.ok).length}/${r.length} | missed: ${missed.join(", ")||"none"} | prediction: ${pred} @ ${S.conf}% | reflection written: ${S.reflection.trim()?"yes":"no"} | minutes: ${mins}`;
-  let u=FEEDBACK.url;
-  if(FEEDBACK.summaryEntry){ u += (u.includes("?")?"&":"?") + "usp=pp_url&" + encodeURIComponent(FEEDBACK.summaryEntry) + "=" + encodeURIComponent(sumText); }
-  return `<a class="go fbk" href="${esc(u)}" target="_blank" rel="noopener">Give feedback (2 minutes)</a>`;
-}
-
+/* ---------- results ---------- */
+const SKILL = {sequence:"Sequencing", diagnosis:"Diagnosing plans", misapplication:"Diagnosing plans", lookfor:"Using look-fors", engage:"Reading student ideas"};
 function summary(){
-  const r=Object.values(S.results), right=r.filter(x=>x.ok).length;
-  const groups=[["explore","Explore moves"],["explain","Explain logic"],["engage","Reading student ideas"],["sequence","Sequencing"]];
-  const sk=groups.map(([k,l])=>{const g=r.filter(x=>x.tests===k);const v=g.filter(x=>x.ok).length;return {k,l,v,n:g.length}}).filter(x=>x.n);
-  const levels=["Recognise","Explain","Select","Design"];
-  const predRight = S.pred===2;
-  const calib = S.pred==null ? "" : predRight
-    ? (S.conf>=70?"You predicted correctly and confidently.":"You predicted correctly but held back on confidence. Trust that reasoning.")
-    : (S.conf>=70?`You were ${S.conf}% sure of a wrong answer. That's exactly how confident Year 7s are about soil, which is why Engage elicits before it corrects.`:"Your first idea was tentative. That's the best moment to meet evidence.");
-  go.textContent="Play again"; go.disabled=false; $("#keys").textContent="Next in this path: 5E · Select (choosing 5E versus POE for a given class).";
-  fb.innerHTML=""; dock.className="dock";
-  stage.innerHTML=`<section class="card sum-head">
+  cur = null;
+  const l = S.lesson, r = rec(l.id), res = Object.entries(S.results), right = res.filter(([,v]) => v.ok).length;
+  r.completed = true; r.of = res.length; r.best = Math.max(r.best || 0, right);
+  r.missed = res.filter(([,v]) => !v.ok).map(([k]) => k);
+  store.save(P);
+  chrome("play", `${pathOf(l.path).title} · Lesson ${l.order}`);
+  hud();
+  const groups = {};
+  res.forEach(([,v]) => { const k = v.tests || "other"; (groups[k] = groups[k] || {v:0,n:0}).n++; if (v.ok) groups[k].v++; });
+  const label = k => SKILL[k] || (pathOf(l.path).guide.phases.some(p => p.id === k) ? `${phaseName(l.path, k)} moves` : k === "other" ? "Other" : k);
+  const pr = l.items.find(i => i.type === "predict");
+  let calib = "";
+  if (pr && S.pred != null){
+    const right1 = S.pred === pr.answer;
+    calib = right1 ? (S.conf >= 70 ? "You predicted correctly and confidently." : "You predicted correctly but held back on confidence. Trust that reasoning.")
+      : (S.conf >= 70 ? `You were ${S.conf}% sure of a wrong answer. Students are often just as sure, which is why Engage draws ideas out before correcting them.` : "Your first idea was tentative. That's the best moment to meet evidence.");
+  }
+  const nextL = D.lessons.find(x => x.path === l.path && x.order === l.order + 1);
+  const lv = levelReached(l.path);
+  const guideHref = `../reckoner/#/guide/${l.path}${l.guideSection ? "/" + l.guideSection : ""}`;
+  const warm = S.warmRes.length ? `<div class="stat"><b>${S.warmRes.filter(Boolean).length}/${S.warmRes.length}</b><span>warm-up</span></div>` : "";
+  stage.innerHTML = `<section class="card sum-head">
     <p class="kind">Lesson complete</p>
-    <h2>5E path · Lesson 1: The Willow Problem</h2>
+    <h2>${esc(l.title)}</h2>
     <div class="stats">
       <div class="stat"><b>${S.xp}</b><span>XP earned</span></div>
-      <div class="stat"><b>${right}/${r.length}</b><span>right first time</span></div>
-      <div class="stat"><b>${S.best}</b><span>best streak</span></div>
+      <div class="stat"><b>${right}/${res.length}</b><span>right first time</span></div>
+      ${warm || `<div class="stat"><b>${S.best}</b><span>best streak</span></div>`}
     </div>
-    <div class="skills">${sk.map(s=>`<div class="skill" style="--pc:${PH[s.k]?.c||"var(--accent)"}"><span>${s.l}</span><span class="track"><i style="width:${100*s.v/s.n}%"></i></span><span class="v">${s.v}/${s.n}</span></div>`).join("")}</div>
-    ${calib?`<p class="note"><b>Calibration.</b> ${esc(calib)}</p>`:""}
-    <div class="crowns"><h3>Mastery on the 5E path</h3>
-      <div class="lv">${levels.map((l,i)=>`<div class="${i===0||(i===1&&right>=6)?"got":(i===(right>=6?2:1))?"next":""}">${l}</div>`).join("")}</div>
-      <p class="note">Levels follow Marzano &amp; Kendall: retrieval, comprehension, analysis, then knowledge utilisation. Prac Day, a branching classroom simulation, unlocks at Select.</p>
+    <div class="skills">${Object.entries(groups).map(([k,g]) => `<div class="skill" style="--pc:${pc(k)}"><span>${esc(label(k))}</span><span class="track"><i style="width:${100 * g.v / g.n}%"></i></span><span class="v">${g.v}/${g.n}</span></div>`).join("")}</div>
+    ${calib ? `<p class="note"><b>Calibration.</b> ${esc(calib)}</p>` : ""}
+    <div class="crowns"><h3>Mastery on the ${esc(pathOf(l.path).title)}</h3>
+      <div class="lv">${D.mastery.map((m,i) => `<div class="${i <= lv ? "got" : i === lv + 1 ? "next" : ""}">${LEVEL[m]}</div>`).join("")}</div>
+      <p class="note">Levels follow Marzano &amp; Kendall: retrieval, comprehension, analysis, then knowledge utilisation.</p>
     </div>
-    ${S.reflection?`<div class="recall" style="--engage:var(--evaluate)"><b>Your question:</b> ${esc(S.reflection)}</div>`:""}
-    <p class="note">${esc(byId.reflect.model)}</p>
-    ${FEEDBACK.url?`<div class="crowns"><h3>Help shape the next lesson</h3><p class="note">Tell us what worked and what didn't. The form is anonymous and includes your game summary (scores and timing only, never your written answer).</p>${feedbackLink()}</div>`:""}
+    ${S.reflection.trim() ? `<div class="recall" style="--engage:var(--evaluate)"><b>Your answer:</b> ${esc(S.reflection)}</div>` : ""}
+    ${S.reflect[0] ? `<p class="note">${esc(S.reflect[0].model)}</p>` : ""}
+    <div class="row2"><a class="ghost" href="${esc(guideHref)}">Read more in the ${esc(pathOf(l.path).guide.name)} guide</a></div>
+    ${feedbackBlock()}
   </section>`;
+  go.textContent = nextL && unlocked(nextL) ? `Next: lesson ${nextL.order}` : "Back to all lessons"; go.disabled = false;
+  keys.textContent = r.missed.length ? `${r.missed.length === 1 ? "One item" : `${r.missed.length} items`} you missed will open the next lesson as a warm-up.` : "Progress saved in this browser.";
+  go.onclick = () => nextL && unlocked(nextL) ? showIntro(nextL.id) : showMap();
+  fb.innerHTML = ""; dock.className = "dock";
+  window.scrollTo({top:0});
+}
+function feedbackBlock(){
+  const f = D.feedback || {};
+  if (!f.url) return "";
+  const intro = `<div class="crowns"><h3>Help shape the next lesson</h3><p class="note">Tell us what worked and what didn't. The form is anonymous and includes your game summary (scores and timing only, never your written answer).</p>`;
+  if (f.url === "placeholder") return intro + `<button class="go fbk" disabled type="button">Feedback form opening soon</button></div>`;
+  const res = Object.entries(S.results), missed = res.filter(([,v]) => !v.ok).map(([k]) => k);
+  const pr = S.lesson.items.find(i => i.type === "predict");
+  const mins = Math.max(1, Math.round((Date.now() - S.t0) / 60000));
+  const txt = `${S.lesson.id} v${S.lesson.version} | attempt ${S.plays + 1} | first-try ${res.filter(([,v]) => v.ok).length}/${res.length} | missed: ${missed.join(", ") || "none"}` +
+    (S.warmRes.length ? ` | warm-up ${S.warmRes.filter(Boolean).length}/${S.warmRes.length}` : "") +
+    (pr ? ` | prediction: ${S.pred != null ? pr.options[S.pred].text : "none"} @ ${S.conf}%` : "") +
+    ` | reflection written: ${S.reflection.trim() ? "yes" : "no"} | minutes: ${mins}`;
+  let u = f.url;
+  if (f.summaryEntry) u += (u.includes("?") ? "&" : "?") + "usp=pp_url&" + encodeURIComponent(f.summaryEntry) + "=" + encodeURIComponent(txt);
+  return intro + `<a class="go fbk" href="${esc(u)}" target="_blank" rel="noopener">Give feedback (2 minutes)</a></div>`;
 }
 
-render();
+/* ---------- keyboard ---------- */
+document.addEventListener("keydown", e => {
+  if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") return;
+  if (e.key === "Enter" && !dock.hidden && !go.disabled && document.activeElement !== go){ e.preventDefault(); go.click(); }
+  const n = parseInt(e.key, 10);
+  if (cur && !checked && cur._view && n >= 1 && n <= cur._view.length) choose(cur._view[n - 1].i);
+});
+
+showMap();
+})();
 </script>
 </body>
 </html>

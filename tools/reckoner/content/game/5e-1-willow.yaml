@@ -1,0 +1,299 @@
+# 5E path, lesson 1. The Round 1 prototype, played and released by Steve on 2026-10-02.
+schemaVersion: 1
+id: 5e-1-willow
+path: 5e
+order: 1
+title: The Willow Problem
+summary: Where does a tree's mass come from? Spot the 5E phases in a photosynthesis sequence, then fix a flawed plan.
+level: recognise
+version: 1.0.0
+status: published
+lastReviewed: 2026-10-02
+provenance:
+  source: ai-drafted-reviewed
+  authors: [Claude]
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-02
+context:
+  stages: [stage4]
+  focusAreas: [Living systems]
+  disciplines: [biology]
+outcomes: [SC4-LIV-01]
+builtOn:
+  phaseIds: [engage, explore, explain, elaborate, evaluate]
+  exampleIds: [evaluate-pos-tree]
+  lookForIds: [explore-before-explain]
+  misapplicationIds: [mis-confirmation]
+guideSection: phases
+items:
+  - id: predict
+    type: predict
+    at: engage
+    processing: Retrieval
+    kind: Predict
+    title: A 2 kg willow sapling is planted in a tub of dried, weighed soil. Five years of watering later, the tree weighs about 77 kg.
+    q: Where did most of that extra mass come from?
+    options:
+      - text: The soil
+      - text: The water
+      - text: Carbon dioxide from the air
+      - text: Sunlight
+    answer: 2
+    reveal: >-
+      Jan Baptist van Helmont ran this experiment in the 1640s. The soil lost only about 57 g. He concluded
+      the mass came from water. Most of a tree's dry mass is actually carbon, fixed from atmospheric CO₂
+      during photosynthesis.
+    why: >-
+      You've just been through Engage. Making a committed prediction, with a confidence rating, brings prior
+      ideas into the open before any teaching. In a Year 7 class, many students choose soil. Their ideas
+      become the raw material for the rest of the sequence, so Engage elicits them and leaves them uncorrected.
+
+  - id: spot1
+    type: spot
+    at: explore
+    processing: Comprehension
+    kind: Spot the phase
+    tests: explore
+    vignette:
+      who: Year 7 · Living world
+      text: >-
+        Pairs place spinach leaf discs in bicarbonate solution under a lamp and count how many float each
+        minute. The teacher moves between groups asking “What are you noticing? What might be causing it?”
+        and gives no answers.
+    q: Which 5E phase is this?
+    answer: explore
+    fb:
+      engage: Engage hooks interest and draws out ideas. These students are already collecting data.
+      explore: Students work with the phenomenon first-hand while the teacher asks questions and holds back answers. That restraint defines Explore.
+      explain: No terms or scientific account have been introduced, and the teacher is deliberately withholding answers.
+      elaborate: Elaborate applies a concept students already have. They don't have one to apply yet.
+      evaluate: Nothing is being judged against a learning goal yet.
+    hint: Ask who is doing the explaining, and whether students have the scientific concept yet.
+    why: >-
+      Pre-service teachers often explain during Explore because silence feels unhelpful. Holding back gives
+      the class a shared first-hand experience for the explanation to attach to later.
+
+  - id: spot2
+    type: spot
+    at: explore
+    processing: Comprehension
+    kind: Spot the phase
+    tests: explain
+    vignette:
+      who: Year 7 · Living world
+      text: >-
+        Using the class's float-count graph, the teacher introduces the term photosynthesis and builds the
+        word equation on the board. Students annotate the graph to show where the gas in the floating discs
+        came from.
+    q: Which 5E phase is this?
+    answer: explain
+    fb:
+      engage: Students are past the hook. They are being given the scientific account.
+      explore: The investigation is finished. The teacher is now supplying the canonical explanation.
+      explain: Formal terms and the scientific explanation arrive here, tied directly to data the students produced.
+      elaborate: The concept is still being built. It isn't yet being transferred to a new context.
+      evaluate: The annotation here is sense-making, not assessment.
+    hint: New vocabulary is a strong signal.
+    why: >-
+      In 5E the explanation is anchored to students' own observations. Teaching the word equation without that
+      experience behind it turns the prac into a confirmation exercise.
+
+  - id: concept
+    type: concept
+    at: explain
+    processing: Retrieval
+    kind: The model
+    title: The 5E instructional model
+    lead: >-
+      Students build understanding by reconciling new experiences with what they already think. 5E puts that
+      process in order, and gives each phase a defining teacher move.
+    rows:
+      - phaseId: engage
+        does: Access prior ideas and raise a question worth answering.
+        move: "Teacher move: elicit, don't correct."
+      - phaseId: explore
+        does: A shared, first-hand experience of the phenomenon.
+        move: "Teacher move: question, don't tell."
+      - phaseId: explain
+        does: Scientific concepts and terms, linked to that experience.
+        move: "Teacher move: name it and connect it."
+      - phaseId: elaborate
+        does: Apply the concept in a new context.
+        move: "Teacher move: stretch and transfer."
+      - phaseId: evaluate
+        does: Students and teacher judge how understanding has changed.
+        move: "Teacher move: look for change, throughout the sequence."
+    cite: "Bybee et al. (2006), The BSCS 5E Instructional Model: Origins and Effectiveness. BSCS."
+
+  - id: why5e
+    type: multi
+    at: explain
+    processing: Comprehension
+    kind: Select all that apply
+    tests: explain
+    title: Why does 5E put Explore before Explain?
+    q: Select every reason that holds.
+    options:
+      - text: Students get a concrete experience that new terms can attach to
+        ok: true
+        fb: Yes. Vocabulary sticks better when it names something students have already seen.
+      - text: Students' existing ideas are tested against evidence before they are replaced
+        ok: true
+        fb: Yes. This is the conceptual-change logic at the heart of the model.
+      - text: It saves lesson time by skipping direct instruction
+        ok: false
+        fb: No. Explain still includes direct instruction. 5E reorders it.
+      - text: The teacher's explanation can refer back to what students observed
+        ok: true
+        fb: Yes. “Remember when the discs floated faster near the lamp?” is a powerful Explain move.
+      - text: Students should discover the scientific concept without help
+        ok: false
+        fb: No. 5E is guided inquiry. The teacher supplies the scientific explanation in Explain.
+    hint: Three are correct. Watch for the common misreading of constructivism as discovery learning.
+    why: >-
+      Critiques of minimal guidance (Kirschner, Sweller & Clark, 2006) target unguided discovery. 5E answers
+      them with a structured, teacher-led Explain phase that follows the experience.
+    refs:
+      lookForIds: [explore-before-explain]
+
+  - id: order
+    type: order
+    at: elaborate
+    processing: Comprehension
+    kind: Sequence it
+    tests: sequence
+    title: Put this Stage 4 photosynthesis sequence in 5E order.
+    q: Tap each activity in the order you'd teach it. Tap a placed activity to remove it.
+    steps:
+      - text: Students predict where a tree's mass comes from, then think-pair-share
+        phaseId: engage
+      - text: Leaf-disc investigation with the lamp at different distances
+        phaseId: explore
+      - text: Class builds the word equation from its own float-count data
+        phaseId: explain
+      - text: Students advise a local nursery on greenhouse lighting
+        phaseId: elaborate
+      - text: Students revisit their first prediction and explain what changed their thinking
+        phaseId: evaluate
+    why: >-
+      Look at Evaluate here: students return to their own earlier idea. Evaluating against a learner's starting
+      point is what makes it constructivist rather than a generic test.
+    refs:
+      exampleIds: [evaluate-pos-tree]
+
+  - id: move1
+    type: choice
+    at: elaborate
+    processing: Analysis
+    kind: Teacher move
+    tests: explore
+    vignette:
+      who: During Explore
+      text: "A student says: “The discs float because the lamp heats them up.”"
+    q: What is the best response at this point?
+    options:
+      - text: "“Not quite. It's oxygen from photosynthesis.”"
+        fb: Correct science at the wrong moment. Telling cuts off the student's reasoning before the class has evidence. Save it for Explain.
+      - text: "“How could you test whether it's the heat or the light?”"
+        fb: This treats the idea as a hypothesis worth testing. A heat filter, or a water bath to hold the temperature, would separate light from heat.
+      - text: "“Good idea! Write that down.”"
+        fb: Accepting the idea without challenge leaves it untested, and the class may treat it as confirmed.
+      - text: "“We'll cover that next lesson.”"
+        fb: Deferring tells the student the idea doesn't matter. Explore is exactly where it should be tested.
+    answer: 1
+    hint: Which response keeps the student doing the thinking?
+    why: >-
+      Alternative ideas are useful data during Explore. Turning them into testable questions models scientific
+      reasoning and keeps the cognitive work with students.
+
+  - id: says
+    type: choice
+    at: elaborate
+    processing: Analysis
+    kind: Student says
+    tests: engage
+    vignette:
+      who: Mia, Year 7 · Engage response
+      text: "“Plants get their food from the soil through their roots.”"
+    q: What does this tell you about Mia's thinking?
+    options:
+      - text: "She's correct: roots absorb nutrients"
+        fb: Roots take up water and mineral ions, but these aren't the plant's food. Sugars are made in the leaves.
+      - text: She treats water and minerals as food, so she sees soil as the source of the plant's mass
+        fb: Yes. This is one of the most persistent conceptions in school biology, and many adults still hold it.
+      - text: She has mixed up photosynthesis and respiration
+        fb: That is a separate common conception. Mia's idea is about where food comes from, not how energy is released.
+      - text: She doesn't think plants need food
+        fb: She clearly thinks plants need food. She has the wrong source.
+    answer: 1
+    why: >-
+      Naming a conception precisely tells you what evidence will challenge it. “Mia is wrong” gives you nothing
+      to plan with. “Mia thinks the mass comes from soil” points straight at the next activity.
+
+  - id: conflict
+    type: choice
+    at: elaborate
+    processing: Knowledge utilisation
+    kind: Choose the activity
+    tests: explore
+    title: Which activity is most likely to create productive conflict with Mia's idea?
+    options:
+      - text: "Give students van Helmont's data: the willow gained about 74 kg while the soil lost about 57 g. Ask them to account for the difference."
+        fb: The numbers clash directly with her model. Posner et al. (1982) argue that dissatisfaction with an existing idea is the first condition for conceptual change.
+      - text: Give her the correct definition of photosynthesis to copy into her book.
+        fb: A definition can sit alongside her soil idea without displacing it. Students often hold both at once.
+      - text: Set a labelling worksheet on root structure.
+        fb: This keeps the focus on roots and may reinforce the soil-as-food idea.
+      - text: Show a time-lapse of a bean seedling growing.
+        fb: Engaging, but nothing in it challenges where the mass comes from.
+    answer: 0
+    why: >-
+      Conceptual change needs four conditions: dissatisfaction with the current idea, and a new idea that is
+      intelligible, plausible and fruitful. Data that the old idea can't explain supplies the first.
+
+  - id: fix
+    type: choice
+    at: evaluate
+    processing: Knowledge utilisation
+    kind: Fix the plan
+    tests: sequence
+    title: A pre-service teacher submits this 5E sequence.
+    plan:
+      - phaseId: engage
+        text: 3-minute video on rainforests
+      - phaseId: explain
+        text: Teacher notes on photosynthesis and the word equation
+      - phaseId: explore
+        text: Leaf-disc prac to confirm the equation
+      - phaseId: elaborate
+        text: Greenhouse design task
+      - phaseId: evaluate
+        text: End-of-topic test
+    q: What is the most important problem?
+    options:
+      - text: Explain comes before Explore, so the prac only confirms what students were told
+        fb: Students have no experience to reason from before the explanation, and the prac becomes a recipe.
+      - text: The Engage video is too short
+        fb: Length isn't the issue. A better question is whether it draws out students' ideas. This one probably doesn't, but the ordering problem matters more.
+      - text: Elaborate should come last
+        fb: Evaluate usually closes the sequence, and it also runs throughout.
+      - text: Evaluate should be a quiz, not a test
+        fb: Format matters less than timing and purpose. In 5E, evaluation runs throughout and includes students reviewing their own thinking.
+    answer: 0
+    hint: Check whether each phase can do its job given what came before it.
+    why: >-
+      This is the most common error in pre-service 5E plans. A quick check: could students do the Explore
+      activity without already knowing the answer? If not, it isn't Explore.
+    refs:
+      misapplicationIds: [mis-confirmation]
+      lookForIds: [explore-before-explain]
+
+  - id: reflect
+    type: reflect
+    at: evaluate
+    processing: Metacognition
+    kind: Look back
+    title: Back to the willow.
+    q: A Year 7 student tells you the tree's mass came from the soil. Write one question you'd ask them. Make it an Engage or Explore move, not an answer.
+    model: "Example: “If the tree took 74 kg from the soil, what would you expect to happen to the soil? How could we check?”"
+    recall: predict

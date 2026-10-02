@@ -9,6 +9,7 @@ on:
     paths:
       - 'tools/reckoner/**'
       - 'reckoner/**'
+      - 'play/**'
       - 'frameworks/_schema/curriculum.vocab.json'
       - 'docs/ACTION-PLAN.md'
       - 'docs/reckoner-state.md'
@@ -17,6 +18,7 @@ on:
     paths:
       - 'tools/reckoner/**'
       - 'reckoner/**'
+      - 'play/**'
       - 'frameworks/_schema/curriculum.vocab.json'
       - 'docs/ACTION-PLAN.md'
       - 'docs/reckoner-state.md'

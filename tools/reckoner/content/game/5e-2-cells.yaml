@@ -1,0 +1,261 @@
+# 5E path, lesson 2. Built on the 5E guide's worked sequence seq-s4-cells. Draft: not shown to students until reviewed.
+schemaVersion: 1
+id: 5e-2-cells
+path: 5e
+order: 2
+title: Cells under the lens
+summary: Is a mushroom made of cells? Learn what each 5E phase looks like when it's working, using the guide's look-fors.
+level: recognise
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-02
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4]
+  focusAreas: [Cells and classification]
+  disciplines: [biology]
+outcomes: [SC4-CLS-01]
+builtOn:
+  sequenceIds: [seq-s4-cells]
+  lookForIds: [explore-own-data, explore-before-explain, explain-links-data, elaborate-new-context, evaluate-revisit]
+guideSection: sequences
+items:
+  - id: predict
+    type: predict
+    at: engage
+    processing: Retrieval
+    kind: Predict
+    title: A Year 7 class sorts four things on the bench. A seed, a mushroom, a pinch of dried yeast and a salt crystal.
+    q: Which of them are made of cells?
+    options:
+      - text: Only the seed
+      - text: The seed and the mushroom
+      - text: The seed, the mushroom and the yeast
+      - text: All four, including the crystal
+    answer: 2
+    reveal: >-
+      The seed, the mushroom and the yeast are all made of cells. A mushroom is the fruiting body of a fungus,
+      built from threads of cells, and each yeast granule holds many single-celled fungi. The crystal is not
+      alive. Many Year 7 students think fungi, and even plants, are not made of cells.
+    why: >-
+      The guide's sequence opens with exactly this kind of sort, and each group writes down the rule it used.
+      Those rules go on a thinking wall and get tested for the next nine lessons. Engage collects the rules;
+      it doesn't correct them.
+
+  - id: spot-rotation
+    type: spot
+    at: explore
+    processing: Comprehension
+    kind: Spot the phase
+    tests: explore
+    vignette:
+      who: Year 7 · Lessons 2–4
+      text: >-
+        Groups rotate through microscope stations: onion skin, Elodea leaf, yeast in sugar water and pond water.
+        At each one they draw what they see at two magnifications, estimate its size, and add to a list of what
+        every sample has in common.
+    q: Which 5E phase is this?
+    answer: explore
+    fb:
+      engage: Engage was the alive or not alive sort. These students are already gathering evidence.
+      explore: Students collect their own observations before any cell diagram or vocabulary. That's Explore.
+      explain: Nobody has named an organelle yet. The list of common features is students' own.
+      elaborate: There's no concept to transfer yet. Students are still building it.
+      evaluate: Drawings are checked for scale and labels, but the job here is investigating, not judging.
+    why: >-
+      The guide's watch-for for this sequence is the urge to open with a labelled animal cell. Explore works
+      here because students see real cells before anyone tells them what to look for.
+    variants:
+      - vignette:
+          who: Year 7 · Lesson 3
+          text: >-
+            At the pond-water station, pairs search for anything that moves, sketch it, and argue about whether
+            it is one cell or many. The teacher asks “How could you tell?” and moves on without settling it.
+
+  - id: lf-own-data
+    type: lookfor
+    at: explore
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 7 · Elodea station
+      text: >-
+        Students draw the Elodea leaf at 100× and 400×, estimate the size of one green box using the field of
+        view, and record it in their own table beside their onion and cheek-cell drawings.
+    answer: explore-own-data
+    distractors: [engage-elicit, explain-students-first, elaborate-new-context]
+    strong: true
+    why: >-
+      Look-fors are the guide's quality checks. Learning them lets you see whether a phase is doing its job,
+      not just whether it has the right label.
+
+  - id: lf-diagram-first
+    type: lookfor
+    at: explore
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Another Year 7 class · Lesson 2
+      text: >-
+        The lesson opens with a labelled diagram of an animal cell. At each microscope station, students tick
+        off the organelles from the diagram as they find them.
+    answer: explore-before-explain
+    distractors: [engage-question, explain-representations, evaluate-formative]
+    strong: false
+    hint: Could students do this activity if they already knew the answer?
+    why: >-
+      For biology-trained teachers, opening with the diagram feels efficient. It turns the microscope lessons
+      into spot-the-organelle, so students confirm rather than investigate.
+    refs:
+      sequenceIds: [seq-s4-cells]
+      misapplicationIds: [mis-confirmation]
+
+  - id: spot-theory
+    type: spot
+    at: explain
+    processing: Comprehension
+    kind: Spot the phase
+    tests: explain
+    vignette:
+      who: Year 7 · Lesson 5
+      text: >-
+        Groups share their drawings. The teacher introduces cell theory and the names of key organelles, using
+        the class's own images and a 3D cell model to challenge the idea that cells are flat.
+    q: Which 5E phase is this?
+    answer: explain
+    fb:
+      engage: The class's ideas were drawn out in lesson 1. Now the scientific account is arriving.
+      explore: The microscope work is done. The teacher is naming and connecting what students saw.
+      explain: Cell theory and organelle names arrive here, attached to students' own drawings. That's Explain.
+      elaborate: The concept is still being built. Transfer to a new task comes next.
+      evaluate: This is sense-making, not judging whether students have the idea.
+
+  - id: lf-links-data
+    type: lookfor
+    at: explain
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 7 · Lesson 5
+      text: >-
+        Introducing the cell wall, the teacher puts two students' Elodea drawings beside a cheek-cell drawing
+        and asks what the plant cells have that the cheek cells don't.
+    answer: explain-links-data
+    distractors: [engage-link, explore-feeds-explain, elaborate-requires-concept]
+    strong: true
+    why: >-
+      Using students' own drawings is what lets the new word, cell wall, attach to something they saw rather
+      than something they copied.
+
+  - id: move-elodea
+    type: choice
+    at: elaborate
+    processing: Analysis
+    kind: Teacher move
+    tests: explore
+    vignette:
+      who: During Explore · Elodea station
+      text: You want to find out whether a student thinks plants are made of cells, without telling them.
+    q: Which question does that best?
+    options:
+      - text: "“Can you label the chloroplasts for me?”"
+        fb: This assumes the student already knows what the green structures are, and tests vocabulary rather than their idea.
+      - text: "“Are those boxes part of the leaf, or is the whole leaf made of them? How could you check?”"
+        fb: This surfaces the student's model of a leaf and hands them a way to test it. It's the guide's scaffold question for this station.
+      - text: "“Plant cells have walls, don't they?”"
+        fb: A leading question gets agreement, not the student's thinking.
+      - text: "“Draw it neatly so it's ready for your book.”"
+        fb: Neat drawings matter, but this question reveals nothing about what the student thinks.
+    answer: 1
+    why: >-
+      A good Explore question is diagnostic: the answer tells you what the student thinks. A question that can
+      be answered by recall tells you only what they've memorised.
+    refs:
+      sequenceIds: [seq-s4-cells]
+
+  - id: lf-transfer
+    type: lookfor
+    at: elaborate
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 7 · Lessons 7–9
+      text: >-
+        Students build a dichotomous key for ten organisms from their own schoolyard survey, then swap keys and
+        test them on another group's specimen photos.
+    answer: elaborate-new-context
+    distractors: [explore-own-data, evaluate-aligned, engage-question]
+    strong: true
+    why: >-
+      The class moves from recognising cell structures to using structural features to classify. Same science,
+      new setting, higher demand.
+
+  - id: lf-revisit
+    type: lookfor
+    at: evaluate
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 7 · Lesson 10
+      text: >-
+        Students take out their lesson 1 sort, move the cards with evidence from the unit, and write “I used to
+        think… now I think… because…”.
+    answer: evaluate-revisit
+    distractors: [engage-elicit, explain-students-first, elaborate-demand]
+    strong: true
+    why: >-
+      Returning to the lesson 1 sort is what lets students, and you, see their thinking change. A test on its
+      own can't show that.
+
+  - id: order
+    type: order
+    at: evaluate
+    processing: Comprehension
+    kind: Sequence it
+    tests: sequence
+    title: Put the cells sequence in 5E order.
+    q: Tap each activity in the order you'd teach it. Tap a placed activity to remove it.
+    steps:
+      - text: Sort a seed, yeast, a mushroom and a crystal into alive and not alive, and record the rule
+        phaseId: engage
+      - text: Microscope rotation, drawing every sample at two magnifications
+        phaseId: explore
+      - text: Cell theory and organelles, introduced from the class's own drawings
+        phaseId: explain
+      - text: Build and peer-test a dichotomous key for schoolyard organisms
+        phaseId: elaborate
+      - text: Revise the lesson 1 sort with evidence and explain what changed
+        phaseId: evaluate
+    variants:
+      - title: Put this classification sequence in 5E order.
+        steps:
+          - text: Groups argue whether a lichen-covered rock is alive, and post their reasons on the thinking wall
+            phaseId: engage
+          - text: Pond-water microscopy, sketching and sizing every organism found
+            phaseId: explore
+          - text: The teacher models a dichotomous key using the class's pond-water sketches
+            phaseId: explain
+          - text: Students classify an unfamiliar set of specimen photos with a key they design
+            phaseId: elaborate
+          - text: Students revisit the lichen argument and justify a final answer with cell evidence
+            phaseId: evaluate
+
+  - id: reflect
+    type: reflect
+    at: evaluate
+    processing: Metacognition
+    kind: Look back
+    title: The labelled diagram can wait.
+    q: A colleague wants to open the cells unit with a labelled cell diagram “to save time”. Write one or two sentences you'd say to them.
+    model: >-
+      Example: “If they see the labelled diagram first, the microscope lessons turn into spot-the-organelle.
+      Let them draw real cells first, so the words attach to what they saw.”
+    recall: predict

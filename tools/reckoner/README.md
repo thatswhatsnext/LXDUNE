@@ -121,6 +121,28 @@ Only guides with `status: published` are included, so unreviewed content cannot 
 
 **To have a guide reviewed:** run `npm run review -- <id>` and send the reviewer `dist/review/<id>-review.html`. It is one self-contained file that opens in any browser, starts at that guide, includes draft and in-review guides marked "Not yet reviewed", and carries a "Review copy, not for students" banner. Record sign-off in the guide's `provenance.reviewedBy` and `reviewedOn`, then publish.
 
+## The game at /play/
+
+The same build publishes a short-lesson game to `/LXDUNE/play/`: a path of lessons for each guide, from
+Recognise to Design (Marzano & Kendall). Lessons are YAML in `content/game/` (one file per lesson, plus
+`game.yaml` for paths, the feedback form and the pilot notice), checked by `src/schema/game-lesson.ts`.
+
+Lessons point into their guide by id: phases, look-fors, examples, worked sequences and misapplications.
+`npm run validate` fails if any id is missing from the guide, so a guide edit cannot silently break a lesson.
+Look-for and diagnose items read their wording from the guide at build time.
+
+Item types: `predict`, `spot` (pick the phase), `choice`, `multi`, `order`, `lookfor` (match a moment to a
+guide look-for), `diagnose` (name the guide misapplication), `concept` and `reflect`. `spot`, `choice`,
+`order`, `lookfor` and `diagnose` items can carry `variants`, which replays rotate through.
+
+`play/index.html` is one self-contained file holding published lessons only. Progress is kept in the
+player's browser (localStorage) and nothing is sent anywhere. The same review rule as guides applies: a
+published lesson needs `ai-drafted-reviewed` or `authored` provenance and a reviewer.
+
+**To have lessons reviewed:** run `npm run review:game` and open `dist/review/game-review.html`. It holds
+every lesson, drafts included, unlocked, under a review banner. To publish a lesson, set `status: published`,
+fill in `provenance.reviewedBy` and `reviewedOn`, bump the version, then run `npm run publish:pages`.
+
 ## Guide status
 
 | Guide | Scale | Status | Worked sequences | Notes |
