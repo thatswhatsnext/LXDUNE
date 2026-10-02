@@ -1,4 +1,4 @@
-# 5E path, lesson 3. Built on the 5E guide's worked sequence seq-s5-disease. Draft: not shown to students until reviewed.
+# 5E path, lesson 3. Built on the 5E guide's worked sequence seq-s5-disease. Reviewed and published by Steve on 2026-10-02.
 schemaVersion: 1
 id: 5e-3-outbreak
 path: 5e
@@ -6,13 +6,14 @@ order: 3
 title: Outbreak
 summary: Why does the simulation come before herd immunity is named? Explain why each phase sits where it does.
 level: explain
-version: 0.1.0
-status: draft
+version: 1.0.0
+status: published
 lastReviewed: 2026-10-02
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-02
 context:
   stages: [stage5]
   focusAreas: [Disease, Data science 2]

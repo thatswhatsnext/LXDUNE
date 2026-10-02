@@ -1,4 +1,4 @@
-# 5E path, lesson 2. Built on the 5E guide's worked sequence seq-s4-cells. Draft: not shown to students until reviewed.
+# 5E path, lesson 2. Built on the 5E guide's worked sequence seq-s4-cells. Reviewed and published by Steve on 2026-10-02.
 schemaVersion: 1
 id: 5e-2-cells
 path: 5e
@@ -6,13 +6,14 @@ order: 2
 title: Cells under the lens
 summary: Is a mushroom made of cells? Learn what each 5E phase looks like when it's working, using the guide's look-fors.
 level: recognise
-version: 0.1.0
-status: draft
+version: 1.0.0
+status: published
 lastReviewed: 2026-10-02
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-02
 context:
   stages: [stage4]
   focusAreas: [Cells and classification]
