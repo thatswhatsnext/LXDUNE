@@ -1,4 +1,4 @@
-# 5E path, lesson 4. Built on the 5E guide's misapplications. Draft: not shown to students until reviewed.
+# 5E path, lesson 4. Built on the 5E guide's misapplications. Reviewed and published by Steve on 2026-10-02.
 schemaVersion: 1
 id: 5e-4-labels
 path: 5e
@@ -6,13 +6,14 @@ order: 4
 title: Labels without logic
 summary: Diagnose re-badged and broken 5E plans using the guide's misapplications, then repair one.
 level: explain
-version: 0.1.0
-status: draft
+version: 1.0.0
+status: published
 lastReviewed: 2026-10-02
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-02
 context:
   stages: [stage4, stage5]
   focusAreas: [Living systems, Cells and classification, Disease]
