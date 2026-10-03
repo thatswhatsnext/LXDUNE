@@ -4,6 +4,20 @@ paths:
   - id: 5e
     title: 5E path
     blurb: From spotting the five phases in a classroom to explaining why each one sits where it does.
+  - id: poe
+    title: POE path
+    blurb: Predict, Observe, Explain. One lesson that makes students' ideas visible and then puts them to the test.
+  - id: select
+    kind: select
+    title: Choosing a model
+    blurb: Which model fits this class, and why? The reckoner is the answer key, so your reasons have to match the class, not your favourite model.
+    journey: 5e
+    models: [5e, poe]
+    requires:
+      - path: 5e
+        level: explain
+      - path: poe
+        level: explain
 feedback:
   # Google Form link. "placeholder" shows an inactive button until the form is ready.
   url: placeholder
