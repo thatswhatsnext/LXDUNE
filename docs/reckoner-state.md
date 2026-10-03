@@ -15,7 +15,7 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Examples across published guides | 58 (29 positive, 29 negative) |
 | Worked sequences | 20 |
 | Focus areas with a ready plan / examples only / empty | 16 / 0 / 0 of 16 |
-| Game lessons at /play/ (published / draft or in review) | 4 / 4 |
+| Game lessons at /play/ (published / draft or in review) | 8 / 0 |
 | **Next action-plan item number** | **46** |
 
 ## Published guides
@@ -43,10 +43,10 @@ versions the same way as guides.
 | Cells under the lens | `5e-2-cells` | `5e` | 2 | recognise | 1.0.0 | published | 2026-10-02 | 11 |
 | Outbreak | `5e-3-outbreak` | `5e` | 3 | explain | 1.0.0 | published | 2026-10-02 | 11 |
 | Labels without logic | `5e-4-labels` | `5e` | 4 | explain | 1.0.0 | published | 2026-10-02 | 10 |
-| Is yeast alive? | `poe-1-yeast` | `poe` | 1 | recognise | 0.1.0 | draft | 2026-10-03 | 11 |
-| Clean hands | `poe-2-hands` | `poe` | 2 | explain | 0.1.0 | draft | 2026-10-03 | 11 |
-| Which model, and why? | `select-1-which` | `select` | 1 | select | 0.1.0 | draft | 2026-10-03 | 8 |
-| When the dial moves | `select-2-dial` | `select` | 2 | select | 0.1.0 | draft | 2026-10-03 | 7 |
+| Is yeast alive? | `poe-1-yeast` | `poe` | 1 | recognise | 1.0.0 | published | 2026-10-03 | 11 |
+| Clean hands | `poe-2-hands` | `poe` | 2 | explain | 1.0.0 | published | 2026-10-03 | 11 |
+| Which model, and why? | `select-1-which` | `select` | 1 | select | 1.0.0 | published | 2026-10-03 | 8 |
+| When the dial moves | `select-2-dial` | `select` | 2 | select | 1.0.0 | published | 2026-10-03 | 7 |
 
 ## Models without a guide
 

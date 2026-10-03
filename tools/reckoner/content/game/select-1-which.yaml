@@ -1,4 +1,4 @@
-# Choosing a model, lesson 1. Answers and reasons are checked against the reckoner's own scoring at build time. Draft: not shown to students until reviewed.
+# Choosing a model, lesson 1. Answers and reasons are checked against the reckoner's own scoring at build time. Reviewed and published by Steve on 2026-10-03.
 schemaVersion: 1
 id: select-1-which
 path: select
@@ -6,13 +6,14 @@ order: 1
 title: Which model, and why?
 summary: Three classes, three answers. Choose between 5E and POE, then justify the choice in the reckoner's terms.
 level: select
-version: 0.1.0
-status: draft
+version: 1.0.0
+status: published
 lastReviewed: 2026-10-03
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-03
 context:
   stages: [stage4]
   focusAreas: [Living systems, Cells and classification]

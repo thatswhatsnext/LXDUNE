@@ -1,4 +1,4 @@
-# POE path, lesson 1. Built on the POE guide's worked sequence ep-s4-yeast. Draft: not shown to students until reviewed.
+# POE path, lesson 1. Built on the POE guide's worked sequence ep-s4-yeast. Reviewed and published by Steve on 2026-10-03.
 schemaVersion: 1
 id: poe-1-yeast
 path: poe
@@ -6,13 +6,14 @@ order: 1
 title: Is yeast alive?
 summary: Three flasks, three balloons. Learn what each POE phase has to do, and what it looks like when it works.
 level: recognise
-version: 0.1.0
-status: draft
+version: 1.0.0
+status: published
 lastReviewed: 2026-10-03
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-03
 context:
   stages: [stage4]
   focusAreas: [Living systems]

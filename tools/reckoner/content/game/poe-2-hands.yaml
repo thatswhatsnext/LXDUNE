@@ -1,4 +1,4 @@
-# POE path, lesson 2. Built on the POE guide's worked sequence ep-s5-handwashing. Draft: not shown to students until reviewed.
+# POE path, lesson 2. Built on the POE guide's worked sequence ep-s5-handwashing. Reviewed and published by Steve on 2026-10-03.
 schemaVersion: 1
 id: poe-2-hands
 path: poe
@@ -6,13 +6,14 @@ order: 2
 title: Clean hands
 summary: Write prediction prompts that surface reasoning, handle a model's limits, and place a POE inside a 5E unit.
 level: explain
-version: 0.1.0
-status: draft
+version: 1.0.0
+status: published
 lastReviewed: 2026-10-03
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-03
 context:
   stages: [stage5]
   focusAreas: [Disease]
