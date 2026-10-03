@@ -1,4 +1,4 @@
-# 5E path, lesson 6. Design level: Prac Day, a branching simulation of the 5E guide's cells sequence (seq-s4-cells). Draft: not shown to students until reviewed.
+# 5E path, lesson 6. Design level: Prac Day, a branching simulation of the 5E guide's cells sequence (seq-s4-cells). Reviewed and published by Steve on 2026-10-03.
 schemaVersion: 1
 id: 5e-6-prac-day
 path: 5e
@@ -6,13 +6,14 @@ order: 6
 title: Prac Day
 summary: Teach the cells unit to a simulated Year 7 class. Every move you make changes what the class thinks next.
 level: design
-version: 0.1.0
-status: draft
+version: 1.0.0
+status: published
 lastReviewed: 2026-10-03
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-03
 context:
   stages: [stage4]
   focusAreas: [Cells and classification]
