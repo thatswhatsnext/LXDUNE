@@ -10,7 +10,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import yaml from "js-yaml";
 import { GameLesson } from "../src/schema/game-lesson";
-import { buildGame, checkLesson, dimScore, fit, GAME_DIR, loadGame } from "./lib/game";
+import { buildGame, buildReport, checkLesson, dimScore, fit, GAME_DIR, journeyOf, loadGame } from "./lib/game";
 import { PKG_ROOT } from "./lib/build";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -67,6 +67,14 @@ async function playLesson(doc: any, id: string) {
   btn.click();
   go();
   for (let step = 0; step < 100 && !doc.querySelector(".sum-head"); step++) {
+    // A build board: place every card (all in the first phase) before checking the plan.
+    if (doc.querySelector("[data-c]")) {
+      while (doc.querySelector("[data-c]")) { doc.querySelector("[data-c]").click(); doc.querySelector("[data-place]").click(); }
+      go();
+      if (!doc.querySelector(".report")) throw new Error(`${id}: no feature report after checking the plan`);
+      go();
+      continue;
+    }
     if (doc.querySelector("#pool .opt")) while (doc.querySelector("#pool .opt")) doc.querySelector("#pool .opt").click();
     else {
       const opt = doc.querySelector(".opts .opt:not([disabled])");
@@ -166,6 +174,40 @@ const cases: [string, () => void | Promise<void>][] = [
   ["a nest item that disagrees with the guides' nesting records is refused", () => {
     const c = loadGame({ gameDir: gameCopy("bad-nest", (l) => (l.items.find((i: any) => i.type === "nest").answer = "explore"), "poe-2-hands.yaml") });
     if (!c.errors.some((e) => /nest poe at engage in 5e, not explore/.test(e))) throw new Error(`not caught: ${c.errors.join("; ")}`);
+  }],
+  ["the page's build report matches the build's for random placements", () => {
+    const js = readFileSync(join(PKG_ROOT, "templates", "game.js"), "utf8");
+    const src = js.slice(js.indexOf("/*<buildReport>*/"), js.indexOf("/*</buildReport>*/"));
+    const pageReport = new Function(`${src}; return buildReport;`)();
+    const c = loadGame();
+    let compared = 0;
+    for (const l of c.lessons) for (const it of l.items) {
+      if (it.type !== "build") continue;
+      const g = c.guides.get(journeyOf(c.config.paths.find((p) => p.id === l.path)!))!;
+      const phases = g.phases.slice().sort((a, b) => a.order - b.order);
+      let seed = 7;
+      const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+      for (let t = 0; t < 200; t++) {
+        const placed: Record<string, string[]> = {};
+        it.cards.forEach((card) => { if (rnd() < 0.7) (placed[phases[Math.floor(rnd() * phases.length)].id] ??= []).push(card.id); });
+        const a = JSON.stringify(buildReport(it, g, placed)), b = JSON.stringify(pageReport(it, placed, phases));
+        if (a !== b) throw new Error(`${l.id}: reports differ for ${JSON.stringify(placed)}\n  build ${a}\n  page  ${b}`);
+        compared++;
+      }
+    }
+    if (!compared) throw new Error("no build items to compare");
+  }],
+  ["an unsolvable build board is refused", () => {
+    const c = loadGame({ gameDir: gameCopy("bad-build", (l) => (l.items.find((i: any) => i.type === "build").cards.find((x: any) => x.id === "garden").features = []), "5e-5-build.yaml") });
+    if (!c.errors.some((e) => /no placement of the sound cards gives a clean report/.test(e))) throw new Error(`not caught: ${c.errors.join("; ")}`);
+  }],
+  ["a Prac Day loop, unreachable node or bad conception is refused", () => {
+    const loop = loadGame({ gameDir: gameCopy("bad-sim-loop", (l) => (l.items.find((i: any) => i.type === "sim").nodes.find((n: any) => n.id === "revisit").choices[0].next = "sort"), "5e-6-prac-day.yaml") });
+    if (!loop.errors.some((e) => /loops/.test(e))) throw new Error(`loop not caught: ${loop.errors.join("; ")}`);
+    const orphan = loadGame({ gameDir: gameCopy("bad-sim-orphan", (l) => (l.items.find((i: any) => i.type === "sim").nodes.find((n: any) => n.id === "sort").choices[1].next = "microscope"), "5e-6-prac-day.yaml") });
+    if (!orphan.errors.some((e) => /"quiet" can't be reached/.test(e))) throw new Error(`orphan not caught: ${orphan.errors.join("; ")}`);
+    const conc = loadGame({ gameDir: gameCopy("bad-sim-conc", (l) => (l.items.find((i: any) => i.type === "sim").nodes.find((n: any) => n.id === "sort").said.conception = 9), "5e-6-prac-day.yaml") });
+    if (!conc.errors.some((e) => /conception 9 is past the end/.test(e))) throw new Error(`conception not caught: ${conc.errors.join("; ")}`);
   }],
   ["a path stays locked until the paths it requires reach their level", async () => {
     // Publish every lesson in a copy, so the student build holds the full map.

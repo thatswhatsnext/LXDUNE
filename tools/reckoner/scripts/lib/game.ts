@@ -213,6 +213,8 @@ export function checkLesson(l: GameLesson, g: ModelGuide, ctx?: { guides: Map<st
       v.plan?.forEach((row: any) => need(phases, row.phaseId, "phase", `${at} plan`));
     });
     if (it.type === "concept") it.rows.forEach((r) => need(phases, r.phaseId, "phase", `${where} rows`));
+    if (it.type === "build") out.push(...checkBuild(l, it, g));
+    if (it.type === "sim") out.push(...checkSim(l, it, g));
     if (!ctx) continue;
     const { guides, reckoner: r } = ctx;
     if (it.type === "select" || it.type === "flip") {
@@ -261,6 +263,122 @@ export function checkLesson(l: GameLesson, g: ModelGuide, ctx?: { guides: Map<st
   }
   if (l.guideSection === "sequences" && !l.builtOn.sequenceIds.length) out.push(`${l.id}: guideSection is sequences but builtOn names no worked sequence`);
   return out;
+}
+
+type BuildItem = Extract<GameLesson["items"][number], { type: "build" }>;
+type SimItem = Extract<GameLesson["items"][number], { type: "sim" }>;
+const ordered = (g: ModelGuide) => g.phases.slice().sort((a, b) => a.order - b.order);
+
+/**
+ * The feature report for a placement (phase id -> card ids). Shared by the build check and the page,
+ * which carries the same rules in templates/game.js; test-game.ts checks the two agree.
+ */
+export function buildReport(it: BuildItem, g: ModelGuide, placed: Record<string, string[]>) {
+  const card = (id: string) => it.cards.find((c) => c.id === id)!;
+  const met = new Set<string>();
+  const flags: { mis: string; because: string }[] = [];
+  const misplaced: { card: string; in: string; does: string }[] = [];
+  const checkPhases = new Set<string>();
+  for (const p of ordered(g)) {
+    const ids = placed[p.id] ?? [];
+    for (const id of ids) {
+      const c = card(id);
+      c.flaws.forEach((m) => flags.push({ mis: m, because: c.id }));
+      if (c.kind === "check") { checkPhases.add(p.id); continue; }
+      if (c.does && c.does !== p.id) { misplaced.push({ card: c.id, in: p.id, does: c.does }); continue; }
+      if (!c.flaws.length) c.features.forEach((f) => met.add(f));
+    }
+    if (!ids.some((id) => card(id).kind === "activity") && it.missing[p.id]) flags.push({ mis: it.missing[p.id], because: `empty:${p.id}` });
+  }
+  if (it.formative) {
+    if (checkPhases.size >= it.formative.minPhases) met.add(it.formative.lookFor);
+    else flags.push({ mis: it.formative.flag, because: `checks:${checkPhases.size}` });
+  }
+  const missing = it.report.filter((f) => !met.has(f));
+  return { met: it.report.filter((f) => met.has(f)), missing, flags, misplaced, clean: !flags.length && !misplaced.length && !missing.length };
+}
+
+function checkBuild(l: GameLesson, it: BuildItem, g: ModelGuide): Issues {
+  const out: Issues = [];
+  const where = `${l.id} item ${it.id}`;
+  const phases = new Set(g.phases.map((p) => p.id));
+  const lookFors = new Set(g.phases.flatMap((p) => p.lookFors.map((x) => x.id)));
+  const mis = new Set(g.misapplications.map((m) => m.id));
+  const ids = new Set<string>();
+  for (const c of it.cards) {
+    if (ids.has(c.id)) out.push(`${where}: duplicate card "${c.id}"`);
+    ids.add(c.id);
+    if (c.kind === "activity" && !c.does) out.push(`${where} card ${c.id}: an activity card needs "does" (the phase whose job it does)`);
+    if (c.kind === "check" && c.does) out.push(`${where} card ${c.id}: a check card can go in any phase, so it has no "does"`);
+    if (c.does && !phases.has(c.does)) out.push(`${where} card ${c.id}: phase "${c.does}" is not in ${g.id}`);
+    c.features.forEach((f) => !lookFors.has(f) && out.push(`${where} card ${c.id}: look-for "${f}" is not in ${g.id}`));
+    c.flaws.forEach((m) => !mis.has(m) && out.push(`${where} card ${c.id}: misapplication "${m}" is not in ${g.id}`));
+  }
+  it.report.forEach((f) => !lookFors.has(f) && out.push(`${where} report: look-for "${f}" is not in ${g.id}`));
+  Object.entries(it.missing).forEach(([p, m]) => {
+    if (!phases.has(p)) out.push(`${where} missing: phase "${p}" is not in ${g.id}`);
+    if (!mis.has(m)) out.push(`${where} missing: misapplication "${m}" is not in ${g.id}`);
+  });
+  if (it.formative) {
+    if (!lookFors.has(it.formative.lookFor)) out.push(`${where} formative: look-for "${it.formative.lookFor}" is not in ${g.id}`);
+    if (!mis.has(it.formative.flag)) out.push(`${where} formative: misapplication "${it.formative.flag}" is not in ${g.id}`);
+  }
+  if (out.length) return out;
+  // Solvable: every sound activity in the phase it does, and the checks spread across the first phases.
+  const placed: Record<string, string[]> = {};
+  it.cards.filter((c) => c.kind === "activity" && !c.flaws.length).forEach((c) => (placed[c.does!] ??= []).push(c.id));
+  const checks = it.cards.filter((c) => c.kind === "check" && !c.flaws.length);
+  ordered(g).forEach((p, i) => checks[i] && (placed[p.id] ??= []).push(checks[i].id));
+  const rep = buildReport(it, g, placed);
+  if (!rep.clean) out.push(`${where}: no placement of the sound cards gives a clean report (missing ${rep.missing.join(", ") || "none"}; flags ${rep.flags.map((f) => f.mis).join(", ") || "none"})`);
+  if (!it.cards.some((c) => c.flaws.length)) out.push(`${where}: include at least one flawed card, so the board has something to resist`);
+  return out;
+}
+
+function checkSim(l: GameLesson, it: SimItem, g: ModelGuide): Issues {
+  const out: Issues = [];
+  const where = `${l.id} item ${it.id}`;
+  const seq = g.workedSequences.find((s) => s.id === it.sequenceId);
+  if (!seq) return [`${where}: worked sequence "${it.sequenceId}" is not in ${g.id}`];
+  const nConc = seq.targetConceptions.length;
+  const phases = new Set(g.phases.map((p) => p.id));
+  const lookFors = new Set(g.phases.flatMap((p) => p.lookFors.map((x) => x.id)));
+  const byId = new Map<string, SimItem["nodes"][number]>();
+  it.nodes.forEach((n) => { if (byId.has(n.id)) out.push(`${where}: duplicate node "${n.id}"`); byId.set(n.id, n); });
+  const conc = (i: number, at: string) => i >= nConc && out.push(`${where} ${at}: conception ${i} is past the end of ${seq.id}'s ${nConc} target conceptions`);
+  for (const n of it.nodes) {
+    const at = `node ${n.id}`;
+    if (!phases.has(n.phase)) out.push(`${where} ${at}: phase "${n.phase}" is not in ${g.id}`);
+    if (!n.choices.some((c) => c.good)) out.push(`${where} ${at}: at least one choice must be the better move`);
+    if (n.said) conc(n.said.conception, at);
+    n.choices.forEach((c, i) => {
+      if (c.next !== "end" && !byId.has(c.next)) out.push(`${where} ${at} choice ${i}: next "${c.next}" is not a node`);
+      if (c.lookFor && !lookFors.has(c.lookFor)) out.push(`${where} ${at} choice ${i}: look-for "${c.lookFor}" is not in ${g.id}`);
+      [...c.surface, ...c.hide, ...c.challenge].forEach((x) => conc(x, `${at} choice ${i}`));
+    });
+  }
+  const mins = it.endings.map((e) => e.minGood);
+  if (!mins.includes(0)) out.push(`${where}: one ending needs minGood 0, so every run has an ending`);
+  if (new Set(mins).size !== mins.length) out.push(`${where}: endings need different minGood values`);
+  if (!byId.has(it.start)) return [...out, `${where}: start "${it.start}" is not a node`];
+  if (out.length) return out;
+  // Walk every path: no cycles, every node reachable, every run has 3 to 5 decisions and ends.
+  const seen = new Set<string>();
+  let best = 0;
+  const walk = (id: string, depth: number, trail: string[]) => {
+    if (id === "end") {
+      if (depth < 3 || depth > 5) out.push(`${where}: the run ${trail.join(" → ")} has ${depth} decisions (needs 3 to 5)`);
+      best = Math.max(best, depth);
+      return;
+    }
+    if (trail.includes(id)) return out.push(`${where}: the path ${[...trail, id].join(" → ")} loops`);
+    seen.add(id);
+    byId.get(id)!.choices.forEach((c) => walk(c.next, depth + 1, [...trail, id]));
+  };
+  walk(it.start, 0, []);
+  it.nodes.forEach((n) => !seen.has(n.id) && out.push(`${where}: node "${n.id}" can't be reached from the start`));
+  if (Math.max(...mins) > best) out.push(`${where}: an ending needs ${Math.max(...mins)} strong moves, but no run has that many decisions`);
+  return [...new Set(out)];
 }
 
 /** What the page receives: lessons, the guide wording they show, and the reckoner's weighing for select and flip items. */
@@ -315,6 +433,10 @@ export function gameData(c: GameContent, includeDrafts: boolean) {
       };
     }
     if (it.type === "nest") return { ...it, how: nestingRecord(it.model, it.host, c.guides)!.how };
+    if (it.type === "sim") {
+      const g = c.guides.get(journeyOf(c.config.paths.find((p) => p.id === l.path)!))!;
+      return { ...it, conceptions: g.workedSequences.find((x) => x.id === it.sequenceId)!.targetConceptions };
+    }
     return it;
   });
   return {
