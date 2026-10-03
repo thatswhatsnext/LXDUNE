@@ -22,8 +22,12 @@ export const Mastery = z.enum(MASTERY);
 /** The Marzano & Kendall label shown on each item. */
 export const Processing = z.enum(["Retrieval", "Comprehension", "Analysis", "Knowledge utilisation", "Metacognition"]);
 
-/** Where in the player's own 5E journey an item sits (the phase rail at the top of the screen). */
-export const JourneyPhase = z.enum(["engage", "explore", "explain", "elaborate", "evaluate"]);
+/**
+ * Where in the player's own journey an item sits: a phase id of the path's journey guide (the phase
+ * rail at the top of the screen). A 5E lesson runs as a 5E sequence, a POE lesson as a POE. Checked
+ * against the guide in scripts/lib/game.ts.
+ */
+export const JourneyPhase = Slug;
 
 /** References into the path's guide. Every id is checked against the published guide. */
 export const GuideRefs = obj({
@@ -95,6 +99,44 @@ const LookFor = obj({ ...base, type: z.literal("lookfor"), ...lookForShape, vari
 const diagnoseShape = { answer: Slug, distractors: z.array(Slug).min(1).max(4) };
 const Diagnose = obj({ ...base, type: z.literal("diagnose"), ...diagnoseShape, variants: variantOf({ ...base, ...diagnoseShape }) });
 
+/**
+ * A class profile in the reckoner's own terms: dimension id -> option value (an array for the
+ * multi-select dimensions, purpose and ws). Values are checked against content/questions.json.
+ */
+const Profile = z.record(z.string(), z.union([z.string(), z.array(z.string()).min(1)]));
+/** A candidate: a model id, or "host+nested" for a model run inside another (e.g. 5e+poe). */
+const Candidate = z.string().regex(/^[a-z0-9-]+(\+[a-z0-9-]+)?$/);
+
+/**
+ * Choose the model for a class, then justify it. The reckoner is the answer key: the build scores
+ * the profile with the reckoner's own fit() and refuses an authored answer that disagrees. Each
+ * reason names the dimension it rests on (null = a preference, never a fit reason); `ok` must match
+ * whether that dimension really favours the answer.
+ */
+const Select = obj({
+  ...base,
+  type: z.literal("select"),
+  scenario: Vignette,
+  profile: Profile,
+  candidates: z.array(Candidate).min(2).max(4),
+  answer: Candidate,
+  reasons: z.array(obj({ text: Text, dim: z.string().nullable(), ok: z.boolean() })).min(3).max(6),
+});
+
+/** Which single change to the class flips the reckoner's choice? Checked by re-scoring each change. */
+const Flip = obj({
+  ...base,
+  type: z.literal("flip"),
+  scenario: Vignette,
+  profile: Profile,
+  candidates: z.array(Slug).min(2).max(4),
+  changes: z.array(obj({ dim: z.string(), value: z.union([z.string(), z.array(z.string()).min(1)]) })).min(3).max(5),
+  answer: z.number().int().min(0),
+});
+
+/** Where does this model sit inside a host model? Options are the host guide's phases; checked against the guides' nesting records. */
+const Nest = obj({ ...base, type: z.literal("nest"), model: Slug, host: Slug, answer: Slug });
+
 /** A teaching card: the model named and connected. Unscored. */
 const Concept = obj({
   ...base,
@@ -108,7 +150,7 @@ const Concept = obj({
 /** Look back: recalls the lesson's prediction, asks for a written move, shows a model answer. Unscored. */
 const Reflect = obj({ ...base, type: z.literal("reflect"), title: Text, q: Text, model: Text, recall: Slug.optional() });
 
-export const GameItem = z.discriminatedUnion("type", [Predict, Choice, Spot, Multi, Order, LookFor, Diagnose, Concept, Reflect]);
+export const GameItem = z.discriminatedUnion("type", [Predict, Choice, Spot, Multi, Order, LookFor, Diagnose, Select, Flip, Nest, Concept, Reflect]);
 export type GameItem = z.infer<typeof GameItem>;
 
 export const GameLesson = obj({
@@ -148,6 +190,8 @@ export const GameLesson = obj({
     if (it.type === "reflect" && it.recall && !l.items.some((x) => x.id === it.recall && x.type === "predict"))
       issue(["items", i, "recall"], `recall "${it.recall}" is not a predict item in this lesson`);
     if ((it.type === "lookfor" || it.type === "diagnose") && it.distractors.includes(it.answer)) issue(["items", i, "distractors"], "The answer cannot also be a distractor");
+    if (it.type === "select" && !it.candidates.includes(it.answer)) issue(["items", i, "answer"], "The answer must be one of the candidates");
+    if (it.type === "flip" && it.answer >= it.changes.length) issue(["items", i, "answer"], "answer is past the last change");
     if (it.type === "diagnose" && !it.vignette && !it.plan) issue(["items", i], "A diagnose item needs a vignette or a plan to diagnose");
   });
   if (!l.items.some((it) => !["concept", "reflect", "predict"].includes(it.type))) issue(["items"], "A lesson needs at least one scored item");
@@ -160,7 +204,19 @@ export type GameLesson = z.infer<typeof GameLesson>;
 export const GameConfig = obj({
   schemaVersion: z.literal(1),
   /** Paths in the order they appear on the map. Each is a guide id. */
-  paths: z.array(obj({ id: Slug, title: z.string().min(1).max(40), blurb: ShortText })).min(1),
+  paths: z.array(obj({
+    id: Slug,
+    title: z.string().min(1).max(40),
+    blurb: ShortText,
+    /** guide: a path through one guide (id = guide id). select: choosing between models. */
+    kind: z.enum(["guide", "select"]).default("guide"),
+    /** Guide whose phases make the lesson rail. Defaults to the path's own guide. */
+    journey: Slug.optional(),
+    /** select paths: the models being chosen between. */
+    models: z.array(Slug).default([]),
+    /** The path unlocks once each named path reaches this mastery level. */
+    requires: z.array(obj({ path: Slug, level: Mastery })).default([]),
+  })).min(1),
   feedback: obj({
     /** Google Form link; "placeholder" shows an inactive button; omit to hide feedback. */
     url: z.union([z.string().url(), z.literal("placeholder")]).optional(),

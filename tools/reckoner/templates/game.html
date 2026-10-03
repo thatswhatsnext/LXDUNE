@@ -216,6 +216,15 @@ button.go.fbk{margin-top:12px}
 .ghost{display:inline-block;padding:12px 18px;border-radius:var(--r);border:2px solid var(--line);background:var(--surface);color:var(--accent);font-weight:700;text-decoration:none;font-size:16px;cursor:pointer}
 .reset{margin-top:28px;font-size:13.5px;color:var(--muted)}
 .reset button{border:0;background:none;color:var(--accent);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+.weigh{display:grid;gap:2px;margin-top:8px;font-size:14px}
+.wrow{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(auto-fit,minmax(0,1fr));gap:10px;align-items:center;padding:6px 8px;border-radius:8px}
+.wrow small{display:block;color:var(--muted);font-size:12.5px}
+.wrow.whead{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.wrow.hl{background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.wrow.wtot{font-weight:700;border-top:1px solid var(--line);border-radius:0}
+.wrow .bar{display:block;height:7px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin-bottom:3px}
+.wrow .bar b{display:block;height:100%;background:var(--accent);border-radius:99px}
+.wrow span{min-width:0;font-variant-numeric:tabular-nums}
 .lfq{display:block;font-size:13px;color:var(--muted);font-family:var(--f-mono);letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}
 </style>
 </head>
