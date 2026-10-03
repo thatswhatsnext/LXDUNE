@@ -39,6 +39,9 @@ p{margin:.4rem 0} a{color:var(--accent)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 1.25rem}
 header.top{padding:2.25rem 0 1rem;border-bottom:1px solid var(--line)}
 .lede{max-width:66ch;color:var(--muted);margin-top:.6rem}
+.playlink{margin:.75rem 0 0;font-size:.95rem}
+.playlink a{color:var(--accent);font-weight:500;text-underline-offset:2px}
+@media print{.playlink{display:none}}
 .tabs{display:flex;gap:.25rem;margin-top:1.25rem;flex-wrap:wrap}
 .tab{font:500 .95rem var(--sans);padding:.55rem 1rem;border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;background:transparent;color:var(--muted);cursor:pointer}
 .tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 0 var(--surface)}
@@ -346,6 +349,7 @@ table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;
   <div class="wrap">
     <h1>Which constructivist model fits this science sequence?</h1>
     <p class="lede">A planning companion for pre-service and early career teachers working with the NSW Science 7–10 Syllabus (2023). Answer a few questions to see which teaching models fit and why, then open the companion guide for the model you choose.</p>
+    <p class="playlink">Want some practice first? <a href="../play/">Play Teaching Models Play</a>: short lessons on choosing and sequencing models.</p>
     <div class="tabs" role="tablist" aria-label="Views">
       <button class="tab" role="tab" id="t-unit" aria-controls="p-unit" aria-selected="true">Start with your unit</button>
       <button class="tab" role="tab" id="t-quick" aria-controls="p-quick" aria-selected="false" tabindex="-1">Quick reckoner</button>
