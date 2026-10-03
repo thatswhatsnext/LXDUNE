@@ -148,6 +148,16 @@ call (gap under 0.03), and a reason whose `ok` doesn't match whether its questio
 documented misconception). `flip` items list single changes to a class; exactly one must flip the reckoner's
 choice, clearly. `nest` items are checked against the guides' nesting records.
 
+**Design level.** `build` items give a brief and a deck of activity and check cards to place into the guide's
+phases. The feature report lists the look-fors met and missing and the misapplications raised: by a flawed
+card, an empty phase (`missing`), checks in too few phases (`formative`), or a card in a phase whose job it
+doesn't do. It isn't a score. The build refuses a board whose sound cards can't produce a clean report, and
+a test checks the page's report rules against `buildReport()`. Players can download their plan as Markdown.
+`sim` items are Prac Day: a branching run through a worked sequence, where students voice its target
+conceptions and each choice surfaces, hides or challenges them. The ending follows how many strong moves the
+run made (`endings`, by `minGood`). The build refuses loops, unreachable nodes, runs outside 3 to 5
+decisions, and conception indexes past the sequence's list.
+
 `play/index.html` is one self-contained file holding published lessons only. Progress is kept in the
 player's browser (localStorage) and nothing is sent anywhere. The same review rule as guides applies: a
 published lesson needs `ai-drafted-reviewed` or `authored` provenance and a reviewer.

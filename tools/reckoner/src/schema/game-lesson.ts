@@ -137,6 +137,67 @@ const Flip = obj({
 /** Where does this model sit inside a host model? Options are the host guide's phases; checked against the guides' nesting records. */
 const Nest = obj({ ...base, type: z.literal("nest"), model: Slug, host: Slug, answer: Slug });
 
+/**
+ * Build a plan: place activity and check cards into the guide's phases, then get a feature report
+ * keyed to the guide's look-fors and misapplications (not a score). A card counts towards its
+ * look-fors only in the phase whose job it does (`does`); a card with `flaws` raises those
+ * misapplications wherever it goes. `missing` names the misapplication an empty phase raises.
+ * `formative` asks for check cards in at least `minPhases` phases. The build refuses a board that
+ * can't produce a clean report.
+ */
+const Build = obj({
+  ...base,
+  type: z.literal("build"),
+  brief: Vignette,
+  cards: z.array(obj({
+    id: Slug,
+    text: Text,
+    kind: z.enum(["activity", "check"]).default("activity"),
+    does: Slug.optional(),
+    features: z.array(Slug).default([]),
+    flaws: z.array(Slug).default([]),
+  })).min(6).max(18),
+  report: z.array(Slug).min(3),
+  missing: z.record(Slug, Slug).default({}),
+  formative: obj({ lookFor: Slug, flag: Slug, minPhases: z.number().int().min(2) }).optional(),
+});
+
+/**
+ * Prac Day: a branching classroom simulation. Each node is a moment in a worked sequence's lessons;
+ * students voice the sequence's target conceptions (by index into targetConceptions); each choice
+ * carries the class's thinking forward (surface, hide, challenge) and leads to the next node, or to
+ * "end". The ending shown is the one with the highest minGood the run reached, so it always matches
+ * how many strong moves the player made. The build refuses unreachable nodes, cycles and dead ends.
+ */
+const Said = obj({ who: ShortText, text: Text, conception: z.number().int().min(0) });
+const SimChoice = obj({
+  text: Text,
+  next: z.union([Slug, z.literal("end")]),
+  good: z.boolean(),
+  lookFor: Slug.optional(),
+  debrief: Text,
+  surface: z.array(z.number().int().min(0)).default([]),
+  hide: z.array(z.number().int().min(0)).default([]),
+  challenge: z.array(z.number().int().min(0)).default([]),
+});
+const SimNode = obj({
+  id: Slug,
+  phase: Slug,
+  when: ShortText,
+  situation: Text,
+  said: Said.optional(),
+  choices: z.array(SimChoice).min(2).max(3),
+});
+const Sim = obj({
+  ...base,
+  type: z.literal("sim"),
+  cast: Vignette,
+  sequenceId: Slug,
+  start: Slug,
+  nodes: z.array(SimNode).min(3).max(20),
+  endings: z.array(obj({ minGood: z.number().int().min(0), title: ShortText, text: Text })).min(2).max(4),
+});
+
 /** A teaching card: the model named and connected. Unscored. */
 const Concept = obj({
   ...base,
@@ -150,7 +211,7 @@ const Concept = obj({
 /** Look back: recalls the lesson's prediction, asks for a written move, shows a model answer. Unscored. */
 const Reflect = obj({ ...base, type: z.literal("reflect"), title: Text, q: Text, model: Text, recall: Slug.optional() });
 
-export const GameItem = z.discriminatedUnion("type", [Predict, Choice, Spot, Multi, Order, LookFor, Diagnose, Select, Flip, Nest, Concept, Reflect]);
+export const GameItem = z.discriminatedUnion("type", [Predict, Choice, Spot, Multi, Order, LookFor, Diagnose, Select, Flip, Nest, Build, Sim, Concept, Reflect]);
 export type GameItem = z.infer<typeof GameItem>;
 
 export const GameLesson = obj({

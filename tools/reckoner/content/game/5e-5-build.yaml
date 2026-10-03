@@ -1,0 +1,177 @@
+# 5E path, lesson 5. Design level: build a 5E plan from cards and read the feature report. Reviewed and published by Steve on 2026-10-03.
+schemaVersion: 1
+id: 5e-5-build
+path: 5e
+order: 5
+title: Build it
+summary: Build a Stage 4 plant-growth sequence from activity cards, then read what the guide's look-fors say about it.
+level: design
+version: 1.0.0
+status: published
+lastReviewed: 2026-10-03
+provenance:
+  source: ai-drafted-reviewed
+  authors: [Claude]
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-03
+context:
+  stages: [stage4]
+  focusAreas: [Living systems]
+  disciplines: [biology]
+outcomes: [SC4-LIV-01]
+builtOn:
+  lookForIds: [engage-elicit, engage-question, explore-own-data, explore-before-explain, explain-links-data, explain-conceptions, elaborate-new-context, elaborate-requires-concept, evaluate-revisit, evaluate-formative]
+  misapplicationIds: [mis-entertainment, mis-confirmation, mis-monologue, mis-no-elaborate, mis-no-explain, mis-end-only]
+guideSection: checklist
+items:
+  - id: question
+    type: choice
+    at: engage
+    processing: Analysis
+    kind: Set the question
+    tests: engage
+    title: "Your unit: Year 8, plant growth. Many students think plants get their food from the soil."
+    q: Which driving question gives the sequence the most to work with?
+    options:
+      - text: Where does a plant's mass come from?
+        fb: Yes. It's answerable with evidence students can collect, it leads straight to photosynthesis, and it puts the soil idea on the table from day one.
+      - text: What is photosynthesis?
+        fb: This asks for a definition. It names the answer before students have met the problem.
+      - text: Why are plants important?
+        fb: A worthwhile question, but too broad to drive an investigation, and it doesn't surface the soil idea.
+      - text: What are the parts of a plant?
+        fb: This invites labelling, not explanation. Students can answer it without changing what they think.
+    answer: 0
+    refs:
+      lookForIds: [engage-question]
+
+  - id: rubric
+    type: concept
+    at: engage
+    processing: Retrieval
+    kind: Before you build
+    title: What the report will look for
+    lead: >-
+      The board checks your plan against the 5E guide's look-fors and misapplications. A card only counts in the
+      phase whose job it does, and some cards look useful but bring a known problem with them.
+    rows:
+      - phaseId: engage
+        does: Ideas drawn out and recorded, around one driving question.
+        move: "Watch for: entertainment with no elicitation."
+      - phaseId: explore
+        does: Students' own data, before any explanation.
+        move: "Watch for: a practical that only confirms the notes."
+      - phaseId: explain
+        does: The science built from the class's data, returning to the Engage ideas.
+        move: "Watch for: lessons of slides with no student talk."
+      - phaseId: elaborate
+        does: A new context that can't be done without the concept.
+        move: "Watch for: leaving it out altogether."
+      - phaseId: evaluate
+        does: Students compare where they started with where they are now.
+        move: "Watch for: checking only at the end."
+
+  - id: board
+    type: build
+    at: explore
+    processing: Knowledge utilisation
+    kind: Build the plan
+    tests: design
+    title: Build your 5E sequence.
+    brief:
+      who: Year 8 · Living systems · about 10 lessons
+      text: "Driving question: where does a plant's mass come from?"
+    q: Place one or more activities in each phase, and spread check-for-understanding cards through the sequence. Not every card belongs in a strong plan.
+    cards:
+      - id: wall
+        text: Students predict where a plant's mass comes from and post their ideas on a class thinking wall
+        does: engage
+        features: [engage-elicit, engage-question]
+      - id: timelapse
+        text: A time-lapse video of a rainforest, then students copy the definition of photosynthesis
+        does: engage
+        flaws: [mis-entertainment]
+      - id: cress
+        text: Groups grow cress in sealed bags, with and without light and soil, and weigh plants and bags over a week
+        does: explore
+        features: [explore-own-data, explore-before-explain]
+      - id: confirm
+        text: Notes on photosynthesis, then a leaf-disc prac to prove the word equation
+        does: explore
+        flaws: [mis-confirmation]
+      - id: from-data
+        text: Groups present their mass data, and the teacher builds the word equation from the class's results and returns to the thinking wall
+        does: explain
+        features: [explain-links-data, explain-conceptions]
+      - id: slides
+        text: Three lessons of slides on photosynthesis and respiration, with notes to copy
+        does: explain
+        flaws: [mis-monologue]
+      - id: garden
+        text: Students advise a community garden on why seedlings raised in a dark shed failed, using photosynthesis
+        does: elaborate
+        features: [elaborate-new-context, elaborate-requires-concept]
+      - id: textbook
+        text: Textbook questions that repeat the definitions from Explain
+        does: elaborate
+      - id: revisit
+        text: Students rewrite their thinking-wall idea as “I used to think… now I think… because…”, then explain an unfamiliar plant's growth
+        does: evaluate
+        features: [evaluate-revisit]
+      - id: recall-test
+        text: A 30-question recall test in the last lesson
+        does: evaluate
+      - id: exit-cress
+        kind: check
+        text: "Exit ticket: what does the cress data show so far?"
+      - id: whiteboards
+        kind: check
+        text: "Mini-whiteboards: draw where the plant's mass came from"
+      - id: confidence
+        kind: check
+        text: "Hinge question: which of four statements about plant food is right, and why?"
+    report: [engage-elicit, engage-question, explore-own-data, explore-before-explain, explain-links-data, explain-conceptions, elaborate-new-context, elaborate-requires-concept, evaluate-revisit, evaluate-formative]
+    missing:
+      explain: mis-no-explain
+      elaborate: mis-no-elaborate
+    formative:
+      lookFor: evaluate-formative
+      flag: mis-end-only
+      minPhases: 3
+    hint: Read each card for what it actually does, not the phase it sounds like.
+    why: >-
+      A plan can carry every heading and still miss the model. The look-fors are a checklist you can run on any
+      plan you write or are given, including on placement.
+
+  - id: why-report
+    type: multi
+    at: elaborate
+    processing: Comprehension
+    kind: Select all that apply
+    tests: design
+    title: Why might the recall test and the textbook questions leave look-fors missing, even though they sit in the right phases?
+    q: Select every reason that holds.
+    options:
+      - text: The recall test doesn't ask students to compare their thinking with where they started
+        ok: true
+        fb: Yes. Evaluate's look-fors are about revisiting initial ideas and applying understanding, not recall.
+      - text: The textbook questions can be answered without using the concept in a new setting
+        ok: true
+        fb: Yes. Elaborate needs a new context that demands the concept.
+      - text: Tests and textbook questions are never useful
+        ok: false
+        fb: They have their place. The issue is that these two don't do the job the phase is for.
+      - text: The report only counts cards in Engage and Explore
+        ok: false
+        fb: Every phase is checked. These cards are in the right phases but don't meet those phases' look-fors.
+    refs:
+      lookForIds: [evaluate-revisit, elaborate-new-context]
+
+  - id: reflect
+    type: reflect
+    at: evaluate
+    processing: Metacognition
+    kind: Look back
+    title: Your report, your plan.
+    q: Which look-for in your report was hardest to meet, and what would you change in a plan of your own because of it?
+    model: "Example: “Formative checks across three phases. I usually only plan an end-of-unit test, so I'd add an exit ticket in Explore and a hinge question in Explain.”"
