@@ -1,0 +1,232 @@
+# POE path, lesson 1. Built on the POE guide's worked sequence ep-s4-yeast. Draft: not shown to students until reviewed.
+schemaVersion: 1
+id: poe-1-yeast
+path: poe
+order: 1
+title: Is yeast alive?
+summary: Three flasks, three balloons. Learn what each POE phase has to do, and what it looks like when it works.
+level: recognise
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-03
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4]
+  focusAreas: [Living systems]
+  disciplines: [biology]
+outcomes: [SC4-LIV-01]
+builtOn:
+  sequenceIds: [ep-s4-yeast]
+  exampleIds: [poe-explain-pos-yeast, poe-explain-neg-quiz]
+  lookForIds: [poe-commit-written, poe-no-cueing, poe-observe-record, poe-reconcile, poe-followup]
+  misapplicationIds: [mis-poe-quiz, mis-poe-not-discrepant]
+guideSection: sequences
+items:
+  - id: predict
+    type: predict
+    at: predict
+    processing: Retrieval
+    kind: Predict
+    title: "Three flasks of warm water, each with a balloon stretched over the top: yeast and sugar; yeast only; sugar only."
+    q: Which balloons will inflate over the next 20 minutes?
+    options:
+      - text: None of them. Yeast is just a powder.
+      - text: Only the yeast-and-sugar balloon
+      - text: All three
+      - text: The two flasks with yeast in them, equally
+    answer: 1
+    reveal: >-
+      Only the yeast-and-sugar balloon inflates properly. Yeast is a living, single-celled fungus. Given sugar and
+      warmth, it respires and releases carbon dioxide. The yeast-only and sugar-only flasks are the controls that
+      let students pin the change on yeast using sugar.
+    why: >-
+      You've just done the Predict phase. It works because you committed to an answer and a reason before
+      seeing anything. Many Year 7 and 8 students predict “none”, because they think yeast is a non-living powder.
+
+  - id: lf-commit
+    type: lookfor
+    at: predict
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 8 · Predict
+      text: >-
+        Before the flasks go into the water bath, every student writes, on their own sheet, which balloons will
+        inflate. The teacher collects the sheets and pins a tally of predictions on the board.
+    answer: poe-commit-written
+    distractors: [poe-observe-record, poe-reconcile, poe-followup]
+    strong: true
+    why: >-
+      Individual, written commitment matters because a show of hands lets students drift to the popular answer.
+      A written prediction can't be quietly revised once the result is known.
+
+  - id: lf-cued
+    type: lookfor
+    at: predict
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Another Year 8 class · Predict
+      text: >-
+        The teacher opens with, “Most people think yeast is just a powder, so let's find out whether that's true,”
+        then asks every student to write a prediction.
+    answer: poe-no-cueing
+    distractors: [poe-observe-visible, poe-revise, poe-discrepant]
+    strong: false
+    hint: Read the teacher's first sentence as a student would.
+    why: >-
+      The framing tells students the popular answer is wrong, so they predict what they think the teacher wants
+      and their real ideas stay hidden.
+
+  - id: spot-observe
+    type: spot
+    at: observe
+    processing: Comprehension
+    kind: Spot the phase
+    tests: observe
+    vignette:
+      who: Year 8 · 20 minutes in
+      text: >-
+        The flasks stand in a warm water bath. Every five minutes, students measure each balloon with string and a
+        ruler and note any foam, writing what they see in one column and what they think it means in another.
+    q: Which POE phase is this?
+    answer: observe
+    fb:
+      predict: The predictions are already on the board. Students are now gathering evidence.
+      observe: Students record what happens, over time and separately from their explanations. That's Observe doing its job.
+      explain: No one is reconciling predictions yet. Keeping inferences in their own column holds the explaining back for now.
+    why: >-
+      Measuring over time means the result builds and can't be missed or dismissed. That matters most for the
+      students whose prediction was wrong.
+    variants:
+      - vignette:
+          who: Year 8 · Observe
+          text: >-
+            A visualiser shows the three flasks on the screen. Students sketch the balloons at 0, 10 and 20 minutes
+            before anyone talks about why.
+
+  - id: concept
+    type: concept
+    at: observe
+    processing: Retrieval
+    kind: The model
+    title: Predict–Observe–Explain
+    lead: >-
+      A POE makes students' ideas visible, then puts them up against evidence they can't explain away. It's
+      usually one lesson, built around one event chosen because many students will predict it wrongly.
+    rows:
+      - phaseId: predict
+        does: Every student commits, in writing, to a prediction and a reason.
+        move: "Teacher move: choose a surprising event and give nothing away."
+      - phaseId: observe
+        does: Every student sees, records and checks what actually happens.
+        move: "Teacher move: make the result visible and repeatable."
+      - phaseId: explain
+        does: Students reconcile prediction with observation and build a better explanation.
+        move: "Teacher move: students revise first, then you consolidate."
+    cite: "White, R. & Gunstone, R. (1992). Probing Understanding. Falmer Press."
+
+  - id: spot-explain
+    type: spot
+    at: explain
+    processing: Comprehension
+    kind: Spot the phase
+    tests: explain
+    vignette:
+      who: Year 8 · After the water bath
+      text: >-
+        In pairs, students put their prediction sheet beside their observations and draft a new explanation. Only
+        then does the teacher explain that yeast is a living, single-celled fungus that uses sugar and releases
+        carbon dioxide.
+    q: Which POE phase is this?
+    answer: explain
+    fb:
+      predict: Predictions were made before the flasks went in. This is what happens after.
+      observe: The observations are done. Students are now reconciling them with what they predicted.
+      explain: Students revise their own explanations before the teacher consolidates. That order is the heart of Explain.
+    refs:
+      exampleIds: [poe-explain-pos-yeast]
+
+  - id: dx-quiz
+    type: diagnose
+    at: explain
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Year 8 · Explain
+      text: >-
+        Once the balloon has inflated, the teacher asks who predicted correctly, praises them, gives the explanation
+        and moves on to the next topic.
+    answer: mis-poe-quiz
+    distractors: [mis-poe-cued, mis-poe-one-off, mis-poe-not-discrepant]
+    refs:
+      exampleIds: [poe-explain-neg-quiz]
+
+  - id: dx-no-surprise
+    type: diagnose
+    at: explain
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A pre-service teacher's POE
+      text: >-
+        Students predict whether a balloon over a flask of yeast, sugar and warm water will inflate. Almost the
+        whole class correctly predicts that it will.
+    answer: mis-poe-not-discrepant
+    distractors: [mis-poe-no-reasons, mis-poe-ambiguous, mis-poe-quiz]
+    hint: What did the three-flask version have that this one lacks?
+    why: >-
+      With one flask, the event isn't surprising enough to challenge anyone. The three-flask set-up and the
+      “just a powder” idea are what create the conflict.
+
+  - id: lf-followup
+    type: lookfor
+    at: explain
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 8 · Next lesson
+      text: >-
+        The next lesson opens with the class's prediction tally and the exit tickets, and asks why so many people
+        thought yeast was a powder. The unit on living things builds from there.
+    answer: poe-followup
+    distractors: [poe-discrepant, poe-observe-inference, poe-commit-written]
+    strong: true
+
+  - id: order
+    type: order
+    at: explain
+    processing: Comprehension
+    kind: Sequence it
+    tests: sequence
+    title: Put the yeast POE in order.
+    q: Tap each step in the order you'd teach it. Tap a placed step to remove it.
+    steps:
+      - text: Each student writes which balloons will inflate, and why
+        phaseId: predict
+      - text: The class tallies predictions without discussing them
+        phaseId: predict
+      - text: Students measure the balloons every five minutes in the water bath
+        phaseId: observe
+      - text: Pairs compare predictions with observations and draft new explanations
+        phaseId: explain
+      - text: The teacher consolidates, and students complete “I predicted… I observed… Now I think…”
+        phaseId: explain
+
+  - id: reflect
+    type: reflect
+    at: explain
+    processing: Metacognition
+    kind: Look back
+    title: Your prediction, revisited.
+    q: "Complete it for yourself: “I predicted… I observed… Now I think…”. What would you change about how you'd run this POE?"
+    model: "Example: “I predicted none would inflate. I observed only the yeast and sugar did. Now I think the controls are what make it convincing, so I'd never cut them for time.”"
+    recall: predict

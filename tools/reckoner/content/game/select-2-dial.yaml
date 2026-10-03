@@ -1,0 +1,212 @@
+# Choosing a model, lesson 2. Answers, reasons and flips are checked against the reckoner's own scoring at build time. Draft: not shown to students until reviewed.
+schemaVersion: 1
+id: select-2-dial
+path: select
+order: 2
+title: When the dial moves
+summary: Same topic, different class. Change one thing at a time and see which change moves the reckoner, and why.
+level: select
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-03
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4, stage5]
+  focusAreas: [Living systems, Disease]
+  disciplines: [biology]
+builtOn: {}
+items:
+  - id: predict
+    type: predict
+    at: engage
+    processing: Retrieval
+    kind: Predict
+    title: The yeast class from the last lesson now has a whole unit instead of one lesson. Nothing else changes.
+    q: Does the reckoner still recommend POE?
+    options:
+      - text: Yes, by a wide margin
+      - text: Yes, but only just
+      - text: No, 5E now wins clearly
+      - text: It's an exact tie
+    answer: 1
+    reveal: >-
+      POE still edges ahead, but only just. Extra time now favours 5E, while the purpose and the well-documented
+      misconception still favour POE. One more change could tip it.
+
+  - id: class-unit
+    type: select
+    at: explore
+    processing: Analysis
+    kind: Choose the model
+    tests: select
+    scenario:
+      who: Year 8 · Living systems
+      text: >-
+        Same class as before: novice inquirers, limited equipment, and many think yeast is a non-living powder.
+        You want to shift that idea, but now you have a whole unit.
+    profile:
+      purpose: [misc]
+      time: unit
+      ready: novice
+      concept: observable
+      misc: robust
+      res: limited
+    candidates: [5e, poe]
+    answer: poe
+    reasons:
+      - text: The goal is to shift a misconception
+        dim: purpose
+        ok: true
+      - text: The “yeast is a powder” idea is well documented
+        dim: misc
+        ok: true
+      - text: Equipment is limited
+        dim: res
+        ok: true
+      - text: There's a whole unit to work with
+        dim: time
+        ok: false
+      - text: POE is quicker to plan
+        dim: null
+        ok: false
+    why: >-
+      The time question now points the other way: a unit favours 5E. POE stays ahead on the other questions, but
+      the gap is small. Close calls are where your reasons matter most.
+
+  - id: flip
+    type: flip
+    at: explain
+    processing: Analysis
+    kind: Move the dial
+    tests: flip
+    scenario:
+      who: Year 8 · Living systems
+      text: The same class, with a whole unit. The reckoner recommends POE, but only just.
+    profile:
+      purpose: [misc]
+      time: unit
+      ready: novice
+      concept: observable
+      misc: robust
+      res: limited
+    candidates: [5e, poe]
+    changes:
+      - dim: purpose
+        value: [model]
+      - dim: ready
+        value: experienced
+      - dim: time
+        value: lesson
+      - dim: assess
+        value: explanation
+    answer: 0
+    hint: Which question counts three times as much as most of the others?
+    why: >-
+      The reckoner's results are sensitive to purpose because it counts three times as much as most questions. When
+      you're unsure which model to use, settle what the sequence is for first.
+
+  - id: weights
+    type: choice
+    at: explain
+    processing: Comprehension
+    kind: Why that one?
+    tests: flip
+    title: Only one of those changes moved the reckoner.
+    q: Why did changing the purpose matter more than changing learner readiness?
+    options:
+      - text: Purpose counts three times as much as most questions, and the two models fit different purposes
+        fb: Yes. A heavily weighted question where the models differ is what moves the result.
+      - text: Readiness isn't one of the reckoner's questions
+        fb: It is, and it counts double. But 5E and POE fit experienced learners equally well, so it can't separate them.
+      - text: The reckoner picks the model with the most phases for modelling
+        fb: Phase count isn't scored. Each model has a fit profile for each question.
+      - text: Changing anything after the first question is ignored
+        fb: Every answered question counts, in proportion to its weight.
+    answer: 0
+
+  - id: class-unit-model
+    type: select
+    at: elaborate
+    processing: Knowledge utilisation
+    kind: Choose the model
+    tests: select
+    scenario:
+      who: Year 8 · Living systems
+      text: >-
+        Same class and the same unit, with full lab access. Now you want students to explain with a model as well as
+        to shift the “powder” idea.
+    profile:
+      purpose: [misc, model]
+      time: unit
+      ready: developing
+      concept: observable
+      misc: robust
+      res: lab
+    candidates: [5e, poe, 5e+poe]
+    answer: 5e+poe
+    reasons:
+      - text: A modelling purpose and a whole unit favour 5E
+        dim: purpose
+        ok: true
+      - text: The unit is long enough for five phases
+        dim: time
+        ok: true
+      - text: The well-documented misconception calls for a POE to open the unit
+        dim: misc
+        ok: true
+      - text: There's full lab access
+        dim: res
+        ok: false
+      - text: Students prefer practical work
+        dim: null
+        ok: false
+
+  - id: class-outbreak
+    type: select
+    at: elaborate
+    processing: Knowledge utilisation
+    kind: Choose the model
+    tests: select
+    scenario:
+      who: Year 9 · Disease
+      text: >-
+        You have a ten-lesson unit. You want students to explain how disease spreads using a model, and to analyse
+        real outbreak data. Some misconceptions are known. Students are developing inquirers.
+    profile:
+      purpose: [model]
+      time: unit
+      ready: developing
+      concept: instrument
+      misc: some
+      ws: ["5", "6"]
+      assess: explanation
+    candidates: [5e, poe]
+    answer: 5e
+    reasons:
+      - text: The purpose is to explain with a model
+        dim: purpose
+        ok: true
+      - text: There are ten lessons to work with
+        dim: time
+        ok: true
+      - text: Spread is seen through data rather than directly
+        dim: concept
+        ok: true
+      - text: Students are developing inquirers
+        dim: ready
+        ok: false
+      - text: Disease is a serious topic
+        dim: null
+        ok: false
+
+  - id: reflect
+    type: reflect
+    at: evaluate
+    processing: Metacognition
+    kind: Look back
+    title: Your own dial.
+    q: Name one thing about a class you might teach that, if it changed, would change the model you'd choose. Why does it matter so much?
+    model: "Example: “If I only had one lesson instead of a fortnight, I'd switch from 5E to a POE. Time counts double, and a five-phase model can't do its job in one lesson.”"

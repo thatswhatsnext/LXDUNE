@@ -10,7 +10,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import yaml from "js-yaml";
 import { GameLesson } from "../src/schema/game-lesson";
-import { buildGame, checkLesson, GAME_DIR, loadGame } from "./lib/game";
+import { buildGame, checkLesson, dimScore, fit, GAME_DIR, loadGame } from "./lib/game";
+import { PKG_ROOT } from "./lib/build";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { JSDOM, VirtualConsole, requestInterceptor } = require("jsdom");
@@ -38,6 +39,44 @@ const wait = async (cond: () => boolean, what: string, ms = 8000) => {
     await new Promise((r) => setTimeout(r, 20));
   }
 };
+
+/** Load a built game page in jsdom on an http origin, so it gets localStorage (file: URLs are opaque). */
+async function openGame(file: string) {
+  const errors: string[] = [];
+  const vc = new VirtualConsole();
+  vc.on("jsdomError", (e: Error) => errors.push(e.message));
+  const dom = new JSDOM(readFileSync(file, "utf8"), {
+    url: "https://lxdune.test/play/",
+    runScripts: "dangerously",
+    pretendToBeVisual: true,
+    virtualConsole: vc,
+    beforeParse(win: any) { win.scrollTo = () => {}; win.HTMLElement.prototype.focus = function () {}; },
+    resources: { interceptors: [requestInterceptor(() => new Response("", { status: 200, headers: { "Content-Type": "text/css" } }))] },
+  });
+  const doc = dom.window.document;
+  await wait(() => !!doc.querySelector("[data-l]") || errors.length > 0, "the path map");
+  if (errors.length) throw new Error(errors.join("; "));
+  return { dom, doc, errors };
+}
+
+/** Play one lesson to its results screen, always taking the first option. */
+async function playLesson(doc: any, id: string) {
+  const go = () => doc.getElementById("go").click();
+  const btn = doc.querySelector(`[data-l="${id}"]`);
+  if (!btn || btn.disabled) throw new Error(`${id} is locked`);
+  btn.click();
+  go();
+  for (let step = 0; step < 100 && !doc.querySelector(".sum-head"); step++) {
+    if (doc.querySelector("#pool .opt")) while (doc.querySelector("#pool .opt")) doc.querySelector("#pool .opt").click();
+    else {
+      const opt = doc.querySelector(".opts .opt:not([disabled])");
+      if (opt) opt.click();
+    }
+    go();
+    if (doc.querySelector(".dock.good, .dock.bad")) go();
+  }
+  if (!doc.querySelector(".sum-head")) throw new Error(`${id} did not reach the results screen`);
+}
 
 const cases: [string, () => void | Promise<void>][] = [
   ["every lesson validates and its guide references resolve", () => {
@@ -87,43 +126,82 @@ const cases: [string, () => void | Promise<void>][] = [
   ["checkLesson passes every lesson against its own guide", () => {
     const c = loadGame();
     for (const l of c.lessons) {
-      const issues = checkLesson(l, c.guides.get(l.path)!);
+      const path = c.config.paths.find((p) => p.id === l.path)!;
+      const issues = checkLesson(l, c.guides.get(path.journey ?? path.id)!, { guides: c.guides, reckoner: c.reckoner });
       if (issues.length) throw new Error(issues.join("; "));
     }
   }],
+  ["the game's fit() matches the reckoner's own code in templates/app.js", () => {
+    const app = readFileSync(join(PKG_ROOT, "templates", "app.js"), "utf8");
+    const src = app.slice(app.indexOf("function dimScore("), app.indexOf("const rankAll"));
+    const c = loadGame();
+    const dims = c.reckoner.dims;
+    const appFns = new Function("DIMS", `${src}; return { dimScore, fit };`)(dims);
+    const imp = Object.fromEntries(dims.map((d) => [d.id, 1]));
+    const profiles = c.lessons.flatMap((l) => l.items.flatMap((it: any) => (it.profile ? [it.profile, ...(it.changes ?? []).map((ch: any) => ({ ...it.profile, [ch.dim]: ch.value }))] : [])));
+    if (profiles.length < 5) throw new Error(`only ${profiles.length} profiles to compare`);
+    for (const [id, p] of c.reckoner.profiles) {
+      const m = { p: Object.fromEntries(Object.entries(p).map(([k, v]) => [k, v.join("")])) };
+      for (const a of profiles) {
+        // The reckoner's form always supplies a list for multi-select questions, empty when unanswered.
+        const formA = { ...Object.fromEntries(dims.filter((d) => d.multi).map((d) => [d.id, []])), ...a };
+        const mine = fit(p, a, dims), theirs = appFns.fit(m, formA, imp);
+        if (Math.abs(mine - theirs) > 1e-9) throw new Error(`${id}: game fit ${mine} vs reckoner ${theirs} for ${JSON.stringify(a)}`);
+        for (const d of dims) if (dimScore(p, d, a) !== appFns.dimScore(m, d, formA)) throw new Error(`${id} ${d.id}: dimScore differs`);
+      }
+    }
+  }],
+  ["a select answer the reckoner disagrees with is refused", () => {
+    const c = loadGame({ gameDir: gameCopy("bad-select", (l) => (l.items.find((i: any) => i.id === "class-yeast").answer = "5e"), "select-1-which.yaml") });
+    if (!c.errors.some((e) => /the reckoner gives "poe"/.test(e))) throw new Error(`not caught: ${c.errors.join("; ")}`);
+  }],
+  ["a reason marked correct that doesn't favour the answer is refused", () => {
+    const c = loadGame({ gameDir: gameCopy("bad-reason", (l) => (l.items.find((i: any) => i.id === "class-yeast").reasons.find((x: any) => x.dim === "ready").ok = true), "select-1-which.yaml") });
+    if (!c.errors.some((e) => /ready does not favour poe/.test(e))) throw new Error(`not caught: ${c.errors.join("; ")}`);
+  }],
+  ["a flip whose answer doesn't flip the reckoner is refused", () => {
+    const c = loadGame({ gameDir: gameCopy("bad-flip", (l) => (l.items.find((i: any) => i.type === "flip").answer = 1), "select-2-dial.yaml") });
+    if (!c.errors.some((e) => /flips the reckoner's choice/.test(e)) || !c.errors.some((e) => /does not flip/.test(e))) throw new Error(`not caught: ${c.errors.join("; ")}`);
+  }],
+  ["a nest item that disagrees with the guides' nesting records is refused", () => {
+    const c = loadGame({ gameDir: gameCopy("bad-nest", (l) => (l.items.find((i: any) => i.type === "nest").answer = "explore"), "poe-2-hands.yaml") });
+    if (!c.errors.some((e) => /nest poe at engage in 5e, not explore/.test(e))) throw new Error(`not caught: ${c.errors.join("; ")}`);
+  }],
+  ["a path stays locked until the paths it requires reach their level", async () => {
+    // Publish every lesson in a copy, so the student build holds the full map.
+    const dir = gameCopy("all-published");
+    for (const f of lessonFiles) {
+      const l = rawLesson(f);
+      l.status = "published";
+      l.provenance = { source: "ai-drafted-reviewed", authors: ["Claude"], reviewedBy: ["Test"], reviewedOn: "2026-10-03" };
+      writeFileSync(join(dir, f), yaml.dump(l));
+    }
+    const c = loadGame({ gameDir: dir });
+    if (c.errors.length) throw new Error(c.errors.join("; "));
+    buildGame({ mode: "site", outDir: join(tmp, "gate"), content: c });
+    const { doc, errors } = await openGame(join(tmp, "gate", "index.html"));
+    const selectIds = c.lessons.filter((l) => l.path === "select").map((l) => l.id);
+    const locked = () => selectIds.every((id) => (doc.querySelector(`[data-l="${id}"]`) as any).disabled);
+    if (!locked()) throw new Error("select lessons are open before any lesson is played");
+    const req = c.config.paths.find((p) => p.id === "select")!.requires;
+    for (const q of req) {
+      const need = c.lessons.filter((l) => l.path === q.path);
+      const upTo = need.findIndex((l) => l.level === q.level);
+      for (const l of need.slice(0, upTo + 1)) {
+        if (q === req[req.length - 1] && l === need[upTo] && !locked()) throw new Error("select opened before the last requirement was met");
+        await playLesson(doc, l.id);
+        (doc.getElementById("toMap") as any).click();
+      }
+    }
+    if (locked()) throw new Error("select lessons are still locked after every requirement was met");
+    if (errors.length) throw new Error(errors.join("; "));
+  }],
   ["the review copy plays every lesson to the end in jsdom", async () => {
     buildGame({ mode: "review", outDir: join(tmp, "review") });
-    const file = join(tmp, "review", "game-review.html");
-    const errors: string[] = [];
-    const vc = new VirtualConsole();
-    vc.on("jsdomError", (e: Error) => errors.push(e.message));
-    // An http origin, so the page gets localStorage (file: URLs are opaque in jsdom).
-    const dom = new JSDOM(readFileSync(file, "utf8"), {
-      url: "https://lxdune.test/play/",
-      runScripts: "dangerously",
-      pretendToBeVisual: true,
-      virtualConsole: vc,
-      beforeParse(win: any) { win.scrollTo = () => {}; win.HTMLElement.prototype.focus = function () {}; },
-      resources: { interceptors: [requestInterceptor(() => new Response("", { status: 200, headers: { "Content-Type": "text/css" } }))] },
-    });
-    const w = dom.window, doc = w.document;
-    await wait(() => !!doc.querySelector("[data-l]") || errors.length > 0, "the path map");
-    if (errors.length) throw new Error(errors.join("; "));
-    const go = () => (doc.getElementById("go") as any).click();
+    const { dom, doc, errors } = await openGame(join(tmp, "review", "game-review.html"));
+    const w = dom.window;
     for (const l of loadGame().lessons) {
-      (doc.querySelector(`[data-l="${l.id}"]`) as any).click();
-      go();
-      for (let step = 0; step < 80 && !doc.querySelector(".sum-head"); step++) {
-        const slot = doc.querySelector("#pool .opt");
-        if (slot) while (doc.querySelector("#pool .opt")) (doc.querySelector("#pool .opt") as any).click();
-        else {
-          const opt = doc.querySelector(".opts .opt:not([disabled])");
-          if (opt) (opt as any).click();
-        }
-        go();
-        if (doc.querySelector(".dock.good, .dock.bad")) go();
-      }
-      if (!doc.querySelector(".sum-head")) throw new Error(`${l.id} did not reach the results screen`);
+      await playLesson(doc, l.id);
       if (errors.length) throw new Error(`${l.id}: ${errors.join("; ")}`);
       (doc.getElementById("toMap") as any).click();
     }

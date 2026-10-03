@@ -1,0 +1,223 @@
+# Choosing a model, lesson 1. Answers and reasons are checked against the reckoner's own scoring at build time. Draft: not shown to students until reviewed.
+schemaVersion: 1
+id: select-1-which
+path: select
+order: 1
+title: Which model, and why?
+summary: Three classes, three answers. Choose between 5E and POE, then justify the choice in the reckoner's terms.
+level: select
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-03
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4]
+  focusAreas: [Living systems, Cells and classification]
+  disciplines: [biology]
+builtOn: {}
+items:
+  - id: predict
+    type: predict
+    at: engage
+    processing: Retrieval
+    kind: Predict
+    title: The reckoner asks eleven questions about your class before it recommends a model.
+    q: Which question do you think counts most?
+    options:
+      - text: How much time you have
+      - text: The main learning purpose
+      - text: How independent your learners are
+      - text: Whether there's scope for place-based learning
+    answer: 1
+    reveal: >-
+      Purpose counts most: three times as much as most questions. Time and learner readiness count double, and
+      place-based scope counts half. A model that fits your purpose but not your timetable can still come out on
+      top, which is why the reasons behind a choice matter.
+
+  - id: class-yeast
+    type: select
+    at: explore
+    processing: Analysis
+    kind: Choose the model
+    tests: select
+    scenario:
+      who: Year 8 · Living systems
+      text: >-
+        You have one lesson. Your class are novice inquirers, and many of them think yeast is a non-living powder.
+        You want to shift that idea. You have limited equipment.
+    profile:
+      purpose: [misc]
+      time: lesson
+      ready: novice
+      concept: observable
+      misc: robust
+      res: limited
+    candidates: [5e, poe]
+    answer: poe
+    reasons:
+      - text: There's only one lesson
+        dim: time
+        ok: true
+      - text: The “yeast is a powder” idea is well documented
+        dim: misc
+        ok: true
+      - text: The goal is to shift a misconception
+        dim: purpose
+        ok: true
+      - text: Students can see the phenomenon in class
+        dim: concept
+        ok: false
+      - text: The learners are novices
+        dim: ready
+        ok: false
+      - text: POE is more engaging than 5E
+        dim: null
+        ok: false
+    why: >-
+      A reason only counts if it tells the models apart. Both 5E and POE suit novices and phenomena you can see,
+      so those true statements can't decide anything here.
+
+  - id: class-cells
+    type: select
+    at: explain
+    processing: Analysis
+    kind: Choose the model
+    tests: select
+    scenario:
+      who: Year 8 · Cells and classification
+      text: >-
+        You have an eight-lesson unit. You want students to explain living things with a model of the cell and to
+        get better at investigating with microscopes and data. They're developing inquirers.
+    profile:
+      purpose: [model, investigate]
+      time: unit
+      ready: developing
+      concept: instrument
+      misc: some
+      ws: ["4", "5", "6"]
+      assess: explanation
+    candidates: [5e, poe]
+    answer: 5e
+    reasons:
+      - text: There's a whole unit to work with
+        dim: time
+        ok: true
+      - text: The aim is to explain with models and learn to investigate
+        dim: purpose
+        ok: true
+      - text: Cells can only be seen with instruments
+        dim: concept
+        ok: true
+      - text: The learners are developing inquirers
+        dim: ready
+        ok: false
+      - text: You need conceptual explanations as evidence of learning
+        dim: assess
+        ok: false
+      - text: 5E is the model most schools use
+        dim: null
+        ok: false
+
+  - id: shared
+    type: choice
+    at: explain
+    processing: Comprehension
+    kind: Why not?
+    tests: select
+    title: In the yeast class, “students can see the phenomenon” was true, but it wasn't a good reason for POE.
+    q: Why not?
+    options:
+      - text: Both models fit an observable phenomenon equally well, so it can't decide between them
+        fb: Yes. A reason has to separate the options. Shared strengths are background, not justification.
+      - text: Observable phenomena suit 5E better
+        fb: Not here. In the reckoner, both models score the top fit for a phenomenon students can see.
+      - text: The reckoner ignores the type of concept
+        fb: It doesn't. The type of concept is one of its eleven questions. It just doesn't separate 5E from POE in this case.
+      - text: Yeast isn't really observable without a microscope
+        fb: The balloons make the effect visible to the naked eye. That's what makes this POE work.
+    answer: 0
+
+  - id: class-soil
+    type: select
+    at: elaborate
+    processing: Knowledge utilisation
+    kind: Choose the model
+    tests: select
+    scenario:
+      who: Year 8 · Living systems
+      text: >-
+        You have a unit on plants. You want students to explain plant growth with a model, and you know many of them
+        believe plants get their food from the soil. They're developing inquirers.
+    profile:
+      purpose: [misc, model]
+      time: unit
+      ready: developing
+      concept: observable
+      misc: robust
+    candidates: [5e, poe, 5e+poe]
+    answer: 5e+poe
+    reasons:
+      - text: A unit gives room for a full 5E sequence
+        dim: time
+        ok: true
+      - text: You want students to explain with models, not only shift one idea
+        dim: purpose
+        ok: true
+      - text: The soil idea is robust and well documented, so a POE should open the unit
+        dim: misc
+        ok: true
+      - text: The learners are developing inquirers
+        dim: ready
+        ok: false
+      - text: POE and 5E are both constructivist
+        dim: null
+        ok: false
+    why: >-
+      Choosing a model isn't always either-or. The reckoner recommends the model that fits the whole unit, then
+      suggests what to nest inside it. A robust, documented misconception is its cue to open with a POE.
+
+  - id: nest-adi
+    type: nest
+    at: elaborate
+    processing: Analysis
+    kind: Nest it
+    tests: nesting
+    model: poe
+    host: adi
+    answer: task-question
+    title: POE nests inside other models too.
+    q: In an Argument-Driven Inquiry, which stage would a POE sit in?
+    why: Wherever it sits, a POE does the same job. It surfaces prior ideas before students meet the question or the evidence.
+
+  - id: feedback
+    type: choice
+    at: evaluate
+    processing: Knowledge utilisation
+    kind: Give feedback
+    tests: select
+    vignette:
+      who: A peer's plan
+      text: "“I've chosen 5E for my one-lesson demonstration because it's more student-centred.”"
+    q: What's the most useful feedback?
+    options:
+      - text: That's a preference, not a fit. With one lesson, the time available favours POE strongly.
+        fb: Yes. It names the problem with the reason and points to the question that decides it.
+      - text: 5E isn't student-centred
+        fb: It is. The problem is that the reason doesn't fit this class.
+      - text: Good choice, as long as the lesson is engaging
+        fb: Engagement isn't the issue. A five-phase model can't do its job in one lesson.
+      - text: Use whichever model you're most comfortable with
+        fb: Confidence matters, but the reckoner weighs it alongside time and purpose, which point the other way here.
+    answer: 0
+
+  - id: reflect
+    type: reflect
+    at: evaluate
+    processing: Metacognition
+    kind: Look back
+    title: Your class, in the reckoner's terms.
+    q: Describe a class you might teach in terms of time, purpose and known misconceptions. Which model would you choose, and which answer decides it?
+    model: "Example: “Two weeks on forces, students think heavy things fall faster, and I want them modelling motion. A 5E opening with a POE, because the time and the purpose favour 5E and the misconception calls for a POE.”"

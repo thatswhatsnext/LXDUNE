@@ -135,6 +135,19 @@ Item types: `predict`, `spot` (pick the phase), `choice`, `multi`, `order`, `loo
 guide look-for), `diagnose` (name the guide misapplication), `concept` and `reflect`. `spot`, `choice`,
 `order`, `lookfor` and `diagnose` items can carry `variants`, which replays rotate through.
 
+Paths in `game.yaml` are either a guide (`kind: guide`, id = guide id) or a choice between models
+(`kind: select`, with `models`, a `journey` guide for the lesson rail, and `requires`, the levels other paths
+must reach before it unlocks). A lesson's rail runs through its journey guide's phases, so a POE lesson runs
+Predict, Observe, Explain.
+
+**The reckoner is the answer key for choosing a model.** `select` items describe a class in the reckoner's
+own questions (`profile`) and the build scores it with a port of the reckoner's `fit()` (a test checks the port
+against `templates/app.js`). The build refuses an answer the reckoner disagrees with, a class too close to
+call (gap under 0.03), and a reason whose `ok` doesn't match whether its question favours the answer. A
+`5e+poe` candidate is right when 5E tops the ranking and the reckoner's nesting rule fires (a robust,
+documented misconception). `flip` items list single changes to a class; exactly one must flip the reckoner's
+choice, clearly. `nest` items are checked against the guides' nesting records.
+
 `play/index.html` is one self-contained file holding published lessons only. Progress is kept in the
 player's browser (localStorage) and nothing is sent anywhere. The same review rule as guides applies: a
 published lesson needs `ai-drafted-reviewed` or `authored` provenance and a reviewer.

@@ -1,0 +1,205 @@
+# POE path, lesson 2. Built on the POE guide's worked sequence ep-s5-handwashing. Draft: not shown to students until reviewed.
+schemaVersion: 1
+id: poe-2-hands
+path: poe
+order: 2
+title: Clean hands
+summary: Write prediction prompts that surface reasoning, handle a model's limits, and place a POE inside a 5E unit.
+level: explain
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-03
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage5]
+  focusAreas: [Disease]
+  disciplines: [biology]
+outcomes: [SC5-DIS-01]
+builtOn:
+  sequenceIds: [ep-s5-handwashing]
+  lookForIds: [poe-reasons, poe-observe-visible, poe-consolidate]
+  misapplicationIds: [mis-poe-ambiguous, mis-poe-cued]
+guideSection: sequences
+items:
+  - id: predict
+    type: predict
+    at: predict
+    processing: Retrieval
+    kind: Predict
+    title: Students rub fluorescent lotion onto their hands as a model for germs, then try one of four ways to remove it.
+    q: Under a UV torch, which hands will show the least lotion left?
+    options:
+      - text: A 5-second rinse with water
+      - text: A 20-second wash with soap
+      - text: A rub with alcohol hand sanitiser
+      - text: Wiping hands on a paper towel
+    answer: 1
+    reveal: >-
+      The 20-second soap wash usually removes the most lotion, and the quick rinse reliably disappoints. The
+      sanitiser result is the interesting one: lots of lotion remains, because sanitiser inactivates many microbes
+      without removing them. The model can't show that, which is a lesson in itself.
+    why: >-
+      “A quick rinse is enough” is one of this sequence's target conceptions. A POE is built around an event the
+      common idea gets wrong.
+
+  - id: prompt
+    type: choice
+    at: predict
+    processing: Analysis
+    kind: Write the prompt
+    tests: prediction
+    title: Which prediction prompt does the Predict phase's job best?
+    options:
+      - text: "“Which method will leave the least lotion on your hands? Write your answer and explain why you think so.”"
+        fb: This asks every student for an outcome and a reason, in writing, without signalling an answer. It meets the guide's look-fors for Predict.
+      - text: "“Do you think soap will work best?”"
+        fb: This cues the answer the teacher expects. Students predict what they think you want.
+      - text: "“Hands up if you think water is enough.”"
+        fb: A show of hands lets students follow the crowd, and it records no reasons.
+      - text: "“Rank the four methods from best to worst.”"
+        fb: A ranking gives you outcomes but not the ideas behind them, so there's nothing to revise later.
+    answer: 0
+    refs:
+      lookForIds: [poe-commit-written, poe-reasons, poe-no-cueing]
+
+  - id: lf-reasons
+    type: lookfor
+    at: predict
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 9 · Predict
+      text: Each student ticks the method they think will remove the most lotion. The sheet has no space for anything else.
+    answer: poe-reasons
+    distractors: [poe-observe-record, poe-consolidate, poe-followup]
+    strong: false
+    hint: What will students have to revise if their prediction turns out wrong?
+
+  - id: spot-observe
+    type: spot
+    at: observe
+    processing: Comprehension
+    kind: Spot the phase
+    tests: observe
+    vignette:
+      who: Year 9 · UV torches
+      text: >-
+        Each group tests one method, inspects their hands under a UV torch, photographs the result and rates the
+        remaining coverage on a five-point scale.
+    q: Which POE phase is this?
+    answer: observe
+    fb:
+      predict: The predictions were tallied before anyone washed. This is the test.
+      observe: Groups produce their own visible, photographed evidence. That's Observe.
+      explain: Nobody is comparing results with predictions yet.
+
+  - id: lf-visible
+    type: lookfor
+    at: observe
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 9 · Observe
+      text: >-
+        Every group posts its UV photo on the shared screen, so the whole class can check each method's result
+        side by side, and any group can re-run a method if someone doubts it.
+    answer: poe-observe-visible
+    distractors: [poe-commit-written, poe-revise, poe-followup]
+    strong: true
+
+  - id: dx-ambiguous
+    type: diagnose
+    at: observe
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A pre-service teacher's POE
+      text: >-
+        One small UV torch is shone on the teacher's own hands at the front bench. The differences between methods
+        are faint, and only the front row can see them.
+    answer: mis-poe-ambiguous
+    distractors: [mis-poe-cued, mis-poe-quiz, mis-poe-no-reasons]
+
+  - id: limitation
+    type: choice
+    at: explain
+    processing: Knowledge utilisation
+    kind: Teacher move
+    tests: explain
+    vignette:
+      who: During Explain
+      text: "A group says: “Sanitiser doesn't work. Look, the lotion's still there.”"
+    q: What is the best response?
+    options:
+      - text: Ask what the lotion models, and whether sanitiser works by removing microbes or by inactivating them
+        fb: Yes. This turns the model's limitation into the discussion the guide plans for. Sanitiser can inactivate many microbes without removing the lotion.
+      - text: Tell them sanitiser does work, and move on
+        fb: This settles the answer but leaves students thinking the evidence lied. The model's limitation is the learning.
+      - text: Agree that soap is the only method that works
+        fb: That's a new misconception. The lotion shows removal, not microbial kill.
+      - text: Re-run the sanitiser test until the lotion comes off
+        fb: More sanitiser won't remove the lotion, because removal isn't how sanitiser works.
+    answer: 0
+    why: >-
+      The guide's watch-for for this sequence is exactly this conclusion. Plan the Explain phase around the
+      limitation instead of letting it slip past.
+
+  - id: lf-consolidate
+    type: lookfor
+    at: explain
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 9 · Explain
+      text: >-
+        After groups compare results with predictions, the teacher sets out the scientific account of removal and
+        inactivation, and contrasts it explicitly with “a quick rinse is enough”.
+    answer: poe-consolidate
+    distractors: [poe-discrepant, poe-observe-record, poe-commit-written]
+    strong: true
+
+  - id: nest-5e
+    type: nest
+    at: explain
+    processing: Analysis
+    kind: Nest it
+    tests: nesting
+    model: poe
+    host: 5e
+    answer: engage
+    title: This POE could open the 5E outbreak unit from the 5E path.
+    q: Which 5E phase would it be?
+    why: >-
+      A POE is a single lesson. Inside a longer model it does one job well: surfacing and challenging the target
+      conception before the investigation begins.
+
+  - id: dx-cued
+    type: diagnose
+    at: explain
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Another Year 9 class · Predict
+      text: >-
+        The teacher opens with, “Everyone knows a quick rinse doesn't really do much,” then asks students to predict
+        which method works best.
+    answer: mis-poe-cued
+    distractors: [mis-poe-not-discrepant, mis-poe-one-off, mis-poe-ambiguous]
+
+  - id: reflect
+    type: reflect
+    at: explain
+    processing: Metacognition
+    kind: Look back
+    title: Write your own prompt.
+    q: Pick a phenomenon you might teach. Write a prediction prompt that asks for a reason and gives nothing away.
+    model: "Example: “When the steel wool burns on the balance, will the reading go up, go down or stay the same? Write your answer and why.”"
+    recall: predict

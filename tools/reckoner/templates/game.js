@@ -9,14 +9,20 @@ const stage = $("#stage"), go = $("#go"), dock = $("#dock"), fb = $("#fb"), keys
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const pick = a => a[Math.floor(Math.random() * a.length)];
-const JOURNEY = ["engage","explore","explain","elaborate","evaluate"];
-const JNAME = {engage:"Engage",explore:"Explore",explain:"Explain",elaborate:"Elaborate",evaluate:"Evaluate"};
-const PCOL = {engage:"var(--engage)",explore:"var(--explore)",explain:"var(--explain)",elaborate:"var(--elaborate)",evaluate:"var(--evaluate)"};
+const COLS = ["var(--engage)","var(--explore)","var(--explain)","var(--elaborate)","var(--evaluate)"];
 const LEVEL = {recognise:"Recognise",explain:"Explain",select:"Select",design:"Design"};
 const UNSCORED = ["predict","concept","reflect"];
 const pathOf = id => D.paths.find(p => p.id === id);
-const phaseName = (path, id) => (pathOf(path).guide.phases.find(p => p.id === id) || {name:id}).name;
-const pc = id => PCOL[id] || "var(--accent)";
+const G = id => D.guides[id];
+/* A phase's name and colour come from its guide; colours follow phase order, so POE's three phases
+ * take the first three of 5E's five. */
+const phaseName = (gid, id) => ((G(gid) && G(gid).phases.find(p => p.id === id)) || {name:id}).name;
+const pc = (gid, id) => { const i = G(gid) ? G(gid).phases.findIndex(p => p.id === id) : -1; return i >= 0 ? COLS[i % COLS.length] : "var(--accent)"; };
+/* In a lesson: the journey guide supplies the rail, spot options, look-fors and misapplications. */
+const J = () => pathOf(S.lesson.path).journey;
+const JG = () => G(J());
+const jp = id => pc(J(), id);
+const jn = id => phaseName(J(), id);
 
 /* ---------- progress, kept in this browser only ---------- */
 const KEY = "lxdune-play-v1";
@@ -40,7 +46,11 @@ function chrome(mode, title){
   $("#banner").innerHTML = D.review ? `<div class="banner">Review copy: includes lessons not yet published. Not for students.</div>` : "";
 }
 
+function pathOpen(p){
+  return D.review || p.requires.every(q => levelReached(q.path) >= D.mastery.indexOf(q.level));
+}
 function unlocked(l){
+  if (!pathOpen(pathOf(l.path))) return false;
   if (D.review || l.order === 1) return true;
   const prev = D.lessons.find(x => x.path === l.path && x.order === l.order - 1);
   return !prev || rec(prev.id).completed;
@@ -58,16 +68,20 @@ function showMap(){
     const lv = levelReached(p.id);
     const ls = D.lessons.filter(l => l.path === p.id);
     const nextL = ls.find(l => !rec(l.id).completed && unlocked(l));
-    return `<section class="path" style="--pc:${pc("explore")}">
-      <div class="pathHead"><h2>${esc(p.title)}</h2><a href="../reckoner/#/guide/${esc(p.id)}">Open the ${esc(p.guide.name)} companion guide</a></div>
+    const open = pathOpen(p);
+    const link = p.guide ? `<a href="../reckoner/#/guide/${esc(p.id)}">Open the ${esc(G(p.guide).name)} companion guide</a>` : `<a href="../reckoner/">Open the reckoner</a>`;
+    const need = p.requires.map(q => `${LEVEL[q.level]} on the ${pathOf(q.path).title}`).join(" and ");
+    return `<section class="path">
+      <div class="pathHead"><h2>${esc(p.title)}</h2>${link}</div>
       <p>${esc(p.blurb)}</p>
+      ${open ? "" : `<p class="upcoming" style="margin-top:12px">Unlocks when you reach ${esc(need)}.</p>`}
       <div class="ladder" aria-label="Mastery reached">${D.mastery.map((m,i) => `<div class="${i <= lv ? "got" : ""}">${LEVEL[m]}</div>`).join("")}</div>
       <div class="lessons">${ls.map(l => {
         const r = rec(l.id), open = unlocked(l);
         const state = r.completed ? "done" : (l === nextL ? "next" : "");
         const chips = [`<span class="chip">${LEVEL[l.level]}</span>`];
         if (r.completed) chips.push(`<span class="chip good">Done · best ${r.best}/${r.of} first try</span>`);
-        else if (!open) chips.push(`<span class="chip">Finish lesson ${l.order - 1} first</span>`);
+        else if (!open && pathOpen(p)) chips.push(`<span class="chip">Finish lesson ${l.order - 1} first</span>`);
         if (l.status !== "published") chips.push(`<span class="chip warn">${esc(l.status)}</span>`);
         if (r.missed.length && r.completed) chips.push(`<span class="chip">${r.missed.length} to review</span>`);
         return `<button class="lesson ${state}" data-l="${esc(l.id)}" ${open ? "" : "disabled"} type="button"><span class="num">${l.order}</span><span class="min"><h3>${esc(l.title)}</h3><span class="sum">${esc(l.summary)}</span><span class="meta">${chips.join("")}</span></span></button>`;
@@ -145,23 +159,27 @@ function doneCount(){
 function hud(){
   $("#prog").style.width = (100 * doneCount() / Math.max(1, total())) + "%";
   $("#xp").textContent = S.xp; $("#streak").textContent = S.streak;
-  const at = S.done ? "done" : cur && cur.at, idx = JOURNEY.indexOf(at);
-  $("#rail").innerHTML = JOURNEY.map((k,i) => `<div style="--pc:${pc(k)}" class="${at === "done" || i < idx ? "done" : i === idx ? "now" : ""}">${JNAME[k]}</div>`).join("");
-  $("#railnote").textContent = S.done ? "Lesson complete. Your own journey ran through all five phases."
+  const ph = JG().phases, at = S.done ? "done" : cur && cur.at, idx = ph.findIndex(p => p.id === at);
+  $("#rail").style.gridTemplateColumns = `repeat(${ph.length},1fr)`;
+  $("#rail").innerHTML = ph.map((p,i) => `<div style="--pc:${jp(p.id)}" class="${at === "done" || i < idx ? "done" : i === idx ? "now" : ""}">${esc(p.name)}</div>`).join("");
+  $("#railnote").textContent = S.done ? "Lesson complete. Your own journey ran through every phase."
     : S.phase === "warm" ? "Warm-up: items you missed in an earlier lesson, once more."
     : S.phase === "review" ? "Review round: items you missed come back once, with the options shuffled."
-    : "This lesson is itself a 5E sequence. The bar shows where you are in it.";
+    : `This lesson is itself a ${JG().name} sequence. The bar shows where you are in it.`;
 }
 
 /* ---------- rendering an item ---------- */
 function options(it){
-  if (it.type === "spot") return pathOf(S.lesson.path).guide.phases.map(p => ({t:p.name, ph:p.id, fb:it.fb[p.id]}));
+  if (it.type === "spot") return JG().phases.map(p => ({t:p.name, ph:p.id, fb:it.fb[p.id]}));
+  if (it.type === "nest") return G(it.host).phases.map(p => ({t:p.name, ph:p.id}));
+  if (it.type === "select") return it._stage === 2 ? it.reasons.map(x => ({t:x.text, ok:x.ok, dim:x.dim})) : it.candidates.map(c => ({t:it.names[c], c}));
+  if (it.type === "flip") return it.changeLabels.map(c => ({t:c.text}));
   if (it.type === "lookfor"){
-    const lf = pathOf(S.lesson.path).guide.lookFors;
+    const lf = JG().lookFors;
     return [it.answer, ...it.distractors].map(id => ({t:lf[id].question, lf:id, ph:lf[id].phaseId}));
   }
   if (it.type === "diagnose"){
-    const mi = pathOf(S.lesson.path).guide.misapplications;
+    const mi = JG().misapplications;
     return [it.answer, ...it.distractors].map(id => ({t:mi[id].name, mi:id}));
   }
   return (it.options || []).map(o => ({t:o.text, fb:o.fb, ok:o.ok}));
@@ -175,28 +193,34 @@ function render(){
   cur = L[S.pos];
   chrome("play", `${pathOf(S.lesson.path).title} · Lesson ${S.lesson.order}`);
   hud();
+  if (cur.type === "select" && !cur._stage) cur._stage = 1;
   const reshuffle = S.plays > 0 || S.phase === "review" || cur._warm;
   let opts = options(cur).map((o,i) => ({...o, i}));
-  if (cur.type !== "spot" && (reshuffle || cur.type === "lookfor" || cur.type === "diagnose")) opts = shuffle(opts);
+  if (!["spot","nest"].includes(cur.type) && (reshuffle || cur.type === "lookfor" || cur.type === "diagnose")) opts = shuffle(opts);
   cur._view = opts;
   const chip = S.phase === "warm" ? `<span class="chip warn">Warm-up</span>` : S.phase === "review" ? `<span class="chip warn">Review</span>` : "";
-  let h = `<section class="card" style="--pc:${pc(cur.at)}">
-    <div class="chips"><span class="chip ph">${JNAME[cur.at]} phase</span><span class="chip">${esc(cur.processing)}</span>${chip}</div>
+  let h = `<section class="card" style="--pc:${jp(cur.at)}">
+    <div class="chips"><span class="chip ph">${esc(jn(cur.at))} phase</span><span class="chip">${esc(cur.processing)}</span>${chip}</div>
     <p class="kind">${esc(cur.kind)}</p>`;
   if (cur.title) h += `<h2>${esc(cur.title)}</h2>`;
   if (cur.vignette) h += `<div class="vignette"><span class="who">${esc(cur.vignette.who)}</span>${esc(cur.vignette.text)}</div>`;
-  if (cur.plan) h += `<ol class="plan">${cur.plan.map(r => `<li style="--pc:${pc(r.phaseId)}"><b>${esc(phaseName(S.lesson.path, r.phaseId))}</b><span class="min">${esc(r.text)}</span></li>`).join("")}</ol>`;
+  if (cur.scenario) h += `<div class="vignette"><span class="who">${esc(cur.scenario.who)}</span>${esc(cur.scenario.text)}</div>${profileHTML(cur)}`;
+  if (cur.type === "select") h += cur._stage === 1 ? `<p class="q">${esc(cur.q || "Which model does the reckoner recommend for this class?")}</p>` : `<p class="q">You chose <b>${esc(cur.names[cur.candidates[cur._pick]])}</b>. Why? Select every reason that holds for this class.</p>`;
+  if (cur.type === "flip") h += `<p class="q">${esc(cur.q || `The reckoner recommends ${cur.names[cur.from]} for this class. Which single change would make it recommend something else?`)}</p>`;
+  if (cur.type === "nest") h += `<p class="q">${esc(cur.q || `Where does a ${G(cur.model).name} fit inside ${G(cur.host).name}?`)}</p>`;
+  if (cur.plan) h += `<ol class="plan">${cur.plan.map(r => `<li style="--pc:${jp(r.phaseId)}"><b>${esc(jn(r.phaseId))}</b><span class="min">${esc(r.text)}</span></li>`).join("")}</ol>`;
   if (cur.type === "lookfor") h += `<p class="q">${cur.strong ? "This is strong evidence for one look-for in the guide. Which one?" : "This is weak evidence for one look-for in the guide: it shows what's missing. Which one?"}</p>`;
   if (cur.type === "diagnose" && !cur.q) h += `<p class="q">Which misapplication from the guide is this?</p>`;
-  if (cur.q && cur.type !== "reflect") h += `<p class="q">${esc(cur.q)}</p>`;
-  if (["predict","choice","spot","multi","lookfor","diagnose"].includes(cur.type)){
-    const grid = cur.type === "spot";
-    h += `<div class="opts ${grid ? "phases" : ""}" role="${cur.type === "multi" ? "group" : "radiogroup"}">${opts.map((o,n) =>
-      `<button class="opt" type="button" data-i="${o.i}" ${o.ph && grid ? `style="--pc:${pc(o.ph)}"` : ""} role="${cur.type === "multi" ? "checkbox" : "radio"}" aria-checked="false">${grid ? "" : `<span class="k">${n + 1}</span>`}<span class="t">${cur.type === "lookfor" ? `<span class="lfq">${esc(phaseName(S.lesson.path, o.ph))} look-for</span>` : ""}${esc(o.t)}<span class="ofb" hidden></span></span></button>`).join("")}</div>`;
+  if (cur.q && !["reflect","select","flip","nest"].includes(cur.type)) h += `<p class="q">${esc(cur.q)}</p>`;
+  if (["predict","choice","spot","multi","lookfor","diagnose","select","flip","nest"].includes(cur.type)){
+    const grid = cur.type === "spot" || cur.type === "nest";
+    const gid = cur.type === "nest" ? cur.host : J();
+    h += `<div class="opts ${grid ? "phases" : ""}" role="${isMulti(cur) ? "group" : "radiogroup"}">${opts.map((o,n) =>
+      `<button class="opt" type="button" data-i="${o.i}" ${o.ph && grid ? `style="--pc:${pc(gid, o.ph)}"` : ""} role="${isMulti(cur) ? "checkbox" : "radio"}" aria-checked="false">${grid ? "" : `<span class="k">${n + 1}</span>`}<span class="t">${cur.type === "lookfor" ? `<span class="lfq">${esc(jn(o.ph))} look-for</span>` : ""}${esc(o.t)}<span class="ofb" hidden></span></span></button>`).join("")}</div>`;
   }
   if (cur.type === "predict") h += `<div class="slider"><label for="conf">How confident are you? <output id="confout">${S.conf}%</output></label><input type="range" id="conf" min="0" max="100" step="10" value="${S.conf}"><small><span>Pure guess</span><span>Certain</span></small></div>`;
   if (cur.type === "order"){ pool = shuffle(cur.steps.map((o,i) => ({...o, i}))); h += `<div class="slots" id="slots"></div><div class="pool" id="pool"></div>`; }
-  if (cur.type === "concept") h += `<p class="lead">${esc(cur.lead)}</p><div class="concept">${cur.rows.map(r => `<div class="row" style="--pc:${pc(r.phaseId)}"><h3>${esc(phaseName(S.lesson.path, r.phaseId))}</h3><p>${esc(r.does)}<em>${esc(r.move)}</em></p></div>`).join("")}</div>${cur.cite ? `<p class="cite">${esc(cur.cite)}</p>` : ""}`;
+  if (cur.type === "concept") h += `<p class="lead">${esc(cur.lead)}</p><div class="concept">${cur.rows.map(r => `<div class="row" style="--pc:${jp(r.phaseId)}"><h3>${esc(jn(r.phaseId))}</h3><p>${esc(r.does)}<em>${esc(r.move)}</em></p></div>`).join("")}</div>${cur.cite ? `<p class="cite">${esc(cur.cite)}</p>` : ""}`;
   if (cur.type === "reflect"){
     const pr = S.lesson.items.find(i => i.id === cur.recall);
     if (pr && S.pred != null) h += `<div class="recall">At the start you chose <b>${esc(pr.options[S.pred].text.toLowerCase())}</b> with <b>${S.conf}%</b> confidence.${S.pred === pr.answer ? " You were right. Many adults are not." : " Your first idea was the same kind of idea your students will bring."}</div>`;
@@ -210,7 +234,7 @@ function render(){
   if (cur.type === "concept"){ go.textContent = "Got it"; go.disabled = false; keys.textContent = "Enter to continue"; }
   else if (cur.type === "reflect"){ go.textContent = "Finish lesson"; go.disabled = false; keys.textContent = "Not marked. Writing it is the point.";
     $("#refl").addEventListener("input", e => S.reflection = e.target.value); }
-  else { go.textContent = "Check"; go.disabled = true; keys.textContent = cur.type === "order" ? "Tap activities in order" : `Keys: 1–${opts.length} to choose, Enter to check`; }
+  else { go.textContent = cur.type === "select" && cur._stage === 1 ? "Next: give your reasons" : "Check"; go.disabled = true; keys.textContent = cur.type === "order" ? "Tap activities in order" : `Keys: 1–${opts.length} to choose, Enter to check`; }
   stage.querySelectorAll(".opt[data-i]").forEach(b => b.addEventListener("click", () => choose(+b.dataset.i)));
   if (cur.type === "predict"){ const r = $("#conf"); r.addEventListener("input", () => { S.conf = +r.value; $("#confout").textContent = S.conf + "%"; }); }
   if (cur.type === "order") drawOrder();
@@ -218,19 +242,36 @@ function render(){
 
 function choose(i){
   if (checked) return;
-  if (cur.type === "multi") multi.has(i) ? multi.delete(i) : multi.add(i); else sel = i;
+  if (isMulti(cur)) multi.has(i) ? multi.delete(i) : multi.add(i); else sel = i;
   stage.querySelectorAll(".opt[data-i]").forEach(b => {
-    const on = cur.type === "multi" ? multi.has(+b.dataset.i) : +b.dataset.i === sel;
+    const on = isMulti(cur) ? multi.has(+b.dataset.i) : +b.dataset.i === sel;
     b.classList.toggle("sel", on); b.setAttribute("aria-checked", on);
   });
-  go.disabled = cur.type === "multi" ? multi.size === 0 : sel == null;
+  go.disabled = isMulti(cur) ? multi.size === 0 : sel == null;
+}
+
+const cap = t => t.charAt(0).toUpperCase() + t.slice(1);
+/* Short model names for narrow columns: "Predict–Observe–Explain" becomes "POE". */
+const short = m => G(m).name.length > 12 ? m.toUpperCase() : G(m).name;
+const isMulti = it => it.type === "multi" || (it.type === "select" && it._stage === 2);
+/* The class, in the reckoner's own words: one chip per answered question. */
+function profileHTML(it){
+  return `<div class="chips" style="margin-top:10px">${it.weighing.rows.map(r => `<span class="chip">${esc(cap(r.label))}: ${esc(r.value)}</span>`).join("")}</div>`;
+}
+/* The reckoner's weighing: each question, each model's fit out of 3, and the totals. */
+function weighingHTML(it, highlight){
+  const ms = Object.keys(it.weighing.fits);
+  return `<details class="why" open><summary>How the reckoner weighs this class</summary>
+    <div class="weigh"><div class="wrow whead"><span>Question</span>${ms.map(m => `<span>${esc(short(m))}</span>`).join("")}</div>
+    ${it.weighing.rows.map(r => `<div class="wrow${r.dim === highlight ? " hl" : ""}"><span>${esc(cap(r.label))}<small>${esc(r.value)}${r.weight !== 1 ? ` · counts ×${r.weight}` : ""}</small></span>${ms.map(m => `<span><i class="bar"><b style="width:${100 * r.scores[m] / 3}%"></b></i>${+r.scores[m].toFixed(2)}</span>`).join("")}</div>`).join("")}
+    <div class="wrow wtot"><span>Overall fit</span>${ms.map(m => `<span>${it.weighing.fits[m]}%</span>`).join("")}</div></div></details>`;
 }
 
 function drawOrder(){
   const slots = $("#slots"), pl = $("#pool"), N = cur.steps.length;
   slots.innerHTML = cur.steps.map((_,n) => {
     const o = placed[n];
-    return o ? `<button class="slot filled" type="button" data-n="${n}" ${checked ? "disabled" : ""} style="--pc:${pc(o.phaseId)}"><span class="n">${n + 1}</span><span class="txt">${esc(o.text)}</span>${checked ? `<span class="tag">${esc(phaseName(S.lesson.path, o.phaseId))}</span>` : ""}</button>`
+    return o ? `<button class="slot filled" type="button" data-n="${n}" ${checked ? "disabled" : ""} style="--pc:${jp(o.phaseId)}"><span class="n">${n + 1}</span><span class="txt">${esc(o.text)}</span>${checked ? `<span class="tag">${esc(jn(o.phaseId))}</span>` : ""}</button>`
              : `<div class="slot"><span class="n">${n + 1}</span><span>${n === placed.length ? "Tap an activity below" : ""}</span></div>`;
   }).join("");
   const left = pool.filter(o => !placed.includes(o));
@@ -243,7 +284,9 @@ function drawOrder(){
 
 /* ---------- checking ---------- */
 function correctIndex(it){
-  if (it.type === "spot") return pathOf(S.lesson.path).guide.phases.findIndex(p => p.id === it.answer);
+  if (it.type === "spot") return JG().phases.findIndex(p => p.id === it.answer);
+  if (it.type === "nest") return G(it.host).phases.findIndex(p => p.id === it.answer);
+  if (it.type === "select") return it.candidates.indexOf(it.answer);
   if (it.type === "lookfor" || it.type === "diagnose") return 0;
   return it.answer;
 }
@@ -251,6 +294,7 @@ function onGo(){
   if (cur.type === "concept"){ S.xp += 5; return next(); }
   if (cur.type === "reflect"){ S.xp += 10; S.done = true; return render(); }
   if (checked) return next();
+  if (cur.type === "select" && cur._stage === 1){ cur._pick = sel; cur._stage = 2; return render(); }
   check();
 }
 function check(){
@@ -263,20 +307,42 @@ function check(){
     return feedback(sel === cur.answer ? "Good prediction" : "Predictions aren't marked", `<p>${esc(cur.reveal)}</p>`);
   }
   let ok = true, body = "";
+  if (cur.type === "select"){
+    const right = cur._pick === correctIndex(cur), why = opts.every((o,i) => !!o.ok === multi.has(i));
+    ok = right && why;
+    mark(i => opts[i].ok && multi.has(i), i => multi.has(i) && !opts[i].ok, () => false);
+    stage.querySelectorAll(".opt[data-i]").forEach(b => { const i = +b.dataset.i; if (opts[i].ok && !multi.has(i)) b.classList.add("right"); });
+    const fav = opts.filter(o => o.ok).map(o => o.t.replace(/\.$/, "").toLowerCase());
+    body = `<p>${right ? "Right model" : `The reckoner recommends <b>${esc(cur.names[cur.answer])}</b>`}${right && !why ? ", but your reasons need work" : ""}. ${cur.nested ? esc(cur.nested) + " " : ""}The reasons that hold are the ones where this class's answers favour it: ${esc(fav.join("; "))}.${opts.some(o => o.dim === null) ? " A preference about a model is never a reason on its own." : ""} The reckoner's weighing is below the options.</p>`;
+    stage.querySelector("section").insertAdjacentHTML("beforeend", weighingHTML(cur));
+    cur._partial = right && !why;
+  }
+  if (cur.type === "flip"){
+    ok = sel === cur.answer;
+    mark(i => i === cur.answer, i => i === sel && !ok, () => false);
+    const c = cur.changeLabels[cur.answer];
+    body = `<p>${esc(c.text)} and the reckoner switches to <b>${esc(cur.names[c.top])}</b> (${Object.entries(c.fits).map(([m,f]) => `${esc(short(m))} ${f}%`).join(", ")}).${!ok && sel != null ? ` Your change leaves ${esc(cur.names[cur.changeLabels[sel].top])} on top.` : ""} The weighing below shows the starting class, with the question that moves highlighted.</p>`;
+    stage.querySelector("section").insertAdjacentHTML("beforeend", weighingHTML(cur, cur.changes[cur.answer].dim));
+  }
+  if (cur.type === "nest"){
+    const ans = correctIndex(cur); ok = sel === ans;
+    mark(i => i === ans, i => i === sel && !ok, () => false);
+    body = `<p><b>${esc(phaseName(cur.host, cur.answer))}.</b> ${esc(cur.how)}</p>`;
+  }
   if (["choice","spot","lookfor","diagnose"].includes(cur.type)){
     const ans = correctIndex(cur); ok = sel === ans;
     if (cur.type === "spot") mark(i => i === ans, i => i === sel && !ok, i => i === sel && !ok);
     else mark(i => i === ans, i => i === sel && !ok, i => i === sel || i === ans);
     if (cur.type === "spot") body = `<p>${esc(cur.fb[cur.answer])}</p>`;
     if (cur.type === "diagnose"){
-      const m = pathOf(S.lesson.path).guide.misapplications[cur.answer];
+      const m = JG().misapplications[cur.answer];
       body = `<p><b>${esc(m.name)}.</b> ${esc(m.why)}</p><p><b>The fix:</b> ${esc(m.fix)}</p>`;
-      if (!ok){ const w = pathOf(S.lesson.path).guide.misapplications[opts[sel].mi]; body += `<p>${esc(w.name)} looks different. In the guide's words: ${esc(w.looksLike)}</p>`; }
+      if (!ok){ const w = JG().misapplications[opts[sel].mi]; body += `<p>${esc(w.name)} looks different. In the guide's words: ${esc(w.looksLike)}</p>`; }
     }
     if (cur.type === "lookfor"){
-      const lf = pathOf(S.lesson.path).guide.lookFors[cur.answer];
+      const lf = JG().lookFors[cur.answer];
       body = `<p><b>${cur.strong ? "Strong evidence" : "Weak evidence"} for this look-for:</b> ${esc(cur.strong ? lf.strong : lf.weak)}</p>`;
-      if (!ok){ const wrong = pathOf(S.lesson.path).guide.lookFors[opts[sel].lf]; body += `<p>The one you chose is about something else. Strong evidence for it would be: ${esc(wrong.strong.charAt(0).toLowerCase() + wrong.strong.slice(1))}</p>`; }
+      if (!ok){ const wrong = JG().lookFors[opts[sel].lf]; body += `<p>The one you chose is about something else. Strong evidence for it would be: ${esc(wrong.strong.charAt(0).toLowerCase() + wrong.strong.slice(1))}</p>`; }
     }
   }
   if (cur.type === "multi"){
@@ -291,6 +357,7 @@ function check(){
   score(ok);
   dock.className = "dock " + (ok ? "good" : "bad");
   let head = ok ? pick(["Nicely judged.","That's it.","Spot on.","Exactly right."])
+    : cur._partial ? "Right model, but not the right reasons. It'll come back in review."
     : (S.phase === "main" ? "Not this time. It'll come back in review." : "Still not quite.");
   if (ok && S.streak && S.streak % 3 === 0) head += " +5 streak bonus";
   feedback(head, body);
@@ -302,7 +369,7 @@ function score(ok){
     if (ok) L.missed = L.missed.filter(m => m !== key);
   } else if (S.phase === "main"){
     S.results[key] = {ok, tests:cur.tests};
-    if (!ok) S.review.push({...cur});
+    if (!ok) S.review.push({...cur, _stage:0, _pick:null, _partial:false});
   } else if (S.phase === "review" && ok) S.results[key].recovered = true;
   if (ok){ S.streak++; S.best = Math.max(S.best, S.streak); S.xp += S.phase === "main" ? 10 : 5; if (S.streak % 3 === 0) S.xp += 5; }
   else S.streak = 0;
@@ -334,7 +401,7 @@ function advancePhase(){
 }
 
 /* ---------- results ---------- */
-const SKILL = {sequence:"Sequencing", diagnosis:"Diagnosing plans", misapplication:"Diagnosing plans", lookfor:"Using look-fors", engage:"Reading student ideas"};
+const SKILL = {sequence:"Sequencing", diagnosis:"Diagnosing plans", misapplication:"Diagnosing plans", lookfor:"Using look-fors", engage:"Reading student ideas", select:"Choosing a model", flip:"Reading the dial", nesting:"Nesting models", prediction:"Prediction prompts"};
 function summary(){
   cur = null;
   const l = S.lesson, r = rec(l.id), res = Object.entries(S.results), right = res.filter(([,v]) => v.ok).length;
@@ -345,7 +412,7 @@ function summary(){
   hud();
   const groups = {};
   res.forEach(([,v]) => { const k = v.tests || "other"; (groups[k] = groups[k] || {v:0,n:0}).n++; if (v.ok) groups[k].v++; });
-  const label = k => SKILL[k] || (pathOf(l.path).guide.phases.some(p => p.id === k) ? `${phaseName(l.path, k)} moves` : k === "other" ? "Other" : k);
+  const label = k => SKILL[k] || (JG().phases.some(p => p.id === k) ? `${jn(k)} moves` : k === "other" ? "Other" : k);
   const pr = l.items.find(i => i.type === "predict");
   let calib = "";
   if (pr && S.pred != null){
@@ -354,8 +421,12 @@ function summary(){
       : (S.conf >= 70 ? `You were ${S.conf}% sure of a wrong answer. Students are often just as sure, which is why Engage draws ideas out before correcting them.` : "Your first idea was tentative. That's the best moment to meet evidence.");
   }
   const nextL = D.lessons.find(x => x.path === l.path && x.order === l.order + 1);
+  // A path this lesson has just opened: it depends on this path, is now open, and nothing on it is done yet.
+  const newPath = D.paths.find(p => p.requires.some(q => q.path === l.path) && pathOpen(p) && !D.lessons.some(x => x.path === p.id && rec(x.id).completed));
   const lv = levelReached(l.path);
-  const guideHref = `../reckoner/#/guide/${l.path}${l.guideSection ? "/" + l.guideSection : ""}`;
+  const pg = pathOf(l.path).guide;
+  const guideHref = pg ? `../reckoner/#/guide/${pg}${l.guideSection ? "/" + l.guideSection : ""}` : "../reckoner/";
+  const guideText = pg ? `Read more in the ${G(pg).name} guide` : "Try your own class in the reckoner";
   const warm = S.warmRes.length ? `<div class="stat"><b>${S.warmRes.filter(Boolean).length}/${S.warmRes.length}</b><span>warm-up</span></div>` : "";
   stage.innerHTML = `<section class="card sum-head">
     <p class="kind">Lesson complete</p>
@@ -365,7 +436,7 @@ function summary(){
       <div class="stat"><b>${right}/${res.length}</b><span>right first time</span></div>
       ${warm || `<div class="stat"><b>${S.best}</b><span>best streak</span></div>`}
     </div>
-    <div class="skills">${Object.entries(groups).map(([k,g]) => `<div class="skill" style="--pc:${pc(k)}"><span>${esc(label(k))}</span><span class="track"><i style="width:${100 * g.v / g.n}%"></i></span><span class="v">${g.v}/${g.n}</span></div>`).join("")}</div>
+    <div class="skills">${Object.entries(groups).map(([k,g]) => `<div class="skill" style="--pc:${jp(k)}"><span>${esc(label(k))}</span><span class="track"><i style="width:${100 * g.v / g.n}%"></i></span><span class="v">${g.v}/${g.n}</span></div>`).join("")}</div>
     ${calib ? `<p class="note"><b>Calibration.</b> ${esc(calib)}</p>` : ""}
     <div class="crowns"><h3>Mastery on the ${esc(pathOf(l.path).title)}</h3>
       <div class="lv">${D.mastery.map((m,i) => `<div class="${i <= lv ? "got" : i === lv + 1 ? "next" : ""}">${LEVEL[m]}</div>`).join("")}</div>
@@ -373,7 +444,8 @@ function summary(){
     </div>
     ${S.reflection.trim() ? `<div class="recall" style="--engage:var(--evaluate)"><b>Your answer:</b> ${esc(S.reflection)}</div>` : ""}
     ${S.reflect[0] ? `<p class="note">${esc(S.reflect[0].model)}</p>` : ""}
-    <div class="row2"><a class="ghost" href="${esc(guideHref)}">Read more in the ${esc(pathOf(l.path).guide.name)} guide</a></div>
+    <div class="row2"><a class="ghost" href="${esc(guideHref)}">${esc(guideText)}</a></div>
+    ${newPath && !D.review ? `<div class="recall" style="--engage:var(--good)"><b>Unlocked:</b> ${esc(newPath.title)}. ${esc(newPath.blurb)}</div>` : ""}
     ${feedbackBlock()}
   </section>`;
   go.textContent = nextL && unlocked(nextL) ? `Next: lesson ${nextL.order}` : "Back to all lessons"; go.disabled = false;
