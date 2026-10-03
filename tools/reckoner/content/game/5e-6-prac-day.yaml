@@ -1,0 +1,238 @@
+# 5E path, lesson 6. Design level: Prac Day, a branching simulation of the 5E guide's cells sequence (seq-s4-cells). Draft: not shown to students until reviewed.
+schemaVersion: 1
+id: 5e-6-prac-day
+path: 5e
+order: 6
+title: Prac Day
+summary: Teach the cells unit to a simulated Year 7 class. Every move you make changes what the class thinks next.
+level: design
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-03
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4]
+  focusAreas: [Cells and classification]
+  disciplines: [biology]
+outcomes: [SC4-CLS-01]
+builtOn:
+  sequenceIds: [seq-s4-cells]
+  lookForIds: [engage-elicit, explore-before-explain, explain-links-data, explain-students-first, evaluate-revisit]
+guideSection: sequences
+items:
+  - id: briefing
+    type: concept
+    at: engage
+    processing: Retrieval
+    kind: How Prac Day works
+    title: Ten lessons, four decisions
+    lead: >-
+      You're on placement with a Year 7 class, teaching the cells sequence from the 5E guide. At four moments you
+      choose what to do next. Students voice the ideas the guide says to expect. Your choices decide which ideas
+      surface, which stay hidden and which get challenged, and the class-thinking panel tracks them.
+    rows:
+      - phaseId: engage
+        does: "Lesson 1: the alive or not alive card sort."
+        move: "Listen for the rules groups use."
+      - phaseId: explore
+        does: "Lessons 2–4: the microscope rotation."
+        move: "Ask questions that reveal thinking."
+      - phaseId: explain
+        does: "Lesson 5: cell theory from the class's drawings."
+        move: "Build from what students saw."
+      - phaseId: evaluate
+        does: "Lesson 10: back to the sort."
+        move: "Make the change in thinking visible."
+
+  - id: sim
+    type: sim
+    at: engage
+    processing: Knowledge utilisation
+    kind: Prac Day
+    tests: sim
+    cast:
+      who: Year 7 · Cells and classification
+      text: 26 students, mixed abilities. Most have never used a microscope.
+    sequenceId: seq-s4-cells
+    start: sort
+    nodes:
+      - id: sort
+        phase: engage
+        when: Lesson 1 · the card sort
+        situation: Groups are sorting a candle flame, a seed, yeast, a lichen-covered rock, a crystal, a mushroom and a virus image into alive and not alive. Group 3 has put the mushroom in “not alive”.
+        said:
+          who: Ari, Group 3
+          text: “Mushrooms aren't alive. They don't move.”
+          conception: 2
+        choices:
+          - text: Ask Group 3 to write the rule they used on the thinking wall, and keep moving between groups
+            next: microscope
+            good: true
+            lookFor: engage-elicit
+            surface: [2]
+            debrief: The rule “alive things move” is now on the wall, where the whole unit can test it. Engage collects ideas; it doesn't correct them.
+          - text: Explain that fungi are alive, and move the mushroom to the right column
+            next: quiet
+            good: false
+            lookFor: engage-elicit
+            hide: [2]
+            debrief: The answer is right, but the idea behind it never reached the wall. Group 3 learned that their thinking gets corrected, not used.
+
+      - id: microscope
+        phase: explore
+        when: Lesson 3 · Elodea station
+        situation: Students are drawing an Elodea leaf at two magnifications. Mia has drawn the green dots carefully and nothing else.
+        said:
+          who: Mia
+          text: “The green dots are the cells. The rest is just leaf.”
+          conception: 0
+        choices:
+          - text: Ask, “Is the whole leaf made of those boxes, or are they on it? How could you check?”
+            next: explain-data
+            good: true
+            lookFor: explore-before-explain
+            surface: [0]
+            debrief: Mia now has to look again and decide for herself. Her idea that plants aren't really made of cells is out in the open, ready for Explain.
+          - text: Show her the labelled plant-cell diagram so she knows what to look for
+            next: explain-diagram
+            good: false
+            lookFor: explore-before-explain
+            hide: [0, 1]
+            debrief: Her drawing will improve, but she's now copying the diagram, not observing. The diagram also plants the flat-cell picture the sequence wanted to challenge.
+
+      - id: quiet
+        phase: explore
+        when: Lesson 3 · Elodea station
+        situation: Since lesson 1, Group 3 has stopped volunteering ideas. At the Elodea station, Mia copies her partner's drawing and says nothing.
+        choices:
+          - text: Ask Mia what she thinks the green dots are, and why
+            next: explain-data
+            good: true
+            lookFor: explore-before-explain
+            surface: [0]
+            debrief: A direct, curious question brings her thinking back. She says the green dots are the cells and the rest is just leaf, which is exactly the idea Explain needs.
+          - text: Move on. She'll pick it up from the notes in lesson 5.
+            next: explain-diagram
+            good: false
+            lookFor: explore-before-explain
+            hide: [0]
+            debrief: Her idea stays hidden, so Explain can't challenge it. Students like Mia often leave a unit with the right words and the old idea underneath.
+
+      - id: explain-data
+        phase: explain
+        when: Lesson 5 · cell theory
+        situation: Groups have shared their drawings. You're about to introduce cell theory and the cell wall.
+        choices:
+          - text: Put Mia's Elodea drawing beside a cheek-cell drawing, and ask what the plant cells have that the cheek cells don't
+            next: revisit
+            good: true
+            lookFor: explain-links-data
+            challenge: [0]
+            debrief: The cell wall now names something students drew themselves. Mia sees boxes across the whole leaf in her own drawing, which challenges her idea more than any diagram could.
+          - text: Present the textbook diagrams of plant and animal cells, and have students label them
+            next: revisit-hidden
+            good: false
+            lookFor: explain-links-data
+            hide: [1]
+            debrief: Students can label the parts, but the explanation has come loose from what they saw. The flat textbook cell becomes the picture they remember.
+
+      - id: explain-diagram
+        phase: explain
+        when: Lesson 5 · cell theory
+        situation: Many drawings show tidy organelles copied from the diagram. Few match what was actually under the microscope.
+        choices:
+          - text: Ask groups which parts they actually saw, and which they drew because of the diagram
+            next: revisit
+            good: true
+            lookFor: explain-students-first
+            surface: [1]
+            challenge: [0]
+            debrief: Separating what they saw from what they were shown gets students explaining first. The flat-cell idea surfaces, and so does the question of whether the whole leaf is cells.
+          - text: Move on to organelle functions while the diagram is fresh
+            next: revisit-hidden
+            good: false
+            lookFor: explain-students-first
+            debrief: The class moves on with tidy notes and untested ideas. Nothing they think has been challenged yet.
+
+      - id: revisit
+        phase: evaluate
+        when: Lesson 10 · back to the sort
+        situation: The thinking wall still has the lesson 1 rules on it, including “alive things move”.
+        choices:
+          - text: Have groups re-sort the cards with evidence from the unit, rewrite their rule, and then classify an unfamiliar organism
+            next: end
+            good: true
+            lookFor: evaluate-revisit
+            challenge: [2]
+            debrief: Students can see how far their own thinking has moved. Rewriting “alive things move” with cell evidence is the change you were teaching for.
+          - text: Give a recall quiz on organelles and their functions
+            next: end
+            good: false
+            lookFor: evaluate-revisit
+            debrief: The quiz shows what students can recall, not how their thinking changed. The lesson 1 rules are still on the wall, untouched.
+
+      - id: revisit-hidden
+        phase: evaluate
+        when: Lesson 10 · back to the sort
+        situation: Several students still say plants aren't really made of cells, and the wall still says “alive things move”.
+        choices:
+          - text: Have groups re-sort the cards with evidence, rewrite their rules, and look again at an Elodea leaf
+            next: end
+            good: true
+            lookFor: evaluate-revisit
+            surface: [0]
+            challenge: [2]
+            debrief: Going back to the sort and the microscope rescues a lot. The ideas finally get tested, though later than they should have been.
+          - text: Give a recall quiz on organelles and their functions
+            next: end
+            good: false
+            lookFor: evaluate-revisit
+            debrief: The quiz scores look fine, but the ideas from lesson 1 have never been tested. They'll be back in Year 9.
+
+    endings:
+      - minGood: 4
+        title: Thinking changed, and you can see it
+        text: >-
+          Every key idea surfaced, met evidence and changed. That's the 5E mechanism working as the guide describes:
+          elicit, investigate before explaining, build from students' data, then make the change visible.
+      - minGood: 2
+        title: Some ideas moved, some never surfaced
+        text: >-
+          Parts of the sequence did their job. Look at the decisions where an idea was hidden or a diagram came first.
+          Those are the moments to plan differently on your next placement.
+      - minGood: 0
+        title: Right words, old ideas
+        text: >-
+          Students can name the parts of a cell, but the ideas they started with were never tested. The guide's
+          look-fors for Engage and Explore are the place to start.
+
+  - id: takeaway
+    type: choice
+    at: evaluate
+    processing: Analysis
+    kind: What made the difference?
+    tests: sim
+    title: In every run, one kind of move did the most damage.
+    q: Which?
+    options:
+      - text: Supplying the answer or the diagram before students had committed to their own idea
+        fb: Yes. Every weak path began with telling or showing too early. Each one hid an idea the sequence needed to challenge.
+      - text: Asking too many questions at the microscope
+        fb: Questions were the moves that brought ideas out. Silence and telling hid them.
+      - text: Spending too long on the card sort
+        fb: The sort is where ideas first surface. Cutting it short leaves less to work with.
+      - text: Using students' drawings in Explain
+        fb: That was one of the strongest moves, because it tied the explanation to what students saw.
+    answer: 0
+
+  - id: reflect
+    type: reflect
+    at: evaluate
+    processing: Metacognition
+    kind: Look back
+    title: Your Prac Day.
+    q: Which decision would be hardest for you on a real placement, and what will you say or do in that moment?
+    model: "Example: “Not correcting Ari in lesson 1. I'll have a sentence ready: ‘Write that rule on the wall. We'll test it.’”"

@@ -225,6 +225,29 @@ button.go.fbk{margin-top:12px}
 .wrow .bar{display:block;height:7px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin-bottom:3px}
 .wrow .bar b{display:block;height:100%;background:var(--accent);border-radius:99px}
 .wrow span{min-width:0;font-variant-numeric:tabular-nums}
+.board{display:grid;gap:10px;margin-top:14px}
+.phasebox{border:2px solid color-mix(in srgb,var(--pc) 40%,var(--line));border-radius:var(--r);padding:10px 12px;display:grid;gap:8px;background:var(--surface)}
+.phead{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.phead b{font-family:var(--f-display);font-size:18px;color:var(--pc)}
+.place{border:0;border-radius:99px;padding:6px 14px;background:var(--pc);color:var(--surface);font-weight:700;font-size:14px;cursor:pointer}
+.phasebox .empty{margin:0;font-size:14px;color:var(--muted)}
+.phasebox .slot{min-height:0}
+.tray{margin-top:14px}
+.report{margin-top:18px;display:grid;gap:8px}
+.report h3{font-size:20px}
+.report h4{margin:6px 0 0;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rp{padding:10px 12px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--line);font-size:15px}
+.rp span{display:block;margin-top:4px;color:var(--muted);font-size:14px}
+.rp em{display:block;font-style:normal;margin-top:4px;font-size:14px}
+.rp.good{border-left-color:var(--good)} .rp.bad{border-left-color:var(--bad)} .rp.miss{border-left-color:var(--muted)}
+.thinking{margin-top:12px;padding:12px;border-radius:var(--r);background:var(--surface-2);display:grid;gap:6px}
+.thinking .lbl{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cn{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;align-items:baseline}
+.cn span{min-width:0}
+.cn b{flex:none;font-family:var(--f-mono);font-size:12px;font-weight:500;padding:2px 8px;border-radius:6px;background:var(--surface);color:var(--muted)}
+.cn.surfaced b{color:var(--engage)} .cn.hidden b{color:var(--bad);background:var(--bad-bg)} .cn.challenged b{color:var(--good);background:var(--good-bg)}
+.said{margin-top:12px;padding:12px 14px;border-radius:var(--r);background:color-mix(in srgb,var(--engage) 12%,var(--surface));font-size:16px}
+.dbh{font-size:18px;margin-top:16px}
 .lfq{display:block;font-size:13px;color:var(--muted);font-family:var(--f-mono);letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}
 </style>
 </head>

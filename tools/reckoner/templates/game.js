@@ -11,7 +11,7 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--){ co
 const pick = a => a[Math.floor(Math.random() * a.length)];
 const COLS = ["var(--engage)","var(--explore)","var(--explain)","var(--elaborate)","var(--evaluate)"];
 const LEVEL = {recognise:"Recognise",explain:"Explain",select:"Select",design:"Design"};
-const UNSCORED = ["predict","concept","reflect"];
+const UNSCORED = ["predict","concept","reflect","build","sim"];   // never used as warm-ups
 const pathOf = id => D.paths.find(p => p.id === id);
 const G = id => D.guides[id];
 /* A phase's name and colour come from its guide; colours follow phase order, so POE's three phases
@@ -191,8 +191,11 @@ function render(){
   const L = list();
   if (S.pos >= L.length) return advancePhase();
   cur = L[S.pos];
+  if (cur.type === "sim"){ cur._node = cur._node || cur.start; cur._state = cur._state || {}; cur._trail = cur._trail || []; const n = simNode(cur); if (n) cur.at = n.phase; }
   chrome("play", `${pathOf(S.lesson.path).title} · Lesson ${S.lesson.order}`);
   hud();
+  if (cur.type === "sim") return renderSim();
+  if (cur.type === "build") return renderBuild();
   if (cur.type === "select" && !cur._stage) cur._stage = 1;
   const reshuffle = S.plays > 0 || S.phase === "review" || cur._warm;
   let opts = options(cur).map((o,i) => ({...o, i}));
@@ -362,15 +365,15 @@ function check(){
   if (ok && S.streak && S.streak % 3 === 0) head += " +5 streak bonus";
   feedback(head, body);
 }
-function score(ok){
-  const key = cur.id, L = rec(cur._from);
+function score(ok, key){
+  key = key || cur.id; const L = rec(cur._from);
   if (S.phase === "warm"){
     S.warmRes.push(ok);
     if (ok) L.missed = L.missed.filter(m => m !== key);
   } else if (S.phase === "main"){
     S.results[key] = {ok, tests:cur.tests};
-    if (!ok) S.review.push({...cur, _stage:0, _pick:null, _partial:false});
-  } else if (S.phase === "review" && ok) S.results[key].recovered = true;
+    if (!ok && cur.type !== "sim") S.review.push({...cur, _stage:0, _pick:null, _partial:false, _placed:null, _report:null});
+  } else if (S.phase === "review" && ok && S.results[key]) S.results[key].recovered = true;
   if (ok){ S.streak++; S.best = Math.max(S.best, S.streak); S.xp += S.phase === "main" ? 10 : 5; if (S.streak % 3 === 0) S.xp += 5; }
   else S.streak = 0;
   store.save(P); hud();
@@ -400,8 +403,143 @@ function advancePhase(){
   render();
 }
 
+/* ---------- build: assemble a plan, then read the feature report ---------- */
+/*<buildReport>*/
+/* The same rules as buildReport() in scripts/lib/game.ts; test-game.ts checks the two agree. */
+function buildReport(it, placed, phases){
+  const card = id => it.cards.find(c => c.id === id);
+  const met = new Set(), flags = [], misplaced = [], checkPhases = new Set();
+  for (const p of phases){
+    const ids = placed[p.id] || [];
+    for (const id of ids){
+      const c = card(id);
+      (c.flaws || []).forEach(m => flags.push({mis:m, because:c.id}));
+      if (c.kind === "check"){ checkPhases.add(p.id); continue; }
+      if (c.does && c.does !== p.id){ misplaced.push({card:c.id, in:p.id, does:c.does}); continue; }
+      if (!(c.flaws || []).length) (c.features || []).forEach(f => met.add(f));
+    }
+    if (!ids.some(id => card(id).kind === "activity") && it.missing[p.id]) flags.push({mis:it.missing[p.id], because:"empty:" + p.id});
+  }
+  if (it.formative){
+    if (checkPhases.size >= it.formative.minPhases) met.add(it.formative.lookFor);
+    else flags.push({mis:it.formative.flag, because:"checks:" + checkPhases.size});
+  }
+  const missing = it.report.filter(f => !met.has(f));
+  return { met: it.report.filter(f => met.has(f)), missing, flags, misplaced, clean: !flags.length && !misplaced.length && !missing.length };
+}
+/*</buildReport>*/
+function renderBuild(){
+  const it = cur, ph = JG().phases;
+  it._placed = it._placed || {};
+  const placedIds = new Set(Object.values(it._placed).flat());
+  const card = id => it.cards.find(c => c.id === id);
+  const chip = S.phase === "review" ? `<span class="chip warn">Review: rebuild it</span>` : "";
+  let h = `<section class="card" style="--pc:${jp(it.at)}">
+    <div class="chips"><span class="chip ph">${esc(jn(it.at))} phase</span><span class="chip">${esc(it.processing)}</span>${chip}</div>
+    <p class="kind">${esc(it.kind)}</p>${it.title ? `<h2>${esc(it.title)}</h2>` : ""}
+    <div class="vignette"><span class="who">${esc(it.brief.who)}</span>${esc(it.brief.text)}</div>
+    ${it.q && !checked ? `<p class="q">${esc(it.q)}</p>` : ""}
+    <div class="board">${ph.map(p => `<div class="phasebox" style="--pc:${jp(p.id)}"><div class="phead"><b>${esc(p.name)}</b>${it._pick && !checked ? `<button class="place" type="button" data-place="${esc(p.id)}">Place here</button>` : ""}</div>
+      ${(it._placed[p.id] || []).map(id => `<button class="slot filled" type="button" data-un="${esc(id)}" data-from="${esc(p.id)}" ${checked ? "disabled" : ""}><span class="txt">${card(id).kind === "check" ? `<span class="chip">Check</span> ` : ""}${esc(card(id).text)}</span></button>`).join("") || `<p class="empty">No cards yet</p>`}</div>`).join("")}</div>
+    ${checked ? "" : `<div class="pool tray"><span class="lbl">Cards · tap one, then choose its phase</span>${it.cards.filter(c => !placedIds.has(c.id)).map(c => `<button class="opt${it._pick === c.id ? " sel" : ""}" type="button" data-c="${esc(c.id)}"><span class="t">${c.kind === "check" ? `<span class="chip">Check</span> ` : ""}${esc(c.text)}</span></button>`).join("")}</div>`}
+    ${it.hint && !checked ? `<details class="hint"><summary>Hint</summary><p>${esc(it.hint)}</p></details>` : ""}
+    ${it._report ? reportHTML(it, it._report) : ""}
+  </section>`;
+  stage.innerHTML = h;
+  stage.querySelectorAll("[data-c]").forEach(b => b.addEventListener("click", () => { it._pick = it._pick === b.dataset.c ? null : b.dataset.c; renderBuild(); }));
+  stage.querySelectorAll("[data-place]").forEach(b => b.addEventListener("click", () => { (it._placed[b.dataset.place] = it._placed[b.dataset.place] || []).push(it._pick); it._pick = null; renderBuild(); }));
+  stage.querySelectorAll("[data-un]").forEach(b => b.addEventListener("click", () => { if (checked) return; const a = it._placed[b.dataset.from]; a.splice(a.indexOf(b.dataset.un), 1); renderBuild(); }));
+  const dl = $("#dlPlan"); if (dl) dl.addEventListener("click", downloadPlan);
+  go.onclick = () => {
+    if (checked) return next();
+    checked = true;
+    it._report = buildReport(it, it._placed, ph);
+    score(it._report.clean);
+    const rp = it._report, n = rp.flags.length + rp.misplaced.length + rp.missing.length;
+    dock.className = "dock " + (rp.clean ? "good" : "bad");
+    feedback(rp.clean ? "A clean report. Every look-for is met." : `Your report shows ${n} thing${n === 1 ? "" : "s"} to work on.`,
+      `<p>${rp.clean ? "Download your plan to keep it." : "Read the report under your plan." + (S.phase === "main" ? " You'll get one chance to rebuild it at the end." : "")}</p>`);
+    renderBuild();
+    go.textContent = "Continue"; go.disabled = false;
+  };
+  if (!checked){ go.textContent = "Check my plan"; go.disabled = !placedIds.size; keys.textContent = `${placedIds.size} of ${it.cards.length} cards placed`; }
+}
+function reportHTML(it, rp){
+  const lf = JG().lookFors, mi = JG().misapplications, card = id => it.cards.find(c => c.id === id);
+  const why = f => f.because.startsWith("empty:") ? `No activity in ${jn(f.because.slice(6))}.` : f.because.startsWith("checks:") ? `Checks in ${f.because.slice(7)} phase${f.because.slice(7) === "1" ? "" : "s"}; the guide wants them throughout.` : `Card: “${card(f.because).text}”`;
+  return `<div class="report">
+    <h3>Feature report</h3>
+    ${rp.flags.length || rp.misplaced.length ? `<h4>Watch-outs</h4>${rp.flags.map(f => `<div class="rp bad"><b>${esc(mi[f.mis].name)}.</b> ${esc(mi[f.mis].why)} <em>${esc(why(f))}</em><span>Fix: ${esc(mi[f.mis].fix)}</span></div>`).join("")}${rp.misplaced.map(m => `<div class="rp bad"><b>In the wrong phase.</b> “${esc(card(m.card).text)}” does ${esc(jn(m.does))}'s job, not ${esc(jn(m.in))}'s.</div>`).join("")}` : ""}
+    <h4>Look-fors</h4>
+    ${it.report.map(f => { const ok = rp.met.includes(f); return `<div class="rp ${ok ? "good" : "miss"}"><b>${ok ? "Met" : "Missing"} · ${esc(jn(lf[f].phaseId))}</b> ${esc(lf[f].question)}${ok ? "" : `<span>Strong evidence looks like: ${esc(lf[f].strong)}</span>`}</div>`; }).join("")}
+    <div class="row2"><button class="ghost" type="button" id="dlPlan">Download my plan</button></div>
+  </div>`;
+}
+function downloadPlan(){
+  const it = cur, rp = it._report, lf = JG().lookFors, mi = JG().misapplications, card = id => it.cards.find(c => c.id === id);
+  const md = [`# ${JG().name} plan: ${it.brief.who}`, "", it.brief.text, "",
+    ...JG().phases.flatMap(p => { const ids = it._placed[p.id] || []; return [`## ${p.name}`, ...(ids.length ? ids.map(id => `- ${card(id).kind === "check" ? "Check: " : ""}${card(id).text}`) : ["- (nothing yet)"]), ""]; }),
+    "## Feature report", "",
+    ...rp.flags.map(f => `- Watch-out: ${mi[f.mis].name}. Fix: ${mi[f.mis].fix}`),
+    ...rp.misplaced.map(m => `- Wrong phase: "${card(m.card).text}" does ${jn(m.does)}'s job, not ${jn(m.in)}'s`),
+    ...it.report.map(f => `- [${rp.met.includes(f) ? "x" : " "}] ${jn(lf[f].phaseId)}: ${lf[f].question}`),
+    "", `From ${S.lesson.title} (${S.lesson.id} v${S.lesson.version}), LXDUNE teaching models game.`].join("\n");
+  try {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([md], {type:"text/markdown"}));
+    a.download = `${S.lesson.path}-plan.md`;
+    document.body.appendChild(a); a.click(); a.remove();
+  } catch(e){ keys.textContent = "Your browser blocked the download."; }
+}
+
+/* ---------- sim: Prac Day, a branching run through a worked sequence ---------- */
+const simNode = it => it.nodes.find(n => n.id === it._node);
+/* The ending matches the run: the highest minGood the player's strong moves reach. */
+const simEnding = it => { const good = it._trail.filter(t => t.good).length; return it.endings.filter(e => e.minGood <= good).sort((a,b) => b.minGood - a.minGood)[0]; };
+const CSTATE = {surfaced:"Surfaced", hidden:"Hidden", challenged:"Challenged"};
+function renderSim(){
+  const it = cur, n = it._node === "end" ? null : simNode(it);
+  const panel = `<div class="thinking"><span class="lbl">Class thinking</span>${it.conceptions.map((c,i) => `<div class="cn ${it._state[i] || "unheard"}"><span>${esc(c)}</span><b>${CSTATE[it._state[i]] || "Not heard yet"}</b></div>`).join("")}</div>`;
+  let h = `<section class="card" style="--pc:${jp(it.at)}">
+    <div class="chips"><span class="chip ph">${esc(jn(it.at))} phase</span><span class="chip">${esc(it.processing)}</span><span class="chip">${n ? `Decision ${it._trail.length + 1}` : "Debrief"}</span></div>
+    <p class="kind">${esc(it.kind)}${n ? " · " + esc(n.when) : ""}</p>
+    <p class="note" style="margin-top:0"><b>${esc(it.cast.who)}.</b> ${esc(it.cast.text)}</p>${panel}`;
+  if (!n){
+    const e = simEnding(it), good = it._trail.filter(t => t.good).length;
+    h += `<h2>${esc(e.title)}</h2><p class="lead">${esc(e.text)}</p><p class="note">${good} of ${it._trail.length} moves were the stronger choice.</p><h3 class="dbh">Your decisions</h3>${it._trail.map((t,i) => `<div class="rp ${t.good ? "good" : "bad"}"><b>${i + 1}. ${esc(t.when || "")}</b> ${esc(t.text)}<span>${esc(t.debrief)}</span>${t.lookFor ? `<span class="lfq">${esc(jn(JG().lookFors[t.lookFor].phaseId))} look-for: ${esc(JG().lookFors[t.lookFor].question)}</span>` : ""}</div>`).join("")}`;
+    stage.innerHTML = h + `</section>`;
+    go.textContent = "Continue"; go.disabled = false; keys.textContent = "Enter to continue";
+    go.onclick = () => next();
+    window.scrollTo({top:0});
+    return;
+  }
+  h += `<div class="vignette"><span class="who">${esc(n.when)}</span>${esc(n.situation)}</div>`;
+  if (n.said) h += `<div class="said"><b>${esc(n.said.who)}:</b> ${esc(n.said.text)}</div>`;
+  h += `<p class="q">What do you do?</p><div class="opts" role="radiogroup">${n.choices.map((c,i) => `<button class="opt" type="button" data-i="${i}" role="radio" aria-checked="false"><span class="k">${i + 1}</span><span class="t">${esc(c.text)}</span></button>`).join("")}</div>`;
+  stage.innerHTML = h + `</section>`;
+  cur._view = n.choices.map((c,i) => ({i}));
+  stage.querySelectorAll(".opt[data-i]").forEach(b => b.addEventListener("click", () => choose(+b.dataset.i)));
+  go.textContent = "Make this move"; go.disabled = true; keys.textContent = `Keys: 1–${n.choices.length} to choose, Enter to decide`;
+  go.onclick = () => {
+    if (checked){ it._node = it._last.next; return render(); }
+    checked = true;
+    const c = n.choices[sel]; it._last = c;
+    c.surface.forEach(i => { if (it._state[i] !== "challenged") it._state[i] = "surfaced"; });
+    c.hide.forEach(i => { if (it._state[i] !== "challenged") it._state[i] = "hidden"; });
+    c.challenge.forEach(i => it._state[i] = "challenged");
+    it._trail.push({when:n.when, text:c.text, good:c.good, debrief:c.debrief, lookFor:c.lookFor});
+    score(c.good, `${it.id}:${n.id}`);
+    stage.querySelectorAll(".opt[data-i]").forEach(b => { b.disabled = true; if (+b.dataset.i === sel) b.classList.add(c.good ? "right" : "wrong"); });
+    const panelEl = stage.querySelector(".thinking"); if (panelEl) panelEl.outerHTML = `<div class="thinking"><span class="lbl">Class thinking</span>${it.conceptions.map((cc,i) => `<div class="cn ${it._state[i] || "unheard"}"><span>${esc(cc)}</span><b>${CSTATE[it._state[i]] || "Not heard yet"}</b></div>`).join("")}</div>`;
+    dock.className = "dock " + (c.good ? "good" : "bad");
+    const lf = c.lookFor ? JG().lookFors[c.lookFor] : null;
+    feedback(c.good ? "A strong move." : "That move costs you later.", `<p>${esc(c.debrief)}</p>${lf ? `<p class="lfq">${esc(jn(lf.phaseId))} look-for: ${esc(lf.question)}</p>` : ""}`);
+  };
+  window.scrollTo({top:0});
+}
+
 /* ---------- results ---------- */
-const SKILL = {sequence:"Sequencing", diagnosis:"Diagnosing plans", misapplication:"Diagnosing plans", lookfor:"Using look-fors", engage:"Reading student ideas", select:"Choosing a model", flip:"Reading the dial", nesting:"Nesting models", prediction:"Prediction prompts"};
+const SKILL = {design:"Designing a sequence", sim:"Teaching decisions", sequence:"Sequencing", diagnosis:"Diagnosing plans", misapplication:"Diagnosing plans", lookfor:"Using look-fors", engage:"Reading student ideas", select:"Choosing a model", flip:"Reading the dial", nesting:"Nesting models", prediction:"Prediction prompts"};
 function summary(){
   cur = null;
   const l = S.lesson, r = rec(l.id), res = Object.entries(S.results), right = res.filter(([,v]) => v.ok).length;

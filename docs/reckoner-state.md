@@ -15,7 +15,7 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Examples across published guides | 58 (29 positive, 29 negative) |
 | Worked sequences | 20 |
 | Focus areas with a ready plan / examples only / empty | 16 / 0 / 0 of 16 |
-| Game lessons at /play/ (published / draft or in review) | 8 / 0 |
+| Game lessons at /play/ (published / draft or in review) | 8 / 2 |
 | **Next action-plan item number** | **46** |
 
 ## Published guides
@@ -43,6 +43,8 @@ versions the same way as guides.
 | Cells under the lens | `5e-2-cells` | `5e` | 2 | recognise | 1.0.0 | published | 2026-10-02 | 11 |
 | Outbreak | `5e-3-outbreak` | `5e` | 3 | explain | 1.0.0 | published | 2026-10-02 | 11 |
 | Labels without logic | `5e-4-labels` | `5e` | 4 | explain | 1.0.0 | published | 2026-10-02 | 10 |
+| Build it | `5e-5-build` | `5e` | 5 | design | 0.1.0 | draft | 2026-10-03 | 5 |
+| Prac Day | `5e-6-prac-day` | `5e` | 6 | design | 0.1.0 | draft | 2026-10-03 | 4 |
 | Is yeast alive? | `poe-1-yeast` | `poe` | 1 | recognise | 1.0.0 | published | 2026-10-03 | 11 |
 | Clean hands | `poe-2-hands` | `poe` | 2 | explain | 1.0.0 | published | 2026-10-03 | 11 |
 | Which model, and why? | `select-1-which` | `select` | 1 | select | 1.0.0 | published | 2026-10-03 | 8 |
