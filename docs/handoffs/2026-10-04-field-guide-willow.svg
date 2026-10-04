@@ -1,0 +1,23 @@
+<!-- Plate 1: The Willow Problem. Used as the Field Guide home hero (app.html) and as the lesson plate
+     for 5e-1-willow in the game. Paste inline; colours come from the --plate-* tokens in the handoff,
+     so the drawing follows light and dark themes. Keep the CO2 answer out of the drawing: the lesson
+     asks students to predict it. -->
+<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A willow tree growing in a tub of soil, with the sun and water drops" xmlns="http://www.w3.org/2000/svg">
+  <circle class="pl-sun" cx="300" cy="38" r="17"/>
+  <g class="pl-ray" stroke-width="2.4" stroke-linecap="round"><path d="M300 10v-6"/><path d="M328 38h6"/><path d="M320 18l4-4"/><path d="M320 58l4 4"/><path d="M272 18l-4-4"/></g>
+  <ellipse class="pl-canopy" cx="178" cy="78" rx="78" ry="44"/>
+  <path class="pl-trunk" d="M178 150 C175 122 172 100 178 72" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path class="pl-trunk" d="M178 86 C196 76 208 70 222 68" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <g class="pl-branch" stroke-width="2.4" fill="none" stroke-linecap="round">
+    <path d="M178 46 C150 42 120 62 112 120"/><path d="M178 46 C160 50 140 74 136 128"/><path d="M178 46 C170 64 160 90 158 132"/>
+    <path d="M178 46 C206 42 236 62 244 120"/><path d="M178 46 C196 50 216 74 220 128"/><path d="M178 46 C186 64 196 90 198 132"/>
+  </g>
+  <g class="pl-leaf"><ellipse cx="114" cy="110" rx="3" ry="6"/><ellipse cx="137" cy="116" rx="3" ry="6"/><ellipse cx="158" cy="122" rx="3" ry="6"/><ellipse cx="243" cy="110" rx="3" ry="6"/><ellipse cx="219" cy="116" rx="3" ry="6"/><ellipse cx="198" cy="122" rx="3" ry="6"/><ellipse cx="124" cy="86" rx="3" ry="6"/><ellipse cx="232" cy="86" rx="3" ry="6"/></g>
+  <path class="pl-tub" d="M120 150 H236 L226 184 H130 Z"/>
+  <rect class="pl-rim" x="116" y="146" width="124" height="9" rx="3"/>
+  <path class="pl-soil" d="M124 150 H232" stroke-width="5"/>
+  <g class="pl-drop"><path d="M60 92 c-5 8 -7 12 0 14 c7 -2 5 -6 0 -14z"/><path d="M76 112 c-5 8 -7 12 0 14 c7 -2 5 -6 0 -14z"/><path d="M58 128 c-5 8 -7 12 0 14 c7 -2 5 -6 0 -14z"/></g>
+  <text class="pl-label" x="20" y="176">YEAR 0 · 2 kg</text>
+  <text class="pl-label" x="258" y="176">YEAR 5 · 77 kg</text>
+  <text class="pl-q" x="262" y="108">?</text>
+</svg>
