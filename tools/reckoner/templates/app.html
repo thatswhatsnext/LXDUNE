@@ -3,18 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Constructivist model reckoner and companion guides</title>
+<title>The Field Guide to Constructivist Teaching Models</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 <style>
 :root{
   --paper:#F3F6F4; --surface:#FFFFFF; --sunk:#E9EEEB; --ink:#16211F; --muted:#5A6B68; --line:#D7DEDA; --line-soft:#E6EBE8;
   --accent:#1D6B56; --accent-soft:#DFEDE7; --accent-ink:#FFFFFF;
   --macro:#1D6B56; --meso:#35538F; --micro:#96601A; --dial:#6F5088;
   --warn:#8A4B12; --warn-soft:#FBF1E4; --pos:#1D6B56; --neg:#8A4B12;
+  --meso-soft:#E8EDF6; --micro-soft:#F6ECDF; --dial-soft:#EFE8F4;
+  --engage:#b06e0c; --explore:#0d7c6f; --explain:#2a5cad; --elaborate:#7046ad; --evaluate:#ad4166;
+  --plate-sun:#F2C76B; --plate-ray:#D9A62E; --plate-canopy:#DFEDE7; --plate-branch:#1D6B56; --plate-leaf:#2E8A6E;
+  --plate-trunk:#5B4632; --plate-soil:#7A5B3E; --plate-tub:#35538F; --plate-rim:#2A4372; --plate-drop:#6FA8DC;
   --r:10px;
   --serif:"Source Serif 4", Georgia, serif; --sans:"IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
@@ -22,12 +27,20 @@
   --accent:#6FC0A3; --accent-soft:#1B322A; --accent-ink:#0D1714;
   --macro:#6FC0A3; --meso:#93ADE8; --micro:#DFA85C; --dial:#C2A3D8;
   --warn:#EFB37A; --warn-soft:#2C2318; --pos:#6FC0A3; --neg:#DFA85C;
+  --meso-soft:#1D2638; --micro-soft:#2C2318; --dial-soft:#2A2233;
+  --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
+  --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
+  --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
   color-scheme:dark;}}
 :root[data-theme="dark"]{
   --paper:#111917; --surface:#19231F; --sunk:#131C19; --ink:#E6EDE9; --muted:#9CADA8; --line:#2C3A35; --line-soft:#232F2B;
   --accent:#6FC0A3; --accent-soft:#1B322A; --accent-ink:#0D1714;
   --macro:#6FC0A3; --meso:#93ADE8; --micro:#DFA85C; --dial:#C2A3D8;
   --warn:#EFB37A; --warn-soft:#2C2318; --pos:#6FC0A3; --neg:#DFA85C;
+  --meso-soft:#1D2638; --micro-soft:#2C2318; --dial-soft:#2A2233;
+  --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
+  --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
+  --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
   color-scheme:dark;}
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:calc(1rem + env(safe-area-inset-top,0px))}
@@ -37,14 +50,65 @@ h1{font-size:clamp(1.6rem,3.6vw,2.3rem);max-width:24ch}
 h2{font-size:1.35rem} h3{font-size:1.1rem} h4{font-size:1rem}
 p{margin:.4rem 0} a{color:var(--accent)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 1.25rem}
-header.top{padding:2.25rem 0 1rem;border-bottom:1px solid var(--line)}
 .lede{max-width:66ch;color:var(--muted);margin-top:.6rem}
-.playlink{margin:.75rem 0 0;font-size:.95rem}
-.playlink a{color:var(--accent);font-weight:500;text-underline-offset:2px}
-@media print{.playlink{display:none}}
-.tabs{display:flex;gap:.25rem;margin-top:1.25rem;flex-wrap:wrap}
-.tab{font:500 .95rem var(--sans);padding:.55rem 1rem;border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;background:transparent;color:var(--muted);cursor:pointer}
-.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 0 var(--surface)}
+/* icons: the sprite straight after <body>; stroke follows the text colour */
+.i{width:1.25em;height:1.25em;flex:none}
+/* masthead: a slim bar on every view */
+header.top{border-bottom:1px solid var(--line);background:var(--surface)}
+.mast{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem 1rem;padding-top:.6rem;padding-bottom:.6rem}
+.brand{display:flex;align-items:center;gap:.6rem;min-height:44px;color:var(--ink);text-decoration:none;border-radius:8px}
+.brand-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:9px;background:var(--accent);color:var(--accent-ink);flex:none}
+.brand-text{display:flex;flex-direction:column;line-height:1.15}
+.brand-text b{font:600 17px var(--serif)}
+.brand-text small{font-size:11.5px;color:var(--muted)}
+.mast .chip{cursor:default;margin-left:auto;font-size:.78rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.2rem .65rem;white-space:nowrap}
+.mast-nav{order:3;flex-basis:100%;display:flex;gap:.25rem;overflow-x:auto;scrollbar-width:none;margin:0 -.25rem}
+.mast-nav::-webkit-scrollbar{display:none}
+.mast-nav a,.mast-nav button{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;min-height:44px;padding:0 .7rem;border-radius:8px;font-size:.9rem;font-weight:500;color:var(--ink);white-space:nowrap}
+.mast-nav a:hover,.mast-nav button:hover{background:var(--accent-soft)}
+.mast-nav a:focus-visible,.mast-nav button:focus-visible,.brand:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (max-width:519px){
+  .mast .chip{display:none}
+  .mast-nav{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+}
+@media (min-width:900px){ .mast-nav{order:0;flex-basis:auto;margin:0 0 0 1rem} }
+/* home: the plate, the question and the four-step path */
+.home{padding-top:1.5rem;padding-bottom:.5rem}
+.home-hero{display:grid;gap:1.25rem}
+.plate-card{background-color:var(--surface);background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);background-size:18px 18px;border:1px solid var(--line);border-radius:12px;padding:.9rem;margin:0}
+.plate-card figcaption{font:500 .75rem var(--mono);color:var(--muted);margin-top:.4rem;letter-spacing:.02em}
+.pl-sun{fill:var(--plate-sun)} .pl-ray{stroke:var(--plate-ray)} .pl-canopy{fill:var(--plate-canopy)}
+.pl-trunk{stroke:var(--plate-trunk)} .pl-branch{stroke:var(--plate-branch)} .pl-leaf{fill:var(--plate-leaf)}
+.pl-tub{fill:var(--plate-tub)} .pl-rim{fill:var(--plate-rim)} .pl-soil{stroke:var(--plate-soil)}
+.pl-drop{fill:var(--plate-drop)} .pl-label{font:11px var(--mono);fill:var(--muted)}
+.pl-q{font:600 40px var(--serif);fill:var(--micro)} .plate{width:100%;height:auto;display:block}
+.label-caps{font:600 12px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:1.5rem 0 .6rem}
+.steps{display:grid;gap:.6rem;list-style:none;margin:0;padding:0}
+.step{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:.85rem;width:100%;min-height:44px;padding:.75rem .9rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);text-decoration:none}
+.step:hover{border-color:var(--accent)}
+.step:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.step.hl{background:var(--accent-soft);border:1.5px solid var(--accent)}
+.step-tile{display:grid;place-items:center;width:46px;height:46px;border-radius:10px;flex:none;background:var(--t-bg);color:var(--t-fg)}
+.step-tile .i{width:24px;height:24px}
+.step-text{flex:1;min-width:0;display:flex;flex-direction:column}
+.step-num{font:500 11.5px var(--mono);letter-spacing:.06em;color:var(--muted)}
+.step-title{font:600 16px var(--sans)}
+.step-line{font-size:13.5px;color:var(--muted);line-height:1.4}
+.step>.i{color:var(--muted)}
+.home-unit{margin:.9rem 0 0;font-size:.95rem}
+.home-unit .lite-link{min-height:44px;display:inline-flex;align-items:center}
+@media (min-width:900px){
+  .home-hero{grid-template-columns:minmax(0,1fr) minmax(0,26rem);align-items:center}
+  .home-hero .plate-card{order:2}
+  .steps{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+}
+/* the Reckoner's tool strip (the tab bar) */
+.tools{margin-top:1.25rem;border-bottom:1px solid var(--line);padding-bottom:.5rem}
+.tools .label-caps{margin:0 0 .4rem}
+.tabs{display:flex;gap:.25rem;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin;padding:3px}
+.tab{display:inline-flex;align-items:center;gap:.45rem;flex:none;scroll-snap-align:start;min-height:44px;font:500 .95rem var(--sans);padding:.45rem .85rem;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--surface);border-color:var(--line);color:var(--ink)}
 .panel{display:none;padding:1.5rem 0 3rem} .panel.active{display:block}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .intro{max-width:70ch;color:var(--muted);margin-bottom:1.25rem}
@@ -58,7 +122,7 @@ fieldset.q legend{font-weight:600;padding:0 .35rem;margin-left:-.35rem}
 .chip input:checked + span{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .chip input:focus-visible + span{outline:3px solid var(--accent);outline-offset:2px}
 .q-foot{display:flex;justify-content:space-between;gap:1rem;margin-top:.7rem;flex-wrap:wrap}
-details.help summary{cursor:pointer;color:var(--accent);font-size:.88rem}
+details.help summary{cursor:pointer;color:var(--meso);font-weight:600;font-size:.88rem}
 details.help p{font-size:.9rem;color:var(--muted);max-width:60ch}
 .imp{font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:.4rem}
 select,textarea,input[type=text]{font:inherit;padding:.3rem .45rem;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
@@ -78,8 +142,11 @@ textarea{width:100%;min-height:4.5rem;font-size:.95rem}
 }
 .box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.1rem 1.2rem}
 .empty{color:var(--muted);font-size:.95rem}
-.badge{display:inline-block;font-size:.75rem;font-weight:500;padding:.15rem .55rem;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
-.b-macro{color:var(--macro)} .b-meso{color:var(--meso)} .b-micro{color:var(--micro)} .b-dial{color:var(--dial)}
+.badge{display:inline-flex;align-items:center;gap:.3em;font-size:.75rem;font-weight:500;padding:.15rem .55rem;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.badge .i{width:13px;height:13px}
+.b-macro{color:var(--macro);background:var(--accent-soft)} .b-meso{color:var(--meso);background:var(--meso-soft)}
+.b-micro{color:var(--micro);background:var(--micro-soft)} .b-dial{color:var(--dial);background:var(--dial-soft)}
+.b-macro,.b-meso,.b-micro,.b-dial{border-color:transparent}
 .b-match{color:var(--accent);background:var(--accent-soft)}
 .b-prov{color:var(--warn);background:var(--warn-soft)}
 .b-evidence{color:var(--ink);background:var(--sunk);border-color:var(--line)}
@@ -100,6 +167,13 @@ table.work small{color:var(--muted)}
 .theory span{font-size:.78rem;padding:.15rem .5rem;border-radius:6px;background:var(--accent-soft)}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.2rem 1.25rem;margin-bottom:1rem}
 .card.lead{border:2px solid var(--accent)}
+/* quick result: the recommendation's header band, and the other side of the matrix */
+.card-band{margin:-1.2rem -1.25rem .9rem;padding:1rem 1.25rem .9rem;background:var(--accent-soft);border-radius:8px 8px 0 0}
+.card.alt{background:var(--paper);border-style:dashed}
+.card.alt h3{font-size:1.05rem;margin-bottom:.15rem}
+.card.alt .alt-name{font-weight:600;margin:.1rem 0 .3rem}
+a.pill{display:inline-flex;align-items:center;gap:.45rem;font:500 .92rem var(--sans);min-height:44px;padding:.55rem 1.15rem;border-radius:99px;border:1.5px solid var(--accent);background:var(--surface);color:var(--accent);text-decoration:none}
+a.pill:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.75rem;flex-wrap:wrap}
 .card-head .src{color:var(--muted);font-size:.85rem;margin-top:.2rem}
 .fitnum{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--accent);line-height:1}
@@ -186,7 +260,10 @@ button.opt{all:unset;box-sizing:border-box;cursor:pointer;display:block;min-heig
 button.opt:hover,button.opt:focus-visible{border-color:var(--accent);background:var(--accent-soft)}
 button.opt:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 button.opt b{display:block;font:600 1.05rem var(--sans)}
-button.opt.big b{font:600 1.35rem var(--serif)}
+button.opt.big b{font:600 21px var(--serif)}
+.opts.stages{grid-template-columns:1fr 1fr}
+button.opt.big small{font-size:13.5px}
+button.opt .stage-i{display:block;width:40px;height:40px;color:var(--accent);margin-bottom:.4rem}
 button.opt small{display:block;color:var(--muted);font-size:.9rem;margin-top:.2rem}
 .ready{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);font-size:.82rem;font-weight:500;margin-top:.35rem}
 .ready::before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:var(--accent)}
@@ -239,7 +316,7 @@ details.more > summary{cursor:pointer;color:var(--accent);font-weight:500}
 .cmp-group{margin:0 0 .9rem}
 .cmp-group > .sub{margin-bottom:.4rem}
 .chip .badge{margin-left:.35rem;font-size:.68rem;padding:.02rem .4rem}
-.chip input:checked + span .badge{color:inherit}
+.chip input:checked + span .badge{color:inherit;background:transparent;border-color:currentColor}
 .cmp-wrap{overflow-x:auto;margin-top:.75rem}
 table.cmp{table-layout:fixed;min-width:640px}
 table.cmp thead th{vertical-align:bottom}
@@ -263,11 +340,28 @@ details.sec > summary::before{content:"\25B8";color:var(--accent)}
 details.sec[open] > summary::before{content:"\25BE"}
 .guide details.sec > summary h2{border:none;margin:0;padding:0}
 .count{color:var(--muted);font-size:.88rem}
+/* guide phase strip and time-share bar */
+.ph-strip{display:flex;flex-wrap:wrap;gap:.6rem .5rem;list-style:none;margin:.4rem 0 1rem;padding:0}
+.ph-strip a{display:flex;flex-direction:column;align-items:center;gap:.3rem;width:4.6rem;min-height:44px;text-decoration:none;color:var(--ink);font-size:.8rem;line-height:1.2;text-align:center;border-radius:8px}
+.ph-strip a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.ph-tile{display:grid;place-items:center;width:44px;height:44px;border-radius:10px;color:var(--pc);background:var(--surface);border:1.5px solid var(--pc)}
+.ph-tile .i{width:24px;height:24px}
+.ph-tile.num{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font:600 1rem var(--sans)}
+.share{margin:0 0 1.25rem}
+.share-bar{display:flex;gap:2px;height:14px;border-radius:999px;overflow:hidden}
+.share-bar span{display:block;min-width:4px;background:var(--pc)}
+.share-key{display:flex;flex-wrap:wrap;gap:.25rem 1rem;list-style:none;margin:.5rem 0 0;padding:0;font-size:.82rem}
+.share-key li{display:flex;align-items:center;gap:.35rem}
+.share-key li::before{content:"";width:.6rem;height:.6rem;border-radius:2px;background:var(--pc)}
+.share-key b{font:500 .78rem var(--mono);color:var(--muted)}
+.share .hint{margin:.35rem 0 0}
 /* walkthrough */
 .tour{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:10;width:min(24rem,calc(100% - 2rem));background:var(--surface);border:2px solid var(--accent);border-radius:10px;padding:1rem 1.1rem}
 .tour p{margin:.2rem 0}
 .tour-target{outline:3px solid var(--accent);outline-offset:4px;border-radius:8px}
 footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted);font-size:.88rem}
+footer .judgement{display:flex;gap:.75rem;align-items:flex-start}
+footer .judgement .i{width:30px;height:30px;color:var(--muted)}
 footer .feedback{color:inherit;font-size:inherit;margin:.4rem 0} footer .feedback a{font-weight:700}
 /* How it works: a readable measure, a contents bar, summaries first, short cards */
 #howBody{max-width:46rem} .how p,.how li{line-height:1.6}
@@ -327,7 +421,7 @@ table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;
 @page{size:A4;margin:18mm}
 @media print{
   :root{--paper:#fff;--surface:#fff;--ink:#000;--muted:#333;--line:#999}
-  header.top,.tabs,.guide-nav,.toolbar,footer details,button{display:none!important}
+  header.top,.home,.tools,.guide-nav,.toolbar,footer details,button{display:none!important}
   .panel{display:none!important} .panel.active{display:block!important}
   .guide-grid{display:block} body{font-size:11pt}
   .card,.box,section{break-inside:avoid} h2{break-after:avoid}
@@ -345,21 +439,130 @@ table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;
 </style>
 </head>
 <body>
+<!-- Field Guide icon sprite. 24 px grid, 1.75 stroke, round caps and joins, stroke = currentColor.
+     Paste this block once, straight after <body>, in tools/reckoner/templates/app.html and game.html.
+     Use an icon with: <svg class="i" aria-hidden="true"><use href="#i-reckoner"/></svg>
+     Icon-only controls also need an aria-label on the control itself. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <!-- Brand and the four parts of the Field Guide -->
+  <symbol id="i-fieldguide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-8-1.5V18c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V4.5c-3-.5-6 0-8 1.5z"/><path d="M12 6v13.5"/><path d="M15 14.5c0-3 1.4-5 3.4-5.6 0 3-1.4 5-3.4 5.6z"/></symbol>
+  <symbol id="i-familytree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="2"/><circle cx="5.5" cy="19.5" r="2"/><circle cx="12" cy="19.5" r="2"/><circle cx="18.5" cy="19.5" r="2"/><path d="M12 6.5v11M12 12H5.5v5.5M12 12h6.5v5.5"/></symbol>
+  <symbol id="i-fieldwork" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="15.5" r="3.8"/><circle cx="17" cy="15.5" r="3.8"/><path d="M10.8 15.5h2.4"/><path d="M3.6 13.5L6.5 5h3.2l1.1 7M20.4 13.5L17.5 5h-3.2l-1.1 7"/></symbol>
+  <symbol id="i-reckoner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.4"/></symbol>
+  <symbol id="i-guides" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 10h7M8.5 14h7M8.5 18h4"/></symbol>
+
+  <!-- Reckoner tools (one per tab) -->
+  <symbol id="i-unit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V8"/><path d="M12 15c-1-2.5-3.5-3.6-6-3 .5 2.5 3 3.8 6 3z"/><path d="M12 12c1-2.5 3.5-3.6 6-3-.5 2.5-3 3.8-6 3z"/><path d="M12 8c-1.3-1.8-1.3-3.6 0-5.2 1.3 1.6 1.3 3.4 0 5.2z"/></symbol>
+  <symbol id="i-compare" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="7" height="14" rx="1.5"/><rect x="13.5" y="5" width="7" height="14" rx="1.5"/><path d="M6 9h2M16 9h2M6 13h2M16 13h2"/></symbol>
+  <symbol id="i-detail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M18 7h2M4 12h4M12 12h8M4 17h12"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="17" r="2"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-8-1.5V18c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V4.5c-3-.5-6 0-8 1.5z"/><path d="M12 6v13.5"/></symbol>
+  <symbol id="i-judgement" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M8 20h8M5 7h14"/><path d="M5 7l-2.5 6h5zM19 7l-2.5 6h5z"/></symbol>
+
+  <!-- Stages: seedling grows to sapling -->
+  <symbol id="i-stage4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5v-8"/><path d="M12 12.5c0-3-2.4-5-6-5 0 3 2.4 5 6 5z"/><path d="M12 12.5c0-3 2.4-5 6-5 0 3-2.4 5-6 5z"/><path d="M7 20.5h10"/></symbol>
+  <symbol id="i-stage5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V8"/><path d="M12 15c-1-2.5-3.5-3.6-6-3 .5 2.5 3 3.8 6 3z"/><path d="M12 12c1-2.5 3.5-3.6 6-3-.5 2.5-3 3.8-6 3z"/><path d="M12 8c-1.3-1.8-1.3-3.6 0-5.2 1.3 1.6 1.3 3.4 0 5.2z"/><path d="M7 21h10"/></symbol>
+
+  <!-- Model scale badges (SCALE keys in questions.json) -->
+  <symbol id="i-scale-macro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12h18"/><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></symbol>
+  <symbol id="i-scale-meso" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 12h10"/><circle cx="7" cy="12" r="1.8"/><circle cx="17" cy="12" r="1.8"/></symbol>
+  <symbol id="i-scale-micro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="2"/><circle cx="12" cy="12" r="7"/></symbol>
+  <symbol id="i-scale-dial" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16l-3-6"/></symbol>
+
+  <!-- 5E phases (also used for the matching 7E phases; elicit uses i-engage, extend uses i-elaborate) -->
+  <symbol id="i-engage" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .9-1 1.6v.4"/><path d="M12 16.6v.2"/></symbol>
+  <symbol id="i-explore" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M14.6 14.6l5 5"/></symbol>
+  <symbol id="i-explain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10.5H10l-4 3.5v-3.5H4z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
+  <symbol id="i-elaborate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="9" height="11" rx="1.5"/><path d="M10 14l9.5-9.5M14 4.5h5.5V10"/></symbol>
+  <symbol id="i-evaluate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8 12.4l2.8 2.8L16 9.6"/></symbol>
+
+  <!-- Utility -->
+  <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9.5 17h-19z"/><path d="M12 10v4.5M12 17.5v.2"/></symbol>
+</svg>
 <header class="top">
-  <div class="wrap">
-    <h1>Which constructivist model fits this science sequence?</h1>
-    <p class="lede">A planning companion for pre-service and early career teachers working with the NSW Science 7–10 Syllabus (2023). Answer a few questions to see which teaching models fit and why, then open the companion guide for the model you choose.</p>
-    <p class="playlink">Want some practice first? <a href="../play/">Play Teaching Models Play</a>: short lessons on choosing and sequencing models.</p>
-    <div class="tabs" role="tablist" aria-label="Views">
-      <button class="tab" role="tab" id="t-unit" aria-controls="p-unit" aria-selected="true">Start with your unit</button>
-      <button class="tab" role="tab" id="t-quick" aria-controls="p-quick" aria-selected="false" tabindex="-1">Quick reckoner</button>
-      <button class="tab" role="tab" id="t-compare" aria-controls="p-compare" aria-selected="false" tabindex="-1">Compare models</button>
-      <button class="tab" role="tab" id="t-detail" aria-controls="p-detail" aria-selected="false" tabindex="-1">Detailed reckoner</button>
-      <button class="tab" role="tab" id="t-guides" aria-controls="p-guides" aria-selected="false" tabindex="-1">Companion guides</button>
-      <button class="tab" role="tab" id="t-lib" aria-controls="p-lib" aria-selected="false" tabindex="-1">Model map</button>
-    </div>
+  <div class="wrap mast">
+    <a class="brand" href="./" aria-label="The Field Guide to Constructivist Teaching Models, home" data-name-label="productFull">
+      <span class="brand-mark"><svg class="i" aria-hidden="true"><use href="#i-fieldguide"/></svg></span>
+      <span class="brand-text"><b data-name="product">The Field Guide</b><small data-name="productTail">to Constructivist Teaching Models</small></span>
+    </a>
+    <nav class="mast-nav" aria-label="The Field Guide">
+      <button type="button" data-go="t-lib" data-name="familyTree">Family Tree</button>
+      <a href="../play/" data-name="game">Fieldwork</a>
+      <button type="button" data-go="t-quick" data-name="reckoner">The Reckoner</button>
+      <button type="button" data-go="t-guides" data-name="guides">Companion guides</button>
+    </nav>
+    <span class="chip">NSW Science 7–10</span>
   </div>
 </header>
+
+<section class="home wrap" id="home" aria-labelledby="homeTitle">
+  <div class="home-hero">
+    <figure class="plate-card">
+<!-- Plate 1: The Willow Problem. Used as the Field Guide home hero (app.html) and as the lesson plate
+     for 5e-1-willow in the game. Paste inline; colours come from the --plate-* tokens in the handoff,
+     so the drawing follows light and dark themes. Keep the CO2 answer out of the drawing: the lesson
+     asks students to predict it. -->
+<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A willow tree growing in a tub of soil, with the sun and water drops" xmlns="http://www.w3.org/2000/svg">
+  <circle class="pl-sun" cx="300" cy="38" r="17"/>
+  <g class="pl-ray" stroke-width="2.4" stroke-linecap="round"><path d="M300 10v-6"/><path d="M328 38h6"/><path d="M320 18l4-4"/><path d="M320 58l4 4"/><path d="M272 18l-4-4"/></g>
+  <ellipse class="pl-canopy" cx="178" cy="78" rx="78" ry="44"/>
+  <path class="pl-trunk" d="M178 150 C175 122 172 100 178 72" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path class="pl-trunk" d="M178 86 C196 76 208 70 222 68" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <g class="pl-branch" stroke-width="2.4" fill="none" stroke-linecap="round">
+    <path d="M178 46 C150 42 120 62 112 120"/><path d="M178 46 C160 50 140 74 136 128"/><path d="M178 46 C170 64 160 90 158 132"/>
+    <path d="M178 46 C206 42 236 62 244 120"/><path d="M178 46 C196 50 216 74 220 128"/><path d="M178 46 C186 64 196 90 198 132"/>
+  </g>
+  <g class="pl-leaf"><ellipse cx="114" cy="110" rx="3" ry="6"/><ellipse cx="137" cy="116" rx="3" ry="6"/><ellipse cx="158" cy="122" rx="3" ry="6"/><ellipse cx="243" cy="110" rx="3" ry="6"/><ellipse cx="219" cy="116" rx="3" ry="6"/><ellipse cx="198" cy="122" rx="3" ry="6"/><ellipse cx="124" cy="86" rx="3" ry="6"/><ellipse cx="232" cy="86" rx="3" ry="6"/></g>
+  <path class="pl-tub" d="M120 150 H236 L226 184 H130 Z"/>
+  <rect class="pl-rim" x="116" y="146" width="124" height="9" rx="3"/>
+  <path class="pl-soil" d="M124 150 H232" stroke-width="5"/>
+  <g class="pl-drop"><path d="M60 92 c-5 8 -7 12 0 14 c7 -2 5 -6 0 -14z"/><path d="M76 112 c-5 8 -7 12 0 14 c7 -2 5 -6 0 -14z"/><path d="M58 128 c-5 8 -7 12 0 14 c7 -2 5 -6 0 -14z"/></g>
+  <text class="pl-label" x="20" y="176">YEAR 0 · 2 kg</text>
+  <text class="pl-label" x="258" y="176">YEAR 5 · 77 kg</text>
+  <text class="pl-q" x="262" y="108">?</text>
+</svg>
+      <figcaption data-name="plateCaption">Plate 1 · The Willow Problem, from Fieldwork</figcaption>
+    </figure>
+    <div>
+      <h1 id="homeTitle">Which constructivist model fits this science sequence?</h1>
+      <p class="lede">A field guide for pre-service and early career teachers using the NSW Science 7–10 Syllabus (2023). Learn how the models relate, practise spotting them, then choose one for your own sequence and plan with its companion guide.</p>
+    </div>
+  </div>
+  <h2 class="label-caps" id="stepsTitle">Work through the guide</h2>
+  <ol class="steps" aria-labelledby="stepsTitle">
+    <li><button type="button" class="step" data-go="t-lib" data-step="learn" style="--t-bg:var(--accent-soft);--t-fg:var(--accent)">
+      <span class="step-tile"><svg class="i" aria-hidden="true"><use href="#i-familytree"/></svg></span>
+      <span class="step-text"><span class="step-num">1 · LEARN</span><span class="step-title" data-name="familyTreeTitle">The Family Tree</span><span class="step-line">How the models relate and fit inside each other</span></span>
+      <svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></button></li>
+    <li><a class="step hl" href="../play/" data-step="practise" style="--t-bg:var(--accent);--t-fg:var(--accent-ink)">
+      <span class="step-tile"><svg class="i" aria-hidden="true"><use href="#i-fieldwork"/></svg></span>
+      <span class="step-text"><span class="step-num">2 · PRACTISE</span><span class="step-title" data-name="game">Fieldwork</span><span class="step-line">Short games. Start with The Willow Problem</span></span>
+      <svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
+    <li><button type="button" class="step" data-go="t-quick" data-step="choose" style="--t-bg:var(--meso-soft);--t-fg:var(--meso)">
+      <span class="step-tile"><svg class="i" aria-hidden="true"><use href="#i-reckoner"/></svg></span>
+      <span class="step-text"><span class="step-num">3 · CHOOSE</span><span class="step-title" data-name="reckoner">The Reckoner</span><span class="step-line">Answer questions about your sequence and see which models fit, and why</span></span>
+      <svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></button></li>
+    <li><button type="button" class="step" data-go="t-guides" data-step="plan" style="--t-bg:var(--micro-soft);--t-fg:var(--micro)">
+      <span class="step-tile"><svg class="i" aria-hidden="true"><use href="#i-guides"/></svg></span>
+      <span class="step-text"><span class="step-num">4 · PLAN</span><span class="step-title" data-name="guides">Companion guides</span><span class="step-line">Phases, look-fors, worked sequences and a checklist for each model</span></span>
+      <svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></button></li>
+  </ol>
+  <p class="home-unit">Already planning a unit? <button type="button" class="lite-link" data-go="t-unit" data-step="unit">Start with your unit<span aria-hidden="true"> ↓</span></button></p>
+</section>
+
+<div class="wrap tools">
+  <p class="label-caps" id="toolsLabel">In <span data-name="reckoner">The Reckoner</span></p>
+  <div class="tabs" role="tablist" aria-label="Reckoner tools">
+    <button class="tab" role="tab" id="t-unit" aria-controls="p-unit" aria-selected="true"><svg class="i" aria-hidden="true"><use href="#i-unit"/></svg>Start with your unit</button>
+    <button class="tab" role="tab" id="t-quick" aria-controls="p-quick" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-reckoner"/></svg>Quick reckoner</button>
+    <button class="tab" role="tab" id="t-compare" aria-controls="p-compare" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-compare"/></svg>Compare models</button>
+    <button class="tab" role="tab" id="t-detail" aria-controls="p-detail" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-detail"/></svg>Detailed reckoner</button>
+    <button class="tab" role="tab" id="t-guides" aria-controls="p-guides" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-book"/></svg>Companion guides</button>
+    <button class="tab" role="tab" id="t-lib" aria-controls="p-lib" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-familytree"/></svg><span data-name="familyTree">Family Tree</span></button>
+  </div>
+</div>
 
 <main class="wrap">
   <p id="bootMsg" class="empty" role="status" style="margin:1rem 0 0"></p>
@@ -372,7 +575,7 @@ table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;
     <div class="box orient">
       <p>Answer a few questions to see which teaching models fit and why, then open the companion guide for the model you choose.</p>
       <div class="toolbar">
-        <button class="ghost" type="button" id="goReckoner">I know what I’m planning — use the reckoner</button>
+        <button class="ghost" type="button" id="goReckoner">I know what I’m planning — use <span data-name="reckonerMid">the Reckoner</span></button>
         <button class="ghost" type="button" id="goCompare">Show me the models side by side</button>
         <button class="ghost" type="button" id="goTour">Take the 60-second tour</button>
       </div>
@@ -425,7 +628,7 @@ table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;
   </section>
 
   <section class="panel" id="p-lib" role="tabpanel" aria-labelledby="t-lib" hidden>
-    <p class="intro">Every model in the reckoner. Models work at different scales and often nest: a unit architecture can hold multi-lesson routines and single-lesson strategies.</p>
+    <p class="intro">Every model in <span data-name="reckonerMid">the Reckoner</span>. Models work at different scales and often nest: a unit architecture can hold multi-lesson routines and single-lesson strategies.</p>
     <p class="map-legend" id="mapLegend"></p>
     <div id="mapBands"></div>
     <div id="mapPanel" aria-live="polite"></div>
@@ -465,7 +668,7 @@ table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;
 </template>
 
 <footer><div class="wrap">
-  <p><strong>Use with judgement.</strong> The reckoner prompts reasoning; it does not prescribe a choice. Strong programs often combine models. Check any sequence against the NSW Science 7–10 Syllabus (2023) and your school's scope and sequence.</p>
+  <p class="judgement"><svg class="i" aria-hidden="true"><use href="#i-judgement"/></svg><span><span data-name="reckoner">The Reckoner</span> prompts reasoning; it does not prescribe a choice. Strong programs often combine models. Check any sequence against the NSW Science 7–10 Syllabus (2023) and your school's scope and sequence.</span></p>
   <p id="buildStamp"></p>
 </div></footer>
 
