@@ -61,15 +61,15 @@ const wait = async (cond: () => boolean, what: string, ms = 8000) => {
   }
 };
 
-/** Load a built page in jsdom. For the site build, fetch() is served from the build directory. */
-async function openPage(file: string, siteDir?: string) {
+/** Load a built page in jsdom, optionally at a hash route. For the site build, fetch() is served from the build directory. */
+async function openPage(file: string, siteDir?: string, hash = "") {
   const errors: string[] = [];
   const offline = offlineResources();
   const vc = new VirtualConsole();
   vc.on("jsdomError", (e: Error) => errors.push(e.message));
   vc.on("error", (e: unknown) => errors.push(String(e)));
   const dom = new JSDOM(readFileSync(file, "utf8"), {
-    url: pathToFileURL(file).href,
+    url: pathToFileURL(file).href + hash,
     runScripts: "dangerously",
     resources: offline.resources,
     pretendToBeVisual: true,
@@ -297,6 +297,76 @@ const cases: [string, () => void | Promise<void>][] = [
       if (c.querySelectorAll("table.work tbody tr").length !== 5) throw new Error("expected one row per answered question (5)");
     }
     if (!doc.querySelector("#topCards .b-rule")) throw new Error("no Rule label on the watch-outs or nesting lines");
+    dom.window.close();
+  }],
+  ["the Field Guide home shows on the unit tab only, with the four steps in order", async () => {
+    const built = readFileSync(join(tmp, "single", "index.html"), "utf8");
+    const product = "The Field Guide to Constructivist Teaching Models";
+    if (!built.includes(`<title>${product}</title>`)) throw new Error("the built <title> is not the product name");
+    const page = await openPage(join(tmp, "single", "index.html"));
+    const { doc, dom } = page;
+    const home = doc.getElementById("home") as any, click = (id: string) => (doc.getElementById(id) as any).click();
+    if (doc.title !== product) throw new Error(`document title: ${doc.title}`);
+    if (doc.querySelector(".tab[aria-selected=true]")?.id !== "t-unit") throw new Error("t-unit is not the default tab");
+    if (home.hidden) throw new Error("home hidden on first load");
+    const steps = [...doc.querySelectorAll("#home .steps [data-step]")].map((s: any) => s.dataset.step).join();
+    if (steps !== "learn,practise,choose,plan") throw new Error(`steps: ${steps}`);
+    const jump = doc.querySelector('#home [data-step="unit"]') as any;
+    if (!jump || !/Start with your unit/.test(jump.textContent)) throw new Error("no Start with your unit link under the steps");
+    jump.click();
+    if (home.hidden || doc.querySelector(".tab[aria-selected=true]")?.id !== "t-unit") throw new Error("Start with your unit did not stay on the unit tab");
+    if (doc.getElementById("t-lib").textContent.trim() !== "Family Tree") throw new Error(`t-lib label: ${doc.getElementById("t-lib").textContent}`);
+    click("t-quick");
+    if (!home.hidden) throw new Error("home still shown after selecting t-quick");
+    click("t-unit");
+    if (home.hidden) throw new Error("home not shown again on returning to t-unit");
+    (doc.querySelector('#home [data-step="plan"]') as any).click();
+    if (!home.hidden || doc.querySelector(".tab[aria-selected=true]")?.id !== "t-guides") throw new Error("step 4 did not open the companion guides");
+    dom.window.close();
+    const deep = await openPage(join(tmp, "single", "index.html"), undefined, "#/guide/5e");
+    await wait(() => (deep.doc.querySelector("#guideNav a.on")?.getAttribute("href") ?? "") === "#/guide/5e", "guide 5e");
+    if (!deep.doc.getElementById("home").hidden) throw new Error("home shown on a #/guide/ deep link");
+    deep.dom.window.close();
+  }],
+  ["the quick reckoner shows the other side of the matrix, except for one lesson", async () => {
+    const page = await openPage(join(tmp, "single", "index.html"));
+    const { doc, dom } = page;
+    const pick = (name: string, value: string) => {
+      const el = doc.querySelector(`#quickForm input[name="${name}"][value="${value}"]`) as any;
+      el.checked = true; el.dispatchEvent(new dom.window.Event("change", { bubbles: true }));
+    };
+    pick("q-purpose", "misc"); pick("q-time", "unit"); pick("q-ready", "novice");
+    const rec = doc.querySelector("#quickResult .card.lead h2")?.textContent;
+    if (rec !== "5E, with a POE in Engage") throw new Error(`recommendation: ${rec}`);
+    const alt = doc.getElementById("quickAlt");
+    if (!alt || !alt.textContent.includes("Generative Learning Model (or 7E)")) throw new Error("no alternative card naming the Generative Learning Model (or 7E)");
+    if (!alt.textContent.includes("If your learners had more experience")) throw new Error("alternative card heading");
+    if (!doc.querySelector('#quickResult a.pill[href="../play/"]')) throw new Error("no Practise it in Fieldwork link for 5E");
+    if (doc.querySelector("#quickForm details.help summary")?.textContent !== "Why this matters") throw new Error("help summary is not Why this matters");
+    (doc.getElementById("altCompare") as any).click();
+    const picked = [...doc.querySelectorAll("#cmpPicker input:checked")].map((i: any) => i.value).join();
+    if (doc.querySelector(".tab[aria-selected=true]")?.id !== "t-compare" || picked !== "5e,glm") throw new Error(`compare opened with ${picked}`);
+    pick("q-time", "lesson");
+    if (doc.getElementById("quickAlt")) throw new Error("alternative card shown for a one-lesson result");
+    dom.window.close();
+  }],
+  ["guides show a phase strip, and a time-share bar only when every phase has a share", async () => {
+    const page = await openPage(join(tmp, "single", "index.html"));
+    const { doc, dom } = page;
+    const show = async (id: string) => {
+      dom.window.location.hash = `#/guide/${id}`;
+      await wait(() => (doc.querySelector("#guideNav a.on")?.getAttribute("href") ?? "") === `#/guide/${id}`, `guide ${id}`);
+    };
+    await show("5e");
+    const tiles = doc.querySelectorAll("#guideBody .ph-strip li").length;
+    if (tiles !== 5) throw new Error(`5E: ${tiles} phase tiles`);
+    if (doc.querySelectorAll("#guideBody .ph-strip use").length !== 5) throw new Error("5E: not every tile has its phase glyph");
+    const bar = doc.querySelector("#guideBody .share-bar");
+    if (!bar || bar.querySelectorAll("span").length !== 5 || bar.getAttribute("role") !== "img") throw new Error("5E: no five-part time-share bar");
+    if (!/Engage 5\u201310%/.test(bar.getAttribute("aria-label") ?? "")) throw new Error(`5E bar label: ${bar.getAttribute("aria-label")}`);
+    await show("levels-of-inquiry");
+    if (doc.querySelectorAll("#guideBody .ph-strip li").length !== 4) throw new Error("Levels of inquiry: not four phase tiles");
+    if (doc.querySelector("#guideBody .share-bar")) throw new Error("Levels of inquiry has a time-share bar");
     dom.window.close();
   }],
   ["the page reports missing data instead of failing silently", async () => {

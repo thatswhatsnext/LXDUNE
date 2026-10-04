@@ -238,6 +238,31 @@ const cases: [string, () => void | Promise<void>][] = [
     if (locked()) throw new Error("select lessons are still locked after every requirement was met");
     if (errors.length) throw new Error(errors.join("; "));
   }],
+  ["Fieldwork: title, confidence slider, and the willow plate on its first item only", async () => {
+    const built = readFileSync(join(tmp, "a", "index.html"), "utf8");
+    if (!built.includes("<title>Fieldwork · The Field Guide</title>")) throw new Error("the built <title> is not Fieldwork · The Field Guide");
+    buildGame({ mode: "review", outDir: join(tmp, "plate") });
+    const { dom, doc, errors } = await openGame(join(tmp, "plate", "game-review.html"));
+    if (doc.title !== "Fieldwork · The Field Guide") throw new Error(`document title: ${doc.title}`);
+    const open = (id: string) => { (doc.querySelector(`[data-l="${id}"]`) as any).click(); (doc.getElementById("go") as any).click(); };
+    open("5e-1-willow");
+    if (!doc.querySelector("#stage .plate-card svg.plate")) throw new Error("5e-1-willow: no plate on the first item");
+    if (!doc.querySelector('#stage input[type=range]#conf')) throw new Error("5e-1-willow: the predict item has no confidence slider");
+    const tag = doc.querySelector("#stage .phtag")?.textContent ?? "";
+    if (!/Engage · Predict/i.test(tag)) throw new Error(`phase tag: ${tag}`);
+    if (!/^Fieldwork · /.test(doc.getElementById("hudPath").textContent)) throw new Error("no Fieldwork line in the HUD");
+    if (doc.getElementById("privacy").hidden) throw new Error("no privacy line on a lesson screen");
+    (doc.querySelector(".opts .opt") as any).click(); (doc.getElementById("go") as any).click();
+    if (!doc.querySelector(".opts .opt .vd")) throw new Error("a marked option has no text verdict");
+    (doc.getElementById("go") as any).click();
+    if (doc.querySelector("#stage .plate-card")) throw new Error("the plate shows on the second item too");
+    (doc.getElementById("toMap") as any).click();
+    open("5e-2-cells");
+    if (!doc.querySelector('#stage input[type=range]#conf')) throw new Error("5e-2-cells: no confidence slider");
+    if (doc.querySelector("#stage .plate-card")) throw new Error("5e-2-cells shows a plate");
+    if (errors.length) throw new Error(errors.join("; "));
+    dom.window.close();
+  }],
   ["the review copy plays every lesson to the end in jsdom", async () => {
     buildGame({ mode: "review", outDir: join(tmp, "review") });
     const { dom, doc, errors } = await openGame(join(tmp, "review", "game-review.html"));
