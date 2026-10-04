@@ -309,8 +309,12 @@ const cases: [string, () => void | Promise<void>][] = [
     if (doc.title !== product) throw new Error(`document title: ${doc.title}`);
     if (doc.querySelector(".tab[aria-selected=true]")?.id !== "t-unit") throw new Error("t-unit is not the default tab");
     if (home.hidden) throw new Error("home hidden on first load");
-    const steps = [...doc.querySelectorAll("#home [data-step]")].map((s: any) => s.dataset.step).join();
+    const steps = [...doc.querySelectorAll("#home .steps [data-step]")].map((s: any) => s.dataset.step).join();
     if (steps !== "learn,practise,choose,plan") throw new Error(`steps: ${steps}`);
+    const jump = doc.querySelector('#home [data-step="unit"]') as any;
+    if (!jump || !/Start with your unit/.test(jump.textContent)) throw new Error("no Start with your unit link under the steps");
+    jump.click();
+    if (home.hidden || doc.querySelector(".tab[aria-selected=true]")?.id !== "t-unit") throw new Error("Start with your unit did not stay on the unit tab");
     if (doc.getElementById("t-lib").textContent.trim() !== "Family Tree") throw new Error(`t-lib label: ${doc.getElementById("t-lib").textContent}`);
     click("t-quick");
     if (!home.hidden) throw new Error("home still shown after selecting t-quick");

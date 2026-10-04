@@ -95,6 +95,8 @@ header.top{border-bottom:1px solid var(--line);background:var(--surface)}
 .step-title{font:600 16px var(--sans)}
 .step-line{font-size:13.5px;color:var(--muted);line-height:1.4}
 .step>.i{color:var(--muted)}
+.home-unit{margin:.9rem 0 0;font-size:.95rem}
+.home-unit .lite-link{min-height:44px;display:inline-flex;align-items:center}
 @media (min-width:900px){
   .home-hero{grid-template-columns:minmax(0,1fr) minmax(0,26rem);align-items:center}
   .home-hero .plate-card{order:2}
@@ -532,7 +534,7 @@ table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;
   <ol class="steps" aria-labelledby="stepsTitle">
     <li><button type="button" class="step" data-go="t-lib" data-step="learn" style="--t-bg:var(--accent-soft);--t-fg:var(--accent)">
       <span class="step-tile"><svg class="i" aria-hidden="true"><use href="#i-familytree"/></svg></span>
-      <span class="step-text"><span class="step-num">1 · LEARN</span><span class="step-title" data-name="familyTreeTitle">The Family Tree</span><span class="step-line">Where each model comes from and how they relate</span></span>
+      <span class="step-text"><span class="step-num">1 · LEARN</span><span class="step-title" data-name="familyTreeTitle">The Family Tree</span><span class="step-line">How the models relate and fit inside each other</span></span>
       <svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></button></li>
     <li><a class="step hl" href="../play/" data-step="practise" style="--t-bg:var(--accent);--t-fg:var(--accent-ink)">
       <span class="step-tile"><svg class="i" aria-hidden="true"><use href="#i-fieldwork"/></svg></span>
@@ -547,6 +549,7 @@ table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;
       <span class="step-text"><span class="step-num">4 · PLAN</span><span class="step-title" data-name="guides">Companion guides</span><span class="step-line">Phases, look-fors, worked sequences and a checklist for each model</span></span>
       <svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></button></li>
   </ol>
+  <p class="home-unit">Already planning a unit? <button type="button" class="lite-link" data-go="t-unit" data-step="unit">Start with your unit<span aria-hidden="true"> ↓</span></button></p>
 </section>
 
 <div class="wrap tools">
