@@ -610,6 +610,7 @@ function renderGuide(id){
     <div class="roles"><div><h4>Teacher’s role</h4><p>${esc(g.roles.teacher)}</p></div><div><h4>Learner’s role</h4><p>${esc(g.roles.learner)}</p></div></div></section>
 
   ${sec("phases", g.phaseGroups.length ? "Stages" : "Phases", g.phaseGroups.length ? `${plural(g.phases.length,"stage")} in ${plural(g.phaseGroups.length,"group")}` : plural(g.phases.length,"phase"), `
+    ${phaseStrip(g)}
     ${groupedPhases(g).map(([grp, ps]) => `${grp ? `<div class="groupintro"><h3>${esc(grp.name)}</h3><p>${esc(grp.summary)}</p></div>` : ""}
     ${ps.map(p => `<article class="card" id="s-${p.id}">
       <div class="card-head"><div><h3>${p.order}. ${esc(p.name)}</h3><p class="src">${esc(p.job)}</p></div>
@@ -664,6 +665,26 @@ function renderGuide(id){
   document.getElementById("guideBody").innerHTML = body;
   renderGuideNav();
   wireGuide(g);
+}
+/**
+ * Phase glyphs and colours, matching the game. 7E's elicit and extend share Engage's and Elaborate's.
+ * Any other phase (SWH, ADI, POE, Levels of inquiry) gets a numbered tile in the accent colour.
+ */
+const PHASE_GLYPH = { engage: "engage", elicit: "engage", explore: "explore", explain: "explain", elaborate: "elaborate", extend: "elaborate", evaluate: "evaluate" };
+const phaseColour = id => PHASE_GLYPH[id] ? `var(--${PHASE_GLYPH[id]})` : "var(--accent)";
+/** A row of phase tiles linking to the phase cards, then the typical time share when every phase has one. */
+function phaseStrip(g){
+  const ps = g.phases.slice().sort((a,b) => a.order - b.order);
+  const tiles = `<ol class="ph-strip" aria-label="${g.phaseGroups.length ? "Stages" : "Phases"}">${ps.map((p, i) => `<li><a href="#/guide/${g.id}/${p.id}" style="--pc:${phaseColour(p.id)}">
+    ${PHASE_GLYPH[p.id] ? `<span class="ph-tile">${icon("i-" + PHASE_GLYPH[p.id])}</span>` : `<span class="ph-tile num" aria-hidden="true">${i + 1}</span>`}${esc(p.name)}</a></li>`).join("")}</ol>`;
+  if (!ps.every(p => p.typicalShare)) return tiles;
+  const unit = g.reckoner.scale === "micro" ? "episode" : "sequence";
+  const range = p => `${p.typicalShare.minPercent}\u2013${p.typicalShare.maxPercent}%`;
+  return tiles + `<figure class="share">
+    <div class="share-bar" role="img" aria-label="Typical share of ${unit} time: ${ps.map(p => `${esc(p.name)} ${range(p)}`).join(", ")}">${ps.map(p =>
+      `<span style="--pc:${phaseColour(p.id)};flex:${(p.typicalShare.minPercent + p.typicalShare.maxPercent) / 2} 1 0"></span>`).join("")}</div>
+    <ul class="share-key" aria-hidden="true">${ps.map(p => `<li style="--pc:${phaseColour(p.id)}">${esc(p.name)} <b>${range(p)}</b></li>`).join("")}</ul>
+    <figcaption class="hint">Typical share of ${unit} time for each phase</figcaption></figure>`;
 }
 /** Phases in order, grouped by stage group when the guide defines them. */
 function groupedPhases(g){
