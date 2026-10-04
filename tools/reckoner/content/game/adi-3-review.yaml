@@ -1,0 +1,230 @@
+# ADI path, lesson 3. Built on lessons 6–8 of the ADI guide's worked sequence seq-s5-microhabitats. Reviewed and published by Steve on 2026-10-05.
+schemaVersion: 1
+id: adi-3-review
+path: adi
+order: 3
+title: Review, then revise
+summary: Individual reports, anonymous review with accountable reviewers, and revision that shows. The stages most often cut, and what cutting them costs.
+level: explain
+version: 1.0.0
+status: published
+lastReviewed: 2026-10-05
+provenance:
+  source: ai-drafted-reviewed
+  authors: [Claude]
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-05
+context:
+  stages: [stage5]
+  focusAreas: [Environmental sustainability]
+  disciplines: [biology]
+outcomes: [SC5-ENV-01]
+builtOn:
+  sequenceIds: [seq-s5-microhabitats]
+  exampleIds: [adi-write-pos-review, adi-write-neg-ticks]
+  lookForIds: [adi-individual-writing, adi-report-structure, adi-review-rubric, adi-review-accountable, adi-revision-used, adi-final-standard]
+  misapplicationIds: [mis-adi-skip-review, mis-adi-group-report]
+guideSection: sequences
+items:
+  - id: predict
+    type: predict
+    at: report
+    processing: Retrieval
+    kind: Predict
+    title: A Year 10 class has drafted individual reports on the two schoolyard sites. There's one lesson left before they submit.
+    q: Which use of that lesson will most improve the final reports?
+    options:
+      - text: The teacher writes comments on every draft
+      - text: Anonymous peer review against the shared criteria, with the teacher returning weak reviews
+      - text: Hand out the marking rubric and let students check their own drafts
+      - text: Give students the lesson to rewrite on their own
+    answer: 1
+    reveal: >-
+      Peer review against shared criteria improves the reports, and it improves the reviewers too: applying
+      the criteria to someone else's argument shows students what their own is missing. It only works when
+      reviews must give reasons and the teacher holds reviewers to that.
+    why: >-
+      Teacher comments are the familiar choice, but they arrive as a verdict. ADI's last three stages make
+      students do the judging, which is the scientific practice the routine is teaching.
+
+  - id: lf-individual
+    type: lookfor
+    at: report
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 10 · Lesson 7
+      text: Each group submits one shared document, with three names at the top and the sections split between them.
+    answer: adi-individual-writing
+    distractors: [adi-report-structure, adi-review-rubric, adi-revision-used]
+    strong: false
+    why: >-
+      Share the data, write individually. A split document hides whose reasoning is whose, so no one's argument
+      can be reviewed or assessed.
+
+  - id: lf-structure
+    type: lookfor
+    at: report
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 10 · A draft report
+      text: >-
+        Aim, method, results, conclusion. The conclusion reads “Site B had more animals, so it is more diverse.”
+        Nowhere does the report say why the group chose its sampling method, or why its evidence supports the
+        claim.
+    answer: adi-report-structure
+    distractors: [adi-individual-writing, adi-review-rubric, adi-final-standard]
+    strong: false
+    hint: An ADI report answers three guiding questions. Which ones are missing here?
+
+  - id: dx-skip
+    type: diagnose
+    at: report
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A pre-service teacher's ADI
+      text: >-
+        Two lessons were lost to a swimming carnival. The teacher goes from the whiteboards straight to a report
+        that students hand in for marking.
+    answer: mis-adi-skip-review
+    distractors: [mis-adi-teacher-judges, mis-adi-group-report, mis-adi-no-justification]
+    why: >-
+      The stages cut are the ones that make it ADI. The guide's fix is to plan 6–8 lessons from the start and
+      shorten data collection, not argument or review.
+
+  - id: feedback
+    type: multi
+    at: peer-review
+    processing: Analysis
+    kind: Usable feedback
+    tests: peer-review
+    title: A reviewer's comments on an anonymous report.
+    q: Which comments would help the author revise? Select every one that would.
+    options:
+      - text: "Good job! Really interesting."
+        ok: false
+        fb: General praise gives the author nothing to act on.
+      - text: "Criterion 3 not met: your justification says the leaf litter has “more life” but not why kinds count more than totals. Add a sentence on what diversity measures."
+        ok: true
+        fb: Names the criterion, the gap and a fix.
+      - text: "Your method says one trap per site. Your argument should say how that limits your claim."
+        ok: true
+        fb: Points to evidence in the author's own report and asks for a qualified claim.
+      - text: "I'd have used more colours in the graph."
+        ok: false
+        fb: A preference, not a criterion. It won't make the argument stronger.
+      - text: "Criterion 2 met: your chart compares kinds per site, which answers the guiding question."
+        ok: true
+        fb: A judgement with its reason. The author learns what to keep.
+    refs:
+      lookForIds: [adi-review-rubric]
+
+  - id: lf-rubric
+    type: lookfor
+    at: peer-review
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 10 · Lesson 8
+      text: The review sheet lists the three criteria with a yes or no box beside each. There's no space for comments.
+    answer: adi-review-rubric
+    distractors: [adi-individual-writing, adi-report-structure, adi-final-standard]
+    strong: false
+    refs:
+      exampleIds: [adi-write-neg-ticks]
+
+  - id: lf-accountable
+    type: lookfor
+    at: peer-review
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 10 · Lesson 8
+      text: >-
+        Before any review goes back to its author, the teacher reads three at random and returns two to their
+        reviewers: “Say what would fix criterion 3, not just that it's missing.”
+    answer: adi-review-accountable
+    distractors: [adi-review-rubric, adi-final-standard, adi-revision-used]
+    strong: true
+    refs:
+      exampleIds: [adi-write-pos-review]
+
+  - id: spot-revise
+    type: spot
+    at: revision
+    processing: Comprehension
+    kind: Spot the stage
+    tests: revision
+    vignette:
+      who: Year 10 · End of lesson 8
+      text: >-
+        Beside each review point, authors write “accepted: rewrote paragraph 3” or “not changed, because…”, then
+        submit the final report with the review stapled to it.
+    q: Which ADI stage is this?
+    answer: revision
+    among: [report, peer-review, revision]
+    fb:
+      report: The reports were written in lesson 7. Now they're being changed in response to review.
+      peer-review: The reviews are done. Authors are now responding to them.
+      revision: Authors respond to each point, accepting or rebutting it, and submit with the review attached. That's revision.
+    refs:
+      lookForIds: [adi-revision-used]
+
+  - id: lf-final
+    type: lookfor
+    at: revision
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 10 · Marking
+      text: >-
+        Final reports are marked on a new 20-point rubric covering presentation, spelling, a labelled graph and a
+        conclusion. The claim, evidence and justification criteria from lesson 1 don't appear.
+    answer: adi-final-standard
+    distractors: [adi-revision-used, adi-review-rubric, adi-criteria-shared]
+    strong: false
+    why: >-
+      Students spent eight lessons working to one standard. Marking to a different one tells them the
+      argument wasn't what counted.
+
+  - id: order
+    type: order
+    at: revision
+    processing: Comprehension
+    kind: Sequence it
+    tests: sequence
+    title: Put the last three stages in order.
+    q: Tap each step in the order you'd teach it. Tap a placed step to remove it.
+    steps:
+      - text: Each student drafts their own report from the group's shared data
+        phaseId: report
+      - text: The teacher checks each draft's justification paragraph
+        phaseId: report
+      - text: Reports are anonymised and swapped with another group
+        phaseId: peer-review
+      - text: Reviewers comment on each criterion, saying why or what would fix it
+        phaseId: peer-review
+      - text: The teacher samples reviews and returns any that aren't specific enough
+        phaseId: peer-review
+      - text: Authors respond to every review point
+        phaseId: revision
+      - text: Final reports are submitted with the review attached
+        phaseId: revision
+
+  - id: reflect
+    type: reflect
+    at: revision
+    processing: Metacognition
+    kind: Look back
+    title: Your review guide.
+    q: Which three criteria would you put on the review guide for the leaf-litter investigation, and why those three?
+    model: "Example: “A claim limited to what the traps can show; evidence that compares kinds, not totals; and a justification that explains why kinds measure diversity. Those three are where the target conceptions hide.”"
+    recall: predict

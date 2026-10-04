@@ -222,9 +222,12 @@ const cases: [string, () => void | Promise<void>][] = [
     if (c.errors.length) throw new Error(c.errors.join("; "));
     buildGame({ mode: "site", outDir: join(tmp, "gate"), content: c });
     const { doc, errors } = await openGame(join(tmp, "gate", "index.html"));
-    const selectIds = c.lessons.filter((l) => l.path === "select").map((l) => l.id);
+    // Lessons that wait only for their path; a lesson with its own requires is checked after the loop.
+    const selectIds = c.lessons.filter((l) => l.path === "select" && !l.requires.length).map((l) => l.id);
     const locked = () => selectIds.every((id) => (doc.querySelector(`[data-l="${id}"]`) as any).disabled);
     if (!locked()) throw new Error("select lessons are open before any lesson is played");
+    for (const p of c.config.paths.filter((x) => x.requires.length))
+      c.lessons.filter((l) => l.path === p.id).forEach((l) => { if (!(doc.querySelector(`[data-l="${l.id}"]`) as any).disabled) throw new Error(`${l.id} is open before the ${p.id} path's requirements are met`); });
     const req = c.config.paths.find((p) => p.id === "select")!.requires;
     for (const q of req) {
       const need = c.lessons.filter((l) => l.path === q.path);
@@ -236,7 +239,65 @@ const cases: [string, () => void | Promise<void>][] = [
       }
     }
     if (locked()) throw new Error("select lessons are still locked after every requirement was met");
+    // A lesson with its own requires stays locked, says why, and opens once that path reaches the level.
+    for (const l of c.lessons.filter((x) => x.requires.length)) {
+      const btn = () => doc.querySelector(`[data-l="${l.id}"]`) as any;
+      if (!btn().disabled) throw new Error(`${l.id} is open before its own requirements are met`);
+      if (!/Unlocks at/.test(btn().textContent)) throw new Error(`${l.id} doesn't say what unlocks it`);
+      for (const q of l.requires) {
+        const need = c.lessons.filter((x) => x.path === q.path);
+        for (const n of need.slice(0, need.findIndex((x) => x.level === q.level) + 1)) {
+          if (!(doc.querySelector(`[data-l="${n.id}"]`) as any).disabled || !n.requires.length) { await playLesson(doc, n.id); (doc.getElementById("toMap") as any).click(); }
+        }
+      }
+      for (const prev of c.lessons.filter((x) => x.path === l.path && x.order < l.order)) {
+        await playLesson(doc, prev.id); (doc.getElementById("toMap") as any).click();
+      }
+      if (btn().disabled) throw new Error(`${l.id} is still locked after its requirements were met`);
+    }
     if (errors.length) throw new Error(errors.join("; "));
+  }],
+  ["a grouped rail shows stage groups, and a spot item offers only the stages it names", async () => {
+    buildGame({ mode: "review", outDir: join(tmp, "grouped") });
+    const { dom, doc, errors } = await openGame(join(tmp, "grouped", "game-review.html"));
+    const c = loadGame();
+    const path = c.config.paths.find((p) => p.rail === "groups");
+    if (!path) throw new Error("no path uses rail: groups");
+    const g = c.guides.get(journeyOf(path))!;
+    const lesson = c.lessons.find((l) => l.path === path.id && l.items.some((i) => i.type === "spot" && i.among))!;
+    (doc.querySelector(`[data-l="${lesson.id}"]`) as any).click(); (doc.getElementById("go") as any).click();
+    const cells = [...doc.querySelectorAll("#rail div")].map((d: any) => d.textContent);
+    if (cells.join("|") !== g.phaseGroups.map((x) => x.name).join("|")) throw new Error(`rail shows ${cells.join(", ")}`);
+    if (doc.querySelectorAll("#rail div.now").length !== 1) throw new Error("the rail marks no current group");
+    const tag = doc.querySelector("#stage .phtag:not(.plain)")?.textContent ?? "";
+    const first = lesson.items[0];
+    if (!tag.includes(g.phases.find((p) => p.id === first.at)!.name)) throw new Error(`phase tag doesn't name the stage: ${tag}`);
+    // Walk to the first spot item with among, answering whatever is first.
+    const spot = lesson.items.find((i) => i.type === "spot" && i.among) as any;
+    for (let n = 0; n < 40 && !(doc.querySelector(".card h2, .vignette")?.textContent ?? "").includes(spot.vignette.text.slice(0, 30)); n++) {
+      if (doc.querySelector("#pool .opt")) while (doc.querySelector("#pool .opt")) doc.querySelector("#pool .opt").click();
+      else (doc.querySelector(".opts .opt:not([disabled])") as any)?.click();
+      (doc.getElementById("go") as any).click();
+      if (doc.querySelector(".dock.good, .dock.bad")) (doc.getElementById("go") as any).click();
+    }
+    const offered = [...doc.querySelectorAll(".opts.phases .opt")].map((o: any) => o.textContent.trim());
+    const want = g.phases.filter((p) => spot.among.includes(p.id)).map((p) => p.name);
+    if (offered.join("|") !== want.join("|")) throw new Error(`spot offers ${offered.join(", ")}; expected ${want.join(", ")}`);
+    if (errors.length) throw new Error(errors.join("; "));
+    dom.window.close();
+  }],
+  ["a spot answer outside among, a lesson requiring an unknown path, and a grouped rail without groups are refused", () => {
+    const l = rawLesson("adi-1-leaf-litter.yaml");
+    l.items.find((i: any) => i.type === "spot" && i.among).answer = "revision";
+    if (GameLesson.safeParse(l).success) throw new Error("a spot answer outside among was accepted");
+    const req = loadGame({ gameDir: gameCopy("bad-req", (x) => (x.requires = [{ path: "nope", level: "explain" }]), "select-3-argue.yaml") });
+    if (!req.errors.some((e) => /requires unknown path "nope"/.test(e))) throw new Error(`unknown path not caught: ${req.errors.join("; ")}`);
+    const dir = gameCopy("bad-rail");
+    const cfg = yaml.load(readFileSync(join(dir, "game.yaml"), "utf8")) as any;
+    cfg.paths.find((p: any) => p.id === "poe").rail = "groups";
+    writeFileSync(join(dir, "game.yaml"), yaml.dump(cfg));
+    const rail = loadGame({ gameDir: dir });
+    if (!rail.errors.some((e) => /rail: groups but its journey guide has no phaseGroups/.test(e))) throw new Error(`rail not caught: ${rail.errors.join("; ")}`);
   }],
   ["Fieldwork: title, confidence slider, and the willow plate on its first item only", async () => {
     const built = readFileSync(join(tmp, "a", "index.html"), "utf8");

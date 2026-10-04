@@ -74,7 +74,11 @@ const choiceShape = { options: z.array(Option).min(2).max(5), answer: z.number()
 const Choice = obj({ ...base, type: z.literal("choice"), ...choiceShape, variants: variantOf({ ...base, ...choiceShape }) });
 
 /** Spot the phase: the options are the guide's phases; feedback per phase. */
-const spotShape = { vignette: Vignette, answer: Slug, fb: z.record(Slug, Text) };
+/**
+ * Spot the phase. Options are the journey guide's phases, or only those named in `among` (2–5), so a
+ * model with many stages doesn't put eight buttons on a phone. fb covers every option offered.
+ */
+const spotShape = { vignette: Vignette, answer: Slug, among: z.array(Slug).min(2).max(5).optional(), fb: z.record(Slug, Text) };
 const Spot = obj({ ...base, type: z.literal("spot"), ...spotShape, variants: variantOf({ ...base, ...spotShape }) });
 
 /** Select all that apply. */
@@ -233,6 +237,11 @@ export const GameLesson = obj({
   builtOn: GuideRefs,
   /** Guide section the end screen links to, as in the reckoner's #/guide/<id>/<section>. */
   guideSection: z.enum(["purpose", "theory", "model", "phases", "sequences", "misapplications", "checklist", "alignment", "reflection", "references"]).optional(),
+  /**
+   * This lesson also waits for each named path to reach a level, on top of its path's own unlock and
+   * the lesson before it. Lets a path gain a lesson that needs a newer path without re-locking the rest.
+   */
+  requires: z.array(obj({ path: Slug, level: Mastery })).default([]),
   items: z.array(GameItem).min(4),
 }).superRefine((l, ctx) => {
   const issue = (path: (string | number)[], message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, path, message });
@@ -254,6 +263,10 @@ export const GameLesson = obj({
     if (it.type === "select" && !it.candidates.includes(it.answer)) issue(["items", i, "answer"], "The answer must be one of the candidates");
     if (it.type === "flip" && it.answer >= it.changes.length) issue(["items", i, "answer"], "answer is past the last change");
     if (it.type === "diagnose" && !it.vignette && !it.plan) issue(["items", i], "A diagnose item needs a vignette or a plan to diagnose");
+    if (it.type === "spot") [it, ...it.variants].forEach((v, j) => {
+      const among = v.among ?? it.among, answer = v.answer ?? it.answer;
+      if (among && !among.includes(answer)) issue(["items", i, ...(j ? ["variants", j - 1] : []), "answer"], `answer "${answer}" is not one of among`);
+    });
   });
   if (!l.items.some((it) => !["concept", "reflect", "predict"].includes(it.type))) issue(["items"], "A lesson needs at least one scored item");
   if (l.status === "published" && (l.provenance.source === "ai-generated" || l.provenance.reviewedBy.length === 0))
@@ -277,6 +290,8 @@ export const GameConfig = obj({
     models: z.array(Slug).default([]),
     /** The path unlocks once each named path reaches this mastery level. */
     requires: z.array(obj({ path: Slug, level: Mastery })).default([]),
+    /** What the lesson rail shows: one cell per phase, or one per phase group (journey guide's phaseGroups). */
+    rail: z.enum(["phases", "groups"]).default("phases"),
   })).min(1),
   feedback: obj({
     /** Google Form link; "placeholder" shows an inactive button; omit to hide feedback. */
