@@ -1,0 +1,42 @@
+<!-- Field Guide icon sprite. 24 px grid, 1.75 stroke, round caps and joins, stroke = currentColor.
+     Paste this block once, straight after <body>, in tools/reckoner/templates/app.html and game.html.
+     Use an icon with: <svg class="i" aria-hidden="true"><use href="#i-reckoner"/></svg>
+     Icon-only controls also need an aria-label on the control itself. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <!-- Brand and the four parts of the Field Guide -->
+  <symbol id="i-fieldguide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-8-1.5V18c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V4.5c-3-.5-6 0-8 1.5z"/><path d="M12 6v13.5"/><path d="M15 14.5c0-3 1.4-5 3.4-5.6 0 3-1.4 5-3.4 5.6z"/></symbol>
+  <symbol id="i-familytree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="2"/><circle cx="5.5" cy="19.5" r="2"/><circle cx="12" cy="19.5" r="2"/><circle cx="18.5" cy="19.5" r="2"/><path d="M12 6.5v11M12 12H5.5v5.5M12 12h6.5v5.5"/></symbol>
+  <symbol id="i-fieldwork" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="15.5" r="3.8"/><circle cx="17" cy="15.5" r="3.8"/><path d="M10.8 15.5h2.4"/><path d="M3.6 13.5L6.5 5h3.2l1.1 7M20.4 13.5L17.5 5h-3.2l-1.1 7"/></symbol>
+  <symbol id="i-reckoner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.4"/></symbol>
+  <symbol id="i-guides" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 10h7M8.5 14h7M8.5 18h4"/></symbol>
+
+  <!-- Reckoner tools (one per tab) -->
+  <symbol id="i-unit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V8"/><path d="M12 15c-1-2.5-3.5-3.6-6-3 .5 2.5 3 3.8 6 3z"/><path d="M12 12c1-2.5 3.5-3.6 6-3-.5 2.5-3 3.8-6 3z"/><path d="M12 8c-1.3-1.8-1.3-3.6 0-5.2 1.3 1.6 1.3 3.4 0 5.2z"/></symbol>
+  <symbol id="i-compare" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="7" height="14" rx="1.5"/><rect x="13.5" y="5" width="7" height="14" rx="1.5"/><path d="M6 9h2M16 9h2M6 13h2M16 13h2"/></symbol>
+  <symbol id="i-detail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M18 7h2M4 12h4M12 12h8M4 17h12"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="17" r="2"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-8-1.5V18c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V4.5c-3-.5-6 0-8 1.5z"/><path d="M12 6v13.5"/></symbol>
+  <symbol id="i-judgement" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M8 20h8M5 7h14"/><path d="M5 7l-2.5 6h5zM19 7l-2.5 6h5z"/></symbol>
+
+  <!-- Stages: seedling grows to sapling -->
+  <symbol id="i-stage4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5v-8"/><path d="M12 12.5c0-3-2.4-5-6-5 0 3 2.4 5 6 5z"/><path d="M12 12.5c0-3 2.4-5 6-5 0 3-2.4 5-6 5z"/><path d="M7 20.5h10"/></symbol>
+  <symbol id="i-stage5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V8"/><path d="M12 15c-1-2.5-3.5-3.6-6-3 .5 2.5 3 3.8 6 3z"/><path d="M12 12c1-2.5 3.5-3.6 6-3-.5 2.5-3 3.8-6 3z"/><path d="M12 8c-1.3-1.8-1.3-3.6 0-5.2 1.3 1.6 1.3 3.4 0 5.2z"/><path d="M7 21h10"/></symbol>
+
+  <!-- Model scale badges (SCALE keys in questions.json) -->
+  <symbol id="i-scale-macro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12h18"/><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></symbol>
+  <symbol id="i-scale-meso" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 12h10"/><circle cx="7" cy="12" r="1.8"/><circle cx="17" cy="12" r="1.8"/></symbol>
+  <symbol id="i-scale-micro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="2"/><circle cx="12" cy="12" r="7"/></symbol>
+  <symbol id="i-scale-dial" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16l-3-6"/></symbol>
+
+  <!-- 5E phases (also used for the matching 7E phases; elicit uses i-engage, extend uses i-elaborate) -->
+  <symbol id="i-engage" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .9-1 1.6v.4"/><path d="M12 16.6v.2"/></symbol>
+  <symbol id="i-explore" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M14.6 14.6l5 5"/></symbol>
+  <symbol id="i-explain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10.5H10l-4 3.5v-3.5H4z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
+  <symbol id="i-elaborate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="9" height="11" rx="1.5"/><path d="M10 14l9.5-9.5M14 4.5h5.5V10"/></symbol>
+  <symbol id="i-evaluate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8 12.4l2.8 2.8L16 9.6"/></symbol>
+
+  <!-- Utility -->
+  <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9.5 17h-19z"/><path d="M12 10v4.5M12 17.5v.2"/></symbol>
+</svg>
