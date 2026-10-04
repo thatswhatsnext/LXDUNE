@@ -8,6 +8,24 @@ const dimById = Object.fromEntries(DIMS.map(d => [d.id, d]));
 const optLabel = (d, v) => dimById[d].options.find(o => o[0] === v)[1];
 const reducedMotion = () => typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+/**
+ * Every user-facing name for the parts of the Field Guide, so a rename is a one-line change. Text in
+ * app.html carries the same names as fallbacks, marked data-name="<key>", and is filled from here on load.
+ * gamePaths: models with a Fieldwork path in the game (content/game/game.yaml), for "Practise it in Fieldwork".
+ */
+const NAMES = {
+  product: "The Field Guide", productTail: "to Constructivist Teaching Models",
+  reckoner: "The Reckoner", familyTree: "Family Tree", game: "Fieldwork", guides: "Companion guides",
+  gamePaths: ["5e", "poe"],
+};
+NAMES.productFull = `${NAMES.product} ${NAMES.productTail}`;
+NAMES.familyTreeTitle = `The ${NAMES.familyTree}`;
+NAMES.reckonerMid = NAMES.reckoner.replace(/^The /, "the ");   // mid-sentence: "Used the Reckoner for…"
+NAMES.plateCaption = `Plate 1 · The Willow Problem, from ${NAMES.game}`;
+document.title = NAMES.productFull;
+document.querySelectorAll("[data-name]").forEach(el => { el.textContent = NAMES[el.dataset.name]; });
+document.querySelectorAll("[data-name-label]").forEach(el => el.setAttribute("aria-label", `${NAMES[el.dataset.nameLabel]}, home`));
+const icon = (id, cls = "i") => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
 const badge = s => `<span class="badge ${SCALE[s].cls}" title="${esc(SCALE[s].tip)}">${SCALE[s].label}</span>`;
 /* Anonymous Moodle Feedback activity for the reckoner survey. Empty string shows "coming soon" in place of every link. */
 const FEEDBACK_URL = "";
@@ -16,7 +34,7 @@ const feedbackLine = (before, after = ".") => `<p class="hint feedback">${before
   ? `<a href="${esc(FEEDBACK_URL)}" target="_blank" rel="noopener">Tell us how it went<span class="sr"> (opens in a new tab)</span></a>${after}`
   : "A short feedback survey is coming soon."}</p>`;
 document.getElementById("buildStamp").insertAdjacentHTML("beforebegin",
-  feedbackLine("Used the reckoner for your planning?", " (six questions, about three minutes, anonymous)."));
+  feedbackLine(`Used ${NAMES.reckonerMid} for your planning?`, " (six questions, about three minutes, anonymous)."));
 document.getElementById("buildStamp").textContent =
   `Guides: ${DATA.guides.map(g => `${g.name} v${g.version}, reviewed ${g.lastReviewed}`).join("; ")}.`;
 
@@ -72,14 +90,27 @@ const store = {
 
 /* ---------- tabs and routing ---------- */
 const tabs = [...document.querySelectorAll(".tab")];
+/** The home path shows only on "Start with your unit" with no hash route, so deep links open on their content. */
+function syncHome(){
+  const unitOn = document.getElementById("t-unit").getAttribute("aria-selected") === "true";
+  document.getElementById("home").hidden = !(unitOn && document.getElementById("p-how").hidden && !/^#\/(guide|how-it-works)/.test(location.hash));
+}
 function selectTab(t, push = true){
   const how = document.getElementById("p-how"); how.hidden = true; how.classList.remove("active");
   tabs.forEach(x => { const on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1;
     const p = document.getElementById(x.getAttribute("aria-controls")); p.hidden = !on; p.classList.toggle("active", on); });
   if (push && (t.id !== "t-guides" || /^#\/how-it-works/.test(location.hash))) location.hash = "";
   if (t.id === "t-compare") renderCompare();
+  syncHome();
   return t;
 }
+/** A home step or masthead link: select its tab, bring the panel into view and focus the tab, as the tab code does. */
+function goTab(id){
+  const t = selectTab(document.getElementById(id));
+  document.getElementById(t.getAttribute("aria-controls")).scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" });
+  t.focus({ preventScroll: true });
+}
+document.querySelectorAll("#home [data-go], .mast-nav [data-go]").forEach(b => b.addEventListener("click", () => goTab(b.dataset.go)));
 tabs.forEach((t,i) => { t.addEventListener("click", () => selectTab(t));
   t.addEventListener("keydown", e => { if(e.key==="ArrowRight") selectTab(tabs[(i+1)%tabs.length]).focus?.();
     if(e.key==="ArrowLeft") selectTab(tabs[(i-1+tabs.length)%tabs.length]); }); });
@@ -159,15 +190,15 @@ function renderHow(){
   const weights = `<details class="why how-weights"><summary>See how much each question counts in the Detailed reckoner</summary>
     <table class="weights"><thead><tr><th scope="col">Question</th><th scope="col">Counts</th></tr></thead><tbody>
     ${DIMS.map(d => `<tr><th scope="row">${esc(cap(d.short))}</th><td>×${+d.weight}</td></tr>`).join("")}</tbody></table>
-    <p class="hint">Read from the reckoner's own settings, so this table always matches the ranking. Your importance setting multiplies these: low ×0.5, high ×2.</p></details>`;
+    <p class="hint">Read from ${NAMES.reckonerMid}'s own settings, so this table always matches the ranking. Your importance setting multiplies these: low ×0.5, high ×2.</p></details>`;
   const routes = ROUTE_ORDER.map(id => meth.routes.find(r => r.id === id)).filter(Boolean);
   // Sections in reading order; the contents bar is built from the same list, so it cannot miss one.
   const SECS = [
     ["glance", "At a glance", `<p class="hint">The diagram shows where every recommendation comes from.</p><template-slot></template-slot>`],
-    ["routes", "How each route decides", flipSection(`${plural(routes.length, "way")} into the reckoner. Turn a card to see how it decides.`,
+    ["routes", "How each route decides", flipSection(`${plural(routes.length, "way")} into ${NAMES.reckonerMid}. Turn a card to see how it decides.`,
       routes.map((r, i) => flipCard({ id: r.id, cls: "how-route", num: i + 1, title: r.title, front: `<p class="route-sum">${esc(r.summary)}</p>`,
         back: md(r.body), more: "How it decides", less: "Back to the summary" }))) + weights],
-    ["principles", "Principles", flipSection(`${plural(meth.principles.length, "idea")} the reckoner is built on. Turn a card to read it.`,
+    ["principles", "Principles", flipSection(`${plural(meth.principles.length, "idea")} ${NAMES.reckonerMid} is built on. Turn a card to read it.`,
       meth.principles.map((p, i) => flipCard({ id: `p-${p.id}`, num: i + 1, title: p.title,
         back: md(p.body) + (p.referenceIds.length ? `<p class="hint">See ${p.referenceIds.map(cite).join("; ")}.</p>` : ""), more: "Read more", less: "Back to the title" })))],
     ["review", "How content is made", `<p class="how-now">Right now: ${guided} of ${DATA.models.length} models have a companion guide; ${prov} ${prov === 1 ? "is" : "are"} provisional.${dates.length ? ` Guides were last reviewed ${dates[0] === dates[dates.length - 1] ? `on ${dates[0]}` : `between ${dates[0]} and ${dates[dates.length - 1]}`}.` : ""}</p>${md(meth.review)}`],
@@ -177,7 +208,7 @@ function renderHow(){
     ["glossary", "Glossary", `<dl class="how-gloss">${meth.glossary.map(g => `<div><dt>${esc(g.term)}</dt><dd>${esc(g.definition)}</dd></div>`).join("")}</dl>`],
     ...(meth.references.length ? [["refs", "References", `<ul class="refs">${meth.references.map(r => `<li id="how-ref-${r.id}">${esc(r.citation)}${r.doi ? ` <a href="https://doi.org/${esc(r.doi)}">https://doi.org/${esc(r.doi)}</a>` : r.url ? ` <a href="${esc(r.url)}">${esc(r.url)}</a>` : ""}</li>`).join("")}</ul>`]] : []),
   ];
-  el.innerHTML = `<div class="how-head"><h2 id="howTitle" tabindex="-1">How the reckoner works</h2></div>
+  el.innerHTML = `<div class="how-head"><h2 id="howTitle" tabindex="-1">How ${NAMES.reckonerMid} works</h2></div>
     ${meth.status === "published" ? "" : `<div class="warnbox"><p class="sub">Not yet reviewed</p><p>This page is ${meth.status === "in-review" ? "in review" : "a draft"}, included in this review copy only. Students do not see it until it is signed off.</p></div>`}
     <p class="lede">${esc(meth.intro.lead)}</p>${md(meth.intro.purpose)}
     <nav class="how-toc" aria-label="On this page"><button type="button" class="how-back" id="howBack">← Back</button>
@@ -220,6 +251,7 @@ let howSpy = null;
 function showHow(route){
   renderHow();
   document.querySelectorAll(".panel").forEach(p => { const on = p.id === "p-how"; p.hidden = !on; p.classList.toggle("active", on); });
+  syncHome();
   const target = route && document.getElementById("how-" + route);
   // Arriving from a result's "How it works" link: open that route's card at its detail
   if (target?.classList.contains("flip")) turnCard(target, true, false);
@@ -236,7 +268,7 @@ function leaveHow(){
   selectTab(t, false);
 }
 if (DATA.methodology) document.getElementById("buildStamp").insertAdjacentHTML("beforebegin",
-  `<p><a href="#/how-it-works" id="howFoot">How the reckoner works</a>: how each route decides, how content is reviewed, and what it cannot do.</p>`);
+  `<p><a href="#/how-it-works" id="howFoot">How ${NAMES.reckonerMid} works</a>: how each route decides, how content is reviewed, and what it cannot do.</p>`);
 
 /* ---------- shared model card body ---------- */
 function modelBody(m){
@@ -1060,12 +1092,14 @@ if (DATA.review){
   const b = document.createElement("div");
   b.className = "warnbox"; b.setAttribute("role", "note");
   b.innerHTML = `<p class="sub">Review copy, not for students</p><p>${esc(DATA.review.label)}. Built from the YAML for review; unreviewed guides are marked.</p>`;
-  document.querySelector("header.top .wrap").prepend(b);
+  const w = document.createElement("div"); w.className = "wrap"; w.append(b);
+  document.querySelector("header.top").prepend(w);
 }
 
 renderUnit(false); renderQuick(); renderDetail(); renderMap();
 renderGuide(DATA.guides.length ? DATA.guides[0].id : null);
 routeFromHash();
+syncHome();
 document.getElementById("bootMsg")?.remove();
 // The walkthrough starts from the quick reckoner, so it no longer opens by itself over the
 // "Start with your unit" landing view; it stays available from the quick reckoner's entry point.
