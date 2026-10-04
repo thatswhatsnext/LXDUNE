@@ -1,0 +1,1392 @@
+diff --git a/tools/reckoner/content/game/adi-1-leaf-litter.yaml b/tools/reckoner/content/game/adi-1-leaf-litter.yaml
+new file mode 100644
+index 0000000..76d3e46
+--- /dev/null
++++ b/tools/reckoner/content/game/adi-1-leaf-litter.yaml
+@@ -0,0 +1,260 @@
++# ADI path, lesson 1. Built on the ADI guide's worked sequence seq-s5-microhabitats. Reviewed and published by Steve on 2026-10-05.
++schemaVersion: 1
++id: adi-1-leaf-litter
++path: adi
++order: 1
++title: Under the leaf litter
++summary: Two schoolyard sites and a question with more than one defensible answer. Learn the eight stages of ADI and what each has to do.
++level: recognise
++version: 1.0.0
++status: published
++lastReviewed: 2026-10-05
++provenance:
++  source: ai-drafted-reviewed
++  authors: [Claude]
++  reviewedBy: [Steve Grant]
++  reviewedOn: 2026-10-05
++context:
++  stages: [stage5]
++  focusAreas: [Environmental sustainability]
++  disciplines: [biology]
++outcomes: [SC5-ENV-01]
++builtOn:
++  sequenceIds: [seq-s5-microhabitats]
++  exampleIds: [adi-inv-pos-microhabitats, adi-inv-neg-worksheet, adi-argue-pos-roundrobin]
++  lookForIds: [adi-criteria-shared, adi-plan-checkpoint, adi-reliability, adi-three-part, adi-critique-quality]
++  misapplicationIds: [mis-adi-closed-question, mis-adi-given-method]
++guideSection: sequences
++items:
++  - id: predict
++    type: predict
++    at: task-question
++    processing: Retrieval
++    kind: Predict
++    title: "A Year 10 class sets one pitfall trap at each of two sites overnight. The mown oval edge catches 118 animals of 3 kinds, 110 of them ants. The leaf litter under the gum trees catches 41 animals of 9 kinds."
++    q: Which site has more invertebrate diversity?
++    options:
++      - text: The oval edge, because it caught almost three times as many animals
++      - text: The leaf litter, because it has more kinds, more evenly spread
++      - text: They are about the same once you allow for the ants
++      - text: Neither. Pitfall traps can't measure diversity
++    answer: 1
++    reveal: >-
++      Diversity counts kinds and how evenly the animals spread across them, not the total caught. The oval's
++      haul is mostly one kind of ant, so the leaf litter is the more diverse site. But one trap per site is thin
++      evidence, and a group that says so has found the argument this investigation is built for.
++    why: >-
++      You've just been given the guiding question. “More animals seen means more diversity” is one of this
++      sequence's target conceptions, and “one sample is enough” is the other. ADI lets students argue both out
++      against their own data.
++
++  - id: concept
++    type: concept
++    at: task-question
++    processing: Retrieval
++    kind: The model
++    title: Argument-Driven Inquiry
++    lead: >-
++      ADI turns a practical into an argument other students can question, then makes everyone write, review and
++      revise. It runs over about 6–8 lessons in three groups of stages: investigate, argue, then write and
++      review.
++    rows:
++      - phaseId: task-question
++        does: Students meet a phenomenon, a guiding question and the criteria for a strong argument.
++        move: "Teacher move: pose an open question and run a tool talk."
++      - phaseId: design-data
++        does: Groups design their own method and collect data.
++        move: "Teacher move: approve plans for safety and feasibility, not for the right answer."
++      - phaseId: tentative-argument
++        does: Groups analyse their data into a claim, evidence and a justification on a whiteboard.
++        move: "Teacher move: ask why the evidence counts."
++      - phaseId: argumentation
++        does: Every argument is critiqued by other students, and groups revise.
++        move: "Teacher move: model critique language and hold the science back."
++      - phaseId: reflective-discussion
++        does: The class consolidates the science and names how the question was settled.
++        move: "Teacher move: correct what the session surfaced."
++      - phaseId: report
++        does: Each student writes their own argument for a peer reader.
++        move: "Teacher move: give the structure and model a justification."
++      - phaseId: peer-review
++        does: Students review an anonymous report against the criteria.
++        move: "Teacher move: sample reviews and return weak ones."
++      - phaseId: revision
++        does: Authors revise, respond to each review point and submit.
++        move: "Teacher move: mark against the criteria used all along."
++    cite: "Sampson, V., Grooms, J. & Walker, J. P. (2011). Argument-Driven Inquiry as a way to help students learn how to participate in scientific argumentation and craft written arguments. Science Education, 95(2)."
++
++  - id: lf-criteria
++    type: lookfor
++    at: task-question
++    processing: Comprehension
++    kind: Match the look-for
++    tests: lookfor
++    vignette:
++      who: Year 10 · Lesson 1
++      text: >-
++        Before anyone plans, the teacher puts three criteria on the wall: a claim that answers the question,
++        evidence from analysed data, and a justification that says why the evidence counts. The class
++        discusses what each one would look like for the two sites.
++    answer: adi-criteria-shared
++    distractors: [adi-question-open, adi-tool-talk, adi-three-part]
++    strong: true
++    why: >-
++      Students know what quality means before they start, and the same three criteria will run all the way to
++      the final report.
++
++  - id: spot-plan
++    type: spot
++    at: design-data
++    processing: Comprehension
++    kind: Spot the stage
++    tests: design-data
++    vignette:
++      who: Year 10 · Lesson 2
++      text: >-
++        The teacher sits with each group for three minutes. One group plans four traps per site; another plans
++        quadrat searches at three times of day. The teacher asks how they'll handle the animals safely and how
++        many samples they'll need, but changes neither design.
++    q: Which ADI stage is this?
++    answer: design-data
++    among: [task-question, design-data, tentative-argument, argumentation]
++    fb:
++      task-question: The question and criteria were set in lesson 1. Groups are now deciding how to answer it.
++      design-data: A plan conference that checks safety and feasibility but leaves the design with the group. That's the design stage.
++      tentative-argument: No one has data yet, so there is nothing to argue from.
++      argumentation: The teacher is asking questions, but about a plan, not about another group's argument.
++    why: >-
++      Different groups' methods differ in defensible ways. That is what gives the argumentation session
++      something to critique later.
++
++  - id: lf-reliability
++    type: lookfor
++    at: design-data
++    processing: Analysis
++    kind: Match the look-for
++    tests: lookfor
++    vignette:
++      who: Another Year 10 group · Plan
++      text: Their plan says “one quadrat at each site, count everything we find, compare the totals.”
++    answer: adi-reliability
++    distractors: [adi-student-designed, adi-tool-talk, adi-plan-checkpoint]
++    strong: false
++    hint: The plan is the group's own. What hasn't the group thought about?
++    why: >-
++      One sample per site and a total count: both target conceptions in one plan. The guide's scaffold prompt
++      asks what you would say to this group without telling them the answer.
++
++  - id: spot-board
++    type: spot
++    at: tentative-argument
++    processing: Comprehension
++    kind: Spot the stage
++    tests: tentative-argument
++    vignette:
++      who: Year 10 · Lesson 4
++      text: >-
++        Groups turn their tallies into a bar chart of kinds per site, then fill a whiteboard: claim at the top,
++        the chart in the middle, and a justification underneath explaining why kinds, not totals, measure
++        diversity.
++    q: Which ADI stage is this?
++    answer: tentative-argument
++    among: [design-data, tentative-argument, argumentation, reflective-discussion]
++    fb:
++      design-data: The data are in. Groups are now turning them into an argument.
++      tentative-argument: Claim, evidence and justification on a whiteboard, drafted to be questioned. That's the tentative argument.
++      argumentation: No one else has seen the boards yet. Critique comes next.
++      reflective-discussion: The teacher hasn't consolidated anything. These are the groups' own arguments.
++    refs:
++      lookForIds: [adi-three-part, adi-analysis]
++
++  - id: spot-round
++    type: spot
++    at: argumentation
++    processing: Comprehension
++    kind: Spot the stage
++    tests: argumentation
++    vignette:
++      who: Year 10 · Lesson 5
++      text: >-
++        One student stays with each whiteboard while the rest move around. A visitor asks, “How do you know one
++        trap was enough?” The presenter writes the question in a log, and later the group changes its claim.
++    q: Which ADI stage is this?
++    answer: argumentation
++    among: [tentative-argument, argumentation, reflective-discussion, peer-review]
++    fb:
++      tentative-argument: The whiteboards are already drafted. Now other students are testing them.
++      argumentation: Students critique each other's evidence, log the questions and revise. That's the argumentation session.
++      reflective-discussion: The teacher hasn't stepped in to consolidate. The critique is still running on evidence.
++      peer-review: Peer review is of written reports, later and anonymous. This is face to face, on the whiteboards.
++    refs:
++      exampleIds: [adi-argue-pos-roundrobin]
++      lookForIds: [adi-critique-quality, adi-revision-record]
++
++  - id: dx-closed
++    type: diagnose
++    at: argumentation
++    processing: Analysis
++    kind: Diagnose the plan
++    tests: misapplication
++    vignette:
++      who: A pre-service teacher's ADI
++      text: >-
++        The guiding question is “Do invertebrates live in leaf litter?” Every group finds beetles and slaters in
++        the first ten minutes, and the argumentation session is over in five.
++    answer: mis-adi-closed-question
++    distractors: [mis-adi-given-method, mis-adi-no-justification, mis-adi-teacher-judges]
++    hint: Could two careful groups disagree about the answer?
++    why: >-
++      With one obvious answer there is nothing to argue about, so the stages that make ADI worth the time have
++      nothing to work on.
++
++  - id: dx-method
++    type: diagnose
++    at: argumentation
++    processing: Analysis
++    kind: Diagnose the plan
++    tests: misapplication
++    vignette:
++      who: Another pre-service teacher's ADI
++      text: >-
++        The question is open, but every group receives the same method sheet: two quadrats per site, ten minutes
++        each, count every animal. In the argumentation session, nobody can question anyone's design.
++    answer: mis-adi-given-method
++    distractors: [mis-adi-closed-question, mis-adi-skip-review, mis-adi-group-report]
++    refs:
++      exampleIds: [adi-inv-neg-worksheet]
++
++  - id: order
++    type: order
++    at: revision
++    processing: Comprehension
++    kind: Sequence it
++    tests: sequence
++    title: The question is set and the tool talk is done. Put the rest of the routine in order.
++    q: Tap each step in the order you'd teach it. Tap a placed step to remove it.
++    steps:
++      - text: Groups plan their sampling and talk it through with the teacher
++        phaseId: design-data
++      - text: Groups build a whiteboard with a claim, evidence and a justification
++        phaseId: tentative-argument
++      - text: Round robin, with visitors questioning each whiteboard
++        phaseId: argumentation
++      - text: The class consolidates kinds versus totals and names what made arguments strong
++        phaseId: reflective-discussion
++      - text: Each student writes their own report within a word limit
++        phaseId: report
++      - text: Another group reviews each anonymous report against the criteria
++        phaseId: peer-review
++      - text: Authors respond to each review point and submit with the review attached
++        phaseId: revision
++
++  - id: reflect
++    type: reflect
++    at: revision
++    processing: Metacognition
++    kind: Look back
++    title: Which stage would you cut?
++    q: If you lost a lesson from this routine, which stage would you cut first, and what would that cost your students?
++    model: "Example: “I'd shorten data collection, not cut a stage. Cutting the argumentation session or the review would leave a practical with a report, and those are the stages where ‘one trap is enough’ gets challenged.”"
++    recall: predict
+diff --git a/tools/reckoner/content/game/adi-2-noise.yaml b/tools/reckoner/content/game/adi-2-noise.yaml
+new file mode 100644
+index 0000000..eeab765
+--- /dev/null
++++ b/tools/reckoner/content/game/adi-2-noise.yaml
+@@ -0,0 +1,225 @@
++# ADI path, lesson 2. Built on the ADI guide's worked sequence seq-s5-sound. Reviewed and published by Steve on 2026-10-05.
++schemaVersion: 1
++id: adi-2-noise
++path: adi
++order: 2
++title: Keep the noise out
++summary: Claim, evidence and justification, critique that targets evidence, and why the teacher holds the science back until the argument has run.
++level: explain
++version: 1.0.0
++status: published
++lastReviewed: 2026-10-05
++provenance:
++  source: ai-drafted-reviewed
++  authors: [Claude]
++  reviewedBy: [Steve Grant]
++  reviewedOn: 2026-10-05
++context:
++  stages: [stage5]
++  focusAreas: [Waves and motion]
++  disciplines: [physics]
++outcomes: [SC5-WAM-01]
++builtOn:
++  sequenceIds: [seq-s5-sound]
++  exampleIds: [adi-tentative-argument-neg-no-justification, adi-argue-pos-roundrobin, adi-argue-neg-presentations]
++  lookForIds: [adi-justification, adi-critique-quality, adi-talk-norms, adi-revision-record, adi-nos-explicit]
++  misapplicationIds: [mis-adi-no-justification, mis-adi-teacher-judges]
++guideSection: sequences
++items:
++  - id: predict
++    type: predict
++    at: task-question
++    processing: Retrieval
++    kind: Predict
++    title: "A speaker plays a steady tone inside a box. Groups change the box's lining and read the sound level outside it with a phone meter."
++    q: Which lining will cut the sound reaching the meter the most?
++    options:
++      - text: Foam, because soft materials always block sound best
++      - text: Timber, because sound can't travel through solids
++      - text: It depends on the tone the speaker plays
++      - text: None of them makes a noticeable difference
++    answer: 2
++    reveal: >-
++      Classes usually find that the answer changes with the tone. Soft, porous linings like foam often do best
++      on a high tone, while a denser lining can match or beat them on a low one. Sound does travel through
++      solids; that's why some always gets out.
++    why: >-
++      The guiding question ends “and does the answer depend on the sound?” That half is what gives groups
++      that tested different tones something real to argue about. All three of this sequence's target
++      conceptions sit in these options.
++
++  - id: board
++    type: choice
++    at: tentative-argument
++    processing: Analysis
++    kind: Judge the argument
++    tests: tentative-argument
++    title: Four groups' whiteboards. Which one has a real justification?
++    options:
++      - text: "Claim: foam works best. Evidence: our table of 24 readings."
++        fb: A claim and raw data, with nothing saying why the data support the claim. That's the gap the argumentation session will fall into.
++      - text: "Claim: foam works best. Evidence: a bar chart of reduction for each lining. Justification: foam is the softest material."
++        fb: The evidence has been analysed, but “it's softest” restates the target conception instead of explaining the result with science.
++      - text: "Claim: foam cut the high tone most, but timber did as well on the low tone. Evidence: a chart of reduction for each lining at both tones. Justification: the high tone lost energy in the foam's air pockets, while the low tone passed through the foam more easily and the denser timber reflected more of it."
++        fb: Yes. The claim is limited to what the data show, the evidence is analysed, and the justification uses wave ideas to say why the evidence counts.
++      - text: "Claim: foam works best. Evidence: it sounded quietest to us."
++        fb: An impression, not data. The group collected readings but didn't use them.
++    answer: 2
++    refs:
++      lookForIds: [adi-three-part, adi-analysis, adi-justification]
++
++  - id: dx-no-just
++    type: diagnose
++    at: tentative-argument
++    processing: Analysis
++    kind: Diagnose the plan
++    tests: misapplication
++    vignette:
++      who: A pre-service teacher's ADI · Lesson 4
++      text: >-
++        The teacher's whiteboard template has two boxes: “Our claim” and “Our results”. Groups fill them neatly
++        and move on to the argumentation session.
++    answer: mis-adi-no-justification
++    distractors: [mis-adi-closed-question, mis-adi-teacher-judges, mis-adi-given-method]
++    hint: Which of the three parts has no box?
++    why: >-
++      The template itself leaves out the justification, so the reasoning stays in students' heads, where no one
++      can critique it.
++    refs:
++      exampleIds: [adi-tentative-argument-neg-no-justification]
++
++  - id: lf-critique
++    type: lookfor
++    at: argumentation
++    processing: Analysis
++    kind: Match the look-for
++    tests: lookfor
++    vignette:
++      who: Year 9 · Round robin
++      text: >-
++        Visitors to each whiteboard say things like “Your chart is really neat” and “We got the same thing”,
++        then move on. The presenters' logs are empty.
++    answer: adi-critique-quality
++    distractors: [adi-talk-norms, adi-three-part, adi-concept-consolidated]
++    strong: false
++    hint: The talk is friendly. What is it about?
++    why: >-
++      Polite agreement isn't critique. Stems such as “How many readings did you take at each tone?” point
++      students at evidence and justification.
++
++  - id: move
++    type: choice
++    at: argumentation
++    processing: Knowledge utilisation
++    kind: Teacher move
++    tests: argumentation
++    vignette:
++      who: During the round robin
++      text: "A presenter says: “Foam works best. It's the softest, so it soaks up the sound.” The group only tested the high tone."
++    q: What is the best move?
++    options:
++      - text: Send over a visitor from a group that tested the low tone, and ask the presenter what their own data can and can't show
++        fb: Yes. Data from another group challenges the claim, and the presenter has to narrow it. The guide pairs groups that tested different tones for exactly this.
++      - text: Tell the group that timber did better on low tones
++        fb: That's adjudicating. Authority replaces evidence, and the class learns to wait for the teacher's verdict.
++      - text: Stop the session and explain absorption to the whole class
++        fb: The science belongs in the reflective discussion, after the arguments have been tested against each other.
++      - text: Praise the clear claim and move on
++        fb: The claim goes unchallenged, and “soft always wins” leaves the lesson intact.
++    answer: 0
++    refs:
++      lookForIds: [adi-critique-quality]
++
++  - id: lf-norms
++    type: lookfor
++    at: argumentation
++    processing: Comprehension
++    kind: Match the look-for
++    tests: lookfor
++    vignette:
++      who: Year 9 · Round robin
++      text: >-
++        A visitor starts, “Your group always…”, stops, looks at the stem chart on the wall and says instead,
++        “What makes you think the meter wasn't picking up the next group's speaker?” The presenter disagrees,
++        and both stay calm.
++    answer: adi-talk-norms
++    distractors: [adi-revision-record, adi-criteria-shared, adi-concept-consolidated]
++    strong: true
++
++  - id: dx-judge
++    type: diagnose
++    at: argumentation
++    processing: Analysis
++    kind: Diagnose the plan
++    tests: misapplication
++    vignette:
++      who: Another pre-service teacher's ADI · Lesson 5
++      text: >-
++        Each group presents its whiteboard to the class. After each one, the teacher says whether the group got
++        it right, the class claps, and the next group starts.
++    answer: mis-adi-teacher-judges
++    distractors: [mis-adi-no-justification, mis-adi-skip-review, mis-adi-closed-question]
++    refs:
++      exampleIds: [adi-argue-neg-presentations]
++
++  - id: lf-revision
++    type: lookfor
++    at: argumentation
++    processing: Comprehension
++    kind: Match the look-for
++    tests: lookfor
++    vignette:
++      who: Year 9 · End of lesson 5
++      text: >-
++        One group's log reads: “Asked: did you test a low tone? Changed: our claim now says foam was best for the
++        high tone only, and we added the other group's low-tone readings as a question we can't answer yet.”
++    answer: adi-revision-record
++    distractors: [adi-critique-quality, adi-revision-used, adi-three-part]
++    strong: true
++    hint: This is a whiteboard argument, not a written report.
++
++  - id: spot-discuss
++    type: spot
++    at: reflective-discussion
++    processing: Comprehension
++    kind: Spot the stage
++    tests: reflective-discussion
++    vignette:
++      who: Year 9 · Lesson 6
++      text: >-
++        Using the class's results, the teacher works through amplitude and loudness, frequency and pitch, and
++        reflection, absorption and transmission. Then the class names what changed claims in the session:
++        readings from another group, not who said them.
++    q: Which ADI stage is this?
++    answer: reflective-discussion
++    among: [argumentation, reflective-discussion, report]
++    fb:
++      argumentation: The critique has finished. The teacher is now consolidating.
++      reflective-discussion: The science is consolidated and the nature-of-science idea is named. That's the reflective discussion.
++      report: No one is writing yet. The reports come next, built on what the class agreed here.
++    refs:
++      lookForIds: [adi-concept-consolidated, adi-nos-explicit]
++
++  - id: nest
++    type: nest
++    at: reflective-discussion
++    processing: Knowledge utilisation
++    kind: Nest it
++    tests: nesting
++    model: adi
++    host: 5e
++    answer: explore
++    q: A 5E unit on waves needs argument from evidence. In which 5E phase does an ADI routine begin?
++    why: >-
++      ADI runs across Explore and Explain: the investigation and argument are the exploring, and the
++      reflective discussion becomes part of the explaining.
++
++  - id: reflect
++    type: reflect
++    at: reflective-discussion
++    processing: Metacognition
++    kind: Look back
++    title: Hold the science back.
++    q: Why does the teacher wait until the reflective discussion to explain absorption, even when a group is plainly wrong in lesson 5?
++    model: "Example: “If I correct them in lesson 5, the class learns to wait for me. Holding back lets another group's low-tone data do the correcting, and then lesson 6 has their argument to build on.”"
++    recall: predict
+diff --git a/tools/reckoner/content/game/adi-3-review.yaml b/tools/reckoner/content/game/adi-3-review.yaml
+new file mode 100644
+index 0000000..62196da
+--- /dev/null
++++ b/tools/reckoner/content/game/adi-3-review.yaml
+@@ -0,0 +1,230 @@
++# ADI path, lesson 3. Built on lessons 6–8 of the ADI guide's worked sequence seq-s5-microhabitats. Reviewed and published by Steve on 2026-10-05.
++schemaVersion: 1
++id: adi-3-review
++path: adi
++order: 3
++title: Review, then revise
++summary: Individual reports, anonymous review with accountable reviewers, and revision that shows. The stages most often cut, and what cutting them costs.
++level: explain
++version: 1.0.0
++status: published
++lastReviewed: 2026-10-05
++provenance:
++  source: ai-drafted-reviewed
++  authors: [Claude]
++  reviewedBy: [Steve Grant]
++  reviewedOn: 2026-10-05
++context:
++  stages: [stage5]
++  focusAreas: [Environmental sustainability]
++  disciplines: [biology]
++outcomes: [SC5-ENV-01]
++builtOn:
++  sequenceIds: [seq-s5-microhabitats]
++  exampleIds: [adi-write-pos-review, adi-write-neg-ticks]
++  lookForIds: [adi-individual-writing, adi-report-structure, adi-review-rubric, adi-review-accountable, adi-revision-used, adi-final-standard]
++  misapplicationIds: [mis-adi-skip-review, mis-adi-group-report]
++guideSection: sequences
++items:
++  - id: predict
++    type: predict
++    at: report
++    processing: Retrieval
++    kind: Predict
++    title: A Year 10 class has drafted individual reports on the two schoolyard sites. There's one lesson left before they submit.
++    q: Which use of that lesson will most improve the final reports?
++    options:
++      - text: The teacher writes comments on every draft
++      - text: Anonymous peer review against the shared criteria, with the teacher returning weak reviews
++      - text: Hand out the marking rubric and let students check their own drafts
++      - text: Give students the lesson to rewrite on their own
++    answer: 1
++    reveal: >-
++      Peer review against shared criteria improves the reports, and it improves the reviewers too: applying
++      the criteria to someone else's argument shows students what their own is missing. It only works when
++      reviews must give reasons and the teacher holds reviewers to that.
++    why: >-
++      Teacher comments are the familiar choice, but they arrive as a verdict. ADI's last three stages make
++      students do the judging, which is the scientific practice the routine is teaching.
++
++  - id: lf-individual
++    type: lookfor
++    at: report
++    processing: Comprehension
++    kind: Match the look-for
++    tests: lookfor
++    vignette:
++      who: Year 10 · Lesson 7
++      text: Each group submits one shared document, with three names at the top and the sections split between them.
++    answer: adi-individual-writing
++    distractors: [adi-report-structure, adi-review-rubric, adi-revision-used]
++    strong: false
++    why: >-
++      Share the data, write individually. A split document hides whose reasoning is whose, so no one's argument
++      can be reviewed or assessed.
++
++  - id: lf-structure
++    type: lookfor
++    at: report
++    processing: Analysis
++    kind: Match the look-for
++    tests: lookfor
++    vignette:
++      who: Year 10 · A draft report
++      text: >-
++        Aim, method, results, conclusion. The conclusion reads “Site B had more animals, so it is more diverse.”
++        Nowhere does the report say why the group chose its sampling method, or why its evidence supports the
++        claim.
++    answer: adi-report-structure
++    distractors: [adi-individual-writing, adi-review-rubric, adi-final-standard]
++    strong: false
++    hint: An ADI report answers three guiding questions. Which ones are missing here?
++
++  - id: dx-skip
++    type: diagnose
++    at: report
++    processing: Analysis
++    kind: Diagnose the plan
++    tests: misapplication
++    vignette:
++      who: A pre-service teacher's ADI
++      text: >-
++        Two lessons were lost to a swimming carnival. The teacher goes from the whiteboards straight to a report
++        that students hand in for marking.
++    answer: mis-adi-skip-review
++    distractors: [mis-adi-teacher-judges, mis-adi-group-report, mis-adi-no-justification]
++    why: >-
++      The stages cut are the ones that make it ADI. The guide's fix is to plan 6–8 lessons from the start and
++      shorten data collection, not argument or review.
++
++  - id: feedback
++    type: multi
++    at: peer-review
++    processing: Analysis
++    kind: Usable feedback
++    tests: peer-review
++    title: A reviewer's comments on an anonymous report.
++    q: Which comments would help the author revise? Select every one that would.
++    options:
++      - text: "Good job! Really interesting."
++        ok: false
++        fb: General praise gives the author nothing to act on.
++      - text: "Criterion 3 not met: your justification says the leaf litter has “more life” but not why kinds count more than totals. Add a sentence on what diversity measures."
++        ok: true
++        fb: Names the criterion, the gap and a fix.
++      - text: "Your method says one trap per site. Your argument should say how that limits your claim."
++        ok: true
++        fb: Points to evidence in the author's own report and asks for a qualified claim.
++      - text: "I'd have used more colours in the graph."
++        ok: false
++        fb: A preference, not a criterion. It won't make the argument stronger.
++      - text: "Criterion 2 met: your chart compares kinds per site, which answers the guiding question."
++        ok: true
++        fb: A judgement with its reason. The author learns what to keep.
++    refs:
++      lookForIds: [adi-review-rubric]
++
++  - id: lf-rubric
++    type: lookfor
++    at: peer-review
++    processing: Comprehension
++    kind: Match the look-for
++    tests: lookfor
++    vignette:
++      who: Year 10 · Lesson 8
++      text: The review sheet lists the three criteria with a yes or no box beside each. There's no space for comments.
++    answer: adi-review-rubric
++    distractors: [adi-individual-writing, adi-report-structure, adi-final-standard]
++    strong: false
++    refs:
++      exampleIds: [adi-write-neg-ticks]
++
++  - id: lf-accountable
++    type: lookfor
++    at: peer-review
++    processing: Comprehension
++    kind: Match the look-for
++    tests: lookfor
++    vignette:
++      who: Year 10 · Lesson 8
++      text: >-
++        Before any review goes back to its author, the teacher reads three at random and returns two to their
++        reviewers: “Say what would fix criterion 3, not just that it's missing.”
++    answer: adi-review-accountable
++    distractors: [adi-review-rubric, adi-final-standard, adi-revision-used]
++    strong: true
++    refs:
++      exampleIds: [adi-write-pos-review]
++
++  - id: spot-revise
++    type: spot
++    at: revision
++    processing: Comprehension
++    kind: Spot the stage
++    tests: revision
++    vignette:
++      who: Year 10 · End of lesson 8
++      text: >-
++        Beside each review point, authors write “accepted: rewrote paragraph 3” or “not changed, because…”, then
++        submit the final report with the review stapled to it.
++    q: Which ADI stage is this?
++    answer: revision
++    among: [report, peer-review, revision]
++    fb:
++      report: The reports were written in lesson 7. Now they're being changed in response to review.
++      peer-review: The reviews are done. Authors are now responding to them.
++      revision: Authors respond to each point, accepting or rebutting it, and submit with the review attached. That's revision.
++    refs:
++      lookForIds: [adi-revision-used]
++
++  - id: lf-final
++    type: lookfor
++    at: revision
++    processing: Analysis
++    kind: Match the look-for
++    tests: lookfor
++    vignette:
++      who: Year 10 · Marking
++      text: >-
++        Final reports are marked on a new 20-point rubric covering presentation, spelling, a labelled graph and a
++        conclusion. The claim, evidence and justification criteria from lesson 1 don't appear.
++    answer: adi-final-standard
++    distractors: [adi-revision-used, adi-review-rubric, adi-criteria-shared]
++    strong: false
++    why: >-
++      Students spent eight lessons working to one standard. Marking to a different one tells them the
++      argument wasn't what counted.
++
++  - id: order
++    type: order
++    at: revision
++    processing: Comprehension
++    kind: Sequence it
++    tests: sequence
++    title: Put the last three stages in order.
++    q: Tap each step in the order you'd teach it. Tap a placed step to remove it.
++    steps:
++      - text: Each student drafts their own report from the group's shared data
++        phaseId: report
++      - text: The teacher checks each draft's justification paragraph
++        phaseId: report
++      - text: Reports are anonymised and swapped with another group
++        phaseId: peer-review
++      - text: Reviewers comment on each criterion, saying why or what would fix it
++        phaseId: peer-review
++      - text: The teacher samples reviews and returns any that aren't specific enough
++        phaseId: peer-review
++      - text: Authors respond to every review point
++        phaseId: revision
++      - text: Final reports are submitted with the review attached
++        phaseId: revision
++
++  - id: reflect
++    type: reflect
++    at: revision
++    processing: Metacognition
++    kind: Look back
++    title: Your review guide.
++    q: Which three criteria would you put on the review guide for the leaf-litter investigation, and why those three?
++    model: "Example: “A claim limited to what the traps can show; evidence that compares kinds, not totals; and a justification that explains why kinds measure diversity. Those three are where the target conceptions hide.”"
++    recall: predict
+diff --git a/tools/reckoner/content/game/game.yaml b/tools/reckoner/content/game/game.yaml
+index 0e5e34d..885100f 100644
+--- a/tools/reckoner/content/game/game.yaml
++++ b/tools/reckoner/content/game/game.yaml
+@@ -7,12 +7,19 @@ paths:
+   - id: poe
+     title: POE path
+     blurb: Predict, Observe, Explain. One lesson that makes students' ideas visible and then puts them to the test.
++  - id: adi
++    title: ADI path
++    blurb: Argument-Driven Inquiry. Students investigate, argue from their own evidence, then write, review and revise. The arguing and reviewing are the point.
++    rail: groups
++    requires:
++      - path: poe
++        level: explain
+   - id: select
+     kind: select
+     title: Choosing a model
+     blurb: Which model fits this class, and why? The reckoner is the answer key, so your reasons have to match the class, not your favourite model.
+     journey: 5e
+-    models: [5e, poe]
++    models: [5e, poe, adi]
+     requires:
+       - path: 5e
+         level: explain
+diff --git a/tools/reckoner/content/game/select-3-argue.yaml b/tools/reckoner/content/game/select-3-argue.yaml
+new file mode 100644
+index 0000000..2fcf6aa
+--- /dev/null
++++ b/tools/reckoner/content/game/select-3-argue.yaml
+@@ -0,0 +1,196 @@
++# Choosing a model, lesson 3. ADI joins 5E and POE. Answers and reasons are checked against the Reckoner's own scoring at build time. Reviewed and published by Steve on 2026-10-05.
++schemaVersion: 1
++id: select-3-argue
++path: select
++order: 3
++title: Argue it out
++summary: ADI joins 5E and POE. Find the classes it suits, the one change that rules it out, and where a POE fits inside it.
++level: select
++version: 1.0.0
++status: published
++lastReviewed: 2026-10-05
++provenance:
++  source: ai-drafted-reviewed
++  authors: [Claude]
++  reviewedBy: [Steve Grant]
++  reviewedOn: 2026-10-05
++context:
++  stages: [stage5]
++  focusAreas: [Waves and motion, Environmental sustainability]
++  disciplines: [physics, biology]
++requires:
++  - path: adi
++    level: explain
++builtOn: {}
++items:
++  - id: predict
++    type: predict
++    at: engage
++    processing: Retrieval
++    kind: Predict
++    title: An ADI routine asks students to design their own method, defend it, and review each other's reports.
++    q: Which feature of a class does the Reckoner treat as the biggest obstacle to ADI?
++    options:
++      - text: Novice inquirers
++      - text: Limited lab equipment
++      - text: Many EAL/D learners
++      - text: No documented misconception to target
++    answer: 0
++    reveal: >-
++      Learner readiness counts double in the Reckoner, and ADI scores zero for novice inquirers: the routine
++      assumes students can plan an investigation with guidance and take critique. The other three lower its fit
++      a little, but none rules it out.
++    why: >-
++      ADI's guide says it assumes guided inquiry or above. For a class that isn't there yet, the guidance dial
++      is where to start.
++
++  - id: class-sound
++    type: select
++    at: explore
++    processing: Analysis
++    kind: Choose the model
++    tests: select
++    scenario:
++      who: Year 10 · Waves and motion
++      text: >-
++        A unit on sound. Your class are experienced inquirers, the evidence comes from a sound-level meter, and
++        you want them to argue from evidence and be assessed on a written argument.
++    profile:
++      purpose: [argue]
++      time: unit
++      ready: experienced
++      concept: instrument
++      ws: ["6", "8"]
++      assess: argument
++    candidates: [5e, poe, adi]
++    answer: adi
++    reasons:
++      - text: The main purpose is arguing from evidence
++        dim: purpose
++        ok: true
++      - text: The learners are experienced inquirers
++        dim: ready
++        ok: true
++      - text: The assessment is a written argument
++        dim: assess
++        ok: true
++      - text: There's a whole unit to work with
++        dim: time
++        ok: false
++      - text: The evidence comes from instruments
++        dim: concept
++        ok: false
++      - text: ADI feels more rigorous than 5E
++        dim: null
++        ok: false
++
++  - id: class-novice
++    type: select
++    at: explore
++    processing: Analysis
++    kind: Choose the model
++    tests: select
++    scenario:
++      who: Year 9 · Environmental sustainability
++      text: >-
++        A unit on local ecosystems. You'd like students to investigate and argue from evidence, but they are novice
++        inquirers, and you'll assess them on conceptual explanations.
++    profile:
++      purpose: [investigate, argue]
++      time: unit
++      ready: novice
++      concept: observable
++      res: lab
++      assess: explanation
++    candidates: [5e, adi]
++    answer: 5e
++    reasons:
++      - text: The learners are novice inquirers
++        dim: ready
++        ok: true
++      - text: There's a whole unit to work with
++        dim: time
++        ok: true
++      - text: The assessment is conceptual explanations
++        dim: assess
++        ok: true
++      - text: The purposes are investigating and arguing
++        dim: purpose
++        ok: false
++      - text: The phenomena are directly observable
++        dim: concept
++        ok: false
++    why: >-
++      The purposes on their own favour ADI. The class tips it to 5E: novice inquirers, a unit-length sequence
++      and explanation as the evidence of learning.
++
++  - id: flip
++    type: flip
++    at: explain
++    processing: Analysis
++    kind: Move the dial
++    tests: flip
++    scenario:
++      who: Year 10 · Waves and motion
++      text: A unit where students argue from evidence and build models, assessed on a written argument. The class are experienced inquirers.
++    profile:
++      purpose: [argue, model]
++      time: unit
++      ready: experienced
++      concept: observable
++      assess: argument
++    candidates: [5e, adi]
++    changes:
++      - dim: ready
++        value: novice
++      - dim: lang
++        value: high
++      - dim: res
++        value: limited
++      - dim: place
++        value: "yes"
++    answer: 0
++    hint: Which question counts double, and where is ADI's fit at its lowest?
++
++  - id: why
++    type: choice
++    at: explain
++    processing: Comprehension
++    kind: Why that one?
++    tests: flip
++    title: Only learner readiness moved the Reckoner.
++    q: Why does readiness swing the choice between ADI and 5E so sharply?
++    options:
++      - text: Readiness counts double, and ADI fits novices worst of any model while 5E fits them as well as any
++        fb: Yes. A heavily weighted question where the two models sit at opposite ends is what moves the result.
++      - text: ADI can't be used with novices under any circumstances
++        fb: The Reckoner ranks, it doesn't forbid. Novices can grow into ADI, often through more guided inquiry first.
++      - text: Readiness counts three times as much as any other question
++        fb: That's purpose. Readiness counts double.
++      - text: 5E always wins when there's a whole unit
++        fb: The first class had a whole unit and ADI won. Time favours 5E, but not enough on its own.
++    answer: 0
++
++  - id: nest
++    type: nest
++    at: elaborate
++    processing: Knowledge utilisation
++    kind: Nest it
++    tests: nesting
++    model: poe
++    host: adi
++    answer: task-question
++    q: Your ADI class holds the “soft always wins” idea. Where in the ADI routine would a POE fit?
++    why: >-
++      A POE at the start surfaces students' prior ideas before the guiding question is posed, so the
++      investigation is aimed at what they actually think.
++
++  - id: reflect
++    type: reflect
++    at: evaluate
++    processing: Metacognition
++    kind: Look back
++    title: Your own class.
++    q: Think of a class you've taught or observed. Would the Reckoner recommend ADI for it? Name the one answer that decides it.
++    model: "Example: “My Year 9s would argue happily, but they're novices at planning. The Reckoner would give me 5E this year, and I'd use the guidance dial to build towards ADI.”"
++    recall: predict
+diff --git a/tools/reckoner/content/methodology.yaml b/tools/reckoner/content/methodology.yaml
+index fe48919..1a8e677 100644
+--- a/tools/reckoner/content/methodology.yaml
++++ b/tools/reckoner/content/methodology.yaml
+@@ -1,17 +1,18 @@
+ # How the reckoner works: methodology notes shown on the "How it works" page (F1) and, later, the glossary (F7).
+ # v1.0.0 approved by Steve Grant on 2026-09-30; v1.1.0 rewrites it for reading on the web, keeping its meaning,
+-# and was approved and published by Steve Grant on 2026-09-30.
++# and was approved and published by Steve Grant on 2026-09-30. v1.2.0 adds the time-and-scale prompts
++# (Steve Grant's decision, 2026-10-05).
+ # Counts (models, guides) are deliberately left out: the page computes them from the manifest, so this file never goes stale.
+ schemaVersion: '1.0'
+ id: methodology
+-version: 1.1.0
++version: 1.2.0
+ status: published
+-lastReviewed: '2026-09-30'
++lastReviewed: '2026-10-05'
+ provenance:
+   source: ai-drafted-reviewed
+   authors: ['Claude, drafted for S. Grant']
+   reviewedBy: ['Steve Grant']
+-  reviewedOn: '2026-09-30'
++  reviewedOn: '2026-10-05'
+ 
+ intro:
+   lead: 'The reckoner helps you decide which constructivist teaching model suits the sequence you are planning. It shows its working, so you can check its reasoning and disagree with it.'
+@@ -84,6 +85,7 @@ routes:
+     body: |
+       - A rule fires on particular answers, for example novice learners with a problem-based model, or a robust misconception with a model that does not target misconceptions.
+       - Rules add advice to a result. They do not change the ranking.
++      - '**Have you thought about…?** prompts appear when a model''s scale and your timescale don''t line up: a multi-lesson routine for one lesson, unit architecture for a few lessons, or a routine that could either sit inside a unit or carry it. Purpose counts most, so a model can rank first even when its length doesn''t match your time. The Reckoner supports your judgement; weighing the prompt is your call.'
+   - id: dial
+     title: Guidance dial
+     summary: 'Recommends how much to guide students inside whichever model you choose, from confirmation to open inquiry.'
+diff --git a/tools/reckoner/scripts/lib/game.ts b/tools/reckoner/scripts/lib/game.ts
+index c11d1eb..d514401 100644
+--- a/tools/reckoner/scripts/lib/game.ts
++++ b/tools/reckoner/scripts/lib/game.ts
+@@ -72,12 +72,17 @@ export function loadGame(opts: { gameDir?: string; guidesDir?: string } = {}): G
+       if (p.journey && !guides.has(p.journey)) errors.push(`game.yaml: path "${p.id}" journey "${p.journey}" has no guide`);
+       p.models.forEach((m) => !guides.has(m) && errors.push(`game.yaml: path "${p.id}" model "${m}" has no guide`));
+       p.requires.forEach((r) => !config!.paths.some((x) => x.id === r.path) && errors.push(`game.yaml: path "${p.id}" requires unknown path "${r.path}"`));
++      if (p.rail === "groups" && !guides.get(journeyOf(p))?.phaseGroups.length) errors.push(`game.yaml: path "${p.id}" has rail: groups but its journey guide has no phaseGroups`);
+     }
+     for (const l of lessons) {
+       const path = config.paths.find((p) => p.id === l.path);
+       if (!path) { errors.push(`${l.id}: path "${l.path}" is not listed in game.yaml`); continue; }
+       const g = guides.get(journeyOf(path));
+       if (g) errors.push(...checkLesson(l, g, { guides, reckoner }));
++      l.requires.forEach((r) => {
++        if (!config!.paths.some((x) => x.id === r.path)) errors.push(`${l.id}: requires unknown path "${r.path}"`);
++        else if (r.path === l.path) errors.push(`${l.id}: a lesson can't require its own path`);
++      });
+     }
+     // Lesson order on each path runs 1, 2, 3… with no gaps or repeats, drafts included.
+     for (const p of config.paths) {
+@@ -202,9 +207,14 @@ export function checkLesson(l: GameLesson, g: ModelGuide, ctx?: { guides: Map<st
+       const at = j ? `${where} variant ${j}` : where;
+       if (it.type === "spot") {
+         if (v.answer) need(phases, v.answer, "phase", at);
+-        if (v.fb) {
+-          Object.keys(v.fb).forEach((k) => need(phases, k, "phase", `${at} fb`));
+-          g.phases.forEach((p) => !(p.id in v.fb) && out.push(`${l.id} ${at}: fb has no entry for phase "${p.id}"`));
++        const among: string[] | undefined = v.among ?? (it as any).among;
++        among?.forEach((id) => need(phases, id, "phase", `${at} among`));
++        const offered = among ?? g.phases.map((p) => p.id);
++        const fb = v.fb ?? (it as any).fb;
++        if (v.fb || v.among) {
++          Object.keys(fb).forEach((k) => need(phases, k, "phase", `${at} fb`));
++          offered.forEach((id) => !(id in fb) && out.push(`${l.id} ${at}: fb has no entry for phase "${id}"`));
++          if (among) Object.keys(fb).forEach((k) => !among.includes(k) && out.push(`${l.id} ${at}: fb gives "${k}", which is not offered (among)`));
+         }
+       }
+       if (it.type === "order") v.steps?.forEach((s: any) => need(phases, s.phaseId, "phase", `${at} steps`));
+@@ -392,7 +402,8 @@ export function gameData(c: GameContent, includeDrafts: boolean) {
+     const g = c.guides.get(id)!;
+     return [id, {
+       name: g.name,
+-      phases: g.phases.slice().sort((a, b) => a.order - b.order).map((p) => ({ id: p.id, name: p.name })),
++      phases: g.phases.slice().sort((a, b) => a.order - b.order).map((p) => ({ id: p.id, name: p.name, ...(p.group ? { group: p.group } : {}) })),
++      groups: g.phaseGroups.map((gr) => ({ id: gr.id, name: gr.name })),
+       misapplications: Object.fromEntries(g.misapplications.map((m) => [m.id, { name: m.name, looksLike: m.looksLike, why: m.whyItUndermines, fix: m.fix }])),
+       lookFors: Object.fromEntries(g.phases.flatMap((p) => p.lookFors.map((x) => [x.id, { phaseId: p.id, question: x.question, strong: x.strongEvidence, weak: x.weakEvidence }]))),
+     }];
+@@ -445,13 +456,13 @@ export function gameData(c: GameContent, includeDrafts: boolean) {
+     feedback: c.config.feedback,
+     guides,
+     paths: c.config.paths.map((p) => ({
+-      id: p.id, title: p.title, blurb: p.blurb, kind: p.kind, journey: journeyOf(p), models: p.models, requires: p.requires,
++      id: p.id, title: p.title, blurb: p.blurb, kind: p.kind, journey: journeyOf(p), models: p.models, requires: p.requires, rail: p.rail,
+       guide: p.kind === "guide" ? p.id : null,
+       upcoming: c.lessons.filter((l) => l.path === p.id && !shown.includes(l)).length,
+     })),
+     lessons: shown.map((l) => ({
+       id: l.id, path: l.path, order: l.order, title: l.title, summary: l.summary, level: l.level,
+-      version: l.version, status: l.status, guideSection: l.guideSection ?? null, items: items(l),
++      version: l.version, status: l.status, guideSection: l.guideSection ?? null, requires: l.requires, items: items(l),
+     })),
+   };
+ }
+diff --git a/tools/reckoner/scripts/test-build.ts b/tools/reckoner/scripts/test-build.ts
+index b3c08e7..6ff93ea 100644
+--- a/tools/reckoner/scripts/test-build.ts
++++ b/tools/reckoner/scripts/test-build.ts
+@@ -269,6 +269,28 @@ const cases: [string, () => void | Promise<void>][] = [
+     if (hash !== RULES_HASH) throw new Error(`rule texts changed (hash ${hash}, expected ${RULES_HASH})`);
+     page.dom.window.close();
+   }],
++  ["time-and-scale prompts: a routine for one lesson, a routine or unit choice, none where the watch-out already speaks", async () => {
++    const page = await openPage(join(tmp, "single", "index.html"));
++    const w = page.dom.window;
++    const run = (a: object, id: string) => w.eval(`(() => { const a = Object.assign(Object.fromEntries(DIMS.map(d => [d.id, d.multi ? [] : null])), ${JSON.stringify(a)});
++      const m = DATA.models.find(x => x.id === "${id}"); return timePrompts(m, a, watchOuts(m, a)).map(p => p.text); })()`) as string[];
++    const one = run({ purpose: ["argue"], time: "lesson" }, "adi");
++    if (one.length !== 1 || !/multi-lesson routine, and you have one lesson/.test(one[0])) throw new Error(`ADI, one lesson: ${JSON.stringify(one)}`);
++    const unit = run({ purpose: ["argue"], time: "unit" }, "adi");
++    if (unit.length !== 1 || !/inside a unit model, or carry the unit itself/.test(unit[0])) throw new Error(`ADI, a unit: ${JSON.stringify(unit)}`);
++    if (run({ time: "short" }, "5e").length !== 1) throw new Error("5E in 2–5 lessons should prompt");
++    if (run({ time: "short" }, "7e").length) throw new Error("7E in 2–5 lessons already has the time watch-out; no prompt");
++    if (run({ time: "unit" }, "5e").length || run({ time: "lesson" }, "poe").length || run({ purpose: ["argue"] }, "adi").length) throw new Error("a prompt fired where scale and time agree, or with no time answer");
++    // On the page: an arguing class with one lesson gets a multi-lesson routine on top (ADI or SWH), with the prompt.
++    const { doc } = page;
++    const pick = (name: string, value: string) => { const el = doc.querySelector(`#detailForm input[name="${name}"][value="${value}"]`) as any; el.checked = true; el.dispatchEvent(new w.Event("change", { bubbles: true })); };
++    pick("d-purpose", "argue"); pick("d-time", "lesson");
++    const top = doc.querySelector("#topCards article") as any;
++    const name = top.querySelector("h3").textContent;
++    if (!/Multi-lesson routine/.test(top.querySelector(".head-badges").textContent)) throw new Error(`top card ${name} is not a multi-lesson routine`);
++    if (!/Have you thought about/.test(top.querySelector(".ponder")?.textContent ?? "")) throw new Error("no prompt on the top card");
++    w.close();
++  }],
+   ["md() joins wrapped lines into paragraphs and keeps lists", async () => {
+     const page = await openPage(join(tmp, "single", "index.html"));
+     const got = page.dom.window.eval(`md("One line\\n  wrapped here.\\n\\nSecond **bold\\nacross** lines.\\n- item one\\n  continued\\n- item two\\nAfter.")`);
+diff --git a/tools/reckoner/scripts/test-game.ts b/tools/reckoner/scripts/test-game.ts
+index 75e89db..b6a3ec7 100644
+--- a/tools/reckoner/scripts/test-game.ts
++++ b/tools/reckoner/scripts/test-game.ts
+@@ -222,9 +222,12 @@ const cases: [string, () => void | Promise<void>][] = [
+     if (c.errors.length) throw new Error(c.errors.join("; "));
+     buildGame({ mode: "site", outDir: join(tmp, "gate"), content: c });
+     const { doc, errors } = await openGame(join(tmp, "gate", "index.html"));
+-    const selectIds = c.lessons.filter((l) => l.path === "select").map((l) => l.id);
++    // Lessons that wait only for their path; a lesson with its own requires is checked after the loop.
++    const selectIds = c.lessons.filter((l) => l.path === "select" && !l.requires.length).map((l) => l.id);
+     const locked = () => selectIds.every((id) => (doc.querySelector(`[data-l="${id}"]`) as any).disabled);
+     if (!locked()) throw new Error("select lessons are open before any lesson is played");
++    for (const p of c.config.paths.filter((x) => x.requires.length))
++      c.lessons.filter((l) => l.path === p.id).forEach((l) => { if (!(doc.querySelector(`[data-l="${l.id}"]`) as any).disabled) throw new Error(`${l.id} is open before the ${p.id} path's requirements are met`); });
+     const req = c.config.paths.find((p) => p.id === "select")!.requires;
+     for (const q of req) {
+       const need = c.lessons.filter((l) => l.path === q.path);
+@@ -236,8 +239,66 @@ const cases: [string, () => void | Promise<void>][] = [
+       }
+     }
+     if (locked()) throw new Error("select lessons are still locked after every requirement was met");
++    // A lesson with its own requires stays locked, says why, and opens once that path reaches the level.
++    for (const l of c.lessons.filter((x) => x.requires.length)) {
++      const btn = () => doc.querySelector(`[data-l="${l.id}"]`) as any;
++      if (!btn().disabled) throw new Error(`${l.id} is open before its own requirements are met`);
++      if (!/Unlocks at/.test(btn().textContent)) throw new Error(`${l.id} doesn't say what unlocks it`);
++      for (const q of l.requires) {
++        const need = c.lessons.filter((x) => x.path === q.path);
++        for (const n of need.slice(0, need.findIndex((x) => x.level === q.level) + 1)) {
++          if (!(doc.querySelector(`[data-l="${n.id}"]`) as any).disabled || !n.requires.length) { await playLesson(doc, n.id); (doc.getElementById("toMap") as any).click(); }
++        }
++      }
++      for (const prev of c.lessons.filter((x) => x.path === l.path && x.order < l.order)) {
++        await playLesson(doc, prev.id); (doc.getElementById("toMap") as any).click();
++      }
++      if (btn().disabled) throw new Error(`${l.id} is still locked after its requirements were met`);
++    }
+     if (errors.length) throw new Error(errors.join("; "));
+   }],
++  ["a grouped rail shows stage groups, and a spot item offers only the stages it names", async () => {
++    buildGame({ mode: "review", outDir: join(tmp, "grouped") });
++    const { dom, doc, errors } = await openGame(join(tmp, "grouped", "game-review.html"));
++    const c = loadGame();
++    const path = c.config.paths.find((p) => p.rail === "groups");
++    if (!path) throw new Error("no path uses rail: groups");
++    const g = c.guides.get(journeyOf(path))!;
++    const lesson = c.lessons.find((l) => l.path === path.id && l.items.some((i) => i.type === "spot" && i.among))!;
++    (doc.querySelector(`[data-l="${lesson.id}"]`) as any).click(); (doc.getElementById("go") as any).click();
++    const cells = [...doc.querySelectorAll("#rail div")].map((d: any) => d.textContent);
++    if (cells.join("|") !== g.phaseGroups.map((x) => x.name).join("|")) throw new Error(`rail shows ${cells.join(", ")}`);
++    if (doc.querySelectorAll("#rail div.now").length !== 1) throw new Error("the rail marks no current group");
++    const tag = doc.querySelector("#stage .phtag:not(.plain)")?.textContent ?? "";
++    const first = lesson.items[0];
++    if (!tag.includes(g.phases.find((p) => p.id === first.at)!.name)) throw new Error(`phase tag doesn't name the stage: ${tag}`);
++    // Walk to the first spot item with among, answering whatever is first.
++    const spot = lesson.items.find((i) => i.type === "spot" && i.among) as any;
++    for (let n = 0; n < 40 && !(doc.querySelector(".card h2, .vignette")?.textContent ?? "").includes(spot.vignette.text.slice(0, 30)); n++) {
++      if (doc.querySelector("#pool .opt")) while (doc.querySelector("#pool .opt")) doc.querySelector("#pool .opt").click();
++      else (doc.querySelector(".opts .opt:not([disabled])") as any)?.click();
++      (doc.getElementById("go") as any).click();
++      if (doc.querySelector(".dock.good, .dock.bad")) (doc.getElementById("go") as any).click();
++    }
++    const offered = [...doc.querySelectorAll(".opts.phases .opt")].map((o: any) => o.textContent.trim());
++    const want = g.phases.filter((p) => spot.among.includes(p.id)).map((p) => p.name);
++    if (offered.join("|") !== want.join("|")) throw new Error(`spot offers ${offered.join(", ")}; expected ${want.join(", ")}`);
++    if (errors.length) throw new Error(errors.join("; "));
++    dom.window.close();
++  }],
++  ["a spot answer outside among, a lesson requiring an unknown path, and a grouped rail without groups are refused", () => {
++    const l = rawLesson("adi-1-leaf-litter.yaml");
++    l.items.find((i: any) => i.type === "spot" && i.among).answer = "revision";
++    if (GameLesson.safeParse(l).success) throw new Error("a spot answer outside among was accepted");
++    const req = loadGame({ gameDir: gameCopy("bad-req", (x) => (x.requires = [{ path: "nope", level: "explain" }]), "select-3-argue.yaml") });
++    if (!req.errors.some((e) => /requires unknown path "nope"/.test(e))) throw new Error(`unknown path not caught: ${req.errors.join("; ")}`);
++    const dir = gameCopy("bad-rail");
++    const cfg = yaml.load(readFileSync(join(dir, "game.yaml"), "utf8")) as any;
++    cfg.paths.find((p: any) => p.id === "poe").rail = "groups";
++    writeFileSync(join(dir, "game.yaml"), yaml.dump(cfg));
++    const rail = loadGame({ gameDir: dir });
++    if (!rail.errors.some((e) => /rail: groups but its journey guide has no phaseGroups/.test(e))) throw new Error(`rail not caught: ${rail.errors.join("; ")}`);
++  }],
+   ["Fieldwork: title, confidence slider, and the willow plate on its first item only", async () => {
+     const built = readFileSync(join(tmp, "a", "index.html"), "utf8");
+     if (!built.includes("<title>Fieldwork · The Field Guide</title>")) throw new Error("the built <title> is not Fieldwork · The Field Guide");
+diff --git a/tools/reckoner/src/schema/game-lesson.ts b/tools/reckoner/src/schema/game-lesson.ts
+index 865348c..256b2ca 100644
+--- a/tools/reckoner/src/schema/game-lesson.ts
++++ b/tools/reckoner/src/schema/game-lesson.ts
+@@ -74,7 +74,11 @@ const choiceShape = { options: z.array(Option).min(2).max(5), answer: z.number()
+ const Choice = obj({ ...base, type: z.literal("choice"), ...choiceShape, variants: variantOf({ ...base, ...choiceShape }) });
+ 
+ /** Spot the phase: the options are the guide's phases; feedback per phase. */
+-const spotShape = { vignette: Vignette, answer: Slug, fb: z.record(Slug, Text) };
++/**
++ * Spot the phase. Options are the journey guide's phases, or only those named in `among` (2–5), so a
++ * model with many stages doesn't put eight buttons on a phone. fb covers every option offered.
++ */
++const spotShape = { vignette: Vignette, answer: Slug, among: z.array(Slug).min(2).max(5).optional(), fb: z.record(Slug, Text) };
+ const Spot = obj({ ...base, type: z.literal("spot"), ...spotShape, variants: variantOf({ ...base, ...spotShape }) });
+ 
+ /** Select all that apply. */
+@@ -233,6 +237,11 @@ export const GameLesson = obj({
+   builtOn: GuideRefs,
+   /** Guide section the end screen links to, as in the reckoner's #/guide/<id>/<section>. */
+   guideSection: z.enum(["purpose", "theory", "model", "phases", "sequences", "misapplications", "checklist", "alignment", "reflection", "references"]).optional(),
++  /**
++   * This lesson also waits for each named path to reach a level, on top of its path's own unlock and
++   * the lesson before it. Lets a path gain a lesson that needs a newer path without re-locking the rest.
++   */
++  requires: z.array(obj({ path: Slug, level: Mastery })).default([]),
+   items: z.array(GameItem).min(4),
+ }).superRefine((l, ctx) => {
+   const issue = (path: (string | number)[], message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, path, message });
+@@ -254,6 +263,10 @@ export const GameLesson = obj({
+     if (it.type === "select" && !it.candidates.includes(it.answer)) issue(["items", i, "answer"], "The answer must be one of the candidates");
+     if (it.type === "flip" && it.answer >= it.changes.length) issue(["items", i, "answer"], "answer is past the last change");
+     if (it.type === "diagnose" && !it.vignette && !it.plan) issue(["items", i], "A diagnose item needs a vignette or a plan to diagnose");
++    if (it.type === "spot") [it, ...it.variants].forEach((v, j) => {
++      const among = v.among ?? it.among, answer = v.answer ?? it.answer;
++      if (among && !among.includes(answer)) issue(["items", i, ...(j ? ["variants", j - 1] : []), "answer"], `answer "${answer}" is not one of among`);
++    });
+   });
+   if (!l.items.some((it) => !["concept", "reflect", "predict"].includes(it.type))) issue(["items"], "A lesson needs at least one scored item");
+   if (l.status === "published" && (l.provenance.source === "ai-generated" || l.provenance.reviewedBy.length === 0))
+@@ -277,6 +290,8 @@ export const GameConfig = obj({
+     models: z.array(Slug).default([]),
+     /** The path unlocks once each named path reaches this mastery level. */
+     requires: z.array(obj({ path: Slug, level: Mastery })).default([]),
++    /** What the lesson rail shows: one cell per phase, or one per phase group (journey guide's phaseGroups). */
++    rail: z.enum(["phases", "groups"]).default("phases"),
+   })).min(1),
+   feedback: obj({
+     /** Google Form link; "placeholder" shows an inactive button; omit to hide feedback. */
+diff --git a/tools/reckoner/templates/app.html b/tools/reckoner/templates/app.html
+index 1159b06..b59e6f3 100644
+--- a/tools/reckoner/templates/app.html
++++ b/tools/reckoner/templates/app.html
+@@ -188,6 +188,8 @@ a.pill:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+ ul.tight{margin:.3rem 0 .6rem;padding-left:1.1rem} ul.tight li{margin:.2rem 0;font-size:.93rem}
+ .warnbox{background:var(--warn-soft);border-radius:8px;padding:.6rem .8rem;margin:.6rem 0}
+ .warnbox .sub{color:var(--warn)}
++.ponder{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0;padding:.6rem .8rem;margin:.6rem 0}
++.ponder .sub{color:var(--accent)} .ponder p{margin:.3rem 0}
+ details.why{margin-top:.7rem;border-top:1px solid var(--line);padding-top:.6rem}
+ details.why summary{cursor:pointer;color:var(--accent);font-weight:500;font-size:.92rem}
+ .rank{list-style:none;margin:.6rem 0 0;padding:0}
+diff --git a/tools/reckoner/templates/app.js b/tools/reckoner/templates/app.js
+index ffc0a88..96e14e7 100644
+--- a/tools/reckoner/templates/app.js
++++ b/tools/reckoner/templates/app.js
+@@ -411,6 +411,19 @@ function nesting(m,a){ const N = [];
+   if (has(a,"purpose","reason") && m.id!=="case") N.push({ text:"Run a CASE-style lesson on the reasoning pattern before the main investigation.", because:chose("purpose","reason") });
+   if (a.place==="yes") N.push({ text:"Build a place-based context developed with local Aboriginal community, through your school’s Aboriginal Education staff.", because:chose("place",a.place) });
+   return N; }
++/**
++ * "Have you thought about…?" prompts: when a model's scale and the time you have don't line up. The Reckoner
++ * weighs purpose most heavily, so a model built for more (or fewer) lessons than you have can still rank first.
++ * These support judgement; they don't change the ranking. A model the time watch-out already covers gets none.
++ */
++function timePrompts(m,a,W){ const P = [], t = a.time, has = (W || []).some(w => w.because === chose("time", t));
++  if (!t || has) return P;
++  const tl = optLabel("time", t).toLowerCase();
++  if (m.scale === "meso" && t === "lesson") P.push({ text:`${m.name} is a multi-lesson routine, and you have one lesson. It ranks well because of what you want students to do, which counts most. Could a single-lesson model carry that purpose this time, or could you find the extra lessons?`, because:chose("time",t) });
++  if (m.scale === "macro" && (t === "lesson" || t === "short")) P.push({ text:`${m.name} is unit architecture, built for a whole unit, and you have ${tl}. Would a shorter routine or a single-lesson model suit this stretch, with the unit model kept for the longer arc?`, because:chose("time",t) });
++  if (m.scale === "meso" && (t === "unit" || t === "depth")) P.push({ text:`${m.name} is a multi-lesson routine, and you have ${tl}. It can run as one routine inside a unit model, or carry the unit itself. Which serves your unit’s arc better?`, because:chose("time",t) });
++  if (m.scale === "micro" && (t === "unit" || t === "depth")) P.push({ text:`${m.name} is a single-lesson strategy, and you have ${tl}. Which unit model or routine will it sit inside?`, because:chose("time",t) });
++  return P; }
+ const ruleTag = r => `<span class="rule-tag"><span class="badge b-rule">Rule</span> because ${esc(r.because)}</span>`;
+ /**
+  * "Show the working": every term in fit() for one model, one row per answered question.
+@@ -507,7 +520,7 @@ function renderDetail(){
+   const tc = document.getElementById("topCards");
+   if (!r.length){ tc.innerHTML = `<p class="empty">Your top three models will appear here with reasons, watch-outs and nesting suggestions.</p>`; return; }
+   const sens = sensitivity(a,imp,r[0].m.id);
+-  tc.innerHTML = r.slice(0,3).map((x,i) => { const m = x.m, rs = reasons(m,a), W = watchOuts(m,a), N = nesting(m,a);
++  tc.innerHTML = r.slice(0,3).map((x,i) => { const m = x.m, rs = reasons(m,a), W = watchOuts(m,a), N = nesting(m,a), T = timePrompts(m,a,W);
+     return `<article class="card${i===0?" lead":""}"><div class="card-head">
+       <div><p class="hint" style="margin:0 0 .2rem">${["Best fit","Second","Third"][i]}</p><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></div>
+       <div style="display:flex;gap:.8rem;align-items:flex-start"><div class="head-badges">${badge(m.scale)}${provChip(m)}</div><div class="fitnum">${Math.round(x.f*100)}%<small>fit</small></div></div></div>
+@@ -515,6 +528,7 @@ function renderDetail(){
+       ${rs.weak.length?`<p class="sub">Less suited to</p><ul class="tight">${rs.weak.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>`:""}
+       ${working(m,a,imp,x.f)}
+       ${W.length?`<div class="warnbox"><p class="sub">Watch-outs</p><ul class="tight">${W.map(w=>`<li>${esc(w.text)} ${ruleTag(w)}</li>`).join("")}</ul></div>`:""}
++      ${T.length?`<div class="ponder"><p class="sub">Have you thought about…?</p>${T.map(t=>`<p>${esc(t.text)} <span class="rule-tag">Prompt, because ${esc(t.because)}</span></p>`).join("")}</div>`:""}
+       ${N.length?`<p class="sub">Nest inside it</p><ul class="tight">${N.map(n=>`<li>${esc(n.text)} ${ruleTag(n)}${n.guide&&G[n.guide]?` <button class="ghost" style="padding:.1rem .5rem;font-size:.8rem" type="button" onclick="openGuide('${n.guide}')">Open guide</button>`:""}</li>`).join("")}</ul>`:""}
+       ${i===0&&sens.length?`<p class="sub">If one answer changed</p><ul class="tight">${sens.map(o=>`<li>If ${esc(o.d.short)} were “${esc(optLabel(o.d.id,o.v))}”, ${esc(o.m.name)} would rank first.</li>`).join("")}</ul>`:""}
+       ${modelBody(m)}${i===0 ? feedbackLine("Was this useful?") : ""}</article>`; }).join("");
+diff --git a/tools/reckoner/templates/game.js b/tools/reckoner/templates/game.js
+index 347fe58..3b9e54f 100644
+--- a/tools/reckoner/templates/game.js
++++ b/tools/reckoner/templates/game.js
+@@ -48,7 +48,15 @@ const G = id => D.guides[id];
+ /* A phase's name and colour come from its guide; colours follow phase order, so POE's three phases
+  * take the first three of 5E's five. */
+ const phaseName = (gid, id) => ((G(gid) && G(gid).phases.find(p => p.id === id)) || {name:id}).name;
+-const pc = (gid, id) => { const i = G(gid) ? G(gid).phases.findIndex(p => p.id === id) : -1; return i >= 0 ? COLS[i % COLS.length] : "var(--accent)"; };
++const pc = (gid, id) => {
++  const g = G(gid); if (!g) return "var(--accent)";
++  const ph = g.phases.find(p => p.id === id); if (!ph) return "var(--accent)";
++  /* A model with stage groups (ADI) colours by group, so eight stages never wrap round five colours. */
++  const i = g.groups && g.groups.length ? g.groups.findIndex(x => x.id === ph.group) : g.phases.indexOf(ph);
++  return i >= 0 ? COLS[i % COLS.length] : "var(--accent)";
++};
++const groupOf = (gid, id) => { const g = G(gid), ph = g && g.phases.find(p => p.id === id); return ph && ph.group ? g.groups.find(x => x.id === ph.group) : null; };
++const article = w => /^[aeiou]/i.test(w) ? "an" : "a";
+ /* In a lesson: the journey guide supplies the rail, spot options, look-fors and misapplications. */
+ const J = () => pathOf(S.lesson.path).journey;
+ const JG = () => G(J());
+@@ -81,11 +89,14 @@ function chrome(mode, title){
+   $("#banner").innerHTML = D.review ? `<div class="banner">Review copy: includes lessons not yet published. Not for students.</div>` : "";
+ }
+ 
++const met = reqs => (reqs || []).every(q => levelReached(q.path) >= D.mastery.indexOf(q.level));
++const needText = reqs => reqs.map(q => `${LEVEL[q.level]} on the ${pathOf(q.path).title}`).join(" and ");
+ function pathOpen(p){
+-  return D.review || p.requires.every(q => levelReached(q.path) >= D.mastery.indexOf(q.level));
++  return D.review || met(p.requires);
+ }
+ function unlocked(l){
+   if (!pathOpen(pathOf(l.path))) return false;
++  if (!D.review && !met(l.requires)) return false;
+   if (D.review || l.order === 1) return true;
+   const prev = D.lessons.find(x => x.path === l.path && x.order === l.order - 1);
+   return !prev || rec(prev.id).completed;
+@@ -105,7 +116,7 @@ function showMap(){
+     const nextL = ls.find(l => !rec(l.id).completed && unlocked(l));
+     const open = pathOpen(p);
+     const link = p.guide ? `<a href="../reckoner/#/guide/${esc(p.id)}">Open the ${esc(G(p.guide).name)} companion guide</a>` : `<a href="../reckoner/">Open ${esc(NAMES.reckonerMid)}</a>`;
+-    const need = p.requires.map(q => `${LEVEL[q.level]} on the ${pathOf(q.path).title}`).join(" and ");
++    const need = needText(p.requires);
+     return `<section class="path">
+       <div class="pathHead"><h2>${esc(p.title)}</h2>${link}</div>
+       <p>${esc(p.blurb)}</p>
+@@ -116,6 +127,7 @@ function showMap(){
+         const state = r.completed ? "done" : (l === nextL ? "next" : "");
+         const chips = [`<span class="chip">${LEVEL[l.level]}</span>`];
+         if (r.completed) chips.push(`<span class="chip good">Done · best ${r.best}/${r.of} first try</span>`);
++        else if (!open && pathOpen(p) && !met(l.requires)) chips.push(`<span class="chip">Unlocks at ${esc(needText(l.requires))}</span>`);
+         else if (!open && pathOpen(p)) chips.push(`<span class="chip">Finish lesson ${l.order - 1} first</span>`);
+         if (l.status !== "published") chips.push(`<span class="chip warn">${esc(l.status)}</span>`);
+         if (r.missed.length && r.completed) chips.push(`<span class="chip">${r.missed.length} to review</span>`);
+@@ -195,21 +207,27 @@ function hud(){
+   $("#prog").style.width = (100 * doneCount() / Math.max(1, total())) + "%";
+   $("#xp").textContent = S.xp; $("#streak").textContent = S.streak;
+   const n = total(); $("#count").textContent = `${Math.min(n, doneCount() + (S.done ? 0 : 1))} / ${n}`;
+-  const ph = JG().phases, at = S.done ? "done" : cur && cur.at, idx = ph.findIndex(p => p.id === at);
+-  $("#rail").style.gridTemplateColumns = `repeat(${ph.length},1fr)`;
+-  $("#rail").innerHTML = ph.map((p,i) => `<div style="--pc:${jp(p.id)}" class="${at === "done" || i < idx ? "done" : i === idx ? "now" : ""}">${esc(p.name)}</div>`).join("");
++  const at = S.done ? "done" : cur && cur.at;
++  /* A grouped rail (ADI) shows the stage groups; the phase tag on each item names the stage itself. */
++  const grouped = pathOf(S.lesson.path).rail === "groups";
++  const cells = grouped ? JG().groups.map(g => ({id:g.id, name:g.name, col:jp(JG().phases.find(p => p.group === g.id).id)}))
++                        : JG().phases.map(p => ({id:p.id, name:p.name, col:jp(p.id)}));
++  const nowId = grouped ? (groupOf(J(), at) || {}).id : at, idx = cells.findIndex(c => c.id === nowId);
++  $("#rail").style.gridTemplateColumns = `repeat(${cells.length},1fr)`;
++  $("#rail").innerHTML = cells.map((c,i) => `<div style="--pc:${c.col}" class="${at === "done" || i < idx ? "done" : i === idx ? "now" : ""}">${esc(c.name)}</div>`).join("");
+   $("#railnote").textContent = S.done ? "Lesson complete. Your own journey ran through every phase."
+     : S.phase === "warm" ? "Warm-up: items you missed in an earlier lesson, once more."
+     : S.phase === "review" ? "Review round: items you missed come back once, with the options shuffled."
+-    : `This lesson is itself a ${JG().name} sequence. The bar shows where you are in it.`;
++    : `This lesson is itself ${article(JG().name)} ${JG().name} sequence. The bar shows where you are in it.`;
+ }
+ 
+ /* ---------- rendering an item ---------- */
+ /* "ENGAGE · PREDICT" with the phase glyph, coloured by the item's phase; a plain tag with the kind alone otherwise. */
+ function phaseTag(it){
+-  return it.at && GLYPH.includes(it.at)
+-    ? `<p class="phtag" style="--pc:var(--${it.at})">${icon("i-" + it.at)}${esc(jn(it.at))} · ${esc(it.kind)}</p>`
+-    : `<p class="phtag plain">${esc(it.kind)}</p>`;
++  if (it.at && GLYPH.includes(it.at)) return `<p class="phtag" style="--pc:var(--${it.at})">${icon("i-" + it.at)}${esc(jn(it.at))} · ${esc(it.kind)}</p>`;
++  /* Phases without a glyph (ADI's stages): the stage name in its group colour, no icon. */
++  if (it.at && JG().groups.length && JG().phases.some(p => p.id === it.at)) return `<p class="phtag" style="--pc:${jp(it.at)}">${esc(jn(it.at))} · ${esc(it.kind)}</p>`;
++  return `<p class="phtag plain">${esc(it.kind)}</p>`;
+ }
+ /* The lesson's plate, on its first item only. */
+ const plateHTML = it => PLATES[S.lesson.id] && S.phase === "main" && it._from === S.lesson.id && it.id === S.lesson.items[0].id
+@@ -220,8 +238,10 @@ function verdict(el, ok){
+   const at = el.querySelector(".t") || el;
+   at.insertAdjacentHTML("beforeend", `<span class="vd">${icon(ok ? "i-tick" : "i-cross")}${ok ? "Correct" : "Not this one"}</span>`);
+ }
++/* A spot item offers every phase, or only those it names in `among`, in the guide's order. */
++const spotPhases = it => JG().phases.filter(p => !it.among || it.among.includes(p.id));
+ function options(it){
+-  if (it.type === "spot") return JG().phases.map(p => ({t:p.name, ph:p.id, fb:it.fb[p.id]}));
++  if (it.type === "spot") return spotPhases(it).map(p => ({t:p.name, ph:p.id, fb:it.fb[p.id]}));
+   if (it.type === "nest") return G(it.host).phases.map(p => ({t:p.name, ph:p.id}));
+   if (it.type === "select") return it._stage === 2 ? it.reasons.map(x => ({t:x.text, ok:x.ok, dim:x.dim})) : it.candidates.map(c => ({t:it.names[c], c}));
+   if (it.type === "flip") return it.changeLabels.map(c => ({t:c.text}));
+@@ -338,7 +358,7 @@ function drawOrder(){
+ 
+ /* ---------- checking ---------- */
+ function correctIndex(it){
+-  if (it.type === "spot") return JG().phases.findIndex(p => p.id === it.answer);
++  if (it.type === "spot") return spotPhases(it).findIndex(p => p.id === it.answer);
+   if (it.type === "nest") return G(it.host).phases.findIndex(p => p.id === it.answer);
+   if (it.type === "select") return it.candidates.indexOf(it.answer);
+   if (it.type === "lookfor" || it.type === "diagnose") return 0;

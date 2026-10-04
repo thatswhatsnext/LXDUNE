@@ -1,0 +1,196 @@
+# Choosing a model, lesson 3. ADI joins 5E and POE. Answers and reasons are checked against the Reckoner's own scoring at build time. Reviewed and published by Steve on 2026-10-05.
+schemaVersion: 1
+id: select-3-argue
+path: select
+order: 3
+title: Argue it out
+summary: ADI joins 5E and POE. Find the classes it suits, the one change that rules it out, and where a POE fits inside it.
+level: select
+version: 1.0.0
+status: published
+lastReviewed: 2026-10-05
+provenance:
+  source: ai-drafted-reviewed
+  authors: [Claude]
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-05
+context:
+  stages: [stage5]
+  focusAreas: [Waves and motion, Environmental sustainability]
+  disciplines: [physics, biology]
+requires:
+  - path: adi
+    level: explain
+builtOn: {}
+items:
+  - id: predict
+    type: predict
+    at: engage
+    processing: Retrieval
+    kind: Predict
+    title: An ADI routine asks students to design their own method, defend it, and review each other's reports.
+    q: Which feature of a class does the Reckoner treat as the biggest obstacle to ADI?
+    options:
+      - text: Novice inquirers
+      - text: Limited lab equipment
+      - text: Many EAL/D learners
+      - text: No documented misconception to target
+    answer: 0
+    reveal: >-
+      Learner readiness counts double in the Reckoner, and ADI scores zero for novice inquirers: the routine
+      assumes students can plan an investigation with guidance and take critique. The other three lower its fit
+      a little, but none rules it out.
+    why: >-
+      ADI's guide says it assumes guided inquiry or above. For a class that isn't there yet, the guidance dial
+      is where to start.
+
+  - id: class-sound
+    type: select
+    at: explore
+    processing: Analysis
+    kind: Choose the model
+    tests: select
+    scenario:
+      who: Year 10 · Waves and motion
+      text: >-
+        A unit on sound. Your class are experienced inquirers, the evidence comes from a sound-level meter, and
+        you want them to argue from evidence and be assessed on a written argument.
+    profile:
+      purpose: [argue]
+      time: unit
+      ready: experienced
+      concept: instrument
+      ws: ["6", "8"]
+      assess: argument
+    candidates: [5e, poe, adi]
+    answer: adi
+    reasons:
+      - text: The main purpose is arguing from evidence
+        dim: purpose
+        ok: true
+      - text: The learners are experienced inquirers
+        dim: ready
+        ok: true
+      - text: The assessment is a written argument
+        dim: assess
+        ok: true
+      - text: There's a whole unit to work with
+        dim: time
+        ok: false
+      - text: The evidence comes from instruments
+        dim: concept
+        ok: false
+      - text: ADI feels more rigorous than 5E
+        dim: null
+        ok: false
+
+  - id: class-novice
+    type: select
+    at: explore
+    processing: Analysis
+    kind: Choose the model
+    tests: select
+    scenario:
+      who: Year 9 · Environmental sustainability
+      text: >-
+        A unit on local ecosystems. You'd like students to investigate and argue from evidence, but they are novice
+        inquirers, and you'll assess them on conceptual explanations.
+    profile:
+      purpose: [investigate, argue]
+      time: unit
+      ready: novice
+      concept: observable
+      res: lab
+      assess: explanation
+    candidates: [5e, adi]
+    answer: 5e
+    reasons:
+      - text: The learners are novice inquirers
+        dim: ready
+        ok: true
+      - text: There's a whole unit to work with
+        dim: time
+        ok: true
+      - text: The assessment is conceptual explanations
+        dim: assess
+        ok: true
+      - text: The purposes are investigating and arguing
+        dim: purpose
+        ok: false
+      - text: The phenomena are directly observable
+        dim: concept
+        ok: false
+    why: >-
+      The purposes on their own favour ADI. The class tips it to 5E: novice inquirers, a unit-length sequence
+      and explanation as the evidence of learning.
+
+  - id: flip
+    type: flip
+    at: explain
+    processing: Analysis
+    kind: Move the dial
+    tests: flip
+    scenario:
+      who: Year 10 · Waves and motion
+      text: A unit where students argue from evidence and build models, assessed on a written argument. The class are experienced inquirers.
+    profile:
+      purpose: [argue, model]
+      time: unit
+      ready: experienced
+      concept: observable
+      assess: argument
+    candidates: [5e, adi]
+    changes:
+      - dim: ready
+        value: novice
+      - dim: lang
+        value: high
+      - dim: res
+        value: limited
+      - dim: place
+        value: "yes"
+    answer: 0
+    hint: Which question counts double, and where is ADI's fit at its lowest?
+
+  - id: why
+    type: choice
+    at: explain
+    processing: Comprehension
+    kind: Why that one?
+    tests: flip
+    title: Only learner readiness moved the Reckoner.
+    q: Why does readiness swing the choice between ADI and 5E so sharply?
+    options:
+      - text: Readiness counts double, and ADI fits novices worst of any model while 5E fits them as well as any
+        fb: Yes. A heavily weighted question where the two models sit at opposite ends is what moves the result.
+      - text: ADI can't be used with novices under any circumstances
+        fb: The Reckoner ranks, it doesn't forbid. Novices can grow into ADI, often through more guided inquiry first.
+      - text: Readiness counts three times as much as any other question
+        fb: That's purpose. Readiness counts double.
+      - text: 5E always wins when there's a whole unit
+        fb: The first class had a whole unit and ADI won. Time favours 5E, but not enough on its own.
+    answer: 0
+
+  - id: nest
+    type: nest
+    at: elaborate
+    processing: Knowledge utilisation
+    kind: Nest it
+    tests: nesting
+    model: poe
+    host: adi
+    answer: task-question
+    q: Your ADI class holds the “soft always wins” idea. Where in the ADI routine would a POE fit?
+    why: >-
+      A POE at the start surfaces students' prior ideas before the guiding question is posed, so the
+      investigation is aimed at what they actually think.
+
+  - id: reflect
+    type: reflect
+    at: evaluate
+    processing: Metacognition
+    kind: Look back
+    title: Your own class.
+    q: Think of a class you've taught or observed. Would the Reckoner recommend ADI for it? Name the one answer that decides it.
+    model: "Example: “My Year 9s would argue happily, but they're novices at planning. The Reckoner would give me 5E this year, and I'd use the guidance dial to build towards ADI.”"
+    recall: predict

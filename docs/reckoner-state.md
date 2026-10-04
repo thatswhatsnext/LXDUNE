@@ -15,8 +15,8 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Examples across published guides | 58 (29 positive, 29 negative) |
 | Worked sequences | 20 |
 | Focus areas with a ready plan / examples only / empty | 16 / 0 / 0 of 16 |
-| Game lessons at /play/ (published / draft or in review) | 10 / 0 |
-| **Next action-plan item number** | **47** |
+| Game lessons at /play/ (published / draft or in review) | 14 / 0 |
+| **Next action-plan item number** | **48** |
 
 ## Published guides
 
@@ -47,8 +47,12 @@ versions the same way as guides.
 | Prac Day | `5e-6-prac-day` | `5e` | 6 | design | 1.0.0 | published | 2026-10-03 | 4 |
 | Is yeast alive? | `poe-1-yeast` | `poe` | 1 | recognise | 1.0.0 | published | 2026-10-03 | 11 |
 | Clean hands | `poe-2-hands` | `poe` | 2 | explain | 1.0.0 | published | 2026-10-03 | 11 |
+| Under the leaf litter | `adi-1-leaf-litter` | `adi` | 1 | recognise | 1.0.0 | published | 2026-10-05 | 11 |
+| Keep the noise out | `adi-2-noise` | `adi` | 2 | explain | 1.0.0 | published | 2026-10-05 | 11 |
+| Review, then revise | `adi-3-review` | `adi` | 3 | explain | 1.0.0 | published | 2026-10-05 | 11 |
 | Which model, and why? | `select-1-which` | `select` | 1 | select | 1.0.0 | published | 2026-10-03 | 8 |
 | When the dial moves | `select-2-dial` | `select` | 2 | select | 1.0.0 | published | 2026-10-03 | 7 |
+| Argue it out | `select-3-argue` | `select` | 3 | select | 1.0.0 | published | 2026-10-05 | 7 |
 
 ## Models without a guide
 

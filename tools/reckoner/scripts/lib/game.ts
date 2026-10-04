@@ -72,12 +72,17 @@ export function loadGame(opts: { gameDir?: string; guidesDir?: string } = {}): G
       if (p.journey && !guides.has(p.journey)) errors.push(`game.yaml: path "${p.id}" journey "${p.journey}" has no guide`);
       p.models.forEach((m) => !guides.has(m) && errors.push(`game.yaml: path "${p.id}" model "${m}" has no guide`));
       p.requires.forEach((r) => !config!.paths.some((x) => x.id === r.path) && errors.push(`game.yaml: path "${p.id}" requires unknown path "${r.path}"`));
+      if (p.rail === "groups" && !guides.get(journeyOf(p))?.phaseGroups.length) errors.push(`game.yaml: path "${p.id}" has rail: groups but its journey guide has no phaseGroups`);
     }
     for (const l of lessons) {
       const path = config.paths.find((p) => p.id === l.path);
       if (!path) { errors.push(`${l.id}: path "${l.path}" is not listed in game.yaml`); continue; }
       const g = guides.get(journeyOf(path));
       if (g) errors.push(...checkLesson(l, g, { guides, reckoner }));
+      l.requires.forEach((r) => {
+        if (!config!.paths.some((x) => x.id === r.path)) errors.push(`${l.id}: requires unknown path "${r.path}"`);
+        else if (r.path === l.path) errors.push(`${l.id}: a lesson can't require its own path`);
+      });
     }
     // Lesson order on each path runs 1, 2, 3… with no gaps or repeats, drafts included.
     for (const p of config.paths) {
@@ -202,9 +207,14 @@ export function checkLesson(l: GameLesson, g: ModelGuide, ctx?: { guides: Map<st
       const at = j ? `${where} variant ${j}` : where;
       if (it.type === "spot") {
         if (v.answer) need(phases, v.answer, "phase", at);
-        if (v.fb) {
-          Object.keys(v.fb).forEach((k) => need(phases, k, "phase", `${at} fb`));
-          g.phases.forEach((p) => !(p.id in v.fb) && out.push(`${l.id} ${at}: fb has no entry for phase "${p.id}"`));
+        const among: string[] | undefined = v.among ?? (it as any).among;
+        among?.forEach((id) => need(phases, id, "phase", `${at} among`));
+        const offered = among ?? g.phases.map((p) => p.id);
+        const fb = v.fb ?? (it as any).fb;
+        if (v.fb || v.among) {
+          Object.keys(fb).forEach((k) => need(phases, k, "phase", `${at} fb`));
+          offered.forEach((id) => !(id in fb) && out.push(`${l.id} ${at}: fb has no entry for phase "${id}"`));
+          if (among) Object.keys(fb).forEach((k) => !among.includes(k) && out.push(`${l.id} ${at}: fb gives "${k}", which is not offered (among)`));
         }
       }
       if (it.type === "order") v.steps?.forEach((s: any) => need(phases, s.phaseId, "phase", `${at} steps`));
@@ -392,7 +402,8 @@ export function gameData(c: GameContent, includeDrafts: boolean) {
     const g = c.guides.get(id)!;
     return [id, {
       name: g.name,
-      phases: g.phases.slice().sort((a, b) => a.order - b.order).map((p) => ({ id: p.id, name: p.name })),
+      phases: g.phases.slice().sort((a, b) => a.order - b.order).map((p) => ({ id: p.id, name: p.name, ...(p.group ? { group: p.group } : {}) })),
+      groups: g.phaseGroups.map((gr) => ({ id: gr.id, name: gr.name })),
       misapplications: Object.fromEntries(g.misapplications.map((m) => [m.id, { name: m.name, looksLike: m.looksLike, why: m.whyItUndermines, fix: m.fix }])),
       lookFors: Object.fromEntries(g.phases.flatMap((p) => p.lookFors.map((x) => [x.id, { phaseId: p.id, question: x.question, strong: x.strongEvidence, weak: x.weakEvidence }]))),
     }];
@@ -445,13 +456,13 @@ export function gameData(c: GameContent, includeDrafts: boolean) {
     feedback: c.config.feedback,
     guides,
     paths: c.config.paths.map((p) => ({
-      id: p.id, title: p.title, blurb: p.blurb, kind: p.kind, journey: journeyOf(p), models: p.models, requires: p.requires,
+      id: p.id, title: p.title, blurb: p.blurb, kind: p.kind, journey: journeyOf(p), models: p.models, requires: p.requires, rail: p.rail,
       guide: p.kind === "guide" ? p.id : null,
       upcoming: c.lessons.filter((l) => l.path === p.id && !shown.includes(l)).length,
     })),
     lessons: shown.map((l) => ({
       id: l.id, path: l.path, order: l.order, title: l.title, summary: l.summary, level: l.level,
-      version: l.version, status: l.status, guideSection: l.guideSection ?? null, items: items(l),
+      version: l.version, status: l.status, guideSection: l.guideSection ?? null, requires: l.requires, items: items(l),
     })),
   };
 }

@@ -7,12 +7,19 @@ paths:
   - id: poe
     title: POE path
     blurb: Predict, Observe, Explain. One lesson that makes students' ideas visible and then puts them to the test.
+  - id: adi
+    title: ADI path
+    blurb: Argument-Driven Inquiry. Students investigate, argue from their own evidence, then write, review and revise. The arguing and reviewing are the point.
+    rail: groups
+    requires:
+      - path: poe
+        level: explain
   - id: select
     kind: select
     title: Choosing a model
     blurb: Which model fits this class, and why? The reckoner is the answer key, so your reasons have to match the class, not your favourite model.
     journey: 5e
-    models: [5e, poe]
+    models: [5e, poe, adi]
     requires:
       - path: 5e
         level: explain

@@ -411,6 +411,19 @@ function nesting(m,a){ const N = [];
   if (has(a,"purpose","reason") && m.id!=="case") N.push({ text:"Run a CASE-style lesson on the reasoning pattern before the main investigation.", because:chose("purpose","reason") });
   if (a.place==="yes") N.push({ text:"Build a place-based context developed with local Aboriginal community, through your school’s Aboriginal Education staff.", because:chose("place",a.place) });
   return N; }
+/**
+ * "Have you thought about…?" prompts: when a model's scale and the time you have don't line up. The Reckoner
+ * weighs purpose most heavily, so a model built for more (or fewer) lessons than you have can still rank first.
+ * These support judgement; they don't change the ranking. A model the time watch-out already covers gets none.
+ */
+function timePrompts(m,a,W){ const P = [], t = a.time, has = (W || []).some(w => w.because === chose("time", t));
+  if (!t || has) return P;
+  const tl = optLabel("time", t).toLowerCase();
+  if (m.scale === "meso" && t === "lesson") P.push({ text:`${m.name} is a multi-lesson routine, and you have one lesson. It ranks well because of what you want students to do, which counts most. Could a single-lesson model carry that purpose this time, or could you find the extra lessons?`, because:chose("time",t) });
+  if (m.scale === "macro" && (t === "lesson" || t === "short")) P.push({ text:`${m.name} is unit architecture, built for a whole unit, and you have ${tl}. Would a shorter routine or a single-lesson model suit this stretch, with the unit model kept for the longer arc?`, because:chose("time",t) });
+  if (m.scale === "meso" && (t === "unit" || t === "depth")) P.push({ text:`${m.name} is a multi-lesson routine, and you have ${tl}. It can run as one routine inside a unit model, or carry the unit itself. Which serves your unit’s arc better?`, because:chose("time",t) });
+  if (m.scale === "micro" && (t === "unit" || t === "depth")) P.push({ text:`${m.name} is a single-lesson strategy, and you have ${tl}. Which unit model or routine will it sit inside?`, because:chose("time",t) });
+  return P; }
 const ruleTag = r => `<span class="rule-tag"><span class="badge b-rule">Rule</span> because ${esc(r.because)}</span>`;
 /**
  * "Show the working": every term in fit() for one model, one row per answered question.
@@ -507,7 +520,7 @@ function renderDetail(){
   const tc = document.getElementById("topCards");
   if (!r.length){ tc.innerHTML = `<p class="empty">Your top three models will appear here with reasons, watch-outs and nesting suggestions.</p>`; return; }
   const sens = sensitivity(a,imp,r[0].m.id);
-  tc.innerHTML = r.slice(0,3).map((x,i) => { const m = x.m, rs = reasons(m,a), W = watchOuts(m,a), N = nesting(m,a);
+  tc.innerHTML = r.slice(0,3).map((x,i) => { const m = x.m, rs = reasons(m,a), W = watchOuts(m,a), N = nesting(m,a), T = timePrompts(m,a,W);
     return `<article class="card${i===0?" lead":""}"><div class="card-head">
       <div><p class="hint" style="margin:0 0 .2rem">${["Best fit","Second","Third"][i]}</p><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></div>
       <div style="display:flex;gap:.8rem;align-items:flex-start"><div class="head-badges">${badge(m.scale)}${provChip(m)}</div><div class="fitnum">${Math.round(x.f*100)}%<small>fit</small></div></div></div>
@@ -515,6 +528,7 @@ function renderDetail(){
       ${rs.weak.length?`<p class="sub">Less suited to</p><ul class="tight">${rs.weak.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>`:""}
       ${working(m,a,imp,x.f)}
       ${W.length?`<div class="warnbox"><p class="sub">Watch-outs</p><ul class="tight">${W.map(w=>`<li>${esc(w.text)} ${ruleTag(w)}</li>`).join("")}</ul></div>`:""}
+      ${T.length?`<div class="ponder"><p class="sub">Have you thought about…?</p>${T.map(t=>`<p>${esc(t.text)} <span class="rule-tag">Prompt, because ${esc(t.because)}</span></p>`).join("")}</div>`:""}
       ${N.length?`<p class="sub">Nest inside it</p><ul class="tight">${N.map(n=>`<li>${esc(n.text)} ${ruleTag(n)}${n.guide&&G[n.guide]?` <button class="ghost" style="padding:.1rem .5rem;font-size:.8rem" type="button" onclick="openGuide('${n.guide}')">Open guide</button>`:""}</li>`).join("")}</ul>`:""}
       ${i===0&&sens.length?`<p class="sub">If one answer changed</p><ul class="tight">${sens.map(o=>`<li>If ${esc(o.d.short)} were “${esc(optLabel(o.d.id,o.v))}”, ${esc(o.m.name)} would rank first.</li>`).join("")}</ul>`:""}
       ${modelBody(m)}${i===0 ? feedbackLine("Was this useful?") : ""}</article>`; }).join("");

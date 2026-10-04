@@ -269,6 +269,28 @@ const cases: [string, () => void | Promise<void>][] = [
     if (hash !== RULES_HASH) throw new Error(`rule texts changed (hash ${hash}, expected ${RULES_HASH})`);
     page.dom.window.close();
   }],
+  ["time-and-scale prompts: a routine for one lesson, a routine or unit choice, none where the watch-out already speaks", async () => {
+    const page = await openPage(join(tmp, "single", "index.html"));
+    const w = page.dom.window;
+    const run = (a: object, id: string) => w.eval(`(() => { const a = Object.assign(Object.fromEntries(DIMS.map(d => [d.id, d.multi ? [] : null])), ${JSON.stringify(a)});
+      const m = DATA.models.find(x => x.id === "${id}"); return timePrompts(m, a, watchOuts(m, a)).map(p => p.text); })()`) as string[];
+    const one = run({ purpose: ["argue"], time: "lesson" }, "adi");
+    if (one.length !== 1 || !/multi-lesson routine, and you have one lesson/.test(one[0])) throw new Error(`ADI, one lesson: ${JSON.stringify(one)}`);
+    const unit = run({ purpose: ["argue"], time: "unit" }, "adi");
+    if (unit.length !== 1 || !/inside a unit model, or carry the unit itself/.test(unit[0])) throw new Error(`ADI, a unit: ${JSON.stringify(unit)}`);
+    if (run({ time: "short" }, "5e").length !== 1) throw new Error("5E in 2–5 lessons should prompt");
+    if (run({ time: "short" }, "7e").length) throw new Error("7E in 2–5 lessons already has the time watch-out; no prompt");
+    if (run({ time: "unit" }, "5e").length || run({ time: "lesson" }, "poe").length || run({ purpose: ["argue"] }, "adi").length) throw new Error("a prompt fired where scale and time agree, or with no time answer");
+    // On the page: an arguing class with one lesson gets a multi-lesson routine on top (ADI or SWH), with the prompt.
+    const { doc } = page;
+    const pick = (name: string, value: string) => { const el = doc.querySelector(`#detailForm input[name="${name}"][value="${value}"]`) as any; el.checked = true; el.dispatchEvent(new w.Event("change", { bubbles: true })); };
+    pick("d-purpose", "argue"); pick("d-time", "lesson");
+    const top = doc.querySelector("#topCards article") as any;
+    const name = top.querySelector("h3").textContent;
+    if (!/Multi-lesson routine/.test(top.querySelector(".head-badges").textContent)) throw new Error(`top card ${name} is not a multi-lesson routine`);
+    if (!/Have you thought about/.test(top.querySelector(".ponder")?.textContent ?? "")) throw new Error("no prompt on the top card");
+    w.close();
+  }],
   ["md() joins wrapped lines into paragraphs and keeps lists", async () => {
     const page = await openPage(join(tmp, "single", "index.html"));
     const got = page.dom.window.eval(`md("One line\\n  wrapped here.\\n\\nSecond **bold\\nacross** lines.\\n- item one\\n  continued\\n- item two\\nAfter.")`);

@@ -1,0 +1,260 @@
+# ADI path, lesson 1. Built on the ADI guide's worked sequence seq-s5-microhabitats. Reviewed and published by Steve on 2026-10-05.
+schemaVersion: 1
+id: adi-1-leaf-litter
+path: adi
+order: 1
+title: Under the leaf litter
+summary: Two schoolyard sites and a question with more than one defensible answer. Learn the eight stages of ADI and what each has to do.
+level: recognise
+version: 1.0.0
+status: published
+lastReviewed: 2026-10-05
+provenance:
+  source: ai-drafted-reviewed
+  authors: [Claude]
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-05
+context:
+  stages: [stage5]
+  focusAreas: [Environmental sustainability]
+  disciplines: [biology]
+outcomes: [SC5-ENV-01]
+builtOn:
+  sequenceIds: [seq-s5-microhabitats]
+  exampleIds: [adi-inv-pos-microhabitats, adi-inv-neg-worksheet, adi-argue-pos-roundrobin]
+  lookForIds: [adi-criteria-shared, adi-plan-checkpoint, adi-reliability, adi-three-part, adi-critique-quality]
+  misapplicationIds: [mis-adi-closed-question, mis-adi-given-method]
+guideSection: sequences
+items:
+  - id: predict
+    type: predict
+    at: task-question
+    processing: Retrieval
+    kind: Predict
+    title: "A Year 10 class sets one pitfall trap at each of two sites overnight. The mown oval edge catches 118 animals of 3 kinds, 110 of them ants. The leaf litter under the gum trees catches 41 animals of 9 kinds."
+    q: Which site has more invertebrate diversity?
+    options:
+      - text: The oval edge, because it caught almost three times as many animals
+      - text: The leaf litter, because it has more kinds, more evenly spread
+      - text: They are about the same once you allow for the ants
+      - text: Neither. Pitfall traps can't measure diversity
+    answer: 1
+    reveal: >-
+      Diversity counts kinds and how evenly the animals spread across them, not the total caught. The oval's
+      haul is mostly one kind of ant, so the leaf litter is the more diverse site. But one trap per site is thin
+      evidence, and a group that says so has found the argument this investigation is built for.
+    why: >-
+      You've just been given the guiding question. “More animals seen means more diversity” is one of this
+      sequence's target conceptions, and “one sample is enough” is the other. ADI lets students argue both out
+      against their own data.
+
+  - id: concept
+    type: concept
+    at: task-question
+    processing: Retrieval
+    kind: The model
+    title: Argument-Driven Inquiry
+    lead: >-
+      ADI turns a practical into an argument other students can question, then makes everyone write, review and
+      revise. It runs over about 6–8 lessons in three groups of stages: investigate, argue, then write and
+      review.
+    rows:
+      - phaseId: task-question
+        does: Students meet a phenomenon, a guiding question and the criteria for a strong argument.
+        move: "Teacher move: pose an open question and run a tool talk."
+      - phaseId: design-data
+        does: Groups design their own method and collect data.
+        move: "Teacher move: approve plans for safety and feasibility, not for the right answer."
+      - phaseId: tentative-argument
+        does: Groups analyse their data into a claim, evidence and a justification on a whiteboard.
+        move: "Teacher move: ask why the evidence counts."
+      - phaseId: argumentation
+        does: Every argument is critiqued by other students, and groups revise.
+        move: "Teacher move: model critique language and hold the science back."
+      - phaseId: reflective-discussion
+        does: The class consolidates the science and names how the question was settled.
+        move: "Teacher move: correct what the session surfaced."
+      - phaseId: report
+        does: Each student writes their own argument for a peer reader.
+        move: "Teacher move: give the structure and model a justification."
+      - phaseId: peer-review
+        does: Students review an anonymous report against the criteria.
+        move: "Teacher move: sample reviews and return weak ones."
+      - phaseId: revision
+        does: Authors revise, respond to each review point and submit.
+        move: "Teacher move: mark against the criteria used all along."
+    cite: "Sampson, V., Grooms, J. & Walker, J. P. (2011). Argument-Driven Inquiry as a way to help students learn how to participate in scientific argumentation and craft written arguments. Science Education, 95(2)."
+
+  - id: lf-criteria
+    type: lookfor
+    at: task-question
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 10 · Lesson 1
+      text: >-
+        Before anyone plans, the teacher puts three criteria on the wall: a claim that answers the question,
+        evidence from analysed data, and a justification that says why the evidence counts. The class
+        discusses what each one would look like for the two sites.
+    answer: adi-criteria-shared
+    distractors: [adi-question-open, adi-tool-talk, adi-three-part]
+    strong: true
+    why: >-
+      Students know what quality means before they start, and the same three criteria will run all the way to
+      the final report.
+
+  - id: spot-plan
+    type: spot
+    at: design-data
+    processing: Comprehension
+    kind: Spot the stage
+    tests: design-data
+    vignette:
+      who: Year 10 · Lesson 2
+      text: >-
+        The teacher sits with each group for three minutes. One group plans four traps per site; another plans
+        quadrat searches at three times of day. The teacher asks how they'll handle the animals safely and how
+        many samples they'll need, but changes neither design.
+    q: Which ADI stage is this?
+    answer: design-data
+    among: [task-question, design-data, tentative-argument, argumentation]
+    fb:
+      task-question: The question and criteria were set in lesson 1. Groups are now deciding how to answer it.
+      design-data: A plan conference that checks safety and feasibility but leaves the design with the group. That's the design stage.
+      tentative-argument: No one has data yet, so there is nothing to argue from.
+      argumentation: The teacher is asking questions, but about a plan, not about another group's argument.
+    why: >-
+      Different groups' methods differ in defensible ways. That is what gives the argumentation session
+      something to critique later.
+
+  - id: lf-reliability
+    type: lookfor
+    at: design-data
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Another Year 10 group · Plan
+      text: Their plan says “one quadrat at each site, count everything we find, compare the totals.”
+    answer: adi-reliability
+    distractors: [adi-student-designed, adi-tool-talk, adi-plan-checkpoint]
+    strong: false
+    hint: The plan is the group's own. What hasn't the group thought about?
+    why: >-
+      One sample per site and a total count: both target conceptions in one plan. The guide's scaffold prompt
+      asks what you would say to this group without telling them the answer.
+
+  - id: spot-board
+    type: spot
+    at: tentative-argument
+    processing: Comprehension
+    kind: Spot the stage
+    tests: tentative-argument
+    vignette:
+      who: Year 10 · Lesson 4
+      text: >-
+        Groups turn their tallies into a bar chart of kinds per site, then fill a whiteboard: claim at the top,
+        the chart in the middle, and a justification underneath explaining why kinds, not totals, measure
+        diversity.
+    q: Which ADI stage is this?
+    answer: tentative-argument
+    among: [design-data, tentative-argument, argumentation, reflective-discussion]
+    fb:
+      design-data: The data are in. Groups are now turning them into an argument.
+      tentative-argument: Claim, evidence and justification on a whiteboard, drafted to be questioned. That's the tentative argument.
+      argumentation: No one else has seen the boards yet. Critique comes next.
+      reflective-discussion: The teacher hasn't consolidated anything. These are the groups' own arguments.
+    refs:
+      lookForIds: [adi-three-part, adi-analysis]
+
+  - id: spot-round
+    type: spot
+    at: argumentation
+    processing: Comprehension
+    kind: Spot the stage
+    tests: argumentation
+    vignette:
+      who: Year 10 · Lesson 5
+      text: >-
+        One student stays with each whiteboard while the rest move around. A visitor asks, “How do you know one
+        trap was enough?” The presenter writes the question in a log, and later the group changes its claim.
+    q: Which ADI stage is this?
+    answer: argumentation
+    among: [tentative-argument, argumentation, reflective-discussion, peer-review]
+    fb:
+      tentative-argument: The whiteboards are already drafted. Now other students are testing them.
+      argumentation: Students critique each other's evidence, log the questions and revise. That's the argumentation session.
+      reflective-discussion: The teacher hasn't stepped in to consolidate. The critique is still running on evidence.
+      peer-review: Peer review is of written reports, later and anonymous. This is face to face, on the whiteboards.
+    refs:
+      exampleIds: [adi-argue-pos-roundrobin]
+      lookForIds: [adi-critique-quality, adi-revision-record]
+
+  - id: dx-closed
+    type: diagnose
+    at: argumentation
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A pre-service teacher's ADI
+      text: >-
+        The guiding question is “Do invertebrates live in leaf litter?” Every group finds beetles and slaters in
+        the first ten minutes, and the argumentation session is over in five.
+    answer: mis-adi-closed-question
+    distractors: [mis-adi-given-method, mis-adi-no-justification, mis-adi-teacher-judges]
+    hint: Could two careful groups disagree about the answer?
+    why: >-
+      With one obvious answer there is nothing to argue about, so the stages that make ADI worth the time have
+      nothing to work on.
+
+  - id: dx-method
+    type: diagnose
+    at: argumentation
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Another pre-service teacher's ADI
+      text: >-
+        The question is open, but every group receives the same method sheet: two quadrats per site, ten minutes
+        each, count every animal. In the argumentation session, nobody can question anyone's design.
+    answer: mis-adi-given-method
+    distractors: [mis-adi-closed-question, mis-adi-skip-review, mis-adi-group-report]
+    refs:
+      exampleIds: [adi-inv-neg-worksheet]
+
+  - id: order
+    type: order
+    at: revision
+    processing: Comprehension
+    kind: Sequence it
+    tests: sequence
+    title: The question is set and the tool talk is done. Put the rest of the routine in order.
+    q: Tap each step in the order you'd teach it. Tap a placed step to remove it.
+    steps:
+      - text: Groups plan their sampling and talk it through with the teacher
+        phaseId: design-data
+      - text: Groups build a whiteboard with a claim, evidence and a justification
+        phaseId: tentative-argument
+      - text: Round robin, with visitors questioning each whiteboard
+        phaseId: argumentation
+      - text: The class consolidates kinds versus totals and names what made arguments strong
+        phaseId: reflective-discussion
+      - text: Each student writes their own report within a word limit
+        phaseId: report
+      - text: Another group reviews each anonymous report against the criteria
+        phaseId: peer-review
+      - text: Authors respond to each review point and submit with the review attached
+        phaseId: revision
+
+  - id: reflect
+    type: reflect
+    at: revision
+    processing: Metacognition
+    kind: Look back
+    title: Which stage would you cut?
+    q: If you lost a lesson from this routine, which stage would you cut first, and what would that cost your students?
+    model: "Example: “I'd shorten data collection, not cut a stage. Cutting the argumentation session or the review would leave a practical with a report, and those are the stages where ‘one trap is enough’ gets challenged.”"
+    recall: predict
