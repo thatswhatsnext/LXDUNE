@@ -317,15 +317,35 @@ function renderQuick(){
   if (!rec) out.innerHTML = `<div class="box"><p class="empty">Answer the three questions to see a recommendation, or select a cell in the matrix below.</p></div>`;
   else {
     const m = M[rec.id];
-    out.innerHTML = `<article class="card lead"><div class="card-head"><div>
+    const practise = NAMES.gamePaths.includes(m.id)
+      ? `<div class="lite-actions" style="margin-top:.8rem"><a class="pill" href="../play/">${icon("i-fieldwork")}Practise it in ${esc(NAMES.game)}</a></div>` : "";
+    out.innerHTML = `<article class="card lead"><div class="card-head card-band"><div>
       <p class="hint" style="margin:0 0 .2rem">${previewing ? "Previewing from the matrix" : "Recommended for your answers"}</p>
       <h2>${esc(rec.label)}</h2><p class="src">${esc(m.name)} · ${esc(m.src)}</p></div><div class="head-badges">${badge(m.scale)}${provChip(m)}</div></div>
       ${quickRoute(previewing ? rec.key : quickAnswers().purpose, rec.side)}
-      ${rec.why ? `<p style="margin-top:.3rem">${esc(rec.why)}</p>` : ""}${modelBody(m)}
-      ${previewing ? `<p><button class="ghost" type="button" id="backRec">Back to my recommendation</button></p>` : ""}${feedbackLine("Was this useful?")}</article>`;
+      ${rec.why ? `<p style="margin-top:.3rem">${esc(rec.why)}</p>` : ""}${practise}${modelBody(m)}
+      ${previewing ? `<p><button class="ghost" type="button" id="backRec">Back to my recommendation</button></p>` : ""}${feedbackLine("Was this useful?")}</article>
+      ${previewing ? "" : quickAlt(a, r)}`;
     const b = document.getElementById("backRec"); if (b) b.onclick = () => { quickPreview = null; renderQuick(); };
+    document.getElementById("altCompare")?.addEventListener("click", e => {
+      cmpSel = e.currentTarget.dataset.ids.split(" "); goTab("t-compare"); });
   }
   renderMatrix(r);
+}
+/**
+ * The other side of the quick matrix, so students see why the recommendation moves. Only for the purpose
+ * table's results (not the one-lesson rule), and built from the same table and sentences as quickCompute().
+ */
+function quickAlt(a, r){
+  if (!r || !r.side) return "";
+  const other = r.side === "left" ? "right" : "left", [id, label] = QUICK[a.purpose][other];
+  const text = other === "right"
+    ? `You want students to ${PURPOSE_PHRASE[a.purpose]}, and your learners have the experience and time to take more control.`
+    : `You want students to ${PURPOSE_PHRASE[a.purpose]}. With novice learners, a more structured model keeps cognitive load manageable.`;
+  const both = [r.id, id].filter((x, i, xs) => M[x] && xs.indexOf(x) === i);
+  return `<article class="card alt" id="quickAlt"><h3>${other === "right" ? "If your learners had more experience" : "If your learners needed more structure"}</h3>
+    <p class="alt-name">${esc(label)}</p><p>${esc(text)}</p>
+    ${both.length === 2 ? `<p><button class="ghost" type="button" id="altCompare" data-ids="${both.join(" ")}">Compare these two side by side</button></p>` : ""}</article>`;
 }
 function renderMatrix(r){
   const a = quickAnswers();
