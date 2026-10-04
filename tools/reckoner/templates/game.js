@@ -48,7 +48,15 @@ const G = id => D.guides[id];
 /* A phase's name and colour come from its guide; colours follow phase order, so POE's three phases
  * take the first three of 5E's five. */
 const phaseName = (gid, id) => ((G(gid) && G(gid).phases.find(p => p.id === id)) || {name:id}).name;
-const pc = (gid, id) => { const i = G(gid) ? G(gid).phases.findIndex(p => p.id === id) : -1; return i >= 0 ? COLS[i % COLS.length] : "var(--accent)"; };
+const pc = (gid, id) => {
+  const g = G(gid); if (!g) return "var(--accent)";
+  const ph = g.phases.find(p => p.id === id); if (!ph) return "var(--accent)";
+  /* A model with stage groups (ADI) colours by group, so eight stages never wrap round five colours. */
+  const i = g.groups && g.groups.length ? g.groups.findIndex(x => x.id === ph.group) : g.phases.indexOf(ph);
+  return i >= 0 ? COLS[i % COLS.length] : "var(--accent)";
+};
+const groupOf = (gid, id) => { const g = G(gid), ph = g && g.phases.find(p => p.id === id); return ph && ph.group ? g.groups.find(x => x.id === ph.group) : null; };
+const article = w => /^[aeiou]/i.test(w) ? "an" : "a";
 /* In a lesson: the journey guide supplies the rail, spot options, look-fors and misapplications. */
 const J = () => pathOf(S.lesson.path).journey;
 const JG = () => G(J());
@@ -81,11 +89,14 @@ function chrome(mode, title){
   $("#banner").innerHTML = D.review ? `<div class="banner">Review copy: includes lessons not yet published. Not for students.</div>` : "";
 }
 
+const met = reqs => (reqs || []).every(q => levelReached(q.path) >= D.mastery.indexOf(q.level));
+const needText = reqs => reqs.map(q => `${LEVEL[q.level]} on the ${pathOf(q.path).title}`).join(" and ");
 function pathOpen(p){
-  return D.review || p.requires.every(q => levelReached(q.path) >= D.mastery.indexOf(q.level));
+  return D.review || met(p.requires);
 }
 function unlocked(l){
   if (!pathOpen(pathOf(l.path))) return false;
+  if (!D.review && !met(l.requires)) return false;
   if (D.review || l.order === 1) return true;
   const prev = D.lessons.find(x => x.path === l.path && x.order === l.order - 1);
   return !prev || rec(prev.id).completed;
@@ -105,7 +116,7 @@ function showMap(){
     const nextL = ls.find(l => !rec(l.id).completed && unlocked(l));
     const open = pathOpen(p);
     const link = p.guide ? `<a href="../reckoner/#/guide/${esc(p.id)}">Open the ${esc(G(p.guide).name)} companion guide</a>` : `<a href="../reckoner/">Open ${esc(NAMES.reckonerMid)}</a>`;
-    const need = p.requires.map(q => `${LEVEL[q.level]} on the ${pathOf(q.path).title}`).join(" and ");
+    const need = needText(p.requires);
     return `<section class="path">
       <div class="pathHead"><h2>${esc(p.title)}</h2>${link}</div>
       <p>${esc(p.blurb)}</p>
@@ -116,6 +127,7 @@ function showMap(){
         const state = r.completed ? "done" : (l === nextL ? "next" : "");
         const chips = [`<span class="chip">${LEVEL[l.level]}</span>`];
         if (r.completed) chips.push(`<span class="chip good">Done · best ${r.best}/${r.of} first try</span>`);
+        else if (!open && pathOpen(p) && !met(l.requires)) chips.push(`<span class="chip">Unlocks at ${esc(needText(l.requires))}</span>`);
         else if (!open && pathOpen(p)) chips.push(`<span class="chip">Finish lesson ${l.order - 1} first</span>`);
         if (l.status !== "published") chips.push(`<span class="chip warn">${esc(l.status)}</span>`);
         if (r.missed.length && r.completed) chips.push(`<span class="chip">${r.missed.length} to review</span>`);
@@ -195,21 +207,27 @@ function hud(){
   $("#prog").style.width = (100 * doneCount() / Math.max(1, total())) + "%";
   $("#xp").textContent = S.xp; $("#streak").textContent = S.streak;
   const n = total(); $("#count").textContent = `${Math.min(n, doneCount() + (S.done ? 0 : 1))} / ${n}`;
-  const ph = JG().phases, at = S.done ? "done" : cur && cur.at, idx = ph.findIndex(p => p.id === at);
-  $("#rail").style.gridTemplateColumns = `repeat(${ph.length},1fr)`;
-  $("#rail").innerHTML = ph.map((p,i) => `<div style="--pc:${jp(p.id)}" class="${at === "done" || i < idx ? "done" : i === idx ? "now" : ""}">${esc(p.name)}</div>`).join("");
+  const at = S.done ? "done" : cur && cur.at;
+  /* A grouped rail (ADI) shows the stage groups; the phase tag on each item names the stage itself. */
+  const grouped = pathOf(S.lesson.path).rail === "groups";
+  const cells = grouped ? JG().groups.map(g => ({id:g.id, name:g.name, col:jp(JG().phases.find(p => p.group === g.id).id)}))
+                        : JG().phases.map(p => ({id:p.id, name:p.name, col:jp(p.id)}));
+  const nowId = grouped ? (groupOf(J(), at) || {}).id : at, idx = cells.findIndex(c => c.id === nowId);
+  $("#rail").style.gridTemplateColumns = `repeat(${cells.length},1fr)`;
+  $("#rail").innerHTML = cells.map((c,i) => `<div style="--pc:${c.col}" class="${at === "done" || i < idx ? "done" : i === idx ? "now" : ""}">${esc(c.name)}</div>`).join("");
   $("#railnote").textContent = S.done ? "Lesson complete. Your own journey ran through every phase."
     : S.phase === "warm" ? "Warm-up: items you missed in an earlier lesson, once more."
     : S.phase === "review" ? "Review round: items you missed come back once, with the options shuffled."
-    : `This lesson is itself a ${JG().name} sequence. The bar shows where you are in it.`;
+    : `This lesson is itself ${article(JG().name)} ${JG().name} sequence. The bar shows where you are in it.`;
 }
 
 /* ---------- rendering an item ---------- */
 /* "ENGAGE · PREDICT" with the phase glyph, coloured by the item's phase; a plain tag with the kind alone otherwise. */
 function phaseTag(it){
-  return it.at && GLYPH.includes(it.at)
-    ? `<p class="phtag" style="--pc:var(--${it.at})">${icon("i-" + it.at)}${esc(jn(it.at))} · ${esc(it.kind)}</p>`
-    : `<p class="phtag plain">${esc(it.kind)}</p>`;
+  if (it.at && GLYPH.includes(it.at)) return `<p class="phtag" style="--pc:var(--${it.at})">${icon("i-" + it.at)}${esc(jn(it.at))} · ${esc(it.kind)}</p>`;
+  /* Phases without a glyph (ADI's stages): the stage name in its group colour, no icon. */
+  if (it.at && JG().groups.length && JG().phases.some(p => p.id === it.at)) return `<p class="phtag" style="--pc:${jp(it.at)}">${esc(jn(it.at))} · ${esc(it.kind)}</p>`;
+  return `<p class="phtag plain">${esc(it.kind)}</p>`;
 }
 /* The lesson's plate, on its first item only. */
 const plateHTML = it => PLATES[S.lesson.id] && S.phase === "main" && it._from === S.lesson.id && it.id === S.lesson.items[0].id
@@ -220,8 +238,10 @@ function verdict(el, ok){
   const at = el.querySelector(".t") || el;
   at.insertAdjacentHTML("beforeend", `<span class="vd">${icon(ok ? "i-tick" : "i-cross")}${ok ? "Correct" : "Not this one"}</span>`);
 }
+/* A spot item offers every phase, or only those it names in `among`, in the guide's order. */
+const spotPhases = it => JG().phases.filter(p => !it.among || it.among.includes(p.id));
 function options(it){
-  if (it.type === "spot") return JG().phases.map(p => ({t:p.name, ph:p.id, fb:it.fb[p.id]}));
+  if (it.type === "spot") return spotPhases(it).map(p => ({t:p.name, ph:p.id, fb:it.fb[p.id]}));
   if (it.type === "nest") return G(it.host).phases.map(p => ({t:p.name, ph:p.id}));
   if (it.type === "select") return it._stage === 2 ? it.reasons.map(x => ({t:x.text, ok:x.ok, dim:x.dim})) : it.candidates.map(c => ({t:it.names[c], c}));
   if (it.type === "flip") return it.changeLabels.map(c => ({t:c.text}));
@@ -338,7 +358,7 @@ function drawOrder(){
 
 /* ---------- checking ---------- */
 function correctIndex(it){
-  if (it.type === "spot") return JG().phases.findIndex(p => p.id === it.answer);
+  if (it.type === "spot") return spotPhases(it).findIndex(p => p.id === it.answer);
   if (it.type === "nest") return G(it.host).phases.findIndex(p => p.id === it.answer);
   if (it.type === "select") return it.candidates.indexOf(it.answer);
   if (it.type === "lookfor" || it.type === "diagnose") return 0;
