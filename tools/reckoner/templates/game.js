@@ -10,6 +10,37 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const pick = a => a[Math.floor(Math.random() * a.length)];
 const COLS = ["var(--engage)","var(--explore)","var(--explain)","var(--elaborate)","var(--evaluate)"];
+/* Every user-facing name for the parts of the Field Guide, so a rename is a one-line change.
+ * game.html's <title> carries the same names as a fallback until this runs. */
+const NAMES = { game:"Fieldwork", product:"The Field Guide", reckoner:"The Reckoner" };
+NAMES.reckonerMid = NAMES.reckoner.replace(/^The /, "the ");
+document.title = `${NAMES.game} · ${NAMES.product}`;
+const PRIVACY = "Nothing you do here is recorded or sent anywhere. Progress stays in this browser.";
+const icon = id => `<svg class="i" aria-hidden="true"><use href="#${id}"/></svg>`;
+/* Phase glyphs for the five 5E phases; any other phase id gets a plain tag. */
+const GLYPH = ["engage","explore","explain","elaborate","evaluate"];
+/* Lesson plates, keyed by lesson id: shown on graph paper above the lesson's first item. No schema change. */
+const PLATES = {
+  "5e-1-willow": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A willow tree growing in a tub of soil, with the sun and water drops" xmlns="http://www.w3.org/2000/svg">
+  <circle class="pl-sun" cx="300" cy="38" r="17"/>
+  <g class="pl-ray" stroke-width="2.4" stroke-linecap="round"><path d="M300 10v-6"/><path d="M328 38h6"/><path d="M320 18l4-4"/><path d="M320 58l4 4"/><path d="M272 18l-4-4"/></g>
+  <ellipse class="pl-canopy" cx="178" cy="78" rx="78" ry="44"/>
+  <path class="pl-trunk" d="M178 150 C175 122 172 100 178 72" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path class="pl-trunk" d="M178 86 C196 76 208 70 222 68" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <g class="pl-branch" stroke-width="2.4" fill="none" stroke-linecap="round">
+    <path d="M178 46 C150 42 120 62 112 120"/><path d="M178 46 C160 50 140 74 136 128"/><path d="M178 46 C170 64 160 90 158 132"/>
+    <path d="M178 46 C206 42 236 62 244 120"/><path d="M178 46 C196 50 216 74 220 128"/><path d="M178 46 C186 64 196 90 198 132"/>
+  </g>
+  <g class="pl-leaf"><ellipse cx="114" cy="110" rx="3" ry="6"/><ellipse cx="137" cy="116" rx="3" ry="6"/><ellipse cx="158" cy="122" rx="3" ry="6"/><ellipse cx="243" cy="110" rx="3" ry="6"/><ellipse cx="219" cy="116" rx="3" ry="6"/><ellipse cx="198" cy="122" rx="3" ry="6"/><ellipse cx="124" cy="86" rx="3" ry="6"/><ellipse cx="232" cy="86" rx="3" ry="6"/></g>
+  <path class="pl-tub" d="M120 150 H236 L226 184 H130 Z"/>
+  <rect class="pl-rim" x="116" y="146" width="124" height="9" rx="3"/>
+  <path class="pl-soil" d="M124 150 H232" stroke-width="5"/>
+  <g class="pl-drop"><path d="M60 92 c-5 8 -7 12 0 14 c7 -2 5 -6 0 -14z"/><path d="M76 112 c-5 8 -7 12 0 14 c7 -2 5 -6 0 -14z"/><path d="M58 128 c-5 8 -7 12 0 14 c7 -2 5 -6 0 -14z"/></g>
+  <text class="pl-label" x="20" y="176">YEAR 0 · 2 kg</text>
+  <text class="pl-label" x="258" y="176">YEAR 5 · 77 kg</text>
+  <text class="pl-q" x="262" y="108">?</text>
+</svg>`,
+};
 const LEVEL = {recognise:"Recognise",explain:"Explain",select:"Select",design:"Design"};
 const UNSCORED = ["predict","concept","reflect","build","sim"];   // never used as warm-ups
 const pathOf = id => D.paths.find(p => p.id === id);
@@ -41,8 +72,12 @@ function chrome(mode, title){
   $("#hud").hidden = mode !== "play";
   dock.hidden = mode === "map";
   document.querySelector(".wrap").style.paddingBlockEnd = mode === "map" ? "48px" : "";
-  $("#top").innerHTML = mode === "map" ? "" : `<button class="back" id="toMap" type="button">← All lessons</button><span class="grow"></span>${title ? `<span class="chip">${esc(title)}</span>` : ""}`;
+  $("#top").innerHTML = `<span class="brand"><span class="brand-mark">${icon("i-fieldwork")}</span>${esc(NAMES.game)}</span><span class="grow"></span>
+    ${mode === "map" ? "" : `<button class="back" id="toMap" type="button">${icon("i-back")}All lessons</button>`}
+    <a class="back" href="../reckoner/">${icon("i-back")}${esc(NAMES.product)}</a>`;
   const b = $("#toMap"); if (b) b.addEventListener("click", showMap);
+  $("#privacy").hidden = mode === "map"; $("#privacyText").textContent = PRIVACY;
+  if (mode === "play" && S){ $("#hudPath").textContent = `${NAMES.game} · ${title}`; $("#hudTitle").textContent = S.lesson.title; }
   $("#banner").innerHTML = D.review ? `<div class="banner">Review copy: includes lessons not yet published. Not for students.</div>` : "";
 }
 
@@ -69,7 +104,7 @@ function showMap(){
     const ls = D.lessons.filter(l => l.path === p.id);
     const nextL = ls.find(l => !rec(l.id).completed && unlocked(l));
     const open = pathOpen(p);
-    const link = p.guide ? `<a href="../reckoner/#/guide/${esc(p.id)}">Open the ${esc(G(p.guide).name)} companion guide</a>` : `<a href="../reckoner/">Open the reckoner</a>`;
+    const link = p.guide ? `<a href="../reckoner/#/guide/${esc(p.id)}">Open the ${esc(G(p.guide).name)} companion guide</a>` : `<a href="../reckoner/">Open ${esc(NAMES.reckonerMid)}</a>`;
     const need = p.requires.map(q => `${LEVEL[q.level]} on the ${pathOf(q.path).title}`).join(" and ");
     return `<section class="path">
       <div class="pathHead"><h2>${esc(p.title)}</h2>${link}</div>
@@ -106,7 +141,7 @@ function showIntro(id){
   dock.className = "dock"; fb.innerHTML = "";
   const warm = warmupFor(l).length;
   stage.innerHTML = `<section class="card">
-    <div class="chips"><span class="chip">${LEVEL[l.level]}</span><span class="chip">Lesson ${l.order}</span>${r.plays ? `<span class="chip">Attempt ${r.plays + 1}</span>` : ""}</div>
+    <div class="chips"><span class="chip">${esc(pathOf(l.path).title)}</span><span class="chip">${LEVEL[l.level]}</span><span class="chip">Lesson ${l.order}</span>${r.plays ? `<span class="chip">Attempt ${r.plays + 1}</span>` : ""}</div>
     <h2>${esc(l.title)}</h2>
     <p class="lead">${esc(l.summary)}</p>
     <p class="lead">Wrong answers cost nothing. Anything you miss comes back once at the end, and every answer explains itself.${r.plays ? " Replays shuffle the options and may use a different case." : ""}</p>
@@ -159,6 +194,7 @@ function doneCount(){
 function hud(){
   $("#prog").style.width = (100 * doneCount() / Math.max(1, total())) + "%";
   $("#xp").textContent = S.xp; $("#streak").textContent = S.streak;
+  const n = total(); $("#count").textContent = `${Math.min(n, doneCount() + (S.done ? 0 : 1))} / ${n}`;
   const ph = JG().phases, at = S.done ? "done" : cur && cur.at, idx = ph.findIndex(p => p.id === at);
   $("#rail").style.gridTemplateColumns = `repeat(${ph.length},1fr)`;
   $("#rail").innerHTML = ph.map((p,i) => `<div style="--pc:${jp(p.id)}" class="${at === "done" || i < idx ? "done" : i === idx ? "now" : ""}">${esc(p.name)}</div>`).join("");
@@ -169,6 +205,21 @@ function hud(){
 }
 
 /* ---------- rendering an item ---------- */
+/* "ENGAGE · PREDICT" with the phase glyph, coloured by the item's phase; a plain tag with the kind alone otherwise. */
+function phaseTag(it){
+  return it.at && GLYPH.includes(it.at)
+    ? `<p class="phtag" style="--pc:var(--${it.at})">${icon("i-" + it.at)}${esc(jn(it.at))} · ${esc(it.kind)}</p>`
+    : `<p class="phtag plain">${esc(it.kind)}</p>`;
+}
+/* The lesson's plate, on its first item only. */
+const plateHTML = it => PLATES[S.lesson.id] && S.phase === "main" && it._from === S.lesson.id && it.id === S.lesson.items[0].id
+  ? `<figure class="plate-card">${PLATES[S.lesson.id]}</figure>` : "";
+/* Correct or wrong, said in words and an icon as well as colour. */
+function verdict(el, ok){
+  if (el.querySelector(".vd")) return;
+  const at = el.querySelector(".t") || el;
+  at.insertAdjacentHTML("beforeend", `<span class="vd">${icon(ok ? "i-tick" : "i-cross")}${ok ? "Correct" : "Not this one"}</span>`);
+}
 function options(it){
   if (it.type === "spot") return JG().phases.map(p => ({t:p.name, ph:p.id, fb:it.fb[p.id]}));
   if (it.type === "nest") return G(it.host).phases.map(p => ({t:p.name, ph:p.id}));
@@ -192,7 +243,7 @@ function render(){
   if (S.pos >= L.length) return advancePhase();
   cur = L[S.pos];
   if (cur.type === "sim"){ cur._node = cur._node || cur.start; cur._state = cur._state || {}; cur._trail = cur._trail || []; const n = simNode(cur); if (n) cur.at = n.phase; }
-  chrome("play", `${pathOf(S.lesson.path).title} · Lesson ${S.lesson.order}`);
+  chrome("play", pathOf(S.lesson.path).title);
   hud();
   if (cur.type === "sim") return renderSim();
   if (cur.type === "build") return renderBuild();
@@ -202,14 +253,14 @@ function render(){
   if (!["spot","nest"].includes(cur.type) && (reshuffle || cur.type === "lookfor" || cur.type === "diagnose")) opts = shuffle(opts);
   cur._view = opts;
   const chip = S.phase === "warm" ? `<span class="chip warn">Warm-up</span>` : S.phase === "review" ? `<span class="chip warn">Review</span>` : "";
-  let h = `<section class="card" style="--pc:${jp(cur.at)}">
-    <div class="chips"><span class="chip ph">${esc(jn(cur.at))} phase</span><span class="chip">${esc(cur.processing)}</span>${chip}</div>
-    <p class="kind">${esc(cur.kind)}</p>`;
+  let h = `<section class="card" style="--pc:${jp(cur.at)}">${plateHTML(cur)}
+    <div class="chips"><span class="chip">${esc(cur.processing)}</span>${chip}</div>
+    ${phaseTag(cur)}`;
   if (cur.title) h += `<h2>${esc(cur.title)}</h2>`;
   if (cur.vignette) h += `<div class="vignette"><span class="who">${esc(cur.vignette.who)}</span>${esc(cur.vignette.text)}</div>`;
   if (cur.scenario) h += `<div class="vignette"><span class="who">${esc(cur.scenario.who)}</span>${esc(cur.scenario.text)}</div>${profileHTML(cur)}`;
-  if (cur.type === "select") h += cur._stage === 1 ? `<p class="q">${esc(cur.q || "Which model does the reckoner recommend for this class?")}</p>` : `<p class="q">You chose <b>${esc(cur.names[cur.candidates[cur._pick]])}</b>. Why? Select every reason that holds for this class.</p>`;
-  if (cur.type === "flip") h += `<p class="q">${esc(cur.q || `The reckoner recommends ${cur.names[cur.from]} for this class. Which single change would make it recommend something else?`)}</p>`;
+  if (cur.type === "select") h += cur._stage === 1 ? `<p class="q">${esc(cur.q || `Which model does ${NAMES.reckonerMid} recommend for this class?`)}</p>` : `<p class="q">You chose <b>${esc(cur.names[cur.candidates[cur._pick]])}</b>. Why? Select every reason that holds for this class.</p>`;
+  if (cur.type === "flip") h += `<p class="q">${esc(cur.q || `${NAMES.reckoner} recommends ${cur.names[cur.from]} for this class. Which single change would make it recommend something else?`)}</p>`;
   if (cur.type === "nest") h += `<p class="q">${esc(cur.q || `Where does a ${G(cur.model).name} fit inside ${G(cur.host).name}?`)}</p>`;
   if (cur.plan) h += `<ol class="plan">${cur.plan.map(r => `<li style="--pc:${jp(r.phaseId)}"><b>${esc(jn(r.phaseId))}</b><span class="min">${esc(r.text)}</span></li>`).join("")}</ol>`;
   if (cur.type === "lookfor") h += `<p class="q">${cur.strong ? "This is strong evidence for one look-for in the guide. Which one?" : "This is weak evidence for one look-for in the guide: it shows what's missing. Which one?"}</p>`;
@@ -221,7 +272,7 @@ function render(){
     h += `<div class="opts ${grid ? "phases" : ""}" role="${isMulti(cur) ? "group" : "radiogroup"}">${opts.map((o,n) =>
       `<button class="opt" type="button" data-i="${o.i}" ${o.ph && grid ? `style="--pc:${pc(gid, o.ph)}"` : ""} role="${isMulti(cur) ? "checkbox" : "radio"}" aria-checked="false">${grid ? "" : `<span class="k">${n + 1}</span>`}<span class="t">${cur.type === "lookfor" ? `<span class="lfq">${esc(jn(o.ph))} look-for</span>` : ""}${esc(o.t)}<span class="ofb" hidden></span></span></button>`).join("")}</div>`;
   }
-  if (cur.type === "predict") h += `<div class="slider"><label for="conf">How confident are you? <output id="confout">${S.conf}%</output></label><input type="range" id="conf" min="0" max="100" step="10" value="${S.conf}"><small><span>Pure guess</span><span>Certain</span></small></div>`;
+  if (cur.type === "predict") h += `<div class="slider"><label for="conf">How confident are you? <output id="confout">${S.conf}%</output></label><input type="range" id="conf" min="0" max="100" step="10" value="${S.conf}" style="--fill:${S.conf}%"><small><span>Pure guess</span><span>Certain</span></small></div>`;
   if (cur.type === "order"){ pool = shuffle(cur.steps.map((o,i) => ({...o, i}))); h += `<div class="slots" id="slots"></div><div class="pool" id="pool"></div>`; }
   if (cur.type === "concept") h += `<p class="lead">${esc(cur.lead)}</p><div class="concept">${cur.rows.map(r => `<div class="row" style="--pc:${jp(r.phaseId)}"><h3>${esc(jn(r.phaseId))}</h3><p>${esc(r.does)}<em>${esc(r.move)}</em></p></div>`).join("")}</div>${cur.cite ? `<p class="cite">${esc(cur.cite)}</p>` : ""}`;
   if (cur.type === "reflect"){
@@ -239,7 +290,7 @@ function render(){
     $("#refl").addEventListener("input", e => S.reflection = e.target.value); }
   else { go.textContent = cur.type === "select" && cur._stage === 1 ? "Next: give your reasons" : "Check"; go.disabled = true; keys.textContent = cur.type === "order" ? "Tap activities in order" : `Keys: 1–${opts.length} to choose, Enter to check`; }
   stage.querySelectorAll(".opt[data-i]").forEach(b => b.addEventListener("click", () => choose(+b.dataset.i)));
-  if (cur.type === "predict"){ const r = $("#conf"); r.addEventListener("input", () => { S.conf = +r.value; $("#confout").textContent = S.conf + "%"; }); }
+  if (cur.type === "predict"){ const r = $("#conf"); r.addEventListener("input", () => { S.conf = +r.value; $("#confout").textContent = S.conf + "%"; r.style.setProperty("--fill", S.conf + "%"); }); }
   if (cur.type === "order") drawOrder();
 }
 
@@ -264,7 +315,7 @@ function profileHTML(it){
 /* The reckoner's weighing: each question, each model's fit out of 3, and the totals. */
 function weighingHTML(it, highlight){
   const ms = Object.keys(it.weighing.fits);
-  return `<details class="why" open><summary>How the reckoner weighs this class</summary>
+  return `<details class="why" open><summary>How ${esc(NAMES.reckonerMid)} weighs this class</summary>
     <div class="weigh"><div class="wrow whead"><span>Question</span>${ms.map(m => `<span>${esc(short(m))}</span>`).join("")}</div>
     ${it.weighing.rows.map(r => `<div class="wrow${r.dim === highlight ? " hl" : ""}"><span>${esc(cap(r.label))}<small>${esc(r.value)}${r.weight !== 1 ? ` · counts ×${r.weight}` : ""}</small></span>${ms.map(m => `<span><i class="bar"><b style="width:${100 * r.scores[m] / 3}%"></b></i>${+r.scores[m].toFixed(2)}</span>`).join("")}</div>`).join("")}
     <div class="wrow wtot"><span>Overall fit</span>${ms.map(m => `<span>${it.weighing.fits[m]}%</span>`).join("")}</div></div></details>`;
@@ -282,7 +333,7 @@ function drawOrder(){
   pl.querySelectorAll("[data-p]").forEach(b => b.addEventListener("click", () => { placed.push(pool.find(o => o.i === +b.dataset.p)); drawOrder(); }));
   slots.querySelectorAll("[data-n]").forEach(b => b.addEventListener("click", () => { if (checked) return; placed.splice(+b.dataset.n, 1); drawOrder(); }));
   go.disabled = placed.length !== N;
-  if (checked) slots.querySelectorAll(".slot").forEach((el,n) => el.classList.add(placed[n].phaseId === cur.steps[n].phaseId ? "right" : "wrong"));
+  if (checked) slots.querySelectorAll(".slot").forEach((el,n) => { const ok = placed[n].phaseId === cur.steps[n].phaseId; el.classList.add(ok ? "right" : "wrong"); verdict(el, ok); });
 }
 
 /* ---------- checking ---------- */
@@ -314,9 +365,9 @@ function check(){
     const right = cur._pick === correctIndex(cur), why = opts.every((o,i) => !!o.ok === multi.has(i));
     ok = right && why;
     mark(i => opts[i].ok && multi.has(i), i => multi.has(i) && !opts[i].ok, () => false);
-    stage.querySelectorAll(".opt[data-i]").forEach(b => { const i = +b.dataset.i; if (opts[i].ok && !multi.has(i)) b.classList.add("right"); });
+    stage.querySelectorAll(".opt[data-i]").forEach(b => { const i = +b.dataset.i; if (opts[i].ok && !multi.has(i)){ b.classList.add("right"); verdict(b, true); } });
     const fav = opts.filter(o => o.ok).map(o => o.t.replace(/\.$/, "").toLowerCase());
-    body = `<p>${right ? "Right model" : `The reckoner recommends <b>${esc(cur.names[cur.answer])}</b>`}${right && !why ? ", but your reasons need work" : ""}. ${cur.nested ? esc(cur.nested) + " " : ""}The reasons that hold are the ones where this class's answers favour it: ${esc(fav.join("; "))}.${opts.some(o => o.dim === null) ? " A preference about a model is never a reason on its own." : ""} The reckoner's weighing is below the options.</p>`;
+    body = `<p>${right ? "Right model" : `${esc(NAMES.reckoner)} recommends <b>${esc(cur.names[cur.answer])}</b>`}${right && !why ? ", but your reasons need work" : ""}. ${cur.nested ? esc(cur.nested) + " " : ""}The reasons that hold are the ones where this class's answers favour it: ${esc(fav.join("; "))}.${opts.some(o => o.dim === null) ? " A preference about a model is never a reason on its own." : ""} ${esc(NAMES.reckoner)}'s weighing is below the options.</p>`;
     stage.querySelector("section").insertAdjacentHTML("beforeend", weighingHTML(cur));
     cur._partial = right && !why;
   }
@@ -324,7 +375,7 @@ function check(){
     ok = sel === cur.answer;
     mark(i => i === cur.answer, i => i === sel && !ok, () => false);
     const c = cur.changeLabels[cur.answer];
-    body = `<p>${esc(c.text)} and the reckoner switches to <b>${esc(cur.names[c.top])}</b> (${Object.entries(c.fits).map(([m,f]) => `${esc(short(m))} ${f}%`).join(", ")}).${!ok && sel != null ? ` Your change leaves ${esc(cur.names[cur.changeLabels[sel].top])} on top.` : ""} The weighing below shows the starting class, with the question that moves highlighted.</p>`;
+    body = `<p>${esc(c.text)} and ${esc(NAMES.reckonerMid)} switches to <b>${esc(cur.names[c.top])}</b> (${Object.entries(c.fits).map(([m,f]) => `${esc(short(m))} ${f}%`).join(", ")}).${!ok && sel != null ? ` Your change leaves ${esc(cur.names[cur.changeLabels[sel].top])} on top.` : ""} The weighing below shows the starting class, with the question that moves highlighted.</p>`;
     stage.querySelector("section").insertAdjacentHTML("beforeend", weighingHTML(cur, cur.changes[cur.answer].dim));
   }
   if (cur.type === "nest"){
@@ -351,7 +402,7 @@ function check(){
   if (cur.type === "multi"){
     ok = opts.every((o,i) => !!o.ok === multi.has(i));
     mark(i => opts[i].ok && multi.has(i), i => multi.has(i) && !opts[i].ok, () => true);
-    stage.querySelectorAll(".opt[data-i]").forEach(b => { const i = +b.dataset.i; if (opts[i].ok && !multi.has(i)) b.classList.add("right"); });
+    stage.querySelectorAll(".opt[data-i]").forEach(b => { const i = +b.dataset.i; if (opts[i].ok && !multi.has(i)){ b.classList.add("right"); verdict(b, true); } });
   }
   if (cur.type === "order"){
     ok = placed.every((o,n) => o.phaseId === cur.steps[n].phaseId); drawOrder();
@@ -382,7 +433,7 @@ function mark(isRight, isWrong, showFb){
   const opts = options(cur);
   stage.querySelectorAll(".opt[data-i]").forEach(b => {
     const i = +b.dataset.i; b.disabled = true; b.classList.remove("sel");
-    if (isRight(i)) b.classList.add("right"); else if (isWrong(i)) b.classList.add("wrong");
+    if (isRight(i)){ b.classList.add("right"); verdict(b, true); } else if (isWrong(i)){ b.classList.add("wrong"); verdict(b, false); }
     const f = b.querySelector(".ofb");
     if (f && opts[i].fb && showFb(i)){ f.textContent = opts[i].fb; f.hidden = false; }
   });
@@ -434,9 +485,9 @@ function renderBuild(){
   const placedIds = new Set(Object.values(it._placed).flat());
   const card = id => it.cards.find(c => c.id === id);
   const chip = S.phase === "review" ? `<span class="chip warn">Review: rebuild it</span>` : "";
-  let h = `<section class="card" style="--pc:${jp(it.at)}">
-    <div class="chips"><span class="chip ph">${esc(jn(it.at))} phase</span><span class="chip">${esc(it.processing)}</span>${chip}</div>
-    <p class="kind">${esc(it.kind)}</p>${it.title ? `<h2>${esc(it.title)}</h2>` : ""}
+  let h = `<section class="card" style="--pc:${jp(it.at)}">${plateHTML(it)}
+    <div class="chips"><span class="chip">${esc(it.processing)}</span>${chip}</div>
+    ${phaseTag(it)}${it.title ? `<h2>${esc(it.title)}</h2>` : ""}
     <div class="vignette"><span class="who">${esc(it.brief.who)}</span>${esc(it.brief.text)}</div>
     ${it.q && !checked ? `<p class="q">${esc(it.q)}</p>` : ""}
     <div class="board">${ph.map(p => `<div class="phasebox" style="--pc:${jp(p.id)}"><div class="phead"><b>${esc(p.name)}</b>${it._pick && !checked ? `<button class="place" type="button" data-place="${esc(p.id)}">Place here</button>` : ""}</div>
@@ -483,7 +534,7 @@ function downloadPlan(){
     ...rp.flags.map(f => `- Watch-out: ${mi[f.mis].name}. Fix: ${mi[f.mis].fix}`),
     ...rp.misplaced.map(m => `- Wrong phase: "${card(m.card).text}" does ${jn(m.does)}'s job, not ${jn(m.in)}'s`),
     ...it.report.map(f => `- [${rp.met.includes(f) ? "x" : " "}] ${jn(lf[f].phaseId)}: ${lf[f].question}`),
-    "", `From ${S.lesson.title} (${S.lesson.id} v${S.lesson.version}), LXDUNE teaching models game.`].join("\n");
+    "", `From ${S.lesson.title} (${S.lesson.id} v${S.lesson.version}), ${NAMES.game}, ${NAMES.product}.`].join("\n");
   try {
     const a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([md], {type:"text/markdown"}));
@@ -500,9 +551,9 @@ const CSTATE = {surfaced:"Surfaced", hidden:"Hidden", challenged:"Challenged"};
 function renderSim(){
   const it = cur, n = it._node === "end" ? null : simNode(it);
   const panel = `<div class="thinking"><span class="lbl">Class thinking</span>${it.conceptions.map((c,i) => `<div class="cn ${it._state[i] || "unheard"}"><span>${esc(c)}</span><b>${CSTATE[it._state[i]] || "Not heard yet"}</b></div>`).join("")}</div>`;
-  let h = `<section class="card" style="--pc:${jp(it.at)}">
-    <div class="chips"><span class="chip ph">${esc(jn(it.at))} phase</span><span class="chip">${esc(it.processing)}</span><span class="chip">${n ? `Decision ${it._trail.length + 1}` : "Debrief"}</span></div>
-    <p class="kind">${esc(it.kind)}${n ? " · " + esc(n.when) : ""}</p>
+  let h = `<section class="card" style="--pc:${jp(it.at)}">${plateHTML(it)}
+    <div class="chips"><span class="chip">${esc(it.processing)}</span><span class="chip">${n ? `Decision ${it._trail.length + 1}` : "Debrief"}</span></div>
+    ${phaseTag(it)}${n ? `<p class="kind">${esc(n.when)}</p>` : ""}
     <p class="note" style="margin-top:0"><b>${esc(it.cast.who)}.</b> ${esc(it.cast.text)}</p>${panel}`;
   if (!n){
     const e = simEnding(it), good = it._trail.filter(t => t.good).length;
@@ -529,7 +580,7 @@ function renderSim(){
     c.challenge.forEach(i => it._state[i] = "challenged");
     it._trail.push({when:n.when, text:c.text, good:c.good, debrief:c.debrief, lookFor:c.lookFor});
     score(c.good, `${it.id}:${n.id}`);
-    stage.querySelectorAll(".opt[data-i]").forEach(b => { b.disabled = true; if (+b.dataset.i === sel) b.classList.add(c.good ? "right" : "wrong"); });
+    stage.querySelectorAll(".opt[data-i]").forEach(b => { b.disabled = true; if (+b.dataset.i === sel){ b.classList.add(c.good ? "right" : "wrong"); verdict(b, c.good); } });
     const panelEl = stage.querySelector(".thinking"); if (panelEl) panelEl.outerHTML = `<div class="thinking"><span class="lbl">Class thinking</span>${it.conceptions.map((cc,i) => `<div class="cn ${it._state[i] || "unheard"}"><span>${esc(cc)}</span><b>${CSTATE[it._state[i]] || "Not heard yet"}</b></div>`).join("")}</div>`;
     dock.className = "dock " + (c.good ? "good" : "bad");
     const lf = c.lookFor ? JG().lookFors[c.lookFor] : null;
@@ -546,7 +597,7 @@ function summary(){
   r.completed = true; r.of = res.length; r.best = Math.max(r.best || 0, right);
   r.missed = res.filter(([,v]) => !v.ok).map(([k]) => k);
   store.save(P);
-  chrome("play", `${pathOf(l.path).title} · Lesson ${l.order}`);
+  chrome("play", pathOf(l.path).title);
   hud();
   const groups = {};
   res.forEach(([,v]) => { const k = v.tests || "other"; (groups[k] = groups[k] || {v:0,n:0}).n++; if (v.ok) groups[k].v++; });
@@ -564,7 +615,7 @@ function summary(){
   const lv = levelReached(l.path);
   const pg = pathOf(l.path).guide;
   const guideHref = pg ? `../reckoner/#/guide/${pg}${l.guideSection ? "/" + l.guideSection : ""}` : "../reckoner/";
-  const guideText = pg ? `Read more in the ${G(pg).name} guide` : "Try your own class in the reckoner";
+  const guideText = pg ? `Read more in the ${G(pg).name} guide` : `Try your own class in ${NAMES.reckonerMid}`;
   const warm = S.warmRes.length ? `<div class="stat"><b>${S.warmRes.filter(Boolean).length}/${S.warmRes.length}</b><span>warm-up</span></div>` : "";
   stage.innerHTML = `<section class="card sum-head">
     <p class="kind">Lesson complete</p>
