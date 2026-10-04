@@ -1,0 +1,225 @@
+# ADI path, lesson 2. Built on the ADI guide's worked sequence seq-s5-sound. Reviewed and published by Steve on 2026-10-05.
+schemaVersion: 1
+id: adi-2-noise
+path: adi
+order: 2
+title: Keep the noise out
+summary: Claim, evidence and justification, critique that targets evidence, and why the teacher holds the science back until the argument has run.
+level: explain
+version: 1.0.0
+status: published
+lastReviewed: 2026-10-05
+provenance:
+  source: ai-drafted-reviewed
+  authors: [Claude]
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-05
+context:
+  stages: [stage5]
+  focusAreas: [Waves and motion]
+  disciplines: [physics]
+outcomes: [SC5-WAM-01]
+builtOn:
+  sequenceIds: [seq-s5-sound]
+  exampleIds: [adi-tentative-argument-neg-no-justification, adi-argue-pos-roundrobin, adi-argue-neg-presentations]
+  lookForIds: [adi-justification, adi-critique-quality, adi-talk-norms, adi-revision-record, adi-nos-explicit]
+  misapplicationIds: [mis-adi-no-justification, mis-adi-teacher-judges]
+guideSection: sequences
+items:
+  - id: predict
+    type: predict
+    at: task-question
+    processing: Retrieval
+    kind: Predict
+    title: "A speaker plays a steady tone inside a box. Groups change the box's lining and read the sound level outside it with a phone meter."
+    q: Which lining will cut the sound reaching the meter the most?
+    options:
+      - text: Foam, because soft materials always block sound best
+      - text: Timber, because sound can't travel through solids
+      - text: It depends on the tone the speaker plays
+      - text: None of them makes a noticeable difference
+    answer: 2
+    reveal: >-
+      Classes usually find that the answer changes with the tone. Soft, porous linings like foam often do best
+      on a high tone, while a denser lining can match or beat them on a low one. Sound does travel through
+      solids; that's why some always gets out.
+    why: >-
+      The guiding question ends “and does the answer depend on the sound?” That half is what gives groups
+      that tested different tones something real to argue about. All three of this sequence's target
+      conceptions sit in these options.
+
+  - id: board
+    type: choice
+    at: tentative-argument
+    processing: Analysis
+    kind: Judge the argument
+    tests: tentative-argument
+    title: Four groups' whiteboards. Which one has a real justification?
+    options:
+      - text: "Claim: foam works best. Evidence: our table of 24 readings."
+        fb: A claim and raw data, with nothing saying why the data support the claim. That's the gap the argumentation session will fall into.
+      - text: "Claim: foam works best. Evidence: a bar chart of reduction for each lining. Justification: foam is the softest material."
+        fb: The evidence has been analysed, but “it's softest” restates the target conception instead of explaining the result with science.
+      - text: "Claim: foam cut the high tone most, but timber did as well on the low tone. Evidence: a chart of reduction for each lining at both tones. Justification: the high tone lost energy in the foam's air pockets, while the low tone passed through the foam more easily and the denser timber reflected more of it."
+        fb: Yes. The claim is limited to what the data show, the evidence is analysed, and the justification uses wave ideas to say why the evidence counts.
+      - text: "Claim: foam works best. Evidence: it sounded quietest to us."
+        fb: An impression, not data. The group collected readings but didn't use them.
+    answer: 2
+    refs:
+      lookForIds: [adi-three-part, adi-analysis, adi-justification]
+
+  - id: dx-no-just
+    type: diagnose
+    at: tentative-argument
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A pre-service teacher's ADI · Lesson 4
+      text: >-
+        The teacher's whiteboard template has two boxes: “Our claim” and “Our results”. Groups fill them neatly
+        and move on to the argumentation session.
+    answer: mis-adi-no-justification
+    distractors: [mis-adi-closed-question, mis-adi-teacher-judges, mis-adi-given-method]
+    hint: Which of the three parts has no box?
+    why: >-
+      The template itself leaves out the justification, so the reasoning stays in students' heads, where no one
+      can critique it.
+    refs:
+      exampleIds: [adi-tentative-argument-neg-no-justification]
+
+  - id: lf-critique
+    type: lookfor
+    at: argumentation
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 9 · Round robin
+      text: >-
+        Visitors to each whiteboard say things like “Your chart is really neat” and “We got the same thing”,
+        then move on. The presenters' logs are empty.
+    answer: adi-critique-quality
+    distractors: [adi-talk-norms, adi-three-part, adi-concept-consolidated]
+    strong: false
+    hint: The talk is friendly. What is it about?
+    why: >-
+      Polite agreement isn't critique. Stems such as “How many readings did you take at each tone?” point
+      students at evidence and justification.
+
+  - id: move
+    type: choice
+    at: argumentation
+    processing: Knowledge utilisation
+    kind: Teacher move
+    tests: argumentation
+    vignette:
+      who: During the round robin
+      text: "A presenter says: “Foam works best. It's the softest, so it soaks up the sound.” The group only tested the high tone."
+    q: What is the best move?
+    options:
+      - text: Send over a visitor from a group that tested the low tone, and ask the presenter what their own data can and can't show
+        fb: Yes. Data from another group challenges the claim, and the presenter has to narrow it. The guide pairs groups that tested different tones for exactly this.
+      - text: Tell the group that timber did better on low tones
+        fb: That's adjudicating. Authority replaces evidence, and the class learns to wait for the teacher's verdict.
+      - text: Stop the session and explain absorption to the whole class
+        fb: The science belongs in the reflective discussion, after the arguments have been tested against each other.
+      - text: Praise the clear claim and move on
+        fb: The claim goes unchallenged, and “soft always wins” leaves the lesson intact.
+    answer: 0
+    refs:
+      lookForIds: [adi-critique-quality]
+
+  - id: lf-norms
+    type: lookfor
+    at: argumentation
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 9 · Round robin
+      text: >-
+        A visitor starts, “Your group always…”, stops, looks at the stem chart on the wall and says instead,
+        “What makes you think the meter wasn't picking up the next group's speaker?” The presenter disagrees,
+        and both stay calm.
+    answer: adi-talk-norms
+    distractors: [adi-revision-record, adi-criteria-shared, adi-concept-consolidated]
+    strong: true
+
+  - id: dx-judge
+    type: diagnose
+    at: argumentation
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Another pre-service teacher's ADI · Lesson 5
+      text: >-
+        Each group presents its whiteboard to the class. After each one, the teacher says whether the group got
+        it right, the class claps, and the next group starts.
+    answer: mis-adi-teacher-judges
+    distractors: [mis-adi-no-justification, mis-adi-skip-review, mis-adi-closed-question]
+    refs:
+      exampleIds: [adi-argue-neg-presentations]
+
+  - id: lf-revision
+    type: lookfor
+    at: argumentation
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 9 · End of lesson 5
+      text: >-
+        One group's log reads: “Asked: did you test a low tone? Changed: our claim now says foam was best for the
+        high tone only, and we added the other group's low-tone readings as a question we can't answer yet.”
+    answer: adi-revision-record
+    distractors: [adi-critique-quality, adi-revision-used, adi-three-part]
+    strong: true
+    hint: This is a whiteboard argument, not a written report.
+
+  - id: spot-discuss
+    type: spot
+    at: reflective-discussion
+    processing: Comprehension
+    kind: Spot the stage
+    tests: reflective-discussion
+    vignette:
+      who: Year 9 · Lesson 6
+      text: >-
+        Using the class's results, the teacher works through amplitude and loudness, frequency and pitch, and
+        reflection, absorption and transmission. Then the class names what changed claims in the session:
+        readings from another group, not who said them.
+    q: Which ADI stage is this?
+    answer: reflective-discussion
+    among: [argumentation, reflective-discussion, report]
+    fb:
+      argumentation: The critique has finished. The teacher is now consolidating.
+      reflective-discussion: The science is consolidated and the nature-of-science idea is named. That's the reflective discussion.
+      report: No one is writing yet. The reports come next, built on what the class agreed here.
+    refs:
+      lookForIds: [adi-concept-consolidated, adi-nos-explicit]
+
+  - id: nest
+    type: nest
+    at: reflective-discussion
+    processing: Knowledge utilisation
+    kind: Nest it
+    tests: nesting
+    model: adi
+    host: 5e
+    answer: explore
+    q: A 5E unit on waves needs argument from evidence. In which 5E phase does an ADI routine begin?
+    why: >-
+      ADI runs across Explore and Explain: the investigation and argument are the exploring, and the
+      reflective discussion becomes part of the explaining.
+
+  - id: reflect
+    type: reflect
+    at: reflective-discussion
+    processing: Metacognition
+    kind: Look back
+    title: Hold the science back.
+    q: Why does the teacher wait until the reflective discussion to explain absorption, even when a group is plainly wrong in lesson 5?
+    model: "Example: “If I correct them in lesson 5, the class learns to wait for me. Holding back lets another group's low-tone data do the correcting, and then lesson 6 has their argument to build on.”"
+    recall: predict
