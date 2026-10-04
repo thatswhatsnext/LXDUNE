@@ -26,7 +26,7 @@ document.title = NAMES.productFull;
 document.querySelectorAll("[data-name]").forEach(el => { el.textContent = NAMES[el.dataset.name]; });
 document.querySelectorAll("[data-name-label]").forEach(el => el.setAttribute("aria-label", `${NAMES[el.dataset.nameLabel]}, home`));
 const icon = (id, cls = "i") => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
-const badge = s => `<span class="badge ${SCALE[s].cls}" title="${esc(SCALE[s].tip)}">${SCALE[s].label}</span>`;
+const badge = s => `<span class="badge ${SCALE[s].cls}" title="${esc(SCALE[s].tip)}">${icon("i-scale-" + s)}${SCALE[s].label}</span>`;
 /* Anonymous Moodle Feedback activity for the reckoner survey. Empty string shows "coming soon" in place of every link. */
 const FEEDBACK_URL = "";
 /* One feedback paragraph: the link between `before` and `after`, or a "coming soon" note while FEEDBACK_URL is empty. */
@@ -293,7 +293,7 @@ const chipsHTML = (d, prefix, type) => d.options.map(([v,l]) =>
 const quickForm = document.getElementById("quickForm");
 quickForm.innerHTML = ["purpose","time","ready"].map(id => { const d = dimById[id];
   return `<fieldset class="q"><legend>${esc(d.label)}</legend><div class="chips">${chipsHTML(d,"q","radio")}</div>
-  <div class="q-foot"><details class="help"><summary>What this means</summary><p>${esc(d.help)}</p></details></div></fieldset>`; }).join("");
+  <div class="q-foot"><details class="help"><summary>Why this matters</summary><p>${esc(d.help)}</p></details></div></fieldset>`; }).join("");
 let quickPreview = null;
 const quickAnswers = () => { const f = new FormData(quickForm);
   return { purpose: f.get("q-purpose"), time: f.get("q-time"), ready: f.get("q-ready") }; };
@@ -351,7 +351,7 @@ detailForm.innerHTML = DIMS.map(d => `<fieldset class="q" data-dim="${d.id}"><le
   ${d.sub ? `<p class="hint">${esc(d.sub)}</p>` : ""}
   <div class="chips">${chipsHTML(d,"d",d.multi?"checkbox":"radio")}</div>
   <p class="note" id="note-${d.id}" aria-live="polite"></p>
-  <div class="q-foot"><details class="help"><summary>What this means</summary><p>${esc(d.help)}</p></details>
+  <div class="q-foot"><details class="help"><summary>Why this matters</summary><p>${esc(d.help)}</p></details>
   <label class="imp">Importance <select data-imp="${d.id}"><option value="0.5">Low</option><option value="1" selected>Normal</option><option value="2">High</option></select></label>
   </div></fieldset>`).join("");
 function detailAnswers(){
@@ -850,8 +850,8 @@ function renderUnit(moveFocus){
   } else if (!unit.stage){
     q = "Which stage are you teaching?";
     html = `<h2 class="lite-q" tabindex="-1">${q}</h2>
-      <div class="opts">${Object.entries(STAGE_INFO).filter(([st]) => FA[st]).map(([st, [name, years]]) =>
-        `<button type="button" class="opt big" data-stage="${st}"><b>${name}</b><small>${years}</small></button>`).join("")}</div>
+      <div class="opts stages">${Object.entries(STAGE_INFO).filter(([st]) => FA[st]).map(([st, [name, years]]) =>
+        `<button type="button" class="opt big" data-stage="${st}">${icon(st === "stage4" ? "i-stage4" : "i-stage5", "i stage-i")}<b>${name}</b><small>${years}</small></button>`).join("")}</div>
       <p style="margin-top:1rem">Not sure what you need? <button type="button" class="lite-link" data-tapstart>Answer three quick questions</button></p>`;
   } else if (!unit.focus){
     q = `Which ${STAGE_INFO[unit.stage][0]} focus area?`;
