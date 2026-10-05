@@ -1,0 +1,236 @@
+# ADI path, lesson 5. Design level: Argument Day, a branching simulation of lessons 4–6 of the ADI guide's sound sequence (seq-s5-sound). Drafted for Steve's review, 2026-10-05.
+schemaVersion: 1
+id: adi-5-argument-day
+path: adi
+order: 5
+title: Argument Day
+summary: Run the whiteboards, the round robin and the reflective discussion with a simulated Year 10 class. Every move decides whose argument gets tested.
+level: design
+version: 0.1.0
+status: in-review
+lastReviewed: 2026-10-05
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage5]
+  focusAreas: [Waves and motion]
+  disciplines: [physics]
+outcomes: [SC5-WAM-01]
+builtOn:
+  sequenceIds: [seq-s5-sound]
+  lookForIds: [adi-justification, adi-critique-quality, adi-revision-record, adi-concept-consolidated]
+  misapplicationIds: [mis-adi-teacher-judges, mis-adi-no-justification]
+guideSection: sequences
+items:
+  - id: briefing
+    type: concept
+    at: tentative-argument
+    processing: Retrieval
+    kind: How Argument Day works
+    title: Three lessons, four decisions
+    lead: >-
+      You're on placement with a Year 10 class, in the middle of the ADI routine on sound from the guide. Groups
+      have their data. At four moments you choose what to do next. Students voice the ideas the guide says to
+      expect, and your choices decide which ideas surface, which stay hidden and which get challenged by other
+      students' evidence.
+    rows:
+      - phaseId: tentative-argument
+        does: "Lesson 4: groups build their whiteboards."
+        move: "Ask why the evidence counts."
+      - phaseId: argumentation
+        does: "Lesson 5: the round robin."
+        move: "Let evidence do the correcting."
+      - phaseId: reflective-discussion
+        does: "Lesson 6: the reflective discussion."
+        move: "Consolidate the science, and how it was settled."
+
+  - id: sim
+    type: sim
+    at: tentative-argument
+    processing: Knowledge utilisation
+    kind: Argument Day
+    tests: sim
+    cast:
+      who: Year 10 · Waves and motion
+      text: 25 students in six groups. Groups chose their own linings and tones, so their data don't all agree.
+    sequenceId: seq-s5-sound
+    start: board
+    nodes:
+      - id: board
+        phase: tentative-argument
+        when: Lesson 4 · whiteboards
+        situation: >-
+          Group 2 tested foam, felt and timber with a high tone. Their whiteboard says “Claim: foam is best” above a
+          copy of their results table.
+        said:
+          who: Jai, Group 2
+          text: “Foam's the softest, so it soaks up the sound. Obviously.”
+          conception: 1
+        choices:
+          - text: Point to the criteria and ask, “Why does your evidence count? Write the ‘because’ on the board, in your words.”
+            next: round
+            good: true
+            lookFor: adi-justification
+            surface: [1]
+            debrief: Jai writes “because soft things absorb sound”. It isn't right yet, but it's on the board where other students can test it, which is what the argumentation session is for.
+          - text: Tell them that foam's air pockets absorb high tones, and suggest they add that as their justification
+            next: round-quiet
+            good: false
+            lookFor: adi-justification
+            hide: [1]
+            debrief: The physics is right, but the justification is now yours. Jai's “soft always wins” never reaches the board, so nobody gets to argue with it.
+
+      - id: round
+        phase: argumentation
+        when: Lesson 5 · round robin
+        situation: Group 5 tested a low tone only, and found timber cut more sound than foam. Their presenter is explaining why to visitors from Group 2.
+        said:
+          who: Mia, Group 5
+          text: “Timber's solid, so sound can't get through it. That's why it won.”
+          conception: 0
+        choices:
+          - text: Ask both groups, “What does the other group's data show that yours can't?”, and have them log the answer
+            next: logs
+            good: true
+            lookFor: adi-critique-quality
+            surface: [0]
+            challenge: [1]
+            debrief: Group 2 sees foam lose at a low tone, and Group 5 has to explain why its meter still read some sound through the timber. The data are doing the correcting, not you.
+          - text: Tell the class that timber was better at low tones and foam at high tones, so both groups are right
+            next: discuss-flat
+            good: false
+            lookFor: adi-critique-quality
+            hide: [0]
+            debrief: It's a fair summary, but you've adjudicated. The guide calls this the teacher adjudicating. Mia's idea that sound can't pass through solids is never questioned, and critique stops.
+
+      - id: round-quiet
+        phase: argumentation
+        when: Lesson 5 · round robin
+        situation: Group 2's board now carries your justification. Visitors read it, nod and move on. Nobody asks Group 2 anything.
+        said:
+          who: A visitor
+          text: “Yours is right. The teacher wrote that bit.”
+          conception: 1
+        choices:
+          - text: Ask every visitor to leave each board one question about evidence the group hasn't got yet, using the stems on the wall
+            next: logs
+            good: true
+            lookFor: adi-critique-quality
+            surface: [1]
+            debrief: A visitor asks Group 2 whether foam beat timber at a low tone. They didn't test one. The question brings “soft always wins” back into the open, a lesson later than it could have been.
+          - text: Keep moving between groups. The session is running smoothly.
+            next: discuss-flat
+            good: false
+            lookFor: adi-critique-quality
+            debrief: Smooth isn't the same as working. Agreement without questions is the weak evidence the look-for describes, and no argument changes.
+
+      - id: logs
+        phase: argumentation
+        when: End of lesson 5
+        situation: Groups are packing up. Group 2's whiteboard still says “foam is best”, though two visitors challenged it with low-tone readings.
+        choices:
+          - text: Give groups five minutes to log the questions that changed their thinking and rewrite their claim
+            next: discuss
+            good: true
+            lookFor: adi-revision-record
+            challenge: [1]
+            debrief: Group 2 narrows its claim to “foam cut the high tone most” and logs the low-tone question as the reason. Revision is visible, and the lesson 6 discussion has something to build on.
+          - text: Photograph the whiteboards for marking, and start the reflective discussion next lesson
+            next: discuss-flat
+            good: false
+            lookFor: adi-revision-record
+            debrief: The challenge happened, but nothing records it. Next lesson the boards still say what they said before the session.
+
+      - id: discuss
+        phase: reflective-discussion
+        when: Lesson 6 · reflective discussion
+        situation: The class's results are on the screen. Most groups have narrowed their claims to the tones they tested.
+        said:
+          who: Ella
+          text: “The high tone was louder, so it's harder to block.”
+          conception: 2
+        choices:
+          - text: Use the class's data to separate loudness (amplitude, in decibels) from pitch (frequency), then consolidate reflection, absorption and transmission, and name what changed claims on Tuesday
+            next: end
+            good: true
+            lookFor: adi-concept-consolidated
+            challenge: [2, 0]
+            debrief: Ella's idea meets the class's own readings, and Mia's timber result becomes an example of transmission. Students leave with the accepted science and know it was another group's evidence, not the teacher, that moved their claims.
+          - text: Hand out a summary sheet of sound facts and start the reports
+            next: end
+            good: false
+            lookFor: adi-concept-consolidated
+            hide: [2]
+            debrief: The facts are on paper, but Ella's mix-up of loudness and pitch goes straight into her report, where her reviewer may not catch it.
+
+      - id: discuss-flat
+        phase: reflective-discussion
+        when: Lesson 6 · reflective discussion
+        situation: Several whiteboards still say soft materials always win, and one says sound can't go through timber. Few claims changed in the session.
+        said:
+          who: Ella
+          text: “The high tone was louder, so it's harder to block.”
+          conception: 2
+        choices:
+          - text: Put two contradictory whiteboards side by side and ask what evidence would settle it, then consolidate the wave ideas from the class's readings
+            next: end
+            good: true
+            lookFor: adi-concept-consolidated
+            surface: [1]
+            challenge: [1, 2]
+            debrief: Setting the boards against each other recovers some of the argument the session missed. The ideas finally meet evidence, though later and with you doing more of the work.
+          - text: Explain the right answers, and move on to the reports
+            next: end
+            good: false
+            lookFor: adi-concept-consolidated
+            debrief: The reports will repeat your explanation. The ideas students started with were never tested, so they'll be back the next time sound comes up.
+
+    endings:
+      - minGood: 4
+        title: Evidence did the arguing
+        text: >-
+          Every idea surfaced on a whiteboard, met another group's data and changed, and you consolidated the science at
+          the end. That's ADI working as the guide describes: the teacher holds the science back until the argument
+          has run.
+      - minGood: 2
+        title: Some arguments ran, some were settled for them
+        text: >-
+          Parts of the routine did their job. Look at the decisions where you supplied the answer or let agreement
+          pass for critique. Those are the moments to plan a sentence for.
+      - minGood: 0
+        title: A practical with a presentation
+        text: >-
+          The class did an investigation and heard the right answers, but no argument was tested by another student.
+          The guide's look-fors for the whiteboard and the argumentation session are the place to start.
+
+  - id: takeaway
+    type: choice
+    at: reflective-discussion
+    processing: Analysis
+    kind: What made the difference?
+    tests: sim
+    title: In every run, one kind of move did the most damage.
+    q: Which?
+    options:
+      - text: Supplying the justification or the verdict before students had argued it out
+        fb: Yes. Every weak path started with the teacher settling something students should have tested. Each one hid an idea the routine needed to challenge.
+      - text: Letting groups disagree in the round robin
+        fb: Disagreement is the point. The strong moves made it sharper by pairing groups whose data conflict.
+      - text: Asking students to log what changed
+        fb: That was a strong move. It makes revision visible and gives lesson 6 something to build on.
+      - text: Consolidating the science in lesson 6
+        fb: The guide plans for it. Holding the science back until lesson 6 is what lets the argument run first.
+    answer: 0
+    refs:
+      misapplicationIds: [mis-adi-teacher-judges]
+
+  - id: reflect
+    type: reflect
+    at: reflective-discussion
+    processing: Metacognition
+    kind: Look back
+    title: Your Argument Day.
+    q: Which decision would be hardest for you on a real placement, and what will you say in that moment?
+    model: "Example: “Not telling Mia that sound goes through solids. I'll have a question ready: ‘Your meter still read something. Where did that sound come from?’”"
