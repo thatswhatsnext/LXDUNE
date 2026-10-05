@@ -1,4 +1,4 @@
-# ADI path, lesson 5. Design level: Argument Day, a branching simulation of lessons 4–6 of the ADI guide's sound sequence (seq-s5-sound). Drafted for Steve's review, 2026-10-05.
+# ADI path, lesson 5. Design level: Argument Day, a branching simulation of lessons 4–6 of the ADI guide's sound sequence (seq-s5-sound). Reviewed and published by Steve on 2026-10-05.
 schemaVersion: 1
 id: adi-5-argument-day
 path: adi
@@ -6,13 +6,14 @@ order: 5
 title: Argument Day
 summary: Run the whiteboards, the round robin and the reflective discussion with a simulated Year 10 class. Every move decides whose argument gets tested.
 level: design
-version: 0.1.0
-status: in-review
+version: 1.0.0
+status: published
 lastReviewed: 2026-10-05
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-05
 context:
   stages: [stage5]
   focusAreas: [Waves and motion]

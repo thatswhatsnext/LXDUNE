@@ -1,4 +1,4 @@
-# ADI path, lesson 4. Design level: build an ADI routine from cards and read the feature report. Built on the ADI guide's worked sequence seq-s5-sound. Drafted for Steve's review, 2026-10-05.
+# ADI path, lesson 4. Design level: build an ADI routine from cards and read the feature report. Built on the ADI guide's worked sequence seq-s5-sound. Reviewed and published by Steve on 2026-10-05.
 schemaVersion: 1
 id: adi-4-build
 path: adi
@@ -6,13 +6,14 @@ order: 4
 title: "Build it: ADI"
 summary: Build a 6–8 lesson ADI routine for a Year 10 waves unit from activity cards, then read what the guide's look-fors say about it.
 level: design
-version: 0.1.0
-status: in-review
+version: 1.0.0
+status: published
 lastReviewed: 2026-10-05
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-05
 context:
   stages: [stage5]
   focusAreas: [Waves and motion]
