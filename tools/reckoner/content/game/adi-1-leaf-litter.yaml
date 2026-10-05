@@ -6,7 +6,7 @@ order: 1
 title: Under the leaf litter
 summary: Two schoolyard sites and a question with more than one defensible answer. Learn the eight stages of ADI and what each has to do.
 level: recognise
-version: 1.0.0
+version: 1.0.1
 status: published
 lastReviewed: 2026-10-05
 provenance:
@@ -56,8 +56,8 @@ items:
     title: Argument-Driven Inquiry
     lead: >-
       ADI turns a practical into an argument other students can question, then makes everyone write, review and
-      revise. It runs over about 6–8 lessons in three groups of stages: investigate, argue, then write and
-      review.
+      revise. It's a multi-lesson routine of about 6–8 lessons that sits inside a unit, in three groups of
+      stages: investigate, argue, then write and review.
     rows:
       - phaseId: task-question
         does: Students meet a phenomenon, a guiding question and the criteria for a strong argument.

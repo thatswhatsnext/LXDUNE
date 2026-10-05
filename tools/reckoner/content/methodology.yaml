@@ -1,11 +1,12 @@
 # How the reckoner works: methodology notes shown on the "How it works" page (F1) and, later, the glossary (F7).
 # v1.0.0 approved by Steve Grant on 2026-09-30; v1.1.0 rewrites it for reading on the web, keeping its meaning,
 # and was approved and published by Steve Grant on 2026-09-30. v1.2.0 adds the time-and-scale prompts
-# (Steve Grant's decision, 2026-10-05).
+# (Steve Grant's decision, 2026-10-05); v1.2.1 words the routine case as the Field Guide does: a routine fits
+# inside a unit rather than structuring one (Steve Grant, 2026-10-05).
 # Counts (models, guides) are deliberately left out: the page computes them from the manifest, so this file never goes stale.
 schemaVersion: '1.0'
 id: methodology
-version: 1.2.0
+version: 1.2.1
 status: published
 lastReviewed: '2026-10-05'
 provenance:
@@ -85,7 +86,7 @@ routes:
     body: |
       - A rule fires on particular answers, for example novice learners with a problem-based model, or a robust misconception with a model that does not target misconceptions.
       - Rules add advice to a result. They do not change the ranking.
-      - **Have you thought about…?** prompts appear when a model's scale and your timescale don't line up: a multi-lesson routine for one lesson, unit architecture for a few lessons, or a routine that could either sit inside a unit or carry it. Purpose counts most, so a model can rank first even when its length doesn't match your time. The Reckoner supports your judgement; weighing the prompt is your call.
+      - **Have you thought about…?** prompts appear when a model's scale and your timescale don't line up: a multi-lesson routine for one lesson, unit architecture for a few lessons, or a multi-lesson routine when you're planning a whole unit, since a routine fits inside a unit rather than structuring one. Purpose counts most, so a model can rank first even when its length doesn't match your time. The Reckoner supports your judgement; weighing the prompt is your call.
   - id: dial
     title: Guidance dial
     summary: 'Recommends how much to guide students inside whichever model you choose, from confirmation to open inquiry.'
