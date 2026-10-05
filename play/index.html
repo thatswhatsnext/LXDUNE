@@ -18,6 +18,7 @@
   --engage:#b06e0c; --explore:#0d7c6f; --explain:#2a5cad; --elaborate:#7046ad; --evaluate:#ad4166;
   --plate-sun:#F2C76B; --plate-ray:#D9A62E; --plate-canopy:#DFEDE7; --plate-branch:#1D6B56; --plate-leaf:#2E8A6E;
   --plate-trunk:#5B4632; --plate-soil:#7A5B3E; --plate-tub:#35538F; --plate-rim:#2A4372; --plate-drop:#6FA8DC;
+  --plate-grey:#6E7A80; --plate-rust:#B5562B;
   --f-display:"Source Serif 4", Georgia, serif;
   --f-body:"IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
   --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -29,6 +30,7 @@
   --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
   --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
   --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
+  --plate-grey:#A3AFB5; --plate-rust:#D98A63;
   --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
   --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
   color-scheme:dark}}
@@ -37,6 +39,7 @@
   --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
   --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
   --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
+  --plate-grey:#A3AFB5; --plate-rust:#D98A63;
   --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
   --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
   color-scheme:dark}
@@ -226,6 +229,13 @@ button.go.fbk{margin-top:12px}
 .pl-tub{fill:var(--plate-tub)} .pl-rim{fill:var(--plate-rim)} .pl-soil{stroke:var(--plate-soil)}
 .pl-drop{fill:var(--plate-drop)} .pl-label{font:11px var(--mono);fill:var(--muted)}
 .pl-q{font:600 40px var(--serif);fill:var(--micro)} .plate{width:100%;height:auto;display:block}
+/* leaf litter plate (adi-1-leaf-litter): ground, litter, traps and the invertebrates, each kind its own shape and colour */
+.ll-soil{fill:var(--plate-soil);fill-opacity:.22} .ll-ground{stroke:var(--plate-soil)} .ll-grass{stroke:var(--plate-leaf)} .ll-bark{fill:var(--plate-trunk)}
+.ll-litter-a{fill:var(--plate-leaf);fill-opacity:.85} .ll-litter-b{fill:var(--plate-ray);fill-opacity:.85} .ll-litter-c{fill:var(--plate-soil)}
+.ll-cup{fill:var(--plate-canopy);stroke:var(--plate-rim)} .ll-seg{stroke:var(--plate-canopy)}
+.ll-ant{fill:var(--plate-trunk);stroke:var(--plate-trunk)} .ll-beetle{fill:var(--plate-branch);stroke:var(--plate-branch)}
+.ll-slater{fill:var(--plate-grey);stroke:var(--plate-grey)} .ll-spider{fill:var(--plate-rust);stroke:var(--plate-rust)}
+.ll-centipede{fill:var(--plate-ray);stroke:var(--plate-ray)} .ll-springtail{fill:var(--plate-tub);stroke:var(--plate-tub)}
 /* privacy line under the dock's controls on lesson screens */
 .privacy{flex-basis:100%;display:flex;align-items:center;gap:6px;margin:0;font-size:12.5px;color:var(--muted)}
 .privacy .i{width:14px;height:14px}
@@ -410,6 +420,136 @@ const PLATES = {
   <text class="pl-label" x="20" y="176">YEAR 0 · 2 kg</text>
   <text class="pl-label" x="258" y="176">YEAR 5 · 77 kg</text>
   <text class="pl-q" x="262" y="108">?</text>
+</svg>`,
+  "adi-1-leaf-litter": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="Two pitfall traps sunk in the ground. Beside a sunny mown oval, the trap is crowded with ants of one kind. Under a gum tree in leaf litter, the trap holds fewer animals, each a different kind: an ant, a beetle, a slater, a spider, a centipede and a springtail." xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="ll-ant" overflow="visible">
+    <g stroke-width=".9" stroke-linecap="round" fill="none"><path d="M1.5 0l-1.5 4M1.5 0l1.8 4.2M1.5 0l-3 3.6M1.5 0l-1.5 -4M1.5 0l1.8 -4.2M1.5 0l-3 -3.6M6 -1l2.6 -2.4M6 1l2.6 2.4"/></g>
+    <g stroke-width="0"><ellipse cx="-3.2" cy="0" rx="3" ry="2.1"/><ellipse cx="1.4" cy="0" rx="1.9" ry="1.2"/><circle cx="5" cy="0" r="1.8"/></g>
+    </symbol>
+    <symbol id="ll-beetle" overflow="visible">
+    <g stroke-width="1" stroke-linecap="round" fill="none"><path d="M3 -3.6l2 -2.6M3 3.6l2 2.6M0 -4l0 -3.2M0 4l0 3.2M-3 -3.6l-2 -2.8M-3 3.6l-2 2.8M8 -1l2.4 -2.4M8 1l2.4 2.4"/></g>
+    <g stroke-width="0"><ellipse cx="-.5" cy="0" rx="6.2" ry="4.4"/><ellipse cx="6.6" cy="0" rx="2.2" ry="2"/></g>
+    <path class="ll-seg" d="M-6.2 0H5.4" stroke-width=".9"/>
+    </symbol>
+    <symbol id="ll-slater" overflow="visible">
+    <g stroke-width=".9" stroke-linecap="round" fill="none"><path d="M6.6 -1.2l3 -2.6M6.6 1.2l3 2.6M-6.4 -1l-2.2 -1.6M-6.4 1l-2.2 1.6"/></g>
+    <ellipse cx="0" cy="0" rx="6.6" ry="4" stroke-width="0"/>
+    <g class="ll-seg" stroke-width=".8" fill="none"><path d="M-4.2 -3.1v6.2M-1.8 -3.8v7.6M.6 -4v8M3 -3.7v7.4M5.1 -2.8v5.6"/></g>
+    </symbol>
+    <symbol id="ll-spider" overflow="visible">
+    <g stroke-width="1" stroke-linecap="round" fill="none">
+    <path d="M2 -1.2q1 -4 4 -6M1.4 -1.6q-.4 -4 1.6 -6.8M.6 -1.6q-1.6 -3.6 -1.2 -6.8M0 -1.2q-3 -2.4 -4.2 -5.6"/>
+    <path d="M2 1.2q1 4 4 6M1.4 1.6q-.4 4 1.6 6.8M.6 1.6q-1.6 3.6 -1.2 6.8M0 1.2q-3 2.4 -4.2 5.6"/>
+    </g>
+    <g stroke-width="0"><circle cx="-3.4" cy="0" r="3.4"/><circle cx="1.4" cy="0" r="2.1"/></g>
+    </symbol>
+    <symbol id="ll-centipede" overflow="visible">
+    <g stroke-width=".8" stroke-linecap="round" fill="none">
+    <path d="M-8 -1.4l-.6 -2.6M-5 -1.6l0 -2.8M-2 -1.6l.4 -2.8M1 -1.6l.6 -2.8M4 -1.5l.8 -2.6M-8 1.4l-.6 2.6M-5 1.6l0 2.8M-2 1.6l.4 2.8M1 1.6l.6 2.8M4 1.5l.8 2.6M8.6 -.6l2.8 -2.6M8.6 .6l2.8 2.6M-10.4 0l-2.4 -1.6M-10.4 0l-2.4 1.6"/>
+    </g>
+    <g stroke-width="0"><ellipse cx="-9" cy="0" rx="1.8" ry="1.4"/><ellipse cx="-6.5" cy="0" rx="1.7" ry="1.6"/><ellipse cx="-3.5" cy="0" rx="1.7" ry="1.6"/><ellipse cx="-.5" cy="0" rx="1.7" ry="1.6"/><ellipse cx="2.5" cy="0" rx="1.7" ry="1.6"/><ellipse cx="5.4" cy="0" rx="1.7" ry="1.5"/><ellipse cx="7.9" cy="0" rx="1.5" ry="1.4"/></g>
+    </symbol>
+    <symbol id="ll-springtail" overflow="visible">
+    <g stroke-width=".9" stroke-linecap="round" fill="none"><path d="M4.4 -.6l3.6 -3M4.4 .6l3.6 3M-4.6 .4q-1.4 1.6 1 2.8M-4.6 -.4q-1.4 -1.6 1 -2.8"/></g>
+    <g stroke-width="0"><ellipse cx="-.6" cy="0" rx="4.2" ry="1.7"/><circle cx="4" cy="0" r="1.4"/></g>
+    </symbol>
+    <symbol id="ll-gumleaf" overflow="visible"><path d="M-8 0 C-4 -3.2 3 -3.2 8 .6 C3 1.8 -4 2 -8 0Z"/></symbol>
+  </defs>
+  <!-- left: open, sunny oval edge -->
+  <circle class="pl-sun" cx="38" cy="32" r="15"/>
+  <g class="pl-ray" stroke-width="2.4" stroke-linecap="round"><path d="M58.0 32.0L64.0 32.0 M52.1 46.1L56.4 50.4 M38.0 52.0L38.0 58.0 M23.9 46.1L19.6 50.4 M18.0 32.0L12.0 32.0 M23.9 17.9L19.6 13.6 M38.0 12.0L38.0 6.0 M52.1 17.9L56.4 13.6"/></g>
+  <!-- right: gum canopy -->
+  <path class="pl-trunk" d="M300 92 C298 70 297 52 302 30" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <path class="pl-trunk" d="M300 52 C284 44 272 38 262 30" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <path class="pl-trunk" d="M301 44 C314 38 324 32 332 22" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <ellipse class="pl-canopy" cx="290" cy="26" rx="56" ry="22"/>
+  <g>
+    <use href="#ll-gumleaf" class="ll-litter-c" transform="translate(295 9) rotate(60) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(305 9) rotate(75) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(318 9) rotate(75) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(281 10) rotate(95) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(272 12) rotate(75) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(261 12) rotate(85) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(252 15) rotate(20) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(337 16) rotate(60) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(243 17) rotate(105) scale(.8)"/>
+    <use href="#ll-gumleaf" class="ll-litter-b" transform="translate(313 18) rotate(95) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(326 18) rotate(20) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(285 18) rotate(85) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(265 20) rotate(60) scale(.8)"/>
+    <use href="#ll-gumleaf" class="ll-litter-b" transform="translate(294 21) rotate(120) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(304 21) rotate(85) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(336 24) rotate(75) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(280 25) rotate(105) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(246 26) rotate(35) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(322 26) rotate(20) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(258 29) rotate(20) scale(.8)"/>
+    <use href="#ll-gumleaf" class="ll-litter-c" transform="translate(271 29) rotate(105) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(310 30) rotate(60) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(287 33) rotate(60) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(335 34) rotate(60) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(319 34) rotate(60) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(297 34) rotate(60) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(246 37) rotate(75) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(258 38) rotate(-20) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(327 38) rotate(105) scale(.8)"/>
+    <use href="#ll-gumleaf" class="ll-litter-b" transform="translate(271 39) rotate(105) scale(.8)"/>
+    <use href="#ll-gumleaf" class="ll-litter-c" transform="translate(282 39) rotate(85) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(293 41) rotate(20) scale(.8)"/>
+    <use href="#ll-gumleaf" class="ll-litter-c" transform="translate(312 41) rotate(60) scale(.8)"/>
+    <use href="#ll-gumleaf" class="pl-leaf" transform="translate(303 44) rotate(120) scale(.8)"/>
+  </g>
+  <!-- ground -->
+  <rect class="ll-soil" x="0" y="92" width="350" height="98"/>
+  <path class="ll-ground" d="M0 92H350" stroke-width="2"/>
+  <!-- mown grass, short and even -->
+  <g class="ll-grass" stroke-width="1.6" stroke-linecap="round">
+    <path d="M6 92v-5M14 92v-6M22 92v-5M30 92v-6M38 92v-5M46 92v-6M118 92v-5M126 92v-6M134 92v-5M142 92v-6M150 92v-5M158 92v-6M166 92v-5"/>
+  </g>
+  <!-- ants trailing towards the cup -->
+  <use href="#ll-ant" class="ll-ant" transform="translate(12 85) scale(1.15)"/>
+  <use href="#ll-ant" class="ll-ant" transform="translate(30 84) scale(1.15)"/>
+  <use href="#ll-ant" class="ll-ant" transform="translate(140 85) rotate(180) scale(1.15)"/>
+  <use href="#ll-ant" class="ll-ant" transform="translate(160 84) rotate(180) scale(1.15)"/>
+  <!-- left cup: crowded, one kind -->
+  <path class="ll-cup" d="M52 92 H116 L108 178 H60 Z" stroke-width="2.2"/>
+  <g>
+    <use href="#ll-ant" class="ll-ant" transform="translate(68 106) rotate(20) scale(1.2)"/>
+    <use href="#ll-ant" class="ll-ant" transform="translate(96 104) rotate(160) scale(1.2)"/>
+    <use href="#ll-ant" class="ll-ant" transform="translate(82 118) rotate(-30) scale(1.2)"/>
+    <use href="#ll-ant" class="ll-ant" transform="translate(102 122) rotate(-80) scale(1.2)"/>
+    <use href="#ll-ant" class="ll-ant" transform="translate(68 130) rotate(80) scale(1.2)"/>
+    <use href="#ll-ant" class="ll-ant" transform="translate(92 136) rotate(200) scale(1.2)"/>
+    <use href="#ll-ant" class="ll-ant" transform="translate(76 148) rotate(10) scale(1.2)"/>
+    <use href="#ll-ant" class="ll-ant" transform="translate(98 152) rotate(130) scale(1.2)"/>
+    <use href="#ll-ant" class="ll-ant" transform="translate(70 164) rotate(-120) scale(1.2)"/>
+    <use href="#ll-ant" class="ll-ant" transform="translate(92 168) rotate(0) scale(1.2)"/>
+  </g>
+  <!-- the two sites are different places -->
+  <path d="M182 60V186" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="3 5"/>
+  <!-- leaf litter: a thick layer either side of the cup -->
+  <g>
+    <use href="#ll-gumleaf" class="ll-litter-a" transform="translate(196 90) rotate(-8)"/>
+    <use href="#ll-gumleaf" class="ll-litter-c" transform="translate(210 88) rotate(14)"/>
+    <use href="#ll-gumleaf" class="ll-litter-b" transform="translate(224 90) rotate(-4)"/>
+    <use href="#ll-gumleaf" class="ll-litter-a" transform="translate(206 84) rotate(30)"/>
+    <use href="#ll-gumleaf" class="ll-litter-b" transform="translate(194 84) rotate(-24)"/>
+    <use href="#ll-gumleaf" class="ll-litter-c" transform="translate(300 88) rotate(-12)"/>
+    <use href="#ll-gumleaf" class="ll-litter-b" transform="translate(314 90) rotate(6)"/>
+    <use href="#ll-gumleaf" class="ll-litter-a" transform="translate(328 88) rotate(-20)"/>
+    <use href="#ll-gumleaf" class="ll-litter-c" transform="translate(342 90) rotate(10)"/>
+    <use href="#ll-gumleaf" class="ll-litter-b" transform="translate(320 83) rotate(26)"/>
+    <use href="#ll-gumleaf" class="ll-litter-a" transform="translate(336 82) rotate(-30)"/>
+  </g>
+  <!-- right cup: fewer animals, one of each kind -->
+  <path class="ll-cup" d="M232 92 H296 L288 178 H240 Z" stroke-width="2.2"/>
+  <use href="#ll-beetle" class="ll-beetle" transform="translate(250 110) rotate(-20) scale(1.25)"/>
+  <use href="#ll-springtail" class="ll-springtail" transform="translate(278 106) rotate(150) scale(1.35)"/>
+  <use href="#ll-slater" class="ll-slater" transform="translate(276 132) rotate(30) scale(1.25)"/>
+  <use href="#ll-ant" class="ll-ant" transform="translate(250 134) rotate(60) scale(1.2)"/>
+  <use href="#ll-spider" class="ll-spider" transform="translate(258 154) rotate(-10) scale(1.2)"/>
+  <use href="#ll-centipede" class="ll-centipede" transform="translate(264 170) rotate(4) scale(1.15)"/>
 </svg>`,
 };
 const LEVEL = {recognise:"Recognise",explain:"Explain",select:"Select",design:"Design"};
