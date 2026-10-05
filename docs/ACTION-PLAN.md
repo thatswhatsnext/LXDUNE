@@ -492,7 +492,7 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - Adapted from the handoff: (1) the patch added the methodology line as a single-quoted YAML string inside a `|` block, where quotes are literal, so students would have seen the quote marks and doubled apostrophes ("model''s"). It is now plain text, word for word the signed-off wording. (2) The handoff asked Claude Code to open, merge and release the PR; `/apply-handoff` stops at a pushed branch, so release waits for `/ship`. (3) The handoff and its patch are committed under `docs/handoffs/` as the record
 - [ ] Open: Round 6, ADI Design lessons `adi-4` (Build it: ADI) and `adi-5` (Argument Day, a branching sim on `seq-s5-sound`)
 - [x] ~~Open: align the ADI guide's `scaleNote` with the view that ADI can also carry a unit~~ Closed by item 48: the `scaleNote` ("replaces a practical and its report, not the whole unit") already matches the Field Guide, so no guide change is needed
-- [ ] Open: plate for `adi-1-leaf-litter` (add to `PLATES` in `game.js`), alongside item 46's plate list
+- [x] ~~Open: plate for `adi-1-leaf-litter`~~ Done in item 50
 
 ### 48. ADI framed as a multi-lesson routine inside a unit ✅ — 2026-10-05
 - [x] Steve's direction, 2026-10-05 (`docs/handoffs/2026-10-05-adi-routine-wording.md`): keep consistency with the Field Guide's wording. ADI is a multi-lesson routine ("A few lessons. Fits inside a unit."): between one lesson and part of a unit, not a whole unit. Corrects three places item 47 shipped
@@ -502,7 +502,7 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [x] Item 47's decision line on ADI as a unit's architecture is marked superseded, and its `scaleNote` open item is closed: the ADI guide already says ADI "replaces a practical and its report, not the whole unit"
 - Nothing adapted from the handoff
 
-### 49. Fieldwork ADI path complete: Design lessons and Argue it out on a unit timescale ⬜ (open item remains) — 2026-10-05
+### 49. Fieldwork ADI path complete: Design lessons and Argue it out on a unit timescale ✅ — 2026-10-05
 - [x] Applied `docs/handoffs/2026-10-05-fieldwork-adi-design.md`, signed off by Steve Grant on 2026-10-05. Used the pushed `feature/fieldwork-adi-design` branch, as the handoff allows: it sits on `main` at `1085e1a` (unchanged since), contains `dev`, and its source changes are identical to the handoff's patch
 - [x] Two Design lessons on the ADI path, published at v1.0.0 and reviewed by Steve Grant: `adi-4-build` "Build it: ADI" (a 15-card build board across the eight stages, reported against 12 look-fors; five flawed cards and empty argument or review stages raise the guide's misapplications; then "two lessons lost, what do you cut?") and `adi-5-argument-day` "Argument Day" (a six-node branching sim on `seq-s5-sound` lessons 4–6, voicing all three target conceptions, three endings). No engine, template, schema or test changes
 - [x] `select-3-argue` 1.0.1 → 1.0.2: its ADI classes plan 6–8 lessons inside the unit with the "A unit (6–15 lessons)" timescale, matching the ADI guide's length, re-scored against the Reckoner by the build (sound: ADI; local ecosystems: 5E; the flip still clear). The wording keeps item 48's framing: ADI runs inside the unit, it does not structure it
@@ -510,7 +510,15 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [x] The ADI path is complete at five lessons (Recognise 1, Explain 2, Design 2). Published lessons 14 → 16 (5E 6, POE 2, ADI 5, Choosing a model 3). Models 15, guides 6, examples 58, worked sequences 20, focus areas unchanged; no guide or methodology version changes
 - [x] Validate, test (build 20, game 22; the jsdom test plays all 16 lessons to the end), typecheck, check:pages and check:regressions (against `origin/main`) pass. Checked in a browser at 360 px: the Build it: ADI board shows eight stages and 15 cards under the three-group rail, with no sideways scroll
 - Nothing adapted from the handoff. The branch's first commit marks the lessons as drafts; its second publishes them with Steve's review
-- [ ] Open: plate for `adi-1-leaf-litter` (carried from item 47)
+- [x] ~~Open: plate for `adi-1-leaf-litter` (carried from item 47)~~ Done in item 50
+
+### 50. Leaf litter plate on Under the leaf litter ✅ — 2026-10-05
+- [x] Applied `docs/handoffs/2026-10-05-leaf-litter-plate.md`, signed off by Steve Grant on 2026-10-05 (draft A of two; sun rays all the way round; a fuller canopy, about 80% green and 20% leaf-fall colours; no text or numbers). Used the pushed `feature/fieldwork-leaf-litter-plate` branch, stacked on `feature/fieldwork-adi-design` after item 49; its source changes are identical to the handoff's patch
+- [x] `adi-1-leaf-litter` shows a plate on its first item: two pitfall traps in cross-section, a sunny mown oval with a cup crowded with ants of one kind, and a gum in leaf litter with one each of six kinds (ant, beetle, slater, spider, centipede, springtail). It doesn't say which site is more diverse, so the prediction stays open. A full `aria-label`, no `<text>`. New tokens `--plate-grey` and `--plate-rust` in all three theme blocks of `game.html`
+- [x] No lesson YAML changes and no version bumps: plates live in the template, keyed by lesson id. Lessons 16, guides 6, examples 58 unchanged
+- [x] Validate, test (build 20, game 22; the plate test now also covers the leaf litter plate: on the first item only, no text, a description), typecheck, check:pages and check:regressions (against `origin/main`) pass. Checked in a browser at 375 px in light and dark: no sideways scroll
+- [x] Closes the `adi-1-leaf-litter` plate item from items 47 and 49. Item 46's plate list still has Cells under the lens and the POE path
+- Nothing adapted. The local copy of the handoff was an earlier revision of the branch's (it named `c632975` rather than `7afd44a` as the base); the branch's copy was kept, and the substance is the same
 
 ---
 
