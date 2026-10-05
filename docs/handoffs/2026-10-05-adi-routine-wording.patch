@@ -1,0 +1,185 @@
+diff --git a/tools/reckoner/content/game/adi-1-leaf-litter.yaml b/tools/reckoner/content/game/adi-1-leaf-litter.yaml
+index 76d3e46..c5bc20c 100644
+--- a/tools/reckoner/content/game/adi-1-leaf-litter.yaml
++++ b/tools/reckoner/content/game/adi-1-leaf-litter.yaml
+@@ -6,7 +6,7 @@ order: 1
+ title: Under the leaf litter
+ summary: Two schoolyard sites and a question with more than one defensible answer. Learn the eight stages of ADI and what each has to do.
+ level: recognise
+-version: 1.0.0
++version: 1.0.1
+ status: published
+ lastReviewed: 2026-10-05
+ provenance:
+@@ -56,8 +56,8 @@ items:
+     title: Argument-Driven Inquiry
+     lead: >-
+       ADI turns a practical into an argument other students can question, then makes everyone write, review and
+-      revise. It runs over about 6–8 lessons in three groups of stages: investigate, argue, then write and
+-      review.
++      revise. It's a multi-lesson routine of about 6–8 lessons that sits inside a unit, in three groups of
++      stages: investigate, argue, then write and review.
+     rows:
+       - phaseId: task-question
+         does: Students meet a phenomenon, a guiding question and the criteria for a strong argument.
+diff --git a/tools/reckoner/content/game/select-3-argue.yaml b/tools/reckoner/content/game/select-3-argue.yaml
+index 2fcf6aa..a259a04 100644
+--- a/tools/reckoner/content/game/select-3-argue.yaml
++++ b/tools/reckoner/content/game/select-3-argue.yaml
+@@ -6,7 +6,7 @@ order: 3
+ title: Argue it out
+ summary: ADI joins 5E and POE. Find the classes it suits, the one change that rules it out, and where a POE fits inside it.
+ level: select
+-version: 1.0.0
++version: 1.0.1
+ status: published
+ lastReviewed: 2026-10-05
+ provenance:
+@@ -53,11 +53,12 @@ items:
+     scenario:
+       who: Year 10 · Waves and motion
+       text: >-
+-        A unit on sound. Your class are experienced inquirers, the evidence comes from a sound-level meter, and
+-        you want them to argue from evidence and be assessed on a written argument.
++        Inside your unit on sound, you're planning a few lessons where students argue from evidence and are
++        assessed on a written argument. They're experienced inquirers, and the evidence comes from a
++        sound-level meter.
+     profile:
+       purpose: [argue]
+-      time: unit
++      time: short
+       ready: experienced
+       concept: instrument
+       ws: ["6", "8"]
+@@ -74,9 +75,9 @@ items:
+       - text: The assessment is a written argument
+         dim: assess
+         ok: true
+-      - text: There's a whole unit to work with
++      - text: It's a few lessons inside the unit, not the whole unit
+         dim: time
+-        ok: false
++        ok: true
+       - text: The evidence comes from instruments
+         dim: concept
+         ok: false
+@@ -93,11 +94,11 @@ items:
+     scenario:
+       who: Year 9 · Environmental sustainability
+       text: >-
+-        A unit on local ecosystems. You'd like students to investigate and argue from evidence, but they are novice
+-        inquirers, and you'll assess them on conceptual explanations.
++        Inside your unit on local ecosystems, you're planning a few lessons where students investigate and argue
++        from evidence. They're novice inquirers, and you'll assess them on conceptual explanations.
+     profile:
+       purpose: [investigate, argue]
+-      time: unit
++      time: short
+       ready: novice
+       concept: observable
+       res: lab
+@@ -108,9 +109,9 @@ items:
+       - text: The learners are novice inquirers
+         dim: ready
+         ok: true
+-      - text: There's a whole unit to work with
++      - text: It's a few lessons inside the unit
+         dim: time
+-        ok: true
++        ok: false
+       - text: The assessment is conceptual explanations
+         dim: assess
+         ok: true
+@@ -121,8 +122,8 @@ items:
+         dim: concept
+         ok: false
+     why: >-
+-      The purposes on their own favour ADI. The class tips it to 5E: novice inquirers, a unit-length sequence
+-      and explanation as the evidence of learning.
++      The purposes and the few-lesson stretch both favour ADI, a routine that fits inside a unit. The class tips
++      it to 5E: novice inquirers, with explanation as the evidence of learning.
+ 
+   - id: flip
+     type: flip
+@@ -132,13 +133,12 @@ items:
+     tests: flip
+     scenario:
+       who: Year 10 · Waves and motion
+-      text: A unit where students argue from evidence and build models, assessed on a written argument. The class are experienced inquirers.
++      text: A few lessons inside a waves unit, where students investigate and argue from evidence about something they can observe. The class are experienced inquirers.
+     profile:
+-      purpose: [argue, model]
+-      time: unit
++      purpose: [argue, investigate]
++      time: short
+       ready: experienced
+       concept: observable
+-      assess: argument
+     candidates: [5e, adi]
+     changes:
+       - dim: ready
+@@ -167,8 +167,8 @@ items:
+         fb: The Reckoner ranks, it doesn't forbid. Novices can grow into ADI, often through more guided inquiry first.
+       - text: Readiness counts three times as much as any other question
+         fb: That's purpose. Readiness counts double.
+-      - text: 5E always wins when there's a whole unit
+-        fb: The first class had a whole unit and ADI won. Time favours 5E, but not enough on its own.
++      - text: 5E always wins over a few lessons
++        fb: The reverse. A few lessons inside a unit is where ADI, a multi-lesson routine, fits best.
+     answer: 0
+ 
+   - id: nest
+diff --git a/tools/reckoner/content/methodology.yaml b/tools/reckoner/content/methodology.yaml
+index 4d9769a..ede64b4 100644
+--- a/tools/reckoner/content/methodology.yaml
++++ b/tools/reckoner/content/methodology.yaml
+@@ -1,11 +1,12 @@
+ # How the reckoner works: methodology notes shown on the "How it works" page (F1) and, later, the glossary (F7).
+ # v1.0.0 approved by Steve Grant on 2026-09-30; v1.1.0 rewrites it for reading on the web, keeping its meaning,
+ # and was approved and published by Steve Grant on 2026-09-30. v1.2.0 adds the time-and-scale prompts
+-# (Steve Grant's decision, 2026-10-05).
++# (Steve Grant's decision, 2026-10-05); v1.2.1 words the routine case as the Field Guide does: a routine fits
++# inside a unit rather than structuring one (Steve Grant, 2026-10-05).
+ # Counts (models, guides) are deliberately left out: the page computes them from the manifest, so this file never goes stale.
+ schemaVersion: '1.0'
+ id: methodology
+-version: 1.2.0
++version: 1.2.1
+ status: published
+ lastReviewed: '2026-10-05'
+ provenance:
+@@ -85,7 +86,7 @@ routes:
+     body: |
+       - A rule fires on particular answers, for example novice learners with a problem-based model, or a robust misconception with a model that does not target misconceptions.
+       - Rules add advice to a result. They do not change the ranking.
+-      - **Have you thought about…?** prompts appear when a model's scale and your timescale don't line up: a multi-lesson routine for one lesson, unit architecture for a few lessons, or a routine that could either sit inside a unit or carry it. Purpose counts most, so a model can rank first even when its length doesn't match your time. The Reckoner supports your judgement; weighing the prompt is your call.
++      - **Have you thought about…?** prompts appear when a model's scale and your timescale don't line up: a multi-lesson routine for one lesson, unit architecture for a few lessons, or a multi-lesson routine when you're planning a whole unit, since a routine fits inside a unit rather than structuring one. Purpose counts most, so a model can rank first even when its length doesn't match your time. The Reckoner supports your judgement; weighing the prompt is your call.
+   - id: dial
+     title: Guidance dial
+     summary: 'Recommends how much to guide students inside whichever model you choose, from confirmation to open inquiry.'
+diff --git a/tools/reckoner/scripts/test-build.ts b/tools/reckoner/scripts/test-build.ts
+index 6ff93ea..88565d3 100644
+--- a/tools/reckoner/scripts/test-build.ts
++++ b/tools/reckoner/scripts/test-build.ts
+@@ -277,7 +277,7 @@ const cases: [string, () => void | Promise<void>][] = [
+     const one = run({ purpose: ["argue"], time: "lesson" }, "adi");
+     if (one.length !== 1 || !/multi-lesson routine, and you have one lesson/.test(one[0])) throw new Error(`ADI, one lesson: ${JSON.stringify(one)}`);
+     const unit = run({ purpose: ["argue"], time: "unit" }, "adi");
+-    if (unit.length !== 1 || !/inside a unit model, or carry the unit itself/.test(unit[0])) throw new Error(`ADI, a unit: ${JSON.stringify(unit)}`);
++    if (unit.length !== 1 || !/a few lessons that fit inside a unit\. You’re planning a unit/.test(unit[0])) throw new Error(`ADI, a unit: ${JSON.stringify(unit)}`);
+     if (run({ time: "short" }, "5e").length !== 1) throw new Error("5E in 2–5 lessons should prompt");
+     if (run({ time: "short" }, "7e").length) throw new Error("7E in 2–5 lessons already has the time watch-out; no prompt");
+     if (run({ time: "unit" }, "5e").length || run({ time: "lesson" }, "poe").length || run({ purpose: ["argue"] }, "adi").length) throw new Error("a prompt fired where scale and time agree, or with no time answer");
+diff --git a/tools/reckoner/templates/app.js b/tools/reckoner/templates/app.js
+index 96e14e7..6067a03 100644
+--- a/tools/reckoner/templates/app.js
++++ b/tools/reckoner/templates/app.js
+@@ -421,7 +421,7 @@ function timePrompts(m,a,W){ const P = [], t = a.time, has = (W || []).some(w =>
+   const tl = optLabel("time", t).toLowerCase();
+   if (m.scale === "meso" && t === "lesson") P.push({ text:`${m.name} is a multi-lesson routine, and you have one lesson. It ranks well because of what you want students to do, which counts most. Could a single-lesson model carry that purpose this time, or could you find the extra lessons?`, because:chose("time",t) });
+   if (m.scale === "macro" && (t === "lesson" || t === "short")) P.push({ text:`${m.name} is unit architecture, built for a whole unit, and you have ${tl}. Would a shorter routine or a single-lesson model suit this stretch, with the unit model kept for the longer arc?`, because:chose("time",t) });
+-  if (m.scale === "meso" && (t === "unit" || t === "depth")) P.push({ text:`${m.name} is a multi-lesson routine, and you have ${tl}. It can run as one routine inside a unit model, or carry the unit itself. Which serves your unit’s arc better?`, because:chose("time",t) });
++  if (m.scale === "meso" && (t === "unit" || t === "depth")) P.push({ text:`${m.name} is a multi-lesson routine: a few lessons that fit inside a unit. You’re planning ${tl}. Which unit model will it sit inside, and where in that unit does it do its work?`, because:chose("time",t) });
+   if (m.scale === "micro" && (t === "unit" || t === "depth")) P.push({ text:`${m.name} is a single-lesson strategy, and you have ${tl}. Which unit model or routine will it sit inside?`, because:chose("time",t) });
+   return P; }
+ const ruleTag = r => `<span class="rule-tag"><span class="badge b-rule">Rule</span> because ${esc(r.because)}</span>`;

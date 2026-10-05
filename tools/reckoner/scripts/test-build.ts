@@ -277,7 +277,7 @@ const cases: [string, () => void | Promise<void>][] = [
     const one = run({ purpose: ["argue"], time: "lesson" }, "adi");
     if (one.length !== 1 || !/multi-lesson routine, and you have one lesson/.test(one[0])) throw new Error(`ADI, one lesson: ${JSON.stringify(one)}`);
     const unit = run({ purpose: ["argue"], time: "unit" }, "adi");
-    if (unit.length !== 1 || !/inside a unit model, or carry the unit itself/.test(unit[0])) throw new Error(`ADI, a unit: ${JSON.stringify(unit)}`);
+    if (unit.length !== 1 || !/a few lessons that fit inside a unit\. You’re planning a unit/.test(unit[0])) throw new Error(`ADI, a unit: ${JSON.stringify(unit)}`);
     if (run({ time: "short" }, "5e").length !== 1) throw new Error("5E in 2–5 lessons should prompt");
     if (run({ time: "short" }, "7e").length) throw new Error("7E in 2–5 lessons already has the time watch-out; no prompt");
     if (run({ time: "unit" }, "5e").length || run({ time: "lesson" }, "poe").length || run({ purpose: ["argue"] }, "adi").length) throw new Error("a prompt fired where scale and time agree, or with no time answer");

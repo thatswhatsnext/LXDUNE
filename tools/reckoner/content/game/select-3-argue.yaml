@@ -6,7 +6,7 @@ order: 3
 title: Argue it out
 summary: ADI joins 5E and POE. Find the classes it suits, the one change that rules it out, and where a POE fits inside it.
 level: select
-version: 1.0.0
+version: 1.0.1
 status: published
 lastReviewed: 2026-10-05
 provenance:
@@ -53,11 +53,12 @@ items:
     scenario:
       who: Year 10 · Waves and motion
       text: >-
-        A unit on sound. Your class are experienced inquirers, the evidence comes from a sound-level meter, and
-        you want them to argue from evidence and be assessed on a written argument.
+        Inside your unit on sound, you're planning a few lessons where students argue from evidence and are
+        assessed on a written argument. They're experienced inquirers, and the evidence comes from a
+        sound-level meter.
     profile:
       purpose: [argue]
-      time: unit
+      time: short
       ready: experienced
       concept: instrument
       ws: ["6", "8"]
@@ -74,9 +75,9 @@ items:
       - text: The assessment is a written argument
         dim: assess
         ok: true
-      - text: There's a whole unit to work with
+      - text: It's a few lessons inside the unit, not the whole unit
         dim: time
-        ok: false
+        ok: true
       - text: The evidence comes from instruments
         dim: concept
         ok: false
@@ -93,11 +94,11 @@ items:
     scenario:
       who: Year 9 · Environmental sustainability
       text: >-
-        A unit on local ecosystems. You'd like students to investigate and argue from evidence, but they are novice
-        inquirers, and you'll assess them on conceptual explanations.
+        Inside your unit on local ecosystems, you're planning a few lessons where students investigate and argue
+        from evidence. They're novice inquirers, and you'll assess them on conceptual explanations.
     profile:
       purpose: [investigate, argue]
-      time: unit
+      time: short
       ready: novice
       concept: observable
       res: lab
@@ -108,9 +109,9 @@ items:
       - text: The learners are novice inquirers
         dim: ready
         ok: true
-      - text: There's a whole unit to work with
+      - text: It's a few lessons inside the unit
         dim: time
-        ok: true
+        ok: false
       - text: The assessment is conceptual explanations
         dim: assess
         ok: true
@@ -121,8 +122,8 @@ items:
         dim: concept
         ok: false
     why: >-
-      The purposes on their own favour ADI. The class tips it to 5E: novice inquirers, a unit-length sequence
-      and explanation as the evidence of learning.
+      The purposes and the few-lesson stretch both favour ADI, a routine that fits inside a unit. The class tips
+      it to 5E: novice inquirers, with explanation as the evidence of learning.
 
   - id: flip
     type: flip
@@ -132,13 +133,12 @@ items:
     tests: flip
     scenario:
       who: Year 10 · Waves and motion
-      text: A unit where students argue from evidence and build models, assessed on a written argument. The class are experienced inquirers.
+      text: A few lessons inside a waves unit, where students investigate and argue from evidence about something they can observe. The class are experienced inquirers.
     profile:
-      purpose: [argue, model]
-      time: unit
+      purpose: [argue, investigate]
+      time: short
       ready: experienced
       concept: observable
-      assess: argument
     candidates: [5e, adi]
     changes:
       - dim: ready
@@ -167,8 +167,8 @@ items:
         fb: The Reckoner ranks, it doesn't forbid. Novices can grow into ADI, often through more guided inquiry first.
       - text: Readiness counts three times as much as any other question
         fb: That's purpose. Readiness counts double.
-      - text: 5E always wins when there's a whole unit
-        fb: The first class had a whole unit and ADI won. Time favours 5E, but not enough on its own.
+      - text: 5E always wins over a few lessons
+        fb: The reverse. A few lessons inside a unit is where ADI, a multi-lesson routine, fits best.
     answer: 0
 
   - id: nest

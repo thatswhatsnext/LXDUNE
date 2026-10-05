@@ -421,7 +421,7 @@ function timePrompts(m,a,W){ const P = [], t = a.time, has = (W || []).some(w =>
   const tl = optLabel("time", t).toLowerCase();
   if (m.scale === "meso" && t === "lesson") P.push({ text:`${m.name} is a multi-lesson routine, and you have one lesson. It ranks well because of what you want students to do, which counts most. Could a single-lesson model carry that purpose this time, or could you find the extra lessons?`, because:chose("time",t) });
   if (m.scale === "macro" && (t === "lesson" || t === "short")) P.push({ text:`${m.name} is unit architecture, built for a whole unit, and you have ${tl}. Would a shorter routine or a single-lesson model suit this stretch, with the unit model kept for the longer arc?`, because:chose("time",t) });
-  if (m.scale === "meso" && (t === "unit" || t === "depth")) P.push({ text:`${m.name} is a multi-lesson routine, and you have ${tl}. It can run as one routine inside a unit model, or carry the unit itself. Which serves your unit’s arc better?`, because:chose("time",t) });
+  if (m.scale === "meso" && (t === "unit" || t === "depth")) P.push({ text:`${m.name} is a multi-lesson routine: a few lessons that fit inside a unit. You’re planning ${tl}. Which unit model will it sit inside, and where in that unit does it do its work?`, because:chose("time",t) });
   if (m.scale === "micro" && (t === "unit" || t === "depth")) P.push({ text:`${m.name} is a single-lesson strategy, and you have ${tl}. Which unit model or routine will it sit inside?`, because:chose("time",t) });
   return P; }
 const ruleTag = r => `<span class="rule-tag"><span class="badge b-rule">Rule</span> because ${esc(r.because)}</span>`;
