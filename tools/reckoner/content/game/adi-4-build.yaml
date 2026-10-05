@@ -1,0 +1,195 @@
+# ADI path, lesson 4. Design level: build an ADI routine from cards and read the feature report. Built on the ADI guide's worked sequence seq-s5-sound. Reviewed and published by Steve on 2026-10-05.
+schemaVersion: 1
+id: adi-4-build
+path: adi
+order: 4
+title: "Build it: ADI"
+summary: Build a 6–8 lesson ADI routine for a Year 10 waves unit from activity cards, then read what the guide's look-fors say about it.
+level: design
+version: 1.0.0
+status: published
+lastReviewed: 2026-10-05
+provenance:
+  source: ai-drafted-reviewed
+  authors: [Claude]
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-05
+context:
+  stages: [stage5]
+  focusAreas: [Waves and motion]
+  disciplines: [physics]
+outcomes: [SC5-WAM-01]
+builtOn:
+  sequenceIds: [seq-s5-sound]
+  lookForIds: [adi-question-open, adi-student-designed, adi-plan-checkpoint, adi-three-part, adi-justification, adi-critique-quality, adi-revision-record, adi-concept-consolidated, adi-individual-writing, adi-review-accountable, adi-revision-used, adi-final-standard]
+  misapplicationIds: [mis-adi-closed-question, mis-adi-given-method, mis-adi-no-justification, mis-adi-teacher-judges, mis-adi-group-report, mis-adi-skip-review]
+guideSection: checklist
+items:
+  - id: question
+    type: choice
+    at: task-question
+    processing: Analysis
+    kind: Set the question
+    tests: task-question
+    title: "Your routine: Year 10, 6–8 lessons inside a waves unit. Many students think soft materials always block sound best."
+    q: Which guiding question gives the routine the most to argue about?
+    options:
+      - text: Which material best reduces the sound reaching a classroom, and does the answer depend on the sound?
+        fb: Yes. Groups that test different tones can reach different defensible answers, which is exactly what the argumentation session needs.
+      - text: Does foam reduce sound?
+        fb: One obvious answer, so there's nothing to argue about. The guide calls this a closed guiding question.
+      - text: Which material is the best sound insulator?
+        fb: Closer, but without the second half every group can agree on one winner. Asking whether it depends on the sound is what makes groups disagree.
+      - text: What is sound?
+        fb: This asks for a definition. Students can answer it without investigating anything.
+    answer: 0
+    refs:
+      lookForIds: [adi-question-open]
+
+  - id: rubric
+    type: concept
+    at: task-question
+    processing: Retrieval
+    kind: Before you build
+    title: What the report will look for
+    lead: >-
+      The board checks your plan against the ADI guide's look-fors and misapplications. A card counts only in the
+      stage whose job it does, and some cards look efficient but bring a known problem with them. Leaving the
+      argumentation session or peer review empty is the cut the guide warns about most.
+    rows:
+      - phaseId: task-question
+        does: An open question, criteria shared, a tool talk.
+        move: "Watch for: a question with one answer."
+      - phaseId: design-data
+        does: Groups design the method; the teacher checks it.
+        move: "Watch for: one method sheet for everyone."
+      - phaseId: tentative-argument
+        does: Claim, evidence and a justification on a whiteboard.
+        move: "Watch for: a claim above a results table."
+      - phaseId: argumentation
+        does: Every argument critiqued by students, and revised.
+        move: "Watch for: the teacher deciding who's right."
+      - phaseId: reflective-discussion
+        does: The science consolidated, and how it was settled named.
+        move: "Watch for: ending on competing claims."
+      - phaseId: report
+        does: Every student writes their own argument.
+        move: "Watch for: one report per group."
+      - phaseId: peer-review
+        does: Anonymous review, with reviewers held to account.
+        move: "Watch for: ticks and “good job”."
+      - phaseId: revision
+        does: Authors respond to every review point.
+        move: "Watch for: a new rubric at the end."
+
+  - id: board
+    type: build
+    at: design-data
+    processing: Knowledge utilisation
+    kind: Build the plan
+    tests: design
+    title: Build your ADI routine.
+    brief:
+      who: Year 10 · Waves and motion · 6–8 lessons inside the unit
+      text: "Guiding question: which material best reduces the sound reaching a classroom, and does the answer depend on the sound?"
+    q: Place one activity in each stage. Not every card belongs in a strong routine.
+    cards:
+      - id: tq-open
+        text: Pose the guiding question, run a tool talk on the tone generator and meter app, and display the claim, evidence and justification criteria
+        does: task-question
+        features: [adi-question-open]
+      - id: tq-closed
+        text: Ask “Does foam reduce sound?” and demonstrate the set-up with foam
+        does: task-question
+        flaws: [mis-adi-closed-question]
+      - id: dd-own
+        text: Groups choose their linings, tones and number of readings, then talk the plan through with the teacher for safety and feasibility
+        does: design-data
+        features: [adi-student-designed, adi-plan-checkpoint]
+      - id: dd-sheet
+        text: Every group follows one method sheet, testing foam, felt and cardboard at one tone, one reading each
+        does: design-data
+        flaws: [mis-adi-given-method]
+      - id: ta-board
+        text: Groups graph the reduction for each lining and tone, and build a whiteboard with a claim, the graph and a justification using wave ideas
+        does: tentative-argument
+        features: [adi-three-part, adi-justification]
+      - id: ta-table
+        text: Groups write their claim at the top of a whiteboard and copy their results table underneath
+        does: tentative-argument
+        flaws: [mis-adi-no-justification]
+      - id: arg-robin
+        text: Round robin with displayed critique stems, pairing groups that tested different tones; each group logs the questions it was asked and what it changed
+        does: argumentation
+        features: [adi-critique-quality, adi-revision-record]
+      - id: arg-present
+        text: Each group presents to the class, the teacher says which result is right, and the next group starts
+        does: argumentation
+        flaws: [mis-adi-teacher-judges]
+      - id: rd-consolidate
+        text: The teacher consolidates amplitude, frequency, reflection, absorption and transmission from the class's results, and tackles “soft always wins” head on
+        does: reflective-discussion
+        features: [adi-concept-consolidated]
+      - id: rep-own
+        text: Each student writes their own report within a word limit, including a recommendation for a real classroom
+        does: report
+        features: [adi-individual-writing]
+      - id: rep-group
+        text: Each group writes one shared report, splitting the sections between members
+        does: report
+        flaws: [mis-adi-group-report]
+      - id: pr-sampled
+        text: Anonymised reports go to another group with a review guide; the teacher samples reviews and returns vague ones before authors see them
+        does: peer-review
+        features: [adi-review-accountable]
+      - id: pr-swap
+        text: Students swap reports with the person beside them and tick a checklist
+        does: peer-review
+      - id: rv-respond
+        text: Authors respond to every review point and submit with the review attached, marked against the same three criteria as lesson 1
+        does: revision
+        features: [adi-revision-used, adi-final-standard]
+      - id: rv-rubric
+        text: Authors hand in their final report, marked on a new rubric for presentation, spelling and a labelled graph
+        does: revision
+    report: [adi-question-open, adi-student-designed, adi-plan-checkpoint, adi-three-part, adi-justification, adi-critique-quality, adi-revision-record, adi-concept-consolidated, adi-individual-writing, adi-review-accountable, adi-revision-used, adi-final-standard]
+    missing:
+      tentative-argument: mis-adi-no-justification
+      argumentation: mis-adi-skip-review
+      peer-review: mis-adi-skip-review
+    hint: Read each card for what students actually do, not the stage it sounds like.
+    why: >-
+      Eight stage headings are easy to fill. Whether the routine is ADI depends on who designs the method, who
+      decides which argument holds, and whether review changes anything.
+
+  - id: cut
+    type: choice
+    at: report
+    processing: Knowledge utilisation
+    kind: Teacher move
+    tests: design
+    vignette:
+      who: Week 6 · two lessons lost
+      text: An excursion takes two of your eight lessons. The routine has to fit in six.
+    q: What do you cut?
+    options:
+      - text: Shorten data collection to one lesson, and keep every stage
+        fb: Yes. The guide's fix is to shorten data collection rather than argument or review. Fewer readings make a narrower claim, which is itself something to argue about.
+      - text: Drop the peer review and mark the reports yourself
+        fb: That cuts one of the stages that make it ADI. Students lose the review that improves both their report and their own judgement.
+      - text: Drop the argumentation session and go straight to reports
+        fb: Without critique, nobody's argument is tested. This is the cut the guide warns about most.
+      - text: Skip the whiteboards and have groups write reports from their tables
+        fb: The justification never gets drafted or critiqued, so the reports inherit the gap.
+    answer: 0
+    refs:
+      misapplicationIds: [mis-adi-skip-review]
+
+  - id: reflect
+    type: reflect
+    at: revision
+    processing: Metacognition
+    kind: Look back
+    title: Your report, your routine.
+    q: Which look-for in your report would be hardest to meet on placement, and what would you plan differently because of it?
+    model: "Example: “Reviewers held to account. I'd never have planned time to sample reviews, so I'd build ten minutes into lesson 8 to read three and send weak ones back.”"
