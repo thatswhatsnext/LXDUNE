@@ -18,6 +18,7 @@
   --engage:#b06e0c; --explore:#0d7c6f; --explain:#2a5cad; --elaborate:#7046ad; --evaluate:#ad4166;
   --plate-sun:#F2C76B; --plate-ray:#D9A62E; --plate-canopy:#DFEDE7; --plate-branch:#1D6B56; --plate-leaf:#2E8A6E;
   --plate-trunk:#5B4632; --plate-soil:#7A5B3E; --plate-tub:#35538F; --plate-rim:#2A4372; --plate-drop:#6FA8DC;
+  --plate-grey:#6E7A80; --plate-rust:#B5562B;
   --f-display:"Source Serif 4", Georgia, serif;
   --f-body:"IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
   --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -29,6 +30,7 @@
   --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
   --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
   --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
+  --plate-grey:#A3AFB5; --plate-rust:#D98A63;
   --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
   --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
   color-scheme:dark}}
@@ -37,6 +39,7 @@
   --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
   --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
   --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
+  --plate-grey:#A3AFB5; --plate-rust:#D98A63;
   --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
   --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
   color-scheme:dark}
@@ -226,6 +229,13 @@ button.go.fbk{margin-top:12px}
 .pl-tub{fill:var(--plate-tub)} .pl-rim{fill:var(--plate-rim)} .pl-soil{stroke:var(--plate-soil)}
 .pl-drop{fill:var(--plate-drop)} .pl-label{font:11px var(--mono);fill:var(--muted)}
 .pl-q{font:600 40px var(--serif);fill:var(--micro)} .plate{width:100%;height:auto;display:block}
+/* leaf litter plate (adi-1-leaf-litter): ground, litter, traps and the invertebrates, each kind its own shape and colour */
+.ll-soil{fill:var(--plate-soil);fill-opacity:.22} .ll-ground{stroke:var(--plate-soil)} .ll-grass{stroke:var(--plate-leaf)} .ll-bark{fill:var(--plate-trunk)}
+.ll-litter-a{fill:var(--plate-leaf);fill-opacity:.85} .ll-litter-b{fill:var(--plate-ray);fill-opacity:.85} .ll-litter-c{fill:var(--plate-soil)}
+.ll-cup{fill:var(--plate-canopy);stroke:var(--plate-rim)} .ll-seg{stroke:var(--plate-canopy)}
+.ll-ant{fill:var(--plate-trunk);stroke:var(--plate-trunk)} .ll-beetle{fill:var(--plate-branch);stroke:var(--plate-branch)}
+.ll-slater{fill:var(--plate-grey);stroke:var(--plate-grey)} .ll-spider{fill:var(--plate-rust);stroke:var(--plate-rust)}
+.ll-centipede{fill:var(--plate-ray);stroke:var(--plate-ray)} .ll-springtail{fill:var(--plate-tub);stroke:var(--plate-tub)}
 /* privacy line under the dock's controls on lesson screens */
 .privacy{flex-basis:100%;display:flex;align-items:center;gap:6px;margin:0;font-size:12.5px;color:var(--muted)}
 .privacy .i{width:14px;height:14px}

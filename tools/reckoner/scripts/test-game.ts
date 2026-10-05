@@ -299,7 +299,7 @@ const cases: [string, () => void | Promise<void>][] = [
     const rail = loadGame({ gameDir: dir });
     if (!rail.errors.some((e) => /rail: groups but its journey guide has no phaseGroups/.test(e))) throw new Error(`rail not caught: ${rail.errors.join("; ")}`);
   }],
-  ["Fieldwork: title, confidence slider, and the willow plate on its first item only", async () => {
+  ["Fieldwork: title, confidence slider, and the willow and leaf-litter plates on their first items only", async () => {
     const built = readFileSync(join(tmp, "a", "index.html"), "utf8");
     if (!built.includes("<title>Fieldwork · The Field Guide</title>")) throw new Error("the built <title> is not Fieldwork · The Field Guide");
     buildGame({ mode: "review", outDir: join(tmp, "plate") });
@@ -321,6 +321,14 @@ const cases: [string, () => void | Promise<void>][] = [
     open("5e-2-cells");
     if (!doc.querySelector('#stage input[type=range]#conf')) throw new Error("5e-2-cells: no confidence slider");
     if (doc.querySelector("#stage .plate-card")) throw new Error("5e-2-cells shows a plate");
+    (doc.getElementById("toMap") as any).click();
+    open("adi-1-leaf-litter");
+    const leaf = doc.querySelector("#stage .plate-card svg.plate");
+    if (!leaf) throw new Error("adi-1-leaf-litter: no plate on the first item");
+    if (leaf.querySelector("text")) throw new Error("adi-1-leaf-litter: the plate should carry no text or numbers");
+    if (!/pitfall traps/.test(leaf.getAttribute("aria-label") ?? "")) throw new Error("adi-1-leaf-litter: the plate has no description");
+    (doc.querySelector(".opts .opt") as any).click(); (doc.getElementById("go") as any).click(); (doc.getElementById("go") as any).click();
+    if (doc.querySelector("#stage .plate-card")) throw new Error("adi-1-leaf-litter shows the plate on its second item too");
     if (errors.length) throw new Error(errors.join("; "));
     dom.window.close();
   }],
