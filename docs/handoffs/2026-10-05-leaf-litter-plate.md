@@ -2,7 +2,7 @@
 
 **Reviewed and signed off by:** Steve Grant, 2026-10-05 (draft A, after two rounds of changes)
 
-**Branch:** `feature/fieldwork-leaf-litter-plate` (already pushed). It is stacked on `feature/fieldwork-adi-design`, because both rebuild `play/index.html`.
+**Branch:** `feature/fieldwork-leaf-litter-plate` (already pushed). It is stacked on `feature/fieldwork-adi-design` at `7afd44a` (after item 49), because both rebuild `play/index.html`.
 
 ## Goal
 
@@ -14,7 +14,7 @@ Each kind has its own shape and colour. The gum's canopy is about 80% green, wit
 
 ## Order
 
-Apply `2026-10-05-fieldwork-adi-design.md` first. This handoff's patch is a diff against that branch's tip (`c632975`). Releasing `feature/fieldwork-leaf-litter-plate` releases both, so one `/ship` of this branch is enough.
+Apply `2026-10-05-fieldwork-adi-design.md` first. This handoff's patch is a diff of `tools/reckoner/` against that branch (unchanged by item 49, so it applies at `c632975` or `7afd44a`). Releasing `feature/fieldwork-leaf-litter-plate` releases both, so one `/ship` of this branch is enough.
 
 ## Scope
 
@@ -25,7 +25,7 @@ Apply `2026-10-05-fieldwork-adi-design.md` first. This handoff's patch is a diff
 
 | File | Goes to | What it is |
 |---|---|---|
-| `2026-10-05-leaf-litter-plate.patch` (alongside this handoff) | applied from the repo root | The three source changes below, as a `git diff` against `c632975` |
+| `2026-10-05-leaf-litter-plate.patch` (alongside this handoff) | applied from the repo root | The three source changes below, as a `git diff` against `feature/fieldwork-adi-design` |
 
 ## Changes
 
@@ -47,7 +47,7 @@ Apply `2026-10-05-fieldwork-adi-design.md` first. This handoff's patch is a diff
 
 ## Action plan
 
-Next item after the ADI Design lessons: **Leaf litter plate**. Record Steve's sign-off (draft A of two; sun rays all the way round; a fuller canopy, about 80% green and 20% leaf-fall colours; no text or numbers). Close the `adi-1-leaf-litter` plate item carried from item 47. Item 46's plate list still has Cells under the lens and the POE path.
+Next item (after item 49): **Leaf litter plate**. Record Steve's sign-off (draft A of two; sun rays all the way round; a fuller canopy, about 80% green and 20% leaf-fall colours; no text or numbers). Close the `adi-1-leaf-litter` plate item carried from item 47. Item 46's plate list still has Cells under the lens and the POE path.
 
 ## Open questions for review
 
