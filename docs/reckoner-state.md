@@ -16,7 +16,7 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Worked sequences | 20 |
 | Focus areas with a ready plan / examples only / empty | 16 / 0 / 0 of 16 |
 | Game lessons at /play/ (published / draft or in review) | 16 / 0 |
-| **Next action-plan item number** | **49** |
+| **Next action-plan item number** | **50** |
 
 ## Published guides
 

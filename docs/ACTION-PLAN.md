@@ -502,6 +502,16 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [x] Item 47's decision line on ADI as a unit's architecture is marked superseded, and its `scaleNote` open item is closed: the ADI guide already says ADI "replaces a practical and its report, not the whole unit"
 - Nothing adapted from the handoff
 
+### 49. Fieldwork ADI path complete: Design lessons and Argue it out on a unit timescale ⬜ (open item remains) — 2026-10-05
+- [x] Applied `docs/handoffs/2026-10-05-fieldwork-adi-design.md`, signed off by Steve Grant on 2026-10-05. Used the pushed `feature/fieldwork-adi-design` branch, as the handoff allows: it sits on `main` at `1085e1a` (unchanged since), contains `dev`, and its source changes are identical to the handoff's patch
+- [x] Two Design lessons on the ADI path, published at v1.0.0 and reviewed by Steve Grant: `adi-4-build` "Build it: ADI" (a 15-card build board across the eight stages, reported against 12 look-fors; five flawed cards and empty argument or review stages raise the guide's misapplications; then "two lessons lost, what do you cut?") and `adi-5-argument-day` "Argument Day" (a six-node branching sim on `seq-s5-sound` lessons 4–6, voicing all three target conceptions, three endings). No engine, template, schema or test changes
+- [x] `select-3-argue` 1.0.1 → 1.0.2: its ADI classes plan 6–8 lessons inside the unit with the "A unit (6–15 lessons)" timescale, matching the ADI guide's length, re-scored against the Reckoner by the build (sound: ADI; local ecosystems: 5E; the flip still clear). The wording keeps item 48's framing: ADI runs inside the unit, it does not structure it
+- [x] Steve's decisions, 2026-10-05: ADI lessons use the guide's 6–8 lessons; Argue it out's ADI classes use "A unit (6–15 lessons)"; both Design lessons signed off
+- [x] The ADI path is complete at five lessons (Recognise 1, Explain 2, Design 2). Published lessons 14 → 16 (5E 6, POE 2, ADI 5, Choosing a model 3). Models 15, guides 6, examples 58, worked sequences 20, focus areas unchanged; no guide or methodology version changes
+- [x] Validate, test (build 20, game 22; the jsdom test plays all 16 lessons to the end), typecheck, check:pages and check:regressions (against `origin/main`) pass. Checked in a browser at 360 px: the Build it: ADI board shows eight stages and 15 cards under the three-group rail, with no sideways scroll
+- Nothing adapted from the handoff. The branch's first commit marks the lessons as drafts; its second publishes them with Steve's review
+- [ ] Open: plate for `adi-1-leaf-litter` (carried from item 47)
+
 ---
 
 ## ✅ Completed
