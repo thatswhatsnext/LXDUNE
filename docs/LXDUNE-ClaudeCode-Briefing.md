@@ -366,6 +366,7 @@ Both live scripts refactored to read from `config/units/*.json` instead of embed
 | `noTeachingMessage` (plain string, escaped) | whatson | The Professional Experience paragraph | No-teaching week text |
 | `week0Todo` (string array) | whatson | The two "Download BOTH assessment tasks / Make a plan" items | Week 0 to-do list |
 | `videoFallback` (`"coming-soon"`) | autovideos | `DGIXT7ce3vQ` | What a week with `video: null` shows |
+| `lastWeek` (number) | whatson | `14` | After this week, What's On shows "Teaching has ended for this period" |
 | `weeks[n].activities` (`[{ "label", "url" }]`) | whatson | No Activities list | Linked activities for that week (EDIT518: each fortnight's forum and quiz). Named `activities` because `links` is already the blocks.js link object |
 | `assessments[].url` | whatson | Reminder points to the Assessment Portal | Links the task name in reminders instead |
 | `assessments[].closes` (ISO date) | whatson | Overdue reminder for 14 days | Automatic extension: after the due date, the reminder says when submissions close; nothing after that |
@@ -572,9 +573,10 @@ All weeks: video null (will default to `DGIXT7ce3vQ` until real IDs added); zoom
 
 - **Live shells import from LXDUNE** (T3 2026 onward): `whatson/whatson.js` and `autovideos/autovideos.js` only. Stoo Sepp's `stoosepp.github.io` copy still exists but is no longer used for EDIT518, and its `VideoURLs.EDIT518` list is removed here.
 - Dates follow UNE's official T3 2026 study schedule (13 weeks): Week 1 starts Mon 19 Oct, Week 9 is 14 Dec, the University shutdown is 21 Dec–3 Jan (`breaks.T3-2026`: two weeks after Week 9), Week 10 starts Mon 4 Jan 2027 and Week 13 (the last) starts 25 Jan. `lastWeek: 13`, so What's On shows "Teaching has ended" from 1 Feb.
-- Topics run in fortnights (Weeks 1 & 2, 3 & 4, 5 & 6, 7 & 8, 10 & 11), with Week 9 the intensive period and Week 12 Reflection Week. Because Weeks 10 & 11 straddle the shutdown, videos are looked up weekly (`videoInterval: 1`).
-- `noTeachingWeeks: [9, 13]`, `noTeachingMessage`, `week0Todo`, `videoFallback: "coming-soon"`. Each fortnight lists its forum (5%) and quiz (3%) as `activities`, with due and extension notes and reminders.
-- All `video` values are null, so every week shows "This week's video is coming soon." Add each fortnight's video ID to both of its weeks (ACTION-PLAN item 51).
+- Content runs in fortnights: Weeks 1 & 2, 3 & 4, 5 & 6, 7 & 8, then Weeks 9 & 10 (Assessment & Intensive Period, either side of the shutdown), Weeks 11 & 12, and Week 13 (Reflection Week). Fortnightly videos (`videoInterval: 2`) line up with this.
+- Second-half dates (Steve, 2026-10-06): live session Mon 18 Jan (Week 12); Project Revision, the Weeks 7–8 and 11–12 forums and all quizzes due Sun 24 Jan, automatic extension to Sun 31 Jan. First-half dates unchanged (Project Submission and Weeks 1–6 forums due 29 Nov, extension to 6 Dec).
+- `noTeachingWeeks: [9, 10]`, `noTeachingMessage`, `week0Todo`, `videoFallback: "coming-soon"`. Each fortnight lists its forum (5%) and quiz (3%) as `activities`, with due and extension notes and reminders.
+- All `video` values are null, so every fortnight shows "This fortnight's video is coming soon." Add IDs to weeks 0, 1, 3, 5, 7, 9, 11 and 13 (ACTION-PLAN item 51).
 - `learningOutcomes` and `assessmentTasks` are empty: EDIT518 uses no `blocks.js` renderers.
 
 ---
