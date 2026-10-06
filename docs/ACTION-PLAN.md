@@ -184,6 +184,7 @@ Removes the legacy fallback dependency in `autovideos.js`.
 - [ ] Repeat for EDIT425, EDIT426, EDIT513, EDIT517, EDIT518, EDIT521
 - [ ] Remove `VideoURLs` legacy class from `autovideos.js` once all JSONs exist
 - [x] EDIT518 migrated for T3 2026 (2026-10-06): `config/units/EDIT518.json` written from Steve's schedule, not from the legacy list, whose videos no longer exist. Its `VideoURLs` entry is removed; the other EDIT entries stay
+- [x] EDIT521 migrated for T3 2026 (2026-10-06): `config/units/EDIT521.json`, same shape as EDIT518 (dates, assessment types, fortnights) with its own topics, forum, quiz and assignment links, and Tuesday 1:00pm (AEDT) live sessions in Weeks 2, 4, 6, 8 and 11. Its `VideoURLs` entry is removed (videos show "coming soon")
 - [x] Prerequisite done (2026-10-06): `autovideos.js` now looks videos up by week number (`weeks[N].video`, N = first week of the period) instead of list position, so fortnightly units get the right video. Weekly EDSE output is unchanged
 
 ### 15. Refactor pre-submission checklists into config-driven system ⬜
@@ -526,6 +527,12 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [ ] Record the fortnightly videos and add each YouTube ID to both weeks of its fortnight: 1 & 2, 3 & 4, 5 & 6, 7 & 8, 10 & 11 (plus 0, 9, 12 and 13 if they get one)
 - Until an ID is set, that week shows "This week's video is coming soon." (`videoFallback: "coming-soon"`)
 - 2026-10-06: EDIT518 moved to UNE's official 13-week schedule (shutdown after Week 9), so Weeks 10 & 11 straddle the break and videos are now looked up weekly (`videoInterval: 1`). The earlier list (weeks 0, 1, 3, 5, 7, 9, 11, 13) no longer applies
+
+### 53. EDIT521 — videos, Assessment Portal link and Moodle shells ⬜ — 2026-10-06
+- [ ] Record the fortnightly videos and add each YouTube ID to both weeks of its fortnight in `config/units/EDIT521.json` (weekly lookup, as EDIT518)
+- [ ] Add EDIT521's `assessmentPortalUrl`; until then the portal is named without a link
+- [ ] Paste the home-page shell (generator: EDIT521, T3 2026, Home page) and fill in the Zoom details, which stay out of the public config
+- [ ] Check in Moodle: quizzes are shown as due Sun 17 Jan with extension to 24 Jan (Moodle lists "Closes 24 Jan"), and the Unit Outline Quiz in the Week 0 message exists for EDIT521
 
 ### 52. Correct Sunday trimester start dates in `config/trimester-config.json` ⬜ — 2026-10-06
 Five of the six start dates are Sundays: T2 2026 (`2026-06-21`), T3 2026 (`2026-10-18`) and all of 2027 (T1 `2027-02-21`, T2 `2027-06-20`, T3 `2027-10-17`). Only T1 2026 (`2026-02-23`) is a Monday. They look like leftovers of the Sunday workaround reverted under "Fix week resolution — Monday anchor". `blocks.js` (`resolve()` → `buildDateList`), the test harness and the generator's pre-filled shell dates all read this file, so for those trimesters week boundaries fall on Sundays. Found while moving EDIT518, whose shells pass `2026-10-19` directly and don't read the file.
