@@ -161,5 +161,4 @@ class VideoURLs {
   static EDIT426 = [ "alhCYDrtgzs", "r_fTa8QmIRQ", "Mt8UdXTMLW0", "HRbNPuBJ-F4", "kP9hgtJpW9w", "DGIXT7ce3vQ", "S9jirJlhP0U", "3UEbA1D7Y-0" ];
   static EDIT513 = [ "m1OwTkFGlgc", "ebk880UKai8", "7LUDYfhahUw", "mzFLm7Mr1u4", "DGIXT7ce3vQ", "01pnXTJ6V20", "mv2RA4qrl3Y", "3UEbA1D7Y-0" ];
   static EDIT517 = [ "BcormZe1joc", "nin_fE3wWfI", "jk3y-5ykQ2E", "J1MFBz5VDKo", "DGIXT7ce3vQ", "JqvACFLwguk", "p6yJEE5Kcf8", "3UEbA1D7Y-0" ];
-  static EDIT521 = [ "e5oJX_jEzD0", "9wAcxp55Bco", "Q5t1eaLhM18", "o7xXdjoEjlk", "5H7CMePLyVg", "DGIXT7ce3vQ", "SB08-lkRmHA", "3UEbA1D7Y-0" ];
 }
