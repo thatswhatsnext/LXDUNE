@@ -13,15 +13,6 @@
   "breaks": {
     "T3-2026": [{ "afterWeek": 10, "weeks": 1 }]
   },
-  "trimesterConfig": {
-    "T3-2026": {
-      "zoom": {
-        "meetingId": "839 126 0553",
-        "password": "467071",
-        "url": "https://une-au.zoom.us/j/8391260553?pwd=qhhhF2hPzRgt8wwr6H1qD5hbzhowmM.1"
-      }
-    }
-  },
   "week0Message": "Welcome to EDIT518. Before Week 1 begins on Monday 19 October, complete the Unit Outline Quiz — it unlocks the rest of the unit. Then explore the Getting Started tiles and note the Project Submission (40%) due date: Sunday 29 November. Our first live session is Monday 26 October at 1:00pm (NSW time).",
   "week0Todo": [
     "Complete the Unit Outline Quiz to unlock the rest of the unit 🔓",
