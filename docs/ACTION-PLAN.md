@@ -542,7 +542,6 @@ Five of the six start dates are Sundays: T2 2026 (`2026-06-21`), T3 2026 (`2026-
 - [ ] Harness regression for `blocks.js`: compare the resolved week for every day of each affected trimester, before and after, and confirm only the Sunday boundaries move
 - [ ] Check the live EDSE shells and any generated shells that embed one of these dates
 
-
 ### 54. Lesson plates for the 5E and POE paths ✅ — 2026-10-07
 - [x] Applied `docs/handoffs/2026-10-06-cells-yeast-plates.md`, signed off by Steve Grant on 2026-10-06 and 2026-10-07. Used the pushed `feature/fieldwork-cells-yeast-plates` branch, as items 49 and 50 did: it sits on `main` at `6561c1d` (unchanged since), contains `dev`, and its source changes are identical to the handoff's patch
 - [x] Seven new plates on the first item of their lesson, in `PLATES` in `game.js`, each with its own prefixed ids, a full `aria-label` and no `<text>`; none gives the prediction away: `5e-2-cells`, `poe-1-yeast`, `poe-2-hands`, `5e-3-outbreak`, `5e-4-labels`, `5e-5-build`, `5e-6-prac-day`. New tokens `--plate-sugar` and `--plate-uv` in all three theme blocks of `game.html`; `.pv-*` styles; the 5E plates reuse the game's phase colours
@@ -550,7 +549,15 @@ Five of the six start dates are Sundays: T2 2026 (`2026-06-21`), T3 2026 (`2026-
 - [x] Lessons with a plate 2 → 9. No lesson YAML changes and no version bumps: plates live in the template. Published lessons 16, guides 6, examples 58 unchanged
 - [x] Validate, test (build 20, game 22; the plate test, now "every lesson plate on its first item only", covers all nine plates and checks that each `<use>` in the eight newer plates points inside its own plate), typecheck, check:pages and check:regressions (against `origin/main`) pass. The handoff reports a browser check at 375 px in light and dark
 - Adapted from the handoff: its fourth commit was to include the action plan, but the branch's publish commits don't, so this item is a separate commit on the branch. The handoff and its patch are committed under `docs/handoffs/` as the record (already on the branch)
-- [x] Closes item 46's plate open item. Still without a plate: ADI lessons 2–5 and the three Choosing a model lessons
+- [x] Closes item 46's plate open item. ~~Still without a plate: ADI lessons 2–5 and the three Choosing a model lessons~~ Done in item 55
+
+### 55. Lesson plates for the ADI path and Choosing a model ✅ — 2026-10-07
+- [x] Applied `docs/handoffs/2026-10-07-adi-choosing-plates.md`, signed off by Steve Grant on 2026-10-07. Its commits were pushed onto `feature/fieldwork-cells-yeast-plates` on top of item 54, and its source changes are identical to the handoff's patch; one release ships both items
+- [x] Seven new plates in `PLATES` in `game.js`, each with its own prefixed ids, a full `aria-label` and no `<text>`; none gives the answer away: `adi-2-noise`, `adi-3-review`, `adi-4-build`, `adi-5-argument-day`, `select-1-which`, `select-2-dial`, `select-3-argue`. The two plates with people each carry their own `person` symbol. No `game.html` changes: the plates reuse item 54's tokens, `.pv-*` styles and phase colours
+- [x] Steve's choices, from three options each (2026-10-07): N1, R1, BA3, A3, S2, DL2, SA3. BA3 and SA3 show ADI as a routine inside a unit, in line with item 48
+- [x] Lessons with a plate 9 → 16: every published Fieldwork lesson. No lesson YAML changes and no version bumps. Published lessons 16, guides 6, examples 58 unchanged
+- [x] Validate, test (build 20, game 22; the plate test now opens all seven new lessons too), typecheck, check:pages and check:regressions (against `origin/main`) pass. The handoff reports a browser check at 375 px in light and dark
+- Nothing adapted from the handoff. Closes the plate work left open in item 54
 
 ---
 
