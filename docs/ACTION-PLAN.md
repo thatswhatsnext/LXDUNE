@@ -532,7 +532,8 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [ ] Record the fortnightly videos and add each YouTube ID to both weeks of its fortnight in `config/units/EDIT521.json` (weekly lookup, as EDIT518)
 - [x] EDIT521's `assessmentPortalUrl` added (2026-10-06)
 - [ ] Paste the home-page shell (generator: EDIT521, T3 2026, Home page) and fill in the Zoom details, which stay out of the public config
-- [ ] Check in Moodle: quizzes are shown as due Sun 17 Jan with extension to 24 Jan (Moodle lists "Closes 24 Jan"), and the Unit Outline Quiz in the Week 0 message exists for EDIT521
+- [ ] Check in Moodle: quizzes are shown as due Sun 17 Jan with extension to 24 Jan (Moodle lists "Closes 24 Jan")
+- [x] EDIT521 has a Unit Outline Quiz; Week 0 links it (2026-10-06). `whatson.js` now shows `weeks["0"].activities` in Week 0
 
 ### 52. Correct Sunday trimester start dates in `config/trimester-config.json` ⬜ — 2026-10-06
 Five of the six start dates are Sundays: T2 2026 (`2026-06-21`), T3 2026 (`2026-10-18`) and all of 2027 (T1 `2027-02-21`, T2 `2027-06-20`, T3 `2027-10-17`). Only T1 2026 (`2026-02-23`) is a Monday. They look like leftovers of the Sunday workaround reverted under "Fix week resolution — Monday anchor". `blocks.js` (`resolve()` → `buildDateList`), the test harness and the generator's pre-filled shell dates all read this file, so for those trimesters week boundaries fall on Sundays. Found while moving EDIT518, whose shells pass `2026-10-19` directly and don't read the file.
