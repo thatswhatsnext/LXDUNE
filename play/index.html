@@ -18,7 +18,7 @@
   --engage:#b06e0c; --explore:#0d7c6f; --explain:#2a5cad; --elaborate:#7046ad; --evaluate:#ad4166;
   --plate-sun:#F2C76B; --plate-ray:#D9A62E; --plate-canopy:#DFEDE7; --plate-branch:#1D6B56; --plate-leaf:#2E8A6E;
   --plate-trunk:#5B4632; --plate-soil:#7A5B3E; --plate-tub:#35538F; --plate-rim:#2A4372; --plate-drop:#6FA8DC;
-  --plate-grey:#6E7A80; --plate-rust:#B5562B;
+  --plate-grey:#6E7A80; --plate-rust:#B5562B; --plate-sugar:#FFFFFF;
   --f-display:"Source Serif 4", Georgia, serif;
   --f-body:"IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
   --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -30,7 +30,7 @@
   --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
   --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
   --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
-  --plate-grey:#A3AFB5; --plate-rust:#D98A63;
+  --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6;
   --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
   --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
   color-scheme:dark}}
@@ -39,7 +39,7 @@
   --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
   --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
   --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
-  --plate-grey:#A3AFB5; --plate-rust:#D98A63;
+  --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6;
   --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
   --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
   color-scheme:dark}
@@ -236,6 +236,13 @@ button.go.fbk{margin-top:12px}
 .ll-ant{fill:var(--plate-trunk);stroke:var(--plate-trunk)} .ll-beetle{fill:var(--plate-branch);stroke:var(--plate-branch)}
 .ll-slater{fill:var(--plate-grey);stroke:var(--plate-grey)} .ll-spider{fill:var(--plate-rust);stroke:var(--plate-rust)}
 .ll-centipede{fill:var(--plate-ray);stroke:var(--plate-ray)} .ll-springtail{fill:var(--plate-tub);stroke:var(--plate-tub)}
+/* cells and yeast plates (5e-2-cells, poe-1-yeast): bench, glassware, specimens */
+.pv-bench{fill:var(--plate-soil);fill-opacity:.22} .pv-bench-edge{stroke:var(--plate-soil)} .pv-metal{fill:var(--plate-grey)} .pv-dark-s{stroke:var(--plate-rim)}
+.pv-dark{fill:var(--plate-rim)} .pv-glass{fill:var(--plate-canopy);fill-opacity:.55;stroke:var(--plate-rim)} .pv-water{fill:var(--plate-drop);fill-opacity:.45} .pv-seed{fill:var(--plate-ray)}
+.pv-seed-line{stroke:var(--plate-soil)} .pv-cap{fill:var(--plate-soil)} .pv-stem{fill:var(--plate-canopy);stroke:var(--plate-soil)} .pv-gill{stroke:var(--plate-soil)}
+.pv-yeast{fill:var(--plate-sun)} .pv-yeast-s{stroke:var(--plate-ray)} .pv-crystal-a{fill:var(--plate-canopy);stroke:var(--plate-rim)} .pv-crystal-b{fill:var(--plate-drop);fill-opacity:.35;stroke:var(--plate-rim)}
+.pv-sugar{fill:var(--plate-sugar);stroke:var(--plate-rim)} .pv-balloon-a{fill:var(--plate-rust)} .pv-balloon-b{fill:var(--plate-leaf)} .pv-balloon-c{fill:var(--plate-tub)}
+.pv-ruler{fill:var(--plate-sun);fill-opacity:.6;stroke:var(--plate-ray)} .pv-string{stroke:var(--plate-trunk)} .pv-face{fill:var(--surface);stroke:var(--plate-rim)}
 /* privacy line under the dock's controls on lesson screens */
 .privacy{flex-basis:100%;display:flex;align-items:center;gap:6px;margin:0;font-size:12.5px;color:var(--muted)}
 .privacy .i{width:14px;height:14px}
@@ -550,6 +557,109 @@ const PLATES = {
   <use href="#ll-ant" class="ll-ant" transform="translate(250 134) rotate(60) scale(1.2)"/>
   <use href="#ll-spider" class="ll-spider" transform="translate(258 154) rotate(-10) scale(1.2)"/>
   <use href="#ll-centipede" class="ll-centipede" transform="translate(264 170) rotate(4) scale(1.15)"/>
+</svg>`,
+  "5e-2-cells": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A microscope beside four round specimen views, like plates in a field guide: a seed, a mushroom, a pinch of dried yeast and a salt crystal, each shown whole and close up" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="cl-sp-seed" overflow="visible">
+      <ellipse class="pv-seed" cx="0" cy="0" rx="14" ry="9" transform="rotate(-12)"/>
+      <path class="pv-seed-line" d="M-9 2 Q0 -3 9 -2" stroke-width="1.6" fill="none" stroke-linecap="round" transform="rotate(-12)"/>
+      <ellipse cx="7" cy="-2" rx="2.4" ry="1.4" class="pv-cap" transform="rotate(-12)"/>
+    </symbol>
+    <symbol id="cl-sp-mushroom" overflow="visible">
+      <path class="pv-stem" d="M-5 -2 C-5 6 -6 12 -7 16 H7 C6 12 5 6 5 -2Z" stroke-width="1.4"/>
+      <path class="pv-cap" d="M-17 -1 C-16 -16 16 -16 17 -1 C10 -4 -10 -4 -17 -1Z"/>
+      <g class="pv-gill" stroke-width=".9"><path d="M-12 -2l2 2M-6 -3l1 2M0 -3v2M6 -3l-1 2M12 -2l-2 2"/></g>
+    </symbol>
+    <symbol id="cl-sp-yeast" overflow="visible">
+      <g class="pv-yeast"><ellipse cx="0" cy="6" rx="16" ry="4"/></g>
+      <g class="pv-yeast pv-yeast-s" stroke-width=".7">
+        <circle cx="-10" cy="3" r="2.6"/><circle cx="-5" cy="1" r="2.8"/><circle cx="0" cy="-1" r="2.9"/><circle cx="5" cy="1" r="2.8"/><circle cx="10" cy="3" r="2.6"/>
+        <circle cx="-7" cy="-3" r="2.6"/><circle cx="-1" cy="-5" r="2.7"/><circle cx="5" cy="-3" r="2.6"/><circle cx="2" cy="-8" r="2.5"/><circle cx="-3" cy="-9" r="2.3"/>
+      </g>
+    </symbol>
+    <symbol id="cl-sp-crystal" overflow="visible">
+      <path class="pv-crystal-a" d="M0 -14 L13 -7 L0 0 L-13 -7Z" stroke-width="1.4" stroke-linejoin="round"/>
+      <path class="pv-crystal-b" d="M-13 -7 L0 0 L0 14 L-13 7Z" stroke-width="1.4" stroke-linejoin="round"/>
+      <path class="pv-crystal-a" d="M13 -7 L0 0 L0 14 L13 7Z" stroke-width="1.4" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="cl-eq-scope" overflow="visible">
+      <path class="pv-metal" d="M-30 0 H18 Q22 0 22 -4 V-8 H-30Z"/>
+      <path class="pv-dark" d="M-22 -8 C-22 -40 -16 -76 0 -98 L4 -88 C-6 -70 -10 -40 -8 -8Z"/>
+      <rect class="pv-metal" x="-12" y="-42" width="34" height="5" rx="1.5"/>
+      <rect class="pv-crystal-a" x="2" y="-46" width="16" height="4" rx=".8" stroke-width="1"/>
+      <!-- upright barrel over the stage: eyepiece, tube, nosepiece, objective pointing down at the slide -->
+      <rect class="pv-metal" x="4" y="-118" width="12" height="10" rx="2"/>
+      <rect class="pv-dark" x="2" y="-108" width="16" height="44" rx="2.5"/>
+      <rect class="pv-metal" x="0" y="-66" width="20" height="6" rx="2"/>
+      <rect class="pv-metal" x="6" y="-60" width="8" height="10" rx="1.5"/>
+      <circle class="pv-metal" cx="-15" cy="-30" r="5"/>
+    </symbol>
+  </defs>
+  <rect class="pv-bench" x="0" y="160" width="350" height="30"/><path class="pv-bench-edge" d="M0 160H350" stroke-width="2"/>
+  <use href="#cl-eq-scope" transform="translate(62 160)"/>
+  <!-- four specimen roundels -->
+  <g>
+    <circle cx="150" cy="62" r="30" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2.5"/>
+    <use href="#cl-sp-seed" transform="translate(150 62) scale(1.5)"/>
+    <circle cx="226" cy="62" r="30" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2.5"/>
+    <use href="#cl-sp-mushroom" transform="translate(226 62) scale(1.3)"/>
+    <circle cx="150" cy="128" r="30" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2.5"/>
+    <use href="#cl-sp-yeast" transform="translate(150 130) scale(1.4)"/>
+    <circle cx="226" cy="128" r="30" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2.5"/>
+    <use href="#cl-sp-crystal" transform="translate(226 128) scale(1.45)"/>
+  </g>
+  <!-- empty field of view, waiting for a slide -->
+  <circle cx="306" cy="95" r="34" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="5"/>
+  <circle cx="306" cy="95" r="27" fill="none" stroke="var(--plate-rim)" stroke-opacity=".25" stroke-width="1.5" stroke-dasharray="2 4"/>
+  <path d="M297 95h18M306 86v18" stroke="var(--plate-rim)" stroke-opacity=".4" stroke-width="1.2"/>
+</svg>`,
+  "poe-1-yeast": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="Three conical flasks with limp balloons over their necks: the first holds yeast and sugar, the second yeast only, the third sugar only. Beside them, a stopwatch, a length of string and a ruler wait for the measurements" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="ye-eq-flask" overflow="visible">
+      <path class="pv-glass" d="M-6 -62 V-40 L-22 -4 Q-23 0 -19 0 H19 Q23 0 22 -4 L6 -40 V-62" stroke-width="2" stroke-linejoin="round"/>
+      <path class="pv-water" d="M-15.6 -18 H15.6 L21 -4 Q22 -1 19 -1 H-19 Q-22 -1 -21 -4Z"/>
+      <path class="pv-dark-s" d="M-8 -62 H8" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="ye-eq-balloon" overflow="visible">
+      <path d="M-7.5 0 V-6 C-8 -12 -4 -16 2 -17 C9 -18 13 -13 10 -9 C7 -5 3 -6 2 -9 C1 -6 6 -3 7.5 -6 V0Z"/>
+      <path d="M-7.5 -1.5 H7.5" stroke="var(--plate-rim)" stroke-width="1.6"/>
+    </symbol>
+    <symbol id="ye-eq-cube" overflow="visible"><rect class="pv-sugar" x="-3.2" y="-3.2" width="6.4" height="6.4" rx=".8" stroke-width="1"/></symbol>
+    <symbol id="ye-eq-grains" overflow="visible"><g class="pv-yeast pv-yeast-s" stroke-width=".5"><circle cx="-4" cy="0" r="1.6"/><circle cx="0" cy="-1" r="1.7"/><circle cx="4" cy="0" r="1.6"/><circle cx="-2" cy="-3" r="1.5"/><circle cx="2" cy="-3.6" r="1.5"/></g></symbol>
+  </defs>
+  <rect class="pv-bench" x="0" y="160" width="350" height="30"/><path class="pv-bench-edge" d="M0 160H350" stroke-width="2"/>
+  <g transform="translate(62 158)">
+    <use href="#ye-eq-flask"/>
+    <use href="#ye-eq-grains" transform="translate(-6 -8)"/><use href="#ye-eq-grains" transform="translate(7 -6)"/>
+    <use href="#ye-eq-cube" transform="translate(-12 -5) rotate(12)"/><use href="#ye-eq-cube" transform="translate(13 -12) rotate(-18)"/>
+    <use href="#ye-eq-balloon" class="pv-balloon-a" transform="translate(0 -62)"/>
+  </g>
+  <g transform="translate(126 158)">
+    <use href="#ye-eq-flask"/>
+    <use href="#ye-eq-grains" transform="translate(-6 -7)"/><use href="#ye-eq-grains" transform="translate(7 -6)"/><use href="#ye-eq-grains" transform="translate(0 -12)"/>
+    <use href="#ye-eq-balloon" class="pv-balloon-b" transform="translate(0 -62)"/>
+  </g>
+  <g transform="translate(190 158)">
+    <use href="#ye-eq-flask"/>
+    <use href="#ye-eq-cube" transform="translate(-9 -6) rotate(10)"/><use href="#ye-eq-cube" transform="translate(4 -5) rotate(-14)"/><use href="#ye-eq-cube" transform="translate(12 -12) rotate(22)"/>
+    <use href="#ye-eq-balloon" class="pv-balloon-c" transform="translate(0 -62)"/>
+  </g>
+  <!-- stopwatch: no numbers, the hand just started -->
+  <g transform="translate(286 70)">
+    <rect class="pv-dark" x="-5" y="-42" width="10" height="9" rx="2"/>
+    <rect class="pv-dark" x="18" y="-34" width="8" height="6" rx="1.5" transform="rotate(40 22 -31)"/>
+    <circle r="34" class="pv-face" stroke-width="5"/>
+    <g stroke="var(--plate-rim)" stroke-width="2" stroke-linecap="round"><path d="M0 -27V-22M27 0H22M0 27V22M-27 0H-22"/></g>
+    <g stroke="var(--plate-rim)" stroke-opacity=".5" stroke-width="1.2" stroke-linecap="round"><path d="M13.5 -23.4L11 -19M23.4 -13.5L19 -11M23.4 13.5L19 11M13.5 23.4L11 19M-13.5 23.4L-11 19M-23.4 13.5L-19 11M-23.4 -13.5L-19 -11M-13.5 -23.4L-11 -19"/></g>
+    <path d="M0 0 L7 -20" stroke="var(--plate-rust)" stroke-width="2.6" stroke-linecap="round"/>
+    <circle r="3" class="pv-dark"/>
+  </g>
+  <!-- string and ruler, ticks only -->
+  <g transform="translate(250 150)">
+    <rect class="pv-ruler" x="0" y="0" width="86" height="12" rx="2" stroke-width="1.2"/>
+    <g stroke="var(--plate-ray)" stroke-width="1.1"><path d="M8 0v5M16 0v3M24 0v5M32 0v3M40 0v6M48 0v3M56 0v5M64 0v3M72 0v5M80 0v3"/></g>
+  </g>
+  <path class="pv-string" d="M240 158 C226 150 236 136 252 138 C266 140 270 128 258 122" fill="none" stroke-width="1.6" stroke-linecap="round"/>
 </svg>`,
 };
 const LEVEL = {recognise:"Recognise",explain:"Explain",select:"Select",design:"Design"};
