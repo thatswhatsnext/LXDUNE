@@ -81,6 +81,7 @@
         <option value="all">All shells</option>
         <option value="whatson">What's On widget</option>
         <option value="video">Auto video switcher</option>
+        <option value="home-page">Home page (video + What's On side by side)</option>
         <option value="announcement">Announcement post</option>
         <option value="workflow">Workflow card</option>
         <option value="lecture">Lecture embed block</option>
@@ -206,6 +207,74 @@
       `  });\n` +
       `<\/script>\n` +
       `<div class="embed-container">LOADING VIDEO...</div>`
+    );
+  }
+
+  // Home page: video and What's On side by side in the Moodle Bootstrap grid, with a
+  // Live Sessions panel. Zoom details come from unitCfg.trimesterConfig[triKey].zoom;
+  // without them the panel carries placeholders to fill in after pasting.
+  function shellHomePage(unit, startDate, tri, unitCfg, zoom) {
+    const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const liveWeeks = Object.entries(unitCfg.weeks ?? {})
+      .filter(([k, w]) => /^\d+$/.test(k) && /^🎤/.test(w.live ?? ''))
+      .map(([k]) => Number(k))
+      .sort((a, b) => a - b);
+    const weeksText = liveWeeks.length > 1
+      ? `Weeks ${liveWeeks.slice(0, -1).join(', ')} &amp; ${liveWeeks[liveWeeks.length - 1]}`
+      : liveWeeks.length === 1 ? `Week ${liveWeeks[0]}` : '';
+    const dayTime = unitCfg.liveDay
+      ? `${esc(unitCfg.liveDay)}s${unitCfg.liveTime ? ` at ${esc(unitCfg.liveTime)}` : ''}`
+      : '';
+    const when = [weeksText, dayTime].filter(Boolean).join(' — ') || '[add live session times]';
+    const meetingId = zoom?.meetingId ? esc(zoom.meetingId) : '[add meeting ID]';
+    const password = zoom?.password ? esc(zoom.password) : '[add password]';
+    const url = zoom?.url ? esc(zoom.url) : '[add Zoom URL]';
+    return (
+      `<div class="atto_bsgrid container-fluid">\n` +
+      `  <div class="row-fluid">\n` +
+      `    <div class="col-md-6 span6">\n` +
+      `      <script type="module">\n` +
+      `        import { setUpVideos }\n` +
+      `        from "${PAGES_BASE}/autovideos/autovideos.js";\n` +
+      `        setUpVideos({\n` +
+      `          forUnit: "${unit}",\n` +
+      `          startDate: "${startDate}",\n` +
+      `          andTri: "${tri}",\n` +
+      `        });\n` +
+      `      <\/script>\n` +
+      `      <style>\n` +
+      `        .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }\n` +
+      `        .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }\n` +
+      `      </style>\n` +
+      `      <div class="embed-container">LOADING VIDEO...</div>\n` +
+      `    </div>\n` +
+      `    <div class="col-md-6 span6">\n` +
+      `      <style>\n` +
+      `        .alert { padding-bottom: 0px; font-size: 0.8em; }\n` +
+      `        #meetings { color: #616074; }\n` +
+      `      </style>\n` +
+      `      <script type="module">\n` +
+      `        import { displayWhatsOn }\n` +
+      `        from "${PAGES_BASE}/whatson/whatson.js";\n` +
+      `        displayWhatsOn({\n` +
+      `          forUnit: "${unit}",\n` +
+      `          forStartDate: "${startDate}",\n` +
+      `          forTri: "${tri}",\n` +
+      `        });\n` +
+      `      <\/script>\n` +
+      `      <div class="alert alert-info">\n` +
+      `        <h3 id="heading">What's on this week</h3>\n` +
+      `        <div id="details">Loading message...</div>\n` +
+      `        <div id="meetings">\n` +
+      `          <h3>Live Sessions</h3>\n` +
+      `          <p><strong>When:</strong> ${when}</p>\n` +
+      `          <p><strong>Meeting ID:</strong> ${meetingId}<br><strong>Password:</strong> ${password}</p>\n` +
+      `          <p><a class="btn btn-success" href="${url}" target="_blank" rel="noopener">JOIN MEETING</a></p>\n` +
+      `        </div>\n` +
+      `      </div>\n` +
+      `    </div>\n` +
+      `  </div>\n` +
+      `</div>`
     );
   }
 
@@ -510,6 +579,17 @@
         code: shellVideo(unit, startDate, tri),
         note: `Start date: <strong>${startDate}</strong>. ${liveNote}`,
         rows: 9,
+      },
+      {
+        key: 'home-page',
+        title: "Home page (video + What's On side by side)",
+        badge: 'Live now', badgeClass: 'badge-live',
+        code: shellHomePage(unit, startDate, tri, unitCfg, zoom),
+        note: `Start date: <strong>${startDate}</strong>. ${liveNote} Replaces the whole video + What's On grid on the unit home page. ` +
+          (zoom?.url
+            ? `Zoom details for ${triKey} are filled in from the unit config.`
+            : `<strong>Note:</strong> No Zoom details for ${triKey} in <code>config/units/${unit}.json</code>. Replace the <code>[add …]</code> placeholders after pasting.`),
+        rows: 16,
       },
       {
         key: 'announcement',

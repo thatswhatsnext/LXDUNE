@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home shell preview</title>
+<!-- Bootstrap 4 stands in for the Moodle theme's grid and alert styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<style>
+  body { padding: 16px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px;
+    padding: 10px 12px; background: #f3f5f8; border-radius: 6px; font-size: .9em; }
+  .controls input { width: auto; display: inline-block; }
+  .controls .note { color: #6c757d; }
+  /* Same rules as the Moodle shell */
+  .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
+  .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  .alert { padding-bottom: 0px; font-size: 0.8em; }
+  #meetings { color: #616074; }
+</style>
+</head>
+<body>
+
+<!-- Preview only: ?unit=EDIT518&start=2026-10-19&tri=T3&date=2026-11-05 -->
+<div class="controls">
+  <strong id="unit-label"></strong>
+  <button class="btn btn-sm btn-outline-secondary" id="prev" type="button">◀ Week</button>
+  <input class="form-control form-control-sm" type="date" id="date">
+  <button class="btn btn-sm btn-outline-secondary" id="next" type="button">Week ▶</button>
+  <button class="btn btn-sm btn-outline-secondary" id="today" type="button">Today</button>
+  <span class="note">Uses the local whatson.js and autovideos.js.</span>
+</div>
+
+<!-- Below matches the Moodle home-page shell -->
+<div class="atto_bsgrid container-fluid">
+  <div class="row-fluid row">
+    <div class="col-md-6 span6">
+      <div class="embed-container">LOADING VIDEO...</div>
+    </div>
+    <div class="col-md-6 span6">
+      <div class="alert alert-info">
+        <h3 id="heading">What's on this week</h3>
+        <div id="details">Loading message...</div>
+        <div id="meetings">
+          <h3>Live Sessions</h3>
+          <p><strong>When:</strong> Weeks 2, 4, 6, 8 &amp; 12 — Mondays at 1:00pm (NSW time)</p>
+          <p><strong>Meeting ID:</strong> (in the Moodle shell)<br><strong>Password:</strong> (in the Moodle shell)</p>
+          <p><a class="btn btn-success" href="#" onclick="return false">JOIN MEETING</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { setUpVideos } from "../autovideos/autovideos.js";
+  import { displayWhatsOn } from "../whatson/whatson.js";
+
+  const q = new URLSearchParams(location.search);
+  const unit = q.get("unit") ?? "EDIT518";
+  const start = q.get("start") ?? "2026-10-19";
+  const tri = q.get("tri") ?? "T3";
+
+  const dateInput = document.getElementById("date");
+  document.getElementById("unit-label").textContent = `${unit} ${tri} (start ${start})`;
+
+  const iso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+
+  function render() {
+    const forDate = dateInput.value || undefined;
+    const u = new URL(location.href);
+    if (forDate) u.searchParams.set("date", forDate); else u.searchParams.delete("date");
+    history.replaceState(null, "", u);
+    setUpVideos({ forUnit: unit, startDate: start, andTri: tri, forDate });
+    displayWhatsOn({ forUnit: unit, forStartDate: start, forTri: tri, forDate });
+  }
+
+  function shift(days) {
+    const d = dateInput.value ? new Date(dateInput.value + "T00:00:00") : new Date();
+    d.setDate(d.getDate() + days);
+    dateInput.value = iso(d);
+    render();
+  }
+
+  dateInput.value = q.get("date") ?? iso(new Date());
+  dateInput.addEventListener("change", render);
+  document.getElementById("prev").addEventListener("click", () => shift(-7));
+  document.getElementById("next").addEventListener("click", () => shift(7));
+  document.getElementById("today").addEventListener("click", () => { dateInput.value = iso(new Date()); render(); });
+  render();
+</script>
+</body>
+</html>
