@@ -578,6 +578,12 @@ All weeks: video null (will default to `DGIXT7ce3vQ` until real IDs added); zoom
 - All `video` values are null, so every week shows "This week's video is coming soon." Add each fortnight's video ID to both of its weeks (ACTION-PLAN item 51).
 - `learningOutcomes` and `assessmentTasks` are empty: EDIT518 uses no `blocks.js` renderers.
 
+### EDIT521 — Designing effective learning experiences with technology
+
+- Set up 2026-10-06 with the same shape as EDIT518: official T3 2026 dates (shutdown after Week 9, `lastWeek: 13`), fortnights 1 & 2, 3 & 4, 5 & 6, 7 & 8 and 10 & 11, Week 9 intensive, Week 12 Reflection Week, Week 13 Unit complete. Same deadlines: Project Submission and Weeks 1–6 forums 29 Nov (extension to 6 Dec); Project Revision, Weeks 7–11 forums and quizzes 17 Jan (extension to 24 Jan).
+- Own topics (LxD) and links. Live sessions Tuesdays 1:00pm (AEDT), Weeks 2, 4, 6, 8 and 11 (27 Oct, 10 Nov, 24 Nov, 8 Dec, 12 Jan).
+- No Zoom in config. Videos "coming soon"; the legacy `VideoURLs.EDIT521` list is removed. Open items in ACTION-PLAN item 53.
+
 ---
 
 ## Config schema — week object
