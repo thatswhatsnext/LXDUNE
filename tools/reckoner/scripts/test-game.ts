@@ -338,9 +338,11 @@ const cases: [string, () => void | Promise<void>][] = [
     open("poe-2-hands");
     const hands = doc.querySelector("#stage .plate-card svg.plate");
     if (!hands || hands.querySelector("text") || !/UV torch/.test(hands.getAttribute("aria-label") ?? "")) throw new Error("poe-2-hands: no plate, or a plate with text or no description");
-    // The later 5E lessons: each opens with a described plate and no text.
+    // The later 5E, ADI and Choosing a model lessons: each opens with a described plate and no text.
     const later: [string, any][] = [];
-    for (const [id, words] of [["5e-3-outbreak", /shield badge/], ["5e-4-labels", /ring binder/], ["5e-5-build", /planning board/], ["5e-6-prac-day", /thinking wall/]] as const) {
+    for (const [id, words] of [["5e-3-outbreak", /shield badge/], ["5e-4-labels", /ring binder/], ["5e-5-build", /planning board/], ["5e-6-prac-day", /thinking wall/],
+      ["adi-2-noise", /lined with a soft material/], ["adi-3-review", /swapping their reports/], ["adi-4-build", /ADI routine of eight stages/], ["adi-5-argument-day", /Two whiteboards/],
+      ["select-1-which", /Eleven question cards/], ["select-2-dial", /two calendars/], ["select-3-argue", /Models nested/]] as const) {
       (doc.getElementById("toMap") as any).click();
       open(id);
       const svg = doc.querySelector("#stage .plate-card svg.plate");
