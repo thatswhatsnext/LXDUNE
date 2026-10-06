@@ -522,10 +522,10 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [x] Closes the `adi-1-leaf-litter` plate item from items 47 and 49. Item 46's plate list still has Cells under the lens and the POE path
 - Nothing adapted. The local copy of the handoff was an earlier revision of the branch's (it named `c632975` rather than `7afd44a` as the base); the branch's copy was kept, and the substance is the same
 
-### 51. EDIT518 — record fortnightly videos; add YouTube IDs to `weeks[0,1,3,5,7,9,11,13].video` in EDIT518.json ⬜ — 2026-10-06
-- [ ] Record the fortnightly videos and add each YouTube ID to the first week of its fortnight: 0, 1, 3, 5, 7, 9, 11, 13. Those are the weeks the week-number lookup reads
-- Until an ID is set, that fortnight shows "This fortnight's video is coming soon." (`videoFallback: "coming-soon"`)
-- 2026-10-06: EDIT518 now follows UNE's official 13-week schedule (shutdown after Week 9). Weeks 9 & 10 sit either side of the shutdown and share Week 9's video; Week 13 is Reflection Week, the last week
+### 51. EDIT518 — record fortnightly videos; add YouTube IDs to `weeks[n].video` in EDIT518.json ⬜ — 2026-10-06
+- [ ] Record the fortnightly videos and add each YouTube ID to both weeks of its fortnight: 1 & 2, 3 & 4, 5 & 6, 7 & 8, 10 & 11 (plus 0, 9, 12 and 13 if they get one)
+- Until an ID is set, that week shows "This week's video is coming soon." (`videoFallback: "coming-soon"`)
+- 2026-10-06: EDIT518 moved to UNE's official 13-week schedule (shutdown after Week 9), so Weeks 10 & 11 straddle the break and videos are now looked up weekly (`videoInterval: 1`). The earlier list (weeks 0, 1, 3, 5, 7, 9, 11, 13) no longer applies
 
 ### 52. Correct Sunday trimester start dates in `config/trimester-config.json` ⬜ — 2026-10-06
 Five of the six start dates are Sundays: T2 2026 (`2026-06-21`), T3 2026 (`2026-10-18`) and all of 2027 (T1 `2027-02-21`, T2 `2027-06-20`, T3 `2027-10-17`). Only T1 2026 (`2026-02-23`) is a Monday. They look like leftovers of the Sunday workaround reverted under "Fix week resolution — Monday anchor". `blocks.js` (`resolve()` → `buildDateList`), the test harness and the generator's pre-filled shell dates all read this file, so for those trimesters week boundaries fall on Sundays. Found while moving EDIT518, whose shells pass `2026-10-19` directly and don't read the file.
