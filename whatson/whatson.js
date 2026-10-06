@@ -73,6 +73,13 @@ function linkHtml(url, label) {
   return `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
 }
 
+// Optional week activities: [{ label, url }] shown as a linked list
+function activitiesHtml(activities) {
+  if (!activities || activities.length === 0) return "";
+  return `<div><strong>Activities</strong></div>\n` +
+    ulHtml(activities.map((x) => (x.url ? linkHtml(x.url, x.label) : escapeHtml(x.label))));
+}
+
 function ulHtml(items) {
   if (!items || items.length === 0) return "";
   return `<ul>${items.map((x) => `<li>${x}</li>`).join("")}</ul>`;
@@ -214,6 +221,7 @@ export async function displayWhatsOn({
     msgs.forEach(m => parts.push(`<p>${escapeHtml(m)}</p>`));
     parts.push(`<div><strong>To do</strong></div>`);
     parts.push(ul(unitCfg.week0Todo ?? DEFAULT_WEEK0_TODO));
+    parts.push(activitiesHtml(unitCfg.weeks?.["0"]?.activities));
     parts.push(`<p>Quick link: ${portalLink(unitCfg)}</p>`);
   } else if (thisWeek > (unitCfg.lastWeek ?? 14)) {
     heading = `${escapeHtml(unitKey)}: Teaching has ended for this period`;
@@ -250,11 +258,7 @@ export async function displayWhatsOn({
       );
     }
 
-    // Activities: optional [{ label, url }] for this week, shown as links
-    if (info.activities && info.activities.length) {
-      parts.push(`<div><strong>Activities</strong></div>`);
-      parts.push(ulHtml(info.activities.map((x) => (x.url ? linkHtml(x.url, x.label) : escapeHtml(x.label)))));
-    }
+    parts.push(activitiesHtml(info.activities));
 
     // Notes
     if (info.notes && info.notes.length) {
