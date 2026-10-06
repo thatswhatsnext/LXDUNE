@@ -2,7 +2,17 @@
 
 const BASE = new URL('..', import.meta.url).href;
 
-function getDateList(startDate, weeklyInterval, trimester) {
+// Days to add to a week's date for holiday breaks.
+// breaks: array of { afterWeek, weeks } for this unit and trimester, or undefined.
+// When undefined, keep the legacy rule: T3 adds 14 days from Week 9.
+function breakOffsetDays(week, trimester, breaks) {
+  if (Array.isArray(breaks)) {
+    return breaks.reduce((days, b) => (week > b.afterWeek ? days + b.weeks * 7 : days), 0);
+  }
+  return trimester === "T3" && week >= 9 ? 14 : 0;
+}
+
+function getDateList(startDate, weeklyInterval, trimester, breaks) {
   const dateList = [];
 
   // Week 0 = 7 days before Week 1
@@ -23,10 +33,8 @@ function getDateList(startDate, weeklyInterval, trimester) {
     const thisDate = new Date(week0);
     thisDate.setDate(week0.getDate() + currentWeek * 7);
 
-    // Tri 3 holiday skip after Week 8 (i.e., starting Week 9)
-    if (trimester === "T3" && currentWeek >= 9) {
-      thisDate.setDate(thisDate.getDate() + 14);
-    }
+    // Holiday break (unit breaks config, else legacy T3 skip from Week 9)
+    thisDate.setDate(thisDate.getDate() + breakOffsetDays(currentWeek, trimester, breaks));
 
     thisDate.setHours(0, 0, 0, 0);
     dateList.push({ week: currentWeek, date: thisDate });
@@ -70,9 +78,17 @@ function getCurrentVideoIndex(forToday, fromDateList) {
   return 0;
 }
 
-export async function setUpVideos({ forUnit: unit, startDate: theStartDate, andTri: trimester, containerId }) {
+function comingSoonHtml(weeklyInterval) {
+  const period = weeklyInterval === 2 ? "fortnight" : "week";
+  return '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;' +
+    'text-align:center;padding:1em;background:#eef1f4;color:#2c3e50;font-size:1.1em;">' +
+    `This ${period}'s video is coming soon.</div>`;
+}
+
+export async function setUpVideos({ forUnit: unit, startDate: theStartDate, andTri: trimester, containerId, forDate }) {
   // containerId: sandpit-only convenience for pages with multiple shells on the same page.
   // Generated production shells omit this — they rely on the embed-container[0] fallback.
+  // forDate: test-only override for "today" (ISO date). Production shells omit it.
   const container = containerId
     ? document.getElementById(containerId)
     : document.getElementsByClassName('embed-container')[0];
@@ -80,7 +96,7 @@ export async function setUpVideos({ forUnit: unit, startDate: theStartDate, andT
   const classStartDate = new Date(theStartDate);
   classStartDate.setHours(0, 0, 0, 0);
 
-  const today = new Date();
+  const today = forDate ? new Date(forDate) : new Date();
 
   let unitCfg;
   try {
@@ -109,26 +125,31 @@ export async function setUpVideos({ forUnit: unit, startDate: theStartDate, andT
 
   const weeklyInterval = unitCfg.videoInterval ?? 2;
 
-  const dateList = getDateList(classStartDate, weeklyInterval, trimester);
+  const triKey = `${trimester}-${classStartDate.getFullYear()}`;
+  const dateList = getDateList(classStartDate, weeklyInterval, trimester, unitCfg.breaks?.[triKey]);
 
-  // Build video sequence from config weeks, sorted by week number
-  const videoPlaceholders = Object.keys(unitCfg.weeks)
-    .sort((a, b) => Number(a) - Number(b))
-    .map(k => unitCfg.weeks[k].video ?? 'DGIXT7ce3vQ');
-
-  let index = getCurrentVideoIndex(today, dateList);
-
-  if (!videoPlaceholders.length) {
+  if (!unitCfg.weeks || !Object.keys(unitCfg.weeks).length) {
     container.innerHTML =
       '<div>Video unavailable — no videos configured for this unit.</div>';
     return;
   }
-  if (index < 0) index = 0;
-  if (index >= videoPlaceholders.length) index = videoPlaceholders.length - 1;
+
+  // Look the video up by week number (the first week of the period), not list position
+  const index = getCurrentVideoIndex(today, dateList);
+  const weekNum = dateList[index].week;
+  let videoId = unitCfg.weeks[String(weekNum)]?.video ?? null;
+
+  if (videoId === null) {
+    if (unitCfg.videoFallback === "coming-soon") {
+      container.innerHTML = comingSoonHtml(weeklyInterval);
+      return;
+    }
+    videoId = 'DGIXT7ce3vQ';
+  }
 
   container.innerHTML =
     '<iframe src="https://www.youtube.com/embed/' +
-    videoPlaceholders[index] +
+    videoId +
     '" title="YouTube video player" width="100%" frameborder="0" ' +
     'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 }
@@ -140,6 +161,5 @@ class VideoURLs {
   static EDIT426 = [ "alhCYDrtgzs", "r_fTa8QmIRQ", "Mt8UdXTMLW0", "HRbNPuBJ-F4", "kP9hgtJpW9w", "DGIXT7ce3vQ", "S9jirJlhP0U", "3UEbA1D7Y-0" ];
   static EDIT513 = [ "m1OwTkFGlgc", "ebk880UKai8", "7LUDYfhahUw", "mzFLm7Mr1u4", "DGIXT7ce3vQ", "01pnXTJ6V20", "mv2RA4qrl3Y", "3UEbA1D7Y-0" ];
   static EDIT517 = [ "BcormZe1joc", "nin_fE3wWfI", "jk3y-5ykQ2E", "J1MFBz5VDKo", "DGIXT7ce3vQ", "JqvACFLwguk", "p6yJEE5Kcf8", "3UEbA1D7Y-0" ];
-  static EDIT518 = [ "iayVJ8VdHvM", "GmKJJ1VDoUE", "4S-dsxI1EnY", "WuFJokLqF1I", "A8X_UrMPu5Y", "DGIXT7ce3vQ", "zBhnWRT8J7M", "3UEbA1D7Y-0" ];
   static EDIT521 = [ "e5oJX_jEzD0", "9wAcxp55Bco", "Q5t1eaLhM18", "o7xXdjoEjlk", "5H7CMePLyVg", "DGIXT7ce3vQ", "SB08-lkRmHA", "3UEbA1D7Y-0" ];
 }

@@ -268,7 +268,17 @@ const WORKED_EXAMPLE_CSS = `
 
 // ── Date calculation (mirrors whatson.js logic) ───────────────────────────────
 
-function buildDateList(startDate, trimester) {
+// Days to add to a week's date for holiday breaks.
+// breaks: array of { afterWeek, weeks } from unitCfg.breaks[triKey], or undefined.
+// When undefined, keep the legacy rule: T3 adds 14 days from Week 9.
+function breakOffsetDays(week, trimester, breaks) {
+  if (Array.isArray(breaks)) {
+    return breaks.reduce((days, b) => (week > b.afterWeek ? days + b.weeks * 7 : days), 0);
+  }
+  return trimester === 'T3' && week >= 9 ? 14 : 0;
+}
+
+function buildDateList(startDate, trimester, breaks) {
   const list = [];
   const week0 = new Date(startDate);
   week0.setDate(week0.getDate() - 7);
@@ -281,7 +291,7 @@ function buildDateList(startDate, trimester) {
   for (let w = 2; w <= 14; w++) {
     const d = new Date(week0);
     d.setDate(week0.getDate() + w * 7);
-    if (trimester === 'T3' && w >= 9) d.setDate(d.getDate() + 14);
+    d.setDate(d.getDate() + breakOffsetDays(w, trimester, breaks));
     list.push({ week: w, date: d });
   }
   return list;
@@ -313,7 +323,7 @@ async function resolve({ forUnit, forTri, forYear, forWeek, forDate, forTopic })
   if (weekNum == null) {
     const today = forDate ? new Date(forDate) : new Date();
     today.setHours(0, 0, 0, 0);
-    weekNum = calcCurrentWeek(today, buildDateList(new Date(startDate), forTri));
+    weekNum = calcCurrentWeek(today, buildDateList(new Date(startDate), forTri, unitCfg.breaks?.[triKey]));
   }
 
   let resolvedTopic = null;

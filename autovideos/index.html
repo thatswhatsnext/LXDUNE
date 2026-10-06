@@ -2,10 +2,13 @@
   <head>
     <script type="module">
       import { setUpVideos } from "./autovideos.js";
+      // Demo only: ?unit=EDIT518&start=2026-10-19&tri=T3&date=2026-11-05 overrides the defaults
+      const q = new URLSearchParams(location.search);
       setUpVideos({
-        forUnit: "EDSE357",
-        startDate: "2026-02-23",
-        andTri: "T1",
+        forUnit: q.get("unit") ?? "EDSE357",
+        startDate: q.get("start") ?? "2026-02-23",
+        andTri: q.get("tri") ?? "T1",
+        forDate: q.get("date") ?? undefined,
       });
     </script>
     <style>
