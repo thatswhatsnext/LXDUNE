@@ -18,7 +18,7 @@
   --engage:#b06e0c; --explore:#0d7c6f; --explain:#2a5cad; --elaborate:#7046ad; --evaluate:#ad4166;
   --plate-sun:#F2C76B; --plate-ray:#D9A62E; --plate-canopy:#DFEDE7; --plate-branch:#1D6B56; --plate-leaf:#2E8A6E;
   --plate-trunk:#5B4632; --plate-soil:#7A5B3E; --plate-tub:#35538F; --plate-rim:#2A4372; --plate-drop:#6FA8DC;
-  --plate-grey:#6E7A80; --plate-rust:#B5562B;
+  --plate-grey:#6E7A80; --plate-rust:#B5562B; --plate-sugar:#FFFFFF; --plate-uv:#6A4BB0;
   --f-display:"Source Serif 4", Georgia, serif;
   --f-body:"IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
   --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -30,7 +30,7 @@
   --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
   --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
   --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
-  --plate-grey:#A3AFB5; --plate-rust:#D98A63;
+  --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6; --plate-uv:#A88BEA;
   --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
   --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
   color-scheme:dark}}
@@ -39,7 +39,7 @@
   --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
   --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
   --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
-  --plate-grey:#A3AFB5; --plate-rust:#D98A63;
+  --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6; --plate-uv:#A88BEA;
   --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
   --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
   color-scheme:dark}
@@ -236,6 +236,23 @@ button.go.fbk{margin-top:12px}
 .ll-ant{fill:var(--plate-trunk);stroke:var(--plate-trunk)} .ll-beetle{fill:var(--plate-branch);stroke:var(--plate-branch)}
 .ll-slater{fill:var(--plate-grey);stroke:var(--plate-grey)} .ll-spider{fill:var(--plate-rust);stroke:var(--plate-rust)}
 .ll-centipede{fill:var(--plate-ray);stroke:var(--plate-ray)} .ll-springtail{fill:var(--plate-tub);stroke:var(--plate-tub)}
+/* cells and yeast plates (5e-2-cells, poe-1-yeast): bench, glassware, specimens */
+.pv-bench{fill:var(--plate-soil);fill-opacity:.22} .pv-bench-edge{stroke:var(--plate-soil)} .pv-metal{fill:var(--plate-grey)} .pv-dark-s{stroke:var(--plate-rim)}
+.pv-dark{fill:var(--plate-rim)} .pv-glass{fill:var(--plate-canopy);fill-opacity:.55;stroke:var(--plate-rim)} .pv-water{fill:var(--plate-drop);fill-opacity:.45} .pv-seed{fill:var(--plate-ray)}
+.pv-seed-line{stroke:var(--plate-soil)} .pv-cap{fill:var(--plate-soil)} .pv-stem{fill:var(--plate-canopy);stroke:var(--plate-soil)} .pv-gill{stroke:var(--plate-soil)}
+.pv-yeast{fill:var(--plate-sun)} .pv-yeast-s{stroke:var(--plate-ray)} .pv-crystal-a{fill:var(--plate-canopy);stroke:var(--plate-rim)} .pv-crystal-b{fill:var(--plate-drop);fill-opacity:.35;stroke:var(--plate-rim)}
+.pv-sugar{fill:var(--plate-sugar);stroke:var(--plate-rim)} .pv-balloon-a{fill:var(--plate-rust)} .pv-balloon-b{fill:var(--plate-leaf)} .pv-balloon-c{fill:var(--plate-tub)}
+.pv-ruler{fill:var(--plate-sun);fill-opacity:.6;stroke:var(--plate-ray)} .pv-string{stroke:var(--plate-trunk)} .pv-face{fill:var(--surface);stroke:var(--plate-rim)}
+/* clean hands plate (poe-2-hands): hands in outline, lotion glow, UV light, the four methods */
+.pv-skin-o{fill:var(--plate-rim);stroke:var(--plate-rim)} .pv-skin{fill:var(--plate-canopy)} .pv-uv{fill:var(--plate-uv)} .pv-glow{fill:var(--plate-sun)}
+.pv-halo{fill:var(--plate-sun);fill-opacity:.35} .pv-soap{fill:var(--plate-leaf)} .pv-gel{fill:var(--plate-drop);fill-opacity:.3;stroke:var(--plate-rim)} .pv-towel{fill:var(--plate-sugar);stroke:var(--plate-rim)}
+.pv-drop{fill:var(--plate-drop)}
+/* 5E plates (5e-3-outbreak, 5e-4-labels, 5e-5-build, 5e-6-prac-day): people, paper, desks, boards, phase-coloured tabs and columns */
+.pv-paper{fill:var(--plate-sugar);stroke:var(--plate-rim)} .pv-line{stroke:var(--plate-grey);stroke-opacity:.6} .pv-desk{fill:var(--plate-soil);fill-opacity:.35;stroke:var(--plate-soil)} .pv-board{fill:var(--plate-sugar);stroke:var(--plate-grey)}
+.pv-shield{fill:var(--plate-leaf)} .pv-leaf{fill:var(--plate-leaf)} .pv-soil{fill:var(--plate-soil)} .pv-pot{fill:var(--plate-rust)}
+.pv-card{fill:var(--plate-sugar);stroke:var(--plate-rim)} .pv-ph-engage{fill:var(--engage)} .pv-ph-explore{fill:var(--explore)} .pv-ph-explain{fill:var(--explain)}
+.pv-ph-elaborate{fill:var(--elaborate)} .pv-ph-evaluate{fill:var(--evaluate)} .pv-ph-engage-s{stroke:var(--engage)} .pv-ph-explore-s{stroke:var(--explore)}
+.pv-ph-explain-s{stroke:var(--explain)} .pv-ph-elaborate-s{stroke:var(--elaborate)} .pv-ph-evaluate-s{stroke:var(--evaluate)}
 /* privacy line under the dock's controls on lesson screens */
 .privacy{flex-basis:100%;display:flex;align-items:center;gap:6px;margin:0;font-size:12.5px;color:var(--muted)}
 .privacy .i{width:14px;height:14px}
@@ -551,6 +568,309 @@ const PLATES = {
   <use href="#ll-spider" class="ll-spider" transform="translate(258 154) rotate(-10) scale(1.2)"/>
   <use href="#ll-centipede" class="ll-centipede" transform="translate(264 170) rotate(4) scale(1.15)"/>
 </svg>`,
+  "5e-2-cells": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A microscope beside four round specimen views, like plates in a field guide: a seed, a mushroom, a pinch of dried yeast and a salt crystal, each shown whole and close up" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="cl-sp-seed" overflow="visible">
+      <ellipse class="pv-seed" cx="0" cy="0" rx="14" ry="9" transform="rotate(-12)"/>
+      <path class="pv-seed-line" d="M-9 2 Q0 -3 9 -2" stroke-width="1.6" fill="none" stroke-linecap="round" transform="rotate(-12)"/>
+      <ellipse cx="7" cy="-2" rx="2.4" ry="1.4" class="pv-cap" transform="rotate(-12)"/>
+    </symbol>
+    <symbol id="cl-sp-mushroom" overflow="visible">
+      <path class="pv-stem" d="M-5 -2 C-5 6 -6 12 -7 16 H7 C6 12 5 6 5 -2Z" stroke-width="1.4"/>
+      <path class="pv-cap" d="M-17 -1 C-16 -16 16 -16 17 -1 C10 -4 -10 -4 -17 -1Z"/>
+      <g class="pv-gill" stroke-width=".9"><path d="M-12 -2l2 2M-6 -3l1 2M0 -3v2M6 -3l-1 2M12 -2l-2 2"/></g>
+    </symbol>
+    <symbol id="cl-sp-yeast" overflow="visible">
+      <g class="pv-yeast"><ellipse cx="0" cy="6" rx="16" ry="4"/></g>
+      <g class="pv-yeast pv-yeast-s" stroke-width=".7">
+        <circle cx="-10" cy="3" r="2.6"/><circle cx="-5" cy="1" r="2.8"/><circle cx="0" cy="-1" r="2.9"/><circle cx="5" cy="1" r="2.8"/><circle cx="10" cy="3" r="2.6"/>
+        <circle cx="-7" cy="-3" r="2.6"/><circle cx="-1" cy="-5" r="2.7"/><circle cx="5" cy="-3" r="2.6"/><circle cx="2" cy="-8" r="2.5"/><circle cx="-3" cy="-9" r="2.3"/>
+      </g>
+    </symbol>
+    <symbol id="cl-sp-crystal" overflow="visible">
+      <path class="pv-crystal-a" d="M0 -14 L13 -7 L0 0 L-13 -7Z" stroke-width="1.4" stroke-linejoin="round"/>
+      <path class="pv-crystal-b" d="M-13 -7 L0 0 L0 14 L-13 7Z" stroke-width="1.4" stroke-linejoin="round"/>
+      <path class="pv-crystal-a" d="M13 -7 L0 0 L0 14 L13 7Z" stroke-width="1.4" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="cl-eq-scope" overflow="visible">
+      <path class="pv-metal" d="M-30 0 H18 Q22 0 22 -4 V-8 H-30Z"/>
+      <path class="pv-dark" d="M-22 -8 C-22 -40 -16 -76 0 -98 L4 -88 C-6 -70 -10 -40 -8 -8Z"/>
+      <rect class="pv-metal" x="-12" y="-42" width="34" height="5" rx="1.5"/>
+      <rect class="pv-crystal-a" x="2" y="-46" width="16" height="4" rx=".8" stroke-width="1"/>
+      <!-- upright barrel over the stage: eyepiece, tube, nosepiece, objective pointing down at the slide -->
+      <rect class="pv-metal" x="4" y="-118" width="12" height="10" rx="2"/>
+      <rect class="pv-dark" x="2" y="-108" width="16" height="44" rx="2.5"/>
+      <rect class="pv-metal" x="0" y="-66" width="20" height="6" rx="2"/>
+      <rect class="pv-metal" x="6" y="-60" width="8" height="10" rx="1.5"/>
+      <circle class="pv-metal" cx="-15" cy="-30" r="5"/>
+    </symbol>
+  </defs>
+  <rect class="pv-bench" x="0" y="160" width="350" height="30"/><path class="pv-bench-edge" d="M0 160H350" stroke-width="2"/>
+  <use href="#cl-eq-scope" transform="translate(62 160)"/>
+  <!-- four specimen roundels -->
+  <g>
+    <circle cx="150" cy="62" r="30" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2.5"/>
+    <use href="#cl-sp-seed" transform="translate(150 62) scale(1.5)"/>
+    <circle cx="226" cy="62" r="30" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2.5"/>
+    <use href="#cl-sp-mushroom" transform="translate(226 62) scale(1.3)"/>
+    <circle cx="150" cy="128" r="30" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2.5"/>
+    <use href="#cl-sp-yeast" transform="translate(150 130) scale(1.4)"/>
+    <circle cx="226" cy="128" r="30" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2.5"/>
+    <use href="#cl-sp-crystal" transform="translate(226 128) scale(1.45)"/>
+  </g>
+  <!-- empty field of view, waiting for a slide -->
+  <circle cx="306" cy="95" r="34" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="5"/>
+  <circle cx="306" cy="95" r="27" fill="none" stroke="var(--plate-rim)" stroke-opacity=".25" stroke-width="1.5" stroke-dasharray="2 4"/>
+  <path d="M297 95h18M306 86v18" stroke="var(--plate-rim)" stroke-opacity=".4" stroke-width="1.2"/>
+</svg>`,
+  "poe-1-yeast": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="Three conical flasks with limp balloons over their necks: the first holds yeast and sugar, the second yeast only, the third sugar only. Beside them, a stopwatch, a length of string and a ruler wait for the measurements" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="ye-eq-flask" overflow="visible">
+      <path class="pv-glass" d="M-6 -62 V-40 L-22 -4 Q-23 0 -19 0 H19 Q23 0 22 -4 L6 -40 V-62" stroke-width="2" stroke-linejoin="round"/>
+      <path class="pv-water" d="M-15.6 -18 H15.6 L21 -4 Q22 -1 19 -1 H-19 Q-22 -1 -21 -4Z"/>
+      <path class="pv-dark-s" d="M-8 -62 H8" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="ye-eq-balloon" overflow="visible">
+      <path d="M-7.5 0 V-6 C-8 -12 -4 -16 2 -17 C9 -18 13 -13 10 -9 C7 -5 3 -6 2 -9 C1 -6 6 -3 7.5 -6 V0Z"/>
+      <path d="M-7.5 -1.5 H7.5" stroke="var(--plate-rim)" stroke-width="1.6"/>
+    </symbol>
+    <symbol id="ye-eq-cube" overflow="visible"><rect class="pv-sugar" x="-3.2" y="-3.2" width="6.4" height="6.4" rx=".8" stroke-width="1"/></symbol>
+    <symbol id="ye-eq-grains" overflow="visible"><g class="pv-yeast pv-yeast-s" stroke-width=".5"><circle cx="-4" cy="0" r="1.6"/><circle cx="0" cy="-1" r="1.7"/><circle cx="4" cy="0" r="1.6"/><circle cx="-2" cy="-3" r="1.5"/><circle cx="2" cy="-3.6" r="1.5"/></g></symbol>
+  </defs>
+  <rect class="pv-bench" x="0" y="160" width="350" height="30"/><path class="pv-bench-edge" d="M0 160H350" stroke-width="2"/>
+  <g transform="translate(62 158)">
+    <use href="#ye-eq-flask"/>
+    <use href="#ye-eq-grains" transform="translate(-6 -8)"/><use href="#ye-eq-grains" transform="translate(7 -6)"/>
+    <use href="#ye-eq-cube" transform="translate(-12 -5) rotate(12)"/><use href="#ye-eq-cube" transform="translate(13 -12) rotate(-18)"/>
+    <use href="#ye-eq-balloon" class="pv-balloon-a" transform="translate(0 -62)"/>
+  </g>
+  <g transform="translate(126 158)">
+    <use href="#ye-eq-flask"/>
+    <use href="#ye-eq-grains" transform="translate(-6 -7)"/><use href="#ye-eq-grains" transform="translate(7 -6)"/><use href="#ye-eq-grains" transform="translate(0 -12)"/>
+    <use href="#ye-eq-balloon" class="pv-balloon-b" transform="translate(0 -62)"/>
+  </g>
+  <g transform="translate(190 158)">
+    <use href="#ye-eq-flask"/>
+    <use href="#ye-eq-cube" transform="translate(-9 -6) rotate(10)"/><use href="#ye-eq-cube" transform="translate(4 -5) rotate(-14)"/><use href="#ye-eq-cube" transform="translate(12 -12) rotate(22)"/>
+    <use href="#ye-eq-balloon" class="pv-balloon-c" transform="translate(0 -62)"/>
+  </g>
+  <!-- stopwatch: no numbers, the hand just started -->
+  <g transform="translate(286 70)">
+    <rect class="pv-dark" x="-5" y="-42" width="10" height="9" rx="2"/>
+    <rect class="pv-dark" x="18" y="-34" width="8" height="6" rx="1.5" transform="rotate(40 22 -31)"/>
+    <circle r="34" class="pv-face" stroke-width="5"/>
+    <g stroke="var(--plate-rim)" stroke-width="2" stroke-linecap="round"><path d="M0 -27V-22M27 0H22M0 27V22M-27 0H-22"/></g>
+    <g stroke="var(--plate-rim)" stroke-opacity=".5" stroke-width="1.2" stroke-linecap="round"><path d="M13.5 -23.4L11 -19M23.4 -13.5L19 -11M23.4 13.5L19 11M13.5 23.4L11 19M-13.5 23.4L-11 19M-23.4 13.5L-19 11M-23.4 -13.5L-19 -11M-13.5 -23.4L-11 -19"/></g>
+    <path d="M0 0 L7 -20" stroke="var(--plate-rust)" stroke-width="2.6" stroke-linecap="round"/>
+    <circle r="3" class="pv-dark"/>
+  </g>
+  <!-- string and ruler, ticks only -->
+  <g transform="translate(250 150)">
+    <rect class="pv-ruler" x="0" y="0" width="86" height="12" rx="2" stroke-width="1.2"/>
+    <g stroke="var(--plate-ray)" stroke-width="1.1"><path d="M8 0v5M16 0v3M24 0v5M32 0v3M40 0v6M48 0v3M56 0v5M64 0v3M72 0v5M80 0v3"/></g>
+  </g>
+  <path class="pv-string" d="M240 158 C226 150 236 136 252 138 C266 140 270 128 258 122" fill="none" stroke-width="1.6" stroke-linecap="round"/>
+</svg>`,
+  "poe-2-hands": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A UV torch shining on two open hands, with fluorescent lotion glowing evenly all over them. On the bench wait the four ways to remove it: a running tap over a basin, a soap pump, a bottle of hand sanitiser and a roll of paper towel" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- an open hand, palm up, wrist at 0,0 -->
+    <symbol id="ha-hand" overflow="visible">
+      <rect x="-15" y="-34" width="30" height="36" rx="7"/>
+      <rect x="-15" y="-57" width="7" height="30" rx="3.5"/>
+      <rect x="-6.5" y="-62" width="7" height="35" rx="3.5"/>
+      <rect x="2" y="-60" width="7" height="33" rx="3.5"/>
+      <rect x="10.2" y="-52" width="6.5" height="25" rx="3.2"/>
+      <rect x="-9" y="-30" width="7.5" height="24" rx="3.7" transform="rotate(-52 -12 -12)"/>
+    </symbol>
+    <!-- lotion: glowing spots across palm and fingers -->
+    <symbol id="ha-lotion" overflow="visible">
+      <g class="pv-halo"><circle cx="-6" cy="-20" r="6"/><circle cx="6" cy="-14" r="6"/><circle cx="2" cy="-28" r="5"/><circle cx="-11" cy="-46" r="3.6"/><circle cx="-3" cy="-52" r="3.6"/><circle cx="5.5" cy="-48" r="3.6"/><circle cx="13.5" cy="-40" r="3.4"/><circle cx="-21" cy="-24" r="3.4"/><circle cx="-8" cy="-6" r="4.5"/><circle cx="9" cy="-26" r="4"/></g>
+      <g class="pv-glow"><circle cx="-6" cy="-20" r="2.6"/><circle cx="6" cy="-14" r="2.6"/><circle cx="2" cy="-28" r="2.2"/><circle cx="-11" cy="-46" r="1.7"/><circle cx="-3" cy="-52" r="1.7"/><circle cx="5.5" cy="-48" r="1.7"/><circle cx="13.5" cy="-40" r="1.6"/><circle cx="-21" cy="-24" r="1.6"/><circle cx="-8" cy="-6" r="2"/><circle cx="9" cy="-26" r="1.8"/></g>
+    </symbol>
+  </defs>
+  <rect class="pv-bench" x="0" y="160" width="350" height="30"/><path class="pv-bench-edge" d="M0 160H350" stroke-width="2"/>
+  <!-- UV torch and its beam -->
+  <path class="pv-uv" fill-opacity=".16" d="M48 40 L18 150 H170 L72 30Z"/>
+  <g transform="translate(60 32) rotate(-20)">
+    <rect class="pv-dark" x="-10" y="-34" width="20" height="38" rx="4"/>
+    <rect class="pv-metal" x="-13" y="2" width="26" height="9" rx="2.5"/>
+    <rect class="pv-uv" x="-11" y="10" width="22" height="3.5" rx="1.5"/>
+    <rect class="pv-metal" x="-4" y="-26" width="8" height="5" rx="1.5"/>
+  </g>
+  <!-- two hands, lotion glowing evenly over both -->
+  <g transform="translate(70 150) rotate(-8)">
+    <use href="#ha-hand" class="pv-skin-o" stroke-width="3.4" stroke-linejoin="round"/><use href="#ha-hand" class="pv-skin"/>
+    <use href="#ha-lotion"/>
+  </g>
+  <g transform="translate(130 150) rotate(8) scale(-1 1)">
+    <use href="#ha-hand" class="pv-skin-o" stroke-width="3.4" stroke-linejoin="round"/><use href="#ha-hand" class="pv-skin"/>
+    <use href="#ha-lotion"/>
+  </g>
+  <!-- the four methods, waiting on the bench -->
+  <!-- 1 running tap over a basin -->
+  <g transform="translate(206 160)">
+    <path class="pv-glass" d="M-22 -16 H22 L18 -2 Q17 0 14 0 H-14 Q-17 0 -18 -2Z" stroke-width="2"/>
+    <rect class="pv-metal" x="-16" y="-80" width="7" height="64" rx="2"/>
+    <path class="pv-metal" d="M-16 -82 H4 Q12 -82 12 -74 V-66 H5 V-72 Q5 -75 2 -75 H-16Z"/>
+    <rect class="pv-dark" x="-20" y="-88" width="15" height="6" rx="2"/>
+    <path class="pv-drop" d="M8.5 -58 c-2.6 4.4 -4 6.6 0 8 c4 -1.4 2.6 -3.6 0 -8z"/>
+    <path class="pv-drop" d="M8.5 -44 c-2.6 4.4 -4 6.6 0 8 c4 -1.4 2.6 -3.6 0 -8z"/>
+    <path class="pv-drop" d="M8.5 -30 c-2.6 4.4 -4 6.6 0 8 c4 -1.4 2.6 -3.6 0 -8z"/>
+    <path class="pv-water" d="M-17 -12 H17 L15 -5 H-15Z"/>
+  </g>
+  <!-- 2 soap pump -->
+  <g transform="translate(252 160)">
+    <rect class="pv-soap" x="-13" y="-46" width="26" height="46" rx="6"/>
+    <rect class="pv-dark" x="-5" y="-54" width="10" height="9" rx="2"/>
+    <path class="pv-dark" d="M-3 -54 V-62 H14 V-58 H3 V-54Z"/>
+    <ellipse cx="0" cy="-26" rx="7" ry="9" fill="var(--surface)" fill-opacity=".55"/>
+  </g>
+  <!-- 3 hand sanitiser: clear gel, flip cap -->
+  <g transform="translate(290 160)">
+    <rect class="pv-gel" x="-11" y="-40" width="22" height="40" rx="5" stroke-width="2"/>
+    <rect class="pv-water" x="-9" y="-26" width="18" height="24" rx="3"/>
+    <rect class="pv-dark" x="-8" y="-48" width="16" height="9" rx="2.5"/>
+    <path class="pv-dark" d="M-8 -48 L-12 -55 L-2 -55 L0 -48Z"/>
+  </g>
+  <!-- 4 paper towel: a horizontal roll on its stand, a sheet hanging down -->
+  <g transform="translate(326 160)">
+    <rect class="pv-metal" x="-2" y="-70" width="4" height="70" rx="1.5"/>
+    <rect class="pv-metal" x="-15" y="-3" width="30" height="5" rx="2"/>
+    <rect class="pv-towel" x="-16" y="-70" width="32" height="20" rx="10" stroke-width="2"/>
+    <ellipse class="pv-towel" cx="12" cy="-60" rx="4" ry="9" stroke-width="1.6"/>
+    <circle cx="12" cy="-60" r="2.4" class="pv-metal"/>
+    <path class="pv-towel" d="M-14 -55 H8 V-20 Q-3 -16 -14 -20Z" stroke-width="2"/>
+    <path d="M-14 -38 H8" stroke="var(--plate-rim)" stroke-opacity=".3" stroke-width="1.2" stroke-dasharray="2 2"/>
+  </g>
+</svg>`,
+  "5e-3-outbreak": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A web of students linked by the exchanges in the outbreak simulation. A third of them wear a shield badge: they are vaccinated" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="ob-person" overflow="visible"><circle cx="0" cy="-30" r="7"/><path d="M-12 0 V-11 Q-12 -21 0 -21 Q12 -21 12 -11 V0Z"/></symbol>
+    <symbol id="ob-shield" overflow="visible"><path class="pv-shield" d="M0 -7 L6 -5 V0 Q6 5 0 8 Q-6 5 -6 0 V-5Z"/></symbol>
+  </defs>
+  <!-- links between exchange partners -->
+  <g stroke="var(--plate-grey)" stroke-opacity=".55" stroke-width="1.6" fill="none">
+    <path d="M40 62 L100 46 L162 70 L226 44 L290 66"/><path d="M40 62 L70 120 L130 132 L162 70 L196 124 L256 128 L290 66"/>
+    <path d="M100 46 L130 132M226 44 L196 124M70 120 L40 168M130 132 L104 172M196 124 L170 174M256 128 L236 174M256 128 L316 160M290 66 L316 160"/>
+  </g>
+  <!-- students: outlines, a shield badge on a third -->
+  <g>
+    <g transform="translate(40 80)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(100 64)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/><use href="#ob-shield" transform="translate(5 -9)"/></g>
+    <g transform="translate(162 88)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(226 62)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(290 84)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/><use href="#ob-shield" transform="translate(5 -9)"/></g>
+    <g transform="translate(70 138)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(130 150)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/><use href="#ob-shield" transform="translate(5 -9)"/></g>
+    <g transform="translate(196 142)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(256 146)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/><use href="#ob-shield" transform="translate(5 -9)"/></g>
+    <g transform="translate(40 186) scale(.85)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(104 188) scale(.85)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(170 188) scale(.85)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(236 188) scale(.85)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(316 178) scale(.85)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/><use href="#ob-shield" transform="translate(5 -9)"/></g>
+  </g>
+</svg>`,
+  "5e-4-labels": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A ring binder opened at its first divider, whose new coloured tab sits on the outer edge of the left-hand page. The tabs of four more dividers, one in each 5E phase colour, peek out from the pages beneath, and every page holds the same lecture worksheet. Beside it, a sheet of spare coloured tabs" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="lb-lecture" overflow="visible">
+      <rect class="pv-board" x="-16" y="-24" width="32" height="20" rx="2" stroke-width="1.6"/>
+      <path class="pv-line" d="M-11 -18 H11M-11 -13 H7M-11 -8 H9" stroke-width="1.6"/>
+      <path d="M0 -4 V4 M-6 6 H6" stroke="var(--plate-grey)" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+  <rect class="pv-bench" x="0" y="164" width="350" height="26"/><path class="pv-bench-edge" d="M0 164H350" stroke-width="2"/>
+  <!-- binder cover and pages -->
+  <rect x="34" y="20" width="200" height="140" rx="6" fill="var(--plate-tub)"/>
+  <rect class="pv-paper" x="44" y="26" width="88" height="128" rx="3" stroke-width="1.6"/>
+  <!-- the turned page is the Engage divider: its tab now sits on the left-hand page's outer edge -->
+  <path class="pv-ph-engage" d="M45 30 H26 Q22 30 22 34 V46 Q22 50 26 50 H45Z"/>
+  <!-- pages stacked under the right-hand page, with their dividers' tabs peeking out -->
+  <rect class="pv-paper" x="140" y="30" width="88" height="128" rx="3" stroke-width="1.2"/>
+  <rect class="pv-paper" x="138" y="28" width="88" height="128" rx="3" stroke-width="1.2"/>
+  <rect class="pv-ph-explore" x="228" y="58" width="20" height="18" rx="3"/><rect class="pv-ph-explain" x="228" y="82" width="20" height="18" rx="3"/><rect class="pv-ph-elaborate" x="228" y="106" width="20" height="18" rx="3"/><rect class="pv-ph-evaluate" x="228" y="130" width="20" height="18" rx="3"/>
+  <rect class="pv-paper" x="136" y="26" width="88" height="128" rx="3" stroke-width="1.6"/>
+  <path d="M136 30 Q132 90 136 150" stroke="var(--plate-rim)" stroke-opacity=".25" stroke-width="3" fill="none"/>
+  <g fill="var(--plate-grey)"><circle cx="134" cy="52" r="4"/><circle cx="134" cy="90" r="4"/><circle cx="134" cy="128" r="4"/></g>
+  <use href="#lb-lecture" transform="translate(88 82) scale(1.5)"/><path class="pv-line" d="M58 108H118M58 118H110M58 128H114M58 138H104" stroke-width="1.8"/>
+  <use href="#lb-lecture" transform="translate(180 82) scale(1.5)"/><path class="pv-line" d="M150 108H210M150 118H202M150 128H206M150 138H196" stroke-width="1.8"/>
+  <!-- the new tabs -->
+  <!-- a sheet of spare tabs -->
+  <g transform="translate(296 104) rotate(8)">
+    <rect class="pv-paper" x="-32" y="-44" width="64" height="88" rx="4" stroke-width="1.8"/>
+    <rect class="pv-ph-engage" x="-22" y="-34" width="18" height="12" rx="2.5"/><rect class="pv-ph-explore" x="4" y="-34" width="18" height="12" rx="2.5"/>
+    <rect class="pv-ph-explain" x="-22" y="-14" width="18" height="12" rx="2.5"/><rect class="pv-ph-elaborate" x="4" y="-14" width="18" height="12" rx="2.5"/>
+    <rect class="pv-ph-evaluate" x="-22" y="6" width="18" height="12" rx="2.5"/><rect class="pv-ph-engage" x="4" y="6" width="18" height="12" rx="2.5"/>
+    <rect class="pv-ph-explore" x="-22" y="26" width="18" height="12" rx="2.5"/><rect x="4" y="26" width="18" height="12" rx="2.5" fill="none" stroke="var(--plate-grey)" stroke-dasharray="2 2"/>
+  </g>
+</svg>`,
+  "5e-5-build": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A planning board with five columns, one in each 5E phase colour. A few activity cards are already placed, one card is on its way into a column, and a seedling in a pot sits beside the board" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="bd-seedling" overflow="visible">
+      <path class="pv-pot" d="M-12 -18 H12 L9 0 H-9Z"/><rect class="pv-pot" x="-14" y="-21" width="28" height="5" rx="1.5"/>
+      <path class="pv-soil" d="M-12 -20 H12 V-18 H-12Z"/>
+      <path d="M0 -20 V-40" stroke="var(--plate-leaf)" stroke-width="2.2" stroke-linecap="round"/>
+      <path class="pv-leaf" d="M0 -36 C-4 -46 -16 -46 -18 -40 C-12 -34 -4 -34 0 -36Z"/><path class="pv-leaf" d="M0 -40 C4 -50 16 -50 18 -44 C12 -38 4 -38 0 -40Z"/>
+    </symbol>
+  </defs>
+  <rect class="pv-bench" x="0" y="170" width="350" height="20"/><path class="pv-bench-edge" d="M0 170H350" stroke-width="2"/>
+  <rect class="pv-board" x="14" y="14" width="270" height="152" rx="8" stroke-width="2"/>
+  <g stroke-width="2.4" fill="none">
+    <rect class="pv-ph-engage-s" x="24" y="26" width="46" height="130" rx="6"/><rect class="pv-ph-explore-s" x="76" y="26" width="46" height="130" rx="6"/><rect class="pv-ph-explain-s" x="128" y="26" width="46" height="130" rx="6"/><rect class="pv-ph-elaborate-s" x="180" y="26" width="46" height="130" rx="6"/><rect class="pv-ph-evaluate-s" x="232" y="26" width="46" height="130" rx="6"/>
+  </g>
+  <g><rect class="pv-ph-engage" x="24" y="26" width="46" height="9" rx="3"/><rect class="pv-ph-explore" x="76" y="26" width="46" height="9" rx="3"/><rect class="pv-ph-explain" x="128" y="26" width="46" height="9" rx="3"/><rect class="pv-ph-elaborate" x="180" y="26" width="46" height="9" rx="3"/><rect class="pv-ph-evaluate" x="232" y="26" width="46" height="9" rx="3"/></g>
+  <!-- placed cards -->
+  <g>
+    <rect class="pv-card" x="29" y="44" width="36" height="26" rx="3" stroke-width="1.6"/><path class="pv-line" d="M34 52H60M34 58H54M34 64H57" stroke-width="1.4"/>
+    <rect class="pv-card" x="81" y="44" width="36" height="26" rx="3" stroke-width="1.6"/><path class="pv-line" d="M86 52H112M86 58H106M86 64H109" stroke-width="1.4"/>
+    <rect class="pv-card" x="81" y="76" width="36" height="26" rx="3" stroke-width="1.6"/><path class="pv-line" d="M86 84H112M86 90H104M86 96H110" stroke-width="1.4"/>
+    <rect class="pv-card" x="237" y="44" width="36" height="26" rx="3" stroke-width="1.6"/><path class="pv-line" d="M242 52H268M242 58H262M242 64H265" stroke-width="1.4"/>
+  </g>
+  <!-- an empty slot, and a card on its way in -->
+  <rect x="133" y="44" width="36" height="26" rx="3" fill="none" stroke="var(--plate-grey)" stroke-dasharray="3 3" stroke-width="1.6"/>
+  <g transform="translate(160 18) rotate(10)"><rect class="pv-card" x="-18" y="-13" width="36" height="26" rx="3" stroke-width="2"/><path class="pv-line" d="M-13 -5H13M-13 1H7M-13 7H10" stroke-width="1.4"/></g>
+  <path d="M152 36 Q150 40 151 44" stroke="var(--plate-grey)" stroke-width="1.6" fill="none" stroke-dasharray="2 3"/>
+  <use href="#bd-seedling" transform="translate(318 170) scale(1.25)"/>
+</svg>`,
+  "5e-6-prac-day": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A Year 7 classroom on placement day: a teacher beside a thinking wall covered in sticky notes, and students at desks, one with a microscope" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="pd-person" overflow="visible"><circle cx="0" cy="-30" r="7"/><path d="M-12 0 V-11 Q-12 -21 0 -21 Q12 -21 12 -11 V0Z"/></symbol>
+    <symbol id="pd-scope" overflow="visible">
+      <path class="pv-metal" d="M-14 0 H10 V-4 H-14Z"/><path class="pv-dark" d="M-10 -4 C-10 -20 -7 -36 0 -46 L2 -42 C-3 -34 -5 -20 -4 -4Z"/>
+      <rect class="pv-metal" x="-6" y="-21" width="18" height="3" rx="1"/><rect class="pv-dark" x="2" y="-54" width="8" height="22" rx="1.5"/><rect class="pv-metal" x="4" y="-32" width="4" height="6" rx="1"/><rect class="pv-metal" x="3" y="-59" width="6" height="5" rx="1"/>
+    </symbol>
+  </defs>
+  <!-- thinking wall -->
+  <rect class="pv-board" x="88" y="12" width="174" height="74" rx="5" stroke-width="2"/>
+  <g>
+    <rect class="pv-ph-engage" x="100" y="22" width="18" height="16" rx="2" transform="rotate(-4 109 30)"/><rect class="pv-ph-explore" x="126" y="24" width="18" height="16" rx="2"/><rect fill="var(--plate-sun)" x="152" y="20" width="18" height="16" rx="2" transform="rotate(5 161 28)"/>
+    <rect class="pv-ph-explain" x="178" y="24" width="18" height="16" rx="2"/><rect class="pv-ph-evaluate" x="204" y="22" width="18" height="16" rx="2" transform="rotate(-6 213 30)"/><rect fill="var(--plate-sun)" x="230" y="26" width="18" height="16" rx="2"/>
+    <rect fill="var(--plate-sun)" x="112" y="50" width="18" height="16" rx="2" transform="rotate(6 121 58)"/><rect class="pv-ph-explore" x="140" y="52" width="18" height="16" rx="2"/><rect class="pv-ph-engage" x="168" y="50" width="18" height="16" rx="2" transform="rotate(-5 177 58)"/><rect fill="var(--plate-sun)" x="196" y="54" width="18" height="16" rx="2"/>
+  </g>
+  <!-- teacher -->
+  <g transform="translate(286 110) scale(1.35)"><use href="#pd-person" class="pv-skin-o" stroke-width="3"/><use href="#pd-person" class="pv-skin"/></g>
+  <!-- desks and students -->
+  <g>
+    <g transform="translate(60 158)"><use href="#pd-person" class="pv-skin-o" stroke-width="3"/><use href="#pd-person" class="pv-skin"/></g>
+    <g transform="translate(140 158)"><use href="#pd-person" class="pv-skin-o" stroke-width="3"/><use href="#pd-person" class="pv-skin"/></g>
+    <g transform="translate(220 158)"><use href="#pd-person" class="pv-skin-o" stroke-width="3"/><use href="#pd-person" class="pv-skin"/></g>
+    <rect class="pv-desk" x="24" y="156" width="232" height="12" rx="3" stroke-width="1.6"/>
+    <rect class="pv-desk" x="34" y="168" width="8" height="20" rx="2" stroke-width="1.2"/><rect class="pv-desk" x="238" y="168" width="8" height="20" rx="2" stroke-width="1.2"/>
+    <use href="#pd-scope" transform="translate(178 156)"/>
+    <rect class="pv-paper" x="80" y="146" width="22" height="10" rx="1.5" stroke-width="1.2"/>
+  </g>
+</svg>`,
+  "adi-2-noise": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A small speaker playing a tone inside a box lined with a soft material, sound waves spreading out from it, and a phone with a blank sound-meter screen standing outside the box" xmlns="http://www.w3.org/2000/svg"><rect class="pv-bench" x="0" y="160" width="350" height="30"/><path class="pv-bench-edge" d="M0 160H350" stroke-width="2"/><rect x="60" y="62" width="120" height="98" rx="4" fill="var(--plate-canopy)" stroke="var(--plate-rim)" stroke-width="2.4"/><rect x="66" y="68" width="108" height="92" rx="2" fill="var(--plate-sun)" opacity=".55"/><circle cx="70" cy="73" r="1.6" fill="var(--plate-ray)"/><circle cx="78" cy="73" r="1.6" fill="var(--plate-ray)"/><circle cx="86" cy="73" r="1.6" fill="var(--plate-ray)"/><circle cx="94" cy="73" r="1.6" fill="var(--plate-ray)"/><circle cx="102" cy="73" r="1.6" fill="var(--plate-ray)"/><circle cx="110" cy="73" r="1.6" fill="var(--plate-ray)"/><circle cx="118" cy="73" r="1.6" fill="var(--plate-ray)"/><circle cx="126" cy="73" r="1.6" fill="var(--plate-ray)"/><circle cx="134" cy="73" r="1.6" fill="var(--plate-ray)"/><circle cx="142" cy="73" r="1.6" fill="var(--plate-ray)"/><circle cx="150" cy="73" r="1.6" fill="var(--plate-ray)"/><circle cx="158" cy="73" r="1.6" fill="var(--plate-ray)"/><circle cx="166" cy="73" r="1.6" fill="var(--plate-ray)"/><circle cx="74" cy="81" r="1.6" fill="var(--plate-ray)"/><circle cx="82" cy="81" r="1.6" fill="var(--plate-ray)"/><circle cx="90" cy="81" r="1.6" fill="var(--plate-ray)"/><circle cx="98" cy="81" r="1.6" fill="var(--plate-ray)"/><circle cx="106" cy="81" r="1.6" fill="var(--plate-ray)"/><circle cx="114" cy="81" r="1.6" fill="var(--plate-ray)"/><circle cx="122" cy="81" r="1.6" fill="var(--plate-ray)"/><circle cx="130" cy="81" r="1.6" fill="var(--plate-ray)"/><circle cx="138" cy="81" r="1.6" fill="var(--plate-ray)"/><circle cx="146" cy="81" r="1.6" fill="var(--plate-ray)"/><circle cx="154" cy="81" r="1.6" fill="var(--plate-ray)"/><circle cx="162" cy="81" r="1.6" fill="var(--plate-ray)"/><circle cx="170" cy="81" r="1.6" fill="var(--plate-ray)"/><circle cx="70" cy="89" r="1.6" fill="var(--plate-ray)"/><circle cx="78" cy="89" r="1.6" fill="var(--plate-ray)"/><circle cx="86" cy="89" r="1.6" fill="var(--plate-ray)"/><circle cx="94" cy="89" r="1.6" fill="var(--plate-ray)"/><circle cx="102" cy="89" r="1.6" fill="var(--plate-ray)"/><circle cx="110" cy="89" r="1.6" fill="var(--plate-ray)"/><circle cx="118" cy="89" r="1.6" fill="var(--plate-ray)"/><circle cx="126" cy="89" r="1.6" fill="var(--plate-ray)"/><circle cx="134" cy="89" r="1.6" fill="var(--plate-ray)"/><circle cx="142" cy="89" r="1.6" fill="var(--plate-ray)"/><circle cx="150" cy="89" r="1.6" fill="var(--plate-ray)"/><circle cx="158" cy="89" r="1.6" fill="var(--plate-ray)"/><circle cx="166" cy="89" r="1.6" fill="var(--plate-ray)"/><circle cx="74" cy="97" r="1.6" fill="var(--plate-ray)"/><circle cx="82" cy="97" r="1.6" fill="var(--plate-ray)"/><circle cx="90" cy="97" r="1.6" fill="var(--plate-ray)"/><circle cx="98" cy="97" r="1.6" fill="var(--plate-ray)"/><circle cx="106" cy="97" r="1.6" fill="var(--plate-ray)"/><circle cx="114" cy="97" r="1.6" fill="var(--plate-ray)"/><circle cx="122" cy="97" r="1.6" fill="var(--plate-ray)"/><circle cx="130" cy="97" r="1.6" fill="var(--plate-ray)"/><circle cx="138" cy="97" r="1.6" fill="var(--plate-ray)"/><circle cx="146" cy="97" r="1.6" fill="var(--plate-ray)"/><circle cx="154" cy="97" r="1.6" fill="var(--plate-ray)"/><circle cx="162" cy="97" r="1.6" fill="var(--plate-ray)"/><circle cx="170" cy="97" r="1.6" fill="var(--plate-ray)"/><circle cx="70" cy="105" r="1.6" fill="var(--plate-ray)"/><circle cx="78" cy="105" r="1.6" fill="var(--plate-ray)"/><circle cx="86" cy="105" r="1.6" fill="var(--plate-ray)"/><circle cx="94" cy="105" r="1.6" fill="var(--plate-ray)"/><circle cx="102" cy="105" r="1.6" fill="var(--plate-ray)"/><circle cx="110" cy="105" r="1.6" fill="var(--plate-ray)"/><circle cx="118" cy="105" r="1.6" fill="var(--plate-ray)"/><circle cx="126" cy="105" r="1.6" fill="var(--plate-ray)"/><circle cx="134" cy="105" r="1.6" fill="var(--plate-ray)"/><circle cx="142" cy="105" r="1.6" fill="var(--plate-ray)"/><circle cx="150" cy="105" r="1.6" fill="var(--plate-ray)"/><circle cx="158" cy="105" r="1.6" fill="var(--plate-ray)"/><circle cx="166" cy="105" r="1.6" fill="var(--plate-ray)"/><circle cx="74" cy="113" r="1.6" fill="var(--plate-ray)"/><circle cx="82" cy="113" r="1.6" fill="var(--plate-ray)"/><circle cx="90" cy="113" r="1.6" fill="var(--plate-ray)"/><circle cx="98" cy="113" r="1.6" fill="var(--plate-ray)"/><circle cx="106" cy="113" r="1.6" fill="var(--plate-ray)"/><circle cx="114" cy="113" r="1.6" fill="var(--plate-ray)"/><circle cx="122" cy="113" r="1.6" fill="var(--plate-ray)"/><circle cx="130" cy="113" r="1.6" fill="var(--plate-ray)"/><circle cx="138" cy="113" r="1.6" fill="var(--plate-ray)"/><circle cx="146" cy="113" r="1.6" fill="var(--plate-ray)"/><circle cx="154" cy="113" r="1.6" fill="var(--plate-ray)"/><circle cx="162" cy="113" r="1.6" fill="var(--plate-ray)"/><circle cx="170" cy="113" r="1.6" fill="var(--plate-ray)"/><circle cx="70" cy="121" r="1.6" fill="var(--plate-ray)"/><circle cx="78" cy="121" r="1.6" fill="var(--plate-ray)"/><circle cx="86" cy="121" r="1.6" fill="var(--plate-ray)"/><circle cx="94" cy="121" r="1.6" fill="var(--plate-ray)"/><circle cx="102" cy="121" r="1.6" fill="var(--plate-ray)"/><circle cx="110" cy="121" r="1.6" fill="var(--plate-ray)"/><circle cx="118" cy="121" r="1.6" fill="var(--plate-ray)"/><circle cx="126" cy="121" r="1.6" fill="var(--plate-ray)"/><circle cx="134" cy="121" r="1.6" fill="var(--plate-ray)"/><circle cx="142" cy="121" r="1.6" fill="var(--plate-ray)"/><circle cx="150" cy="121" r="1.6" fill="var(--plate-ray)"/><circle cx="158" cy="121" r="1.6" fill="var(--plate-ray)"/><circle cx="166" cy="121" r="1.6" fill="var(--plate-ray)"/><circle cx="74" cy="129" r="1.6" fill="var(--plate-ray)"/><circle cx="82" cy="129" r="1.6" fill="var(--plate-ray)"/><circle cx="90" cy="129" r="1.6" fill="var(--plate-ray)"/><circle cx="98" cy="129" r="1.6" fill="var(--plate-ray)"/><circle cx="106" cy="129" r="1.6" fill="var(--plate-ray)"/><circle cx="114" cy="129" r="1.6" fill="var(--plate-ray)"/><circle cx="122" cy="129" r="1.6" fill="var(--plate-ray)"/><circle cx="130" cy="129" r="1.6" fill="var(--plate-ray)"/><circle cx="138" cy="129" r="1.6" fill="var(--plate-ray)"/><circle cx="146" cy="129" r="1.6" fill="var(--plate-ray)"/><circle cx="154" cy="129" r="1.6" fill="var(--plate-ray)"/><circle cx="162" cy="129" r="1.6" fill="var(--plate-ray)"/><circle cx="170" cy="129" r="1.6" fill="var(--plate-ray)"/><circle cx="70" cy="137" r="1.6" fill="var(--plate-ray)"/><circle cx="78" cy="137" r="1.6" fill="var(--plate-ray)"/><circle cx="86" cy="137" r="1.6" fill="var(--plate-ray)"/><circle cx="94" cy="137" r="1.6" fill="var(--plate-ray)"/><circle cx="102" cy="137" r="1.6" fill="var(--plate-ray)"/><circle cx="110" cy="137" r="1.6" fill="var(--plate-ray)"/><circle cx="118" cy="137" r="1.6" fill="var(--plate-ray)"/><circle cx="126" cy="137" r="1.6" fill="var(--plate-ray)"/><circle cx="134" cy="137" r="1.6" fill="var(--plate-ray)"/><circle cx="142" cy="137" r="1.6" fill="var(--plate-ray)"/><circle cx="150" cy="137" r="1.6" fill="var(--plate-ray)"/><circle cx="158" cy="137" r="1.6" fill="var(--plate-ray)"/><circle cx="166" cy="137" r="1.6" fill="var(--plate-ray)"/><circle cx="74" cy="145" r="1.6" fill="var(--plate-ray)"/><circle cx="82" cy="145" r="1.6" fill="var(--plate-ray)"/><circle cx="90" cy="145" r="1.6" fill="var(--plate-ray)"/><circle cx="98" cy="145" r="1.6" fill="var(--plate-ray)"/><circle cx="106" cy="145" r="1.6" fill="var(--plate-ray)"/><circle cx="114" cy="145" r="1.6" fill="var(--plate-ray)"/><circle cx="122" cy="145" r="1.6" fill="var(--plate-ray)"/><circle cx="130" cy="145" r="1.6" fill="var(--plate-ray)"/><circle cx="138" cy="145" r="1.6" fill="var(--plate-ray)"/><circle cx="146" cy="145" r="1.6" fill="var(--plate-ray)"/><circle cx="154" cy="145" r="1.6" fill="var(--plate-ray)"/><circle cx="162" cy="145" r="1.6" fill="var(--plate-ray)"/><circle cx="170" cy="145" r="1.6" fill="var(--plate-ray)"/><circle cx="70" cy="153" r="1.6" fill="var(--plate-ray)"/><circle cx="78" cy="153" r="1.6" fill="var(--plate-ray)"/><circle cx="86" cy="153" r="1.6" fill="var(--plate-ray)"/><circle cx="94" cy="153" r="1.6" fill="var(--plate-ray)"/><circle cx="102" cy="153" r="1.6" fill="var(--plate-ray)"/><circle cx="110" cy="153" r="1.6" fill="var(--plate-ray)"/><circle cx="118" cy="153" r="1.6" fill="var(--plate-ray)"/><circle cx="126" cy="153" r="1.6" fill="var(--plate-ray)"/><circle cx="134" cy="153" r="1.6" fill="var(--plate-ray)"/><circle cx="142" cy="153" r="1.6" fill="var(--plate-ray)"/><circle cx="150" cy="153" r="1.6" fill="var(--plate-ray)"/><circle cx="158" cy="153" r="1.6" fill="var(--plate-ray)"/><circle cx="166" cy="153" r="1.6" fill="var(--plate-ray)"/><rect x="78" y="80" width="84" height="80" rx="2" fill="var(--surface)"/><g transform="translate(104 160) scale(1.3)"><rect class="pv-dark" x="-12" y="-30" width="24" height="30" rx="3"/><circle cx="0" cy="-11" r="7" fill="var(--plate-grey)"/><circle cx="0" cy="-11" r="2.6" class="pv-dark"/><circle cx="0" cy="-24" r="2.6" fill="var(--plate-grey)"/></g><path d="M115.9 135.3 A16 16 0 0 1 115.9 156.7" stroke="var(--plate-tub)" stroke-opacity="1" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M123.3 128.6 A26 26 0 0 1 123.3 163.4" stroke="var(--plate-tub)" stroke-opacity="0.7" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M130.8 121.9 A36 36 0 0 1 130.8 170.1" stroke="var(--plate-tub)" stroke-opacity="0.45" stroke-width="2.2" fill="none" stroke-linecap="round"/><g transform="translate(236 160)"><rect class="pv-dark" x="-10" y="-34" width="20" height="34" rx="4"/><rect class="pv-paper" x="-7.5" y="-30" width="15" height="24" rx="1.5" stroke-width="0"/><circle cx="0" cy="-3" r="1.6" fill="var(--plate-grey)"/></g><path d="M229.7 133.6 A10 10 0 0 1 229.7 146.4" stroke="var(--plate-tub)" stroke-opacity="0.35" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M235.8 128.4 A18 18 0 0 1 235.8 151.6" stroke="var(--plate-tub)" stroke-opacity="0.2" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M182 112 H210" stroke="var(--plate-grey)" stroke-dasharray="3 4" stroke-width="1.6"/></svg>`,
+  "adi-3-review": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="Two students swapping their reports for review. The name on each report is covered, so the review is anonymous" xmlns="http://www.w3.org/2000/svg">
+  <defs><symbol id="rv-person" overflow="visible"><circle cx="0" cy="-30" r="7"/><path d="M-12 0 V-11 Q-12 -21 0 -21 Q12 -21 12 -11 V0Z"/></symbol></defs>
+  <rect class="pv-bench" x="0" y="166" width="350" height="24"/><path class="pv-bench-edge" d="M0 166H350" stroke-width="2"/><g transform="translate(54 166) scale(1.25)"><use href="#rv-person" class="pv-skin-o" stroke-width="3"/><use href="#rv-person" class="pv-skin"/></g><g transform="translate(296 166) scale(1.25)"><use href="#rv-person" class="pv-skin-o" stroke-width="3"/><use href="#rv-person" class="pv-skin"/></g><g transform="translate(140 76) rotate(-8)"><rect class="pv-paper" x="-20.0" y="-26.0" width="40" height="52" rx="3" stroke-width="1.8"/><path class="pv-line" d="M-14.0 -17.0 H14.0 M-14.0 -10.0 H10.0 M-14.0 -3.0 H12.0 M-14.0 4.0 H8.0 M-14.0 11.0 H13.0" stroke-width="1.5"/><rect x="-16" y="-24" width="20" height="6" rx="1.5" fill="var(--plate-sun)"/></g><g transform="translate(210 96) rotate(7)"><rect class="pv-paper" x="-20.0" y="-26.0" width="40" height="52" rx="3" stroke-width="1.8"/><path class="pv-line" d="M-14.0 -17.0 H14.0 M-14.0 -10.0 H10.0 M-14.0 -3.0 H12.0 M-14.0 4.0 H8.0 M-14.0 11.0 H13.0" stroke-width="1.5"/><rect x="-16" y="-24" width="20" height="6" rx="1.5" fill="var(--plate-sun)"/></g><path d="M96 108 C112 60 160 40 196 52" stroke="var(--plate-rim)" stroke-width="2" fill="none" stroke-dasharray="4 4"/><path d="M190 46 L198 52 L189 57" stroke="var(--plate-rim)" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M254 132 C238 162 176 168 150 134" stroke="var(--plate-rim)" stroke-width="2" fill="none" stroke-dasharray="4 4"/><path d="M156 134 L149 133 L150 141" stroke="var(--plate-rim)" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`,
+  "adi-4-build": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A unit drawn as a long band in the five 5E phase colours, with an ADI routine of eight stages, in its three group colours, sitting inside the unit's Explore and Explain stretch, and a speaker in a lined box on the bench" xmlns="http://www.w3.org/2000/svg"><rect class="pv-bench" x="0" y="160" width="350" height="30"/><path class="pv-bench-edge" d="M0 160H350" stroke-width="2"/><rect class="pv-ph-engage" x="20" y="40" width="60" height="20" rx="10"/><rect class="pv-ph-explore" x="84" y="40" width="60" height="20" rx="3"/><rect class="pv-ph-explain" x="148" y="40" width="60" height="20" rx="3"/><rect class="pv-ph-elaborate" x="212" y="40" width="60" height="20" rx="3"/><rect class="pv-ph-evaluate" x="276" y="40" width="60" height="20" rx="10"/><path d="M84 64 L64 92 M208 64 L250 92" stroke="var(--plate-grey)" stroke-width="1.6" stroke-dasharray="3 3"/><rect x="54" y="92" width="206" height="34" rx="17" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2"/><g transform="translate(64 102)"><rect x="-3" y="-3" width="198.8" height="20" rx="10.0" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.8"/><rect class="pv-ph-engage" x="0.0" y="0" width="22" height="14" rx="7.0"/><rect class="pv-ph-engage" x="24.4" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-engage" x="48.8" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explore" x="73.2" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explore" x="97.6" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explain" x="122.0" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explain" x="146.4" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explain" x="170.8" y="0" width="22" height="14" rx="7.0"/></g><rect x="280" y="112" width="48" height="48" rx="4" fill="var(--plate-sun)" opacity=".55" stroke="var(--plate-rim)" stroke-width="2"/><rect x="287" y="119" width="34" height="41" fill="var(--surface)"/><g transform="translate(304 160) scale(0.85)"><rect class="pv-dark" x="-12" y="-30" width="24" height="30" rx="3"/><circle cx="0" cy="-11" r="7" fill="var(--plate-grey)"/><circle cx="0" cy="-11" r="2.6" class="pv-dark"/><circle cx="0" cy="-24" r="2.6" fill="var(--plate-grey)"/></g></svg>`,
+  "adi-5-argument-day": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="Two whiteboards side by side, each with a bar chart, and the two groups who made them facing each other, with a question between them" xmlns="http://www.w3.org/2000/svg">
+  <defs><symbol id="ad-person" overflow="visible"><circle cx="0" cy="-30" r="7"/><path d="M-12 0 V-11 Q-12 -21 0 -21 Q12 -21 12 -11 V0Z"/></symbol></defs>
+  <rect class="pv-bench" x="0" y="176" width="350" height="14"/><path class="pv-bench-edge" d="M0 176H350" stroke-width="2"/><g><path d="M55.0 120 L61.0 90 M109.0 120 L103.0 90" stroke="var(--plate-grey)" stroke-width="2.4" stroke-linecap="round"/><rect class="pv-board" x="47.0" y="38" width="70" height="52" rx="3" stroke-width="2"/><path d="M54 54 V86 H110" stroke="var(--plate-grey)" stroke-width="1.4" fill="none"/><rect x="58" y="70" width="11" height="14" rx="1.5" fill="var(--plate-sun)"/><rect x="74" y="60" width="11" height="24" rx="1.5" fill="var(--plate-rust)"/><rect x="90" y="74" width="11" height="10" rx="1.5" fill="var(--plate-soil)"/></g><g><path d="M241.0 120 L247.0 90 M295.0 120 L289.0 90" stroke="var(--plate-grey)" stroke-width="2.4" stroke-linecap="round"/><rect class="pv-board" x="233.0" y="38" width="70" height="52" rx="3" stroke-width="2"/><path d="M240 54 V86 H296" stroke="var(--plate-grey)" stroke-width="1.4" fill="none"/><rect x="244" y="62" width="11" height="22" rx="1.5" fill="var(--plate-sun)"/><rect x="260" y="72" width="11" height="12" rx="1.5" fill="var(--plate-rust)"/><rect x="276" y="66" width="11" height="18" rx="1.5" fill="var(--plate-soil)"/></g><g transform="translate(60 176) scale(1.0)"><use href="#ad-person" class="pv-skin-o" stroke-width="3"/><use href="#ad-person" class="pv-skin"/></g><g transform="translate(104 176) scale(1.0)"><use href="#ad-person" class="pv-skin-o" stroke-width="3"/><use href="#ad-person" class="pv-skin"/></g><g transform="translate(246 176) scale(1.0)"><use href="#ad-person" class="pv-skin-o" stroke-width="3"/><use href="#ad-person" class="pv-skin"/></g><g transform="translate(290 176) scale(1.0)"><use href="#ad-person" class="pv-skin-o" stroke-width="3"/><use href="#ad-person" class="pv-skin"/></g><g transform="translate(175 112) scale(1.25 1.25)"><path d="M-16 -12 H16 Q22 -12 22 -6 V4 Q22 10 16 10 H-4 L-12 18 L-10 10 H-16 Q-22 10 -22 4 V-6 Q-22 -12 -16 -12Z" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.8"/><g fill="var(--plate-grey)"><circle cx="-8" cy="-1" r="2.2"/><circle cx="0" cy="-1" r="2.2"/><circle cx="8" cy="-1" r="2.2"/></g></g></svg>`,
+  "select-1-which": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="Eleven question cards, one for each of the Reckoner's questions, each with its own small picture, and an arrow leading from them to the 5E and POE tokens" xmlns="http://www.w3.org/2000/svg"><rect x="24" y="30" width="32" height="32" rx="5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.6"/><circle cx="40" cy="46" r="7" fill="none" stroke="var(--plate-rust)" stroke-width="2"/><circle cx="40" cy="46" r="2.5" fill="var(--plate-rust)"/><rect x="64" y="30" width="32" height="32" rx="5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.6"/><circle cx="80" cy="46" r="7" fill="none" stroke="var(--plate-rim)" stroke-width="2"/><path d="M80 46 V41 M80 46 H84" stroke="var(--plate-rim)" stroke-width="1.8" stroke-linecap="round"/><rect x="104" y="30" width="32" height="32" rx="5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.6"/><path d="M120 52 V44" stroke="var(--plate-leaf)" stroke-width="2"/><path d="M120 45 C117 39 112 40 112 43 C115 46 118 46 120 45Z M120 44 C123 38 128 39 128 42 C125 45 122 45 120 44Z" fill="var(--plate-leaf)"/><rect x="144" y="30" width="32" height="32" rx="5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.6"/><ellipse cx="160" cy="46" rx="8" ry="5" fill="none" stroke="var(--plate-rim)" stroke-width="2"/><circle cx="160" cy="46" r="2.4" fill="var(--plate-rim)"/><rect x="24" y="70" width="32" height="32" rx="5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.6"/><path d="M33 91 L40 80 L47 91Z" fill="none" stroke="var(--plate-ray)" stroke-width="2" stroke-linejoin="round"/><rect x="64" y="70" width="32" height="32" rx="5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.6"/><path d="M73 92 V80 M73 92 H87" stroke="var(--plate-tub)" stroke-width="2" fill="none"/><path d="M76 88 L80 84 L86 82" stroke="var(--plate-tub)" stroke-width="1.8" fill="none"/><rect x="104" y="70" width="32" height="32" rx="5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.6"/><circle cx="120" cy="83" r="3.5" fill="var(--plate-canopy)" stroke="var(--plate-rim)" stroke-width="1.6"/><path d="M114 93 Q114 87 120 87 Q126 87 126 93" fill="var(--plate-canopy)" stroke="var(--plate-rim)" stroke-width="1.6"/><rect x="144" y="70" width="32" height="32" rx="5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.6"/><path d="M154 92 H166 M156 92 V85 M164 92 V85 M154 85 H166 L160 79Z" stroke="var(--plate-grey)" stroke-width="1.8" fill="none" stroke-linejoin="round"/><rect x="24" y="110" width="32" height="32" rx="5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.6"/><g transform="translate(40 126) rotate(0) scale(0.28)"><g transform="translate(0 0) rotate(0)"><rect class="pv-paper" x="-20.0" y="-26.0" width="40" height="52" rx="3" stroke-width="1.8"/><path class="pv-line" d="M-14.0 -17.0 H14.0 M-14.0 -10.0 H10.0 M-14.0 -3.0 H12.0 M-14.0 4.0 H8.0 M-14.0 11.0 H13.0" stroke-width="1.5"/></g></g><rect x="64" y="110" width="32" height="32" rx="5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.6"/><g transform="translate(80 126) scale(0.32 0.32)"><path d="M-16 -12 H16 Q22 -12 22 -6 V4 Q22 10 16 10 H-4 L-12 18 L-10 10 H-16 Q-22 10 -22 4 V-6 Q-22 -12 -16 -12Z" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.8"/><g fill="var(--plate-grey)"><circle cx="-8" cy="-1" r="2.2"/><circle cx="0" cy="-1" r="2.2"/><circle cx="8" cy="-1" r="2.2"/></g></g><rect x="104" y="110" width="32" height="32" rx="5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.6"/><path d="M120 119 C126 119 127 126 120 133 C113 126 114 119 120 119Z" fill="var(--plate-leaf)" opacity=".8"/><circle cx="120" cy="124" r="2.4" fill="var(--surface)"/><path d="M194 92 H236" stroke="var(--plate-grey)" stroke-width="2.4"/><path d="M230 86 L238 92 L230 98" stroke="var(--plate-grey)" stroke-width="2.4" fill="none" stroke-linecap="round"/><g transform="translate(250 66)"><rect x="-3" y="-3" width="77.0" height="21" rx="10.5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.8"/><rect class="pv-ph-engage" x="0.0" y="0" width="13" height="15" rx="7.5"/><rect class="pv-ph-explore" x="14.5" y="0" width="13" height="15" rx="2"/><rect class="pv-ph-explain" x="29.0" y="0" width="13" height="15" rx="2"/><rect class="pv-ph-elaborate" x="43.5" y="0" width="13" height="15" rx="2"/><rect class="pv-ph-evaluate" x="58.0" y="0" width="13" height="15" rx="7.5"/></g><g transform="translate(264 108)"><rect x="-3" y="-3" width="48.0" height="21" rx="10.5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.8"/><rect class="pv-ph-engage" x="0.0" y="0" width="13" height="15" rx="7.5"/><rect class="pv-ph-explore" x="14.5" y="0" width="13" height="15" rx="2"/><rect class="pv-ph-explain" x="29.0" y="0" width="13" height="15" rx="7.5"/></g></svg>`,
+  "select-2-dial": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="The yeast flask from the earlier lesson, and two calendars: one with a single lesson marked, the other with a whole unit of lessons marked" xmlns="http://www.w3.org/2000/svg"><rect class="pv-bench" x="0" y="166" width="350" height="24"/><path class="pv-bench-edge" d="M0 166H350" stroke-width="2"/><g transform="translate(54 166)"><path class="pv-glass" d="M-5 -50 V-32 L-18 -3 Q-19 0 -15 0 H15 Q19 0 18 -3 L5 -32 V-50" stroke-width="2"/><path class="pv-water" d="M-12.5 -14 H12.5 L17 -3 Q18 -1 15 -1 H-15 Q-18 -1 -17 -3Z"/><path d="M-6 -50 V-55 C-6 -60 -2 -62 2 -62 C7 -62 9 -58 7 -55 C5 -53 2 -54 2 -56 C2 -53 5 -51 6 -53 V-50Z" fill="var(--plate-rust)"/></g><rect x="104" y="42" width="102" height="78" rx="5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2"/><rect class="pv-dark" x="104" y="42" width="102" height="10" rx="5"/><rect x="112" y="60" width="14" height="14" rx="2" fill="var(--engage)" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="130" y="60" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="148" y="60" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="166" y="60" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="184" y="60" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="112" y="78" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="130" y="78" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="148" y="78" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="166" y="78" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="184" y="78" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="112" y="96" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="130" y="96" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="148" y="96" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="166" y="96" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="184" y="96" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><path d="M214 86 H236" stroke="var(--plate-grey)" stroke-width="2.4"/><path d="M230 80 L238 86 L230 92" stroke="var(--plate-grey)" stroke-width="2.4" fill="none" stroke-linecap="round"/><rect x="242" y="42" width="84" height="78" rx="5" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2"/><rect class="pv-dark" x="242" y="42" width="84" height="10" rx="5"/><rect x="250" y="60" width="14" height="14" rx="2" fill="var(--engage)" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="268" y="60" width="14" height="14" rx="2" fill="var(--engage)" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="286" y="60" width="14" height="14" rx="2" fill="var(--engage)" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="304" y="60" width="14" height="14" rx="2" fill="var(--engage)" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="250" y="78" width="14" height="14" rx="2" fill="var(--engage)" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="268" y="78" width="14" height="14" rx="2" fill="var(--engage)" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="286" y="78" width="14" height="14" rx="2" fill="var(--engage)" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="304" y="78" width="14" height="14" rx="2" fill="var(--engage)" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="250" y="96" width="14" height="14" rx="2" fill="var(--engage)" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="268" y="96" width="14" height="14" rx="2" fill="var(--engage)" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="286" y="96" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/><rect x="304" y="96" width="14" height="14" rx="2" fill="none" stroke="var(--plate-grey)" stroke-opacity=".5" stroke-width="1"/></svg>`,
+  "select-3-argue": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="Models nested inside each other: a unit in the five 5E colours, an ADI routine inside its Explore and Explain stretch, and a POE inside the ADI routine's first stage" xmlns="http://www.w3.org/2000/svg"><rect class="pv-ph-engage" x="20" y="28" width="60" height="18" rx="9"/><rect class="pv-ph-explore" x="84" y="28" width="60" height="18" rx="3"/><rect class="pv-ph-explain" x="148" y="28" width="60" height="18" rx="3"/><rect class="pv-ph-elaborate" x="212" y="28" width="60" height="18" rx="3"/><rect class="pv-ph-evaluate" x="276" y="28" width="60" height="18" rx="9"/><path d="M84 50 L64 74 M208 50 L250 74" stroke="var(--plate-grey)" stroke-width="1.6" stroke-dasharray="3 3"/><rect x="54" y="74" width="206" height="32" rx="16" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2"/><g transform="translate(64 83)"><rect x="-3" y="-3" width="198.8" height="20" rx="10.0" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.8"/><rect class="pv-ph-engage" x="0.0" y="0" width="22" height="14" rx="7.0"/><rect class="pv-ph-engage" x="24.4" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-engage" x="48.8" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explore" x="73.2" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explore" x="97.6" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explain" x="122.0" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explain" x="146.4" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explain" x="170.8" y="0" width="22" height="14" rx="7.0"/></g><path d="M64 110 L52 134 M86 110 L112 134" stroke="var(--plate-grey)" stroke-width="1.6" stroke-dasharray="3 3"/><rect x="40" y="134" width="84" height="28" rx="14" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2"/><g transform="translate(56 141)"><rect x="-3" y="-3" width="54.0" height="20" rx="10.0" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.8"/><rect class="pv-ph-engage" x="0.0" y="0" width="15" height="14" rx="7.0"/><rect class="pv-ph-explore" x="16.5" y="0" width="15" height="14" rx="2"/><rect class="pv-ph-explain" x="33.0" y="0" width="15" height="14" rx="7.0"/></g></svg>`,
 };
 const LEVEL = {recognise:"Recognise",explain:"Explain",select:"Select",design:"Design"};
 const UNSCORED = ["predict","concept","reflect","build","sim"];   // never used as warm-ups

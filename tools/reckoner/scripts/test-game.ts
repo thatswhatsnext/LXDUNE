@@ -299,7 +299,7 @@ const cases: [string, () => void | Promise<void>][] = [
     const rail = loadGame({ gameDir: dir });
     if (!rail.errors.some((e) => /rail: groups but its journey guide has no phaseGroups/.test(e))) throw new Error(`rail not caught: ${rail.errors.join("; ")}`);
   }],
-  ["Fieldwork: title, confidence slider, and the willow and leaf-litter plates on their first items only", async () => {
+  ["Fieldwork: title, confidence slider, and every lesson plate on its first item only", async () => {
     const built = readFileSync(join(tmp, "a", "index.html"), "utf8");
     if (!built.includes("<title>Fieldwork · The Field Guide</title>")) throw new Error("the built <title> is not Fieldwork · The Field Guide");
     buildGame({ mode: "review", outDir: join(tmp, "plate") });
@@ -320,7 +320,8 @@ const cases: [string, () => void | Promise<void>][] = [
     (doc.getElementById("toMap") as any).click();
     open("5e-2-cells");
     if (!doc.querySelector('#stage input[type=range]#conf')) throw new Error("5e-2-cells: no confidence slider");
-    if (doc.querySelector("#stage .plate-card")) throw new Error("5e-2-cells shows a plate");
+    const cells = doc.querySelector("#stage .plate-card svg.plate");
+    if (!cells || cells.querySelector("text") || !/microscope/.test(cells.getAttribute("aria-label") ?? "")) throw new Error("5e-2-cells: no plate, or a plate with text or no description");
     (doc.getElementById("toMap") as any).click();
     open("adi-1-leaf-litter");
     const leaf = doc.querySelector("#stage .plate-card svg.plate");
@@ -329,6 +330,28 @@ const cases: [string, () => void | Promise<void>][] = [
     if (!/pitfall traps/.test(leaf.getAttribute("aria-label") ?? "")) throw new Error("adi-1-leaf-litter: the plate has no description");
     (doc.querySelector(".opts .opt") as any).click(); (doc.getElementById("go") as any).click(); (doc.getElementById("go") as any).click();
     if (doc.querySelector("#stage .plate-card")) throw new Error("adi-1-leaf-litter shows the plate on its second item too");
+    (doc.getElementById("toMap") as any).click();
+    open("poe-1-yeast");
+    const yeast = doc.querySelector("#stage .plate-card svg.plate");
+    if (!yeast || yeast.querySelector("text") || !/limp balloons/.test(yeast.getAttribute("aria-label") ?? "")) throw new Error("poe-1-yeast: no plate, or a plate with text or no description");
+    (doc.getElementById("toMap") as any).click();
+    open("poe-2-hands");
+    const hands = doc.querySelector("#stage .plate-card svg.plate");
+    if (!hands || hands.querySelector("text") || !/UV torch/.test(hands.getAttribute("aria-label") ?? "")) throw new Error("poe-2-hands: no plate, or a plate with text or no description");
+    // The later 5E, ADI and Choosing a model lessons: each opens with a described plate and no text.
+    const later: [string, any][] = [];
+    for (const [id, words] of [["5e-3-outbreak", /shield badge/], ["5e-4-labels", /ring binder/], ["5e-5-build", /planning board/], ["5e-6-prac-day", /thinking wall/],
+      ["adi-2-noise", /lined with a soft material/], ["adi-3-review", /swapping their reports/], ["adi-4-build", /ADI routine of eight stages/], ["adi-5-argument-day", /Two whiteboards/],
+      ["select-1-which", /Eleven question cards/], ["select-2-dial", /two calendars/], ["select-3-argue", /Models nested/]] as const) {
+      (doc.getElementById("toMap") as any).click();
+      open(id);
+      const svg = doc.querySelector("#stage .plate-card svg.plate");
+      if (!svg || svg.querySelector("text") || !words.test(svg.getAttribute("aria-label") ?? "")) throw new Error(`${id}: no plate, or a plate with text or no description`);
+      later.push([id, svg]);
+    }
+    // Every plate keeps its shapes to itself: no <use> points outside its own <defs>.
+    for (const [id, svg] of [["5e-2-cells", cells], ["poe-1-yeast", yeast], ["poe-2-hands", hands], ["adi-1-leaf-litter", leaf], ...later] as const)
+      (svg as any).querySelectorAll("use").forEach((u: any) => { const ref = u.getAttribute("href").slice(1); if (!(svg as any).querySelector(`[id="${ref}"]`)) throw new Error(`${id}: <use> points at #${ref}, which isn't in the plate`); });
     if (errors.length) throw new Error(errors.join("; "));
     dom.window.close();
   }],
