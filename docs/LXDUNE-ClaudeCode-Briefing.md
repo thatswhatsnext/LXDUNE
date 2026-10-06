@@ -366,6 +366,9 @@ Both live scripts refactored to read from `config/units/*.json` instead of embed
 | `noTeachingMessage` (plain string, escaped) | whatson | The Professional Experience paragraph | No-teaching week text |
 | `week0Todo` (string array) | whatson | The two "Download BOTH assessment tasks / Make a plan" items | Week 0 to-do list |
 | `videoFallback` (`"coming-soon"`) | autovideos | `DGIXT7ce3vQ` | What a week with `video: null` shows |
+| `weeks[n].activities` (`[{ "label", "url" }]`) | whatson | No Activities list | Linked activities for that week (EDIT518: each fortnight's forum and quiz). Named `activities` because `links` is already the blocks.js link object |
+| `assessments[].url` | whatson | Reminder points to the Assessment Portal | Links the task name in reminders instead |
+| `assessments[].closes` (ISO date) | whatson | Overdue reminder for 14 days | Automatic extension: after the due date, the reminder says when submissions close; nothing after that |
 
 Other script changes on the same date: `autovideos.js` looks videos up by **week number** (`weeks[N].video`, where N is the first week of the period) rather than list position, so fortnightly units get the right video; the whatson "commencing" heading uses the date list, so it respects breaks; `displayWhatsOn` no longer defaults `forUnit` to EDSE358 and shows "Content unavailable — unit not specified." without it. Both `displayWhatsOn` and `setUpVideos` take a test-only `forDate` (ISO date) that overrides today. Production shells never include it; the demo pages pass it from `?date=`.
 
