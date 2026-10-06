@@ -9,7 +9,8 @@ import { join } from "node:path";
 import yaml from "js-yaml";
 import { ModelGuide } from "../src/schema/model-guide";
 import { Methodology } from "../src/schema/methodology";
-import { checkModelIds, loadIdInputs } from "./validate";
+import { Families } from "../src/schema/families";
+import { MODEL_REGISTRY, checkFamilies, checkModelIds, loadIdInputs } from "./validate";
 
 const load = (id: string) => () => yaml.load(readFileSync(join(__dirname, "..", `content/guides/${id}.yaml`), "utf8")) as any;
 const base = load("5e");
@@ -109,6 +110,38 @@ for (const [name, mutate, expect] of methCases) {
 const methClean = Methodology.safeParse(meth());
 if (!methClean.success) failed++;
 console.log(`${methClean.success ? "✓" : "✗"} unmodified methodology is valid${methClean.success ? "" : `  (${methClean.error.issues.map((i) => i.message).join(" | ")})`}`);
+
+// Families: the Family Tree's groupings. Schema rules, then the registry check validate.ts runs
+const fams = () => yaml.load(readFileSync(join(__dirname, "..", "content", "families.yaml"), "utf8")) as any;
+const famCases: [string, (f: any) => void, RegExp][] = [
+  ["a model in two families fails", (f) => f.families[1].models.push(f.families[0].models[0]), /is already in family/],
+  ["a duplicate family id fails", (f) => (f.families[1].id = f.families[0].id), /Duplicate family id/],
+  ["the across family must go last", (f) => f.families.unshift(f.families.pop()), /across family goes last/],
+  ["publishing unreviewed families is blocked", (f) => { f.status = "published"; f.provenance = { source: "ai-generated", authors: ["Claude"], reviewedBy: [] }; }, /needs a reviewer/],
+];
+for (const [name, mutate, expect] of famCases) {
+  const f = fams(); mutate(f);
+  const r = Families.safeParse(f);
+  const msgs = r.success ? "" : r.error.issues.map((i) => i.message).join(" | ");
+  const ok = !r.success && expect.test(msgs);
+  if (!ok) failed++;
+  console.log(`${ok ? "✓" : "✗"} ${name}${ok ? "" : `  (got: ${msgs || "valid"})`}`);
+}
+const famRegistry: [string, (f: any) => void, RegExp][] = [
+  ["a model left out of every family fails", (f) => (f.families[0].models = f.families[0].models.slice(1)), /is in no family/],
+  ["an unregistered model in a family fails", (f) => f.families[0].models.push("no-such-model"), /not in MODEL_REGISTRY/],
+];
+for (const [name, mutate, expect] of famRegistry) {
+  const f = fams(); mutate(f);
+  const errs = checkFamilies(Families.parse(f), MODEL_REGISTRY).join(" | ");
+  const ok = expect.test(errs);
+  if (!ok) failed++;
+  console.log(`${ok ? "✓" : "✗"} ${name}${ok ? "" : `  (got: ${errs || "no error"})`}`);
+}
+const famClean = Families.safeParse(fams());
+const famErrs = famClean.success ? checkFamilies(famClean.data, MODEL_REGISTRY) : famClean.error.issues.map((i) => i.message);
+if (famErrs.length) failed++;
+console.log(`${famErrs.length ? "✗" : "✓"} unmodified families place every model once${famErrs.length ? `  (${famErrs.join(" | ")})` : ""}`);
 
 // Every guide on disk, so adding a guide adds its check automatically
 const guidesDir = join(__dirname, "..", "content", "guides");
