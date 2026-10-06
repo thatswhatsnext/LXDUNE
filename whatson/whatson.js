@@ -215,7 +215,7 @@ export async function displayWhatsOn({
     parts.push(`<div><strong>To do</strong></div>`);
     parts.push(ul(unitCfg.week0Todo ?? DEFAULT_WEEK0_TODO));
     parts.push(`<p>Quick link: ${portalLink(unitCfg)}</p>`);
-  } else if (thisWeek > 14) {
+  } else if (thisWeek > (unitCfg.lastWeek ?? 14)) {
     heading = `${escapeHtml(unitKey)}: Teaching has ended for this period`;
     parts.push(`Please refer to the ${portalLink(unitCfg)} and unit announcements for final submission requirements and updates.`);
   } else {
