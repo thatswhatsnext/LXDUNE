@@ -345,6 +345,123 @@ const PLATES = {
     <path d="M-14 -38 H8" stroke="var(--plate-rim)" stroke-opacity=".3" stroke-width="1.2" stroke-dasharray="2 2"/>
   </g>
 </svg>`,
+  "5e-3-outbreak": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A web of students linked by the exchanges in the outbreak simulation. A third of them wear a shield badge: they are vaccinated" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="ob-person" overflow="visible"><circle cx="0" cy="-30" r="7"/><path d="M-12 0 V-11 Q-12 -21 0 -21 Q12 -21 12 -11 V0Z"/></symbol>
+    <symbol id="ob-shield" overflow="visible"><path class="pv-shield" d="M0 -7 L6 -5 V0 Q6 5 0 8 Q-6 5 -6 0 V-5Z"/></symbol>
+  </defs>
+  <!-- links between exchange partners -->
+  <g stroke="var(--plate-grey)" stroke-opacity=".55" stroke-width="1.6" fill="none">
+    <path d="M40 62 L100 46 L162 70 L226 44 L290 66"/><path d="M40 62 L70 120 L130 132 L162 70 L196 124 L256 128 L290 66"/>
+    <path d="M100 46 L130 132M226 44 L196 124M70 120 L40 168M130 132 L104 172M196 124 L170 174M256 128 L236 174M256 128 L316 160M290 66 L316 160"/>
+  </g>
+  <!-- students: outlines, a shield badge on a third -->
+  <g>
+    <g transform="translate(40 80)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(100 64)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/><use href="#ob-shield" transform="translate(5 -9)"/></g>
+    <g transform="translate(162 88)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(226 62)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(290 84)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/><use href="#ob-shield" transform="translate(5 -9)"/></g>
+    <g transform="translate(70 138)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(130 150)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/><use href="#ob-shield" transform="translate(5 -9)"/></g>
+    <g transform="translate(196 142)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(256 146)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/><use href="#ob-shield" transform="translate(5 -9)"/></g>
+    <g transform="translate(40 186) scale(.85)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(104 188) scale(.85)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(170 188) scale(.85)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(236 188) scale(.85)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/></g>
+    <g transform="translate(316 178) scale(.85)"><use href="#ob-person" class="pv-skin-o" stroke-width="3"/><use href="#ob-person" class="pv-skin"/><use href="#ob-shield" transform="translate(5 -9)"/></g>
+  </g>
+</svg>`,
+  "5e-4-labels": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A ring binder opened at its first divider, whose new coloured tab sits on the outer edge of the left-hand page. The tabs of four more dividers, one in each 5E phase colour, peek out from the pages beneath, and every page holds the same lecture worksheet. Beside it, a sheet of spare coloured tabs" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="lb-lecture" overflow="visible">
+      <rect class="pv-board" x="-16" y="-24" width="32" height="20" rx="2" stroke-width="1.6"/>
+      <path class="pv-line" d="M-11 -18 H11M-11 -13 H7M-11 -8 H9" stroke-width="1.6"/>
+      <path d="M0 -4 V4 M-6 6 H6" stroke="var(--plate-grey)" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+  <rect class="pv-bench" x="0" y="164" width="350" height="26"/><path class="pv-bench-edge" d="M0 164H350" stroke-width="2"/>
+  <!-- binder cover and pages -->
+  <rect x="34" y="20" width="200" height="140" rx="6" fill="var(--plate-tub)"/>
+  <rect class="pv-paper" x="44" y="26" width="88" height="128" rx="3" stroke-width="1.6"/>
+  <!-- the turned page is the Engage divider: its tab now sits on the left-hand page's outer edge -->
+  <path class="pv-ph-engage" d="M45 30 H26 Q22 30 22 34 V46 Q22 50 26 50 H45Z"/>
+  <!-- pages stacked under the right-hand page, with their dividers' tabs peeking out -->
+  <rect class="pv-paper" x="140" y="30" width="88" height="128" rx="3" stroke-width="1.2"/>
+  <rect class="pv-paper" x="138" y="28" width="88" height="128" rx="3" stroke-width="1.2"/>
+  <rect class="pv-ph-explore" x="228" y="58" width="20" height="18" rx="3"/><rect class="pv-ph-explain" x="228" y="82" width="20" height="18" rx="3"/><rect class="pv-ph-elaborate" x="228" y="106" width="20" height="18" rx="3"/><rect class="pv-ph-evaluate" x="228" y="130" width="20" height="18" rx="3"/>
+  <rect class="pv-paper" x="136" y="26" width="88" height="128" rx="3" stroke-width="1.6"/>
+  <path d="M136 30 Q132 90 136 150" stroke="var(--plate-rim)" stroke-opacity=".25" stroke-width="3" fill="none"/>
+  <g fill="var(--plate-grey)"><circle cx="134" cy="52" r="4"/><circle cx="134" cy="90" r="4"/><circle cx="134" cy="128" r="4"/></g>
+  <use href="#lb-lecture" transform="translate(88 82) scale(1.5)"/><path class="pv-line" d="M58 108H118M58 118H110M58 128H114M58 138H104" stroke-width="1.8"/>
+  <use href="#lb-lecture" transform="translate(180 82) scale(1.5)"/><path class="pv-line" d="M150 108H210M150 118H202M150 128H206M150 138H196" stroke-width="1.8"/>
+  <!-- the new tabs -->
+  <!-- a sheet of spare tabs -->
+  <g transform="translate(296 104) rotate(8)">
+    <rect class="pv-paper" x="-32" y="-44" width="64" height="88" rx="4" stroke-width="1.8"/>
+    <rect class="pv-ph-engage" x="-22" y="-34" width="18" height="12" rx="2.5"/><rect class="pv-ph-explore" x="4" y="-34" width="18" height="12" rx="2.5"/>
+    <rect class="pv-ph-explain" x="-22" y="-14" width="18" height="12" rx="2.5"/><rect class="pv-ph-elaborate" x="4" y="-14" width="18" height="12" rx="2.5"/>
+    <rect class="pv-ph-evaluate" x="-22" y="6" width="18" height="12" rx="2.5"/><rect class="pv-ph-engage" x="4" y="6" width="18" height="12" rx="2.5"/>
+    <rect class="pv-ph-explore" x="-22" y="26" width="18" height="12" rx="2.5"/><rect x="4" y="26" width="18" height="12" rx="2.5" fill="none" stroke="var(--plate-grey)" stroke-dasharray="2 2"/>
+  </g>
+</svg>`,
+  "5e-5-build": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A planning board with five columns, one in each 5E phase colour. A few activity cards are already placed, one card is on its way into a column, and a seedling in a pot sits beside the board" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="bd-seedling" overflow="visible">
+      <path class="pv-pot" d="M-12 -18 H12 L9 0 H-9Z"/><rect class="pv-pot" x="-14" y="-21" width="28" height="5" rx="1.5"/>
+      <path class="pv-soil" d="M-12 -20 H12 V-18 H-12Z"/>
+      <path d="M0 -20 V-40" stroke="var(--plate-leaf)" stroke-width="2.2" stroke-linecap="round"/>
+      <path class="pv-leaf" d="M0 -36 C-4 -46 -16 -46 -18 -40 C-12 -34 -4 -34 0 -36Z"/><path class="pv-leaf" d="M0 -40 C4 -50 16 -50 18 -44 C12 -38 4 -38 0 -40Z"/>
+    </symbol>
+  </defs>
+  <rect class="pv-bench" x="0" y="170" width="350" height="20"/><path class="pv-bench-edge" d="M0 170H350" stroke-width="2"/>
+  <rect class="pv-board" x="14" y="14" width="270" height="152" rx="8" stroke-width="2"/>
+  <g stroke-width="2.4" fill="none">
+    <rect class="pv-ph-engage-s" x="24" y="26" width="46" height="130" rx="6"/><rect class="pv-ph-explore-s" x="76" y="26" width="46" height="130" rx="6"/><rect class="pv-ph-explain-s" x="128" y="26" width="46" height="130" rx="6"/><rect class="pv-ph-elaborate-s" x="180" y="26" width="46" height="130" rx="6"/><rect class="pv-ph-evaluate-s" x="232" y="26" width="46" height="130" rx="6"/>
+  </g>
+  <g><rect class="pv-ph-engage" x="24" y="26" width="46" height="9" rx="3"/><rect class="pv-ph-explore" x="76" y="26" width="46" height="9" rx="3"/><rect class="pv-ph-explain" x="128" y="26" width="46" height="9" rx="3"/><rect class="pv-ph-elaborate" x="180" y="26" width="46" height="9" rx="3"/><rect class="pv-ph-evaluate" x="232" y="26" width="46" height="9" rx="3"/></g>
+  <!-- placed cards -->
+  <g>
+    <rect class="pv-card" x="29" y="44" width="36" height="26" rx="3" stroke-width="1.6"/><path class="pv-line" d="M34 52H60M34 58H54M34 64H57" stroke-width="1.4"/>
+    <rect class="pv-card" x="81" y="44" width="36" height="26" rx="3" stroke-width="1.6"/><path class="pv-line" d="M86 52H112M86 58H106M86 64H109" stroke-width="1.4"/>
+    <rect class="pv-card" x="81" y="76" width="36" height="26" rx="3" stroke-width="1.6"/><path class="pv-line" d="M86 84H112M86 90H104M86 96H110" stroke-width="1.4"/>
+    <rect class="pv-card" x="237" y="44" width="36" height="26" rx="3" stroke-width="1.6"/><path class="pv-line" d="M242 52H268M242 58H262M242 64H265" stroke-width="1.4"/>
+  </g>
+  <!-- an empty slot, and a card on its way in -->
+  <rect x="133" y="44" width="36" height="26" rx="3" fill="none" stroke="var(--plate-grey)" stroke-dasharray="3 3" stroke-width="1.6"/>
+  <g transform="translate(160 18) rotate(10)"><rect class="pv-card" x="-18" y="-13" width="36" height="26" rx="3" stroke-width="2"/><path class="pv-line" d="M-13 -5H13M-13 1H7M-13 7H10" stroke-width="1.4"/></g>
+  <path d="M152 36 Q150 40 151 44" stroke="var(--plate-grey)" stroke-width="1.6" fill="none" stroke-dasharray="2 3"/>
+  <use href="#bd-seedling" transform="translate(318 170) scale(1.25)"/>
+</svg>`,
+  "5e-6-prac-day": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A Year 7 classroom on placement day: a teacher beside a thinking wall covered in sticky notes, and students at desks, one with a microscope" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="pd-person" overflow="visible"><circle cx="0" cy="-30" r="7"/><path d="M-12 0 V-11 Q-12 -21 0 -21 Q12 -21 12 -11 V0Z"/></symbol>
+    <symbol id="pd-scope" overflow="visible">
+      <path class="pv-metal" d="M-14 0 H10 V-4 H-14Z"/><path class="pv-dark" d="M-10 -4 C-10 -20 -7 -36 0 -46 L2 -42 C-3 -34 -5 -20 -4 -4Z"/>
+      <rect class="pv-metal" x="-6" y="-21" width="18" height="3" rx="1"/><rect class="pv-dark" x="2" y="-54" width="8" height="22" rx="1.5"/><rect class="pv-metal" x="4" y="-32" width="4" height="6" rx="1"/><rect class="pv-metal" x="3" y="-59" width="6" height="5" rx="1"/>
+    </symbol>
+  </defs>
+  <!-- thinking wall -->
+  <rect class="pv-board" x="88" y="12" width="174" height="74" rx="5" stroke-width="2"/>
+  <g>
+    <rect class="pv-ph-engage" x="100" y="22" width="18" height="16" rx="2" transform="rotate(-4 109 30)"/><rect class="pv-ph-explore" x="126" y="24" width="18" height="16" rx="2"/><rect fill="var(--plate-sun)" x="152" y="20" width="18" height="16" rx="2" transform="rotate(5 161 28)"/>
+    <rect class="pv-ph-explain" x="178" y="24" width="18" height="16" rx="2"/><rect class="pv-ph-evaluate" x="204" y="22" width="18" height="16" rx="2" transform="rotate(-6 213 30)"/><rect fill="var(--plate-sun)" x="230" y="26" width="18" height="16" rx="2"/>
+    <rect fill="var(--plate-sun)" x="112" y="50" width="18" height="16" rx="2" transform="rotate(6 121 58)"/><rect class="pv-ph-explore" x="140" y="52" width="18" height="16" rx="2"/><rect class="pv-ph-engage" x="168" y="50" width="18" height="16" rx="2" transform="rotate(-5 177 58)"/><rect fill="var(--plate-sun)" x="196" y="54" width="18" height="16" rx="2"/>
+  </g>
+  <!-- teacher -->
+  <g transform="translate(286 110) scale(1.35)"><use href="#pd-person" class="pv-skin-o" stroke-width="3"/><use href="#pd-person" class="pv-skin"/></g>
+  <!-- desks and students -->
+  <g>
+    <g transform="translate(60 158)"><use href="#pd-person" class="pv-skin-o" stroke-width="3"/><use href="#pd-person" class="pv-skin"/></g>
+    <g transform="translate(140 158)"><use href="#pd-person" class="pv-skin-o" stroke-width="3"/><use href="#pd-person" class="pv-skin"/></g>
+    <g transform="translate(220 158)"><use href="#pd-person" class="pv-skin-o" stroke-width="3"/><use href="#pd-person" class="pv-skin"/></g>
+    <rect class="pv-desk" x="24" y="156" width="232" height="12" rx="3" stroke-width="1.6"/>
+    <rect class="pv-desk" x="34" y="168" width="8" height="20" rx="2" stroke-width="1.2"/><rect class="pv-desk" x="238" y="168" width="8" height="20" rx="2" stroke-width="1.2"/>
+    <use href="#pd-scope" transform="translate(178 156)"/>
+    <rect class="pv-paper" x="80" y="146" width="22" height="10" rx="1.5" stroke-width="1.2"/>
+  </g>
+</svg>`,
 };
 const LEVEL = {recognise:"Recognise",explain:"Explain",select:"Select",design:"Design"};
 const UNSCORED = ["predict","concept","reflect","build","sim"];   // never used as warm-ups
