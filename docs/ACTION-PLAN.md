@@ -183,6 +183,8 @@ Removes the legacy fallback dependency in `autovideos.js`.
 - [ ] Create `config/units/EDIT415.json` — `videoInterval: 2`, weeks with video IDs from legacy `VideoURLs` class
 - [ ] Repeat for EDIT425, EDIT426, EDIT513, EDIT517, EDIT518, EDIT521
 - [ ] Remove `VideoURLs` legacy class from `autovideos.js` once all JSONs exist
+- [x] EDIT518 migrated for T3 2026 (2026-10-06): `config/units/EDIT518.json` written from Steve's schedule, not from the legacy list, whose videos no longer exist. Its `VideoURLs` entry is removed; the other EDIT entries stay
+- [x] Prerequisite done (2026-10-06): `autovideos.js` now looks videos up by week number (`weeks[N].video`, N = first week of the period) instead of list position, so fortnightly units get the right video. Weekly EDSE output is unchanged
 
 ### 15. Refactor pre-submission checklists into config-driven system ⬜
 **Trigger:** Do this before writing a fourth checklist from scratch.
@@ -519,6 +521,10 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [x] Validate, test (build 20, game 22; the plate test now also covers the leaf litter plate: on the first item only, no text, a description), typecheck, check:pages and check:regressions (against `origin/main`) pass. Checked in a browser at 375 px in light and dark: no sideways scroll
 - [x] Closes the `adi-1-leaf-litter` plate item from items 47 and 49. Item 46's plate list still has Cells under the lens and the POE path
 - Nothing adapted. The local copy of the handoff was an earlier revision of the branch's (it named `c632975` rather than `7afd44a` as the base); the branch's copy was kept, and the substance is the same
+
+### 51. EDIT518 — record fortnightly videos; add YouTube IDs to `weeks[0,1,3,5,7,9,11,13].video` in EDIT518.json ⬜ — 2026-10-06
+- [ ] Record the fortnightly videos and add each YouTube ID to the first week of its fortnight: 0, 1, 3, 5, 7, 9, 11, 13. Those are the weeks the week-number lookup reads
+- Until an ID is set, that fortnight shows "This fortnight's video is coming soon." (`videoFallback: "coming-soon"`). Week 14 (Unit complete, from 25 January) is also read and shows the placeholder unless it gets a video
 
 ---
 

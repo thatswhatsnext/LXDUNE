@@ -1,9 +1,20 @@
 // whatson.js
 
 const BASE = new URL('..', import.meta.url).href;
-const NO_TEACHING_WEEKS = new Set([9, 10, 11, 12, 13, 14]);
+const DEFAULT_NO_TEACHING_WEEKS = [9, 10, 11, 12, 13, 14];
+const DEFAULT_WEEK0_TODO = ["Download BOTH assessment tasks 💾", "Make a plan to complete them 🗓️"];
 
-function getDateList(startDate, trimester) {
+// Days to add to a week's date for holiday breaks.
+// breaks: array of { afterWeek, weeks } for this unit and trimester, or undefined.
+// When undefined, keep the legacy rule: T3 adds 14 days from Week 9.
+function breakOffsetDays(week, trimester, breaks) {
+  if (Array.isArray(breaks)) {
+    return breaks.reduce((days, b) => (week > b.afterWeek ? days + b.weeks * 7 : days), 0);
+  }
+  return trimester === "T3" && week >= 9 ? 14 : 0;
+}
+
+function getDateList(startDate, trimester, breaks) {
   let dateList = [];
   const week0 = new Date(startDate);
   week0.setDate(week0.getDate() - 7);
@@ -17,9 +28,7 @@ function getDateList(startDate, trimester) {
     let thisDate = new Date(week0);
     thisDate.setDate(week0.getDate() + currentWeek * 7);
 
-    if (trimester === "T3" && currentWeek >= 9) {
-      thisDate.setDate(thisDate.getDate() + 14);
-    }
+    thisDate.setDate(thisDate.getDate() + breakOffsetDays(currentWeek, trimester, breaks));
     dateList.push({ week: currentWeek, date: thisDate });
     currentWeek += 1;
   }
@@ -127,10 +136,18 @@ function buildAssessmentReminders(unitCfg, today) {
 }
 
 export async function displayWhatsOn({
-  forUnit = "EDSE358",
+  forUnit,
   forStartDate: theStartDate,
   forTri: trimester,
+  forDate, // test-only override for "today" (ISO date); production shells omit it
 }) {
+  if (!forUnit) {
+    console.error("whatson: forUnit is required");
+    document.getElementById("heading").innerHTML = "Content unavailable — unit not specified.";
+    document.getElementById("details").innerHTML = "";
+    return;
+  }
+
   const unitKey = String(forUnit).toUpperCase();
 
   let unitCfg;
@@ -148,15 +165,17 @@ export async function displayWhatsOn({
   const classStartDate = new Date(theStartDate);
   classStartDate.setHours(0, 0, 0, 0);
 
-  const today = new Date();
+  const today = forDate ? new Date(forDate) : new Date();
   today.setHours(0, 0, 0, 0);
 
-  const dateList = getDateList(classStartDate, trimester);
+  const triKey = `${trimester}-${classStartDate.getFullYear()}`;
+  const dateList = getDateList(classStartDate, trimester, unitCfg.breaks?.[triKey]);
   const thisWeek = getCurrentWeek(today, dateList);
+  const noTeachingWeeks = new Set(unitCfg.noTeachingWeeks ?? DEFAULT_NO_TEACHING_WEEKS);
+  const itemLabel = unitCfg.itemLabel ?? "topic";
 
-  // Heading includes commencing date
-  const commencing = new Date(classStartDate);
-  if (thisWeek >= 1) commencing.setDate(commencing.getDate() + (thisWeek - 1) * 7);
+  // Heading includes commencing date (from the date list, so breaks are respected)
+  const commencing = dateList.find((d) => d.week === thisWeek)?.date ?? classStartDate;
 
   let heading =
     thisWeek === 0
@@ -173,7 +192,7 @@ export async function displayWhatsOn({
       : [unitCfg.week0Message].filter(Boolean);
     msgs.forEach(m => parts.push(`<p>${escapeHtml(m)}</p>`));
     parts.push(`<div><strong>To do</strong></div>`);
-    parts.push(ul(["Download BOTH assessment tasks 💾", "Make a plan to complete them 🗓️"]));
+    parts.push(ul(unitCfg.week0Todo ?? DEFAULT_WEEK0_TODO));
     parts.push(`<p>Quick link: ${portalLink(unitCfg)}</p>`);
   } else if (thisWeek > 14) {
     heading = `${escapeHtml(unitKey)}: Teaching has ended for this period`;
@@ -181,7 +200,7 @@ export async function displayWhatsOn({
   } else {
     // JSON week keys are strings
     const info = unitCfg.weeks[String(thisWeek)] || {
-      item: `${unitCfg.itemLabel} ${thisWeek}`,
+      item: `${itemLabel} ${thisWeek}`,
       title: "Check the module/topic tiles below for this week's materials.",
     };
 
@@ -190,16 +209,20 @@ export async function displayWhatsOn({
     parts.push(`<div>${escapeHtml(info.title)}</div>`);
 
     // Teaching vs no teaching
-    if (NO_TEACHING_WEEKS.has(thisWeek) || info.teaching === false) {
-      parts.push(
-        `<p>There is no teaching this week, and no lecture will be posted. Please use this time for Professional Experience (where applicable) and to stay on top of assessment requirements. Check the ${portalLink(
-          unitCfg
-        )} and unit announcements for any updates.</p>`
-      );
+    if (noTeachingWeeks.has(thisWeek) || info.teaching === false) {
+      if (unitCfg.noTeachingMessage) {
+        parts.push(`<p>${escapeHtml(unitCfg.noTeachingMessage)}</p>`);
+      } else {
+        parts.push(
+          `<p>There is no teaching this week, and no lecture will be posted. Please use this time for Professional Experience (where applicable) and to stay on top of assessment requirements. Check the ${portalLink(
+            unitCfg
+          )} and unit announcements for any updates.</p>`
+        );
+      }
     } else {
       parts.push(
         `<p>Learning materials for this week are available in the ${escapeHtml(
-          unitCfg.itemLabel.toLowerCase()
+          itemLabel.toLowerCase()
         )} tiles below. Please check the ${portalLink(
           unitCfg
         )} for full task instructions and submission details.</p>`
@@ -217,9 +240,10 @@ export async function displayWhatsOn({
     if (reminderHtml) parts.push(reminderHtml);
 
     // Live sessions block only during teaching weeks
-    if (!(NO_TEACHING_WEEKS.has(thisWeek) || info.teaching === false)) {
+    if (!(noTeachingWeeks.has(thisWeek) || info.teaching === false)) {
+      const liveWhen = [unitCfg.liveDay, unitCfg.liveTime].filter(Boolean).map(escapeHtml).join(" ");
       parts.push(
-        `<div><strong>Live session (${escapeHtml(unitCfg.liveDay)} ${escapeHtml(unitCfg.liveTime)})</strong></div>`
+        `<div><strong>Live session${liveWhen ? ` (${liveWhen})` : ""}</strong></div>`
       );
       parts.push(`<div>${info.live ? escapeHtml(info.live) : "See the Live Sessions details below."}</div>`);
     }

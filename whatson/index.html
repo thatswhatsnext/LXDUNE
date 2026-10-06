@@ -3,10 +3,13 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
         <script type="module">
             import { displayWhatsOn } from "./whatson.js";
+            // Demo only: ?unit=EDIT518&start=2026-10-19&tri=T3&date=2027-01-04 overrides the defaults
+            const q = new URLSearchParams(location.search);
             displayWhatsOn({
-              forUnit: "EDSE358",
-              forStartDate: "2026-02-26",
-              forTri: "T1",
+              forUnit: q.get("unit") ?? "EDSE358",
+              forStartDate: q.get("start") ?? "2026-02-26",
+              forTri: q.get("tri") ?? "T1",
+              forDate: q.get("date") ?? undefined,
             });
           </script>
           <style>
