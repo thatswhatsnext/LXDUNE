@@ -357,6 +357,18 @@ In sync with `main` — 0 commits ahead (`main` carries the PR #2 merge commit o
 
 Both live scripts refactored to read from `config/units/*.json` instead of embedded static data. Sandpit-tested and merged to `main` 2026-05-17 (merge commit `449164f`). In production.
 
+**Optional unit fields added 2026-10-06 (for EDIT518).** Every one has a default that reproduces the earlier behaviour, so EDSE units need none of them:
+
+| Field | Read by | Default when absent | Purpose |
+|---|---|---|---|
+| `breaks` (`{ "T3-2026": [{ "afterWeek": 10, "weeks": 1 }] }`) | whatson, autovideos, `blocks.js`, test harness | Legacy rule: T3 adds 14 days from Week 9 | Holiday breaks per trimester. Each week after `afterWeek` gets `weeks * 7` days added. An empty array means no break. Key is `{tri}-{year}`; whatson and autovideos take the year from the start date |
+| `noTeachingWeeks` (number array) | whatson | `[9,10,11,12,13,14]` | Weeks with no teaching and no live-session block |
+| `noTeachingMessage` (plain string, escaped) | whatson | The Professional Experience paragraph | No-teaching week text |
+| `week0Todo` (string array) | whatson | The two "Download BOTH assessment tasks / Make a plan" items | Week 0 to-do list |
+| `videoFallback` (`"coming-soon"`) | autovideos | `DGIXT7ce3vQ` | What a week with `video: null` shows |
+
+Other script changes on the same date: `autovideos.js` looks videos up by **week number** (`weeks[N].video`, where N is the first week of the period) rather than list position, so fortnightly units get the right video; the whatson "commencing" heading uses the date list, so it respects breaks; `displayWhatsOn` no longer defaults `forUnit` to EDSE358 and shows "Content unavailable — unit not specified." without it. Both `displayWhatsOn` and `setUpVideos` take a test-only `forDate` (ISO date) that overrides today. Production shells never include it; the demo pages pass it from `?date=`.
+
 ### Phase 5 — Framework Explorer ✅ COMPLETE (live on main 2026-07-24)
 
 A separate, config-driven capability from `blocks.js`: standalone teaching-framework artefacts ported into validated JSON + one shared renderer. **Not unit-scoped** — frameworks are general NSW-science teaching resources embeddable on any Moodle page.
@@ -553,6 +565,14 @@ All weeks: video null (will default to `DGIXT7ce3vQ` until real IDs added); zoom
 - **assessmentFiles (T2-2026):** all discipline task/marking URLs null — populate when individual discipline files are uploaded.
 - **Constructive alignment map:** EDSE362-specific template at `templates/constructive-alignment-map-EDSE362.html` ✅
 
+### EDIT518 — Introduction to Learning Analytics
+
+- **Live shells import from LXDUNE** (T3 2026 onward): `whatson/whatson.js` and `autovideos/autovideos.js` only. Stoo Sepp's `stoosepp.github.io` copy still exists but is no longer used for EDIT518, and its `VideoURLs.EDIT518` list is removed here.
+- Fortnightly (`videoInterval: 2`). T3 2026: Week 1 starts Mon 19 Oct; Weeks 9–10 are 14–27 Dec; one-week break 28 Dec–3 Jan (`breaks.T3-2026`); Week 11 starts Mon 4 Jan 2027.
+- `noTeachingWeeks: [9, 10, 14]`, `noTeachingMessage`, `week0Todo`, `videoFallback: "coming-soon"`.
+- All `video` values are null, so every fortnight shows "This fortnight's video is coming soon." Add IDs to weeks 0, 1, 3, 5, 7, 9, 11 and 13 (ACTION-PLAN item 51).
+- `learningOutcomes` and `assessmentTasks` are empty: EDIT518 uses no `blocks.js` renderers.
+
 ---
 
 ## Config schema — week object
@@ -712,6 +732,14 @@ T2 2026 start `2026-06-22` is confirmed. ⚠️ 2027 dates are estimates — con
 ---
 
 ## Session notes
+
+### 2026-10-06 — EDIT518 moved onto LXDUNE (fortnightly unit, configurable breaks)
+
+**What this was:** EDIT518 T3 2026 ran from Stoo Sepp's repo, which we can't edit. Its new Moodle home page imports whatson and autovideos from LXDUNE. Being fortnightly, with a one-week break after Week 10, it exposed four problems: the hard-coded T3 break, the position-based video lookup, EDSE-only assumptions in whatson, and no `EDIT518.json`. All four are fixed with optional config fields (see Phase 4 above).
+
+**Regression check:** EDSE357, EDSE358 and EDSE362 output compared before and after for every week, T1–T3 (396 renders of whatson and autovideos), with today pinned. T1 and T2 were byte for byte identical. The only differences were T3 "commencing" headings from Week 9, now correct after the legacy 14-day break; no EDSE unit runs in T3. The `blocks.js` and test-harness `buildDateList` copies match the original exactly when there is no `breaks` key.
+
+**Watch (reported, not changed):** `config/trimester-config.json` has T3 2026 starting `2026-10-18`, a Sunday, which looks like a leftover of the Sunday workaround reverted under "Monday anchor" in the action plan. The generator pre-fills shell start dates from that file, and `blocks.js` resolves weeks from it, so T3 2026 week boundaries there would fall on Sundays. EDIT518's hand-made shell uses `2026-10-19` and does not read the file.
 
 ### 2026-07-24 — Phase 5: Framework Explorer (HITS + Metacognition) built, shipped to main
 
