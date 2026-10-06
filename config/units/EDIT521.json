@@ -5,6 +5,7 @@
   "liveDay": "Tuesday",
   "liveTime": "1:00pm (AEDT)",
   "trimesters": ["T3"],
+  "assessmentPortalUrl": "https://mylearn.une.edu.au/course/section.php?id=501053",
   "videoInterval": 1,
   "videoFallback": "coming-soon",
   "noTeachingWeeks": [9, 13],

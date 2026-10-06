@@ -528,9 +528,9 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - Until an ID is set, that week shows "This week's video is coming soon." (`videoFallback: "coming-soon"`)
 - 2026-10-06: EDIT518 moved to UNE's official 13-week schedule (shutdown after Week 9), so Weeks 10 & 11 straddle the break and videos are now looked up weekly (`videoInterval: 1`). The earlier list (weeks 0, 1, 3, 5, 7, 9, 11, 13) no longer applies
 
-### 53. EDIT521 — videos, Assessment Portal link and Moodle shells ⬜ — 2026-10-06
+### 53. EDIT521 — videos and Moodle shells ⬜ — 2026-10-06
 - [ ] Record the fortnightly videos and add each YouTube ID to both weeks of its fortnight in `config/units/EDIT521.json` (weekly lookup, as EDIT518)
-- [ ] Add EDIT521's `assessmentPortalUrl`; until then the portal is named without a link
+- [x] EDIT521's `assessmentPortalUrl` added (2026-10-06)
 - [ ] Paste the home-page shell (generator: EDIT521, T3 2026, Home page) and fill in the Zoom details, which stay out of the public config
 - [ ] Check in Moodle: quizzes are shown as due Sun 17 Jan with extension to 24 Jan (Moodle lists "Closes 24 Jan"), and the Unit Outline Quiz in the Week 0 message exists for EDIT521
 
