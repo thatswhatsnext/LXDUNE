@@ -334,8 +334,12 @@ const cases: [string, () => void | Promise<void>][] = [
     open("poe-1-yeast");
     const yeast = doc.querySelector("#stage .plate-card svg.plate");
     if (!yeast || yeast.querySelector("text") || !/limp balloons/.test(yeast.getAttribute("aria-label") ?? "")) throw new Error("poe-1-yeast: no plate, or a plate with text or no description");
+    (doc.getElementById("toMap") as any).click();
+    open("poe-2-hands");
+    const hands = doc.querySelector("#stage .plate-card svg.plate");
+    if (!hands || hands.querySelector("text") || !/UV torch/.test(hands.getAttribute("aria-label") ?? "")) throw new Error("poe-2-hands: no plate, or a plate with text or no description");
     // Every plate keeps its shapes to itself: no <use> points outside its own <defs>.
-    for (const [id, svg] of [["5e-2-cells", cells], ["poe-1-yeast", yeast], ["adi-1-leaf-litter", leaf]] as const)
+    for (const [id, svg] of [["5e-2-cells", cells], ["poe-1-yeast", yeast], ["poe-2-hands", hands], ["adi-1-leaf-litter", leaf]] as const)
       (svg as any).querySelectorAll("use").forEach((u: any) => { const ref = u.getAttribute("href").slice(1); if (!(svg as any).querySelector(`[id="${ref}"]`)) throw new Error(`${id}: <use> points at #${ref}, which isn't in the plate`); });
     if (errors.length) throw new Error(errors.join("; "));
     dom.window.close();

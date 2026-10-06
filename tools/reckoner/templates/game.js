@@ -273,6 +273,78 @@ const PLATES = {
   </g>
   <path class="pv-string" d="M240 158 C226 150 236 136 252 138 C266 140 270 128 258 122" fill="none" stroke-width="1.6" stroke-linecap="round"/>
 </svg>`,
+  "poe-2-hands": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A UV torch shining on two open hands, with fluorescent lotion glowing evenly all over them. On the bench wait the four ways to remove it: a running tap over a basin, a soap pump, a bottle of hand sanitiser and a roll of paper towel" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- an open hand, palm up, wrist at 0,0 -->
+    <symbol id="ha-hand" overflow="visible">
+      <rect x="-15" y="-34" width="30" height="36" rx="7"/>
+      <rect x="-15" y="-57" width="7" height="30" rx="3.5"/>
+      <rect x="-6.5" y="-62" width="7" height="35" rx="3.5"/>
+      <rect x="2" y="-60" width="7" height="33" rx="3.5"/>
+      <rect x="10.2" y="-52" width="6.5" height="25" rx="3.2"/>
+      <rect x="-9" y="-30" width="7.5" height="24" rx="3.7" transform="rotate(-52 -12 -12)"/>
+    </symbol>
+    <!-- lotion: glowing spots across palm and fingers -->
+    <symbol id="ha-lotion" overflow="visible">
+      <g class="pv-halo"><circle cx="-6" cy="-20" r="6"/><circle cx="6" cy="-14" r="6"/><circle cx="2" cy="-28" r="5"/><circle cx="-11" cy="-46" r="3.6"/><circle cx="-3" cy="-52" r="3.6"/><circle cx="5.5" cy="-48" r="3.6"/><circle cx="13.5" cy="-40" r="3.4"/><circle cx="-21" cy="-24" r="3.4"/><circle cx="-8" cy="-6" r="4.5"/><circle cx="9" cy="-26" r="4"/></g>
+      <g class="pv-glow"><circle cx="-6" cy="-20" r="2.6"/><circle cx="6" cy="-14" r="2.6"/><circle cx="2" cy="-28" r="2.2"/><circle cx="-11" cy="-46" r="1.7"/><circle cx="-3" cy="-52" r="1.7"/><circle cx="5.5" cy="-48" r="1.7"/><circle cx="13.5" cy="-40" r="1.6"/><circle cx="-21" cy="-24" r="1.6"/><circle cx="-8" cy="-6" r="2"/><circle cx="9" cy="-26" r="1.8"/></g>
+    </symbol>
+  </defs>
+  <rect class="pv-bench" x="0" y="160" width="350" height="30"/><path class="pv-bench-edge" d="M0 160H350" stroke-width="2"/>
+  <!-- UV torch and its beam -->
+  <path class="pv-uv" fill-opacity=".16" d="M48 40 L18 150 H170 L72 30Z"/>
+  <g transform="translate(60 32) rotate(-20)">
+    <rect class="pv-dark" x="-10" y="-34" width="20" height="38" rx="4"/>
+    <rect class="pv-metal" x="-13" y="2" width="26" height="9" rx="2.5"/>
+    <rect class="pv-uv" x="-11" y="10" width="22" height="3.5" rx="1.5"/>
+    <rect class="pv-metal" x="-4" y="-26" width="8" height="5" rx="1.5"/>
+  </g>
+  <!-- two hands, lotion glowing evenly over both -->
+  <g transform="translate(70 150) rotate(-8)">
+    <use href="#ha-hand" class="pv-skin-o" stroke-width="3.4" stroke-linejoin="round"/><use href="#ha-hand" class="pv-skin"/>
+    <use href="#ha-lotion"/>
+  </g>
+  <g transform="translate(130 150) rotate(8) scale(-1 1)">
+    <use href="#ha-hand" class="pv-skin-o" stroke-width="3.4" stroke-linejoin="round"/><use href="#ha-hand" class="pv-skin"/>
+    <use href="#ha-lotion"/>
+  </g>
+  <!-- the four methods, waiting on the bench -->
+  <!-- 1 running tap over a basin -->
+  <g transform="translate(206 160)">
+    <path class="pv-glass" d="M-22 -16 H22 L18 -2 Q17 0 14 0 H-14 Q-17 0 -18 -2Z" stroke-width="2"/>
+    <rect class="pv-metal" x="-16" y="-80" width="7" height="64" rx="2"/>
+    <path class="pv-metal" d="M-16 -82 H4 Q12 -82 12 -74 V-66 H5 V-72 Q5 -75 2 -75 H-16Z"/>
+    <rect class="pv-dark" x="-20" y="-88" width="15" height="6" rx="2"/>
+    <path class="pv-drop" d="M8.5 -58 c-2.6 4.4 -4 6.6 0 8 c4 -1.4 2.6 -3.6 0 -8z"/>
+    <path class="pv-drop" d="M8.5 -44 c-2.6 4.4 -4 6.6 0 8 c4 -1.4 2.6 -3.6 0 -8z"/>
+    <path class="pv-drop" d="M8.5 -30 c-2.6 4.4 -4 6.6 0 8 c4 -1.4 2.6 -3.6 0 -8z"/>
+    <path class="pv-water" d="M-17 -12 H17 L15 -5 H-15Z"/>
+  </g>
+  <!-- 2 soap pump -->
+  <g transform="translate(252 160)">
+    <rect class="pv-soap" x="-13" y="-46" width="26" height="46" rx="6"/>
+    <rect class="pv-dark" x="-5" y="-54" width="10" height="9" rx="2"/>
+    <path class="pv-dark" d="M-3 -54 V-62 H14 V-58 H3 V-54Z"/>
+    <ellipse cx="0" cy="-26" rx="7" ry="9" fill="var(--surface)" fill-opacity=".55"/>
+  </g>
+  <!-- 3 hand sanitiser: clear gel, flip cap -->
+  <g transform="translate(290 160)">
+    <rect class="pv-gel" x="-11" y="-40" width="22" height="40" rx="5" stroke-width="2"/>
+    <rect class="pv-water" x="-9" y="-26" width="18" height="24" rx="3"/>
+    <rect class="pv-dark" x="-8" y="-48" width="16" height="9" rx="2.5"/>
+    <path class="pv-dark" d="M-8 -48 L-12 -55 L-2 -55 L0 -48Z"/>
+  </g>
+  <!-- 4 paper towel: a horizontal roll on its stand, a sheet hanging down -->
+  <g transform="translate(326 160)">
+    <rect class="pv-metal" x="-2" y="-70" width="4" height="70" rx="1.5"/>
+    <rect class="pv-metal" x="-15" y="-3" width="30" height="5" rx="2"/>
+    <rect class="pv-towel" x="-16" y="-70" width="32" height="20" rx="10" stroke-width="2"/>
+    <ellipse class="pv-towel" cx="12" cy="-60" rx="4" ry="9" stroke-width="1.6"/>
+    <circle cx="12" cy="-60" r="2.4" class="pv-metal"/>
+    <path class="pv-towel" d="M-14 -55 H8 V-20 Q-3 -16 -14 -20Z" stroke-width="2"/>
+    <path d="M-14 -38 H8" stroke="var(--plate-rim)" stroke-opacity=".3" stroke-width="1.2" stroke-dasharray="2 2"/>
+  </g>
+</svg>`,
 };
 const LEVEL = {recognise:"Recognise",explain:"Explain",select:"Select",design:"Design"};
 const UNSCORED = ["predict","concept","reflect","build","sim"];   // never used as warm-ups

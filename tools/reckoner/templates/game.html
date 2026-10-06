@@ -18,7 +18,7 @@
   --engage:#b06e0c; --explore:#0d7c6f; --explain:#2a5cad; --elaborate:#7046ad; --evaluate:#ad4166;
   --plate-sun:#F2C76B; --plate-ray:#D9A62E; --plate-canopy:#DFEDE7; --plate-branch:#1D6B56; --plate-leaf:#2E8A6E;
   --plate-trunk:#5B4632; --plate-soil:#7A5B3E; --plate-tub:#35538F; --plate-rim:#2A4372; --plate-drop:#6FA8DC;
-  --plate-grey:#6E7A80; --plate-rust:#B5562B; --plate-sugar:#FFFFFF;
+  --plate-grey:#6E7A80; --plate-rust:#B5562B; --plate-sugar:#FFFFFF; --plate-uv:#6A4BB0;
   --f-display:"Source Serif 4", Georgia, serif;
   --f-body:"IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
   --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -30,7 +30,7 @@
   --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
   --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
   --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
-  --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6;
+  --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6; --plate-uv:#A88BEA;
   --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
   --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
   color-scheme:dark}}
@@ -39,7 +39,7 @@
   --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
   --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
   --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
-  --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6;
+  --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6; --plate-uv:#A88BEA;
   --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
   --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
   color-scheme:dark}
@@ -243,6 +243,10 @@ button.go.fbk{margin-top:12px}
 .pv-yeast{fill:var(--plate-sun)} .pv-yeast-s{stroke:var(--plate-ray)} .pv-crystal-a{fill:var(--plate-canopy);stroke:var(--plate-rim)} .pv-crystal-b{fill:var(--plate-drop);fill-opacity:.35;stroke:var(--plate-rim)}
 .pv-sugar{fill:var(--plate-sugar);stroke:var(--plate-rim)} .pv-balloon-a{fill:var(--plate-rust)} .pv-balloon-b{fill:var(--plate-leaf)} .pv-balloon-c{fill:var(--plate-tub)}
 .pv-ruler{fill:var(--plate-sun);fill-opacity:.6;stroke:var(--plate-ray)} .pv-string{stroke:var(--plate-trunk)} .pv-face{fill:var(--surface);stroke:var(--plate-rim)}
+/* clean hands plate (poe-2-hands): hands in outline, lotion glow, UV light, the four methods */
+.pv-skin-o{fill:var(--plate-rim);stroke:var(--plate-rim)} .pv-skin{fill:var(--plate-canopy)} .pv-uv{fill:var(--plate-uv)} .pv-glow{fill:var(--plate-sun)}
+.pv-halo{fill:var(--plate-sun);fill-opacity:.35} .pv-soap{fill:var(--plate-leaf)} .pv-gel{fill:var(--plate-drop);fill-opacity:.3;stroke:var(--plate-rim)} .pv-towel{fill:var(--plate-sugar);stroke:var(--plate-rim)}
+.pv-drop{fill:var(--plate-drop)}
 /* privacy line under the dock's controls on lesson screens */
 .privacy{flex-basis:100%;display:flex;align-items:center;gap:6px;margin:0;font-size:12.5px;color:var(--muted)}
 .privacy .i{width:14px;height:14px}
