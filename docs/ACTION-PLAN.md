@@ -526,6 +526,12 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 - [ ] Record the fortnightly videos and add each YouTube ID to the first week of its fortnight: 0, 1, 3, 5, 7, 9, 11, 13. Those are the weeks the week-number lookup reads
 - Until an ID is set, that fortnight shows "This fortnight's video is coming soon." (`videoFallback: "coming-soon"`). Week 14 (Unit complete, from 25 January) is also read and shows the placeholder unless it gets a video
 
+### 52. Correct Sunday trimester start dates in `config/trimester-config.json` ⬜ — 2026-10-06
+Five of the six start dates are Sundays: T2 2026 (`2026-06-21`), T3 2026 (`2026-10-18`) and all of 2027 (T1 `2027-02-21`, T2 `2027-06-20`, T3 `2027-10-17`). Only T1 2026 (`2026-02-23`) is a Monday. They look like leftovers of the Sunday workaround reverted under "Fix week resolution — Monday anchor". `blocks.js` (`resolve()` → `buildDateList`), the test harness and the generator's pre-filled shell dates all read this file, so for those trimesters week boundaries fall on Sundays. Found while moving EDIT518, whose shells pass `2026-10-19` directly and don't read the file.
+- [ ] On a separate `fix/` branch, move each Sunday start to the following Monday
+- [ ] Harness regression for `blocks.js`: compare the resolved week for every day of each affected trimester, before and after, and confirm only the Sunday boundaries move
+- [ ] Check the live EDSE shells and any generated shells that embed one of these dates
+
 ---
 
 ## ✅ Completed
