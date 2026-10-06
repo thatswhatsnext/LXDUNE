@@ -1,5 +1,5 @@
 diff --git a/tools/reckoner/scripts/test-game.ts b/tools/reckoner/scripts/test-game.ts
-index 22dc4e7..aa54f42 100644
+index 22dc4e7..c7a4266 100644
 --- a/tools/reckoner/scripts/test-game.ts
 +++ b/tools/reckoner/scripts/test-game.ts
 @@ -299,7 +299,7 @@ const cases: [string, () => void | Promise<void>][] = [
@@ -21,7 +21,7 @@ index 22dc4e7..aa54f42 100644
      (doc.getElementById("toMap") as any).click();
      open("adi-1-leaf-litter");
      const leaf = doc.querySelector("#stage .plate-card svg.plate");
-@@ -329,6 +330,13 @@ const cases: [string, () => void | Promise<void>][] = [
+@@ -329,6 +330,17 @@ const cases: [string, () => void | Promise<void>][] = [
      if (!/pitfall traps/.test(leaf.getAttribute("aria-label") ?? "")) throw new Error("adi-1-leaf-litter: the plate has no description");
      (doc.querySelector(".opts .opt") as any).click(); (doc.getElementById("go") as any).click(); (doc.getElementById("go") as any).click();
      if (doc.querySelector("#stage .plate-card")) throw new Error("adi-1-leaf-litter shows the plate on its second item too");
@@ -29,14 +29,18 @@ index 22dc4e7..aa54f42 100644
 +    open("poe-1-yeast");
 +    const yeast = doc.querySelector("#stage .plate-card svg.plate");
 +    if (!yeast || yeast.querySelector("text") || !/limp balloons/.test(yeast.getAttribute("aria-label") ?? "")) throw new Error("poe-1-yeast: no plate, or a plate with text or no description");
++    (doc.getElementById("toMap") as any).click();
++    open("poe-2-hands");
++    const hands = doc.querySelector("#stage .plate-card svg.plate");
++    if (!hands || hands.querySelector("text") || !/UV torch/.test(hands.getAttribute("aria-label") ?? "")) throw new Error("poe-2-hands: no plate, or a plate with text or no description");
 +    // Every plate keeps its shapes to itself: no <use> points outside its own <defs>.
-+    for (const [id, svg] of [["5e-2-cells", cells], ["poe-1-yeast", yeast], ["adi-1-leaf-litter", leaf]] as const)
++    for (const [id, svg] of [["5e-2-cells", cells], ["poe-1-yeast", yeast], ["poe-2-hands", hands], ["adi-1-leaf-litter", leaf]] as const)
 +      (svg as any).querySelectorAll("use").forEach((u: any) => { const ref = u.getAttribute("href").slice(1); if (!(svg as any).querySelector(`[id="${ref}"]`)) throw new Error(`${id}: <use> points at #${ref}, which isn't in the plate`); });
      if (errors.length) throw new Error(errors.join("; "));
      dom.window.close();
    }],
 diff --git a/tools/reckoner/templates/game.html b/tools/reckoner/templates/game.html
-index 45d0d4c..6420ad1 100644
+index 45d0d4c..6aff200 100644
 --- a/tools/reckoner/templates/game.html
 +++ b/tools/reckoner/templates/game.html
 @@ -18,7 +18,7 @@
@@ -44,7 +48,7 @@ index 45d0d4c..6420ad1 100644
    --plate-sun:#F2C76B; --plate-ray:#D9A62E; --plate-canopy:#DFEDE7; --plate-branch:#1D6B56; --plate-leaf:#2E8A6E;
    --plate-trunk:#5B4632; --plate-soil:#7A5B3E; --plate-tub:#35538F; --plate-rim:#2A4372; --plate-drop:#6FA8DC;
 -  --plate-grey:#6E7A80; --plate-rust:#B5562B;
-+  --plate-grey:#6E7A80; --plate-rust:#B5562B; --plate-sugar:#FFFFFF;
++  --plate-grey:#6E7A80; --plate-rust:#B5562B; --plate-sugar:#FFFFFF; --plate-uv:#6A4BB0;
    --f-display:"Source Serif 4", Georgia, serif;
    --f-body:"IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
    --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -53,7 +57,7 @@ index 45d0d4c..6420ad1 100644
    --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
    --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
 -  --plate-grey:#A3AFB5; --plate-rust:#D98A63;
-+  --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6;
++  --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6; --plate-uv:#A88BEA;
    --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
    --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
    color-scheme:dark}}
@@ -62,11 +66,11 @@ index 45d0d4c..6420ad1 100644
    --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
    --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
 -  --plate-grey:#A3AFB5; --plate-rust:#D98A63;
-+  --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6;
++  --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6; --plate-uv:#A88BEA;
    --good:#62cf90; --good-bg:#16301f; --bad:#f08a75; --bad-bg:#371c17;
    --engage:#e7a64a; --explore:#4cc4b3; --explain:#86aef0; --elaborate:#b598e8; --evaluate:#ec8aac;
    color-scheme:dark}
-@@ -236,6 +236,13 @@ button.go.fbk{margin-top:12px}
+@@ -236,6 +236,17 @@ button.go.fbk{margin-top:12px}
  .ll-ant{fill:var(--plate-trunk);stroke:var(--plate-trunk)} .ll-beetle{fill:var(--plate-branch);stroke:var(--plate-branch)}
  .ll-slater{fill:var(--plate-grey);stroke:var(--plate-grey)} .ll-spider{fill:var(--plate-rust);stroke:var(--plate-rust)}
  .ll-centipede{fill:var(--plate-ray);stroke:var(--plate-ray)} .ll-springtail{fill:var(--plate-tub);stroke:var(--plate-tub)}
@@ -77,14 +81,18 @@ index 45d0d4c..6420ad1 100644
 +.pv-yeast{fill:var(--plate-sun)} .pv-yeast-s{stroke:var(--plate-ray)} .pv-crystal-a{fill:var(--plate-canopy);stroke:var(--plate-rim)} .pv-crystal-b{fill:var(--plate-drop);fill-opacity:.35;stroke:var(--plate-rim)}
 +.pv-sugar{fill:var(--plate-sugar);stroke:var(--plate-rim)} .pv-balloon-a{fill:var(--plate-rust)} .pv-balloon-b{fill:var(--plate-leaf)} .pv-balloon-c{fill:var(--plate-tub)}
 +.pv-ruler{fill:var(--plate-sun);fill-opacity:.6;stroke:var(--plate-ray)} .pv-string{stroke:var(--plate-trunk)} .pv-face{fill:var(--surface);stroke:var(--plate-rim)}
++/* clean hands plate (poe-2-hands): hands in outline, lotion glow, UV light, the four methods */
++.pv-skin-o{fill:var(--plate-rim);stroke:var(--plate-rim)} .pv-skin{fill:var(--plate-canopy)} .pv-uv{fill:var(--plate-uv)} .pv-glow{fill:var(--plate-sun)}
++.pv-halo{fill:var(--plate-sun);fill-opacity:.35} .pv-soap{fill:var(--plate-leaf)} .pv-gel{fill:var(--plate-drop);fill-opacity:.3;stroke:var(--plate-rim)} .pv-towel{fill:var(--plate-sugar);stroke:var(--plate-rim)}
++.pv-drop{fill:var(--plate-drop)}
  /* privacy line under the dock's controls on lesson screens */
  .privacy{flex-basis:100%;display:flex;align-items:center;gap:6px;margin:0;font-size:12.5px;color:var(--muted)}
  .privacy .i{width:14px;height:14px}
 diff --git a/tools/reckoner/templates/game.js b/tools/reckoner/templates/game.js
-index 2b9b185..16a72c8 100644
+index 2b9b185..62f9f68 100644
 --- a/tools/reckoner/templates/game.js
 +++ b/tools/reckoner/templates/game.js
-@@ -169,6 +169,109 @@ const PLATES = {
+@@ -169,6 +169,181 @@ const PLATES = {
    <use href="#ll-ant" class="ll-ant" transform="translate(250 134) rotate(60) scale(1.2)"/>
    <use href="#ll-spider" class="ll-spider" transform="translate(258 154) rotate(-10) scale(1.2)"/>
    <use href="#ll-centipede" class="ll-centipede" transform="translate(264 170) rotate(4) scale(1.15)"/>
@@ -191,6 +199,78 @@ index 2b9b185..16a72c8 100644
 +    <g stroke="var(--plate-ray)" stroke-width="1.1"><path d="M8 0v5M16 0v3M24 0v5M32 0v3M40 0v6M48 0v3M56 0v5M64 0v3M72 0v5M80 0v3"/></g>
 +  </g>
 +  <path class="pv-string" d="M240 158 C226 150 236 136 252 138 C266 140 270 128 258 122" fill="none" stroke-width="1.6" stroke-linecap="round"/>
++</svg>`,
++  "poe-2-hands": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="A UV torch shining on two open hands, with fluorescent lotion glowing evenly all over them. On the bench wait the four ways to remove it: a running tap over a basin, a soap pump, a bottle of hand sanitiser and a roll of paper towel" xmlns="http://www.w3.org/2000/svg">
++  <defs>
++    <!-- an open hand, palm up, wrist at 0,0 -->
++    <symbol id="ha-hand" overflow="visible">
++      <rect x="-15" y="-34" width="30" height="36" rx="7"/>
++      <rect x="-15" y="-57" width="7" height="30" rx="3.5"/>
++      <rect x="-6.5" y="-62" width="7" height="35" rx="3.5"/>
++      <rect x="2" y="-60" width="7" height="33" rx="3.5"/>
++      <rect x="10.2" y="-52" width="6.5" height="25" rx="3.2"/>
++      <rect x="-9" y="-30" width="7.5" height="24" rx="3.7" transform="rotate(-52 -12 -12)"/>
++    </symbol>
++    <!-- lotion: glowing spots across palm and fingers -->
++    <symbol id="ha-lotion" overflow="visible">
++      <g class="pv-halo"><circle cx="-6" cy="-20" r="6"/><circle cx="6" cy="-14" r="6"/><circle cx="2" cy="-28" r="5"/><circle cx="-11" cy="-46" r="3.6"/><circle cx="-3" cy="-52" r="3.6"/><circle cx="5.5" cy="-48" r="3.6"/><circle cx="13.5" cy="-40" r="3.4"/><circle cx="-21" cy="-24" r="3.4"/><circle cx="-8" cy="-6" r="4.5"/><circle cx="9" cy="-26" r="4"/></g>
++      <g class="pv-glow"><circle cx="-6" cy="-20" r="2.6"/><circle cx="6" cy="-14" r="2.6"/><circle cx="2" cy="-28" r="2.2"/><circle cx="-11" cy="-46" r="1.7"/><circle cx="-3" cy="-52" r="1.7"/><circle cx="5.5" cy="-48" r="1.7"/><circle cx="13.5" cy="-40" r="1.6"/><circle cx="-21" cy="-24" r="1.6"/><circle cx="-8" cy="-6" r="2"/><circle cx="9" cy="-26" r="1.8"/></g>
++    </symbol>
++  </defs>
++  <rect class="pv-bench" x="0" y="160" width="350" height="30"/><path class="pv-bench-edge" d="M0 160H350" stroke-width="2"/>
++  <!-- UV torch and its beam -->
++  <path class="pv-uv" fill-opacity=".16" d="M48 40 L18 150 H170 L72 30Z"/>
++  <g transform="translate(60 32) rotate(-20)">
++    <rect class="pv-dark" x="-10" y="-34" width="20" height="38" rx="4"/>
++    <rect class="pv-metal" x="-13" y="2" width="26" height="9" rx="2.5"/>
++    <rect class="pv-uv" x="-11" y="10" width="22" height="3.5" rx="1.5"/>
++    <rect class="pv-metal" x="-4" y="-26" width="8" height="5" rx="1.5"/>
++  </g>
++  <!-- two hands, lotion glowing evenly over both -->
++  <g transform="translate(70 150) rotate(-8)">
++    <use href="#ha-hand" class="pv-skin-o" stroke-width="3.4" stroke-linejoin="round"/><use href="#ha-hand" class="pv-skin"/>
++    <use href="#ha-lotion"/>
++  </g>
++  <g transform="translate(130 150) rotate(8) scale(-1 1)">
++    <use href="#ha-hand" class="pv-skin-o" stroke-width="3.4" stroke-linejoin="round"/><use href="#ha-hand" class="pv-skin"/>
++    <use href="#ha-lotion"/>
++  </g>
++  <!-- the four methods, waiting on the bench -->
++  <!-- 1 running tap over a basin -->
++  <g transform="translate(206 160)">
++    <path class="pv-glass" d="M-22 -16 H22 L18 -2 Q17 0 14 0 H-14 Q-17 0 -18 -2Z" stroke-width="2"/>
++    <rect class="pv-metal" x="-16" y="-80" width="7" height="64" rx="2"/>
++    <path class="pv-metal" d="M-16 -82 H4 Q12 -82 12 -74 V-66 H5 V-72 Q5 -75 2 -75 H-16Z"/>
++    <rect class="pv-dark" x="-20" y="-88" width="15" height="6" rx="2"/>
++    <path class="pv-drop" d="M8.5 -58 c-2.6 4.4 -4 6.6 0 8 c4 -1.4 2.6 -3.6 0 -8z"/>
++    <path class="pv-drop" d="M8.5 -44 c-2.6 4.4 -4 6.6 0 8 c4 -1.4 2.6 -3.6 0 -8z"/>
++    <path class="pv-drop" d="M8.5 -30 c-2.6 4.4 -4 6.6 0 8 c4 -1.4 2.6 -3.6 0 -8z"/>
++    <path class="pv-water" d="M-17 -12 H17 L15 -5 H-15Z"/>
++  </g>
++  <!-- 2 soap pump -->
++  <g transform="translate(252 160)">
++    <rect class="pv-soap" x="-13" y="-46" width="26" height="46" rx="6"/>
++    <rect class="pv-dark" x="-5" y="-54" width="10" height="9" rx="2"/>
++    <path class="pv-dark" d="M-3 -54 V-62 H14 V-58 H3 V-54Z"/>
++    <ellipse cx="0" cy="-26" rx="7" ry="9" fill="var(--surface)" fill-opacity=".55"/>
++  </g>
++  <!-- 3 hand sanitiser: clear gel, flip cap -->
++  <g transform="translate(290 160)">
++    <rect class="pv-gel" x="-11" y="-40" width="22" height="40" rx="5" stroke-width="2"/>
++    <rect class="pv-water" x="-9" y="-26" width="18" height="24" rx="3"/>
++    <rect class="pv-dark" x="-8" y="-48" width="16" height="9" rx="2.5"/>
++    <path class="pv-dark" d="M-8 -48 L-12 -55 L-2 -55 L0 -48Z"/>
++  </g>
++  <!-- 4 paper towel: a horizontal roll on its stand, a sheet hanging down -->
++  <g transform="translate(326 160)">
++    <rect class="pv-metal" x="-2" y="-70" width="4" height="70" rx="1.5"/>
++    <rect class="pv-metal" x="-15" y="-3" width="30" height="5" rx="2"/>
++    <rect class="pv-towel" x="-16" y="-70" width="32" height="20" rx="10" stroke-width="2"/>
++    <ellipse class="pv-towel" cx="12" cy="-60" rx="4" ry="9" stroke-width="1.6"/>
++    <circle cx="12" cy="-60" r="2.4" class="pv-metal"/>
++    <path class="pv-towel" d="M-14 -55 H8 V-20 Q-3 -16 -14 -20Z" stroke-width="2"/>
++    <path d="M-14 -38 H8" stroke="var(--plate-rim)" stroke-opacity=".3" stroke-width="1.2" stroke-dasharray="2 2"/>
++  </g>
  </svg>`,
  };
  const LEVEL = {recognise:"Recognise",explain:"Explain",select:"Select",design:"Design"};
