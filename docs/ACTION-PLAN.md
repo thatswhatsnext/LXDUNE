@@ -529,7 +529,8 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 
 ### 52. Correct Sunday trimester start dates in `config/trimester-config.json` ⬜ — 2026-10-06
 Five of the six start dates are Sundays: T2 2026 (`2026-06-21`), T3 2026 (`2026-10-18`) and all of 2027 (T1 `2027-02-21`, T2 `2027-06-20`, T3 `2027-10-17`). Only T1 2026 (`2026-02-23`) is a Monday. They look like leftovers of the Sunday workaround reverted under "Fix week resolution — Monday anchor". `blocks.js` (`resolve()` → `buildDateList`), the test harness and the generator's pre-filled shell dates all read this file, so for those trimesters week boundaries fall on Sundays. Found while moving EDIT518, whose shells pass `2026-10-19` directly and don't read the file.
-- [ ] On a separate `fix/` branch, move each Sunday start to the following Monday
+- [x] T3 2026 corrected to Monday `2026-10-19` (2026-10-06, Steve), matching UNE's official study schedule; every T3 2026 week in `blocks.js` now starts on its official Monday
+- [ ] On a separate `fix/` branch, move the remaining Sunday starts (T2 2026 and all of 2027) to the following Monday
 - [ ] Harness regression for `blocks.js`: compare the resolved week for every day of each affected trimester, before and after, and confirm only the Sunday boundaries move
 - [ ] Check the live EDSE shells and any generated shells that embed one of these dates
 
