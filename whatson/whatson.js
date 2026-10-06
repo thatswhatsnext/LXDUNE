@@ -69,6 +69,10 @@ function portalLink(unitCfg) {
   return `<a href="${escapeHtml(unitCfg.assessmentPortalUrl)}" target="_blank" rel="noopener noreferrer">Assessment Portal</a>`;
 }
 
+function linkHtml(url, label) {
+  return `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+}
+
 function ulHtml(items) {
   if (!items || items.length === 0) return "";
   return `<ul>${items.map((x) => `<li>${x}</li>`).join("")}</ul>`;
@@ -120,14 +124,31 @@ function buildAssessmentReminders(unitCfg, today) {
 
     const dd = daysBetween(today, due);
 
+    // Optional a.url links the task name and replaces the portal pointer.
+    const name = a.url ? linkHtml(a.url, a.name) : escapeHtml(a.name);
+    const see = a.url ? "" : ` (see ${portalLink(unitCfg)})`;
+
+    // Optional a.closes: an automatic extension runs from the due date until submissions close.
+    if (a.closes && dd < 0) {
+      const closes = new Date(a.closes);
+      closes.setHours(0, 0, 0, 0);
+      const dc = daysBetween(today, closes);
+      if (dc === 0) {
+        lines.push(`❗ <strong>${name}</strong>: the extension ends <strong>today</strong>, when submissions close.`);
+      } else if (dc > 0) {
+        lines.push(`⏳ <strong>${name}</strong> was due ${Math.abs(dd)} day${Math.abs(dd) === 1 ? "" : "s"} ago. Automatic extension until ${escapeHtml(formatDateAU(closes))}, when submissions close.`);
+      }
+      continue;
+    }
+
     if (dd === 0) {
-      lines.push(`⚠️ <strong>${escapeHtml(a.name)}</strong> is due <strong>today</strong> (see ${portalLink(unitCfg)}).`);
+      lines.push(`⚠️ <strong>${name}</strong> is due <strong>today</strong>${see}.`);
     } else if (dd > 0 && dd <= 7) {
-      lines.push(`⚠️ <strong>${escapeHtml(a.name)}</strong> is due in <strong>${dd} day${dd === 1 ? "" : "s"}</strong> (see ${portalLink(unitCfg)}).`);
+      lines.push(`⚠️ <strong>${name}</strong> is due in <strong>${dd} day${dd === 1 ? "" : "s"}</strong>${see}.`);
     } else if (dd > 7 && dd <= 14) {
-      lines.push(`⏳ ${escapeHtml(a.name)} is approaching (due ${escapeHtml(formatDateAU(due))}).`);
+      lines.push(`⏳ ${name} is approaching (due ${escapeHtml(formatDateAU(due))}).`);
     } else if (dd < 0 && dd >= -14) {
-      lines.push(`❗ <strong>${escapeHtml(a.name)}</strong> was due ${Math.abs(dd)} day${Math.abs(dd) === 1 ? "" : "s"} ago (see ${portalLink(unitCfg)}).`);
+      lines.push(`❗ <strong>${name}</strong> was due ${Math.abs(dd)} day${Math.abs(dd) === 1 ? "" : "s"} ago${see}.`);
     }
   }
 
@@ -227,6 +248,12 @@ export async function displayWhatsOn({
           unitCfg
         )} for full task instructions and submission details.</p>`
       );
+    }
+
+    // Activities: optional [{ label, url }] for this week, shown as links
+    if (info.activities && info.activities.length) {
+      parts.push(`<div><strong>Activities</strong></div>`);
+      parts.push(ulHtml(info.activities.map((x) => (x.url ? linkHtml(x.url, x.label) : escapeHtml(x.label)))));
     }
 
     // Notes
