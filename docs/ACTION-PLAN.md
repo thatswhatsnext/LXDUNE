@@ -531,6 +531,7 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 
 ### 53. EDIT521 — videos and Moodle shells ⬜ — 2026-10-06
 - [ ] Record the fortnightly videos and add each YouTube ID to both weeks of its fortnight in `config/units/EDIT521.json` (weekly lookup, as EDIT518)
+- [x] Week 0 video added: `2umFLPlowR4` (2026-10-07)
 - [x] EDIT521's `assessmentPortalUrl` added (2026-10-06)
 - [ ] Paste the home-page shell (generator: EDIT521, T3 2026, Home page) and fill in the Zoom details, which stay out of the public config
 - [ ] Check in Moodle: quizzes are shown as due Sun 17 Jan with extension to 24 Jan (Moodle lists "Closes 24 Jan")
