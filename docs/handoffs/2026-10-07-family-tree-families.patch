@@ -1,0 +1,499 @@
+diff --git a/tools/reckoner/content/families.yaml b/tools/reckoner/content/families.yaml
+new file mode 100644
+index 0000000..2c0241c
+--- /dev/null
++++ b/tools/reckoner/content/families.yaml
+@@ -0,0 +1,48 @@
++# The Family Tree's families: models that share an idea about how learning works.
++# Groupings approved by Steve Grant on 2026-10-04 (Field Guide redesign handoff, open question 1).
++# v1.0.0 summaries reviewed and signed off by Steve Grant on 2026-10-07, who also confirmed the 5E/7E
++# lineage claim, Ambitious Science Teaching's placement, and that the Family Tree opens on families.
++# Every model in the reckoner sits in exactly one family; validate checks this.
++# Models are listed in the order the Family Tree shows them.
++schemaVersion: '1.0'
++id: families
++version: 1.0.0
++status: published
++lastReviewed: '2026-10-07'
++provenance:
++  source: ai-drafted-reviewed
++  authors: ['Claude, drafted for S. Grant']
++  reviewedBy: ['Steve Grant']
++  reviewedOn: '2026-10-07'
++
++families:
++  - id: learning-cycles
++    name: Learning cycles
++    summary: 'Experience comes first, then the term, then using it. 5E and 7E grew out of the original Learning cycle.'
++    models: [learning-cycle, 5e, 7e]
++
++  - id: conceptual-change
++    name: Conceptual change
++    summary: 'Start from what students already think, test it against evidence, and give them good reason to change their minds.'
++    models: [glm, interactive-approach, poe]
++
++  - id: argument-and-writing
++    name: Argument and writing
++    summary: 'Students build claims from evidence and sharpen them by arguing, writing and reviewing each other’s work.'
++    models: [swh, adi]
++
++  - id: reasoning
++    name: Reasoning
++    summary: 'Lessons designed to stretch how students reason, not only what they know.'
++    models: [case]
++
++  - id: problems-projects-issues
++    name: Problems, projects and issues
++    summary: 'Learning organised around a problem to solve, a product to make or an issue to decide, where science is the means.'
++    models: [pbl, project-based, design-cycle, ssi, ast]
++
++  - id: across
++    name: Across every branch
++    summary: 'Not a family of its own. Levels of inquiry sets how much you specify, inside any model above.'
++    models: [levels-of-inquiry]
++    across: true
+diff --git a/tools/reckoner/scripts/lib/build.ts b/tools/reckoner/scripts/lib/build.ts
+index 0f1c51b..407248f 100644
+--- a/tools/reckoner/scripts/lib/build.ts
++++ b/tools/reckoner/scripts/lib/build.ts
+@@ -23,6 +23,7 @@ import { dirname, join } from "node:path";
+ import yaml from "js-yaml";
+ import { ModelGuide } from "../../src/schema/model-guide";
+ import { Methodology } from "../../src/schema/methodology";
++import { Families } from "../../src/schema/families";
+ import { FIT_DIMENSIONS, FIT_DIMENSION_KEYS } from "../../src/schema/fit-dimensions";
+ import { FOCUS_AREAS } from "../../src/schema/syllabus";
+ 
+@@ -73,6 +74,7 @@ function parseYaml<T>(dir: string, file: string, schema: { safeParse(v: unknown)
+ const parseGuide = (guidesDir: string, file: string) => parseYaml<ModelGuide>(guidesDir, file, ModelGuide, "guide");
+ /** content/methodology.yaml, the prose behind the "How it works" page. */
+ export const loadMethodology = (contentDir: string) => parseYaml<Methodology>(contentDir, "methodology.yaml", Methodology, "methodology");
++export const loadFamilies = (contentDir: string) => parseYaml<Families>(contentDir, "families.yaml", Families, "families file");
+ 
+ export function loadGuides(guidesDir: string, includeDrafts: boolean, log: (m: string) => void) {
+   return readdirSync(guidesDir)
+@@ -105,6 +107,10 @@ export function buildSite(opts: BuildOptions): BuildResult {
+   const methodology = loadMethodology(contentDir);
+   const showMethodology = methodology.status === "published" || review;
+   if (!showMethodology) log(`! skipping methodology: status is ${methodology.status}`);
++  // Families follow the same rule: until they are published, the Family Tree groups models by scale only.
++  const families = loadFamilies(contentDir);
++  const showFamilies = families.status === "published" || review;
++  if (!showFamilies) log(`! skipping families: status is ${families.status}`);
+ 
+   /** Reckoner entry from an authored guide: fit profile arrays become the digit strings the UI uses. */
+   const fromGuide = (g: ModelGuide) => ({
+@@ -142,6 +148,7 @@ export function buildSite(opts: BuildOptions): BuildResult {
+     focusAreas: FOCUS_AREAS,
+     focusIndex: buildFocusIndex(guides),
+     ...(showMethodology ? { methodology } : {}),
++    ...(showFamilies ? { families: families.families } : {}),
+   };
+ 
+   const template = readFileSync(join(templatesDir, "app.html"), "utf8");
+diff --git a/tools/reckoner/scripts/test-build.ts b/tools/reckoner/scripts/test-build.ts
+index 88565d3..d32fc9e 100644
+--- a/tools/reckoner/scripts/test-build.ts
++++ b/tools/reckoner/scripts/test-build.ts
+@@ -417,6 +417,71 @@ const cases: [string, () => void | Promise<void>][] = [
+     catch (e) { if (/is stage4, but the item is tagged stage5/.test((e as Error).message)) return; throw e; }
+     throw new Error("a focus area tagged with the wrong stage was accepted");
+   }],
++  ["families reach students only once published; until then the Family Tree groups by scale", async () => {
++    const contentDir = join(tmp, "content-fam");
++    cpSync(join(PKG_ROOT, "content"), contentDir, { recursive: true });
++    const f = join(contentDir, "families.yaml");
++    const fam = yaml.load(readFileSync(f, "utf8")) as any;
++    // Start from a draft copy, whatever the committed file's status
++    fam.status = "draft";
++    fam.provenance = { source: "ai-generated", authors: fam.provenance.authors, reviewedBy: [] };
++    writeFileSync(f, yaml.dump(fam));
++    const build = (tag: string) => {
++      const out = (mode: string) => join(tmp, `fam-${tag}-${mode}`);
++      buildSite({ mode: "site", outDir: out("site"), contentDir, log: quiet });
++      buildSite({ mode: "single", outDir: out("single"), contentDir, log: quiet });
++      buildSite({ mode: "review", reviewId: "5e", outDir: out("review"), contentDir, log: quiet });
++      return {
++        manifest: JSON.parse(readFileSync(join(out("site"), "data", "manifest.json"), "utf8")),
++        single: join(out("single"), "index.html"),
++        review: readFileSync(join(out("review"), "5e-review.html"), "utf8"),
++      };
++    };
++    const draft = build("draft");
++    if ("families" in draft.manifest) throw new Error("draft families in the site manifest");
++    if (!draft.review.includes(fam.families[0].summary)) throw new Error("draft families missing from the review copy");
++    const before = await openPage(draft.single);
++    (before.doc.getElementById("t-lib") as any).click();
++    if (before.doc.querySelectorAll("#mapView button").length) throw new Error("a Group by control without published families");
++    const bands = [...before.doc.querySelectorAll("#mapBands .band h3")].map((h: any) => h.id).join();
++    if (bands !== "band-macro,band-meso,band-micro,band-dial") throw new Error(`draft build bands: ${bands}`);
++    if (before.doc.getElementById("stepLearnLine").textContent !== "How the models relate and fit inside each other") throw new Error("home step 1 changed without published families");
++    before.dom.window.close();
++
++    fam.status = "published";
++    fam.provenance = { ...fam.provenance, source: "ai-drafted-reviewed", reviewedBy: ["Test Reviewer"], reviewedOn: "2026-10-07" };
++    writeFileSync(f, yaml.dump(fam));
++    const pub = build("published");
++    if (!Array.isArray(pub.manifest.families) || pub.manifest.families.length !== fam.families.length) throw new Error("published families missing from the site manifest");
++    const { doc, dom } = await openPage(pub.single);
++    (doc.getElementById("t-lib") as any).click();
++    if (doc.getElementById("t-lib").textContent.trim() !== "Family Tree") throw new Error("t-lib label changed");
++    if (!/Where each model comes from/.test(doc.getElementById("stepLearnLine").textContent)) throw new Error("home step 1 not updated");
++    const pressed = () => (doc.querySelector('#mapView [aria-pressed="true"]') as any)?.dataset.mapview;
++    if (pressed() !== "family") throw new Error(`Family Tree opened on ${pressed()}, not family`);
++    const ids = [...doc.querySelectorAll("#mapBands .band h3")].map((h: any) => h.id.replace("band-", "")).join();
++    if (ids !== fam.families.map((x: any) => x.id).join()) throw new Error(`family order: ${ids}`);
++    const tiles = [...doc.querySelectorAll("#mapBands [data-model]")].map((t: any) => t.dataset.model);
++    const models = (dom.window as any).eval("DATA.models.map(m => m.id)") as string[];
++    if (tiles.length !== models.length || new Set(tiles).size !== models.length) throw new Error(`${tiles.length} tiles for ${models.length} models`);
++    if (doc.querySelectorAll("#mapLegend .skey").length !== 4) throw new Error("no scale key in the family view");
++    const last = doc.querySelector("#mapBands .band:last-child");
++    if (!last?.querySelector(".band-cap") || !last.querySelector('[data-model="levels-of-inquiry"]')) throw new Error("Levels of inquiry is not last, across every branch");
++    (doc.querySelector('#mapView [data-mapview="scale"]') as any).click();
++    const scale = [...doc.querySelectorAll("#mapBands .band h3")].map((h: any) => h.id).join();
++    if (scale !== "band-macro,band-meso,band-micro,band-dial") throw new Error(`scale view bands: ${scale}`);
++    if (doc.querySelectorAll("#mapLegend .skey").length) throw new Error("scale key shown in the scale view");
++    (doc.querySelector('#mapView [data-mapview="family"]') as any).click();
++    (doc.querySelector('#mapBands [data-model="5e"]') as any).click();
++    const panel = () => doc.getElementById("mapPanel") as any;
++    if (!/Learning cycles/.test(panel().querySelector(".fam-line")?.textContent ?? "")) throw new Error("no family line on the 5E panel");
++    const kin = [...panel().querySelectorAll("[data-kin]")].map((b: any) => b.dataset.kin).join();
++    if (kin !== "learning-cycle,7e") throw new Error(`5E's family: ${kin}`);
++    (panel().querySelector('[data-kin="7e"]') as any).click();
++    if (panel().querySelector("h3")?.textContent !== "7E") throw new Error("Same family did not open 7E");
++    if (doc.querySelector('#mapBands [data-model="7e"]')?.getAttribute("aria-pressed") !== "true") throw new Error("7E tile not pressed");
++    dom.window.close();
++  }],
+   ["the Pages mirror removes a guide the build no longer produces", () => {
+     const dest = join(tmp, "pages");
+     mirror(join(tmp, "a"), dest);
+diff --git a/tools/reckoner/scripts/test-rules.ts b/tools/reckoner/scripts/test-rules.ts
+index 75c3cbe..e0a6888 100644
+--- a/tools/reckoner/scripts/test-rules.ts
++++ b/tools/reckoner/scripts/test-rules.ts
+@@ -9,7 +9,8 @@ import { join } from "node:path";
+ import yaml from "js-yaml";
+ import { ModelGuide } from "../src/schema/model-guide";
+ import { Methodology } from "../src/schema/methodology";
+-import { checkModelIds, loadIdInputs } from "./validate";
++import { Families } from "../src/schema/families";
++import { MODEL_REGISTRY, checkFamilies, checkModelIds, loadIdInputs } from "./validate";
+ 
+ const load = (id: string) => () => yaml.load(readFileSync(join(__dirname, "..", `content/guides/${id}.yaml`), "utf8")) as any;
+ const base = load("5e");
+@@ -110,6 +111,38 @@ const methClean = Methodology.safeParse(meth());
+ if (!methClean.success) failed++;
+ console.log(`${methClean.success ? "✓" : "✗"} unmodified methodology is valid${methClean.success ? "" : `  (${methClean.error.issues.map((i) => i.message).join(" | ")})`}`);
+ 
++// Families: the Family Tree's groupings. Schema rules, then the registry check validate.ts runs
++const fams = () => yaml.load(readFileSync(join(__dirname, "..", "content", "families.yaml"), "utf8")) as any;
++const famCases: [string, (f: any) => void, RegExp][] = [
++  ["a model in two families fails", (f) => f.families[1].models.push(f.families[0].models[0]), /is already in family/],
++  ["a duplicate family id fails", (f) => (f.families[1].id = f.families[0].id), /Duplicate family id/],
++  ["the across family must go last", (f) => f.families.unshift(f.families.pop()), /across family goes last/],
++  ["publishing unreviewed families is blocked", (f) => { f.status = "published"; f.provenance = { source: "ai-generated", authors: ["Claude"], reviewedBy: [] }; }, /needs a reviewer/],
++];
++for (const [name, mutate, expect] of famCases) {
++  const f = fams(); mutate(f);
++  const r = Families.safeParse(f);
++  const msgs = r.success ? "" : r.error.issues.map((i) => i.message).join(" | ");
++  const ok = !r.success && expect.test(msgs);
++  if (!ok) failed++;
++  console.log(`${ok ? "✓" : "✗"} ${name}${ok ? "" : `  (got: ${msgs || "valid"})`}`);
++}
++const famRegistry: [string, (f: any) => void, RegExp][] = [
++  ["a model left out of every family fails", (f) => (f.families[0].models = f.families[0].models.slice(1)), /is in no family/],
++  ["an unregistered model in a family fails", (f) => f.families[0].models.push("no-such-model"), /not in MODEL_REGISTRY/],
++];
++for (const [name, mutate, expect] of famRegistry) {
++  const f = fams(); mutate(f);
++  const errs = checkFamilies(Families.parse(f), MODEL_REGISTRY).join(" | ");
++  const ok = expect.test(errs);
++  if (!ok) failed++;
++  console.log(`${ok ? "✓" : "✗"} ${name}${ok ? "" : `  (got: ${errs || "no error"})`}`);
++}
++const famClean = Families.safeParse(fams());
++const famErrs = famClean.success ? checkFamilies(famClean.data, MODEL_REGISTRY) : famClean.error.issues.map((i) => i.message);
++if (famErrs.length) failed++;
++console.log(`${famErrs.length ? "✗" : "✓"} unmodified families place every model once${famErrs.length ? `  (${famErrs.join(" | ")})` : ""}`);
++
+ // Every guide on disk, so adding a guide adds its check automatically
+ const guidesDir = join(__dirname, "..", "content", "guides");
+ let clean = true;
+diff --git a/tools/reckoner/scripts/validate.ts b/tools/reckoner/scripts/validate.ts
+index 7ba2318..a8d4042 100644
+--- a/tools/reckoner/scripts/validate.ts
++++ b/tools/reckoner/scripts/validate.ts
+@@ -11,6 +11,7 @@ import { join } from "node:path";
+ import yaml from "js-yaml";
+ import { ModelGuide } from "../src/schema/model-guide";
+ import { Methodology } from "../src/schema/methodology";
++import { Families } from "../src/schema/families";
+ import { FOCUS_AREAS } from "../src/schema/syllabus";
+ import { loadGame } from "./lib/game";
+ 
+@@ -90,6 +91,18 @@ export function checkModelIds(x: IdInputs) {
+   return { errors, appRefs, quickRefs, guides: guides.size, catalogue: x.catalogue.length };
+ }
+ 
++/** Every registered model sits in exactly one Family Tree family, and every family member is registered. */
++export function checkFamilies(f: Families, registry: readonly string[]) {
++  const errors: string[] = [];
++  const registered = new Set(registry), placed = new Set<string>();
++  for (const fam of f.families) for (const id of fam.models) {
++    if (!registered.has(id)) errors.push(`families.yaml: "${id}" in family "${fam.id}" is not in MODEL_REGISTRY`);
++    placed.add(id);
++  }
++  for (const id of registry) if (!placed.has(id)) errors.push(`families.yaml: "${id}" is in no family, so it would drop out of the Family Tree`);
++  return errors;
++}
++
+ 
+ function main() {
+   const dir = join(__dirname, "..", "content", "guides");
+@@ -138,6 +151,25 @@ function main() {
+     errors++;
+   }
+ 
++  // Families: the Family Tree's groupings. Every registered model in exactly one family. A missing file is an error.
++  try {
++    const result = Families.safeParse(yaml.load(readFileSync(join(__dirname, "..", "content", "families.yaml"), "utf8")));
++    if (!result.success) {
++      console.error(`\n✗ families.yaml`);
++      for (const i of result.error.issues) console.error(`  ${i.path.join(".") || "(root)"}: ${i.message}`);
++      errors += result.error.issues.length;
++    } else {
++      const famErrors = checkFamilies(result.data, MODEL_REGISTRY);
++      for (const e of famErrors) console.error(`✗ ${e}`);
++      errors += famErrors.length;
++      if (!famErrors.length) console.log(`✓ families.yaml  (${result.data.status}, v${result.data.version}; ${result.data.families.length} families, all ${MODEL_REGISTRY.length} models placed once)`);
++    }
++  } catch (e: any) {
++    if (e.code === "ENOENT") console.error(`\n✗ families.yaml: missing (content/families.yaml is required)`);
++    else console.error(`\n✗ families.yaml: YAML syntax error\n  ${e.reason || e.message}${e.mark ? ` (line ${e.mark.line + 1}, column ${e.mark.column + 1})` : ""}`);
++    errors++;
++  }
++
+   // Model ids: registry, catalogue, template and quick matrix must agree
+   const ids = checkModelIds(loadIdInputs(files.map((f) => f.replace(/\.ya?ml$/, ""))));
+   for (const e of ids.errors) console.error(`✗ ${e}`);
+diff --git a/tools/reckoner/src/schema/families.ts b/tools/reckoner/src/schema/families.ts
+new file mode 100644
+index 0000000..dca3771
+--- /dev/null
++++ b/tools/reckoner/src/schema/families.ts
+@@ -0,0 +1,57 @@
++/**
++ * Families schema
++ * ---------------------------------------------------------------------------
++ * content/families.yaml groups the reckoner's models into the Family Tree's families:
++ * models that share an idea about how learning works. A family is a relation between
++ * models, so it lives in one file rather than as a field on each guide and catalogue
++ * entry: regrouping a model changes one line and no guide version.
++ *
++ * Every model id in MODEL_REGISTRY belongs to exactly one family; validate.ts checks
++ * that, because a model left out would vanish from the Family Tree. A family marked
++ * `across` (Levels of inquiry) is not a branch of its own: it applies inside any model.
++ *
++ * Same publication rule as guides: the families reach students only once reviewed.
++ * Until then the Family Tree groups models by scale, as it always has.
++ */
++import { z } from "zod";
++import { IsoDate, Provenance, ShortText, Slug, obj } from "./model-guide";
++
++export const Family = obj({
++  id: Slug,
++  name: ShortText,
++  /** One line under the family's heading: the idea its models share. */
++  summary: ShortText,
++  /** Shown in this order on the Family Tree. */
++  models: z.array(Slug).min(1),
++  /** True for a setting that applies inside any model (Levels of inquiry), drawn last. */
++  across: z.boolean().default(false),
++});
++
++export const Families = obj({
++  schemaVersion: z.literal("1.0"),
++  id: z.literal("families"),
++  version: z.string().regex(/^\d+\.\d+\.\d+$/, "Use semver, e.g. 1.0.0"),
++  status: z.enum(["draft", "in-review", "published"]),
++  lastReviewed: IsoDate,
++  provenance: Provenance,
++  families: z.array(Family).min(2),
++}).superRefine((f, ctx) => {
++  const issue = (path: (string | number)[], message: string) =>
++    ctx.addIssue({ code: z.ZodIssueCode.custom, path, message });
++  const ids = new Set<string>(), models = new Map<string, string>();
++  f.families.forEach((fam, i) => {
++    if (ids.has(fam.id)) issue(["families", i, "id"], `Duplicate family id "${fam.id}"`);
++    ids.add(fam.id);
++    fam.models.forEach((m, j) => {
++      if (models.has(m)) issue(["families", i, "models", j], `"${m}" is already in family "${models.get(m)}"`);
++      models.set(m, fam.id);
++    });
++  });
++  const across = f.families.filter((fam) => fam.across);
++  if (across.length > 1) issue(["families"], `Only one family can be marked across (found ${across.length})`);
++  if (across.length && !f.families[f.families.length - 1].across) issue(["families"], "The across family goes last");
++  if (f.status === "published" && !f.provenance.reviewedBy.length) issue(["provenance", "reviewedBy"], "A published families file needs a reviewer");
++  if (f.status === "published" && f.provenance.source === "ai-generated") issue(["provenance", "source"], "A published families file must be reviewed (source ai-drafted-reviewed or authored)");
++});
++
++export type Families = z.infer<typeof Families>;
+diff --git a/tools/reckoner/templates/app.html b/tools/reckoner/templates/app.html
+index b59e6f3..6daaa4e 100644
+--- a/tools/reckoner/templates/app.html
++++ b/tools/reckoner/templates/app.html
+@@ -290,7 +290,20 @@ button.pill:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+ .lite-result h2.tap-name{font-size:2rem}
+ ol.moves{margin:.3rem 0 .9rem;padding-left:1.3rem} ol.moves li{margin:.35rem 0}
+ /* model map */
+-.map-legend{display:flex;align-items:center;gap:.5rem;color:var(--muted);font-size:.9rem;margin:0 0 1rem}
++.map-legend{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem 1rem;color:var(--muted);font-size:.9rem;margin:0 0 1rem}
++.map-key{display:inline-flex;align-items:center;gap:.4rem}
++.skey{display:inline-block;width:4px;height:1rem;border-radius:2px;background:var(--line)}
++.skey.s-macro{background:var(--macro)} .skey.s-meso{background:var(--meso)} .skey.s-micro{background:var(--micro)} .skey.s-dial{background:var(--dial)}
++.map-view{margin:0 0 .8rem;flex-wrap:wrap}
++.map-view:empty{display:none}
++.map-view .sub{margin:0 .25rem 0 0}
++.map-view button{min-height:44px}
++.tile-scale{display:inline-flex;align-items:center;gap:.3rem}
++.tile-scale .i{width:1rem;height:1rem}
++.fam-line{margin:.6rem 0}
++.fam-kin{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0 0 .8rem}
++.fam-kin .sub{margin:0 .2rem 0 0}
++.fam-kin .pill-link{min-height:44px;display:inline-flex;align-items:center}
+ .gdot{display:inline-block;width:.6rem;height:.6rem;border-radius:50%;background:var(--accent);flex:0 0 auto}
+ .band{margin:0 0 1.4rem}
+ .band-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .8rem;margin-bottom:.55rem}
+@@ -536,7 +549,7 @@ table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;
+   <ol class="steps" aria-labelledby="stepsTitle">
+     <li><button type="button" class="step" data-go="t-lib" data-step="learn" style="--t-bg:var(--accent-soft);--t-fg:var(--accent)">
+       <span class="step-tile"><svg class="i" aria-hidden="true"><use href="#i-familytree"/></svg></span>
+-      <span class="step-text"><span class="step-num">1 · LEARN</span><span class="step-title" data-name="familyTreeTitle">The Family Tree</span><span class="step-line">How the models relate and fit inside each other</span></span>
++      <span class="step-text"><span class="step-num">1 · LEARN</span><span class="step-title" data-name="familyTreeTitle">The Family Tree</span><span class="step-line" id="stepLearnLine">How the models relate and fit inside each other</span></span>
+       <svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></button></li>
+     <li><a class="step hl" href="../play/" data-step="practise" style="--t-bg:var(--accent);--t-fg:var(--accent-ink)">
+       <span class="step-tile"><svg class="i" aria-hidden="true"><use href="#i-fieldwork"/></svg></span>
+@@ -630,7 +643,8 @@ table.weights th,table.weights td{text-align:left;padding:.25rem .8rem .25rem 0;
+   </section>
+ 
+   <section class="panel" id="p-lib" role="tabpanel" aria-labelledby="t-lib" hidden>
+-    <p class="intro">Every model in <span data-name="reckonerMid">the Reckoner</span>. Models work at different scales and often nest: a unit architecture can hold multi-lesson routines and single-lesson strategies.</p>
++    <p class="intro" id="mapIntro">Every model in <span data-name="reckonerMid">the Reckoner</span>. Models work at different scales and often nest: a unit architecture can hold multi-lesson routines and single-lesson strategies.</p>
++    <div class="density map-view" id="mapView" role="group" aria-label="Group the models"></div>
+     <p class="map-legend" id="mapLegend"></p>
+     <div id="mapBands"></div>
+     <div id="mapPanel" aria-live="polite"></div>
+diff --git a/tools/reckoner/templates/app.js b/tools/reckoner/templates/app.js
+index 6067a03..142cac7 100644
+--- a/tools/reckoner/templates/app.js
++++ b/tools/reckoner/templates/app.js
+@@ -777,16 +777,26 @@ function wireGuide(g){
+   progress();
+ }
+ 
+-/* ---------- model map (Reckoner Lite, option C) ----------
+- * Every model on one screen, banded by scale so the nesting is the layout.
+- * Nesting lines come from the guides' nesting[], read in both directions. */
++/* ---------- Family Tree (model map; Reckoner Lite, option C) ----------
++ * Every model on one screen. With published families (content/families.yaml) it opens grouped by family,
++ * the ideas the models share, and can switch to bands by scale, where the nesting is the layout.
++ * Without them it shows the scale bands only, as before. Nesting lines come from the guides' nesting[],
++ * read in both directions. */
+ const BANDS = [
+   ["macro", "Unit architectures", "Structures a whole sequence, 6 to 15 lessons", ""],
+   ["meso", "Routines", "A few lessons. Fits inside a unit.", "Fits inside a unit model"],
+   ["micro", "Single lesson", "One lesson. Fits inside a routine.", "Fits inside a routine, or straight into a unit model"],
+   ["dial", "Guidance dial", "Not a model. How much you specify, inside any of the above.", "Applies inside any of them"],
+ ];
+-let mapSel = null;
++/* Short scale words for family-view tiles, where the scale is no longer the band heading. */
++const SCALE_SHORT = { macro: "Unit", meso: "Routine", micro: "One lesson", dial: "Dial" };
++const FAMS = Array.isArray(DATA.families) && DATA.families.length ? DATA.families : null;
++const familyOf = id => FAMS ? FAMS.find(f => f.models.includes(id)) : null;
++if (FAMS) {
++  document.getElementById("mapIntro").textContent = "Every model in the Reckoner, grouped into families by the idea about learning they share. Switch to scale to see how they nest: a unit architecture can hold multi-lesson routines and single-lesson strategies.";
++  document.getElementById("stepLearnLine").textContent = "Where each model comes from and how they fit inside each other";
++}
++let mapSel = null, mapView = FAMS ? "family" : "scale";
+ function mapNesting(m){
+   const lines = [], add = t => { if (!lines.includes(t)) lines.push(t); };
+   (G[m.id]?.nesting || []).forEach(n => add(`${n.role === "nests-in" ? "Fits inside" : "Holds"} ${M[n.modelId]?.name || n.modelId}`));
+@@ -794,30 +804,52 @@ function mapNesting(m){
+     .forEach(n => add(`${n.role === "hosts" ? "Fits inside" : "Holds"} ${g.name}`)));
+   return lines;
+ }
++function mapTile(m, byFamily){
++  const foot = byFamily
++    ? `<span class="tile-scale">${icon("i-scale-" + m.scale)}${SCALE_SHORT[m.scale]}<span class="sr">: ${esc(SCALE[m.scale].label)}</span></span>`
++    : `<span>${plural(m.phases.length, m.scale === "dial" ? "level" : "phase")}</span>`;
++  return `<button type="button" class="tile s-${m.scale}" data-model="${m.id}" aria-pressed="${mapSel === m.id}">
++    <b>${esc(m.name)}</b><span class="tile-foot">${foot}
++    ${m.hasGuide ? `<span class="gdot" aria-hidden="true"></span><span class="sr">Companion guide ready</span>` : provChip(m)}</span></button>`;
++}
+ function renderMap(){
+-  const guided = DATA.models.filter(m => m.hasGuide).length;
++  const guided = DATA.models.filter(m => m.hasGuide).length, byFamily = mapView === "family";
++  document.getElementById("mapView").innerHTML = FAMS
++    ? `<span class="sub">Group by</span>${[["family", "Family"], ["scale", "Scale"]].map(([v, l]) =>
++        `<button class="ghost" type="button" data-mapview="${v}" aria-pressed="${mapView === v}">${l}</button>`).join("")}`
++    : "";
+   document.getElementById("mapLegend").innerHTML =
+-    `<span class="gdot" aria-hidden="true"></span>Companion guide ready: ${guided} of ${DATA.models.length} so far`;
+-  document.getElementById("mapBands").innerHTML = BANDS.map(([scale, title, note, cap]) => {
+-    const ms = DATA.models.filter(m => m.scale === scale).sort((a, b) => (b.hasGuide ? 1 : 0) - (a.hasGuide ? 1 : 0));
+-    return ms.length ? `<section class="band" aria-labelledby="band-${scale}">
+-      <div class="band-head"><h3 id="band-${scale}">${title}</h3><p class="band-note">${note}</p></div>
+-      ${cap ? `<p class="band-cap">${cap}</p>` : ""}
+-      <div class="map-tiles">${ms.map(m => `<button type="button" class="tile s-${scale}" data-model="${m.id}" aria-pressed="${mapSel === m.id}">
+-        <b>${esc(m.name)}</b><span class="tile-foot"><span>${plural(m.phases.length, scale === "dial" ? "level" : "phase")}</span>
+-        ${m.hasGuide ? `<span class="gdot" aria-hidden="true"></span><span class="sr">Companion guide ready</span>` : provChip(m)}</span></button>`).join("")}</div></section>` : "";
+-  }).join("");
+-  document.querySelectorAll("#mapBands [data-model]").forEach(b => b.onclick = () => {
+-    mapSel = mapSel === b.dataset.model ? null : b.dataset.model;
++    `<span class="map-key"><span class="gdot" aria-hidden="true"></span>Companion guide ready: ${guided} of ${DATA.models.length} so far</span>` +
++    (byFamily ? `<span class="map-key">Edge colour shows scale:</span>${Object.keys(SCALE_SHORT).map(s =>
++      `<span class="map-key"><span class="skey s-${s}" aria-hidden="true"></span>${esc(SCALE[s].label)}</span>`).join("")}` : "");
++  const section = (id, title, note, cap, ms) => ms.length ? `<section class="band" aria-labelledby="band-${id}">
++      <div class="band-head"><h3 id="band-${id}">${esc(title)}</h3><p class="band-note">${esc(note)}</p></div>
++      ${cap ? `<p class="band-cap">${esc(cap)}</p>` : ""}
++      <div class="map-tiles">${ms.map(m => mapTile(m, byFamily)).join("")}</div></section>` : "";
++  document.getElementById("mapBands").innerHTML = byFamily
++    ? FAMS.map(f => section(f.id, f.name, f.summary, f.across ? "Applies inside any of them" : "", f.models.map(id => M[id]).filter(Boolean))).join("")
++    : BANDS.map(([scale, title, note, cap]) => section(scale, title, note, cap,
++        DATA.models.filter(m => m.scale === scale).sort((a, b) => (b.hasGuide ? 1 : 0) - (a.hasGuide ? 1 : 0)))).join("");
++  document.querySelectorAll("#mapView [data-mapview]").forEach(b => b.onclick = () => {
++    mapView = b.dataset.mapview;
+     renderMap();
+-    document.querySelector(`#mapBands [data-model="${b.dataset.model}"]`)?.focus();
+-    if (mapSel) document.getElementById("mapPanelCard")?.scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "nearest" });
++    document.querySelector(`#mapView [data-mapview="${mapView}"]`)?.focus();
+   });
++  const select = id => {
++    mapSel = mapSel === id ? null : id;
++    renderMap();
++    document.querySelector(`#mapBands [data-model="${id}"]`)?.focus();
++    if (mapSel) document.getElementById("mapPanelCard")?.scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "nearest" });
++  };
++  document.querySelectorAll("#mapBands [data-model]").forEach(b => b.onclick = () => select(b.dataset.model));
+   const m = mapSel && M[mapSel], panel = document.getElementById("mapPanel");
+   if (!m){ panel.innerHTML = ""; return; }
+-  const nest = mapNesting(m);
++  const nest = mapNesting(m), fam = familyOf(m.id);
++  const kin = fam ? fam.models.filter(id => id !== m.id && M[id]) : [];
+   panel.innerHTML = `<article class="card lead map-panel" id="mapPanelCard"><div class="card-head"><div><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></div>${badge(m.scale)}</div>
+     <p class="trust">${trustChips(m)}</p>
++    ${fam ? `<p class="fam-line"><strong>${fam.across ? "Family." : `Family: ${esc(fam.name)}.`}</strong> ${esc(fam.summary)}</p>` : ""}
++    ${kin.length ? `<p class="fam-kin"><span class="sub">Same family</span>${kin.map(id => `<button type="button" class="pill-link" data-kin="${id}">${esc(M[id].name)}</button>`).join("")}</p>` : ""}
+     <ol class="phases" aria-label="${m.scale === "dial" ? "Levels" : "Phases"}">${m.phases.map(p => `<li>${esc(p)}</li>`).join("")}</ol>
+     <p><strong>Distinguishing feature.</strong> ${esc(m.distinct)}</p>
+     <div class="roles"><div><h4>Teacher’s role</h4><p>${esc(m.teacher)}</p></div><div><h4>Learner’s role</h4><p>${esc(m.learner)}</p></div></div>
+@@ -825,6 +857,7 @@ function renderMap(){
+     <div class="lite-actions">${m.hasGuide
+       ? `<button type="button" class="pill primary" onclick="openGuide('${m.id}')">Open the ${esc(m.name)} guide</button>`
+       : `<button type="button" class="pill" disabled>Guide not written yet</button>`}</div></article>`;
++  panel.querySelectorAll("[data-kin]").forEach(b => b.onclick = () => select(b.dataset.kin));
+ }
+ 
+ /* ---------- start with your unit (Reckoner Lite, option B) ----------

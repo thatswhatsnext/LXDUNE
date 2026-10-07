@@ -1698,6 +1698,71 @@
       }
     ]
   },
+  "families": [
+    {
+      "id": "learning-cycles",
+      "name": "Learning cycles",
+      "summary": "Experience comes first, then the term, then using it. 5E and 7E grew out of the original Learning cycle.",
+      "models": [
+        "learning-cycle",
+        "5e",
+        "7e"
+      ],
+      "across": false
+    },
+    {
+      "id": "conceptual-change",
+      "name": "Conceptual change",
+      "summary": "Start from what students already think, test it against evidence, and give them good reason to change their minds.",
+      "models": [
+        "glm",
+        "interactive-approach",
+        "poe"
+      ],
+      "across": false
+    },
+    {
+      "id": "argument-and-writing",
+      "name": "Argument and writing",
+      "summary": "Students build claims from evidence and sharpen them by arguing, writing and reviewing each other’s work.",
+      "models": [
+        "swh",
+        "adi"
+      ],
+      "across": false
+    },
+    {
+      "id": "reasoning",
+      "name": "Reasoning",
+      "summary": "Lessons designed to stretch how students reason, not only what they know.",
+      "models": [
+        "case"
+      ],
+      "across": false
+    },
+    {
+      "id": "problems-projects-issues",
+      "name": "Problems, projects and issues",
+      "summary": "Learning organised around a problem to solve, a product to make or an issue to decide, where science is the means.",
+      "models": [
+        "pbl",
+        "project-based",
+        "design-cycle",
+        "ssi",
+        "ast"
+      ],
+      "across": false
+    },
+    {
+      "id": "across",
+      "name": "Across every branch",
+      "summary": "Not a family of its own. Levels of inquiry sets how much you specify, inside any model above.",
+      "models": [
+        "levels-of-inquiry"
+      ],
+      "across": true
+    }
+  ],
   "guides": [
     {
       "id": "5e",
