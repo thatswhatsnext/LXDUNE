@@ -1,23 +1,25 @@
 diff --git a/tools/reckoner/content/families.yaml b/tools/reckoner/content/families.yaml
 new file mode 100644
-index 0000000..8ba768c
+index 0000000..2c0241c
 --- /dev/null
 +++ b/tools/reckoner/content/families.yaml
-@@ -0,0 +1,46 @@
+@@ -0,0 +1,48 @@
 +# The Family Tree's families: models that share an idea about how learning works.
 +# Groupings approved by Steve Grant on 2026-10-04 (Field Guide redesign handoff, open question 1).
-+# The summaries are new wording and need his review before status becomes published.
++# v1.0.0 summaries reviewed and signed off by Steve Grant on 2026-10-07, who also confirmed the 5E/7E
++# lineage claim, Ambitious Science Teaching's placement, and that the Family Tree opens on families.
 +# Every model in the reckoner sits in exactly one family; validate checks this.
 +# Models are listed in the order the Family Tree shows them.
 +schemaVersion: '1.0'
 +id: families
 +version: 1.0.0
-+status: draft
++status: published
 +lastReviewed: '2026-10-07'
 +provenance:
-+  source: ai-generated
++  source: ai-drafted-reviewed
 +  authors: ['Claude, drafted for S. Grant']
-+  reviewedBy: []
++  reviewedBy: ['Steve Grant']
++  reviewedOn: '2026-10-07'
 +
 +families:
 +  - id: learning-cycles

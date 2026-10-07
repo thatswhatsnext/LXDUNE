@@ -1,8 +1,9 @@
 # Handoff: Family Tree families
 
 **Reviewed and signed off by:** Steve Grant, 2026-10-04 (the groupings, as open question 1 of
-`2026-10-04-field-guide-redesign.md`). The six family summaries are new wording and are **not yet signed
-off**, so `families.yaml` lands as a draft (see Open questions).
+`2026-10-04-field-guide-redesign.md`) and 2026-10-07 (the six family summaries; the 5E/7E lineage claim;
+Ambitious Science Teaching's placement; the Family Tree opening on families). `families.yaml` lands
+published.
 
 **Branch:** `feature/family-tree-families` (pushed; based on `dev` at `a12b16a`, whose `tools/reckoner/` matches
 `main` at `2be6ebf`). The source changes are in `2026-10-07-family-tree-families.patch` alongside this file.
@@ -21,9 +22,9 @@ Family Tree families.
   `tools/reckoner/scripts/validate.ts`, `tools/reckoner/scripts/lib/build.ts`,
   `tools/reckoner/templates/app.js`, `tools/reckoner/templates/app.html`,
   `tools/reckoner/scripts/test-rules.ts`, `tools/reckoner/scripts/test-build.ts`, and the generated
-  `reckoner/app.js` and `reckoner/index.html`.
+  `reckoner/app.js`, `reckoner/index.html` and `reckoner/data/manifest.json` (gains `families`).
 - **Must not change:** any guide YAML, `catalogue.json`, `questions.json`, `methodology.yaml`, game lessons,
-  `play/`, `reckoner/data/` (byte-identical while families are a draft), scoring, rule texts and their hash,
+  `play/`, `reckoner/data/guides/`, scoring, rule texts and their hash,
   tab and panel ids, URL paths, storage keys, `moodle-blocks/`.
 
 ## Design decision: a families file, not a field on each model
@@ -41,12 +42,12 @@ is a relation between models, like the Family Tree itself, so it lives in one pl
 
 | File | Goes to | What it is |
 |---|---|---|
-| `families.yaml` | `tools/reckoner/content/families.yaml` | Six families, all 15 models, draft v1.0.0 |
+| `families.yaml` | `tools/reckoner/content/families.yaml` | Six families, all 15 models, published v1.0.0, reviewed by Steve Grant 2026-10-07 |
 | `families.ts` | `tools/reckoner/src/schema/families.ts` | Zod schema: unique family ids, each model once, one `across` family and it goes last, published needs a reviewer and a reviewed source |
 
-`families.yaml`, as it lands (models in the order Steve approved, which is the order the Family Tree shows):
+`families.yaml`, as it lands (models in the order Steve approved, which is the order the Family Tree shows; summaries signed off 2026-10-07):
 
-| Family (`id`) | Models | Summary (for review) |
+| Family (`id`) | Models | Summary |
 |---|---|---|
 | Learning cycles (`learning-cycles`) | Learning cycle, 5E, 7E | Experience comes first, then the term, then using it. 5E and 7E grew out of the original Learning cycle. |
 | Conceptual change (`conceptual-change`) | Generative Learning Model, Interactive Approach, Predict–Observe–Explain | Start from what students already think, test it against evidence, and give them good reason to change their minds. |
@@ -62,13 +63,13 @@ is a relation between models, like the Family Tree itself, so it lives in one pl
 Parse it with `Families`; a missing file is an error, as for `methodology.yaml`. New exported
 `checkFamilies(families, registry)` reports a registered model in no family ("would drop out of the Family
 Tree") and a family member not in `MODEL_REGISTRY`. Prints
-`✓ families.yaml  (draft, v1.0.0; 6 families, all 15 models placed once)`.
+`✓ families.yaml  (published, v1.0.0; 6 families, all 15 models placed once)`.
 
 ### 2. `scripts/lib/build.ts`: load families; publish them only once reviewed
 
 `loadFamilies(contentDir)` beside `loadMethodology`. `families` joins the shared data only when its status is
-`published`, or in a review copy; otherwise the build logs `! skipping families: status is draft`. The models
-list is unchanged: the page looks a model's family up from `DATA.families`.
+`published`, or in a review copy; otherwise the build logs `! skipping families: status is <status>`. The
+models list is unchanged: the page looks a model's family up from `DATA.families`.
 
 ### 3. `templates/app.html`: hooks and styles
 
@@ -116,9 +117,10 @@ The view choice is held in memory only (no new storage key).
 
 - Models 15, guides 6, examples 58, worked sequences 20, focus areas 16 / 0 / 0, game lessons 16: unchanged.
 - Rule checks +7; build tests 20 → 21; game tests 22.
-- `reckoner/data/` byte-identical to `main`; only `reckoner/app.js` and `reckoner/index.html` change.
+- `reckoner/data/guides/` byte-identical to `main`; `reckoner/data/manifest.json` gains the `families` array
+  and nothing else; `reckoner/app.js` and `reckoner/index.html` change.
 - Validate, test, typecheck, check:pages and check:regressions (against `origin/main`) pass.
-- Checked in Chromium at 360 px (light and dark) and 1200 px with families published in a preview: no
+- Checked in Chromium at 360 px (light and dark) and 1200 px with families published: no
   sideways scroll, every Group by button, tile and Same family pill at least 44 px tall.
 
 ## Commits
@@ -129,6 +131,8 @@ On the pushed branch:
    templates, tests.
 2. `chore(pages): publish`: the regenerated `reckoner/`.
 3. `docs(handoffs): Family Tree families`: this handoff and its patch.
+4. `content(reckoner): publish the Family Tree families`: `families.yaml` published with Steve's review,
+   the regenerated `reckoner/`, and this handoff and patch updated to match.
 
 To add when applying: `docs(action-plan): <next item>, Family Tree families`.
 
@@ -137,19 +141,13 @@ To add when applying: `docs(action-plan): <next item>, Family Tree families`.
 Next item: record the families file and the Family Tree's Family | Scale view, the design decision above, and
 these open items:
 
-- Publish `families.yaml` once Steve signs off the summaries: set `status: published`,
-  `source: ai-drafted-reviewed`, `reviewedBy: ['Steve Grant']`, `reviewedOn`, update `lastReviewed`, and
-  republish. Until then students see the Family Tree as it is today.
+- Steve's decisions, 2026-10-07: summaries signed off; "5E and 7E grew out of the original Learning
+  cycle" checks out; Ambitious Science Teaching belongs in Problems, projects and issues; the Family Tree
+  opens on families.
 - Close item 46's open item on the Family Tree families.
 - Item 46's other open item (ask the next cohort about the names) is unchanged.
 
 ## Open questions for review
 
-1. **The six summaries.** They are Claude's wording. Check in particular "5E and 7E grew out of the
-   original Learning cycle" and whether Ambitious Science Teaching sits comfortably under "a problem to
-   solve, a product to make or an issue to decide".
-2. **Which view opens first.** Family opens first, because that is what the Family Tree is named for. Scale
-   is one click away and is the clearer picture of nesting. Swap the default if students reach for nesting
-   more.
-3. **Order within a family.** The file keeps the order approved on 2026-10-04 (it reads roughly as lineage in
-   Learning cycles). Reordering is a one-line change in `families.yaml`.
+None. All three were settled by Steve on 2026-10-07 (see Action plan). Within-family order stays as approved
+on 2026-10-04; reordering is a one-line change in `families.yaml`.
