@@ -1,0 +1,197 @@
+# Choosing a model, lesson 4. SWH joins ADI: two routines from the same family. Answers and reasons are checked against the Reckoner's own scoring at build time. Draft for Steve's review.
+schemaVersion: 1
+id: select-4-routine
+path: select
+order: 4
+title: Which routine?
+summary: SWH and ADI are both argument-and-writing routines that sit inside a unit. Find the classes each suits, and the one change that tips a class from ADI to SWH.
+level: select
+version: 1.0.0
+status: draft
+lastReviewed: 2026-10-07
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4, stage5]
+  focusAreas: [Solutions and mixtures, Materials]
+  disciplines: [chemistry]
+requires:
+  - path: swh
+    level: explain
+builtOn: {}
+items:
+  - id: predict
+    type: predict
+    at: engage
+    processing: Retrieval
+    kind: Predict
+    title: SWH and ADI are in the same family. Both have students argue from their own evidence and write it up, and both sit inside a unit.
+    q: Which feature of a class does the Reckoner treat as the biggest difference between them?
+    options:
+      - text: Whether the assessment is a written argument
+      - text: How ready the students are to inquire
+      - text: How much lab equipment there is
+      - text: Whether there's a documented misconception
+    answer: 1
+    reveal: >-
+      Learner readiness counts double in the Reckoner, and the two routines sit far apart on it. SWH fits novice and
+      developing inquirers well, because its seven questions scaffold the reasoning. ADI assumes students can design
+      a method and take critique. Both fit a written argument equally well, so that question doesn't separate them.
+    why: >-
+      Same family doesn't mean interchangeable. The Reckoner looks for the question where they part company.
+
+  - id: class-y8
+    type: select
+    at: explore
+    processing: Analysis
+    kind: Choose the model
+    tests: select
+    scenario:
+      who: Year 8 · Solutions and mixtures
+      text: >-
+        Inside your unit, you're planning 4–5 lessons where students argue from evidence about a separation practical.
+        They're developing inquirers, many are EAL/D learners, and you'll assess a written reflection on how their
+        thinking changed.
+    profile:
+      purpose: [argue]
+      time: short
+      ready: developing
+      lang: high
+      assess: reflection
+    candidates: [adi, swh]
+    answer: swh
+    reasons:
+      - text: The learners are developing inquirers
+        dim: ready
+        ok: true
+      - text: Many students are EAL/D learners
+        dim: lang
+        ok: true
+      - text: The assessment is a reflection on learning
+        dim: assess
+        ok: true
+      - text: The purpose is arguing from evidence
+        dim: purpose
+        ok: false
+      - text: It runs 4–5 lessons
+        dim: time
+        ok: false
+      - text: SWH is easier to run than ADI
+        dim: null
+        ok: false
+    why: >-
+      Both routines suit arguing from evidence over a few lessons, so those answers don't decide it. Readiness,
+      language and the reflection do: SWH's questions give developing writers a structure, and its last phase is the
+      reflection you're assessing.
+
+  - id: class-y10
+    type: select
+    at: explore
+    processing: Analysis
+    kind: Choose the model
+    tests: select
+    scenario:
+      who: Year 10 · Materials
+      text: >-
+        Inside your unit, you're planning 6–8 lessons where experienced inquirers plan their own investigations, analyse
+        the data and argue in writing. You're confident running student-led critique.
+    profile:
+      purpose: [argue]
+      time: unit
+      ready: experienced
+      ws: ["3", "6", "8"]
+      assess: argument
+      conf: high
+    candidates: [adi, swh]
+    answer: adi
+    reasons:
+      - text: The learners are experienced inquirers
+        dim: ready
+        ok: true
+      - text: The focus includes planning investigations
+        dim: ws
+        ok: true
+      - text: The assessment is a written argument
+        dim: assess
+        ok: false
+      - text: The purpose is arguing from evidence
+        dim: purpose
+        ok: false
+      - text: You're confident running critique
+        dim: conf
+        ok: false
+    why: >-
+      A written argument suits both routines equally, and so does your confidence. Experienced inquirers who plan
+      their own investigations are what tip it to ADI, with its student-designed method, argumentation session and
+      peer review.
+
+  - id: flip
+    type: flip
+    at: explain
+    processing: Analysis
+    kind: Move the dial
+    tests: flip
+    scenario:
+      who: Year 9 · Materials
+      text: 4–5 lessons inside a unit, where experienced inquirers argue from evidence.
+    profile:
+      purpose: [argue]
+      time: short
+      ready: experienced
+    candidates: [adi, swh]
+    changes:
+      - dim: ready
+        value: developing
+      - dim: res
+        value: limited
+      - dim: conf
+        value: low
+      - dim: misc
+        value: robust
+    answer: 0
+    hint: Which question counts double?
+
+  - id: why
+    type: choice
+    at: explain
+    processing: Comprehension
+    kind: Why that one?
+    tests: flip
+    title: Only learner readiness moved the Reckoner from ADI to SWH.
+    q: Why does a step from experienced to developing tip it?
+    options:
+      - text: ADI can't be used with developing inquirers
+        fb: The Reckoner ranks, it doesn't forbid. ADI still scores reasonably here; SWH just scores higher.
+      - text: SWH needs less equipment
+        fb: Both routines score the same on limited equipment, which is why that change didn't move it.
+      - text: Readiness counts double, and on it ADI drops while SWH rises
+        fb: Yes. ADI fits experienced inquirers best and SWH fits developing ones best, and the double weight turns a small gap into a clear swing.
+      - text: A robust misconception always means SWH
+        fb: It nudges SWH up a little, but not enough on its own to overtake ADI.
+    answer: 2
+
+  - id: nest
+    type: nest
+    at: elaborate
+    processing: Knowledge utilisation
+    kind: Nest it
+    tests: nesting
+    model: levels-of-inquiry
+    host: swh
+    answer: tests
+    q: Your developing class chose SWH, but planning their own tests is a stretch. Where does the guidance dial do its work inside SWH?
+    why: >-
+      The dial sets how much of the method you specify. Turning it towards guided inquiry in the Tests phase supports
+      planning without taking away the students' own questions.
+
+  - id: reflect
+    type: reflect
+    at: evaluate
+    processing: Metacognition
+    kind: Look back
+    title: Your own class.
+    q: Think of a class you've taught or observed. Would the Reckoner give you SWH or ADI for a few lessons of argument? Name the answer that decides it.
+    model: "Example: “My Year 8s write well but have never planned an investigation. Readiness decides it: SWH now, with the dial turned down for Tests, and ADI once they've done a few.”"
+    recall: predict

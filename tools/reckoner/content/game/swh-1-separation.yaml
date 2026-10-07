@@ -1,0 +1,258 @@
+# SWH path, lesson 1. Built on the SWH guide's worked sequence swh-seq-s4-separation. Draft for Steve's review.
+schemaVersion: 1
+id: swh-1-separation
+path: swh
+order: 1
+title: Get it all back
+summary: A murky mixture, a teacher who knows exactly what went in, and seven questions in place of a lab report. Learn what each SWH phase has to do.
+level: recognise
+version: 1.0.0
+status: draft
+lastReviewed: 2026-10-07
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4]
+  focusAreas: [Solutions and mixtures]
+  disciplines: [chemistry]
+outcomes: [SC4-SOL-01]
+builtOn:
+  sequenceIds: [swh-seq-s4-separation]
+  exampleIds: [swh-beginning-ideas-pos-dissolving, swh-beginning-ideas-neg-dissolving-copied]
+  lookForIds: [swh-begin-own-question, swh-begin-kept, swh-tests-follows-question, swh-obs-separate, swh-claim-arguable, swh-reading-peers-first, swh-reflect-has-original]
+  misapplicationIds: [mis-swh-supplied-question, mis-swh-lost-beginnings]
+guideSection: sequences
+items:
+  - id: predict
+    type: predict
+    at: beginning-ideas
+    processing: Retrieval
+    kind: Predict
+    title: "A Year 7 class gets a beaker of murky water. Sand, salt and iron filings went in, and the teacher weighed every one. The salt can no longer be seen."
+    q: Can the class get the salt back?
+    options:
+      - text: No. It has dissolved, so it's gone
+      - text: Yes, by filtering the water
+      - text: Yes, by evaporating the water once the other solids are out
+      - text: Only if they can get the water back too
+    answer: 2
+    reveal: >-
+      Dissolved salt is still there, spread through the water as particles too small to see or to catch in filter
+      paper. Evaporate the water and the salt is left behind. Most groups get back a little less than went in, or
+      a little more if the sand is still damp, and that gap is what they'll argue about.
+    why: >-
+      “Dissolved means gone” and “filtering takes out everything that isn't water” are two of this sequence's
+      target conceptions. SWH asks students to write ideas like these down first and keep them, so they can see
+      later what changed their minds.
+
+  - id: concept
+    type: concept
+    at: beginning-ideas
+    processing: Retrieval
+    kind: The model
+    title: The Science Writing Heuristic
+    lead: >-
+      SWH replaces the lab report with seven questions that make a student's reasoning visible. It's a multi-lesson
+      routine of about 4–6 lessons that sits inside a unit, in three movements: in the lab, make the claim, then
+      test it against others.
+    rows:
+      - phaseId: beginning-ideas
+        does: "What are my questions? Each student writes their own, from a shared mixture."
+        move: "Teacher move: conference questions for testability, and keep them."
+      - phaseId: tests
+        does: "What did I do? Groups plan a method that answers their question."
+        move: "Teacher move: check plans for safety and feasibility, not correctness."
+      - phaseId: observations
+        does: "What did I see? What happened, recorded apart from what it means."
+        move: "Teacher move: ask for measured masses and the losses."
+      - phaseId: claims
+        does: "What can I claim? An individual claim someone could disagree with."
+        move: "Teacher move: read each claim for whether it can be argued."
+      - phaseId: evidence
+        does: "How do I know? Why does this data support the claim?"
+        move: "Teacher move: spend your time here, one student at a time."
+      - phaseId: reading
+        does: "How do my ideas compare? Peers first, then the masses and a text."
+        move: "Teacher move: release the true masses only after groups compare."
+      - phaseId: reflection
+        does: "How have my ideas changed? Beginning questions handed back."
+        move: "Teacher move: ask about their thinking, not the topic."
+    cite: "Keys, C. W., Hand, B., Prain, V. & Collins, S. (1999). Using the Science Writing Heuristic as a tool for learning from laboratory investigations in secondary science. Journal of Research in Science Teaching, 36(10)."
+
+  - id: lf-question
+    type: lookfor
+    at: beginning-ideas
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 7 · Lesson 1
+      text: >-
+        After ten minutes stirring and poking at the mixture, Sam writes: “Does the salt stay in the water when the
+        sand settles, and could a magnet pull the salt out with the iron?” The teacher asks how Sam could find out,
+        and Sam adds: “Weigh what's left after drying.”
+    answer: swh-begin-own-question
+    distractors: [swh-begin-kept, swh-tests-follows-question, swh-claim-individual]
+    strong: true
+    hint: Whose question is it, and where did it come from?
+    why: >-
+      The question is Sam's, from handling the mixture, and the short conference made it investigable without
+      replacing it. The magnet idea is wrong, and that's fine: it's Sam's to test.
+
+  - id: spot-tests
+    type: spot
+    at: tests
+    processing: Comprehension
+    kind: Spot the phase
+    tests: tests
+    vignette:
+      who: Year 7 · Lesson 2
+      text: >-
+        One group's plan reads: magnet first (iron is magnetic), then filter (sand doesn't dissolve), then evaporate
+        (salt stays behind). The teacher asks what would happen if they evaporated first, and they change nothing
+        else.
+    q: Which SWH phase is this?
+    answer: tests
+    among: [beginning-ideas, tests, observations]
+    fb:
+      beginning-ideas: The questions are already written. This group is deciding how to answer them.
+      tests: Yes. The method follows from their question, each step names its property, and the teacher checks the plan without redesigning it.
+      observations: Nothing has been run yet. This is the plan.
+    refs:
+      lookForIds: [swh-tests-follows-question]
+
+  - id: lf-obs
+    type: lookfor
+    at: observations
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 7 · Lessons 3–4
+      text: >-
+        A results sheet has one column, headed “What happened”. It reads: “The salt dissolved so it disappeared.
+        Filtering got all the dirt out. Our method worked.”
+    answer: swh-obs-separate
+    distractors: [swh-claim-arguable, swh-evidence-selected, swh-tests-follows-question]
+    strong: false
+    hint: Which parts did they see, and which parts did they decide?
+    why: >-
+      “Disappeared” and “got all the dirt out” are interpretations, and two of them are this sequence's target
+      conceptions. Recorded as observations, they can't be questioned later. A second column for “What we think
+      it means” keeps them where they can be.
+
+  - id: spot-claim
+    type: spot
+    at: claims
+    processing: Comprehension
+    kind: Spot the phase
+    tests: claims
+    vignette:
+      who: Year 7 · Lesson 5
+      text: >-
+        Working alone, Priya writes: “The filtering step lost the most salt, because salt solution soaked into the
+        filter paper and the wet sand.”
+    q: Which SWH phase is this?
+    answer: claims
+    among: [observations, claims, evidence]
+    fb:
+      observations: This says what Priya thinks happened and why, not what she saw.
+      claims: Yes. An individual answer to her own question, in a form another student could disagree with.
+      evidence: The evidence comes next, when Priya picks the masses that support this and says why they do.
+    refs:
+      lookForIds: [swh-claim-arguable, swh-claim-individual]
+
+  - id: spot-reading
+    type: spot
+    at: reading
+    processing: Comprehension
+    kind: Spot the phase
+    tests: reading
+    vignette:
+      who: Year 7 · Lesson 6
+      text: >-
+        Two groups compare claims and find they recovered very different masses of salt. Only after they have worked
+        out why does the teacher put up the masses that actually went in, with a short reading on desalination.
+    q: Which SWH phase is this?
+    answer: reading
+    among: [evidence, reading, reflection]
+    fb:
+      evidence: Each student's evidence is already written. Now it's being set against everyone else's.
+      reading: Yes. Peers first, then the true masses and the text, so they're another voice in the argument rather than the answer.
+      reflection: That comes last, with the beginning questions handed back.
+    refs:
+      lookForIds: [swh-reading-peers-first]
+
+  - id: dx-supplied
+    type: diagnose
+    at: beginning-ideas
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A pre-service teacher's SWH · Lesson 1
+      text: >-
+        The worksheet opens with a printed box: “Question: How can we separate sand, salt and iron filings?” Students
+        copy it into their books, then start on the method.
+    answer: mis-swh-supplied-question
+    distractors: [mis-swh-lost-beginnings, mis-swh-closed-practical, mis-swh-answer-key]
+    hint: What does each student have to defend later?
+    why: >-
+      Every student has the same question, so nobody has a claim of their own to defend, and the final reflection
+      has nothing personal to compare against.
+    refs:
+      exampleIds: [swh-beginning-ideas-neg-dissolving-copied]
+
+  - id: dx-lost
+    type: diagnose
+    at: reflection
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Another pre-service teacher's SWH · Lesson 6
+      text: >-
+        The lesson ends: “Write a paragraph on how your ideas about separating mixtures have changed.” Lesson 1's
+        question sheets were collected for marking a fortnight ago and haven't come back.
+    answer: mis-swh-lost-beginnings
+    distractors: [mis-swh-supplied-question, mis-swh-no-negotiation, mis-swh-evidence-recopied]
+    why: >-
+      Without their first page in front of them, students write a summary of the topic instead of an account of
+      their own change. The guide's fix is to photograph or keep the first page and hand it back for this phase.
+    refs:
+      lookForIds: [swh-reflect-has-original, swh-begin-kept]
+
+  - id: order
+    type: order
+    at: reflection
+    processing: Comprehension
+    kind: Put it in order
+    tests: sequence
+    title: Put the separation routine in SWH order.
+    steps:
+      - text: Each student writes what they'd need to find out to get each substance back
+        phaseId: beginning-ideas
+      - text: Groups plan a separation, naming the property behind each step
+        phaseId: tests
+      - text: Groups dry and weigh what they recover, noting losses
+        phaseId: observations
+      - text: Each student writes which step lost the most salt
+        phaseId: claims
+      - text: Students pick the masses that support their claim and explain the gap
+        phaseId: evidence
+      - text: Groups compare claims, then see the masses that went in
+        phaseId: reading
+      - text: Students reread their first questions and write what changed
+        phaseId: reflection
+
+  - id: reflect
+    type: reflect
+    at: reflection
+    processing: Metacognition
+    kind: Look back
+    title: Keep the beginnings.
+    q: Why does SWH keep each student's beginning questions until the last lesson, even the ones that turned out to be wrong?
+    model: "Example: “Because the last phase asks what changed. If I'd thought the salt was gone, seeing that in my own handwriting next to the mass I recovered is the learning. A wrong first idea is the most useful one to keep.”"
+    recall: predict

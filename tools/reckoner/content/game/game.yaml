@@ -14,12 +14,19 @@ paths:
     requires:
       - path: poe
         level: explain
+  - id: swh
+    title: SWH path
+    blurb: The Science Writing Heuristic. Seven questions replace the lab report, and every claim gets tested against classmates before the textbook. The comparing is the point.
+    rail: groups
+    requires:
+      - path: poe
+        level: explain
   - id: select
     kind: select
     title: Choosing a model
     blurb: Which model fits this class, and why? The reckoner is the answer key, so your reasons have to match the class, not your favourite model.
     journey: 5e
-    models: [5e, poe, adi]
+    models: [5e, poe, adi, swh]
     requires:
       - path: 5e
         level: explain
