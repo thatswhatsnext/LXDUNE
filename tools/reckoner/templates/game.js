@@ -475,7 +475,7 @@ const PLATES = {
   "select-3-argue": `<svg class="plate" viewBox="0 0 350 190" role="img" aria-label="Models nested inside each other: a unit in the five 5E colours, an ADI routine inside its Explore and Explain stretch, and a POE inside the ADI routine's first stage" xmlns="http://www.w3.org/2000/svg"><rect class="pv-ph-engage" x="20" y="28" width="60" height="18" rx="9"/><rect class="pv-ph-explore" x="84" y="28" width="60" height="18" rx="3"/><rect class="pv-ph-explain" x="148" y="28" width="60" height="18" rx="3"/><rect class="pv-ph-elaborate" x="212" y="28" width="60" height="18" rx="3"/><rect class="pv-ph-evaluate" x="276" y="28" width="60" height="18" rx="9"/><path d="M84 50 L64 74 M208 50 L250 74" stroke="var(--plate-grey)" stroke-width="1.6" stroke-dasharray="3 3"/><rect x="54" y="74" width="206" height="32" rx="16" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2"/><g transform="translate(64 83)"><rect x="-3" y="-3" width="198.8" height="20" rx="10.0" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.8"/><rect class="pv-ph-engage" x="0.0" y="0" width="22" height="14" rx="7.0"/><rect class="pv-ph-engage" x="24.4" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-engage" x="48.8" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explore" x="73.2" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explore" x="97.6" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explain" x="122.0" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explain" x="146.4" y="0" width="22" height="14" rx="2"/><rect class="pv-ph-explain" x="170.8" y="0" width="22" height="14" rx="7.0"/></g><path d="M64 110 L52 134 M86 110 L112 134" stroke="var(--plate-grey)" stroke-width="1.6" stroke-dasharray="3 3"/><rect x="40" y="134" width="84" height="28" rx="14" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="2"/><g transform="translate(56 141)"><rect x="-3" y="-3" width="54.0" height="20" rx="10.0" fill="var(--surface)" stroke="var(--plate-rim)" stroke-width="1.8"/><rect class="pv-ph-engage" x="0.0" y="0" width="15" height="14" rx="7.0"/><rect class="pv-ph-explore" x="16.5" y="0" width="15" height="14" rx="2"/><rect class="pv-ph-explain" x="33.0" y="0" width="15" height="14" rx="7.0"/></g></svg>`,
 };
 const LEVEL = {recognise:"Recognise",explain:"Explain",select:"Select",design:"Design"};
-const UNSCORED = ["predict","concept","reflect","build","sim"];   // never used as warm-ups
+const UNSCORED = ["predict","concept","case","reflect","build","sim"];   // never used as warm-ups
 const pathOf = id => D.paths.find(p => p.id === id);
 const G = id => D.guides[id];
 /* A phase's name and colour come from its guide; colours follow phase order, so POE's three phases
@@ -531,8 +531,15 @@ function unlocked(l){
   if (!pathOpen(pathOf(l.path))) return false;
   if (!D.review && !met(l.requires)) return false;
   if (D.review || l.order === 1) return true;
-  const prev = D.lessons.find(x => x.path === l.path && x.order === l.order - 1);
+  const prev = D.lessons.find(x => x.path === l.path && x.order === l.order - 1 && sameRun(x, l));
   return !prev || rec(prev.id).completed;
+}
+/* A path with cases (tracks): shared lessons, then each case's own run. Lessons share a run when either is shared or both are the same case. */
+const sameRun = (a, b) => !a.track || !b.track || a.track === b.track;
+function caseOf(p){
+  if (!p.tracks || !p.tracks.length) return null;
+  const chosen = (P.tracks || {})[p.id];
+  return p.tracks.some(t => t.id === chosen) ? chosen : p.tracks[0].id;
 }
 function levelReached(pathId){
   const done = D.lessons.filter(l => l.path === pathId && rec(l.id).completed).map(l => D.mastery.indexOf(l.level));
@@ -545,7 +552,9 @@ function showMap(){
   stage.innerHTML = `<section class="mapHead card"><h1>Teaching models, in practice</h1><p>Short lessons on constructivist teaching models in NSW Science 7–10. Each lesson takes about 10 minutes and works on a phone.</p></section>
   ${D.paths.map(p => {
     const lv = levelReached(p.id);
-    const ls = D.lessons.filter(l => l.path === p.id);
+    const kase = caseOf(p);
+    const all = D.lessons.filter(l => l.path === p.id);
+    const ls = all.filter(l => !l.track || l.track === kase);
     const nextL = ls.find(l => !rec(l.id).completed && unlocked(l));
     const open = pathOpen(p);
     const link = p.guide ? `<a href="../reckoner/#/guide/${esc(p.id)}">Open the ${esc(G(p.guide).name)} companion guide</a>` : `<a href="../reckoner/">Open ${esc(NAMES.reckonerMid)}</a>`;
@@ -564,7 +573,9 @@ function showMap(){
         else if (!open && pathOpen(p)) chips.push(`<span class="chip">Finish lesson ${l.order - 1} first</span>`);
         if (l.status !== "published") chips.push(`<span class="chip warn">${esc(l.status)}</span>`);
         if (r.missed.length && r.completed) chips.push(`<span class="chip">${r.missed.length} to review</span>`);
-        return `<button class="lesson ${state}" data-l="${esc(l.id)}" ${open ? "" : "disabled"} type="button"><span class="num">${l.order}</span><span class="min"><h3>${esc(l.title)}</h3><span class="sum">${esc(l.summary)}</span><span class="meta">${chips.join("")}</span></span></button>`;
+        const btn = `<button class="lesson ${state}" data-l="${esc(l.id)}" ${open ? "" : "disabled"} type="button"><span class="num">${l.order}</span><span class="min"><h3>${esc(l.title)}</h3><span class="sum">${esc(l.summary)}</span><span class="meta">${chips.join("")}</span></span></button>`;
+        const firstOfCase = kase && l.track && !ls.some(x => x.track && x.order < l.order);
+        return (firstOfCase ? casePicker(p, kase, all) : "") + btn;
       }).join("")}
       ${p.upcoming ? `<div class="upcoming">${p.upcoming === 1 ? "One more lesson is" : `${p.upcoming} more lessons are`} being reviewed and will appear here soon.</div>` : ""}</div>
     </section>`;
@@ -572,12 +583,28 @@ function showMap(){
   <div class="recall" style="margin-top:26px;--engage:var(--explain)"><b>About this pilot.</b> ${esc(D.notice)}</div>
   <p class="reset">Your progress is saved in this browser only. <button type="button" id="reset">Start again from scratch</button></p>`;
   stage.querySelectorAll("[data-l]").forEach(b => b.addEventListener("click", () => showIntro(b.dataset.l)));
+  stage.querySelectorAll("[data-case]").forEach(b => b.addEventListener("click", () => {
+    const [pid, tid] = b.dataset.case.split("|");
+    P.tracks = {...(P.tracks || {}), [pid]: tid}; store.save(P);
+    showMap();
+    document.querySelector(`[data-case="${pid}|${tid}"]`)?.focus();
+  }));
   const rs = $("#reset");
   rs.addEventListener("click", () => {
     if (rs.dataset.armed){ P = {lessons:{}}; store.save(P); showMap(); }
     else { rs.dataset.armed = "1"; rs.textContent = "Tap again to clear your progress"; }
   });
   window.scrollTo({top:0});
+}
+
+/* Choose a case: one button per track, the chosen one pressed. Progress in either case is kept. */
+function casePicker(p, kase, all){
+  const done = t => all.filter(l => l.track === t.id && rec(l.id).completed).length;
+  const of = t => all.filter(l => l.track === t.id).length;
+  return `<div class="cases" role="group" aria-label="Choose a case for the next lessons">
+    <p class="casesHead">Choose a case for the next lessons. You can switch at any time, and each case keeps its own progress.</p>
+    <div class="caseBtns">${p.tracks.map(t => `<button type="button" class="caseBtn" data-case="${esc(p.id)}|${esc(t.id)}" aria-pressed="${t.id === kase}"><b>${esc(t.title)}</b><span>${esc(t.blurb)}</span>${done(t) ? `<span class="chip good">${done(t)} of ${of(t)} done</span>` : ""}</button>`).join("")}</div>
+  </div>`;
 }
 
 function showIntro(id){
@@ -599,7 +626,7 @@ function showIntro(id){
 
 /* ---------- building a run ---------- */
 function warmupFor(l){
-  const earlier = D.lessons.filter(x => x.path === l.path && x.order < l.order).reverse();
+  const earlier = D.lessons.filter(x => x.path === l.path && x.order < l.order && sameRun(x, l)).reverse();
   const out = [];
   for (const e of earlier) for (const mid of rec(e.id).missed){
     const it = e.items.find(i => i.id === mid);
@@ -673,6 +700,20 @@ function verdict(el, ok){
 }
 /* A spot item offers every phase, or only those it names in `among`, in the guide's order. */
 const spotPhases = it => JG().phases.filter(p => !it.among || it.among.includes(p.id));
+/* A results table: real <table> markup with a caption, so screen readers announce rows and headings. */
+function tableHTML(t){
+  return `<div class="dtable"><table><caption>${esc(t.caption)}</caption><thead><tr>${t.head.map(c => `<th scope="col">${esc(c)}</th>`).join("")}</tr></thead>
+    <tbody>${t.rows.map(r => `<tr>${r.map((c, i) => i ? `<td>${esc(c)}</td>` : `<th scope="row">${esc(c)}</th>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+/* The case: the setting, what the class is investigating, your role, and the lessons so far. */
+function caseHTML(it){
+  return `<div class="vignette"><span class="who">${esc(it.setting.who)}</span>${esc(it.setting.text)}</div>
+    <p class="lead">${esc(it.lead)}</p>
+    ${it.table ? tableHTML(it.table) : ""}
+    ${it.sofar ? `<p class="kind" style="margin-top:14px">The lessons so far</p><ol class="sofar">${it.sofar.map(r => `<li style="--pc:${jp(r.phaseId)}"><span class="when">${esc(r.when)} · ${esc(jn(r.phaseId))}</span>${esc(r.text)}</li>`).join("")}</ol>` : ""}
+    <p class="you"><b>Your role.</b> ${esc(it.you)}</p>`;
+}
+
 function options(it){
   if (it.type === "spot") return spotPhases(it).map(p => ({t:p.name, ph:p.id, fb:it.fb[p.id]}));
   if (it.type === "nest") return G(it.host).phases.map(p => ({t:p.name, ph:p.id}));
@@ -712,6 +753,8 @@ function render(){
   if (cur.title) h += `<h2>${esc(cur.title)}</h2>`;
   if (cur.vignette) h += `<div class="vignette"><span class="who">${esc(cur.vignette.who)}</span>${esc(cur.vignette.text)}</div>`;
   if (cur.scenario) h += `<div class="vignette"><span class="who">${esc(cur.scenario.who)}</span>${esc(cur.scenario.text)}</div>${profileHTML(cur)}`;
+  if (cur.type === "case") h += caseHTML(cur);
+  if (cur.table && cur.type !== "case") h += tableHTML(cur.table);
   if (cur.type === "select") h += cur._stage === 1 ? `<p class="q">${esc(cur.q || `Which model does ${NAMES.reckonerMid} recommend for this class?`)}</p>` : `<p class="q">You chose <b>${esc(cur.names[cur.candidates[cur._pick]])}</b>. Why? Select every reason that holds for this class.</p>`;
   if (cur.type === "flip") h += `<p class="q">${esc(cur.q || `${NAMES.reckoner} recommends ${cur.names[cur.from]} for this class. Which single change would make it recommend something else?`)}</p>`;
   if (cur.type === "nest") h += `<p class="q">${esc(cur.q || `Where does a ${G(cur.model).name} fit inside ${G(cur.host).name}?`)}</p>`;
@@ -738,7 +781,7 @@ function render(){
   window.scrollTo({top:0});
 
   go.onclick = onGo;
-  if (cur.type === "concept"){ go.textContent = "Got it"; go.disabled = false; keys.textContent = "Enter to continue"; }
+  if (cur.type === "concept" || cur.type === "case"){ go.textContent = cur.type === "case" ? "Start" : "Got it"; go.disabled = false; keys.textContent = "Enter to continue"; }
   else if (cur.type === "reflect"){ go.textContent = "Finish lesson"; go.disabled = false; keys.textContent = "Not marked. Writing it is the point.";
     $("#refl").addEventListener("input", e => S.reflection = e.target.value); }
   else { go.textContent = cur.type === "select" && cur._stage === 1 ? "Next: give your reasons" : "Check"; go.disabled = true; keys.textContent = cur.type === "order" ? "Tap activities in order" : `Keys: 1–${opts.length} to choose, Enter to check`; }
@@ -798,7 +841,7 @@ function correctIndex(it){
   return it.answer;
 }
 function onGo(){
-  if (cur.type === "concept"){ S.xp += 5; return next(); }
+  if (cur.type === "concept" || cur.type === "case"){ S.xp += 5; return next(); }
   if (cur.type === "reflect"){ S.xp += 10; S.done = true; return render(); }
   if (checked) return next();
   if (cur.type === "select" && cur._stage === 1){ cur._pick = sel; cur._stage = 2; return render(); }

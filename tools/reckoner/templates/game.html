@@ -147,6 +147,30 @@ button{font:inherit;color:inherit}
 
 /* concept */
 .concept{margin-top:14px;display:grid;gap:8px}
+/* results tables: fit 360 px with up to five columns; numbers line up */
+.dtable{margin-top:14px;overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.dtable table{width:100%;border-collapse:collapse;font-size:14.5px;font-variant-numeric:tabular-nums}
+.dtable caption{caption-side:top;text-align:left;padding:10px 12px 4px;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.dtable th,.dtable td{padding:7px 10px;text-align:left;vertical-align:top;border-top:1px solid var(--line-soft)}
+.dtable thead th{font-weight:700;font-size:13px;color:var(--muted);border-top:0}
+.dtable tbody th{font-weight:700}
+/* the case card */
+.sofar{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.sofar li{padding:9px 12px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--pc);border-radius:4px var(--r) var(--r) 4px;font-size:15px}
+.sofar .when{display:block;font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.you{margin-top:14px;padding:12px 14px;border-radius:var(--r);background:var(--surface-2);font-size:15.5px}
+/* choose a case, on the map */
+.cases{margin:4px 0 2px;padding:12px;border:1px dashed var(--line);border-radius:var(--r)}
+.casesHead{margin:0 0 10px;font-size:14.5px;color:var(--muted)}
+.caseBtns{display:grid;gap:8px;grid-template-columns:1fr 1fr}
+@media (max-width:440px){.caseBtns{grid-template-columns:1fr}}
+.caseBtn{display:grid;gap:4px;align-content:start;text-align:left;min-height:44px;padding:11px 12px;border-radius:var(--r);border:2px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+.caseBtn b{font-family:var(--f-display);font-size:17px;font-weight:600}
+.caseBtn span{font-size:14px;color:var(--muted)}
+.caseBtn .chip{justify-self:start}
+.caseBtn:hover{border-color:var(--accent)}
+.caseBtn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.caseBtn[aria-pressed="true"]{border-color:var(--ink);background:var(--surface-2)}
 .concept .row{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
 .concept .row h3{font-size:19px;color:var(--pc)}
 .concept .row p{margin:0;font-size:15.5px;min-width:0}
