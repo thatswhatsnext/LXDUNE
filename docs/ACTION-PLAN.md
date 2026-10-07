@@ -526,6 +526,7 @@ Applied from a Claude chat handoff with `/apply-handoff`. Code only: no guide co
 ### 51. EDIT518 — record fortnightly videos; add YouTube IDs to `weeks[n].video` in EDIT518.json ⬜ — 2026-10-06
 - [ ] Record the fortnightly videos and add each YouTube ID to both weeks of its fortnight: 1 & 2, 3 & 4, 5 & 6, 7 & 8, 10 & 11 (plus 0, 9, 12 and 13 if they get one)
 - Until an ID is set, that week shows "This week's video is coming soon." (`videoFallback: "coming-soon"`)
+- [x] Week 0 video added: `7X7gs37nPGM` (2026-10-07)
 - 2026-10-06: EDIT518 moved to UNE's official 13-week schedule (shutdown after Week 9), so Weeks 10 & 11 straddle the break and videos are now looked up weekly (`videoInterval: 1`). The earlier list (weeks 0, 1, 3, 5, 7, 9, 11, 13) no longer applies
 
 ### 53. EDIT521 — videos and Moodle shells ⬜ — 2026-10-06
