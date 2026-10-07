@@ -569,6 +569,12 @@ Five of the six start dates are Sundays: T2 2026 (`2026-06-21`), T3 2026 (`2026-
 - Nothing adapted from the handoff
 - Item 46's open item on asking the next cohort about the names is unchanged
 
+### 57. Explore: animate the Family Tree's Family | Scale switch ⬜ — 2026-10-07
+Parked for later exploration (Steve, 2026-10-07). Depends on item 56.
+- [ ] Explore animating the switch so each model's card visibly moves into its new grouping. Suggested approach: FLIP in `renderMap()` (`templates/app.js`): record each tile's position by `data-model` before re-rendering, re-render, then slide each tile from its old spot to its new one (about 350 ms, slight stagger) with the Web Animations API, and fade in the new band headings. Tiles stay real buttons and focus stays on the Group by button
+- [ ] Care points: instant switch under `prefers-reduced-motion` and where `element.animate` is missing (jsdom); the tile foot changes (scale ↔ phase count) mid-move; tiles sliding in from off screen on phones; a second click mid-animation starts from where the tiles are. Template-only: no content, storage key or version changes
+- [ ] If pursued: a build test that the switch still lands every model in the right band, and a browser check at 360 px (light and dark) and on desktop
+
 ---
 
 ## ✅ Completed
