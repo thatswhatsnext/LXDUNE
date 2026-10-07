@@ -1,0 +1,213 @@
+# SWH path, lesson 3 (bottles variant). Built on the SWH guide's worked sequence swh-seq-s5-bottles (lesson 6). Draft for Steve's review.
+# Same class data as lesson 2. Published figures released in lesson 6: thermal conductivity (W/m·K) stainless
+# steel about 16, aluminium about 200, glass about 1, copolyester about 0.2; density, cost and recyclability.
+schemaVersion: 1
+id: swh-3-negotiate
+path: swh
+order: 3
+title: Not the answer key
+summary: Peers first, then the published figures. How a text becomes another voice in the argument, and why the beginning ideas have to come back.
+level: explain
+version: 1.0.0
+status: draft
+lastReviewed: 2026-10-08
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage5]
+  focusAreas: [Materials]
+  disciplines: [chemistry]
+outcomes: [SC5-MAT-01]
+builtOn:
+  sequenceIds: [swh-seq-s5-bottles]
+  exampleIds: [swh-reading-pos-bottle-negotiation, swh-reading-neg-bottle-checkit]
+  lookForIds: [swh-reading-peers-first, swh-reading-not-answer-key, swh-reading-something-changes, swh-reflect-has-original, swh-reflect-about-thinking]
+  misapplicationIds: [mis-swh-answer-key, mis-swh-no-negotiation, mis-swh-lost-beginnings]
+guideSection: sequences
+items:
+  - id: predict
+    type: predict
+    at: reading
+    processing: Retrieval
+    kind: Predict
+    title: "Lesson 6 of the bottles routine. Every student has a claim and evidence. You have published figures for each material's thermal conductivity, density, cost and recyclability."
+    q: When should students see the published figures?
+    options:
+      - text: In lesson 1, so their questions are well informed
+      - text: In lesson 3, so they can check their measurements as they go
+      - text: In lesson 6, after groups have compared their claims with each other
+      - text: Never. Their own data should be enough
+    answer: 2
+    reveal: >-
+      The guide holds the figures back until groups have compared claims with each other. By then students have data
+      of their own to set against the numbers, so the figures join the argument instead of ending it.
+    why: >-
+      “The published figure settles it, so testing is a formality” is this sequence's second target conception.
+      Release the figures early and you teach it.
+
+  - id: lf-peers
+    type: lookfor
+    at: reading
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 10 · Lesson 6
+      text: >-
+        A group that argued for steel, to keep drinks hot, pairs with a group that argued for the plastic, to carry all
+        day. Neither group's data contradicts the other's, and after ten minutes they work out why: they weighted
+        different properties. Only then does the teacher hand out the published figures.
+    answer: swh-reading-peers-first
+    distractors: [swh-reading-not-answer-key, swh-claim-individual, swh-reflect-about-thinking]
+    strong: true
+    hint: What happens before the figures arrive?
+    refs:
+      exampleIds: [swh-reading-pos-bottle-negotiation]
+
+  - id: dx-key
+    type: diagnose
+    at: reading
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A pre-service teacher's SWH · Lesson 6
+      text: >-
+        With fifteen minutes left, the textbook page goes on the board. Students whose claims match tick the box.
+        Students whose claims don't cross them out and copy the textbook's statement. Nobody talks to another group.
+    answer: mis-swh-answer-key
+    distractors: [mis-swh-no-negotiation, mis-swh-lost-beginnings, mis-swh-evidence-recopied]
+    hint: What role is the textbook playing?
+    why: >-
+      The text arrives as the verdict, so students learn their own testing was the slow route to what the book
+      already held. Crossing out isn't revision, because nothing changed for a reason. Comparing with the next bench
+      first costs five minutes.
+    refs:
+      exampleIds: [swh-reading-neg-bottle-checkit]
+
+  - id: move
+    type: choice
+    at: reading
+    processing: Knowledge utilisation
+    kind: Teacher move
+    tests: reading
+    vignette:
+      who: Lesson 6 · after the figures are released
+      text: "Mia claimed steel is the best material for keeping drinks hot. The figures show stainless steel conducts heat about 16 times better than glass and about 80 times better than the plastic. Mia: “So our results were wrong.”"
+    q: What is the best move?
+    options:
+      - text: Tell Mia to replace her claim with the published figure
+        fb: That makes the figures an answer key. Her cooling data were real, and the useful question is why they don't match the material's conductivity.
+      - text: Ask what her cooling data and the figure each show, and to look again at how the steel bottle is made
+        fb: Yes. The steel bottle has a double wall with a vacuum gap, and the other three are single-walled. Her data still stand. What changes is the reason, so she can qualify her claim in writing to credit the bottle's design, not the steel.
+      - text: Tell Mia the published figure must be for a different kind of steel
+        fb: That protects her claim without examining it. Nothing changes for a reason.
+      - text: Move on. She can sort it out in her reflection
+        fb: The reflection is about how her thinking changed. This is the moment it could change.
+    answer: 1
+    refs:
+      lookForIds: [swh-reading-not-answer-key, swh-reading-something-changes]
+
+  - id: lf-changes
+    type: lookfor
+    at: reading
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 10 · Lesson 6
+      text: >-
+        Groups compare claims with the bench next door, then read the published figures. At the bell, every book holds
+        exactly the claim it held at the start of the lesson. The teacher says the discussion was the point.
+    answer: swh-reading-something-changes
+    distractors: [swh-reading-peers-first, swh-reading-not-answer-key, swh-claim-individual]
+    strong: false
+    hint: Compare the books at the start and the end.
+    why: >-
+      Talking isn't negotiating if nothing is allowed to change. The guide asks for revisions to be written, not just
+      discussed. A claim that survives should be argued for in writing too, as the plastic group does when it adds
+      the recyclability figures as support.
+
+  - id: dx-none
+    type: diagnose
+    at: reading
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Another pre-service teacher's SWH · Year 10
+      text: >-
+        Short of time, the teacher keeps the student template (questions, claims, evidence) and cuts the lesson where
+        groups compare claims and read the figures. Books are marked on the Evidence page.
+    answer: mis-swh-no-negotiation
+    distractors: [mis-swh-answer-key, mis-swh-closed-practical, mis-swh-evidence-recopied]
+    why: >-
+      The negotiation is where a claim meets someone who might disagree. Without it, the writing still helps, but
+      vague claims cost nothing. The guide's fix is to timetable the comparing as its own phase and protect it.
+
+  - id: spot-reflect
+    type: spot
+    at: reflection
+    processing: Comprehension
+    kind: Spot the phase
+    tests: reflection
+    vignette:
+      who: Year 10 · End of lesson 6
+      text: >-
+        The teacher hands back the lesson 1 question sheets. Students write what they first thought a good bottle was,
+        what moved them, and what they hold now.
+    q: Which SWH phase is this?
+    answer: reflection
+    among: [claims, reading, reflection]
+    fb:
+      claims: The claims were written in lesson 5. This compares them with where students started.
+      reading: The comparing is done. Students are now looking at their own change.
+      reflection: Yes. Their own beginning ideas are in front of them, and the question is about their thinking.
+    refs:
+      lookForIds: [swh-reflect-has-original]
+
+  - id: prompt
+    type: choice
+    at: reflection
+    processing: Analysis
+    kind: Judge the prompt
+    tests: reflection
+    title: Which reflection prompt does the job SWH gives this phase?
+    options:
+      - text: Summarise the properties of the four bottle materials
+        fb: That's about the topic. Students can answer it without looking at their own thinking.
+      - text: What did you think a good bottle was in lesson 1, what moved you, and what do you hold now?
+        fb: Yes. It's about their thinking, and it needs their beginning ideas in front of them.
+      - text: Was your claim right?
+        fb: The reading showed there's more than one defensible claim. This makes reflection a verdict.
+      - text: Rate how well your group worked together
+        fb: Useful for group work, but it isn't about how their ideas changed.
+    answer: 1
+    refs:
+      lookForIds: [swh-reflect-about-thinking]
+
+  - id: nest
+    type: nest
+    at: reflection
+    processing: Knowledge utilisation
+    kind: Nest it
+    tests: nesting
+    model: swh
+    host: adi
+    answer: report
+    q: SWH and ADI are in the same family. Where in an ADI routine could SWH's questions do their work?
+    why: >-
+      ADI's individual report can be written as an SWH, so the claim, evidence and reading questions shape the
+      argument each student writes before peer review.
+
+  - id: reflect
+    type: reflect
+    at: reflection
+    processing: Metacognition
+    kind: Look back
+    title: Another voice.
+    q: How would you introduce the published figures so that students treat them as another voice rather than the answer?
+    model: "Example: “I'd say: ‘Here's what a materials lab measured. Where does it agree with your results, where doesn't it, and what might explain the difference?’ Then I'd ask each student to write one change, or one reason for keeping their claim.”"
+    recall: predict
