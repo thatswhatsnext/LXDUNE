@@ -11,6 +11,7 @@ import { join } from "node:path";
 import yaml from "js-yaml";
 import { ModelGuide } from "../src/schema/model-guide";
 import { Methodology } from "../src/schema/methodology";
+import { Families } from "../src/schema/families";
 import { FOCUS_AREAS } from "../src/schema/syllabus";
 import { loadGame } from "./lib/game";
 
@@ -90,6 +91,18 @@ export function checkModelIds(x: IdInputs) {
   return { errors, appRefs, quickRefs, guides: guides.size, catalogue: x.catalogue.length };
 }
 
+/** Every registered model sits in exactly one Family Tree family, and every family member is registered. */
+export function checkFamilies(f: Families, registry: readonly string[]) {
+  const errors: string[] = [];
+  const registered = new Set(registry), placed = new Set<string>();
+  for (const fam of f.families) for (const id of fam.models) {
+    if (!registered.has(id)) errors.push(`families.yaml: "${id}" in family "${fam.id}" is not in MODEL_REGISTRY`);
+    placed.add(id);
+  }
+  for (const id of registry) if (!placed.has(id)) errors.push(`families.yaml: "${id}" is in no family, so it would drop out of the Family Tree`);
+  return errors;
+}
+
 
 function main() {
   const dir = join(__dirname, "..", "content", "guides");
@@ -135,6 +148,25 @@ function main() {
   } catch (e: any) {
     if (e.code === "ENOENT") console.error(`\n✗ methodology.yaml: missing (content/methodology.yaml is required)`);
     else console.error(`\n✗ methodology.yaml: YAML syntax error\n  ${e.reason || e.message}${e.mark ? ` (line ${e.mark.line + 1}, column ${e.mark.column + 1})` : ""}\n  Check for an unquoted value containing ": " or a comma inside { }.`);
+    errors++;
+  }
+
+  // Families: the Family Tree's groupings. Every registered model in exactly one family. A missing file is an error.
+  try {
+    const result = Families.safeParse(yaml.load(readFileSync(join(__dirname, "..", "content", "families.yaml"), "utf8")));
+    if (!result.success) {
+      console.error(`\n✗ families.yaml`);
+      for (const i of result.error.issues) console.error(`  ${i.path.join(".") || "(root)"}: ${i.message}`);
+      errors += result.error.issues.length;
+    } else {
+      const famErrors = checkFamilies(result.data, MODEL_REGISTRY);
+      for (const e of famErrors) console.error(`✗ ${e}`);
+      errors += famErrors.length;
+      if (!famErrors.length) console.log(`✓ families.yaml  (${result.data.status}, v${result.data.version}; ${result.data.families.length} families, all ${MODEL_REGISTRY.length} models placed once)`);
+    }
+  } catch (e: any) {
+    if (e.code === "ENOENT") console.error(`\n✗ families.yaml: missing (content/families.yaml is required)`);
+    else console.error(`\n✗ families.yaml: YAML syntax error\n  ${e.reason || e.message}${e.mark ? ` (line ${e.mark.line + 1}, column ${e.mark.column + 1})` : ""}`);
     errors++;
   }
 

@@ -777,16 +777,26 @@ function wireGuide(g){
   progress();
 }
 
-/* ---------- model map (Reckoner Lite, option C) ----------
- * Every model on one screen, banded by scale so the nesting is the layout.
- * Nesting lines come from the guides' nesting[], read in both directions. */
+/* ---------- Family Tree (model map; Reckoner Lite, option C) ----------
+ * Every model on one screen. With published families (content/families.yaml) it opens grouped by family,
+ * the ideas the models share, and can switch to bands by scale, where the nesting is the layout.
+ * Without them it shows the scale bands only, as before. Nesting lines come from the guides' nesting[],
+ * read in both directions. */
 const BANDS = [
   ["macro", "Unit architectures", "Structures a whole sequence, 6 to 15 lessons", ""],
   ["meso", "Routines", "A few lessons. Fits inside a unit.", "Fits inside a unit model"],
   ["micro", "Single lesson", "One lesson. Fits inside a routine.", "Fits inside a routine, or straight into a unit model"],
   ["dial", "Guidance dial", "Not a model. How much you specify, inside any of the above.", "Applies inside any of them"],
 ];
-let mapSel = null;
+/* Short scale words for family-view tiles, where the scale is no longer the band heading. */
+const SCALE_SHORT = { macro: "Unit", meso: "Routine", micro: "One lesson", dial: "Dial" };
+const FAMS = Array.isArray(DATA.families) && DATA.families.length ? DATA.families : null;
+const familyOf = id => FAMS ? FAMS.find(f => f.models.includes(id)) : null;
+if (FAMS) {
+  document.getElementById("mapIntro").textContent = "Every model in the Reckoner, grouped into families by the idea about learning they share. Switch to scale to see how they nest: a unit architecture can hold multi-lesson routines and single-lesson strategies.";
+  document.getElementById("stepLearnLine").textContent = "Where each model comes from and how they fit inside each other";
+}
+let mapSel = null, mapView = FAMS ? "family" : "scale";
 function mapNesting(m){
   const lines = [], add = t => { if (!lines.includes(t)) lines.push(t); };
   (G[m.id]?.nesting || []).forEach(n => add(`${n.role === "nests-in" ? "Fits inside" : "Holds"} ${M[n.modelId]?.name || n.modelId}`));
@@ -794,30 +804,52 @@ function mapNesting(m){
     .forEach(n => add(`${n.role === "hosts" ? "Fits inside" : "Holds"} ${g.name}`)));
   return lines;
 }
+function mapTile(m, byFamily){
+  const foot = byFamily
+    ? `<span class="tile-scale">${icon("i-scale-" + m.scale)}${SCALE_SHORT[m.scale]}<span class="sr">: ${esc(SCALE[m.scale].label)}</span></span>`
+    : `<span>${plural(m.phases.length, m.scale === "dial" ? "level" : "phase")}</span>`;
+  return `<button type="button" class="tile s-${m.scale}" data-model="${m.id}" aria-pressed="${mapSel === m.id}">
+    <b>${esc(m.name)}</b><span class="tile-foot">${foot}
+    ${m.hasGuide ? `<span class="gdot" aria-hidden="true"></span><span class="sr">Companion guide ready</span>` : provChip(m)}</span></button>`;
+}
 function renderMap(){
-  const guided = DATA.models.filter(m => m.hasGuide).length;
+  const guided = DATA.models.filter(m => m.hasGuide).length, byFamily = mapView === "family";
+  document.getElementById("mapView").innerHTML = FAMS
+    ? `<span class="sub">Group by</span>${[["family", "Family"], ["scale", "Scale"]].map(([v, l]) =>
+        `<button class="ghost" type="button" data-mapview="${v}" aria-pressed="${mapView === v}">${l}</button>`).join("")}`
+    : "";
   document.getElementById("mapLegend").innerHTML =
-    `<span class="gdot" aria-hidden="true"></span>Companion guide ready: ${guided} of ${DATA.models.length} so far`;
-  document.getElementById("mapBands").innerHTML = BANDS.map(([scale, title, note, cap]) => {
-    const ms = DATA.models.filter(m => m.scale === scale).sort((a, b) => (b.hasGuide ? 1 : 0) - (a.hasGuide ? 1 : 0));
-    return ms.length ? `<section class="band" aria-labelledby="band-${scale}">
-      <div class="band-head"><h3 id="band-${scale}">${title}</h3><p class="band-note">${note}</p></div>
-      ${cap ? `<p class="band-cap">${cap}</p>` : ""}
-      <div class="map-tiles">${ms.map(m => `<button type="button" class="tile s-${scale}" data-model="${m.id}" aria-pressed="${mapSel === m.id}">
-        <b>${esc(m.name)}</b><span class="tile-foot"><span>${plural(m.phases.length, scale === "dial" ? "level" : "phase")}</span>
-        ${m.hasGuide ? `<span class="gdot" aria-hidden="true"></span><span class="sr">Companion guide ready</span>` : provChip(m)}</span></button>`).join("")}</div></section>` : "";
-  }).join("");
-  document.querySelectorAll("#mapBands [data-model]").forEach(b => b.onclick = () => {
-    mapSel = mapSel === b.dataset.model ? null : b.dataset.model;
+    `<span class="map-key"><span class="gdot" aria-hidden="true"></span>Companion guide ready: ${guided} of ${DATA.models.length} so far</span>` +
+    (byFamily ? `<span class="map-key">Edge colour shows scale:</span>${Object.keys(SCALE_SHORT).map(s =>
+      `<span class="map-key"><span class="skey s-${s}" aria-hidden="true"></span>${esc(SCALE[s].label)}</span>`).join("")}` : "");
+  const section = (id, title, note, cap, ms) => ms.length ? `<section class="band" aria-labelledby="band-${id}">
+      <div class="band-head"><h3 id="band-${id}">${esc(title)}</h3><p class="band-note">${esc(note)}</p></div>
+      ${cap ? `<p class="band-cap">${esc(cap)}</p>` : ""}
+      <div class="map-tiles">${ms.map(m => mapTile(m, byFamily)).join("")}</div></section>` : "";
+  document.getElementById("mapBands").innerHTML = byFamily
+    ? FAMS.map(f => section(f.id, f.name, f.summary, f.across ? "Applies inside any of them" : "", f.models.map(id => M[id]).filter(Boolean))).join("")
+    : BANDS.map(([scale, title, note, cap]) => section(scale, title, note, cap,
+        DATA.models.filter(m => m.scale === scale).sort((a, b) => (b.hasGuide ? 1 : 0) - (a.hasGuide ? 1 : 0)))).join("");
+  document.querySelectorAll("#mapView [data-mapview]").forEach(b => b.onclick = () => {
+    mapView = b.dataset.mapview;
     renderMap();
-    document.querySelector(`#mapBands [data-model="${b.dataset.model}"]`)?.focus();
-    if (mapSel) document.getElementById("mapPanelCard")?.scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "nearest" });
+    document.querySelector(`#mapView [data-mapview="${mapView}"]`)?.focus();
   });
+  const select = id => {
+    mapSel = mapSel === id ? null : id;
+    renderMap();
+    document.querySelector(`#mapBands [data-model="${id}"]`)?.focus();
+    if (mapSel) document.getElementById("mapPanelCard")?.scrollIntoView?.({ behavior: reducedMotion() ? "auto" : "smooth", block: "nearest" });
+  };
+  document.querySelectorAll("#mapBands [data-model]").forEach(b => b.onclick = () => select(b.dataset.model));
   const m = mapSel && M[mapSel], panel = document.getElementById("mapPanel");
   if (!m){ panel.innerHTML = ""; return; }
-  const nest = mapNesting(m);
+  const nest = mapNesting(m), fam = familyOf(m.id);
+  const kin = fam ? fam.models.filter(id => id !== m.id && M[id]) : [];
   panel.innerHTML = `<article class="card lead map-panel" id="mapPanelCard"><div class="card-head"><div><h3>${esc(m.name)}</h3><p class="src">${esc(m.src)}</p></div>${badge(m.scale)}</div>
     <p class="trust">${trustChips(m)}</p>
+    ${fam ? `<p class="fam-line"><strong>${fam.across ? "Family." : `Family: ${esc(fam.name)}.`}</strong> ${esc(fam.summary)}</p>` : ""}
+    ${kin.length ? `<p class="fam-kin"><span class="sub">Same family</span>${kin.map(id => `<button type="button" class="pill-link" data-kin="${id}">${esc(M[id].name)}</button>`).join("")}</p>` : ""}
     <ol class="phases" aria-label="${m.scale === "dial" ? "Levels" : "Phases"}">${m.phases.map(p => `<li>${esc(p)}</li>`).join("")}</ol>
     <p><strong>Distinguishing feature.</strong> ${esc(m.distinct)}</p>
     <div class="roles"><div><h4>Teacher’s role</h4><p>${esc(m.teacher)}</p></div><div><h4>Learner’s role</h4><p>${esc(m.learner)}</p></div></div>
@@ -825,6 +857,7 @@ function renderMap(){
     <div class="lite-actions">${m.hasGuide
       ? `<button type="button" class="pill primary" onclick="openGuide('${m.id}')">Open the ${esc(m.name)} guide</button>`
       : `<button type="button" class="pill" disabled>Guide not written yet</button>`}</div></article>`;
+  panel.querySelectorAll("[data-kin]").forEach(b => b.onclick = () => select(b.dataset.kin));
 }
 
 /* ---------- start with your unit (Reckoner Lite, option B) ----------

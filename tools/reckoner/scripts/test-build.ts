@@ -417,6 +417,71 @@ const cases: [string, () => void | Promise<void>][] = [
     catch (e) { if (/is stage4, but the item is tagged stage5/.test((e as Error).message)) return; throw e; }
     throw new Error("a focus area tagged with the wrong stage was accepted");
   }],
+  ["families reach students only once published; until then the Family Tree groups by scale", async () => {
+    const contentDir = join(tmp, "content-fam");
+    cpSync(join(PKG_ROOT, "content"), contentDir, { recursive: true });
+    const f = join(contentDir, "families.yaml");
+    const fam = yaml.load(readFileSync(f, "utf8")) as any;
+    // Start from a draft copy, whatever the committed file's status
+    fam.status = "draft";
+    fam.provenance = { source: "ai-generated", authors: fam.provenance.authors, reviewedBy: [] };
+    writeFileSync(f, yaml.dump(fam));
+    const build = (tag: string) => {
+      const out = (mode: string) => join(tmp, `fam-${tag}-${mode}`);
+      buildSite({ mode: "site", outDir: out("site"), contentDir, log: quiet });
+      buildSite({ mode: "single", outDir: out("single"), contentDir, log: quiet });
+      buildSite({ mode: "review", reviewId: "5e", outDir: out("review"), contentDir, log: quiet });
+      return {
+        manifest: JSON.parse(readFileSync(join(out("site"), "data", "manifest.json"), "utf8")),
+        single: join(out("single"), "index.html"),
+        review: readFileSync(join(out("review"), "5e-review.html"), "utf8"),
+      };
+    };
+    const draft = build("draft");
+    if ("families" in draft.manifest) throw new Error("draft families in the site manifest");
+    if (!draft.review.includes(fam.families[0].summary)) throw new Error("draft families missing from the review copy");
+    const before = await openPage(draft.single);
+    (before.doc.getElementById("t-lib") as any).click();
+    if (before.doc.querySelectorAll("#mapView button").length) throw new Error("a Group by control without published families");
+    const bands = [...before.doc.querySelectorAll("#mapBands .band h3")].map((h: any) => h.id).join();
+    if (bands !== "band-macro,band-meso,band-micro,band-dial") throw new Error(`draft build bands: ${bands}`);
+    if (before.doc.getElementById("stepLearnLine").textContent !== "How the models relate and fit inside each other") throw new Error("home step 1 changed without published families");
+    before.dom.window.close();
+
+    fam.status = "published";
+    fam.provenance = { ...fam.provenance, source: "ai-drafted-reviewed", reviewedBy: ["Test Reviewer"], reviewedOn: "2026-10-07" };
+    writeFileSync(f, yaml.dump(fam));
+    const pub = build("published");
+    if (!Array.isArray(pub.manifest.families) || pub.manifest.families.length !== fam.families.length) throw new Error("published families missing from the site manifest");
+    const { doc, dom } = await openPage(pub.single);
+    (doc.getElementById("t-lib") as any).click();
+    if (doc.getElementById("t-lib").textContent.trim() !== "Family Tree") throw new Error("t-lib label changed");
+    if (!/Where each model comes from/.test(doc.getElementById("stepLearnLine").textContent)) throw new Error("home step 1 not updated");
+    const pressed = () => (doc.querySelector('#mapView [aria-pressed="true"]') as any)?.dataset.mapview;
+    if (pressed() !== "family") throw new Error(`Family Tree opened on ${pressed()}, not family`);
+    const ids = [...doc.querySelectorAll("#mapBands .band h3")].map((h: any) => h.id.replace("band-", "")).join();
+    if (ids !== fam.families.map((x: any) => x.id).join()) throw new Error(`family order: ${ids}`);
+    const tiles = [...doc.querySelectorAll("#mapBands [data-model]")].map((t: any) => t.dataset.model);
+    const models = (dom.window as any).eval("DATA.models.map(m => m.id)") as string[];
+    if (tiles.length !== models.length || new Set(tiles).size !== models.length) throw new Error(`${tiles.length} tiles for ${models.length} models`);
+    if (doc.querySelectorAll("#mapLegend .skey").length !== 4) throw new Error("no scale key in the family view");
+    const last = doc.querySelector("#mapBands .band:last-child");
+    if (!last?.querySelector(".band-cap") || !last.querySelector('[data-model="levels-of-inquiry"]')) throw new Error("Levels of inquiry is not last, across every branch");
+    (doc.querySelector('#mapView [data-mapview="scale"]') as any).click();
+    const scale = [...doc.querySelectorAll("#mapBands .band h3")].map((h: any) => h.id).join();
+    if (scale !== "band-macro,band-meso,band-micro,band-dial") throw new Error(`scale view bands: ${scale}`);
+    if (doc.querySelectorAll("#mapLegend .skey").length) throw new Error("scale key shown in the scale view");
+    (doc.querySelector('#mapView [data-mapview="family"]') as any).click();
+    (doc.querySelector('#mapBands [data-model="5e"]') as any).click();
+    const panel = () => doc.getElementById("mapPanel") as any;
+    if (!/Learning cycles/.test(panel().querySelector(".fam-line")?.textContent ?? "")) throw new Error("no family line on the 5E panel");
+    const kin = [...panel().querySelectorAll("[data-kin]")].map((b: any) => b.dataset.kin).join();
+    if (kin !== "learning-cycle,7e") throw new Error(`5E's family: ${kin}`);
+    (panel().querySelector('[data-kin="7e"]') as any).click();
+    if (panel().querySelector("h3")?.textContent !== "7E") throw new Error("Same family did not open 7E");
+    if (doc.querySelector('#mapBands [data-model="7e"]')?.getAttribute("aria-pressed") !== "true") throw new Error("7E tile not pressed");
+    dom.window.close();
+  }],
   ["the Pages mirror removes a guide the build no longer produces", () => {
     const dest = join(tmp, "pages");
     mirror(join(tmp, "a"), dest);

@@ -23,6 +23,7 @@ import { dirname, join } from "node:path";
 import yaml from "js-yaml";
 import { ModelGuide } from "../../src/schema/model-guide";
 import { Methodology } from "../../src/schema/methodology";
+import { Families } from "../../src/schema/families";
 import { FIT_DIMENSIONS, FIT_DIMENSION_KEYS } from "../../src/schema/fit-dimensions";
 import { FOCUS_AREAS } from "../../src/schema/syllabus";
 
@@ -73,6 +74,7 @@ function parseYaml<T>(dir: string, file: string, schema: { safeParse(v: unknown)
 const parseGuide = (guidesDir: string, file: string) => parseYaml<ModelGuide>(guidesDir, file, ModelGuide, "guide");
 /** content/methodology.yaml, the prose behind the "How it works" page. */
 export const loadMethodology = (contentDir: string) => parseYaml<Methodology>(contentDir, "methodology.yaml", Methodology, "methodology");
+export const loadFamilies = (contentDir: string) => parseYaml<Families>(contentDir, "families.yaml", Families, "families file");
 
 export function loadGuides(guidesDir: string, includeDrafts: boolean, log: (m: string) => void) {
   return readdirSync(guidesDir)
@@ -105,6 +107,10 @@ export function buildSite(opts: BuildOptions): BuildResult {
   const methodology = loadMethodology(contentDir);
   const showMethodology = methodology.status === "published" || review;
   if (!showMethodology) log(`! skipping methodology: status is ${methodology.status}`);
+  // Families follow the same rule: until they are published, the Family Tree groups models by scale only.
+  const families = loadFamilies(contentDir);
+  const showFamilies = families.status === "published" || review;
+  if (!showFamilies) log(`! skipping families: status is ${families.status}`);
 
   /** Reckoner entry from an authored guide: fit profile arrays become the digit strings the UI uses. */
   const fromGuide = (g: ModelGuide) => ({
@@ -142,6 +148,7 @@ export function buildSite(opts: BuildOptions): BuildResult {
     focusAreas: FOCUS_AREAS,
     focusIndex: buildFocusIndex(guides),
     ...(showMethodology ? { methodology } : {}),
+    ...(showFamilies ? { families: families.families } : {}),
   };
 
   const template = readFileSync(join(templatesDir, "app.html"), "utf8");
