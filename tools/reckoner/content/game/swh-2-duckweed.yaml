@@ -1,4 +1,4 @@
-# SWH path, lesson 2. Built on the SWH guide's worked sequence swh-seq-s5-duckweed. Draft for Steve's review.
+# SWH path, lesson 2. Built on the SWH guide's worked sequence swh-seq-s5-duckweed. Reviewed and published by Steve on 2026-10-08.
 schemaVersion: 1
 id: swh-2-duckweed
 path: swh
@@ -8,12 +8,13 @@ title: A claim worth arguing
 summary: Duckweed, run-off and a result that surprises the class. Claims someone could disagree with, evidence that says why, and where the teacher's time goes.
 level: explain
 version: 1.0.0
-status: draft
+status: published
 lastReviewed: 2026-10-08
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-08
 context:
   stages: [stage5]
   focusAreas: [Environmental sustainability]

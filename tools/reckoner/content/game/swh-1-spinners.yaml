@@ -1,4 +1,4 @@
-# SWH path, lesson 1. Built on the SWH guide's worked sequence swh-seq-s4-spinners. Draft for Steve's review.
+# SWH path, lesson 1. Built on the SWH guide's worked sequence swh-seq-s4-spinners. Reviewed and published by Steve on 2026-10-08.
 schemaVersion: 1
 id: swh-1-spinners
 path: swh
@@ -7,12 +7,13 @@ title: Slow it down
 summary: A paper spinner, a stopwatch and seven questions in place of a lab report. Learn what each SWH phase has to do.
 level: recognise
 version: 1.0.0
-status: draft
+status: published
 lastReviewed: 2026-10-08
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-08
 context:
   stages: [stage4]
   focusAreas: [Forces]

@@ -1,4 +1,4 @@
-# SWH path, lesson 3. Built on the SWH guide's worked sequence swh-seq-s5-duckweed (lesson 6). Draft for Steve's review.
+# SWH path, lesson 3. Built on the SWH guide's worked sequence swh-seq-s5-duckweed (lesson 6). Reviewed and published by Steve on 2026-10-08.
 schemaVersion: 1
 id: swh-3-duckweed
 path: swh
@@ -8,12 +8,13 @@ title: Not the answer key
 summary: Peers first, then the reading on run-off. How a text becomes another voice in the argument, and why the beginning ideas have to come back.
 level: explain
 version: 1.0.0
-status: draft
+status: published
 lastReviewed: 2026-10-08
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-08
 context:
   stages: [stage5]
   focusAreas: [Environmental sustainability]

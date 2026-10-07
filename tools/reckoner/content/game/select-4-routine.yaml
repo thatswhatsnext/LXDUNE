@@ -1,4 +1,4 @@
-# Choosing a model, lesson 4. SWH joins ADI: two routines from the same family. Answers and reasons are checked against the Reckoner's own scoring at build time. Draft for Steve's review.
+# Choosing a model, lesson 4. SWH joins ADI: two routines from the same family. Answers and reasons are checked against the Reckoner's own scoring at build time. Reviewed and published by Steve on 2026-10-08.
 schemaVersion: 1
 id: select-4-routine
 path: select
@@ -7,12 +7,13 @@ title: Which routine?
 summary: SWH and ADI are both argument-and-writing routines that sit inside a unit. Find the classes each suits, and the one change that tips a class from ADI to SWH.
 level: select
 version: 1.0.0
-status: draft
+status: published
 lastReviewed: 2026-10-08
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-08
 context:
   stages: [stage4, stage5]
   focusAreas: [Forces, Environmental sustainability]

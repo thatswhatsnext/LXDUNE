@@ -1,4 +1,4 @@
-# SWH path, lesson 5 (bottles variant). Design level: Negotiation Day, a branching simulation of lessons 5–6 of the SWH guide's bottles sequence (swh-seq-s5-bottles). Draft for Steve's review.
+# SWH path, lesson 5 (bottles variant). Design level: Negotiation Day, a branching simulation of lessons 5–6 of the SWH guide's bottles sequence (swh-seq-s5-bottles). Reviewed and published by Steve on 2026-10-08.
 # Same class data as lessons 2–4.
 schemaVersion: 1
 id: swh-5-bottles
@@ -9,12 +9,13 @@ title: Negotiation Day
 summary: Run the claims, the evidence and the negotiation with a simulated Year 10 class. Every move decides whether claims meet each other before they meet the published figures.
 level: design
 version: 1.0.0
-status: draft
+status: published
 lastReviewed: 2026-10-08
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-08
 context:
   stages: [stage5]
   focusAreas: [Materials]

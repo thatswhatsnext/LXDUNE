@@ -1,4 +1,4 @@
-# SWH path, lesson 3 (bottles variant). Built on the SWH guide's worked sequence swh-seq-s5-bottles (lesson 6). Draft for Steve's review.
+# SWH path, lesson 3 (bottles variant). Built on the SWH guide's worked sequence swh-seq-s5-bottles (lesson 6). Reviewed and published by Steve on 2026-10-08.
 # Same class data as lesson 2. Published figures released in lesson 6: thermal conductivity (W/m·K) stainless
 # steel about 16, aluminium about 200, glass about 1, copolyester about 0.2; density, cost and recyclability.
 schemaVersion: 1
@@ -10,12 +10,13 @@ title: Not the answer key
 summary: Peers first, then the published figures. How a text becomes another voice in the argument, and why the beginning ideas have to come back.
 level: explain
 version: 1.0.0
-status: draft
+status: published
 lastReviewed: 2026-10-08
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-08
 context:
   stages: [stage5]
   focusAreas: [Materials]

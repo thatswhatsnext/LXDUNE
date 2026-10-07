@@ -1,4 +1,4 @@
-# SWH path, lesson 2 (bottles variant). Built on the SWH guide's worked sequence swh-seq-s5-bottles. Draft for Steve's review.
+# SWH path, lesson 2 (bottles variant). Built on the SWH guide's worked sequence swh-seq-s5-bottles. Reviewed and published by Steve on 2026-10-08.
 # One class data set runs through lessons 2–5: 750 mL bottles, 80 °C water, temperature after 60 minutes
 # (steel 71, plastic 49, glass 46, aluminium 42); empty mass (plastic 130 g, aluminium 160 g, steel 350 g, glass 420 g);
 # contained drop test (plastic undamaged, steel small dent, aluminium dented, glass cracked).
@@ -11,12 +11,13 @@ title: A claim worth arguing
 summary: Four bottles and one class's results. Claims tied to a purpose, evidence that says why, and where the teacher's time goes.
 level: explain
 version: 1.0.0
-status: draft
+status: published
 lastReviewed: 2026-10-08
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-08
 context:
   stages: [stage5]
   focusAreas: [Materials]
