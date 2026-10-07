@@ -1,7 +1,8 @@
 # SWH path, lesson 4 (bottles variant). Design level: build an SWH routine from cards and read the feature report. Built on the SWH guide's worked sequence swh-seq-s5-bottles. Draft for Steve's review.
 schemaVersion: 1
-id: swh-4-build
+id: swh-4-bottles
 path: swh
+track: bottles
 order: 4
 title: "Build it: SWH"
 summary: Build a six-lesson SWH routine for a Year 10 materials unit from activity cards, then read what the guide's look-fors say about it.

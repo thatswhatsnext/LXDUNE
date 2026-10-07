@@ -5,6 +5,7 @@
 schemaVersion: 1
 id: swh-2-bottles
 path: swh
+track: bottles
 order: 2
 title: A claim worth arguing
 summary: Four bottles and one class's results. Claims tied to a purpose, evidence that says why, and where the teacher's time goes.
@@ -28,18 +29,59 @@ builtOn:
   misapplicationIds: [mis-swh-evidence-recopied, mis-swh-closed-practical]
 guideSection: sequences
 items:
+  - id: case
+    type: case
+    at: claims
+    processing: Retrieval
+    kind: The case
+    title: Which bottle should the school choose?
+    setting:
+      who: Year 10 · Materials · Chemistry · six lessons
+      text: >-
+        The school is replacing single-use plastic with a reusable drink bottle for every student, and a Year 10 class
+        has been asked to recommend one. The teacher runs the investigation as a Science Writing Heuristic routine:
+        instead of a lab report, each student answers seven questions about their own investigation.
+    lead: >-
+      Every bench had the same four 750 mL bottles: stainless steel (double-walled, like most steel drink bottles),
+      aluminium, glass and a copolyester plastic. Each student chose what to find out, so groups tested different
+      properties. These are the class's results.
+    table:
+      caption: "The class's results: 750 mL bottles, 80 °C water at the start"
+      head: [Bottle, After 1 hour, Empty mass, Drop test]
+      rows:
+        - [Steel (double wall), 71 °C, 350 g, Small dent]
+        - [Plastic, 49 °C, 130 g, Undamaged]
+        - [Glass, 46 °C, 420 g, Cracked]
+        - [Aluminium, 42 °C, 160 g, Dented]
+    sofar:
+      - phaseId: beginning-ideas
+        when: Lesson 1
+        text: Students handled the bottles, and each wrote what they'd need to find out before recommending one. The questions were kept.
+      - phaseId: tests
+        when: Lesson 2
+        text: Groups designed tests for the properties their questions named, and the teacher checked each plan for safety.
+      - phaseId: observations
+        when: Lessons 3–4
+        text: Groups ran their tests with repeats, recording what happened apart from what they thought it meant.
+      - phaseId: claims
+        when: Lesson 5 · this lesson
+        text: Each student writes a claim answering their own question, then the evidence for it.
+    you: You're a pre-service teacher on placement, taking this class for lessons 5 and 6.
+
   - id: predict
     type: predict
     at: claims
     processing: Retrieval
     kind: Predict
-    title: One class's results, four bottles.
-    vignette:
-      who: Year 10 · 750 mL bottles
-      text: >-
-        80 °C water, after an hour: steel 71 °C, plastic 49 °C, glass 46 °C, aluminium 42 °C. Empty mass: plastic
-        130 g, aluminium 160 g, steel 350 g, glass 420 g. Drop test, contained in a tub: plastic undamaged, steel and
-        aluminium dented, glass cracked.
+    title: Before the class writes its claims, make your own call.
+    table:
+      caption: "The class's results: 750 mL bottles, 80 °C water at the start"
+      head: [Bottle, After 1 hour, Empty mass, Drop test]
+      rows:
+        - [Steel (double wall), 71 °C, 350 g, Small dent]
+        - [Plastic, 49 °C, 130 g, Undamaged]
+        - [Glass, 46 °C, 420 g, Cracked]
+        - [Aluminium, 42 °C, 160 g, Dented]
     q: Which bottle should the school choose?
     options:
       - text: Steel, because it kept the water hottest

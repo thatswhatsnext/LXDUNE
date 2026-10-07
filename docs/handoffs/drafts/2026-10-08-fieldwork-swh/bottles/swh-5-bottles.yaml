@@ -1,8 +1,9 @@
 # SWH path, lesson 5 (bottles variant). Design level: Negotiation Day, a branching simulation of lessons 5–6 of the SWH guide's bottles sequence (swh-seq-s5-bottles). Draft for Steve's review.
 # Same class data as lessons 2–4.
 schemaVersion: 1
-id: swh-5-negotiation-day
+id: swh-5-bottles
 path: swh
+track: bottles
 order: 5
 title: Negotiation Day
 summary: Run the claims, the evidence and the negotiation with a simulated Year 10 class. Every move decides whether claims meet each other before they meet the published figures.
@@ -32,10 +33,17 @@ items:
     kind: How Negotiation Day works
     title: Two lessons, five decisions
     lead: >-
-      You're on placement with a Year 10 class, near the end of the SWH routine on bottles from the guide. Groups have
-      their results: after an hour, 80 °C water had cooled to 71 °C in the steel bottle, 49 °C in the plastic, 46 °C
-      in the glass and 42 °C in the aluminium. The plastic was lightest and survived the drop test. At five moments you
-      choose what to do next. Your choices decide which ideas surface, which stay hidden and which get challenged.
+      You're on placement with a Year 10 class recommending a reusable drink bottle for the school, near the end of
+      their SWH routine. Groups have their results, shown here. At five moments you choose what to do next, and your
+      choices decide which ideas surface, which stay hidden and which get challenged.
+    table:
+      caption: "The class's results: 750 mL bottles, 80 °C water at the start"
+      head: [Bottle, After 1 hour, Empty mass, Drop test]
+      rows:
+        - [Steel (double wall), 71 °C, 350 g, Small dent]
+        - [Plastic, 49 °C, 130 g, Undamaged]
+        - [Glass, 46 °C, 420 g, Cracked]
+        - [Aluminium, 42 °C, 160 g, Dented]
     rows:
       - phaseId: claims
         does: "Lesson 5: each student writes a claim."

@@ -1,7 +1,8 @@
 # SWH path, lesson 5. Design level: Negotiation Day, a branching simulation of lessons 5–6 of the SWH guide's duckweed sequence (swh-seq-s5-duckweed). Draft for Steve's review.
 schemaVersion: 1
-id: swh-5-negotiation-day
+id: swh-5-duckweed
 path: swh
+track: duckweed
 order: 5
 title: Negotiation Day
 summary: Run the claims, the evidence and the negotiation with a simulated Year 9 class. Every move decides whether claims meet each other before they meet the textbook.
@@ -31,10 +32,18 @@ items:
     kind: How Negotiation Day works
     title: Two lessons, five decisions
     lead: >-
-      You're on placement with a Year 9 class, near the end of the SWH routine on duckweed and run-off from the
-      guide. Groups have finished a fortnight of counting. At five moments you choose what to do next. Students voice
-      the ideas the guide says to expect, and your choices decide which ideas surface, which stay hidden and which
-      get challenged.
+      You're on placement with a Year 9 class investigating what run-off from roads, gardens and homes does to a
+      creek, near the end of their SWH routine. Groups have finished a fortnight of counting duckweed fronds, shown
+      here. At five moments you choose what to do next, and your choices decide which ideas surface, which stay hidden
+      and which get challenged.
+    table:
+      caption: The class's results, mean of three cups
+      head: [Cup, Fronds at start, Fronds at day 14, Condition]
+      rows:
+        - [Plain water, "10", "26", Green]
+        - [Dilute fertiliser, "10", "48", Green; a thick mat]
+        - [Detergent, "10", "12", Yellowing]
+        - [Salt, "10", "9", Brown edges]
     rows:
       - phaseId: claims
         does: "Lesson 5: each student writes a claim."

@@ -5,23 +5,28 @@ unreviewed content, and these lessons depend on the new spinners sequence. Nothi
 
 ## Steve's direction
 
-- 2026-10-08: the game's bottles lessons felt clunky and imprecise, and the separation and bottles examples overlap
-  (both Chemistry practicals on the properties of materials). Lesson 1 moves to a new example.
-- 2026-10-08: the guide's bottles sequence reads well; rework the game's translation of it rather than drop it.
+- 2026-10-08: the game's first bottles lessons felt clunky and imprecise, and the separation and bottles examples
+  overlap (both Chemistry practicals on the properties of materials). Lesson 1 moves to a new example.
+- 2026-10-08: the guide's bottles sequence reads well; rework the game's translation of it.
+- 2026-10-08: keep both the bottles and duckweed lessons and let players choose. Assume the player hasn't read the
+  SWH guide, so set up each case properly, and put results into tables.
 
-So lessons 2–5 come in two variants for Steve to choose between.
+## How it fits together
+
+The SWH path is lesson 1 (shared), then a choice of two cases for lessons 2–5. The engine support is already on this
+branch: `track` on lessons, `tracks` on paths in `game.yaml`, a case chooser on the map (the choice is remembered,
+each case keeps its own progress, and either case counts towards mastery), a `case` item that sets the scene, and an
+optional `table` on any item.
 
 ## Files
 
 | File | Goes to on sign-off | What it is |
 |---|---|---|
 | `swh-seq-s4-spinners.yaml` | appended to `workedSequences` in `tools/reckoner/content/guides/swh.yaml` | New worked sequence: paper spinners, Stage 4 Forces (SC4-FOR-01), five lessons, all seven phases. Guide minor bump; set provenance to `ai-drafted-reviewed` with Steve as reviewer |
-| `swh-1-spinners.yaml` | `tools/reckoner/content/game/` | SWH lesson 1, Recognise, on the spinners sequence |
+| `swh-1-spinners.yaml` | `tools/reckoner/content/game/` | Shared lesson 1, Recognise, on the spinners sequence: case card, results table |
+| `bottles/swh-2-bottles.yaml` … `swh-5-bottles.yaml` | `tools/reckoner/content/game/` | Case `bottles`, lessons 2–5 on `swh-seq-s5-bottles`: case cards on 2 and 3, results and published-figure tables |
+| `duckweed/swh-2-duckweed.yaml` … `swh-5-duckweed.yaml` | `tools/reckoner/content/game/` | Case `duckweed`, lessons 2–5 on `swh-seq-s5-duckweed`: case cards on 2 and 3, set-up and results tables |
 | `select-4-routine.yaml` | `tools/reckoner/content/game/` | Choosing a model lesson 4: ADI or SWH? |
-| `bottles/swh-2-bottles.yaml` … `swh-5-negotiation-day.yaml` | `tools/reckoner/content/game/` | Variant A, lessons 2–5 on `swh-seq-s5-bottles`, reworked |
-| `duckweed/swh-2-duckweed.yaml` … `swh-5-negotiation-day.yaml` | `tools/reckoner/content/game/` | Variant B, lessons 2–5 on `swh-seq-s5-duckweed` |
-
-Only one variant goes in. Both use the ids `swh-3-negotiate`, `swh-4-build` and `swh-5-negotiation-day`.
 
 ## What the bottles rework fixes
 
@@ -43,8 +48,8 @@ the predict item's data sit in the scenario box rather than the heading.
 
 ## Checks (2026-10-08)
 
-Each variant was checked in a preview copy where the spinners sequence counted as reviewed: validate, 21 build tests,
-22 game tests (the review copy plays all 22 lessons to the end), typecheck; no sideways scroll at 360 px. Every answer
+Checked in a preview copy where the spinners sequence counted as reviewed: validate, 21 build tests,
+23 game tests (the review copy plays all 26 lessons to the end), typecheck; no sideways scroll at 360 px. Every answer
 and reason in `select-4-routine` agrees with the Reckoner's scoring.
 
 The SWH path and the `swh` model on Choosing a model are already in `game.yaml` on this branch. Until lessons land,

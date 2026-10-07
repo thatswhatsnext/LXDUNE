@@ -1,7 +1,8 @@
 # SWH path, lesson 3. Built on the SWH guide's worked sequence swh-seq-s5-duckweed (lesson 6). Draft for Steve's review.
 schemaVersion: 1
-id: swh-3-negotiate
+id: swh-3-duckweed
 path: swh
+track: duckweed
 order: 3
 title: Not the answer key
 summary: Peers first, then the reading on run-off. How a text becomes another voice in the argument, and why the beginning ideas have to come back.
@@ -24,6 +25,46 @@ builtOn:
   misapplicationIds: [mis-swh-answer-key, mis-swh-no-negotiation, mis-swh-lost-beginnings]
 guideSection: sequences
 items:
+  - id: case
+    type: case
+    at: reading
+    processing: Retrieval
+    kind: The case
+    title: Lesson 6, where claims meet each other
+    setting:
+      who: Year 9 · Environmental sustainability · Biology · six lessons
+      text: >-
+        After heavy rain, a creek near the school turns murky with whatever washes off roads, gardens and homes. A Year
+        9 class is investigating what that run-off does to living things in the water. The teacher runs it as a Science
+        Writing Heuristic routine: instead of a lab report, each student answers seven questions about their own
+        investigation.
+    lead: >-
+      Every student has written a claim and the evidence for it. Some argued that fertiliser is good for the creek,
+      because the duckweed grew; others that detergent or salt harms it. Today groups compare their claims, and then
+      the teacher releases a short reading on nutrient run-off, algal blooms and salinity in Australian waterways.
+    table:
+      caption: The class's results, mean of three cups
+      head: [Cup, Fronds at start, Fronds at day 14, Condition]
+      rows:
+        - [Plain water, "10", "26", Green]
+        - [Dilute fertiliser, "10", "48", Green; a thick mat]
+        - [Detergent, "10", "12", Yellowing]
+        - [Salt, "10", "9", Brown edges]
+    sofar:
+      - phaseId: beginning-ideas
+        when: Lesson 1
+        text: Each student wrote what they wanted to find out about run-off and the creek. The questions were kept.
+      - phaseId: observations
+        when: Lessons 2–4
+        text: Groups designed their own tests, then counted fronds for two weeks.
+      - phaseId: evidence
+        when: Lesson 5
+        text: Each student wrote a claim, chose the counts that support it, and said why.
+      - phaseId: reading
+        when: Lesson 6 · this lesson
+        text: Groups compare claims, then read about run-off. Then the beginning questions come back.
+    you: You're the pre-service teacher taking lesson 6.
+
   - id: predict
     type: predict
     at: reading

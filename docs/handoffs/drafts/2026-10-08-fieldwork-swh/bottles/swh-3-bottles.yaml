@@ -2,8 +2,9 @@
 # Same class data as lesson 2. Published figures released in lesson 6: thermal conductivity (W/m·K) stainless
 # steel about 16, aluminium about 200, glass about 1, copolyester about 0.2; density, cost and recyclability.
 schemaVersion: 1
-id: swh-3-negotiate
+id: swh-3-bottles
 path: swh
+track: bottles
 order: 3
 title: Not the answer key
 summary: Peers first, then the published figures. How a text becomes another voice in the argument, and why the beginning ideas have to come back.
@@ -27,6 +28,45 @@ builtOn:
   misapplicationIds: [mis-swh-answer-key, mis-swh-no-negotiation, mis-swh-lost-beginnings]
 guideSection: sequences
 items:
+  - id: case
+    type: case
+    at: reading
+    processing: Retrieval
+    kind: The case
+    title: Lesson 6, where claims meet each other
+    setting:
+      who: Year 10 · Materials · Chemistry · six lessons
+      text: >-
+        The school is replacing single-use plastic with a reusable drink bottle for every student, and a Year 10 class
+        has been asked to recommend one. The teacher runs the investigation as a Science Writing Heuristic routine:
+        instead of a lab report, each student answers seven questions about their own investigation.
+    lead: >-
+      Every student has written a claim and the evidence for it. Most argued for the steel bottle, to keep a drink
+      hot, or for the plastic, to carry all day. Today groups compare their claims, and then the teacher releases
+      published figures for each material.
+    table:
+      caption: "The class's results: 750 mL bottles, 80 °C water at the start"
+      head: [Bottle, After 1 hour, Empty mass, Drop test]
+      rows:
+        - [Steel (double wall), 71 °C, 350 g, Small dent]
+        - [Plastic, 49 °C, 130 g, Undamaged]
+        - [Glass, 46 °C, 420 g, Cracked]
+        - [Aluminium, 42 °C, 160 g, Dented]
+    sofar:
+      - phaseId: beginning-ideas
+        when: Lesson 1
+        text: Each student wrote what they'd need to find out before recommending a bottle. The questions were kept.
+      - phaseId: observations
+        when: Lessons 2–4
+        text: Groups designed and ran their own tests, with repeats.
+      - phaseId: evidence
+        when: Lesson 5
+        text: Each student wrote a claim, chose the data that support it, and said why.
+      - phaseId: reading
+        when: Lesson 6 · this lesson
+        text: Groups compare claims, then read the published figures. Then the beginning questions come back.
+    you: You're the pre-service teacher taking lesson 6.
+
   - id: predict
     type: predict
     at: reading
@@ -95,7 +135,15 @@ items:
     tests: reading
     vignette:
       who: Lesson 6 · after the figures are released
-      text: "Mia claimed steel is the best material for keeping drinks hot. The figures show stainless steel conducts heat about 16 times better than glass and about 80 times better than the plastic. Mia: “So our results were wrong.”"
+      text: "Mia claimed steel is the best material for keeping drinks hot, because the steel bottle lost the least heat. Then she reads the published figures. Mia: “So our results were wrong.”"
+    table:
+      caption: Published figures, released in lesson 6
+      head: [Material, Heat conduction (W/m·K), Density (g/cm³)]
+      rows:
+        - [Stainless steel, about 16, "8.0"]
+        - [Aluminium, about 200, "2.7"]
+        - [Glass, about 1, "2.5"]
+        - [Copolyester plastic, about 0.2, "1.2"]
     q: What is the best move?
     options:
       - text: Tell Mia to replace her claim with the published figure

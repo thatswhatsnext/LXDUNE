@@ -24,6 +24,24 @@ builtOn:
   misapplicationIds: [mis-swh-supplied-question, mis-swh-lost-beginnings]
 guideSection: sequences
 items:
+  - id: case
+    type: case
+    at: beginning-ideas
+    processing: Retrieval
+    kind: The case
+    title: What makes a falling object slow down?
+    setting:
+      who: Year 7 · Forces · Physics · five lessons
+      text: >-
+        A Year 7 class is starting forces. Instead of a demonstration and a worksheet, the teacher gives them paper
+        spinners, simple paper helicopters that twirl as they fall, and lets each student ask their own question about
+        what makes one fall slowly.
+    lead: >-
+      The routine is the Science Writing Heuristic. Students don't write a lab report. Each one answers seven questions
+      about their own investigation, from “What are my questions?” to “How have my ideas changed?”. This lesson walks
+      through all seven with this class.
+    you: You're a pre-service teacher on placement, watching the routine from the first lesson to the last.
+
   - id: predict
     type: predict
     at: beginning-ideas
@@ -150,8 +168,17 @@ items:
     vignette:
       who: Year 7 · Lesson 4
       text: >-
-        Working alone, Mei writes: “Longer wings made the spinner fall more slowly up to 10 cm. At 12 cm the wings
-        flopped, it stopped spinning, and it fell faster.”
+        Mei's group timed each design five times from the top of the stairwell. Working alone, Mei writes: “Longer
+        wings made the spinner fall more slowly up to 10 cm. At 12 cm the wings flopped, it stopped spinning, and it
+        fell faster.”
+    table:
+      caption: Mei's group, 2.2 m drop, mean of five drops
+      head: [Wing length, Fall time, What happened]
+      rows:
+        - [6 cm, 1.3 s, Spun fast]
+        - [8 cm, 1.6 s, Spun]
+        - [10 cm, 1.9 s, Spun slowly]
+        - [12 cm, 1.2 s, Wings flopped; barely spun]
     q: Which SWH phase is this?
     answer: claims
     among: [observations, claims, evidence]

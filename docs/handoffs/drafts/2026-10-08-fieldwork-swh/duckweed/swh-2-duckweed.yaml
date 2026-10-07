@@ -2,6 +2,7 @@
 schemaVersion: 1
 id: swh-2-duckweed
 path: swh
+track: duckweed
 order: 2
 title: A claim worth arguing
 summary: Duckweed, run-off and a result that surprises the class. Claims someone could disagree with, evidence that says why, and where the teacher's time goes.
@@ -24,12 +25,52 @@ builtOn:
   misapplicationIds: [mis-swh-evidence-recopied, mis-swh-closed-practical]
 guideSection: sequences
 items:
+  - id: case
+    type: case
+    at: claims
+    processing: Retrieval
+    kind: The case
+    title: What does run-off do to a creek?
+    setting:
+      who: Year 9 · Environmental sustainability · Biology · six lessons
+      text: >-
+        After heavy rain, a creek near the school turns murky with whatever washes off roads, gardens and homes. A Year
+        9 class is investigating what that run-off does to living things in the water. The teacher runs it as a Science
+        Writing Heuristic routine: instead of a lab report, each student answers seven questions about their own
+        investigation.
+    lead: >-
+      Duckweed is a tiny floating plant that is easy to count: each frond is a small, flat, leaf-like disc. Groups put
+      ten fronds in each cup of pond water and added run-off substances from an approved list, at strengths they
+      chose. Then they counted fronds at the start of every science lesson for two weeks.
+    table:
+      caption: What the class tested, three cups of each
+      head: [Cup, What went in]
+      rows:
+        - [Plain water, Nothing added]
+        - [Fertiliser, "Garden fertiliser, diluted"]
+        - [Detergent, "Dishwashing detergent, diluted"]
+        - [Salt, Table salt]
+    sofar:
+      - phaseId: beginning-ideas
+        when: Lesson 1
+        text: Students looked at duckweed and at photos of the creek after rain, and each wrote what they wanted to find out. The questions were kept.
+      - phaseId: tests
+        when: Lesson 2
+        text: Groups designed tests with repeats and plain-water cups, and the teacher checked each plan for safety and disposal.
+      - phaseId: observations
+        when: Lessons 3–4
+        text: Groups counted fronds over two weeks, recording counts and condition apart from what they thought they meant.
+      - phaseId: claims
+        when: Lesson 5 · this lesson
+        text: Each student writes a claim answering their own question, then the evidence for it.
+    you: You're a pre-service teacher on placement, taking this class for lessons 5 and 6.
+
   - id: predict
     type: predict
     at: beginning-ideas
     processing: Retrieval
     kind: Predict
-    title: "Year 9 groups put duckweed in cups of pond water. Some cups get dilute garden fertiliser, some dishwashing detergent, some salt, and some nothing. Groups count fronds for two weeks."
+    title: Before you see the counts, make your own call.
     q: How do the fertiliser cups compare with the plain-water cups?
     options:
       - text: Fewer fronds. Run-off is pollution, and pollution harms plants
@@ -51,13 +92,21 @@ items:
     processing: Analysis
     kind: Judge the claim
     tests: claims
-    title: Four students' claims, each answering their own question. Which could another student most usefully disagree with?
+    title: The counts are in. Which student's claim could another student most usefully disagree with?
+    table:
+      caption: The class's results, mean of three cups
+      head: [Cup, Fronds at start, Fronds at day 14, Condition]
+      rows:
+        - [Plain water, "10", "26", Green]
+        - [Dilute fertiliser, "10", "48", Green; a thick mat]
+        - [Detergent, "10", "12", Yellowing]
+        - [Salt, "10", "9", Brown edges]
     options:
       - text: "Pollution is bad for creeks."
         fb: Hard to disagree with, and hard to test. Which substance, bad for what, and how would anyone know?
       - text: "We counted fronds in twelve cups."
         fb: That's a report of what happened. No one could disagree with it.
-      - text: "In our cups, fertiliser roughly doubled the fronds compared with plain water, so fertiliser run-off would make duckweed spread in a creek."
+      - text: "In our cups, fertiliser nearly doubled the fronds compared with plain water, so fertiliser run-off would make duckweed spread in a creek."
         fb: Yes. It's tied to the student's data and makes a prediction about a creek. Another group can challenge both parts, and the reading in lesson 6 will.
       - text: "Duckweed is a plant."
         fb: True, but there's nothing to argue.
