@@ -1,26 +1,25 @@
-# SWH path, lesson 3. Built on the SWH guide's worked sequence swh-seq-s5-bottles (lesson 6). Draft for Steve's review.
+# SWH path, lesson 3. Built on the SWH guide's worked sequence swh-seq-s5-duckweed (lesson 6). Draft for Steve's review.
 schemaVersion: 1
 id: swh-3-negotiate
 path: swh
 order: 3
 title: Not the answer key
-summary: Peers first, then the published figures. How a text becomes another voice in the argument, and why the beginning ideas have to come back.
+summary: Peers first, then the reading on run-off. How a text becomes another voice in the argument, and why the beginning ideas have to come back.
 level: explain
 version: 1.0.0
 status: draft
-lastReviewed: 2026-10-07
+lastReviewed: 2026-10-08
 provenance:
   source: ai-generated
   authors: [Claude]
   reviewedBy: []
 context:
   stages: [stage5]
-  focusAreas: [Materials]
-  disciplines: [chemistry]
-outcomes: [SC5-MAT-01]
+  focusAreas: [Environmental sustainability]
+  disciplines: [biology]
+outcomes: [SC5-ENV-01]
 builtOn:
-  sequenceIds: [swh-seq-s5-bottles]
-  exampleIds: [swh-reading-pos-bottle-negotiation, swh-reading-neg-bottle-checkit]
+  sequenceIds: [swh-seq-s5-duckweed]
   lookForIds: [swh-reading-peers-first, swh-reading-not-answer-key, swh-reading-something-changes, swh-reflect-has-original, swh-reflect-about-thinking]
   misapplicationIds: [mis-swh-answer-key, mis-swh-no-negotiation, mis-swh-lost-beginnings]
 guideSection: sequences
@@ -30,20 +29,20 @@ items:
     at: reading
     processing: Retrieval
     kind: Predict
-    title: "Lesson 6 of the bottles routine. Every student has a claim and evidence. You have published figures for density, thermal conductivity, cost and recyclability."
-    q: When should students see the published figures?
+    title: "Lesson 6 of the duckweed routine. Every student has a claim and evidence. You have a short reading on nutrient run-off, algal blooms and salinity in Australian waterways."
+    q: When should students get the reading?
     options:
       - text: In lesson 1, so their questions are well informed
-      - text: In lesson 3, so they can check their measurements as they go
+      - text: In lesson 3, so they know what to expect while counting
       - text: In lesson 6, after groups have compared their claims with each other
-      - text: Never. Their own data should be enough
+      - text: Never. Their own counts should be enough
     answer: 2
     reveal: >-
-      The guide holds the figures back until groups have compared claims with each other. By then students have
-      something of their own to set against the numbers, so the text joins the argument instead of ending it.
+      The guide holds the reading back until groups have compared claims with each other. By then students have
+      their own counts to set against it, so the text joins the argument instead of ending it.
     why: >-
-      “The published figure settles it, so testing is a formality” is this sequence's second target conception.
-      Release the figures early and you teach it.
+      Hand the reading out early and students wait for it next time. Their counting becomes the slow route to
+      what the text already said.
 
   - id: lf-peers
     type: lookfor
@@ -52,17 +51,15 @@ items:
     kind: Match the look-for
     tests: lookfor
     vignette:
-      who: Year 10 · Lesson 6
+      who: Year 9 · Lesson 6
       text: >-
-        A steel group and a plastic group read each other's claims. Neither group's data contradicts the other's, and
-        after ten minutes they work out why: one weighted heat loss, the other mass and cost. Only then does the teacher
-        hand out the published figures.
+        A group that claims fertiliser helps the duckweed pairs with a group that claims detergent harms it. After ten
+        minutes they work out that one group asked about growth and the other about harm, and that neither had asked
+        about the creek as a whole. Only then does the teacher hand out the reading.
     answer: swh-reading-peers-first
     distractors: [swh-reading-not-answer-key, swh-claim-individual, swh-reflect-about-thinking]
     strong: true
-    hint: What happens before the figures arrive?
-    refs:
-      exampleIds: [swh-reading-pos-bottle-negotiation]
+    hint: What happens before the reading arrives?
 
   - id: dx-key
     type: diagnose
@@ -73,17 +70,16 @@ items:
     vignette:
       who: A pre-service teacher's SWH · Lesson 6
       text: >-
-        With fifteen minutes left, the textbook page goes on the board. Students whose claims match tick the box.
-        Students whose claims don't cross them out and copy the textbook's statement. Nobody talks to another group.
+        With fifteen minutes left, a textbook page on algal blooms goes on the board. Students whose claims match tick
+        the box. Students whose claims don't cross them out and copy the textbook's statement. Nobody talks to
+        another group.
     answer: mis-swh-answer-key
     distractors: [mis-swh-no-negotiation, mis-swh-lost-beginnings, mis-swh-evidence-recopied]
     hint: What role is the textbook playing?
     why: >-
-      The text arrives as the verdict, so students learn their own reasoning was the slow route to what the book
+      The text arrives as the verdict, so students learn their own counting was the slow route to what the book
       already held. Crossing out isn't revision, because nothing changed for a reason. Comparing with the next bench
       first costs five minutes.
-    refs:
-      exampleIds: [swh-reading-neg-bottle-checkit]
 
   - id: move
     type: choice
@@ -92,18 +88,18 @@ items:
     kind: Teacher move
     tests: reading
     vignette:
-      who: Lesson 6 · after the figures are released
-      text: "Lena argued steel keeps drinks coldest because steel is a poor conductor. The published figures show stainless steel conducts heat far better than the plastic."
+      who: Lesson 6 · after the reading
+      text: "Ravi claimed fertiliser run-off is good for creeks, because his duckweed grew fastest with fertiliser. The reading says nutrient run-off can cause blooms that kill fish. Ravi says: “So my results were wrong.”"
     q: What is the best move?
     options:
-      - text: Tell Lena her claim is wrong and she should copy the published value
-        fb: That makes the figure an answer key. Lena's cooling data were real, and the useful question is why they don't match the material's conductivity.
-      - text: Ask Lena what her cooling data and the figure each show, and what else about the steel bottle could explain her result
-        fb: Yes. Her data still stand, and the conflict sends her to the bottle's construction. Most steel drink bottles are vacuum-insulated, so the gap between the walls is doing the work. She can qualify her claim in writing.
-      - text: Tell Lena the published figure must be for a different steel
-        fb: That protects her claim without examining it. Nothing changes for a reason.
-      - text: Move on. She can sort it out in her reflection
-        fb: The reflection is about how her thinking changed. This is the moment it could change.
+      - text: Tell Ravi to copy the reading's statement in place of his claim
+        fb: That makes the reading an answer key. Ravi's counts were real, and the useful question is what they do and don't show.
+      - text: Ask what his counts show and what the reading adds, then have him rewrite his claim about the creek
+        fb: Yes. His data still stand, since the duckweed did grow faster. The reading adds what a thick mat of plants does to the rest of a waterway as it blocks light and later dies and rots. Ravi can keep his data and revise his claim about impact, in writing.
+      - text: Tell Ravi his experiment was too small to count
+        fb: That dismisses his evidence without examining it. Nothing changes for a reason.
+      - text: Move on. He can sort it out in his reflection
+        fb: The reflection is about how his thinking changed. This is the moment it could change.
     answer: 1
     refs:
       lookForIds: [swh-reading-not-answer-key, swh-reading-something-changes]
@@ -115,10 +111,10 @@ items:
     kind: Match the look-for
     tests: lookfor
     vignette:
-      who: Year 10 · Lesson 6
+      who: Year 9 · Lesson 6
       text: >-
-        Groups compare claims with the bench next door, then read the published figures. At the bell, every book holds
-        exactly the claim it held at the start of the lesson. The teacher says the discussion was the point.
+        Groups compare claims with the bench next door, then read about run-off and blooms. At the bell, every book
+        holds exactly the claim it held at the start of the lesson. The teacher says the discussion was the point.
     answer: swh-reading-something-changes
     distractors: [swh-reading-peers-first, swh-reading-not-answer-key, swh-claim-individual]
     strong: false
@@ -134,10 +130,10 @@ items:
     kind: Diagnose the plan
     tests: misapplication
     vignette:
-      who: Another pre-service teacher's SWH · Year 10
+      who: Another pre-service teacher's SWH · Year 9
       text: >-
         Short of time, the teacher keeps the student template (questions, claims, evidence) and cuts the lesson where
-        groups compare claims and read the figures. Books are marked on the Evidence page.
+        groups compare claims and read about run-off. Books are marked on the Evidence page.
     answer: mis-swh-no-negotiation
     distractors: [mis-swh-answer-key, mis-swh-closed-practical, mis-swh-evidence-recopied]
     why: >-
@@ -151,10 +147,10 @@ items:
     kind: Spot the phase
     tests: reflection
     vignette:
-      who: Year 10 · End of lesson 6
+      who: Year 9 · End of lesson 6
       text: >-
-        The teacher hands back the lesson 1 question sheets. Students write what they first thought a good bottle was,
-        what moved them, and what they think now.
+        The teacher hands back the lesson 1 question sheets. Students write what they first thought pollution did,
+        what changed their mind, and one change to what goes down drains at school that their evidence supports.
     q: Which SWH phase is this?
     answer: reflection
     among: [claims, reading, reflection]
@@ -173,12 +169,12 @@ items:
     tests: reflection
     title: Which reflection prompt does the job SWH gives this phase?
     options:
-      - text: Summarise the properties of the four bottle materials
+      - text: Summarise what you learned about algal blooms
         fb: That's about the topic. Students can answer it without looking at their own thinking.
-      - text: What did you think a good bottle was in lesson 1, what moved you, and what do you hold now?
+      - text: What did you think pollution did in lesson 1, what changed your mind, and what do you think now?
         fb: Yes. It's about their thinking, and it needs their beginning ideas in front of them.
       - text: Was your claim right?
-        fb: The reading may have shown there's more than one defensible claim. This makes reflection a verdict.
+        fb: The reading may have shown a claim can be right about the duckweed and incomplete about the creek. This makes reflection a verdict.
       - text: Rate how well your group worked together
         fb: Useful for group work, but it isn't about how their ideas changed.
     answer: 1
@@ -205,6 +201,6 @@ items:
     processing: Metacognition
     kind: Look back
     title: Another voice.
-    q: How would you introduce the published figures so that students treat them as another voice rather than the answer?
-    model: "Example: “I'd say: ‘Here's what a materials lab found. Where does it agree with you, where doesn't it, and what might explain the difference?’ Then I'd ask them to write one change or one reason for keeping their claim.”"
+    q: How would you introduce the reading so that students treat it as another voice rather than the answer?
+    model: "Example: “I'd say: ‘Here's what scientists have found about creeks. Where does it agree with your counts, where doesn't it, and what does it add that your cups couldn't show?’ Then I'd ask them to write one change or one reason for keeping their claim.”"
     recall: predict

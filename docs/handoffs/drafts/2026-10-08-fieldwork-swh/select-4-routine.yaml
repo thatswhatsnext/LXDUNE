@@ -8,15 +8,15 @@ summary: SWH and ADI are both argument-and-writing routines that sit inside a un
 level: select
 version: 1.0.0
 status: draft
-lastReviewed: 2026-10-07
+lastReviewed: 2026-10-08
 provenance:
   source: ai-generated
   authors: [Claude]
   reviewedBy: []
 context:
   stages: [stage4, stage5]
-  focusAreas: [Solutions and mixtures, Materials]
-  disciplines: [chemistry]
+  focusAreas: [Forces, Environmental sustainability]
+  disciplines: [physics, biology]
 requires:
   - path: swh
     level: explain
@@ -49,9 +49,9 @@ items:
     kind: Choose the model
     tests: select
     scenario:
-      who: Year 8 · Solutions and mixtures
+      who: Year 8 · Forces
       text: >-
-        Inside your unit, you're planning 4–5 lessons where students argue from evidence about a separation practical.
+        Inside your unit, you're planning 4–5 lessons where students argue from evidence about what slows a falling object.
         They're developing inquirers, many are EAL/D learners, and you'll assess a written reflection on how their
         thinking changed.
     profile:
@@ -93,7 +93,7 @@ items:
     kind: Choose the model
     tests: select
     scenario:
-      who: Year 10 · Materials
+      who: Year 10 · Environmental sustainability
       text: >-
         Inside your unit, you're planning 6–8 lessons where experienced inquirers plan their own investigations, analyse
         the data and argue in writing. You're confident running student-led critique.
@@ -134,7 +134,7 @@ items:
     kind: Move the dial
     tests: flip
     scenario:
-      who: Year 9 · Materials
+      who: Year 9 · Environmental sustainability
       text: 4–5 lessons inside a unit, where experienced inquirers argue from evidence.
     profile:
       purpose: [argue]

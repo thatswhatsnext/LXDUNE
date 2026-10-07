@@ -15,7 +15,7 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Examples across published guides | 58 (29 positive, 29 negative) |
 | Worked sequences | 20 |
 | Focus areas with a ready plan / examples only / empty | 16 / 0 / 0 of 16 |
-| Game lessons at /play/ (published / draft or in review) | 16 / 6 |
+| Game lessons at /play/ (published / draft or in review) | 16 / 0 |
 | **Next action-plan item number** | **58** |
 
 ## Published guides
@@ -52,15 +52,9 @@ versions the same way as guides.
 | Review, then revise | `adi-3-review` | `adi` | 3 | explain | 1.0.0 | published | 2026-10-05 | 11 |
 | Build it: ADI | `adi-4-build` | `adi` | 4 | design | 1.0.0 | published | 2026-10-05 | 5 |
 | Argument Day | `adi-5-argument-day` | `adi` | 5 | design | 1.0.0 | published | 2026-10-05 | 4 |
-| Get it all back | `swh-1-separation` | `swh` | 1 | recognise | 1.0.0 | draft | 2026-10-07 | 11 |
-| A claim worth arguing | `swh-2-bottles` | `swh` | 2 | explain | 1.0.0 | draft | 2026-10-07 | 11 |
-| Not the answer key | `swh-3-negotiate` | `swh` | 3 | explain | 1.0.0 | draft | 2026-10-07 | 10 |
-| Build it: SWH | `swh-4-build` | `swh` | 4 | design | 1.0.0 | draft | 2026-10-07 | 5 |
-| Negotiation Day | `swh-5-negotiation-day` | `swh` | 5 | design | 1.0.0 | draft | 2026-10-07 | 4 |
 | Which model, and why? | `select-1-which` | `select` | 1 | select | 1.0.0 | published | 2026-10-03 | 8 |
 | When the dial moves | `select-2-dial` | `select` | 2 | select | 1.0.0 | published | 2026-10-03 | 7 |
 | Argue it out | `select-3-argue` | `select` | 3 | select | 1.0.2 | published | 2026-10-05 | 7 |
-| Which routine? | `select-4-routine` | `select` | 4 | select | 1.0.0 | draft | 2026-10-07 | 7 |
 
 ## Models without a guide
 

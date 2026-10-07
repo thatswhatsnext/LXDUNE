@@ -1,26 +1,25 @@
-# SWH path, lesson 1. Built on the SWH guide's worked sequence swh-seq-s4-separation. Draft for Steve's review.
+# SWH path, lesson 1. Built on the SWH guide's worked sequence swh-seq-s4-spinners. Draft for Steve's review.
 schemaVersion: 1
-id: swh-1-separation
+id: swh-1-spinners
 path: swh
 order: 1
-title: Get it all back
-summary: A murky mixture, a teacher who knows exactly what went in, and seven questions in place of a lab report. Learn what each SWH phase has to do.
+title: Slow it down
+summary: A paper spinner, a stopwatch and seven questions in place of a lab report. Learn what each SWH phase has to do.
 level: recognise
 version: 1.0.0
 status: draft
-lastReviewed: 2026-10-07
+lastReviewed: 2026-10-08
 provenance:
   source: ai-generated
   authors: [Claude]
   reviewedBy: []
 context:
   stages: [stage4]
-  focusAreas: [Solutions and mixtures]
-  disciplines: [chemistry]
-outcomes: [SC4-SOL-01]
+  focusAreas: [Forces]
+  disciplines: [physics]
+outcomes: [SC4-FOR-01]
 builtOn:
-  sequenceIds: [swh-seq-s4-separation]
-  exampleIds: [swh-beginning-ideas-pos-dissolving, swh-beginning-ideas-neg-dissolving-copied]
+  sequenceIds: [swh-seq-s4-spinners]
   lookForIds: [swh-begin-own-question, swh-begin-kept, swh-tests-follows-question, swh-obs-separate, swh-claim-arguable, swh-reading-peers-first, swh-reflect-has-original]
   misapplicationIds: [mis-swh-supplied-question, mis-swh-lost-beginnings]
 guideSection: sequences
@@ -30,22 +29,21 @@ items:
     at: beginning-ideas
     processing: Retrieval
     kind: Predict
-    title: "A Year 7 class gets a beaker of murky water. Sand, salt and iron filings went in, and the teacher weighed every one. The salt can no longer be seen."
-    q: Can the class get the salt back?
+    title: "A Year 7 teacher drops two things from the same height: a paper spinner, and a crumpled ball made from an identical sheet of paper. Same paper, same mass."
+    q: What happens?
     options:
-      - text: No. It has dissolved, so it's gone
-      - text: Yes, by filtering the water
-      - text: Yes, by evaporating the water once the other solids are out
-      - text: Only if they can get the water back too
-    answer: 2
+      - text: They land together, because they weigh the same
+      - text: The ball lands first, because the air pushes back harder on the spinner
+      - text: The spinner lands first, because spinning speeds it up
+      - text: The ball lands first, because crumpling makes it heavier
+    answer: 1
     reveal: >-
-      Dissolved salt is still there, spread through the water as particles too small to see or to catch in filter
-      paper. Evaporate the water and the salt is left behind. Most groups get back a little less than went in, or
-      a little more if the sand is still damp, and that gap is what they'll argue about.
+      The ball hits the floor well before the spinner. Same mass, so the difference has to come from the air,
+      which pushes back on the spinner's wings much harder than on the small ball. Classes are usually surprised,
+      and that surprise is where students' own questions come from.
     why: >-
-      “Dissolved means gone” and “filtering takes out everything that isn't water” are two of this sequence's
-      target conceptions. SWH asks students to write ideas like these down first and keep them, so they can see
-      later what changed their minds.
+      “Air is nothing, so it can't push on anything” is one of this sequence's target conceptions. SWH asks
+      students to write ideas like this down first and keep them, so they can see later what changed their minds.
 
   - id: concept
     type: concept
@@ -59,23 +57,23 @@ items:
       test it against others.
     rows:
       - phaseId: beginning-ideas
-        does: "What are my questions? Each student writes their own, from a shared mixture."
+        does: "What are my questions? Each student writes their own, after trying a spinner."
         move: "Teacher move: conference questions for testability, and keep them."
       - phaseId: tests
-        does: "What did I do? Groups plan a method that answers their question."
+        does: "What did I do? Groups plan a test of the change their question named."
         move: "Teacher move: check plans for safety and feasibility, not correctness."
       - phaseId: observations
-        does: "What did I see? What happened, recorded apart from what it means."
-        move: "Teacher move: ask for measured masses and the losses."
+        does: "What did I see? Every time, and what happened on each drop."
+        move: "Teacher move: ask for repeats and the odd drops."
       - phaseId: claims
         does: "What can I claim? An individual claim someone could disagree with."
         move: "Teacher move: read each claim for whether it can be argued."
       - phaseId: evidence
-        does: "How do I know? Why does this data support the claim?"
+        does: "How do I know? Why do these times support the claim?"
         move: "Teacher move: spend your time here, one student at a time."
       - phaseId: reading
-        does: "How do my ideas compare? Peers first, then the masses and a text."
-        move: "Teacher move: release the true masses only after groups compare."
+        does: "How do my ideas compare? Peers first, then a text on air resistance."
+        move: "Teacher move: release the reading only after groups compare."
       - phaseId: reflection
         does: "How have my ideas changed? Beginning questions handed back."
         move: "Teacher move: ask about their thinking, not the topic."
@@ -90,16 +88,16 @@ items:
     vignette:
       who: Year 7 · Lesson 1
       text: >-
-        After ten minutes stirring and poking at the mixture, Sam writes: “Does the salt stay in the water when the
-        sand settles, and could a magnet pull the salt out with the iron?” The teacher asks how Sam could find out,
-        and Sam adds: “Weigh what's left after drying.”
+        After trying her spinner a few times, Mei writes: “Would longer wings make it spin faster and fall slower,
+        because they catch more air?” The teacher asks how she'd know it was slower, and Mei adds: “Time lots of
+        drops.”
     answer: swh-begin-own-question
     distractors: [swh-begin-kept, swh-tests-follows-question, swh-claim-individual]
     strong: true
     hint: Whose question is it, and where did it come from?
     why: >-
-      The question is Sam's, from handling the mixture, and the short conference made it investigable without
-      replacing it. The magnet idea is wrong, and that's fine: it's Sam's to test.
+      The question is Mei's, from her own spinner, and the short conference made it testable without replacing it.
+      Her reason, that wings “catch more air”, is a beginning idea worth keeping for the last lesson.
 
   - id: spot-tests
     type: spot
@@ -110,16 +108,16 @@ items:
     vignette:
       who: Year 7 · Lesson 2
       text: >-
-        One group's plan reads: magnet first (iron is magnetic), then filter (sand doesn't dissolve), then evaporate
-        (salt stays behind). The teacher asks what would happen if they evaporated first, and they change nothing
-        else.
+        Mei's group plans spinners with 6, 8, 10 and 12 cm wings, the same paper and the same paperclip, dropped from
+        the top of the stairwell five times each. The teacher asks where they'll stand to drop them safely, and
+        leaves the rest of the plan alone.
     q: Which SWH phase is this?
     answer: tests
     among: [beginning-ideas, tests, observations]
     fb:
-      beginning-ideas: The questions are already written. This group is deciding how to answer them.
-      tests: Yes. The method follows from their question, each step names its property, and the teacher checks the plan without redesigning it.
-      observations: Nothing has been run yet. This is the plan.
+      beginning-ideas: The question was written in lesson 1. Now the group is deciding how to answer it.
+      tests: Yes. The method follows from their own question, and the teacher checks it for safety and feasibility without redesigning it.
+      observations: Nothing has been dropped yet. This is the plan.
     refs:
       lookForIds: [swh-tests-follows-question]
 
@@ -130,18 +128,18 @@ items:
     kind: Match the look-for
     tests: lookfor
     vignette:
-      who: Year 7 · Lessons 3–4
+      who: Year 7 · Lesson 3
       text: >-
-        A results sheet has one column, headed “What happened”. It reads: “The salt dissolved so it disappeared.
-        Filtering got all the dirt out. Our method worked.”
+        A results sheet has one column, headed “What happened”. It reads: “Longer wings were slower because they
+        catch more air. The 12 cm one was faulty.”
     answer: swh-obs-separate
     distractors: [swh-claim-arguable, swh-evidence-selected, swh-tests-follows-question]
     strong: false
     hint: Which parts did they see, and which parts did they decide?
     why: >-
-      “Disappeared” and “got all the dirt out” are interpretations, and two of them are this sequence's target
-      conceptions. Recorded as observations, they can't be questioned later. A second column for “What we think
-      it means” keeps them where they can be.
+      “Because they catch more air” and “faulty” are interpretations, not observations. The sheet has no times, and
+      no record of what the 12 cm spinner actually did. A second column for “What we think it means” keeps those
+      ideas where they can be questioned later.
 
   - id: spot-claim
     type: spot
@@ -150,17 +148,17 @@ items:
     kind: Spot the phase
     tests: claims
     vignette:
-      who: Year 7 · Lesson 5
+      who: Year 7 · Lesson 4
       text: >-
-        Working alone, Priya writes: “The filtering step lost the most salt, because salt solution soaked into the
-        filter paper and the wet sand.”
+        Working alone, Mei writes: “Longer wings made the spinner fall more slowly up to 10 cm. At 12 cm the wings
+        flopped, it stopped spinning, and it fell faster.”
     q: Which SWH phase is this?
     answer: claims
     among: [observations, claims, evidence]
     fb:
-      observations: This says what Priya thinks happened and why, not what she saw.
+      observations: This says what Mei thinks the results show, not each time she recorded.
       claims: Yes. An individual answer to her own question, in a form another student could disagree with.
-      evidence: The evidence comes next, when Priya picks the masses that support this and says why they do.
+      evidence: The evidence comes next, when Mei picks the times that support this and says why they do.
     refs:
       lookForIds: [swh-claim-arguable, swh-claim-individual]
 
@@ -171,16 +169,17 @@ items:
     kind: Spot the phase
     tests: reading
     vignette:
-      who: Year 7 · Lesson 6
+      who: Year 7 · Lesson 5
       text: >-
-        Two groups compare claims and find they recovered very different masses of salt. Only after they have worked
-        out why does the teacher put up the masses that actually went in, with a short reading on desalination.
+        Mei's group, who changed wing length, pairs with a group that added paperclips. They work out how both
+        claims can be true. Only then does the teacher hand out a short reading on air resistance and on winged
+        Banksia seeds.
     q: Which SWH phase is this?
     answer: reading
     among: [evidence, reading, reflection]
     fb:
       evidence: Each student's evidence is already written. Now it's being set against everyone else's.
-      reading: Yes. Peers first, then the true masses and the text, so they're another voice in the argument rather than the answer.
+      reading: Yes. Peers first, then the text, so the text is another voice in the argument rather than the answer.
       reflection: That comes last, with the beginning questions handed back.
     refs:
       lookForIds: [swh-reading-peers-first]
@@ -194,16 +193,14 @@ items:
     vignette:
       who: A pre-service teacher's SWH · Lesson 1
       text: >-
-        The worksheet opens with a printed box: “Question: How can we separate sand, salt and iron filings?” Students
-        copy it into their books, then start on the method.
+        The worksheet opens with a printed box: “Question: Does wing length affect how long a spinner takes to
+        fall?” Students copy it into their books, then start on the method.
     answer: mis-swh-supplied-question
     distractors: [mis-swh-lost-beginnings, mis-swh-closed-practical, mis-swh-answer-key]
     hint: What does each student have to defend later?
     why: >-
-      Every student has the same question, so nobody has a claim of their own to defend, and the final reflection
-      has nothing personal to compare against.
-    refs:
-      exampleIds: [swh-beginning-ideas-neg-dissolving-copied]
+      Every student has the same question, so nobody has a claim of their own to defend, groups don't change
+      different things, and the final reflection has nothing personal to compare against.
 
   - id: dx-lost
     type: diagnose
@@ -212,9 +209,9 @@ items:
     kind: Diagnose the plan
     tests: misapplication
     vignette:
-      who: Another pre-service teacher's SWH · Lesson 6
+      who: Another pre-service teacher's SWH · Lesson 5
       text: >-
-        The lesson ends: “Write a paragraph on how your ideas about separating mixtures have changed.” Lesson 1's
+        The lesson ends: “Write a paragraph on how your ideas about falling objects have changed.” Lesson 1's
         question sheets were collected for marking a fortnight ago and haven't come back.
     answer: mis-swh-lost-beginnings
     distractors: [mis-swh-supplied-question, mis-swh-no-negotiation, mis-swh-evidence-recopied]
@@ -230,19 +227,19 @@ items:
     processing: Comprehension
     kind: Put it in order
     tests: sequence
-    title: Put the separation routine in SWH order.
+    title: Put the spinner routine in SWH order.
     steps:
-      - text: Each student writes what they'd need to find out to get each substance back
+      - text: Each student writes what they'd change to make a spinner fall slowly, and why
         phaseId: beginning-ideas
-      - text: Groups plan a separation, naming the property behind each step
+      - text: Groups plan a test of the change their questions named
         phaseId: tests
-      - text: Groups dry and weigh what they recover, noting losses
+      - text: Groups time each design five times, noting odd drops
         phaseId: observations
-      - text: Each student writes which step lost the most salt
+      - text: Each student writes how their change affected the fall
         phaseId: claims
-      - text: Students pick the masses that support their claim and explain the gap
+      - text: Students pick the times that support their claim and explain the odd ones
         phaseId: evidence
-      - text: Groups compare claims, then see the masses that went in
+      - text: Groups compare claims, then read about air resistance and winged seeds
         phaseId: reading
       - text: Students reread their first questions and write what changed
         phaseId: reflection
@@ -254,5 +251,5 @@ items:
     kind: Look back
     title: Keep the beginnings.
     q: Why does SWH keep each student's beginning questions until the last lesson, even the ones that turned out to be wrong?
-    model: "Example: “Because the last phase asks what changed. If I'd thought the salt was gone, seeing that in my own handwriting next to the mass I recovered is the learning. A wrong first idea is the most useful one to keep.”"
+    model: "Example: “Because the last phase asks what changed. If I'd thought air couldn't push on anything, seeing that in my own handwriting next to my spinner times is the learning. A wrong first idea is the most useful one to keep.”"
     recall: predict

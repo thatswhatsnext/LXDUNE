@@ -1,0 +1,97 @@
+  - id: swh-seq-s4-spinners
+    title: What makes a paper spinner fall slowly?
+    context: { stages: [stage4], focusAreas: [Forces], disciplines: [physics] }
+    contentOutcomes: [SC4-FOR-01]
+    bigQuestion: What makes a falling object slow down, and how would we know a design really is slower?
+    learningIntentions:
+      - Air pushes back on a falling object, and the faster it falls the harder the push
+      - A spinner falls at a steady speed once the push of the air balances its weight
+      - A claim that one design is slower is defended with repeated, measured times, not one drop
+    targetConceptions:
+      - Air is nothing, so it cannot push on a falling object
+      - Longer wings always make a spinner fall more slowly
+      - One drop is enough to tell which design is slower
+    predictPrompt: Before reading on, groups will change different things about their spinners and get results that seem to disagree. Why is that useful in lesson 5?
+    steps:
+      - lessons: "1"
+        phaseId: beginning-ideas
+        activity: |
+          The teacher drops a paper spinner and a crumpled ball made from the same sheet of paper from the same
+          height. Students make their own spinner from a template, try it, and each writes what they would need
+          to find out to make a spinner fall as slowly as possible, and why they think it would work. Questions
+          are conferenced briefly for testability and kept.
+        wsOutcomes: [SC4-WS-02]
+        formativeCheck: Each student's written question and reason, checked for investigability
+      - lessons: "2"
+        phaseId: tests
+        activity: |
+          Groups plan a test of the change their questions named: wing length, wing width, paper type, or
+          paperclips added to the base. Plans name what stays the same, the drop height, how the fall will be
+          timed, and how many drops each design gets. The teacher conferences each plan for safety and
+          feasibility without redesigning it.
+        wsOutcomes: [SC4-WS-03]
+        formativeCheck: Plan conference before drops begin
+        scaffoldSlots:
+          - field: formativeCheck
+            prompt: A group plans one drop of each design. What do you ask so they decide for themselves how many drops they need?
+      - lessons: "3"
+        phaseId: observations
+        activity: |
+          Groups drop and time each design several times, recording each time and what happened on that drop,
+          such as a spinner that did not start spinning or clipped a wall, separately from what they think it
+          means. Odd drops are written down, not quietly repeated.
+        wsOutcomes: [SC4-WS-01, SC4-WS-04, SC4-WS-05]
+        formativeCheck: Records checked for repeated times and separation from interpretation
+      - lessons: "4"
+        phaseId: claims
+        activity: |
+          Each student writes an individual claim answering their own beginning question, such as how wing
+          length changed the fall time over the lengths they tested, in a form another student could disagree
+          with.
+        wsOutcomes: [SC4-WS-06]
+        formativeCheck: Each claim read for whether it could be argued with
+      - lessons: "4"
+        phaseId: evidence
+        activity: |
+          Students select the times that support their claim, say why those times support it, and account for
+          anything that does not fit, such as a drop much faster than its repeats, or long wings that flopped
+          and stopped the spinner turning.
+        wsOutcomes: [SC4-WS-06, SC4-WS-08]
+        formativeCheck: The link between claim and data, read on every student's work
+      - lessons: "5"
+        phaseId: reading
+        activity: |
+          Groups that changed different things pair up and compare claims, working out how both can be right.
+          Only then does the teacher release a short reading on air resistance and on winged seeds, such as those
+          of Banksia and maple, that spin to slow their fall and travel further. Revisions are written, not just
+          discussed.
+        wsOutcomes: [SC4-WS-06, SC4-WS-08]
+        formativeCheck: Record of where each student agreed, disagreed and revised
+      - lessons: "5"
+        phaseId: reflection
+        activity: |
+          Beginning questions are handed back. Students write what they first thought would slow the spinner
+          and why, what changed their mind, and what they now think the air is doing.
+        wsOutcomes: [SC4-WS-08]
+        formativeCheck: Written comparison of beginning ideas and final claim
+    whyItWorks:
+      - Groups change different things, so their claims differ without conflicting, and lesson 5 has a real comparison to make
+      - Hand timing varies from drop to drop, so the evidence phase has to deal with repeats and odd results
+      - Very long wings can flop and stop the spinner turning, so the obvious claim that longer is always slower can be argued with
+      - Beginning questions are kept from lesson 1, so the reflection has something to compare against
+    watchFor: |
+      Groups that time one drop of each design and write a winner. Reaction time is a real fraction of a fall
+      from a couple of metres, so the plan conference is where repeats get decided, by the group. Lesson 4 is
+      where the teacher's time goes, asking one student at a time why their times support what they wrote.
+    safetyNotes: |
+      This guide does not carry safety advice and is not a substitute for your school's risk assessment.
+      What this sequence introduces, so you know what to assess: students dropping objects from a height,
+      which usually means standing on something or using a balcony or stairwell; paperclips; and scissors.
+      Take these to your head teacher or faculty safety contact and check them against your school's
+      practical procedures and current NSW guidance before you run anything.
+
+      One point specific to SWH. Students design the method from their own question, so where they drop from
+      is not fully known when you write the risk assessment. Agree the allowed drop points before lesson 2, and
+      make them part of the plan conference.
+    provenance: { source: ai-generated, authors: ["Claude"], reviewedBy: [] }
+

@@ -1,0 +1,234 @@
+# SWH path, lesson 2. Built on the SWH guide's worked sequence swh-seq-s5-duckweed. Draft for Steve's review.
+schemaVersion: 1
+id: swh-2-duckweed
+path: swh
+order: 2
+title: A claim worth arguing
+summary: Duckweed, run-off and a result that surprises the class. Claims someone could disagree with, evidence that says why, and where the teacher's time goes.
+level: explain
+version: 1.0.0
+status: draft
+lastReviewed: 2026-10-08
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage5]
+  focusAreas: [Environmental sustainability]
+  disciplines: [biology]
+outcomes: [SC5-ENV-01]
+builtOn:
+  sequenceIds: [swh-seq-s5-duckweed]
+  lookForIds: [swh-claim-arguable, swh-claim-individual, swh-evidence-justifies, swh-evidence-selected, swh-evidence-anomalies, swh-tests-follows-question]
+  misapplicationIds: [mis-swh-evidence-recopied, mis-swh-closed-practical]
+guideSection: sequences
+items:
+  - id: predict
+    type: predict
+    at: beginning-ideas
+    processing: Retrieval
+    kind: Predict
+    title: "Year 9 groups put duckweed in cups of pond water. Some cups get dilute garden fertiliser, some dishwashing detergent, some salt, and some nothing. Groups count fronds for two weeks."
+    q: How do the fertiliser cups compare with the plain-water cups?
+    options:
+      - text: Fewer fronds. Run-off is pollution, and pollution harms plants
+      - text: More fronds. Fertiliser feeds the duckweed
+      - text: About the same. The fertiliser is too dilute to matter
+      - text: All the duckweed dies
+    answer: 1
+    reveal: >-
+      Fertiliser adds the nutrients duckweed is short of, so it usually grows faster than in plain water. Some
+      groups conclude that fertiliser run-off is good for creeks. That claim is arguable, and lesson 6 is where
+      it meets what a fast-growing mat of plants does to the rest of a waterway.
+    why: >-
+      “A pollutant always makes living things grow less” is this sequence's first target conception. A result
+      that contradicts it gives the claims real work to do.
+
+  - id: claim
+    type: choice
+    at: claims
+    processing: Analysis
+    kind: Judge the claim
+    tests: claims
+    title: Four students' claims, each answering their own question. Which could another student most usefully disagree with?
+    options:
+      - text: "Pollution is bad for creeks."
+        fb: Hard to disagree with, and hard to test. Which substance, bad for what, and how would anyone know?
+      - text: "We counted fronds in twelve cups."
+        fb: That's a report of what happened. No one could disagree with it.
+      - text: "In our cups, fertiliser roughly doubled the fronds compared with plain water, so fertiliser run-off would make duckweed spread in a creek."
+        fb: Yes. It's tied to the student's data and makes a prediction about a creek. Another group can challenge both parts, and the reading in lesson 6 will.
+      - text: "Duckweed is a plant."
+        fb: True, but there's nothing to argue.
+    answer: 2
+    refs:
+      lookForIds: [swh-claim-arguable]
+
+  - id: lf-individual
+    type: lookfor
+    at: claims
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 9 · Lesson 5
+      text: >-
+        Groups shared the counting, but the teacher asks every student to write their own claim, without
+        conferring. Two members of the same group write different claims: one says fertiliser is good for the
+        duckweed, the other that it could choke the creek.
+    answer: swh-claim-individual
+    distractors: [swh-claim-arguable, swh-begin-own-question, swh-reading-peers-first]
+    strong: true
+    hint: Who wrote it?
+    why: >-
+      Shared data, individual claims. Two different claims from one group are the guide's sign that each student
+      is reasoning, not copying the group's conclusion.
+
+  - id: evidence
+    type: choice
+    at: evidence
+    processing: Analysis
+    kind: Judge the evidence
+    tests: evidence
+    title: Aisha claims detergent harmed the duckweed. Which Evidence section does the job?
+    options:
+      - text: Every count from every cup on every day, copied from her table
+        fb: That's the observations again. It never says why any of it supports her claim.
+      - text: "Detergent is a chemical, and chemicals are bad for plants."
+        fb: Her own counts have disappeared, and the reasoning is the target conception, not evidence.
+      - text: The final counts for her three detergent cups and three plain-water cups, with the yellowing she noted, the salt cups left out because they aren't her claim, and one detergent cup that grew well, explained by its label showing it had been diluted twice
+        fb: Yes. Data chosen for the claim, a reason for leaving some out, and the odd cup named and explained. That's what the guide's Evidence question asks for.
+      - text: "Our group agreed detergent was the worst."
+        fb: Agreement isn't evidence, and the claim should be Aisha's own.
+    answer: 2
+    refs:
+      lookForIds: [swh-evidence-justifies, swh-evidence-selected, swh-evidence-anomalies]
+
+  - id: dx-recopied
+    type: diagnose
+    at: evidence
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A pre-service teacher's SWH · Lesson 5
+      text: >-
+        The Evidence page is ruled up as a table with the same headings as the counting sheet. Students copy their
+        counts across neatly, including one cup that behaved oddly, and hand their books in early.
+    answer: mis-swh-evidence-recopied
+    distractors: [mis-swh-no-negotiation, mis-swh-closed-practical, mis-swh-supplied-question]
+    hint: What does the ruled-up page make easy, and what does it leave out?
+    why: >-
+      The page invites restating, so the reasoning step is skipped while the work looks complete. The guide's fix
+      is to ask what about this data makes the claim follow, and to require some data to be set aside with a
+      reason.
+
+  - id: lf-anomaly
+    type: lookfor
+    at: evidence
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 9 · Lesson 5
+      text: >-
+        Jordan argues that salt slowed the duckweed. One of his plain-water cups ended with far fewer fronds than its
+        repeats. Under Evidence he notes it was the cup nearest the window, that its water level had dropped, and
+        that he has left it out of his comparison for that reason.
+    answer: swh-evidence-anomalies
+    distractors: [swh-evidence-selected, swh-obs-separate, swh-claim-arguable]
+    strong: true
+    hint: What did Jordan do with the result that didn't fit?
+    why: >-
+      The odd cup is named, explained and set aside with a reason rather than quietly dropped. That's the work
+      the look-for exists for.
+
+  - id: move
+    type: choice
+    at: evidence
+    processing: Knowledge utilisation
+    kind: Teacher move
+    tests: evidence
+    vignette:
+      who: Lesson 5 · claims and evidence
+      text: The class is writing quietly. You have 40 minutes, a pile of marking and a prac to set up for tomorrow.
+    q: Where does your time go?
+    options:
+      - text: Set up tomorrow's prac while they write
+        fb: It's tempting, and the guide names it. The Evidence phase is where students most need you.
+      - text: Mark the counting sheets from the last fortnight
+        fb: Useful, but the observations are done. The reasoning is happening now.
+      - text: Move from student to student asking, “Why do these counts support what you wrote?”
+        fb: Yes. The guide says this lesson is where the teacher's time goes, even though it looks least like teaching. The claim-to-data link is what SWH exists to build.
+      - text: Check that every student has used every cup
+        fb: Using all the data isn't the goal. Choosing what matters and saying why is.
+    answer: 2
+    refs:
+      lookForIds: [swh-evidence-justifies]
+
+  - id: spot-tests
+    type: spot
+    at: tests
+    processing: Comprehension
+    kind: Spot the phase
+    tests: tests
+    vignette:
+      who: Year 9 · Lesson 2
+      text: >-
+        A group whose question was “Does a little detergent do as much harm as a lot?” plans three strengths of
+        detergent, three cups each, and three cups of plain water. The teacher asks how they'll dispose of the water
+        at the end, and leaves the rest of the plan alone.
+    q: Which SWH phase is this?
+    answer: tests
+    among: [beginning-ideas, tests, observations]
+    fb:
+      beginning-ideas: The question was written in lesson 1. Now the group is deciding how to answer it.
+      tests: Yes. The method follows from their own question, and the teacher checks it for safety and feasibility without redesigning it.
+      observations: Nothing has been counted yet. This is the plan.
+    refs:
+      lookForIds: [swh-tests-follows-question]
+
+  - id: dx-closed
+    type: diagnose
+    at: claims
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Another pre-service teacher's SWH · Year 9
+      text: >-
+        Students look at one duckweed plant under a hand lens, count its fronds and roots, and run it through the seven
+        SWH questions. Every claim reads “A duckweed plant has three fronds and one root each”, and the reading phase
+        has nothing to do.
+    answer: mis-swh-closed-practical
+    distractors: [mis-swh-evidence-recopied, mis-swh-answer-key, mis-swh-supplied-question]
+    why: >-
+      A task with one right answer leaves the claim, evidence and reading phases with no work. The guide's fix is a
+      practical where the claim depends on judgement, like deciding what run-off does to a creek.
+    refs:
+      lookForIds: [swh-claim-arguable]
+
+  - id: nest
+    type: nest
+    at: claims
+    processing: Knowledge utilisation
+    kind: Nest it
+    tests: nesting
+    model: swh
+    host: 5e
+    answer: explain
+    q: Your Year 9 sustainability unit runs as a 5E. In which 5E phase does the SWH writing do its work?
+    why: >-
+      SWH sits inside a unit model. Its claims, evidence and negotiation are how students explain what they found,
+      so it does its work in Explain.
+
+  - id: reflect
+    type: reflect
+    at: evidence
+    processing: Metacognition
+    kind: Look back
+    title: A surprising result.
+    q: Why is the fertiliser result, where duckweed grows faster, so useful for the claims and evidence phases?
+    model: "Example: “It contradicts what most students expect, so their claims about ‘harm’ have to be precise: harm to what? Two students can read the same counts differently, and that gives the evidence and the reading something to argue about.”"
+    recall: predict

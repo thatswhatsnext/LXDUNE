@@ -1,0 +1,274 @@
+# SWH path, lesson 5. Design level: Negotiation Day, a branching simulation of lessons 5–6 of the SWH guide's duckweed sequence (swh-seq-s5-duckweed). Draft for Steve's review.
+schemaVersion: 1
+id: swh-5-negotiation-day
+path: swh
+order: 5
+title: Negotiation Day
+summary: Run the claims, the evidence and the negotiation with a simulated Year 9 class. Every move decides whether claims meet each other before they meet the textbook.
+level: design
+version: 1.0.0
+status: draft
+lastReviewed: 2026-10-08
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage5]
+  focusAreas: [Environmental sustainability]
+  disciplines: [biology]
+outcomes: [SC5-ENV-01]
+builtOn:
+  sequenceIds: [swh-seq-s5-duckweed]
+  lookForIds: [swh-claim-arguable, swh-evidence-justifies, swh-reading-peers-first, swh-reading-not-answer-key, swh-reflect-has-original]
+  misapplicationIds: [mis-swh-answer-key, mis-swh-evidence-recopied, mis-swh-lost-beginnings]
+guideSection: sequences
+items:
+  - id: briefing
+    type: concept
+    at: claims
+    processing: Retrieval
+    kind: How Negotiation Day works
+    title: Two lessons, five decisions
+    lead: >-
+      You're on placement with a Year 9 class, near the end of the SWH routine on duckweed and run-off from the
+      guide. Groups have finished a fortnight of counting. At five moments you choose what to do next. Students voice
+      the ideas the guide says to expect, and your choices decide which ideas surface, which stay hidden and which
+      get challenged.
+    rows:
+      - phaseId: claims
+        does: "Lesson 5: each student writes a claim."
+        move: "Ask what it's a claim about."
+      - phaseId: evidence
+        does: "Lesson 5: each student writes why their counts support it."
+        move: "Spend your time on the claim-to-data link."
+      - phaseId: reading
+        does: "Lesson 6: groups compare, then the reading arrives."
+        move: "Peers first. The text is another voice."
+      - phaseId: reflection
+        does: "Lesson 6: beginning ideas handed back."
+        move: "Ask about their thinking."
+
+  - id: sim
+    type: sim
+    at: claims
+    processing: Knowledge utilisation
+    kind: Negotiation Day
+    tests: sim
+    cast:
+      who: Year 9 · Environmental sustainability
+      text: 24 students in six groups. Each student wrote their own questions in lesson 1, so groups tested different substances and strengths.
+    sequenceId: swh-seq-s5-duckweed
+    start: claim
+    nodes:
+      - id: claim
+        phase: claims
+        when: Lesson 5 · claims
+        situation: >-
+          Students are writing their claims alone. Ravi's fertiliser cups grew far more fronds than plain water. His
+          claim reads “Fertiliser run-off is good for creeks.”
+        said:
+          who: Ravi
+          text: “It can't be pollution if it makes things grow.”
+          conception: 0
+        choices:
+          - text: Ask, “Good for what? Your lesson 1 question was about the whole creek. What does your claim say about that?”
+            next: evidence
+            good: true
+            lookFor: swh-claim-arguable
+            surface: [0]
+            debrief: Ravi narrows it to “fertiliser made the duckweed grow faster, so it would spread in a creek”. His idea that only harm counts as pollution is now on the page, where another group can push back.
+          - text: Tell him fertiliser causes algal blooms, so he should change his claim
+            next: evidence-thin
+            good: false
+            lookFor: swh-claim-arguable
+            hide: [0]
+            debrief: The claim changes, but the reason is yours. Ravi still thinks growth can't be harm, and he hasn't had to say what his claim is about.
+
+      - id: evidence
+        phase: evidence
+        when: Lesson 5 · evidence
+        situation: Under Evidence, Ravi compares one fertiliser cup with one plain-water cup, though his group set up three of each.
+        said:
+          who: Ravi
+          text: “One cup of each is enough. The difference was obvious.”
+          conception: 2
+        choices:
+          - text: Sit with him and ask, “What do your other cups show? And why does the comparison count?”
+            next: pair
+            good: true
+            lookFor: swh-evidence-justifies
+            challenge: [2]
+            debrief: Ravi adds the repeats and finds one fertiliser cup barely grew. He notes that it was the one by the window, and that its water level had dropped. His claim now rests on two cups out of three, with a reason for the third. That's the reasoning SWH exists to build.
+          - text: Let him finish. The difference is clear, and you need to set up for tomorrow
+            next: pair-flat
+            good: false
+            lookFor: swh-evidence-justifies
+            debrief: The page looks finished, but “one cup is enough” goes unchallenged. The guide warns that this lesson looks least like teaching and is the one that needs you most.
+
+      - id: evidence-thin
+        phase: evidence
+        when: Lesson 5 · evidence
+        situation: Ravi's claim now carries your wording about blooms. Under Evidence he copies his counting table, every cup and every day.
+        choices:
+          - text: Ask him to circle the counts that make his claim follow and write one sentence on why
+            next: pair
+            good: true
+            lookFor: swh-evidence-justifies
+            surface: [0]
+            debrief: Circling the fertiliser counts, Ravi writes “the duckweed loved it”, then stops. His counts don't show anything about blooms. His own idea that growth is good comes back into the open, a step later than it could have.
+          - text: Tick the page and move to the next student
+            next: pair-flat
+            good: false
+            lookFor: swh-evidence-justifies
+            debrief: A complete page with no reasoning on it. Lesson 6 starts with claims nobody has had to defend.
+
+      - id: pair
+        phase: reading
+        when: Lesson 6 · comparing claims
+        situation: Ravi's group pairs with Aisha's, who tested salt. Their fronds yellowed, but the water stayed clear.
+        said:
+          who: Aisha
+          text: “Our water looked clean, so the salt probably didn't do much. The duckweed just got old.”
+          conception: 1
+        choices:
+          - text: “Before the reading, write where your counts agree, where they disagree, and why.”
+            next: reading
+            good: true
+            lookFor: swh-reading-peers-first
+            surface: [1]
+            challenge: [1, 0]
+            debrief: Comparing cups, Aisha's group sees that their salt cups fell behind the plain-water cups, which aged just as long. Something invisible did have an effect. Ravi's group sees that growth and harm are different questions.
+          - text: Hand out the reading so they can see who's right
+            next: reflect-flat
+            good: false
+            lookFor: swh-reading-peers-first
+            hide: [1]
+            debrief: The reading arrives as a verdict. Aisha never checks her clear water against her own counts, and the groups never discover how their claims connect.
+
+      - id: pair-flat
+        phase: reading
+        when: Lesson 6 · comparing claims
+        situation: Groups swap books with the bench next door. Most claims say a substance is “good” or “bad”, and the talk is brief.
+        said:
+          who: Aisha
+          text: “Our water looked clean, so the salt probably didn't do much. The duckweed just got old.”
+          conception: 1
+        choices:
+          - text: Pair the fertiliser and salt groups and ask each what the other's cups show that theirs can't
+            next: reading
+            good: true
+            lookFor: swh-reading-peers-first
+            surface: [1]
+            challenge: [1]
+            debrief: Setting the two groups side by side recovers some of the comparison. Aisha's group checks their counts against the plain-water cups, though you're doing more of the work than lesson 5 needed.
+          - text: Hand out the reading so they can see who's right
+            next: reflect-flat
+            good: false
+            lookFor: swh-reading-peers-first
+            hide: [1]
+            debrief: The text decides, and claims that were never defended are crossed out or kept on the book's say-so.
+
+      - id: reading
+        phase: reading
+        when: Lesson 6 · the reading
+        situation: Now you release the reading on nutrient run-off, algal blooms and salinity in Australian waterways.
+        said:
+          who: Ravi
+          text: “So fertiliser's bad after all. My results were wrong. I'll cross them out.”
+          conception: 0
+        choices:
+          - text: Ask what his counts show and what the reading adds that his cups couldn't, then have him rewrite his claim about the creek
+            next: reflect
+            good: true
+            lookFor: swh-reading-not-answer-key
+            challenge: [0]
+            debrief: Ravi keeps his counts, since the duckweed really did grow faster. He writes that in a creek, that growth can block light and then rot, using up oxygen. His claim about impact changes for a reason, and the reading has become another voice rather than a verdict.
+          - text: Tell him to copy the reading's statement in place of his claim
+            next: reflect-flat
+            good: false
+            lookFor: swh-reading-not-answer-key
+            hide: [0]
+            debrief: His counts were real, and now they're crossed out. The class learns that counting was the slow way to reach what the book already held.
+
+      - id: reflect
+        phase: reflection
+        when: Lesson 6 · last fifteen minutes
+        situation: Claims have been revised in writing. Most of the class now argue about impact on the creek, not just on the duckweed.
+        choices:
+          - text: Hand back the lesson 1 question sheets and ask what they first thought pollution did, what changed their mind, and what they think now
+            next: end
+            good: true
+            lookFor: swh-reflect-has-original
+            challenge: [0]
+            debrief: Ravi reads his lesson 1 page, “does pollution kill water plants?”, and writes that he now thinks something can help a plant and still harm a creek. That sentence is the learning, and he can see it in his own handwriting.
+          - text: Ask students to summarise what they've learned about water pollution
+            next: end
+            good: false
+            lookFor: swh-reflect-has-original
+            debrief: The summaries are accurate, but they're about creeks, not about how anyone's thinking changed. The beginning ideas never came back.
+
+      - id: reflect-flat
+        phase: reflection
+        when: Lesson 6 · last fifteen minutes
+        situation: Most books now hold the reading's statements, copied neatly. A few claims were crossed out.
+        choices:
+          - text: Hand back the lesson 1 sheets and ask what moved their thinking, and whether it was their counts or the reading
+            next: end
+            good: true
+            lookFor: swh-reflect-has-original
+            surface: [1]
+            debrief: Several students write that the reading changed their minds, not their cups. It's honest, and it gives you something to plan around next time, but the negotiation didn't happen.
+          - text: Ask students to summarise what they've learned about water pollution
+            next: end
+            good: false
+            lookFor: swh-reflect-has-original
+            debrief: The summaries match the reading. Nobody can tell what they thought before or why it changed.
+
+    endings:
+      - minGood: 4
+        title: Claims met each other first
+        text: >-
+          Claims were tied to the creek, evidence said why, and groups worked out their disagreement before the reading
+          arrived as another voice. That's SWH working as the guide describes: the reading phase is where the learning
+          is.
+      - minGood: 2
+        title: Some claims were tested, some were settled for them
+        text: >-
+          Parts of the routine did their job. Look at the decisions where you supplied the wording or let the reading
+          decide. Those are the moments to plan a sentence for.
+      - minGood: 0
+        title: A practical with a textbook ending
+        text: >-
+          The class counted for a fortnight and ended up agreeing with the reading, but no claim was defended against
+          another student. The guide's look-fors for Evidence and Reading are the place to start.
+
+  - id: takeaway
+    type: choice
+    at: reading
+    processing: Analysis
+    kind: What made the difference?
+    tests: sim
+    title: In every run, one kind of move did the most damage.
+    q: Which?
+    options:
+      - text: Letting two groups reach claims that pointed opposite ways
+        fb: That's the point. Claims that seem to clash, from counts that don't, are what the reading phase is built for.
+      - text: Spending lesson 5 with individual students
+        fb: That was a strong move. The guide says the claim-to-data link is where your time belongs.
+      - text: Handing back the lesson 1 sheets
+        fb: That was a strong move. Without them, students can't see their own change.
+      - text: Letting the reading or your own wording settle a claim before students had argued it out
+        fb: Yes. Every weak path started with an authority settling something students should have defended. Each one hid an idea the routine needed to challenge.
+    answer: 3
+    refs:
+      misapplicationIds: [mis-swh-answer-key]
+
+  - id: reflect
+    type: reflect
+    at: reflection
+    processing: Metacognition
+    kind: Look back
+    title: Your Negotiation Day.
+    q: Which decision would be hardest for you on a real placement, and what will you say in that moment?
+    model: "Example: “Not telling Ravi about algal blooms when he writes that fertiliser is good. I'll have a question ready: ‘Your duckweed grew. What would a creek full of it look like in a month?’”"

@@ -1,25 +1,25 @@
-# SWH path, lesson 4. Design level: build an SWH routine from cards and read the feature report. Built on the SWH guide's worked sequence swh-seq-s5-bottles. Draft for Steve's review.
+# SWH path, lesson 4. Design level: build an SWH routine from cards and read the feature report. Built on the SWH guide's worked sequence swh-seq-s5-duckweed. Draft for Steve's review.
 schemaVersion: 1
 id: swh-4-build
 path: swh
 order: 4
 title: "Build it: SWH"
-summary: Build a six-lesson SWH routine for a Year 10 materials unit from activity cards, then read what the guide's look-fors say about it.
+summary: Build a six-lesson SWH routine for a Year 9 sustainability unit from activity cards, then read what the guide's look-fors say about it.
 level: design
 version: 1.0.0
 status: draft
-lastReviewed: 2026-10-07
+lastReviewed: 2026-10-08
 provenance:
   source: ai-generated
   authors: [Claude]
   reviewedBy: []
 context:
   stages: [stage5]
-  focusAreas: [Materials]
-  disciplines: [chemistry]
-outcomes: [SC5-MAT-01]
+  focusAreas: [Environmental sustainability]
+  disciplines: [biology]
+outcomes: [SC5-ENV-01]
 builtOn:
-  sequenceIds: [swh-seq-s5-bottles]
+  sequenceIds: [swh-seq-s5-duckweed]
   lookForIds: [swh-begin-own-question, swh-begin-kept, swh-tests-follows-question, swh-obs-separate, swh-claim-arguable, swh-claim-individual, swh-evidence-justifies, swh-evidence-selected, swh-evidence-anomalies, swh-reading-peers-first, swh-reading-not-answer-key, swh-reading-something-changes, swh-reflect-has-original, swh-reflect-about-thinking]
   misapplicationIds: [mis-swh-supplied-question, mis-swh-evidence-recopied, mis-swh-answer-key, mis-swh-no-negotiation, mis-swh-lost-beginnings, mis-swh-closed-practical]
 guideSection: checklist
@@ -30,16 +30,16 @@ items:
     processing: Analysis
     kind: Choose the practical
     tests: design
-    title: "Your routine: Year 10, six lessons inside a materials unit. Many students think there's one best material, whatever it's for."
+    title: "Your routine: Year 9, six lessons inside a sustainability unit. Many students think pollution always makes living things grow less."
     q: Which practical gives SWH the most to work with?
     options:
-      - text: Measuring the density of a steel offcut by displacement
+      - text: Counting the fronds on one duckweed plant under a hand lens
         fb: One right answer, so claims can't differ and the reading phase has nothing to do. The guide calls this using SWH on a closed practical.
-      - text: Following a printed method to compare how fast two bottles cool
-        fb: The method and the comparison are set, so students' questions have nowhere to go.
-      - text: Four reusable bottles (steel, aluminium, glass, plastic) and the question of which one the school should choose
-        fb: Yes. Which property matters depends on the purpose, so students' questions and claims can differ, and the reading phase has a real disagreement to work on.
-      - text: Researching bottle materials online and writing a summary
+      - text: Following a printed method to grow duckweed in fertiliser and in plain water
+        fb: The method and the comparison are set, so students' own questions have nowhere to go.
+      - text: Duckweed in cups with run-off substances students choose from an approved list, and the question of what run-off does to a creek
+        fb: Yes. Students' questions can differ, fertiliser's result surprises them, and “impact” has to be argued about the whole waterway. The reading phase has a real disagreement to work on.
+      - text: Researching water pollution online and writing a summary
         fb: There's no practical, so there are no observations of their own to make a claim from.
     answer: 2
     refs:
@@ -70,7 +70,7 @@ items:
         move: "Watch for: one claim per group."
       - phaseId: evidence
         does: Chosen data, and why it supports the claim.
-        move: "Watch for: the results table again."
+        move: "Watch for: the counting table again."
       - phaseId: reading
         does: Peers first, then the text as another voice.
         move: "Watch for: the text as the answer key."
@@ -86,31 +86,31 @@ items:
     tests: design
     title: Build your SWH routine.
     brief:
-      who: Year 10 · Materials · six lessons inside the unit
-      text: "The practical: four reusable bottles, and the question of which one the school should choose."
+      who: Year 9 · Environmental sustainability · six lessons inside the unit
+      text: "The practical: duckweed in cups, run-off substances from an approved list, and the question of what run-off does to a creek."
     q: Place one activity in each phase. Not every card belongs in a strong routine.
     cards:
       - id: bi-own
-        text: Ten minutes handling the four bottles, then each student writes what they'd need to find out before recommending one. Questions are conferenced for testability and kept
+        text: Students look at duckweed and at photos of a local creek after rain, then each writes what they'd want to find out about what washes into it. Questions are conferenced for testability and kept
         does: beginning-ideas
         features: [swh-begin-own-question]
       - id: bi-board
-        text: "Write the question on the board, “Which bottle keeps water coldest?”, and students copy it into their books"
+        text: "Write the question on the board, “Does fertiliser affect duckweed growth?”, and students copy it into their books"
         does: beginning-ideas
         flaws: [mis-swh-supplied-question]
       - id: t-sheet
-        text: Every group follows the same method sheet for a cooling test
+        text: Every group follows the same method sheet, with one cup of fertiliser and one of plain water
         does: tests
       - id: t-own
-        text: Groups design tests for the properties their questions named; the teacher checks each plan for safety and feasibility without redesigning it
+        text: Groups design tests of the substances and strengths their questions named, with repeats and plain-water cups; the teacher checks each plan for safety, disposal and feasibility without redesigning it
         does: tests
         features: [swh-tests-follows-question]
       - id: o-columns
-        text: Groups run their tests with repeats, recording what happened in one column and what they think it means in another. Odd trials are written down
+        text: Groups count fronds at the start of each lesson for two weeks, recording counts and condition in one column and what they think it means in another. Odd cups are written down
         does: observations
         features: [swh-obs-separate]
       - id: o-paragraph
-        text: Groups write up what happened as a paragraph, explaining each result as they go
+        text: At the end of two weeks, groups write a paragraph on what happened in each cup, explaining as they go
         does: observations
       - id: c-group
         text: Each group agrees one claim, and every member copies it into their book
@@ -120,27 +120,27 @@ items:
         does: claims
         features: [swh-claim-arguable, swh-claim-individual]
       - id: e-why
-        text: Students choose the data that support their claim, say why it supports it, and deal with anything that doesn't fit. The teacher spends the lesson on this, student by student
+        text: Students choose the counts that support their claim, say why they support it, and deal with any cup that doesn't fit. The teacher spends the lesson on this, student by student
         does: evidence
         features: [swh-evidence-justifies, swh-evidence-selected, swh-evidence-anomalies]
       - id: e-table
-        text: Students copy their results table under the Evidence heading
+        text: Students copy their counting table under the Evidence heading
         does: evidence
         flaws: [mis-swh-evidence-recopied]
       - id: r-key
-        text: The textbook page goes on the board, and students check their claims against it
+        text: The textbook page on algal blooms goes on the board, and students check their claims against it
         does: reading
         flaws: [mis-swh-answer-key]
       - id: r-peers
-        text: Groups pair up and work out why their claims differ. Then the teacher releases published density, conductivity, cost and recyclability figures, and revisions are written
+        text: Groups pair up and work out why their claims differ. Then the teacher releases a reading on nutrient run-off, blooms and salinity, and revisions are written
         does: reading
         features: [swh-reading-peers-first, swh-reading-not-answer-key, swh-reading-something-changes]
       - id: rf-summary
-        text: Students write a summary of what they learned about bottle materials
+        text: Students write a summary of what they learned about water pollution
         does: reflection
         flaws: [mis-swh-lost-beginnings]
       - id: rf-back
-        text: The lesson 1 question sheets are handed back. Students write what they first thought a good bottle was, what moved them, and what they hold now
+        text: The lesson 1 question sheets are handed back. Students write what they first thought pollution did, what changed their mind, and what they think now
         does: reflection
         features: [swh-reflect-has-original, swh-begin-kept, swh-reflect-about-thinking]
     report: [swh-begin-own-question, swh-begin-kept, swh-tests-follows-question, swh-obs-separate, swh-claim-arguable, swh-claim-individual, swh-evidence-justifies, swh-evidence-selected, swh-evidence-anomalies, swh-reading-peers-first, swh-reading-not-answer-key, swh-reading-something-changes, swh-reflect-has-original, swh-reflect-about-thinking]
@@ -165,10 +165,10 @@ items:
       text: A school event takes one of your six lessons. The routine has to fit in five.
     q: What do you cut?
     options:
-      - text: Drop the lesson where groups compare claims and read the figures
+      - text: Drop the lesson where groups compare claims and read about run-off
         fb: That's the cut the guide warns about most. Claims never meet anyone who might disagree, so they can stay vague at no cost.
-      - text: Run the practical in one lesson instead of two, with fewer repeats, and keep every phase
-        fb: Yes. Fewer repeats make narrower claims, which is itself something to discuss. The reading phase is the one that gets cut, and the guide says to protect it.
+      - text: Fold the end-of-counting lesson into the start of lesson 5, and keep every phase
+        fb: Yes. The counting already happens in five-minute slots across the fortnight, so organising the data can share a lesson. The reading phase is the one that gets cut, and the guide says to protect it.
       - text: Supply the question and the method, so lessons 1 and 2 become one
         fb: You save a lesson but lose the students' own questions, so there's nothing of theirs to defend and nothing to reflect against.
       - text: Skip the reflection and collect the books
