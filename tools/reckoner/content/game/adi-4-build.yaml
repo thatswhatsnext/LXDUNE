@@ -6,7 +6,7 @@ order: 4
 title: "Build it: ADI"
 summary: Build a 6–8 lesson ADI routine for a Year 10 waves unit from activity cards, then read what the guide's look-fors say about it.
 level: design
-version: 1.0.0
+version: 1.0.1
 status: published
 lastReviewed: 2026-10-05
 provenance:
@@ -102,22 +102,22 @@ items:
         text: Ask “Does foam reduce sound?” and demonstrate the set-up with foam
         does: task-question
         flaws: [mis-adi-closed-question]
-      - id: dd-own
-        text: Groups choose their linings, tones and number of readings, then talk the plan through with the teacher for safety and feasibility
-        does: design-data
-        features: [adi-student-designed, adi-plan-checkpoint]
       - id: dd-sheet
         text: Every group follows one method sheet, testing foam, felt and cardboard at one tone, one reading each
         does: design-data
         flaws: [mis-adi-given-method]
-      - id: ta-board
-        text: Groups graph the reduction for each lining and tone, and build a whiteboard with a claim, the graph and a justification using wave ideas
-        does: tentative-argument
-        features: [adi-three-part, adi-justification]
+      - id: dd-own
+        text: Groups choose their linings, tones and number of readings, then talk the plan through with the teacher for safety and feasibility
+        does: design-data
+        features: [adi-student-designed, adi-plan-checkpoint]
       - id: ta-table
         text: Groups write their claim at the top of a whiteboard and copy their results table underneath
         does: tentative-argument
         flaws: [mis-adi-no-justification]
+      - id: ta-board
+        text: Groups graph the reduction for each lining and tone, and build a whiteboard with a claim, the graph and a justification using wave ideas
+        does: tentative-argument
+        features: [adi-three-part, adi-justification]
       - id: arg-robin
         text: Round robin with displayed critique stems, pairing groups that tested different tones; each group logs the questions it was asked and what it changed
         does: argumentation
@@ -130,14 +130,14 @@ items:
         text: The teacher consolidates amplitude, frequency, reflection, absorption and transmission from the class's results, and tackles “soft always wins” head on
         does: reflective-discussion
         features: [adi-concept-consolidated]
-      - id: rep-own
-        text: Each student writes their own report within a word limit, including a recommendation for a real classroom
-        does: report
-        features: [adi-individual-writing]
       - id: rep-group
         text: Each group writes one shared report, splitting the sections between members
         does: report
         flaws: [mis-adi-group-report]
+      - id: rep-own
+        text: Each student writes their own report within a word limit, including a recommendation for a real classroom
+        does: report
+        features: [adi-individual-writing]
       - id: pr-sampled
         text: Anonymised reports go to another group with a review guide; the teacher samples reviews and returns vague ones before authors see them
         does: peer-review
@@ -145,13 +145,13 @@ items:
       - id: pr-swap
         text: Students swap reports with the person beside them and tick a checklist
         does: peer-review
+      - id: rv-rubric
+        text: Authors hand in their final report, marked on a new rubric for presentation, spelling and a labelled graph
+        does: revision
       - id: rv-respond
         text: Authors respond to every review point and submit with the review attached, marked against the same three criteria as lesson 1
         does: revision
         features: [adi-revision-used, adi-final-standard]
-      - id: rv-rubric
-        text: Authors hand in their final report, marked on a new rubric for presentation, spelling and a labelled graph
-        does: revision
     report: [adi-question-open, adi-student-designed, adi-plan-checkpoint, adi-three-part, adi-justification, adi-critique-quality, adi-revision-record, adi-concept-consolidated, adi-individual-writing, adi-review-accountable, adi-revision-used, adi-final-standard]
     missing:
       tentative-argument: mis-adi-no-justification
