@@ -1,8 +1,8 @@
 # Framework Explorer — Product Roadmap
 
 **Product:** LXDUNE Framework Explorer — config-driven teaching-framework artefacts, authored as validated JSON, rendered by one shared module, pasted into Moodle as a live-served web artefact.
-**Last updated:** 2026-07-30
-**Delivery model (current):** repo-native live JS+JSON on GitHub Pages; a one-line `<script type="module">` shell pasted into a Moodle Page. No build, no server, no browser storage. See `frameworks/README.md`.
+**Last updated:** 2026-10-09
+**Delivery model (current):** repo-native live JS+JSON on GitHub Pages; a one-line `<script type="module">` shell pasted into a Moodle Page. No build, no server, no browser storage (one deliberate exception: the Metacognition Coach's progress, below). See `frameworks/README.md` and `games/README.md`.
 
 ---
 
@@ -13,6 +13,7 @@
 - 🗄️ **Metacognition — starter** — grid view (4 contexts × 9 habits = 36 cells). *Retired from the EDSE362 page 2026-10-01: superseded, the page is consolidated to one metacognition explorer (the full matrix).* Retained in the repo as a reference on-ramp: files unchanged, still validated and served. See its `CHANGELOG.md`.
 - ⏳ **Real-Moodle verification** — paste into a myLearn Page, confirm §7 theme interaction at desktop + mobile. *The last open item before the model is fully proven in situ.*
 - ⏳ **EDSE362 "Teaching frameworks" page** — HITS and the full Metacognition matrix on one page (the starter was retired from it 2026-10-01). Shells ready in `docs/EDSE362-framework-explorer-shells.html`.
+- ⏳ **Metacognition Coach** — *built 2026-10-09, renderer `coach@1.0.0`.* A practice game on the nine metacognition habits (9 habits × 7 steps), built on the explorer's habits and the curriculum vocabulary: `games/metacognition-coach/`, `moodle-blocks/metacognition-coach.js`, checked by `npm run validate`. Open: the myLearn sandbox check, and which EDSE362 page it goes on. **Storage exception:** it keeps progress (XP, streak, finished habits, review dates, drafts and commitments) in `localStorage` under `lxd-mcg-v1`, approved by Steve for this stage. Known limits: progress is per browser and device; on a shared computer the next person sees it until they reset; clearing site data erases it; in Moodle the storage belongs to the myLearn origin, so the namespaced key matters. Nothing leaves the browser. If progress needs to follow a student between devices, that is delivery-model signal 2 below.
 
 ---
 
@@ -48,7 +49,7 @@ Each maps cleanly onto an existing view shape (deep-dive = rich per-item arcs; m
 The current model (static JS+JSON on Pages, pasted into a Moodle Page, no server, no storage) is deliberately simple and covers a lot. It holds as long as the artefact is **read-only, stateless, and anonymous**. Watch for these signals that it's being outgrown — any one is a reason to flag a pivot toward an app/plugin/LTI:
 
 1. **You need to know *who* did something** (per-student analytics, gradebook, completion) → needs trustworthy server-side identity, which a pasted Page can't provide safely.
-2. **You need to persist state across visits** (resume, progress, saved notes) → the no-storage rule blocks this client-side; needs a backend.
+2. **You need to persist state across visits** (resume, progress, saved notes) → the no-storage rule blocks this client-side; needs a backend. *The Metacognition Coach is a deliberate, browser-only exception (see Now): it accepts per-device progress rather than adding a backend.*
 3. **You need to write back into Moodle** (grades, completion, competency) → needs a plugin / LTI / web-service auth, not a `<script>` paste.
 4. **Editors keep stripping the shell** — if Atto/TinyMCE strip `<script>` on save and raw-HTML can't be enabled, the paste model itself is blocked → an activity plugin sidesteps it.
 5. **Content authoring outgrows JSON review** (many contributors, non-technical authors) → an authoring UI / CMS becomes worth it.
