@@ -585,11 +585,19 @@ Parked for later exploration (Steve, 2026-10-07). Depends on item 56.
 - [x] Steve's decisions, 2026-10-07: five lessons; worked sequences chosen by topic; the SWH path unlocks at POE Explain; Choosing a model gains "ADI or SWH?". 2026-10-08: the separation and bottles examples overlapped, so lesson 1 uses a new Physics example (spinners); the bottles game translation was reworked to keep to the guide's tests and one class data set; keep both bottles and duckweed and let players choose; set every case up for a player who hasn't read the guide; put results in tables
 - [x] Results, all as the handoff expected: models 15, guides 6, examples 58, worked sequences 20 → 21, Stage 4 Forces lists two ready plans (`5e:seq-s4-forces`, `swh:swh-seq-s4-spinners`). Published lessons 16 → 26 (5E 6, POE 2, ADI 5, SWH 9, Choosing a model 4). Rule checks 55 (unchanged), build tests 21, game tests 22 → 23 (the review copy plays all 26 lessons to the end). Only `swh.json` and `manifest.json` change under `reckoner/data/`. Validate, test, typecheck, check:pages and check:regressions (against `origin/main`) pass; rebuilding changed nothing. The handoff reports a browser check at 360 px in light and dark
 - Adapted from the handoff: nothing. The branch already carried every source and generated change, so applying it meant verifying the branch rather than re-applying the patch
-- [ ] Open: plates for the ten new lessons (three options each, as for the other paths)
+- [x] ~~Open: plates for the ten new lessons (three options each, as for the other paths)~~ Done in item 59
 - [ ] Open: "Build it: ADI" lists the strong card first in every pair, and build cards aren't shuffled; reorder its cards to interleave, as the SWH boards do (no engine change)
 - [ ] Open: choice options aren't shuffled on a first play; the new lessons vary the correct option's position by hand. A first-play shuffle would remove the need
 - [ ] Open: the Fieldwork feedback form URL is still a placeholder in `game.yaml`
 - Note: the guide's `swh-seq-s4-separation` is no longer used by Fieldwork. It stays in the guide
+
+### 59. Plates for the SWH path and Which routine? ✅ — 2026-10-08
+- [x] Applied `docs/handoffs/2026-10-08-swh-plates.md`, signed off by Steve Grant on 2026-10-08. Its commits were pushed onto `feature/fieldwork-swh` on top of item 58, and its source changes are identical to the handoff's patch (applied to `05280fa` in a scratch worktree and compared); one release ships both items
+- [x] Ten new plates in `PLATES` in `game.js`, on the first item of their lesson, each with a full `aria-label`, no `<text>` and its own prefixed ids; none gives an answer away: `swh-1-spinners`, `swh-2-bottles`, `swh-3-bottles`, `swh-4-bottles`, `swh-5-bottles`, `swh-2-duckweed`, `swh-3-duckweed`, `swh-4-duckweed`, `swh-5-duckweed`, `select-4-routine`. No `game.html` changes: they reuse the existing `--plate-*` tokens, phase colours and `.pv-*` styles
+- [x] Steve's choices, from three options each (2026-10-08): SP1, BO1, RB3, BB1, DB1, DW1, RD1, BD1, DD1, SR1
+- [x] Plate test extended (not added): it opens each lesson in its case, checks a plate that follows a self-advancing case card leaves on the next item, and fails if any published lesson has no plate
+- [x] Results, as the handoff expected: lessons with a plate 16 → 26, every published lesson. Published lessons 26, guides 6, examples 58, worked sequences 21 unchanged; no lesson, guide or methodology version changes. Rule checks 55, build tests 21, game tests 23. Only `play/index.html` changes among generated files. Validate, test, typecheck, check:pages and check:regressions (against `origin/main`) pass; rebuilding changed nothing. The handoff reports a browser check at 360 px in light and dark
+- Nothing adapted from the handoff. Closes item 58's plate open item
 
 ---
 
