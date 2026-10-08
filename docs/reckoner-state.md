@@ -13,10 +13,10 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Models still in the catalogue (no guide) | 9 |
 | Draft or in-review guides (not shown to students) | 0 |
 | Examples across published guides | 58 (29 positive, 29 negative) |
-| Worked sequences | 20 |
+| Worked sequences | 21 |
 | Focus areas with a ready plan / examples only / empty | 16 / 0 / 0 of 16 |
-| Game lessons at /play/ (published / draft or in review) | 16 / 0 |
-| **Next action-plan item number** | **58** |
+| Game lessons at /play/ (published / draft or in review) | 26 / 0 |
+| **Next action-plan item number** | **60** |
 
 ## Published guides
 
@@ -30,7 +30,7 @@ no bump for a cross-reference (nesting) line only.
 | Argument-Driven Inquiry | `adi` | Multi-lesson routine | 1.2.0 | 2026-09-30 | 8 in 3 groups | 8 | `seq-s5-microhabitats`, `seq-s5-sound` |
 | Levels of inquiry | `levels-of-inquiry` | Guidance dial | 1.2.0 | 2026-09-30 | 4 | 10 | `seq-s4-progression`, `seq-s4-reaction-time` |
 | Predict–Observe–Explain | `poe` | Single lesson | 1.3.0 | 2026-09-30 | 3 | 12 | `ep-s4-yeast`, `ep-s5-handwashing`, `ep-s4-steel-wool`, `ep-s4-freeze-thaw` |
-| Science Writing Heuristic | `swh` | Multi-lesson routine | 1.2.0 | 2026-09-30 | 7 in 3 groups | 8 | `swh-seq-s5-bottles`, `swh-seq-s4-separation`, `swh-seq-s5-duckweed` |
+| Science Writing Heuristic | `swh` | Multi-lesson routine | 1.3.0 | 2026-10-08 | 7 in 3 groups | 8 | `swh-seq-s5-bottles`, `swh-seq-s4-separation`, `swh-seq-s5-duckweed`, `swh-seq-s4-spinners` |
 
 ## Game lessons
 
@@ -52,9 +52,19 @@ versions the same way as guides.
 | Review, then revise | `adi-3-review` | `adi` | 3 | explain | 1.0.0 | published | 2026-10-05 | 11 |
 | Build it: ADI | `adi-4-build` | `adi` | 4 | design | 1.0.0 | published | 2026-10-05 | 5 |
 | Argument Day | `adi-5-argument-day` | `adi` | 5 | design | 1.0.0 | published | 2026-10-05 | 4 |
+| Slow it down | `swh-1-spinners` | `swh` | 1 | recognise | 1.0.0 | published | 2026-10-08 | 12 |
+| A claim worth arguing | `swh-2-bottles` | `swh` | 2 | explain | 1.0.0 | published | 2026-10-08 | 12 |
+| A claim worth arguing | `swh-2-duckweed` | `swh` | 2 | explain | 1.0.0 | published | 2026-10-08 | 12 |
+| Not the answer key | `swh-3-bottles` | `swh` | 3 | explain | 1.0.0 | published | 2026-10-08 | 11 |
+| Not the answer key | `swh-3-duckweed` | `swh` | 3 | explain | 1.0.0 | published | 2026-10-08 | 11 |
+| Build it: SWH | `swh-4-bottles` | `swh` | 4 | design | 1.0.0 | published | 2026-10-08 | 5 |
+| Build it: SWH | `swh-4-duckweed` | `swh` | 4 | design | 1.0.0 | published | 2026-10-08 | 5 |
+| Negotiation Day | `swh-5-bottles` | `swh` | 5 | design | 1.0.0 | published | 2026-10-08 | 4 |
+| Negotiation Day | `swh-5-duckweed` | `swh` | 5 | design | 1.0.0 | published | 2026-10-08 | 4 |
 | Which model, and why? | `select-1-which` | `select` | 1 | select | 1.0.0 | published | 2026-10-03 | 8 |
 | When the dial moves | `select-2-dial` | `select` | 2 | select | 1.0.0 | published | 2026-10-03 | 7 |
 | Argue it out | `select-3-argue` | `select` | 3 | select | 1.0.2 | published | 2026-10-05 | 7 |
+| Which routine? | `select-4-routine` | `select` | 4 | select | 1.0.0 | published | 2026-10-08 | 7 |
 
 ## Models without a guide
 
@@ -102,7 +112,7 @@ What "Start with your unit" shows for each NSW Science 7–10 (2023) focus area.
 | Stage | Focus area | Shows | Worked sequences | Examples |
 |---|---|---|---|---|
 | Stage 4 | Observing the Universe | Ready plan | `7e:7e-seq-s4-moon` | 2 |
-| Stage 4 | Forces | Ready plan | `5e:seq-s4-forces` | 0 |
+| Stage 4 | Forces | Ready plan | `5e:seq-s4-forces`, `swh:swh-seq-s4-spinners` | 0 |
 | Stage 4 | Cells and classification | Ready plan | `5e:seq-s4-cells`, `levels-of-inquiry:seq-s4-progression` | 3 |
 | Stage 4 | Solutions and mixtures | Ready plan | `swh:swh-seq-s4-separation` | 9 |
 | Stage 4 | Living systems | Ready plan | `levels-of-inquiry:seq-s4-progression`, `poe:ep-s4-yeast` | 8 |

@@ -1,0 +1,248 @@
+# SWH path, lesson 3. Built on the SWH guide's worked sequence swh-seq-s5-duckweed (lesson 6). Reviewed and published by Steve on 2026-10-08.
+schemaVersion: 1
+id: swh-3-duckweed
+path: swh
+track: duckweed
+order: 3
+title: Not the answer key
+summary: Peers first, then the reading on run-off. How a text becomes another voice in the argument, and why the beginning ideas have to come back.
+level: explain
+version: 1.0.0
+status: published
+lastReviewed: 2026-10-08
+provenance:
+  source: ai-drafted-reviewed
+  authors: [Claude]
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-08
+context:
+  stages: [stage5]
+  focusAreas: [Environmental sustainability]
+  disciplines: [biology]
+outcomes: [SC5-ENV-01]
+builtOn:
+  sequenceIds: [swh-seq-s5-duckweed]
+  lookForIds: [swh-reading-peers-first, swh-reading-not-answer-key, swh-reading-something-changes, swh-reflect-has-original, swh-reflect-about-thinking]
+  misapplicationIds: [mis-swh-answer-key, mis-swh-no-negotiation, mis-swh-lost-beginnings]
+guideSection: sequences
+items:
+  - id: case
+    type: case
+    at: reading
+    processing: Retrieval
+    kind: The case
+    title: Lesson 6, where claims meet each other
+    setting:
+      who: Year 9 · Environmental sustainability · Biology · six lessons
+      text: >-
+        After heavy rain, a creek near the school turns murky with whatever washes off roads, gardens and homes. A Year
+        9 class is investigating what that run-off does to living things in the water. The teacher runs it as a Science
+        Writing Heuristic routine: instead of a lab report, each student answers seven questions about their own
+        investigation.
+    lead: >-
+      Every student has written a claim and the evidence for it. Some argued that fertiliser is good for the creek,
+      because the duckweed grew; others that detergent or salt harms it. Today groups compare their claims, and then
+      the teacher releases a short reading on nutrient run-off, algal blooms and salinity in Australian waterways.
+    table:
+      caption: The class's results, mean of three cups
+      head: [Cup, Fronds at start, Fronds at day 14, Condition]
+      rows:
+        - [Plain water, "10", "26", Green]
+        - [Dilute fertiliser, "10", "48", Green; a thick mat]
+        - [Detergent, "10", "12", Yellowing]
+        - [Salt, "10", "9", Brown edges]
+    sofar:
+      - phaseId: beginning-ideas
+        when: Lesson 1
+        text: Each student wrote what they wanted to find out about run-off and the creek. The questions were kept.
+      - phaseId: observations
+        when: Lessons 2–4
+        text: Groups designed their own tests, then counted fronds for two weeks.
+      - phaseId: evidence
+        when: Lesson 5
+        text: Each student wrote a claim, chose the counts that support it, and said why.
+      - phaseId: reading
+        when: Lesson 6 · this lesson
+        text: Groups compare claims, then read about run-off. Then the beginning questions come back.
+    you: You're the pre-service teacher taking lesson 6.
+
+  - id: predict
+    type: predict
+    at: reading
+    processing: Retrieval
+    kind: Predict
+    title: "Lesson 6 of the duckweed routine. Every student has a claim and evidence. You have a short reading on nutrient run-off, algal blooms and salinity in Australian waterways."
+    q: When should students get the reading?
+    options:
+      - text: In lesson 1, so their questions are well informed
+      - text: In lesson 3, so they know what to expect while counting
+      - text: In lesson 6, after groups have compared their claims with each other
+      - text: Never. Their own counts should be enough
+    answer: 2
+    reveal: >-
+      The guide holds the reading back until groups have compared claims with each other. By then students have
+      their own counts to set against it, so the text joins the argument instead of ending it.
+    why: >-
+      Hand the reading out early and students wait for it next time. Their counting becomes the slow route to
+      what the text already said.
+
+  - id: lf-peers
+    type: lookfor
+    at: reading
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 9 · Lesson 6
+      text: >-
+        A group that claims fertiliser helps the duckweed pairs with a group that claims detergent harms it. After ten
+        minutes they work out that one group asked about growth and the other about harm, and that neither had asked
+        about the creek as a whole. Only then does the teacher hand out the reading.
+    answer: swh-reading-peers-first
+    distractors: [swh-reading-not-answer-key, swh-claim-individual, swh-reflect-about-thinking]
+    strong: true
+    hint: What happens before the reading arrives?
+
+  - id: dx-key
+    type: diagnose
+    at: reading
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A pre-service teacher's SWH · Lesson 6
+      text: >-
+        With fifteen minutes left, a textbook page on algal blooms goes on the board. Students whose claims match tick
+        the box. Students whose claims don't cross them out and copy the textbook's statement. Nobody talks to
+        another group.
+    answer: mis-swh-answer-key
+    distractors: [mis-swh-no-negotiation, mis-swh-lost-beginnings, mis-swh-evidence-recopied]
+    hint: What role is the textbook playing?
+    why: >-
+      The text arrives as the verdict, so students learn their own counting was the slow route to what the book
+      already held. Crossing out isn't revision, because nothing changed for a reason. Comparing with the next bench
+      first costs five minutes.
+
+  - id: move
+    type: choice
+    at: reading
+    processing: Knowledge utilisation
+    kind: Teacher move
+    tests: reading
+    vignette:
+      who: Lesson 6 · after the reading
+      text: "Ravi claimed fertiliser run-off is good for creeks, because his duckweed grew fastest with fertiliser. The reading says nutrient run-off can cause blooms that kill fish. Ravi says: “So my results were wrong.”"
+    q: What is the best move?
+    options:
+      - text: Tell Ravi to copy the reading's statement in place of his claim
+        fb: That makes the reading an answer key. Ravi's counts were real, and the useful question is what they do and don't show.
+      - text: Ask what his counts show and what the reading adds, then have him rewrite his claim about the creek
+        fb: Yes. His data still stand, since the duckweed did grow faster. The reading adds what a thick mat of plants does to the rest of a waterway as it blocks light and later dies and rots. Ravi can keep his data and revise his claim about impact, in writing.
+      - text: Tell Ravi his experiment was too small to count
+        fb: That dismisses his evidence without examining it. Nothing changes for a reason.
+      - text: Move on. He can sort it out in his reflection
+        fb: The reflection is about how his thinking changed. This is the moment it could change.
+    answer: 1
+    refs:
+      lookForIds: [swh-reading-not-answer-key, swh-reading-something-changes]
+
+  - id: lf-changes
+    type: lookfor
+    at: reading
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 9 · Lesson 6
+      text: >-
+        Groups compare claims with the bench next door, then read about run-off and blooms. At the bell, every book
+        holds exactly the claim it held at the start of the lesson. The teacher says the discussion was the point.
+    answer: swh-reading-something-changes
+    distractors: [swh-reading-peers-first, swh-reading-not-answer-key, swh-claim-individual]
+    strong: false
+    hint: Compare the books at the start and the end.
+    why: >-
+      Talking isn't negotiating if nothing is allowed to change. The guide asks for revisions to be written, not just
+      discussed. A claim that survives should be argued for in writing too.
+
+  - id: dx-none
+    type: diagnose
+    at: reading
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Another pre-service teacher's SWH · Year 9
+      text: >-
+        Short of time, the teacher keeps the student template (questions, claims, evidence) and cuts the lesson where
+        groups compare claims and read about run-off. Books are marked on the Evidence page.
+    answer: mis-swh-no-negotiation
+    distractors: [mis-swh-answer-key, mis-swh-closed-practical, mis-swh-evidence-recopied]
+    why: >-
+      The negotiation is where a claim meets someone who might disagree. Without it, the writing still helps, but
+      vague claims cost nothing. The guide's fix is to timetable the comparing as its own phase and protect it.
+
+  - id: spot-reflect
+    type: spot
+    at: reflection
+    processing: Comprehension
+    kind: Spot the phase
+    tests: reflection
+    vignette:
+      who: Year 9 · End of lesson 6
+      text: >-
+        The teacher hands back the lesson 1 question sheets. Students write what they first thought pollution did,
+        what changed their mind, and one change to what goes down drains at school that their evidence supports.
+    q: Which SWH phase is this?
+    answer: reflection
+    among: [claims, reading, reflection]
+    fb:
+      claims: The claims were written in lesson 5. This compares them with where students started.
+      reading: The comparing is done. Students are now looking at their own change.
+      reflection: Yes. Their own beginning ideas are in front of them, and the question is about their thinking.
+    refs:
+      lookForIds: [swh-reflect-has-original]
+
+  - id: prompt
+    type: choice
+    at: reflection
+    processing: Analysis
+    kind: Judge the prompt
+    tests: reflection
+    title: Which reflection prompt does the job SWH gives this phase?
+    options:
+      - text: Summarise what you learned about algal blooms
+        fb: That's about the topic. Students can answer it without looking at their own thinking.
+      - text: What did you think pollution did in lesson 1, what changed your mind, and what do you think now?
+        fb: Yes. It's about their thinking, and it needs their beginning ideas in front of them.
+      - text: Was your claim right?
+        fb: The reading may have shown a claim can be right about the duckweed and incomplete about the creek. This makes reflection a verdict.
+      - text: Rate how well your group worked together
+        fb: Useful for group work, but it isn't about how their ideas changed.
+    answer: 1
+    refs:
+      lookForIds: [swh-reflect-about-thinking]
+
+  - id: nest
+    type: nest
+    at: reflection
+    processing: Knowledge utilisation
+    kind: Nest it
+    tests: nesting
+    model: swh
+    host: adi
+    answer: report
+    q: SWH and ADI are in the same family. Where in an ADI routine could SWH's questions do their work?
+    why: >-
+      ADI's individual report can be written as an SWH, so the claim, evidence and reading questions shape the
+      argument each student writes before peer review.
+
+  - id: reflect
+    type: reflect
+    at: reflection
+    processing: Metacognition
+    kind: Look back
+    title: Another voice.
+    q: How would you introduce the reading so that students treat it as another voice rather than the answer?
+    model: "Example: “I'd say: ‘Here's what scientists have found about creeks. Where does it agree with your counts, where doesn't it, and what does it add that your cups couldn't show?’ Then I'd ask them to write one change or one reason for keeping their claim.”"
+    recall: predict

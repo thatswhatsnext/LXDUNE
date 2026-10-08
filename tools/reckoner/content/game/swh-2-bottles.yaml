@@ -1,0 +1,290 @@
+# SWH path, lesson 2 (bottles variant). Built on the SWH guide's worked sequence swh-seq-s5-bottles. Reviewed and published by Steve on 2026-10-08.
+# One class data set runs through lessons 2–5: 750 mL bottles, 80 °C water, temperature after 60 minutes
+# (steel 71, plastic 49, glass 46, aluminium 42); empty mass (plastic 130 g, aluminium 160 g, steel 350 g, glass 420 g);
+# contained drop test (plastic undamaged, steel small dent, aluminium dented, glass cracked).
+schemaVersion: 1
+id: swh-2-bottles
+path: swh
+track: bottles
+order: 2
+title: A claim worth arguing
+summary: Four bottles and one class's results. Claims tied to a purpose, evidence that says why, and where the teacher's time goes.
+level: explain
+version: 1.0.0
+status: published
+lastReviewed: 2026-10-08
+provenance:
+  source: ai-drafted-reviewed
+  authors: [Claude]
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-08
+context:
+  stages: [stage5]
+  focusAreas: [Materials]
+  disciplines: [chemistry]
+outcomes: [SC5-MAT-01]
+builtOn:
+  sequenceIds: [swh-seq-s5-bottles]
+  exampleIds: [swh-evidence-pos-bottle-steel, swh-evidence-neg-bottle-recopied]
+  lookForIds: [swh-claim-arguable, swh-claim-individual, swh-evidence-justifies, swh-evidence-selected, swh-evidence-anomalies, swh-tests-follows-question]
+  misapplicationIds: [mis-swh-evidence-recopied, mis-swh-closed-practical]
+guideSection: sequences
+items:
+  - id: case
+    type: case
+    at: claims
+    processing: Retrieval
+    kind: The case
+    title: Which bottle should the school choose?
+    setting:
+      who: Year 10 · Materials · Chemistry · six lessons
+      text: >-
+        The school is replacing single-use plastic with a reusable drink bottle for every student, and a Year 10 class
+        has been asked to recommend one. The teacher runs the investigation as a Science Writing Heuristic routine:
+        instead of a lab report, each student answers seven questions about their own investigation.
+    lead: >-
+      Every bench had the same four 750 mL bottles: stainless steel (double-walled, like most steel drink bottles),
+      aluminium, glass and a copolyester plastic. Each student chose what to find out, so groups tested different
+      properties. These are the class's results.
+    table:
+      caption: "The class's results: 750 mL bottles, 80 °C water at the start"
+      head: [Bottle, After 1 hour, Empty mass, Drop test]
+      rows:
+        - [Steel (double wall), 71 °C, 350 g, Small dent]
+        - [Plastic, 49 °C, 130 g, Undamaged]
+        - [Glass, 46 °C, 420 g, Cracked]
+        - [Aluminium, 42 °C, 160 g, Dented]
+    sofar:
+      - phaseId: beginning-ideas
+        when: Lesson 1
+        text: Students handled the bottles, and each wrote what they'd need to find out before recommending one. The questions were kept.
+      - phaseId: tests
+        when: Lesson 2
+        text: Groups designed tests for the properties their questions named, and the teacher checked each plan for safety.
+      - phaseId: observations
+        when: Lessons 3–4
+        text: Groups ran their tests with repeats, recording what happened apart from what they thought it meant.
+      - phaseId: claims
+        when: Lesson 5 · this lesson
+        text: Each student writes a claim answering their own question, then the evidence for it.
+    you: You're a pre-service teacher on placement, taking this class for lessons 5 and 6.
+
+  - id: predict
+    type: predict
+    at: claims
+    processing: Retrieval
+    kind: Predict
+    title: Before the class writes its claims, make your own call.
+    table:
+      caption: "The class's results: 750 mL bottles, 80 °C water at the start"
+      head: [Bottle, After 1 hour, Empty mass, Drop test]
+      rows:
+        - [Steel (double wall), 71 °C, 350 g, Small dent]
+        - [Plastic, 49 °C, 130 g, Undamaged]
+        - [Glass, 46 °C, 420 g, Cracked]
+        - [Aluminium, 42 °C, 160 g, Dented]
+    q: Which bottle should the school choose?
+    options:
+      - text: Steel, because it kept the water hottest
+      - text: Plastic, because it's the lightest
+      - text: It depends what the school wants the bottle to do
+      - text: Glass, because it's the heaviest and so the strongest
+    answer: 2
+    reveal: >-
+      For keeping a drink hot, the steel bottle wins clearly. For a bottle students carry all day, the plastic is
+      less than half the mass of steel and survived the class's drop test. Both claims fit the same data. Which
+      property matters depends on the purpose, so the question has more than one defensible answer.
+    why: >-
+      “There is one best material, whatever it's for” is this sequence's first target conception. A question with
+      more than one defensible answer is what gives SWH's claims and evidence real work to do.
+
+  - id: claim
+    type: choice
+    at: claims
+    processing: Analysis
+    kind: Judge the claim
+    tests: claims
+    title: Four students' claims, each answering their own question. Which could another student most usefully disagree with?
+    options:
+      - text: "Steel is the best material."
+        fb: Best for what? Without a purpose it can't be tested against anyone's data, and the class's own results show it isn't best for weight.
+      - text: "We tested four bottles in three ways."
+        fb: That's a report of what happened. No one could disagree with it.
+      - text: "For keeping a drink hot through a morning, the school should choose the steel bottle: it lost 9 °C in an hour, and the others lost 31 °C or more."
+        fb: Yes. It names a purpose, rests on the class's data, and another student can push back, for example by asking whether it's the steel or the bottle's design that keeps the heat in.
+      - text: "Glass bottles are made of glass."
+        fb: True by definition. There's nothing to argue.
+    answer: 2
+    refs:
+      lookForIds: [swh-claim-arguable]
+
+  - id: lf-individual
+    type: lookfor
+    at: claims
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 10 · Lesson 5
+      text: >-
+        Groups ran the tests together, but the teacher asks every student to write their own claim in their own book,
+        without conferring. Two members of the same group write different claims: one argues for steel, to keep drinks
+        hot, the other for the plastic, to carry all day.
+    answer: swh-claim-individual
+    distractors: [swh-claim-arguable, swh-begin-own-question, swh-reading-peers-first]
+    strong: true
+    hint: Who wrote it?
+    why: >-
+      Shared data, individual claims. Two different claims from one group are the guide's sign that each student is
+      reasoning from their own question, not copying the group's conclusion.
+
+  - id: evidence
+    type: choice
+    at: evidence
+    processing: Analysis
+    kind: Judge the evidence
+    tests: evidence
+    title: Mia claims the steel bottle is the best choice for keeping drinks hot. Which Evidence section does the job?
+    options:
+      - text: Every temperature, mass and drop result from her table, copied out again
+        fb: That's the observations again. It never says why any of it supports steel.
+      - text: "Steel is a metal, and metals are strong."
+        fb: Her own data have disappeared, and strength isn't what her claim is about.
+      - text: The cooling results, where steel lost 9 °C against 31–38 °C for the others; mass set aside because it isn't what her claim is about; and one steel trial that lost 20 °C, explained by a loose lid she checked afterwards
+        fb: Yes. Data chosen for the claim, a reason for leaving some out, and the odd trial named and explained. That's what the guide's Evidence question asks for.
+      - text: "Our group agreed steel was best."
+        fb: Agreement isn't evidence, and the claim should be Mia's own.
+    answer: 2
+    refs:
+      exampleIds: [swh-evidence-pos-bottle-steel]
+      lookForIds: [swh-evidence-justifies, swh-evidence-selected, swh-evidence-anomalies]
+
+  - id: dx-recopied
+    type: diagnose
+    at: evidence
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A pre-service teacher's SWH · Lesson 5
+      text: >-
+        The Evidence page is ruled up as a table with the same headings as the results page: temperature, mass, drop
+        result. Students copy their numbers across neatly, including the loose-lid trial, and hand their books in
+        early.
+    answer: mis-swh-evidence-recopied
+    distractors: [mis-swh-no-negotiation, mis-swh-closed-practical, mis-swh-supplied-question]
+    hint: What does the ruled-up page make easy, and what does it leave out?
+    why: >-
+      The page invites restating, so the reasoning step is skipped while the work looks complete. The guide's fix is
+      to ask what about this data makes the claim follow, and to require some data to be set aside with a reason.
+    refs:
+      exampleIds: [swh-evidence-neg-bottle-recopied]
+
+  - id: lf-anomaly
+    type: lookfor
+    at: evidence
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 10 · Lesson 5
+      text: >-
+        Jordan claims the plastic bottle is the best choice to carry all day: lightest, and undamaged in the drop test.
+        Under Evidence he notes that in the cooling test the plastic lost 31 °C, and says that doesn't count against his
+        claim, because a bottle carried all day is mostly holding water, not hot drinks.
+    answer: swh-evidence-anomalies
+    distractors: [swh-evidence-selected, swh-obs-separate, swh-claim-arguable]
+    strong: true
+    hint: What did Jordan do with the result that didn't help him?
+    why: >-
+      The weak cooling result is named and dealt with, not quietly dropped. Another student may disagree with his
+      reason, and that's exactly what the reading phase is for.
+
+  - id: move
+    type: choice
+    at: evidence
+    processing: Knowledge utilisation
+    kind: Teacher move
+    tests: evidence
+    vignette:
+      who: Lesson 5 · claims and evidence
+      text: The class is writing quietly. You have 40 minutes, a pile of marking and a prac to set up for tomorrow.
+    q: Where does your time go?
+    options:
+      - text: Set up tomorrow's prac while they write
+        fb: It's tempting, and the guide names it. The Evidence phase is where students most need you.
+      - text: Mark the observation pages from lessons 3 and 4
+        fb: Useful, but the observations are done. The reasoning is happening now.
+      - text: Move from student to student asking, “Why does this data support what you wrote?”
+        fb: Yes. The guide says this lesson is where the teacher's time goes, even though it looks least like teaching. The claim-to-data link is what SWH exists to build.
+      - text: Check that every student has used all three tests
+        fb: Using all the data isn't the goal. Choosing what matters and saying why is.
+    answer: 2
+    refs:
+      lookForIds: [swh-evidence-justifies]
+
+  - id: plan
+    type: choice
+    at: tests
+    processing: Knowledge utilisation
+    kind: Teacher move
+    tests: tests
+    vignette:
+      who: Lesson 2 · plan conference
+      text: "A group whose question was “Which bottle would survive being dropped in a school bag?” wants to drop the glass bottle onto the concrete outside."
+    q: What do you say, without simply refusing?
+    options:
+      - text: “No glass. Test the other three.”
+        fb: That removes the bottle their question is most about, and takes the plan out of their hands.
+      - text: “What do you want to find out from it, and how could you test that so any broken glass stays in a tub?”
+        fb: Yes. The method stays theirs and still answers their question, and the plan conference does its job of checking safety and feasibility. This is the guide's own prompt for this lesson.
+      - text: “Fine, but stand well back.”
+        fb: The plan conference is where safety gets checked. This skips it.
+      - text: “Here's the method I'd use instead.”
+        fb: That redesigns their test. The guide's checkpoint covers safety and feasibility, not correctness.
+    answer: 1
+    refs:
+      lookForIds: [swh-tests-follows-question]
+
+  - id: dx-closed
+    type: diagnose
+    at: claims
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Another pre-service teacher's SWH · Year 10
+      text: >-
+        Students measure the density of a steel offcut by displacement and run it through the seven SWH questions. Every
+        claim reads “The density of steel is about 8 g/cm³”, and the reading phase has nothing to do.
+    answer: mis-swh-closed-practical
+    distractors: [mis-swh-evidence-recopied, mis-swh-answer-key, mis-swh-supplied-question]
+    why: >-
+      A practical with one right answer leaves the claim, evidence and reading phases with no work. The guide's fix is
+      a practical where the claim depends on judgement, like choosing a bottle for a purpose.
+    refs:
+      lookForIds: [swh-claim-arguable]
+
+  - id: nest
+    type: nest
+    at: claims
+    processing: Knowledge utilisation
+    kind: Nest it
+    tests: nesting
+    model: swh
+    host: 5e
+    answer: explain
+    q: Your Year 10 materials unit runs as a 5E. In which 5E phase does the SWH writing do its work?
+    why: >-
+      SWH sits inside a unit model. Its claims, evidence and negotiation are how students explain what they found, so
+      it does its work in Explain.
+
+  - id: reflect
+    type: reflect
+    at: evidence
+    processing: Metacognition
+    kind: Look back
+    title: Two right answers.
+    q: Why does SWH work better on the bottle question than on measuring a density?
+    model: "Example: “The bottle question has more than one defensible answer, so students' claims can differ and they have to say why. With a density there's one answer, so Claims and Evidence turn into copying.”"
+    recall: predict
