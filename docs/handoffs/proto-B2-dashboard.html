@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="en-AU"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B v2 · Dashboard refined — Setting Goals</title>
+<style>
+.lxd-fx{
+  --bg:#F2F0EA; --paper:#FFFFFF; --sunk:#F6F4EF;
+  --ink:#19282F; --body:#3B474F; --muted:#6E7B84;
+  --line:#E2DDD2; --line2:#D4CDBF;
+  --accent:#1C4C5B; --accent-soft:#E0EBEE; --accent-line:#B7D0D6;
+  --pos:#2C6046; --pos-soft:#E5EFE9;
+  --neg:#8B4232; --neg-soft:#F4E7E2;
+  --stu:#3F4E86; --stu-soft:#E8EAF4;
+  --gold:#A5822C;
+}
+.lxd-fx *{box-sizing:border-box;}
+.lxd-fx{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--body);line-height:1.58;background:var(--bg);}
+.lxd-fx h1,.lxd-fx h2,.lxd-fx h3,.lxd-fx h4{font-family:Georgia,"Times New Roman",serif;}
+body{margin:0;background:var(--bg);}
+.lxd-fx :focus-visible{outline:2.5px solid var(--gold);outline-offset:2px;}
+@media(prefers-reduced-motion:reduce){.lxd-fx *{transition:none!important;scroll-behavior:auto!important;}}
+
+.b-wrap{max-width:1000px;margin:0 auto;padding:24px 22px 90px;}
+
+/* strategy switcher (between-strategy wayfinding) */
+.b-switch{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:16px;box-shadow:0 1px 2px rgba(25,40,47,.04);}
+.b-switch .sl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:2px 4px 10px;}
+.b-chips{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;}
+.b-chip{text-align:left;background:var(--sunk);border:1.5px solid var(--line);border-radius:10px;padding:9px 11px;cursor:pointer;transition:border-color .14s,background .14s;font-family:inherit;}
+.b-chip:hover{border-color:var(--accent-line);}
+.b-chip.on{background:var(--accent);border-color:var(--accent);}
+.b-chip .o{font-size:11px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;}
+.b-chip.on .o{color:rgba(255,255,255,.7);}
+.b-chip .nm{display:block;font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.2;margin-top:2px;}
+.b-chip.on .nm{color:#fff;}
+.b-chip .es{display:block;font-size:10.5px;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums;}
+.b-chip.on .es{color:rgba(255,255,255,.75);}
+
+/* header */
+.b-head{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:14px;box-shadow:0 1px 2px rgba(25,40,47,.04);}
+.b-head .eye{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px;}
+.b-head h1{font-size:28px;color:var(--ink);margin:0 0 10px;font-weight:600;}
+.b-head .hl{font-size:15.5px;color:var(--body);margin:0 0 14px;max-width:72ch;}
+.b-head .badges{display:flex;gap:8px;flex-wrap:wrap;}
+.badge{font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:7px;background:var(--sunk);color:var(--body);border:1px solid var(--line);font-variant-numeric:tabular-nums;}
+.badge.b-hero{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+/* PERSISTENT SECTION PILLS (within-strategy wayfinding) */
+.b-pillbar{position:sticky;top:0;z-index:20;background:rgba(242,240,234,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);margin:0 -22px 18px;padding:10px 22px;border-bottom:1px solid var(--line);}
+.b-pills{display:flex;gap:7px;flex-wrap:wrap;}
+.b-pill{font-family:inherit;font-size:13px;font-weight:600;color:var(--body);background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;transition:all .14s;white-space:nowrap;}
+.b-pill:hover{border-color:var(--accent-line);}
+.b-pill.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+/* panels */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(25,40,47,.04);margin-bottom:14px;scroll-margin-top:64px;}
+.panel > .ph{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:700;padding:11px 20px;border-bottom:1px solid var(--line);color:#fff;font-family:-apple-system,sans-serif;}
+.panel .pbody{padding:18px 20px;font-size:15px;}
+.panel .pbody > p{margin:0 0 10px;}.panel .pbody > p:last-child{margin:0;}
+.panel .pbody b{color:var(--ink);}
+.ph-ctx{background:var(--accent);} .ph-ex{background:#2F6E6A;} .ph-ind{background:var(--stu);} .ph-con{background:#356974;} .ph-ev{background:#6E7B84;}
+
+/* exemplar */
+.b-meta{font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:12px;}
+.b-meta b{color:var(--accent);}
+.b-prob{background:var(--sunk);border-left:3px solid var(--accent-line);border-radius:0 8px 8px 0;padding:13px 16px;font-size:14.5px;color:var(--ink);margin-bottom:16px;}
+.ruler{display:flex;height:30px;border-radius:7px;overflow:hidden;border:1px solid var(--line);margin-bottom:6px;}
+.rseg{flex-grow:1;border:none;color:#fff;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;border-right:1px solid rgba(255,255,255,.4);cursor:pointer;overflow:hidden;white-space:nowrap;padding:0 3px;}
+.rseg:last-child{border-right:none;}
+.rseg:hover,.rseg.on{filter:brightness(1.12);}
+.ruler-hint{font-size:11.5px;color:var(--muted);margin:0 0 14px;}
+/* phase accordion — collapsed by default */
+.b-phase{border:1px solid var(--line);border-radius:10px;margin-bottom:9px;overflow:hidden;border-left:3px solid var(--pc);}
+.b-phase .phd{width:100%;text-align:left;font-family:inherit;background:var(--paper);border:none;cursor:pointer;padding:12px 15px;display:flex;align-items:center;gap:12px;}
+.b-phase .phd:hover{background:var(--sunk);}
+.b-phase .pwk{font-size:11px;font-weight:700;color:#fff;background:var(--pc);padding:3px 9px;border-radius:999px;white-space:nowrap;}
+.b-phase .plab{font-size:15.5px;color:var(--ink);font-weight:600;font-family:Georgia,serif;flex:1;}
+.b-phase .pchev{color:var(--muted);font-size:13px;transition:transform .18s;}
+.b-phase.open .pchev{transform:rotate(90deg);}
+.b-phase .pdetail{display:none;padding:0 15px 15px;}
+.b-phase.open .pdetail{display:block;}
+.b-phase .what{font-size:14.5px;color:var(--ink);font-weight:500;margin:0 0 7px;}
+.b-phase .det{font-size:14px;color:var(--body);margin:0;}
+.b-alltoggle{font-size:12.5px;color:var(--accent);font-weight:600;cursor:pointer;user-select:none;background:none;border:none;font-family:inherit;padding:4px 0;margin-bottom:6px;}
+.b-impact{background:var(--pos-soft);border:1px solid #CBDED3;border-radius:10px;padding:14px 17px;margin-top:10px;}
+.b-impact .il{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--pos);font-weight:700;display:block;margin-bottom:6px;}
+.b-impact p{margin:0;font-size:14px;color:var(--ink);}
+.b-transfer{border:1px dashed var(--line2);border-radius:10px;padding:14px 17px;margin-top:12px;}
+.b-transfer .tl{font-size:12px;font-weight:700;color:var(--accent);margin-bottom:6px;}
+.b-transfer p{margin:0;font-size:14px;}
+
+/* indicators tabs (unchanged idiom) */
+.b-tabs{display:flex;gap:6px;margin-bottom:14px;}
+.b-tab{flex:1;font-family:inherit;font-size:12.5px;font-weight:600;padding:9px 6px;border-radius:8px;border:1.5px solid var(--line);background:var(--sunk);cursor:pointer;color:var(--body);}
+.b-tab.on.t{background:var(--pos-soft);border-color:var(--pos);color:var(--pos);}
+.b-tab.on.n{background:var(--neg-soft);border-color:var(--neg);color:var(--neg);}
+.b-tab.on.s{background:var(--stu-soft);border-color:var(--stu);color:var(--stu);}
+.b-tabpane{display:none;} .b-tabpane.on{display:block;}
+.b-tabpane ul{margin:0;padding-left:17px;} .b-tabpane li{font-size:14px;margin-bottom:8px;}
+
+/* CONTINUUM as a maturity track */
+.mt-track{position:relative;display:flex;margin:6px 0 18px;}
+.mt-track::before{content:"";position:absolute;left:7%;right:7%;top:19px;height:3px;background:var(--line2);border-radius:2px;}
+.mt-fill{position:absolute;left:7%;top:19px;height:3px;background:var(--accent);border-radius:2px;transition:width .25s ease;z-index:1;}
+.mt-node{flex:1;position:relative;z-index:2;background:none;border:none;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:7px;padding:0;}
+.mt-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#fff;border:3px solid var(--bg);transition:transform .16s,box-shadow .16s;}
+.mt-node.l1 .mt-dot{background:#9AA6AD;} .mt-node.l2 .mt-dot{background:#5E8089;} .mt-node.l3 .mt-dot{background:#356974;} .mt-node.l4 .mt-dot{background:var(--accent);}
+.mt-node .mt-lb{font-size:12.5px;font-weight:600;color:var(--muted);text-align:center;line-height:1.2;}
+.mt-node.active .mt-dot{transform:scale(1.14);box-shadow:0 0 0 4px var(--accent-soft);}
+.mt-node.active .mt-lb{color:var(--ink);}
+.mt-detail{background:var(--sunk);border:1px solid var(--line);border-radius:12px;padding:16px 20px;}
+.mt-detail .mdh{display:flex;align-items:baseline;gap:10px;margin-bottom:8px;}
+.mt-detail .mdlv{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:3px 9px;border-radius:6px;background:var(--accent);}
+.mt-detail .mdname{font-family:Georgia,serif;font-size:18px;font-weight:600;color:var(--ink);}
+.mt-detail p{margin:0;font-size:15px;color:var(--body);}
+.mt-progresslabel{font-size:11.5px;color:var(--muted);text-align:center;margin:-8px 0 16px;}
+
+/* evidence + works with */
+.b-ev{font-size:13.5px;color:var(--muted);}
+.b-rel{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;}
+.b-rel .rl{width:100%;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:2px;}
+.relchip{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;border:1.5px solid var(--accent-line);border-radius:999px;padding:5px 12px;background:var(--paper);}
+.relchip:hover{background:var(--accent-soft);}
+
+@media(max-width:780px){
+  .lxd-fx,body{overflow-x:hidden;}
+  .b-chips{grid-template-columns:repeat(2,1fr);}
+  .b-pills{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .b-pill{flex:0 0 auto;}
+  .mt-node .mt-lb{font-size:11px;}
+  .mt-dot{width:34px;height:34px;font-size:14px;}
+}
+</style></head><body><div class="lxd-fx" id="lxd-fx"><div class="b-wrap">
+
+  <div class="b-switch">
+    <div class="sl">The ten strategies &mdash; jump to any</div>
+    <div class="b-chips">
+      <button class="b-chip on" data-goto="goals"><span class="o">01</span><span class="nm">Setting Goals</span><span class="es">d&thinsp;=&thinsp;0.75</span></button><button class="b-chip" data-goto="structure"><span class="o">02</span><span class="nm">Structuring Lessons</span><span class="es">d&thinsp;=&thinsp;0.68</span></button><button class="b-chip" data-goto="explicit"><span class="o">03</span><span class="nm">Explicit Teaching</span><span class="es">d&thinsp;=&thinsp;0.75</span></button><button class="b-chip" data-goto="worked"><span class="o">04</span><span class="nm">Worked Examples</span><span class="es">d&thinsp;=&thinsp;0.57</span></button><button class="b-chip" data-goto="collab"><span class="o">05</span><span class="nm">Collaborative Learning</span><span class="es">d&thinsp;=&thinsp;0.74</span></button><button class="b-chip" data-goto="exposures"><span class="o">06</span><span class="nm">Multiple Exposures</span><span class="es">d&thinsp;=&thinsp;0.71</span></button><button class="b-chip" data-goto="questioning"><span class="o">07</span><span class="nm">Questioning</span><span class="es">d&thinsp;=&thinsp;0.82</span></button><button class="b-chip" data-goto="feedback"><span class="o">08</span><span class="nm">Feedback</span><span class="es">d&thinsp;=&thinsp;0.73</span></button><button class="b-chip" data-goto="meta"><span class="o">09</span><span class="nm">Metacognitive Strategies</span><span class="es">d&thinsp;=&thinsp;0.69</span></button><button class="b-chip" data-goto="diff"><span class="o">10</span><span class="nm">Differentiated Teaching</span><span class="es">d&thinsp;=&thinsp;1.07</span></button>
+    </div>
+  </div>
+
+  <div class="b-head">
+    <div class="eye">High Impact Teaching Strategy 01 of 10</div>
+    <h1>Setting Goals</h1>
+    <p class="hl">Effective teachers set and communicate clear lesson goals so students understand the success criteria, commit to the learning, and get the right mix of success and challenge.</p>
+    <div class="badges"><span class="badge b-hero">Goals &middot; 0.56</span><span class="badge">Teacher clarity &middot; 0.75</span></div>
+  </div>
+
+  <div class="b-pillbar"><div class="b-pills">
+    <button class="b-pill active" data-sec="faculty">In a science faculty</button><button class="b-pill" data-sec="exemplar">The sustained exemplar</button><button class="b-pill" data-sec="indicators">Indicators</button><button class="b-pill" data-sec="continuum">Continuum of practice</button><button class="b-pill" data-sec="evidence">Evidence &amp; transfer</button>
+  </div></div>
+
+  <section class="panel" id="sec-faculty"><div class="ph ph-ctx">In a science faculty</div><div class="pbody"><p>In science the hard part is that there are always <b>two</b> things being learned at once: the conceptual content, and the Working Scientifically capability. Faculties routinely goal-set the first and quietly assess the second. A goal like &lsquo;understand the immune response&rsquo; tells a student nothing about what a good scientific explanation actually looks like, so feedback conversations keep circling back to &lsquo;but what do you want?&rsquo;. The move that makes this strategy sustained rather than decorative is building a <b>two-strand proficiency scale</b> &mdash; content and Working Scientifically running in parallel &mdash; and then using the same language in the intention, the feedback and the assessment criteria.</p></div></section>
+
+  <section class="panel" id="sec-exemplar"><div class="ph ph-ex">The sustained exemplar</div><div class="pbody">
+    <div class="b-meta">Stage 5 &middot; Science 7–10 (2023) &middot; <b>Disease</b> &middot; 10-week unit + faculty pre-work</div>
+    <div class="b-prob"><b>Problem of practice.</b> Students could recite the learning intention from the board but could not say what would make their explanation better. Marking showed strong recall and weak explanation, and the faculty realised it had been assessing analysing data and communicating for two years without ever making them a goal.</div>
+    <div class="ruler" id="bRuler"><button class="rseg" style="flex-grow:1;background:#1C4C5B" data-ph="0" title="Build the scale">Pre-term</button><button class="rseg" style="flex-grow:2;background:#2F6E6A" data-ph="1" title="Place, then stretch">Weeks 1–2</button><button class="rseg" style="flex-grow:5;background:#8A7A24" data-ph="2" title="Teach along the scale">Weeks 3–7</button><button class="rseg" style="flex-grow:3;background:#8C4E2E" data-ph="3" title="Close the loop and carry forward">Weeks 8–10</button></div>
+    <p class="ruler-hint">The term at a glance &mdash; click a band, or a phase below, to expand it.</p>
+    <button class="b-alltoggle" id="bAll">Expand all &darr;</button>
+    <div id="bPhases"><div class="b-phase" data-ph="0" style="--pc:#1C4C5B">
+      <button class="phd" data-toggle="0" aria-expanded="false"><span class="pwk">Pre-term</span><span class="plab">Build the scale</span><span class="pchev">&#9654;</span></button>
+      <div class="pdetail"><p class="what">The faculty writes a two-strand proficiency scale for the whole unit before anyone teaches it.</p><p class="det">Strand one is content: pathogens &rarr; modes of transmission &rarr; immune response &rarr; population-level prevention and control. Strand two is Working Scientifically: <b>describes</b> what the data shows &rarr; <b>identifies</b> a trend &rarr; <b>explains</b> the trend using biological mechanism &rarr; <b>evaluates</b> the reliability of the source. Every band is written in language a Year 9 student can read without the teacher translating. This is a faculty task, not a solo one &mdash; the value comes from the argument about where the band boundaries sit.</p></div>
+    </div><div class="b-phase" data-ph="1" style="--pc:#2F6E6A">
+      <button class="phd" data-toggle="1" aria-expanded="false"><span class="pwk">Weeks 1–2</span><span class="plab">Place, then stretch</span><span class="pchev">&#9654;</span></button>
+      <div class="pdetail"><p class="what">A short diagnostic positions each student on both strands; goals are then set deliberately one band above.</p><p class="det">The diagnostic is a single outbreak data set with three questions, one per Working Scientifically band. Students place themselves, the teacher moderates the placement, and each student records one content goal and one Working Scientifically goal. The critical move here is <b>challenge</b>: the evidence is clear that specific challenging goals outperform &lsquo;do your best&rsquo;, so goals are pitched one band up, not at comfort level, and the teacher says why that band matters.</p></div>
+    </div><div class="b-phase" data-ph="2" style="--pc:#8A7A24">
+      <button class="phd" data-toggle="2" aria-expanded="false"><span class="pwk">Weeks 3–7</span><span class="plab">Teach along the scale</span><span class="pchev">&#9654;</span></button>
+      <div class="pdetail"><p class="what">Every lesson intention is written as a step along the scale rather than a restatement of the topic.</p><p class="det">Not &lsquo;today we are learning about vaccination&rsquo; but &lsquo;today we move from <i>identifying</i> the trend in the vaccination data to <i>explaining</i> it using herd immunity&rsquo;. Around Week 5 students re-place themselves &mdash; but only with evidence, meaning they must annotate a specific piece of their own work against the band descriptor. Students who cannot find the evidence have located their own next step, which is the point.</p></div>
+    </div><div class="b-phase" data-ph="3" style="--pc:#8C4E2E">
+      <button class="phd" data-toggle="3" aria-expanded="false"><span class="pwk">Weeks 8–10</span><span class="plab">Close the loop and carry forward</span><span class="pchev">&#9654;</span></button>
+      <div class="pdetail"><p class="what">The assessment criteria are the scale, so self-assessment is possible before submission &mdash; and the goal survives the unit.</p><p class="det">Because the marking criteria use identical wording, students self-assess against the same descriptors they have used for eight weeks, and the gap between their judgement and the teacher&rsquo;s becomes the feedback conversation. The unit ends with a <b>carry-forward goal</b> written into the front of the book for the next focus area, so goal-setting is continuous rather than something that restarts from zero each term.</p></div>
+    </div></div>
+    <div class="b-impact"><span class="il">How the teacher knew it worked</span><p>The faculty compared the specificity of students&rsquo; written self-assessments in Week 2 against Week 9 &mdash; the shift they were looking for was from &lsquo;I need to write more&rsquo; to &lsquo;I describe the trend but I don&rsquo;t link it to a mechanism&rsquo;. They also tracked how many students could name their own next step unprompted at three points, and moderated a sample of the final task to check that the scale actually discriminated between bands rather than collapsing into two.</p></div>
+  </div></section>
+
+  <section class="panel" id="sec-indicators"><div class="ph ph-ind">Indicators in a science classroom</div><div class="pbody">
+    <div class="b-tabs">
+      <button class="b-tab t on" data-tab="t">Teacher</button>
+      <button class="b-tab n" data-tab="n">Not demonstrated</button>
+      <button class="b-tab s" data-tab="s">Students</button>
+    </div>
+    <div class="b-tabpane on" data-pane="t"><ul><li>Uses a diagnostic to set goals from assessed need, rather than assuming a starting point from the year level</li><li>Writes both a content goal and a Working Scientifically goal, and treats the second as equally assessable</li><li>Sets goals a band above current placement and explains why that band matters</li><li>Uses identical language in the lesson intention, the verbal feedback and the assessment criteria</li><li>Requires students to evidence a self-placement with a specific piece of their own work</li></ul></div>
+    <div class="b-tabpane" data-pane="n"><ul><li>The learning intention is the syllabus dot point copied onto the board</li><li>Every student receives the same goal regardless of what the diagnostic showed</li><li>Working Scientifically outcomes are assessed in the task but never appear in a goal</li><li>Goals are written in Week 1 and never revisited</li><li>Marking criteria use different vocabulary from the one students have been taught with</li></ul></div>
+    <div class="b-tabpane" data-pane="s"><ul><li>Can say where they sit on both strands and what the next band requires of them</li><li>Bring a specific annotated piece of their own work when re-placing themselves</li><li>Self-assess against the criteria before submitting, not after receiving a mark</li><li>Carry a goal from one focus area into the next without being asked</li></ul></div>
+  </div></section>
+
+  <section class="panel" id="sec-continuum"><div class="ph ph-con">Continuum of practice</div><div class="pbody">
+    <div class="mt-track" id="mtTrack">
+      <div class="mt-fill" id="mtFill"></div>
+      <button class="mt-node l1 active" data-lv="1"><span class="mt-dot">1</span><span class="mt-lb">Emerging</span></button><button class="mt-node l2" data-lv="2"><span class="mt-dot">2</span><span class="mt-lb">Evolving</span></button><button class="mt-node l3" data-lv="3"><span class="mt-dot">3</span><span class="mt-lb">Embedding</span></button><button class="mt-node l4" data-lv="4"><span class="mt-dot">4</span><span class="mt-lb">Excelling</span></button>
+    </div>
+    <p class="mt-progresslabel">A faculty moves left to right over years &mdash; select a stage to see what it looks like in science.</p>
+    <div class="mt-detail" id="mtDetail">
+      <div class="mdh"><span class="mdlv" id="mdLv">Stage 1</span><span class="mdname" id="mdName">Emerging</span></div>
+      <p id="mdText">Teachers write clear learning intentions for each science lesson and explain what students must know and be able to do.</p>
+    </div>
+  </div></section>
+
+  <section class="panel" id="sec-evidence"><div class="ph ph-ev">Evidence &amp; transfer</div><div class="pbody">
+    <p><b>Stage 6 Chemistry · Module 2 Introduction to Quantitative Chemistry.</b> The same two-strand structure transfers, with the second strand becoming procedural rather than conceptual: &lsquo;records working so another person could follow it &rarr; tracks units through every line &rarr; sense-checks the magnitude of the answer &rarr; identifies which relationship is needed before calculating&rsquo;. Students who are strong at arithmetic but weak at selection can see, for the first time, that the second strand is where their marks are going.</p>
+    <p class="b-ev">Hattie (2009): goals 0.56, teacher clarity 0.75. HITS notes the importance of challenging rather than &lsquo;do your best&rsquo; goals. Aligns with the NSW What Works Best themes of high expectations and assessment; NESA Science 7–10 (2023) Working Scientifically outcomes.</p>
+    <div class="b-rel"><span class="rl">Works with</span><a class="relchip" href="#" data-goto="structure">2. Structuring Lessons &rarr;</a><a class="relchip" href="#" data-goto="feedback">8. Feedback &rarr;</a><a class="relchip" href="#" data-goto="meta">9. Metacognitive Strategies &rarr;</a></div>
+  </div></section>
+
+</div></div>
+<script>
+(function(){
+  var fx=document.getElementById('lxd-fx');
+  var CONT=[{"level":1,"label":"Emerging","text":"Teachers write clear learning intentions for each science lesson and explain what students must know and be able to do."},{"level":2,"label":"Evolving","text":"Intentions cover both content and Working Scientifically, and are informed by a diagnostic rather than by the unit outline alone."},{"level":3,"label":"Embedding","text":"A shared proficiency scale runs across the unit. Students use it to place themselves and name a next step, and the same wording appears in the assessment criteria."},{"level":4,"label":"Excelling","text":"Scales are moderated across the faculty and refined using student work. Students routinely set, evidence and revise their own goals across units, and the faculty uses goal data to judge whether challenge is well pitched."}];
+
+  /* section pills: jump + scrollspy */
+  var pills=[].slice.call(fx.querySelectorAll('.b-pill'));
+  var secs=pills.map(function(p){return document.getElementById('sec-'+p.getAttribute('data-sec'));});
+  function spy(){
+    var y=(document.documentElement.scrollTop||document.body.scrollTop)+90;
+    var idx=0;
+    for(var i=0;i<secs.length;i++){if(secs[i]&&secs[i].offsetTop<=y)idx=i;}
+    pills.forEach(function(p,i){p.classList.toggle('active',i===idx);});
+  }
+  document.addEventListener('scroll',spy,{passive:true});spy();
+
+  /* phase accordion (collapsed by default) */
+  function setPhase(i,open){
+    var ph=fx.querySelector('.b-phase[data-ph="'+i+'"]');if(!ph)return;
+    ph.classList.toggle('open',open);
+    ph.querySelector('.phd').setAttribute('aria-expanded',open?'true':'false');
+    syncAll();
+  }
+  function syncAll(){
+    var all=fx.querySelectorAll('.b-phase');
+    var open=fx.querySelectorAll('.b-phase.open');
+    document.getElementById('bAll').textContent=(open.length===all.length)?'Collapse all \u2191':'Expand all \u2193';
+  }
+
+  /* continuum maturity track */
+  function setLevel(lv){
+    fx.querySelectorAll('.mt-node').forEach(function(n){n.classList.toggle('active',+n.getAttribute('data-lv')===lv);});
+    var c=CONT[lv-1];
+    document.getElementById('mdLv').textContent='Stage '+lv;
+    document.getElementById('mdName').textContent=c.label;
+    document.getElementById('mdText').innerHTML=c.text;
+    document.getElementById('mtFill').style.width=(86*(lv-1)/3)+'%';
+  }
+  setLevel(1);
+
+  fx.addEventListener('click',function(e){
+    var pill=e.target.closest('.b-pill');
+    if(pill){var el=document.getElementById('sec-'+pill.getAttribute('data-sec'));if(el)el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+    var tg=e.target.closest('[data-toggle]');
+    if(tg){var i=+tg.getAttribute('data-toggle');var ph=fx.querySelector('.b-phase[data-ph="'+i+'"]');setPhase(i,!ph.classList.contains('open'));return;}
+    var seg=e.target.closest('.rseg');
+    if(seg){var i=+seg.getAttribute('data-ph');fx.querySelectorAll('.rseg').forEach(function(x){x.classList.remove('on');});seg.classList.add('on');setPhase(i,true);fx.querySelector('.b-phase[data-ph="'+i+'"]').scrollIntoView({behavior:'smooth',block:'center'});return;}
+    var all=e.target.closest('#bAll');
+    if(all){var opened=fx.querySelectorAll('.b-phase.open').length;var tot=fx.querySelectorAll('.b-phase').length;var want=opened<tot;for(var i=0;i<tot;i++)setPhase(i,want);return;}
+    var tab=e.target.closest('[data-tab]');
+    if(tab){var k=tab.getAttribute('data-tab');fx.querySelectorAll('.b-tab').forEach(function(x){x.classList.remove('on');});tab.classList.add('on');fx.querySelectorAll('.b-tabpane').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-pane')===k);});return;}
+    var node=e.target.closest('.mt-node');
+    if(node){setLevel(+node.getAttribute('data-lv'));return;}
+    var go=e.target.closest('[data-goto]');
+    if(go){e.preventDefault();var id=go.getAttribute('data-goto');if(id==='goals')return;alert('Prototype: would switch to strategy \u201c'+id+'\u201d.\nWayfinding: persistent 10-strategy switcher (between strategies) + sticky section pills (within a strategy).');}
+  });
+  syncAll();
+})();
+</script></body></html>
