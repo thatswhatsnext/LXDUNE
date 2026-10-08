@@ -1,0 +1,1552 @@
+{
+  "$schema": "../_schema/coach.schema.json",
+  "id": "metacognition-coach",
+  "version": "1.0.0",
+  "habitsFrom": "metacognition-nsw-science",
+  "source": "docs/handoffs/mcg-content.js",
+  "gameDescriptions": {
+    "explicit": "Naming the learning intention and the thinking strategy aloud, so students know what kind of thinking the lesson is building.",
+    "model": "Thinking aloud through a problem — including where you get stuck and how you work out of it.",
+    "ask": "Asking open questions — and teaching students to ask themselves — that probe how they’re reasoning, not just what they know.",
+    "plan": "Giving students a planning scaffold — a checklist, organiser or sequence of steps — to use before they start a task.",
+    "collab": "Having students compare how they each reasoned through the same problem, so they meet strategies other than their own.",
+    "evaluate": "Having students judge their thinking process — not only their answer — against criteria or their own goals.",
+    "challenge": "Once students are secure, setting an unfamiliar or harder task to test whether their thinking transfers.",
+    "practise": "Reusing the same thinking routine across different content, spaced over weeks, until it becomes durable rather than one-off.",
+    "checkin": "Periodically checking whether a thinking habit has become independent — used unprompted — rather than only when reminded."
+  },
+  "units": [
+    {
+      "id": "explicit",
+      "short": "Name the thinking, not just the topic",
+      "intro": "Naming not just what students will learn, but what kind of thinking the lesson is building — out loud — so the strategy becomes visible and can travel beyond this lesson.",
+      "steps": [
+        {
+          "type": "choice",
+          "kind": "def",
+          "scorable": true,
+          "distractors": [
+            {
+              "habit": "model",
+              "contrast": "Modelling shows your reasoning in action; being explicit names the strategy so students know what they’re practising."
+            },
+            {
+              "habit": "plan",
+              "contrast": "A planning scaffold is a tool students use. Being explicit is you naming the thinking the tool is for."
+            },
+            {
+              "habit": "ask",
+              "contrast": "Questioning draws out students’ reasoning. Being explicit tells them which kind of reasoning matters today."
+            }
+          ],
+          "good": "That’s it. The move is naming the thinking as well as the content — out loud, on the board, every time.",
+          "coach": "Most lessons are explicit about content and silent about thinking. That silence is why strategies don’t transfer."
+        },
+        {
+          "type": "tf",
+          "kind": "spot",
+          "scorable": true,
+          "eyebrow": "Spot the habit",
+          "q": "Is this teacher being explicit about the thinking?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-4"
+              ],
+              "focusArea": "living-systems"
+            },
+            "t": "Two intentions on the board: “<b>Science:</b> food webs and energy flow. <b>Thinking:</b> we’re practising systems thinking — deliberately looking for effects more than one step away. You’ll use this in geography too.”"
+          },
+          "answer": true,
+          "good": "Yes. Content and thinking sit side by side, and the teacher says where else the thinking applies.",
+          "bad": "Look again — the second intention names a specific thinking strategy and says why it matters beyond this lesson. That’s the habit.",
+          "coach": "The line “you’ll use this in geography too” is doing real work: it tells students the strategy is portable."
+        },
+        {
+          "type": "choice",
+          "kind": "recall",
+          "scorable": true,
+          "eyebrow": "Quick recall",
+          "q": "Why does naming the thinking strategy matter?",
+          "opts": [
+            {
+              "t": "It makes the lesson move faster.",
+              "fb": "Naming the strategy takes a little time. The payoff is elsewhere."
+            },
+            {
+              "t": "It helps the strategy transfer beyond the lesson it was learned in.",
+              "correct": true
+            },
+            {
+              "t": "It means students no longer need to practise it.",
+              "fb": "Naming isn’t a substitute for practice — it’s what makes practice recognisable as the same skill each time."
+            },
+            {
+              "t": "It replaces the content learning intention.",
+              "fb": "It sits alongside the content intention, not instead of it."
+            }
+          ],
+          "good": "Right. A strategy students can name is a strategy they can recognise and reach for again in a new context.",
+          "coach": "If students can’t tell you what kind of thinking they did today, they’ll struggle to do it on purpose tomorrow."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario",
+          "q": "How do you open the lesson?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-5"
+              ],
+              "focusArea": "disease"
+            },
+            "t": "Today students evaluate a news story claiming a supplement prevents colds. You’re about to begin."
+          },
+          "opts": [
+            {
+              "t": "“Today we’re learning about the immune system.”",
+              "fb": "This names the content and leaves the thinking invisible. Students may evaluate the article without realising that evaluating is the skill."
+            },
+            {
+              "t": "Write the syllabus dot point on the board and read it out.",
+              "fb": "The dot point names what NESA requires. It doesn’t tell students what kind of thinking to do."
+            },
+            {
+              "t": "“The science today is immunity. The thinking skill is noticing when a claim outruns its evidence — you’ll use it on every health headline you ever read.”",
+              "correct": true
+            },
+            {
+              "t": "“Read the article and tell me what you think.”",
+              "partial": true,
+              "fb": "A good hook, and it invites thinking — but it doesn’t name which thinking. Hook first, then name it."
+            }
+          ],
+          "good": "Yes. Two strands, both named, with a reason the thinking strand matters outside the classroom.",
+          "part": "Close. Opening with the article is engaging, but students still don’t know what thinking they’re practising. Add the name.",
+          "coach": "A quick test: could a student, leaving the room, tell a friend what kind of thinking they practised? If not, it wasn’t explicit."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario · the hard one",
+          "q": "What do you do?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-6"
+              ],
+              "syllabus": "chemistry-stage6-2017",
+              "module": "chem-m6",
+              "acknowledgedSuperseded": true
+            },
+            "t": "Your class has a four-stage problem card for titration calculations — understand, plan, solve, check. You notice students treating it as a worksheet: ticking boxes after they’ve already finished."
+          },
+          "opts": [
+            {
+              "t": "Collect the cards and mark them for completion.",
+              "fb": "Marking completion rewards the box-ticking you’re worried about."
+            },
+            {
+              "t": "Take the cards away — they clearly aren’t helping.",
+              "fb": "The card isn’t the problem. Students don’t yet know what it’s for."
+            },
+            {
+              "t": "Give them more practice problems so the routine sticks.",
+              "fb": "More practice of a misunderstood routine strengthens the misunderstanding."
+            },
+            {
+              "t": "Stop and name it: “This card isn’t for this topic — it’s how reliable problem-solvers think. The check step is the one that catches the slip before your final line.”",
+              "correct": true
+            }
+          ],
+          "good": "Exactly. When a scaffold becomes a chore, students have lost sight of the thinking it represents. Naming it restores the purpose.",
+          "coach": "Being explicit isn’t a one-off at the start of a unit. You re-name the strategy whenever students lose sight of why it’s there."
+        },
+        {
+          "type": "apply",
+          "eyebrow": "Design the move",
+          "q": "Write a two-strand learning intention",
+          "sub": "For a lesson you’ll teach soon, write one intention for the <b>science</b> and one for the <b>thinking</b>.",
+          "placeholder": "Science: … Thinking: …",
+          "criteria": [
+            "The science intention names specific content",
+            "The thinking intention names a specific strategy — not just “think carefully”",
+            "It says why the thinking matters beyond this lesson"
+          ]
+        },
+        {
+          "type": "commit",
+          "eyebrow": "Take it to your classroom",
+          "q": "Make it real",
+          "sub": "Strategies transfer when they’re deliberately practised, not just understood. Name where this one goes next.",
+          "placeholder": "Which lesson this week will you try this in?",
+          "reflect": "After you teach it: ask two students what kind of thinking they practised. Could they name it?"
+        }
+      ]
+    },
+    {
+      "id": "model",
+      "short": "Think aloud — including getting stuck",
+      "intro": "Making your reasoning visible — thinking aloud, including the moments you get stuck — so students see how an expert actually thinks, not just the finished answer.",
+      "steps": [
+        {
+          "type": "choice",
+          "kind": "def",
+          "scorable": true,
+          "distractors": [
+            {
+              "habit": "explicit",
+              "contrast": "Related, but it names the strategy rather than showing your reasoning in action."
+            },
+            {
+              "habit": "ask",
+              "contrast": "It draws out the student’s thinking. Modelling shows <i>yours</i>."
+            },
+            {
+              "habit": "plan",
+              "contrast": "A useful scaffold, but it doesn’t make expert thinking visible."
+            }
+          ],
+          "good": "That’s it. Modelling makes the invisible visible — the decisions and dead-ends, not just the tidy answer.",
+          "coach": "Notice the trap in the other three: they’re all real, valuable habits. Telling them apart is half the skill."
+        },
+        {
+          "type": "tf",
+          "kind": "spot",
+          "scorable": true,
+          "eyebrow": "Spot the habit",
+          "q": "Is this modelling your thinking?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-5"
+              ],
+              "focusArea": "waves-and-motion"
+            },
+            "t": "“My first instinct is to use average speed here… but wait — the object’s accelerating, so that won’t hold. Let me rethink which relationship fits.”"
+          },
+          "answer": true,
+          "good": "Yes. The wrong turn and the recovery are the point — students rarely get to see an expert catch themselves.",
+          "bad": "Look again — the teacher narrates a decision, hits a dead-end, and recovers. That <i>is</i> the move.",
+          "coach": "The stuck moment is the most valuable thing to model. A flawless demonstration hides the very thing you want students doing."
+        },
+        {
+          "type": "choice",
+          "kind": "recall",
+          "scorable": true,
+          "eyebrow": "Quick recall",
+          "fixedOrder": true,
+          "q": "Which phase of self-regulated thinking does modelling mainly build?",
+          "sub": "Planning, monitoring, or evaluating?",
+          "opts": [
+            {
+              "t": "Planning",
+              "fb": "Planning happens before you start. A live think-aloud happens <i>during</i> the work."
+            },
+            {
+              "t": "Monitoring",
+              "correct": true
+            },
+            {
+              "t": "Evaluating",
+              "fb": "Evaluating looks back afterwards. Catching an error mid-problem is real-time — that’s monitoring."
+            }
+          ],
+          "good": "Right — monitoring. You’re showing students what it looks like to watch your own reasoning as it unfolds.",
+          "coach": "That’s why the getting-stuck part matters: self-monitoring is exactly what catches the slip."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario",
+          "q": "What’s the strongest move?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-6"
+              ],
+              "syllabus": "physics-stage6-2017",
+              "module": "phys-m5",
+              "acknowledgedSuperseded": true
+            },
+            "t": "You’re working a projectile problem on the board. A student asks: “How did you know to split it into horizontal and vertical parts?” You could…"
+          },
+          "opts": [
+            {
+              "t": "“It’s just the method we always use for projectiles — you’ll get used to it.”",
+              "fb": "This gives the rule and hides the reasoning. The student asked how you <i>decided</i>, and that stays invisible."
+            },
+            {
+              "t": "Think aloud: “I looked at it and thought — the horizontal and vertical motions are independent, so if I keep them separate I won’t mix the speeds up. Here’s how I decided that.”",
+              "correct": true
+            },
+            {
+              "t": "“Good question — discuss in pairs why we might split it.”",
+              "partial": true,
+              "fb": "A strong move, but it’s <b>Promote collaboration</b>. The student asked to see <i>your</i> thinking; this hands it back before showing them."
+            },
+            {
+              "t": "“Great question!” — and carry on solving.",
+              "fb": "The question is acknowledged but never answered. The reasoning stays hidden."
+            }
+          ],
+          "good": "Yes. You narrated the <i>decision</i>, not just the step — the difference between modelling thinking and demonstrating a procedure.",
+          "part": "So close — and worth sitting with. Collaboration is excellent, but the student asked how an expert thinks. Show them first, then hand it over.",
+          "coach": "A good test: if a textbook could replace your words, you demonstrated a procedure. If students heard you <i>decide</i>, you modelled thinking."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario · the hard one",
+          "q": "The class is watching. What do you do?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-4"
+              ],
+              "focusArea": "solutions-and-mixtures"
+            },
+            "t": "Mid-demonstration you realise you’ve made an arithmetic slip — your density for a rock came out under 1 g/cm³. The class hasn’t noticed yet. You…"
+          },
+          "opts": [
+            {
+              "t": "Quietly fix it and keep going, so you don’t confuse anyone.",
+              "fb": "Understandable — but you’ve hidden the most useful thing to model: how an expert catches and recovers from their own error."
+            },
+            {
+              "t": "Narrate it: “Hang on — under 1 would float, and this is a rock. Something’s off. Let me check… there, I divided the wrong way. Always sense-check the size of your answer.”",
+              "correct": true
+            },
+            {
+              "t": "Blame the calculator and quietly redo it.",
+              "fb": "This models the wrong disposition — that errors are someone else’s fault and best hidden."
+            },
+            {
+              "t": "Rub it out and move to the next example.",
+              "fb": "The error disappears, and so does the chance to show self-monitoring in action."
+            }
+          ],
+          "good": "Exactly. Catching your own error out loud is the purest form of modelling monitoring — the self-check you want to become their habit.",
+          "coach": "This is the one that awakens practice. Most of us instinctively hide mistakes. The move is to make the recovery the lesson."
+        },
+        {
+          "type": "apply",
+          "eyebrow": "Design the move",
+          "q": "Write your own think-aloud",
+          "sub": "Pick a topic you’ll teach soon. Write one or two sentences you could say out loud that narrate a <b>decision</b> or a <b>stuck moment</b> — not just the steps.",
+          "placeholder": "e.g. “I could balance this by trial and error… but that’s slow. Let me find the atom that appears in the fewest places first — that’s where I usually start…”",
+          "criteria": [
+            "It narrates a decision or a dead-end, not just the procedure",
+            "It includes a genuine “stuck” or “let me check myself” moment",
+            "A student would hear <i>how</i> you think, not just <i>what</i> the answer is"
+          ]
+        },
+        {
+          "type": "commit",
+          "eyebrow": "Take it to your classroom",
+          "q": "Make it real",
+          "sub": "Strategies transfer when they’re deliberately practised, not just understood. Name where this one goes next.",
+          "placeholder": "Which lesson this week will you try this in?",
+          "reflect": "After you teach it: did students respond differently when they heard you decide, rather than just tell? Note one thing you noticed."
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "short": "Questions that make students inspect their reasoning",
+      "intro": "Asking questions that probe how students are reasoning — and teaching them to ask those questions of themselves — so thinking becomes something they inspect, not just perform.",
+      "steps": [
+        {
+          "type": "choice",
+          "kind": "def",
+          "scorable": true,
+          "distractors": [
+            {
+              "habit": "model",
+              "contrast": "Modelling shows your reasoning. Questioning gets students to inspect theirs."
+            },
+            {
+              "habit": "explicit",
+              "contrast": "Naming the strategy sets the target. Questioning checks whether students are actually doing it."
+            },
+            {
+              "habit": "evaluate",
+              "contrast": "Evaluating looks back at the process afterwards. Questioning probes reasoning as it happens."
+            }
+          ],
+          "good": "That’s it. The questions are about how students are thinking — and the goal is for students to start asking them of themselves.",
+          "coach": "A question is metacognitive when the student has to look at their own reasoning to answer it."
+        },
+        {
+          "type": "tf",
+          "kind": "spot",
+          "scorable": true,
+          "eyebrow": "Spot the habit",
+          "q": "Is this the metacognitive questioning habit?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-4"
+              ],
+              "focusArea": "forces"
+            },
+            "t": "Rapid-fire to start the lesson: “What’s the unit of force? What’s Newton’s second law? What’s g on Earth?”"
+          },
+          "answer": false,
+          "good": "Right — it isn’t. These are good retrieval questions, but they check memory, not reasoning.",
+          "bad": "These check what students remember. The questioning habit asks about reasoning: “How did you decide?” “How sure are you, and why?”",
+          "coach": "Retrieval questions are valuable — just a different tool. Know which one you’re reaching for."
+        },
+        {
+          "type": "choice",
+          "kind": "recall",
+          "scorable": true,
+          "eyebrow": "Quick recall",
+          "q": "Which question best turns a student’s attention to their own reasoning?",
+          "opts": [
+            {
+              "t": "“What’s the answer?”",
+              "fb": "This asks for the product. The habit asks about the process."
+            },
+            {
+              "t": "“Did everyone get that?”",
+              "fb": "A closed check that most students answer with a nod, whatever they understood."
+            },
+            {
+              "t": "“Who can tell me the definition?”",
+              "fb": "Recall of a definition — useful, but it doesn’t ask students to inspect their thinking."
+            },
+            {
+              "t": "“What made you stop looking — did you run out of ideas, or weren’t you sure how to check?”",
+              "correct": true
+            }
+          ],
+          "good": "Yes. To answer it, the student has to look back at their own thinking — that’s what makes it metacognitive.",
+          "coach": "Questions like this become the voice students eventually hear in their own heads."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario",
+          "q": "What’s your next question?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-4"
+              ],
+              "focusArea": "living-systems"
+            },
+            "t": "A student predicts that removing foxes from a food web means “more rabbits” — and stops there. It’s correct as far as it goes."
+          },
+          "opts": [
+            {
+              "t": "“Correct! Well done.”",
+              "fb": "Praise closes the thinking down. The student stopped at one link and now believes that’s enough."
+            },
+            {
+              "t": "“How confident are you that you’ve traced every connection? What made you stop at the first one?”",
+              "correct": true
+            },
+            {
+              "t": "“Not quite — what about the grass?”",
+              "fb": "This gives away the next step. The student follows your lead rather than inspecting their own reasoning."
+            },
+            {
+              "t": "“Check with your partner.”",
+              "partial": true,
+              "fb": "Collaboration could help — but the student hasn’t yet looked at their own reasoning. Ask first, then pair."
+            }
+          ],
+          "good": "Yes. The question isn’t about ecosystems — it asks the student to inspect the completeness of their own reasoning.",
+          "part": "Close. Pairing is useful, but first ask the student to inspect their own thinking.",
+          "coach": "Questions about completeness (“how do you know you’ve finished?”) work in every topic."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario · the hard one",
+          "q": "Two hands shoot up instantly. What do you do?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-5"
+              ],
+              "focusArea": "energy"
+            },
+            "t": "You ask: “Why would an insulated hot-water tank lose energy more slowly?” Two hands go up within a second."
+          },
+          "opts": [
+            {
+              "t": "Wait five full seconds, then: “Take a moment — I’ll ask a few of you.” Then cold-call.",
+              "correct": true
+            },
+            {
+              "t": "Take the first hand — they’re keen.",
+              "fb": "Keen students answer, and the rest learn they don’t need to think. In under a second, only fast recall gets a chance."
+            },
+            {
+              "t": "Answer it yourself to keep the pace up.",
+              "fb": "The thinking was yours. The question becomes a lecture."
+            },
+            {
+              "t": "“Anyone else?” — then take the same two hands.",
+              "fb": "Under a second of wait time, the same few students answer. The rest learn they can wait it out."
+            }
+          ],
+          "good": "Yes. Wait time and asking everyone change who gets to think. A reasoning question needs time to reason.",
+          "coach": "Five seconds feels awkward for about a fortnight. Then it feels normal — to you and to them."
+        },
+        {
+          "type": "apply",
+          "eyebrow": "Design the move",
+          "q": "Write three self-questions",
+          "sub": "Write three questions your students could ask <b>themselves</b> — for example, before submitting a practical method or while reading a graph.",
+          "placeholder": "1. …\n2. …\n3. …",
+          "criteria": [
+            "They’re about reasoning, not recall",
+            "Students could use them without you there",
+            "At least one asks how sure they are, and why"
+          ]
+        },
+        {
+          "type": "commit",
+          "eyebrow": "Take it to your classroom",
+          "q": "Make it real",
+          "sub": "Strategies transfer when they’re deliberately practised, not just understood. Name where this one goes next.",
+          "placeholder": "Which lesson this week will you try this in?",
+          "reflect": "After you teach it: listen for a student asking one of your questions without being prompted. Note when it happened."
+        }
+      ]
+    },
+    {
+      "id": "plan",
+      "short": "Scaffold the planning experts do silently",
+      "intro": "Giving students a structure for planning before they start — a checklist, organiser or sequence of steps — so the planning experts do silently becomes something students can see, rehearse, and eventually do without the scaffold.",
+      "steps": [
+        {
+          "type": "choice",
+          "kind": "def",
+          "scorable": true,
+          "distractors": [
+            {
+              "habit": "explicit",
+              "contrast": "Naming the strategy says what thinking matters. A planning scaffold gives students a structure to do it."
+            },
+            {
+              "habit": "practise",
+              "contrast": "Repetition builds durability. The scaffold is what gets repeated."
+            },
+            {
+              "habit": "challenge",
+              "contrast": "Challenge removes support to test transfer. A planning scaffold provides support first."
+            }
+          ],
+          "good": "That’s it. A scaffold used before the task, so students start with a plan instead of guessing.",
+          "coach": "The best planning scaffolds are content-free — the same questions work in any investigation."
+        },
+        {
+          "type": "tf",
+          "kind": "spot",
+          "scorable": true,
+          "eyebrow": "Spot the habit",
+          "q": "Is this the plan-ahead habit?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-5"
+              ],
+              "note": "first-hand investigation"
+            },
+            "t": "“Before you touch any equipment, write three answers: What am I changing? What am I measuring? What am I keeping the same?”"
+          },
+          "answer": true,
+          "good": "Yes. Three planning questions, answered before the task — the silent planning experts do, made visible.",
+          "bad": "Look again — the questions come before the task and structure the plan. That’s a planning scaffold.",
+          "coach": "Students can define “variable” on a test and still never use it to check their own plan. The scaffold connects the two."
+        },
+        {
+          "type": "choice",
+          "kind": "recall",
+          "scorable": true,
+          "eyebrow": "Quick recall",
+          "q": "When does a planning scaffold do its best work?",
+          "opts": [
+            {
+              "t": "Before the task, so students start with a plan.",
+              "correct": true
+            },
+            {
+              "t": "After the task, as a marking guide.",
+              "fb": "That’s a checklist for evaluating. A planning scaffold has to come before."
+            },
+            {
+              "t": "Only for students who are struggling.",
+              "fb": "Experts plan too — silently. The scaffold makes that visible for everyone, then fades."
+            },
+            {
+              "t": "Only in exam conditions.",
+              "fb": "Planning routines need rehearsal in ordinary lessons, or they won’t appear under pressure."
+            }
+          ],
+          "good": "Right — before. Students start with a plan instead of going straight in and having to recover.",
+          "coach": "Timing is the whole point. A plan written after the work isn’t a plan."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario",
+          "q": "Students keep getting tangled. What do you change?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-6"
+              ],
+              "syllabus": "physics-stage6-2017",
+              "module": "phys-m5",
+              "acknowledgedSuperseded": true
+            },
+            "t": "In projectile problems, students start calculating straight away and mix horizontal and vertical quantities in the same equation."
+          },
+          "opts": [
+            {
+              "t": "Re-teach the equations of motion.",
+              "fb": "They know the equations. The problem is that they start before deciding which quantities belong together."
+            },
+            {
+              "t": "“Before any numbers: two columns, horizontal and vertical. List what’s known and what’s constant in each. Every problem — before, never during.”",
+              "correct": true
+            },
+            {
+              "t": "Give them worked solutions to copy.",
+              "fb": "Copying solutions means they never practise the planning step."
+            },
+            {
+              "t": "Give harder problems so they have to slow down.",
+              "fb": "Harder problems without a planning routine just make the tangle worse."
+            }
+          ],
+          "good": "Yes. A fixed planning step before any calculation stops students tangling the quantities in the first place.",
+          "coach": "Look for a step students skip that experts never skip. That step is your scaffold."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario · the hard one",
+          "q": "The scaffold works. Now what?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-5"
+              ],
+              "note": "mid-year"
+            },
+            "t": "Your investigation-planning template has worked well all year. But students still need it in front of them for every practical, and can’t plan without it."
+          },
+          "opts": [
+            {
+              "t": "Keep providing it — it’s working.",
+              "partial": true,
+              "fb": "It works as a crutch. The goal is students who plan without it."
+            },
+            {
+              "t": "Remove it from the next practical without warning.",
+              "fb": "Removing it suddenly tests memory under stress rather than building independence."
+            },
+            {
+              "t": "Fade it in stages: next practical, students rebuild the questions from memory before you show the template.",
+              "correct": true
+            },
+            {
+              "t": "Add more steps so plans are more thorough.",
+              "fb": "A longer template means more dependence on it."
+            }
+          ],
+          "good": "Exactly. A scaffold is meant to be removed. Fading it in visible stages builds independence.",
+          "part": "Close — it works, but a scaffold that never fades becomes a crutch. Plan how you’ll remove it.",
+          "coach": "Every scaffold you introduce needs a plan for removing it."
+        },
+        {
+          "type": "apply",
+          "eyebrow": "Design the move",
+          "q": "Design a reusable planning scaffold",
+          "sub": "Write a 3–5 step planning scaffold for a kind of task your students do often. Keep it <b>content-free</b> so it works across topics.",
+          "placeholder": "Before I start: 1. … 2. … 3. …",
+          "criteria": [
+            "Students use it before the task, not after",
+            "It works across topics, not just one",
+            "You know how you’ll fade it over the term"
+          ]
+        },
+        {
+          "type": "commit",
+          "eyebrow": "Take it to your classroom",
+          "q": "Make it real",
+          "sub": "Strategies transfer when they’re deliberately practised, not just understood. Name where this one goes next.",
+          "placeholder": "Which lesson this week will you try this in?",
+          "reflect": "After you teach it: note which step students skipped or rushed. That’s the step to model next."
+        }
+      ]
+    },
+    {
+      "id": "collab",
+      "short": "Compare how, not just what",
+      "intro": "Having students compare how they reasoned — not just their answers — so they meet strategies other than their own and see their own thinking more clearly by contrast.",
+      "steps": [
+        {
+          "type": "choice",
+          "kind": "def",
+          "scorable": true,
+          "distractors": [
+            {
+              "habit": "ask",
+              "contrast": "Questioning probes reasoning, usually teacher to student. Collaboration has students probe each other’s."
+            },
+            {
+              "habit": "model",
+              "contrast": "Modelling puts your thinking on display. Collaboration puts several students’ thinking side by side."
+            },
+            {
+              "habit": "practise",
+              "contrast": "Practice repeats a routine. Collaboration compares different routines."
+            }
+          ],
+          "good": "That’s it. The comparison of reasoning is what makes it metacognitive — not just being in a group.",
+          "coach": "Students often learn about their own thinking by seeing someone else do it differently."
+        },
+        {
+          "type": "tf",
+          "kind": "spot",
+          "scorable": true,
+          "eyebrow": "Spot the habit",
+          "q": "Is this promoting collaboration, in the metacognitive sense?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-5"
+              ],
+              "focusArea": "reactions"
+            },
+            "t": "Groups of four complete one worksheet on balancing equations. The fastest writer fills it in while the others watch."
+          },
+          "answer": false,
+          "good": "Right — it isn’t. One student is doing the thinking while three watch.",
+          "bad": "Being in a group isn’t the habit. Nobody here compares reasoning — one student does the work and three watch.",
+          "coach": "Ask yourself: could one capable student complete this task alone? If yes, it isn’t collaborative yet."
+        },
+        {
+          "type": "choice",
+          "kind": "recall",
+          "scorable": true,
+          "eyebrow": "Quick recall",
+          "q": "What makes group work metacognitive rather than just social?",
+          "opts": [
+            {
+              "t": "The groups are mixed-ability.",
+              "fb": "Mixed groups can help, but the grouping itself doesn’t make anyone examine their reasoning."
+            },
+            {
+              "t": "There’s a shared group mark.",
+              "fb": "Shared marks often let some students disappear. They don’t require anyone to compare reasoning."
+            },
+            {
+              "t": "Students compare how they reasoned, not just what they concluded.",
+              "correct": true
+            },
+            {
+              "t": "Roles are printed on the worksheet.",
+              "fb": "Roles that are named but never taught usually change nothing."
+            }
+          ],
+          "good": "Yes. Seeing a different route to the same answer makes students notice the route they took.",
+          "coach": "The CBE–Life Sciences Education guide calls this social metacognition: evaluating and adopting each other’s strategies."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario",
+          "q": "A pair disagrees. What do you do?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-4"
+              ],
+              "focusArea": "forces"
+            },
+            "t": "Two students have drawn different force diagrams for a book resting on a table and are arguing about who’s right."
+          },
+          "opts": [
+            {
+              "t": "“Take turns explaining your diagram out loud — and say exactly where your reasoning differs.”",
+              "correct": true
+            },
+            {
+              "t": "Tell them which diagram is correct.",
+              "fb": "Settling it for them ends the most useful part — each student checking their own reasoning against someone else’s."
+            },
+            {
+              "t": "Have the class vote on the right diagram.",
+              "fb": "A vote settles it by popularity, not reasoning."
+            },
+            {
+              "t": "Separate them so the argument stops.",
+              "fb": "The disagreement was the learning opportunity."
+            }
+          ],
+          "good": "Yes. Explaining aloud is self-explanation, and the disagreement makes both students check their reasoning.",
+          "coach": "Disagreement is useful. Don’t shut it down — give it a structure."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario · the hard one",
+          "q": "One student is carrying the group. What do you change?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-6"
+              ],
+              "syllabus": "biology-stage6-2017",
+              "module": "bio-m7",
+              "acknowledgedSuperseded": true
+            },
+            "t": "In a group task on pathogens, one student is doing nearly all the research and writing. The final product will probably be good."
+          },
+          "opts": [
+            {
+              "t": "Let it go — the product will be good.",
+              "fb": "The product will be good. Three students won’t have learned much."
+            },
+            {
+              "t": "Lower the group mark to send a message.",
+              "fb": "Punishing the group doesn’t change how the task is designed."
+            },
+            {
+              "t": "Print role names on the task sheet.",
+              "partial": true,
+              "fb": "Roles help only if they’re taught and the task needs them. On their own they rarely change who does the work."
+            },
+            {
+              "t": "Redesign as a jigsaw — each student becomes the expert on one pathogen type — and assess individually, requiring evidence from a peer’s expertise.",
+              "correct": true
+            }
+          ],
+          "good": "Exactly. The task needs everyone’s expertise, and each student is still accountable for their own work.",
+          "part": "Close. Roles are a start, but students need the task to require each other’s expertise, and to be assessed individually.",
+          "coach": "Collaboration needs two things: each student needs the others, and each student is accountable for their own work."
+        },
+        {
+          "type": "apply",
+          "eyebrow": "Design the move",
+          "q": "Design a ten-minute reasoning comparison",
+          "sub": "Design a short pair or group task where students must <b>compare how they reasoned</b>, not just check answers.",
+          "placeholder": "Task: … Students compare: … Disagreement is handled by: …",
+          "criteria": [
+            "Students explain how they got there, not just what they got",
+            "Disagreement is worked through, not settled by you",
+            "Each student is accountable for something"
+          ]
+        },
+        {
+          "type": "commit",
+          "eyebrow": "Take it to your classroom",
+          "q": "Make it real",
+          "sub": "Strategies transfer when they’re deliberately practised, not just understood. Name where this one goes next.",
+          "placeholder": "Which lesson this week will you try this in?",
+          "reflect": "After you teach it: note one strategy a student picked up from a peer."
+        }
+      ]
+    },
+    {
+      "id": "evaluate",
+      "short": "Judge the thinking, not just the answer",
+      "intro": "Having students judge their thinking process — not only whether the answer was right — against criteria or their own goals, so they learn what worked, what didn’t, and why.",
+      "steps": [
+        {
+          "type": "choice",
+          "kind": "def",
+          "scorable": true,
+          "distractors": [
+            {
+              "habit": "checkin",
+              "contrast": "Checking in tracks whether a habit has become independent over time. Evaluating judges the process of one piece of work."
+            },
+            {
+              "habit": "practise",
+              "contrast": "Practice repeats a routine. Evaluating judges how well the routine went."
+            },
+            {
+              "habit": "ask",
+              "contrast": "Questioning probes reasoning as it happens. Evaluating looks back at it afterwards."
+            }
+          ],
+          "good": "That’s it. The judgement is about the process, not just the score.",
+          "coach": "Most self-assessment asks “how did I go?”. This habit asks “how did I think?”."
+        },
+        {
+          "type": "tf",
+          "kind": "spot",
+          "scorable": true,
+          "eyebrow": "Spot the habit",
+          "q": "Is this evaluating progress?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-4"
+              ],
+              "focusArea": "living-systems",
+              "note": "exit slip"
+            },
+            "t": "Rate yourself on two lines: “I can identify producers, consumers and decomposers” — and — “I checked for indirect effects before I finished.”"
+          },
+          "answer": true,
+          "good": "Yes. The second line rates the thinking process — something most students have never been asked to judge.",
+          "bad": "Look at the second line — it asks students to judge how they thought, not what they know. That’s the habit.",
+          "coach": "Splitting content from process on one small slip is the simplest version of this habit."
+        },
+        {
+          "type": "choice",
+          "kind": "recall",
+          "scorable": true,
+          "eyebrow": "Quick recall",
+          "q": "Which self-assessment line evaluates the thinking process?",
+          "opts": [
+            {
+              "t": "“I got 8 out of 10.”",
+              "fb": "A score — an outcome, not a process."
+            },
+            {
+              "t": "“I finished on time.”",
+              "fb": "Pace, not reasoning."
+            },
+            {
+              "t": "“I decided about the anomaly using evidence, not a gut feeling.”",
+              "correct": true
+            },
+            {
+              "t": "“I enjoyed this topic.”",
+              "fb": "Engagement matters, but this line doesn’t judge the thinking."
+            }
+          ],
+          "good": "Yes. It names a thinking move and asks whether the student actually made it.",
+          "coach": "Good process lines start with a verb of thinking: decided, checked, compared, revised."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario",
+          "q": "When should students self-assess?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-5"
+              ],
+              "note": "first-hand investigation"
+            },
+            "t": "Students have written a method for testing which surface harbours more microbes. They’re about to run it."
+          },
+          "opts": [
+            {
+              "t": "Afterwards, once they see whether the results make sense.",
+              "fb": "Once results arrive, students judge the method by whether it worked — the outcome, not the process."
+            },
+            {
+              "t": "Now: self-check the plan before running it — all three variable types? A fair test? Mark your plan, then I’ll mark it.",
+              "correct": true
+            },
+            {
+              "t": "Swap results and peer-mark them.",
+              "fb": "Peer-marking results judges outcomes, not how the method was designed."
+            },
+            {
+              "t": "Skip it — the practical report will show what they learned.",
+              "fb": "The report comes too late for students to change their method."
+            }
+          ],
+          "good": "Yes. Judging the plan before results keeps the evaluation on the process.",
+          "coach": "Results influence judgement. Evaluate the process before results are in."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario · the hard one",
+          "q": "Self-marks and your marks disagree. Now what?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-6"
+              ],
+              "syllabus": "biology-stage6-2017",
+              "module": "bio-m7",
+              "acknowledgedSuperseded": true
+            },
+            "t": "Students self-marked their extended response on the immune response against the rubric before you marked it. For several, your mark is well below theirs."
+          },
+          "opts": [
+            {
+              "t": "Return your marks only — the self-marks were just practice.",
+              "fb": "The most useful information is the gap between the two marks, and this throws it away."
+            },
+            {
+              "t": "Average the two marks.",
+              "fb": "Averaging hides the disagreement, and the disagreement is where the learning is."
+            },
+            {
+              "t": "Make the gap the feedback conversation: “You thought you’d linked innate and adaptive — show me where.”",
+              "correct": true
+            },
+            {
+              "t": "Stop self-marking — students aren’t accurate enough yet.",
+              "fb": "Inaccurate self-assessment is the reason to keep doing it, with feedback, until it improves."
+            }
+          ],
+          "good": "Exactly. The gap shows where a student’s judgement of their own work is off. Discussing it builds that judgement.",
+          "coach": "Accurate self-judgement is a capability students can develop. Each conversation about a gap develops it."
+        },
+        {
+          "type": "apply",
+          "eyebrow": "Design the move",
+          "q": "Write a two-line exit slip",
+          "sub": "For your next lesson, write one line rating the <b>content</b> and one rating the <b>thinking process</b>.",
+          "placeholder": "Content: I can … / Thinking: I …",
+          "criteria": [
+            "The process line is about how students thought, not what they know",
+            "It names the specific thinking move this lesson practised",
+            "A student could answer it honestly in under a minute"
+          ]
+        },
+        {
+          "type": "commit",
+          "eyebrow": "Take it to your classroom",
+          "q": "Make it real",
+          "sub": "Strategies transfer when they’re deliberately practised, not just understood. Name where this one goes next.",
+          "placeholder": "Which lesson this week will you try this in?",
+          "reflect": "After you teach it: read the process lines. Which answers surprised you?"
+        }
+      ]
+    },
+    {
+      "id": "challenge",
+      "short": "Test whether the thinking transfers",
+      "intro": "Once students are secure, setting an unfamiliar or harder task — often one where their usual approach fails — to test whether their thinking has actually transferred.",
+      "steps": [
+        {
+          "type": "choice",
+          "kind": "def",
+          "scorable": true,
+          "distractors": [
+            {
+              "habit": "plan",
+              "contrast": "A scaffold supports thinking. Challenge removes support to test it."
+            },
+            {
+              "habit": "practise",
+              "contrast": "Practice repeats the routine in similar contexts. Challenge tests it somewhere unfamiliar."
+            },
+            {
+              "habit": "evaluate",
+              "contrast": "Evaluating judges the process afterwards. Challenge sets up the test."
+            }
+          ],
+          "good": "That’s it. Challenge tests whether the thinking holds up somewhere new.",
+          "coach": "Students can look capable in familiar tasks. An unfamiliar task shows whether they really are."
+        },
+        {
+          "type": "tf",
+          "kind": "spot",
+          "scorable": true,
+          "eyebrow": "Spot the habit",
+          "q": "Is this a well-timed challenge?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-5"
+              ],
+              "focusArea": "reactions",
+              "note": "lesson one"
+            },
+            "t": "In the very first lesson on conservation of mass, before any teaching, the teacher sets an open-versus-sealed-system comparison and asks students to explain the difference."
+          },
+          "answer": false,
+          "good": "Right — it’s too early. Challenge comes once students are confident; before that, it’s just confusing.",
+          "bad": "Challenge needs a secure base to test. In lesson one there’s nothing to test yet — it’s just confusing.",
+          "coach": "The same task can be a good challenge in week four and a poor one in lesson one."
+        },
+        {
+          "type": "choice",
+          "kind": "recall",
+          "scorable": true,
+          "eyebrow": "Quick recall",
+          "q": "According to the NSW guide, when should you challenge students?",
+          "opts": [
+            {
+              "t": "Right at the start, to motivate them.",
+              "fb": "Early difficulty can motivate, but the guide places challenge after students are confident."
+            },
+            {
+              "t": "Only in assessment tasks.",
+              "fb": "Challenge belongs in ordinary lessons, so the assessment isn’t the first time students meet it."
+            },
+            {
+              "t": "Never for students who find the content hard.",
+              "fb": "Every student deserves a challenge, once they’re secure."
+            },
+            {
+              "t": "Once students are confident with the content.",
+              "correct": true
+            }
+          ],
+          "good": "Right. Confidence first, then an unfamiliar task to test whether the thinking transfers.",
+          "coach": "Challenge too early and students can’t tell whether the problem is the content or the thinking."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario",
+          "q": "How do you test the habit?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-4"
+              ],
+              "focusArea": "data-science-1"
+            },
+            "t": "Your class reliably follows the routine “ignore the outlier” when reading graphs. They’re confident with it."
+          },
+          "opts": [
+            {
+              "t": "Give them more graphs with outliers to practise on.",
+              "fb": "More of the same confirms the routine. It doesn’t test whether they’re thinking."
+            },
+            {
+              "t": "Give them a graph where the anomaly is the finding — and ask whether their routine still serves them.",
+              "correct": true
+            },
+            {
+              "t": "Tell them outliers can matter.",
+              "fb": "Telling them is quicker, but they don’t discover that their routine has limits."
+            },
+            {
+              "t": "Move on to a new topic — they’ve got it.",
+              "fb": "They’ve got a routine. Whether they’ve got the thinking behind it is untested."
+            }
+          ],
+          "good": "Yes. A case that breaks the rule shows whether students are thinking or just following it.",
+          "coach": "The strongest challenges make the student’s usual approach fail. Then they have to notice, and adjust."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario · the hard one",
+          "q": "Students have made their predictions. What next?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-6"
+              ],
+              "syllabus": "chemistry-stage6-2017",
+              "module": "chem-m5",
+              "acknowledgedSuperseded": true
+            },
+            "t": "Students can predict single Le Châtelier shifts confidently. You give them a system with two stresses at once, and they’ve written predictions."
+          },
+          "opts": [
+            {
+              "t": "“Before I give the answer — which part of your reasoning are you least sure about?”",
+              "correct": true
+            },
+            {
+              "t": "Mark the predictions right or wrong.",
+              "fb": "Right or wrong tells you about the answer. It doesn’t show which part of the reasoning is shaky."
+            },
+            {
+              "t": "Give the answer straight away.",
+              "fb": "You’d be removing the moment where students judge their own certainty."
+            },
+            {
+              "t": "Move to the next system.",
+              "fb": "The harder task was the point. Moving on skips what it could show you."
+            }
+          ],
+          "good": "Exactly. Naming uncertainty shows both you and the student where the reasoning is shaky.",
+          "coach": "In a challenge, the most useful thing students can tell you is which part they’re least sure of."
+        },
+        {
+          "type": "apply",
+          "eyebrow": "Design the move",
+          "q": "Design a same-thinking, new-context task",
+          "sub": "Pick a thinking move your students do confidently. Design a task where it’s needed in an <b>unfamiliar</b> context — or where their usual approach breaks.",
+          "placeholder": "They’re confident at: … The new context: … What should break: …",
+          "criteria": [
+            "It needs the same thinking move, in a new context",
+            "Students’ usual approach struggles or fails",
+            "Students are asked to notice what changed"
+          ]
+        },
+        {
+          "type": "commit",
+          "eyebrow": "Take it to your classroom",
+          "q": "Make it real",
+          "sub": "Strategies transfer when they’re deliberately practised, not just understood. Name where this one goes next.",
+          "placeholder": "Which lesson this week will you try this in?",
+          "reflect": "After you teach it: note who adapted their approach and who repeated the old routine."
+        }
+      ]
+    },
+    {
+      "id": "practise",
+      "short": "Same routine, varied content, spaced over time",
+      "intro": "Reusing the same thinking routine across different content — spaced and interleaved over weeks — until it becomes durable rather than something students only do when this topic is on.",
+      "steps": [
+        {
+          "type": "choice",
+          "kind": "def",
+          "scorable": true,
+          "distractors": [
+            {
+              "habit": "challenge",
+              "contrast": "Challenge tests the routine somewhere unfamiliar. Practice builds it until it’s durable."
+            },
+            {
+              "habit": "plan",
+              "contrast": "A scaffold is a structure. Practice repeats it until students can do it without the scaffold."
+            },
+            {
+              "habit": "checkin",
+              "contrast": "Checking in tests whether practice has worked. Practice is what makes it work."
+            }
+          ],
+          "good": "That’s it. The routine stays the same while the content changes, and the practice is spread over time.",
+          "coach": "Students build durable habits by practising the same routine on different content, spread over time."
+        },
+        {
+          "type": "tf",
+          "kind": "spot",
+          "scorable": true,
+          "eyebrow": "Spot the habit",
+          "q": "Is this the keep-practising habit?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-4"
+              ],
+              "focusArea": "living-systems"
+            },
+            "t": "The same direct-versus-indirect-effects planner is used for a grassland food web this week, a rainforest next week, and a coral reef the week after."
+          },
+          "answer": true,
+          "good": "Yes. The routine stays the same while the ecosystem changes, spaced across three weeks.",
+          "bad": "Look again — one routine, three different ecosystems, spread over time. That’s the habit.",
+          "coach": "Changing the content is deliberate. It stops students tying the routine to one topic."
+        },
+        {
+          "type": "choice",
+          "kind": "recall",
+          "scorable": true,
+          "eyebrow": "Quick recall",
+          "q": "Spaced versus massed practice — what does the evidence show?",
+          "opts": [
+            {
+              "t": "Massed practice is better in the short and long term.",
+              "fb": "Massed practice can feel better in the moment, but it fades faster."
+            },
+            {
+              "t": "There’s no meaningful difference.",
+              "fb": "The difference is substantial, and consistent across studies."
+            },
+            {
+              "t": "Spaced practice produces stronger long-term retention.",
+              "correct": true
+            },
+            {
+              "t": "Spacing only helps in primary school.",
+              "fb": "The spacing effect holds across ages, including adults."
+            }
+          ],
+          "good": "Right. In Hattie’s synthesis, spaced practice has an effect size of 0.71, against 0.41 for massed practice.",
+          "coach": "Massed practice feels more productive because recall is easy straight afterwards. Spaced practice lasts longer."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario",
+          "q": "Students ace the drill, then fail the exam. Why — and what do you change?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-6"
+              ],
+              "syllabus": "biology-stage6-2017",
+              "module": "bio-m5",
+              "acknowledgedSuperseded": true
+            },
+            "t": "Students got 20 autosomal Punnett-square problems right in a row. On a mixed exam they couldn’t tell which kind of cross a question was asking for."
+          },
+          "opts": [
+            {
+              "t": "Give them more autosomal practice.",
+              "fb": "More blocked practice strengthens a skill they already have. They’re failing at choosing which kind of cross it is."
+            },
+            {
+              "t": "Teach one inheritance type per lesson.",
+              "fb": "That’s still blocked. Students never have to choose between types."
+            },
+            {
+              "t": "Mix autosomal, sex-linked and codominant problems in one set, so students must decide the type first.",
+              "correct": true
+            },
+            {
+              "t": "Give them the answer key to study.",
+              "fb": "Studying the answers skips the step they need to practise: deciding which kind of problem it is."
+            }
+          ],
+          "good": "Yes. Interleaving makes students choose the method, which is exactly what the exam asks them to do.",
+          "coach": "With blocked practice, students always know which method comes next. Interleaving makes them work it out."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario · the hard one",
+          "q": "Year 9s have lost the particle model. What’s the fix?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-4",
+                "stage-5"
+              ],
+              "note": "faculty planning"
+            },
+            "t": "The particle model was taught well in Year 7. A Year 9 diagnostic before Reactions shows many students now think dissolved sugar “disappears”."
+          },
+          "opts": [
+            {
+              "t": "Re-teach the particle model as a block in Year 9.",
+              "partial": true,
+              "fb": "It fixes this year. Without spacing it will fade again by Year 11."
+            },
+            {
+              "t": "Plan three or four spaced re-encounters across focus areas, each using the model to explain something new, with retrieval quizzes that sample it.",
+              "correct": true
+            },
+            {
+              "t": "Assume they’ll pick it back up in context.",
+              "fb": "The diagnostic shows they haven’t."
+            },
+            {
+              "t": "Hand out a revision worksheet.",
+              "fb": "One worksheet is one more massed exposure. It won’t last."
+            }
+          ],
+          "good": "Exactly. Spaced re-encounters in different topics, each using the model for something new, are what make it last.",
+          "part": "Close. Re-teaching fixes this cohort now, but without spaced re-encounters the same gap returns.",
+          "coach": "This is a faculty decision. Spacing across a year only happens if it’s written into the scope and sequence."
+        },
+        {
+          "type": "apply",
+          "eyebrow": "Design the move",
+          "q": "Map one routine across a term",
+          "sub": "Pick one thinking routine. Map it onto <b>three different topics</b> spread across a term.",
+          "placeholder": "Routine: … Week 2: … Week 5: … Week 9: …",
+          "criteria": [
+            "The routine stays the same while the content changes",
+            "The encounters are spread out, not back-to-back",
+            "You plan to reduce your prompts each time"
+          ]
+        },
+        {
+          "type": "commit",
+          "eyebrow": "Take it to your classroom",
+          "q": "Make it real",
+          "sub": "Strategies transfer when they’re deliberately practised, not just understood. Name where this one goes next.",
+          "placeholder": "Which lesson this week will you try this in?",
+          "reflect": "After you teach it: at the third encounter, note whether students started the routine before you prompted them."
+        }
+      ]
+    },
+    {
+      "id": "checkin",
+      "short": "Is the habit becoming independent?",
+      "intro": "Periodically checking whether a thinking habit has become independent — used unprompted, in new contexts — rather than only appearing when you remind students.",
+      "steps": [
+        {
+          "type": "choice",
+          "kind": "def",
+          "scorable": true,
+          "distractors": [
+            {
+              "habit": "evaluate",
+              "contrast": "Evaluating judges one piece of work. Checking in tracks whether a habit is becoming independent over weeks."
+            },
+            {
+              "habit": "practise",
+              "contrast": "Practice builds the habit. Checking in tests whether practice has made it independent."
+            },
+            {
+              "habit": "ask",
+              "contrast": "Questioning probes reasoning on a task. Checking in asks about the habit itself, over time."
+            }
+          ],
+          "good": "That’s it. The question isn’t whether students can use the habit when asked — it’s whether they use it unprompted.",
+          "coach": "A habit students only use when reminded isn’t independent yet."
+        },
+        {
+          "type": "tf",
+          "kind": "spot",
+          "scorable": true,
+          "eyebrow": "Spot the habit",
+          "q": "Is this a check-in?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-5"
+              ],
+              "note": "term three"
+            },
+            "t": "“Without me saying anything — what are your first three questions when you start planning an investigation?”"
+          },
+          "answer": true,
+          "good": "Yes. If the class can answer unprompted, the routine has become a habit rather than an instruction they follow.",
+          "bad": "Look again — the teacher deliberately removes the prompt to see whether the habit holds up on its own. That’s a check-in.",
+          "coach": "“Without me saying anything” matters. It tests whether students use the habit unprompted."
+        },
+        {
+          "type": "choice",
+          "kind": "recall",
+          "scorable": true,
+          "eyebrow": "Quick recall",
+          "q": "What’s the strongest evidence that a thinking habit has become independent?",
+          "opts": [
+            {
+              "t": "Students complete the worksheet that uses it.",
+              "fb": "The worksheet is the prompt. Completing it shows the habit works when prompted."
+            },
+            {
+              "t": "Students use it unprompted, in a new context.",
+              "correct": true
+            },
+            {
+              "t": "Students score well on the topic test.",
+              "fb": "Test scores show what students know. They don’t show whether students use a habit unprompted."
+            },
+            {
+              "t": "Students say they find it useful.",
+              "fb": "Useful to know, but liking a strategy doesn’t mean students use it on their own."
+            }
+          ],
+          "good": "Right. Unprompted, and in a new context — those two together are the test.",
+          "coach": "Ask students for examples from outside your classroom. If they can give one, the habit has transferred."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario",
+          "q": "End of the unit. How do you check?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-5"
+              ],
+              "focusArea": "disease"
+            },
+            "t": "Your class has spent a unit evaluating evidence in health claims. You want to know if the habit has stuck."
+          },
+          "opts": [
+            {
+              "t": "A final test on evaluating sources.",
+              "fb": "A test prompts the habit. You’ll learn whether students can use it when asked, not whether they do unprompted."
+            },
+            {
+              "t": "“Has anyone caught themselves asking these questions about something on their feed this week?”",
+              "correct": true
+            },
+            {
+              "t": "Ask if they enjoyed the unit.",
+              "fb": "Enjoyment matters, but it doesn’t tell you whether students use the habit outside class."
+            },
+            {
+              "t": "Nothing — the unit’s finished.",
+              "fb": "If you don’t check, you won’t know whether the habit lasted beyond the unit."
+            }
+          ],
+          "good": "Yes. If students report using it unprompted outside class, the habit has transferred.",
+          "coach": "Questions like this also send a message: the habit is meant to be used outside the classroom."
+        },
+        {
+          "type": "choice",
+          "kind": "scenario",
+          "scorable": true,
+          "eyebrow": "Scenario · the hard one",
+          "q": "Everyone can define it. Are you done?",
+          "scene": {
+            "ctx": {
+              "stages": [
+                "stage-6"
+              ],
+              "syllabus": "chemistry-stage6-2017",
+              "module": "chem-m5",
+              "acknowledgedSuperseded": true
+            },
+            "t": "A few weeks before the exam, every student can give a correct definition of dynamic equilibrium."
+          },
+          "opts": [
+            {
+              "t": "Yes — correct definitions mean the misconception is gone.",
+              "fb": "Correct definitions can hide a misconception. Students may still picture equilibrium as a stopped reaction."
+            },
+            {
+              "t": "Give them more definitions to learn.",
+              "fb": "They already have the definition. The question is how they actually picture equilibrium."
+            },
+            {
+              "t": "Move straight into exam revision.",
+              "fb": "Revision may reinforce the definition while the misconception goes unchecked."
+            },
+            {
+              "t": "Ask directly: “If you had to bet — is any part of you still tempted to think equilibrium means stopped?”",
+              "correct": true
+            }
+          ],
+          "good": "Exactly. Asking directly brings a hidden misconception to the surface while there’s still time to address it.",
+          "coach": "A misconception can stop showing up in written answers and still be there. Check for it directly before the exam."
+        },
+        {
+          "type": "apply",
+          "eyebrow": "Design the move",
+          "q": "Plan three check-ins across a term",
+          "sub": "Pick one thinking habit you’re building. Plan <b>three check-in moments</b> spread across a term.",
+          "placeholder": "Habit: … Week 3: … Week 6: … Week 10: …",
+          "criteria": [
+            "The check-ins are spread across the term",
+            "Each one tests unprompted use, not prompted use",
+            "Each one tells you what to do next"
+          ]
+        },
+        {
+          "type": "commit",
+          "eyebrow": "Take it to your classroom",
+          "q": "Make it real",
+          "sub": "Strategies transfer when they’re deliberately practised, not just understood. Name where this one goes next.",
+          "placeholder": "Which lesson this week will you try this in?",
+          "reflect": "After you teach it: at the last check-in, note how many students used the habit without a reminder."
+        }
+      ]
+    }
+  ]
+}
