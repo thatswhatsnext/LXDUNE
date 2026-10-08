@@ -79,15 +79,24 @@ export function loadGame(opts: { gameDir?: string; guidesDir?: string } = {}): G
       if (!path) { errors.push(`${l.id}: path "${l.path}" is not listed in game.yaml`); continue; }
       const g = guides.get(journeyOf(path));
       if (g) errors.push(...checkLesson(l, g, { guides, reckoner }));
+      if (l.track && !path.tracks.some((t) => t.id === l.track)) errors.push(`${l.id}: track "${l.track}" is not one of path ${path.id}'s tracks in game.yaml`);
       l.requires.forEach((r) => {
         if (!config!.paths.some((x) => x.id === r.path)) errors.push(`${l.id}: requires unknown path "${r.path}"`);
         else if (r.path === l.path) errors.push(`${l.id}: a lesson can't require its own path`);
       });
     }
-    // Lesson order on each path runs 1, 2, 3… with no gaps or repeats, drafts included.
+    // Lesson order on each path runs 1, 2, 3… with no gaps or repeats, drafts included. On a path with
+    // tracks, the shared lessons come first and each track's lessons continue the numbering after them.
     for (const p of config.paths) {
-      const orders = lessons.filter((l) => l.path === p.id).map((l) => l.order).sort((a, b) => a - b);
-      orders.forEach((o, i) => o !== i + 1 && errors.push(`path ${p.id}: lesson orders must run 1, 2, 3… (found ${orders.join(", ")})`));
+      const onPath = lessons.filter((l) => l.path === p.id);
+      const runs = p.tracks.length ? p.tracks.map((t) => ({ name: `path ${p.id} track ${t.id}`, ls: onPath.filter((l) => !l.track || l.track === t.id) })) : [{ name: `path ${p.id}`, ls: onPath }];
+      for (const { name, ls } of runs) {
+        const orders = ls.map((l) => l.order).sort((a, b) => a - b);
+        orders.forEach((o, i) => o !== i + 1 && errors.push(`${name}: lesson orders must run 1, 2, 3… (found ${orders.join(", ")})`));
+      }
+      const shared = onPath.filter((l) => !l.track).map((l) => l.order);
+      if (p.tracks.length && onPath.some((l) => l.track && shared.some((o) => o > l.order))) errors.push(`path ${p.id}: shared lessons must come before every track's lessons`);
+      new Set(p.tracks.map((t) => t.id)).size !== p.tracks.length && errors.push(`game.yaml: path "${p.id}" has a repeated track id`);
     }
   }
   const pathIndex = (id: string) => config?.paths.findIndex((p) => p.id === id) ?? 0;
@@ -223,6 +232,7 @@ export function checkLesson(l: GameLesson, g: ModelGuide, ctx?: { guides: Map<st
       v.plan?.forEach((row: any) => need(phases, row.phaseId, "phase", `${at} plan`));
     });
     if (it.type === "concept") it.rows.forEach((r) => need(phases, r.phaseId, "phase", `${where} rows`));
+    if (it.type === "case") it.sofar?.forEach((r) => need(phases, r.phaseId, "phase", `${where} sofar`));
     if (it.type === "build") out.push(...checkBuild(l, it, g));
     if (it.type === "sim") out.push(...checkSim(l, it, g));
     if (!ctx) continue;
@@ -456,12 +466,12 @@ export function gameData(c: GameContent, includeDrafts: boolean) {
     feedback: c.config.feedback,
     guides,
     paths: c.config.paths.map((p) => ({
-      id: p.id, title: p.title, blurb: p.blurb, kind: p.kind, journey: journeyOf(p), models: p.models, requires: p.requires, rail: p.rail,
+      id: p.id, title: p.title, blurb: p.blurb, kind: p.kind, journey: journeyOf(p), models: p.models, requires: p.requires, rail: p.rail, tracks: p.tracks,
       guide: p.kind === "guide" ? p.id : null,
       upcoming: c.lessons.filter((l) => l.path === p.id && !shown.includes(l)).length,
     })),
     lessons: shown.map((l) => ({
-      id: l.id, path: l.path, order: l.order, title: l.title, summary: l.summary, level: l.level,
+      id: l.id, path: l.path, track: l.track ?? null, order: l.order, title: l.title, summary: l.summary, level: l.level,
       version: l.version, status: l.status, guideSection: l.guideSection ?? null, requires: l.requires, items: items(l),
     })),
   };

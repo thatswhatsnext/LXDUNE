@@ -39,6 +39,15 @@ export const GuideRefs = obj({
 });
 
 const Vignette = obj({ who: ShortText, text: Text });
+/**
+ * A small data table shown under an item's scenario, so results can be read at a glance rather than in a
+ * sentence. Every row has one cell per heading; at most five columns, which still fits a 360 px phone.
+ */
+export const DataTable = obj({
+  caption: ShortText,
+  head: z.array(z.string().min(1).max(40)).min(2).max(5),
+  rows: z.array(z.array(z.string().max(40)).min(2).max(5)).min(1).max(8),
+});
 const PlanRow = obj({ phaseId: Slug, text: ShortText });
 const Option = obj({ text: Text, fb: Text });
 
@@ -56,6 +65,7 @@ const base = {
   hint: ShortText.optional(),
   why: Text.optional(),
   refs: GuideRefs.optional(),
+  table: DataTable.optional(),
 };
 
 /** A replay variant: same judgement, different case. Replaces only the fields it names. */
@@ -212,10 +222,25 @@ const Concept = obj({
   cite: Text.optional(),
 });
 
+/**
+ * The case: sets the scene for a player who hasn't read the guide. Who they are, the class, the question
+ * the class is investigating, and what happened in the lessons before this one (one row per phase, read
+ * from the journey guide). Unscored.
+ */
+const Case = obj({
+  ...base,
+  type: z.literal("case"),
+  title: Text,
+  setting: Vignette,
+  lead: Text,
+  you: ShortText,
+  sofar: z.array(obj({ phaseId: Slug, when: ShortText, text: ShortText })).min(1).max(8).optional(),
+});
+
 /** Look back: recalls the lesson's prediction, asks for a written move, shows a model answer. Unscored. */
 const Reflect = obj({ ...base, type: z.literal("reflect"), title: Text, q: Text, model: Text, recall: Slug.optional() });
 
-export const GameItem = z.discriminatedUnion("type", [Predict, Choice, Spot, Multi, Order, LookFor, Diagnose, Select, Flip, Nest, Build, Sim, Concept, Reflect]);
+export const GameItem = z.discriminatedUnion("type", [Predict, Choice, Spot, Multi, Order, LookFor, Diagnose, Select, Flip, Nest, Build, Sim, Concept, Case, Reflect]);
 export type GameItem = z.infer<typeof GameItem>;
 
 export const GameLesson = obj({
@@ -223,6 +248,11 @@ export const GameLesson = obj({
   id: Slug,
   /** The guide this lesson teaches; also the path it sits on. */
   path: Slug,
+  /**
+   * The case this lesson belongs to, on a path that offers a choice of cases (game.yaml tracks). Lessons
+   * without a track are shared and come first; each track's lessons continue the numbering after them.
+   */
+  track: Slug.optional(),
   order: z.number().int().positive(),
   title: z.string().min(1).max(60),
   summary: ShortText,
@@ -263,12 +293,14 @@ export const GameLesson = obj({
     if (it.type === "select" && !it.candidates.includes(it.answer)) issue(["items", i, "answer"], "The answer must be one of the candidates");
     if (it.type === "flip" && it.answer >= it.changes.length) issue(["items", i, "answer"], "answer is past the last change");
     if (it.type === "diagnose" && !it.vignette && !it.plan) issue(["items", i], "A diagnose item needs a vignette or a plan to diagnose");
+    if (it.table) it.table.rows.forEach((r, j) => r.length !== it.table!.head.length &&
+      issue(["items", i, "table", "rows", j], `row has ${r.length} cells but the table has ${it.table!.head.length} headings`));
     if (it.type === "spot") [it, ...it.variants].forEach((v, j) => {
       const among = v.among ?? it.among, answer = v.answer ?? it.answer;
       if (among && !among.includes(answer)) issue(["items", i, ...(j ? ["variants", j - 1] : []), "answer"], `answer "${answer}" is not one of among`);
     });
   });
-  if (!l.items.some((it) => !["concept", "reflect", "predict"].includes(it.type))) issue(["items"], "A lesson needs at least one scored item");
+  if (!l.items.some((it) => !["concept", "case", "reflect", "predict"].includes(it.type))) issue(["items"], "A lesson needs at least one scored item");
   if (l.status === "published" && (l.provenance.source === "ai-generated" || l.provenance.reviewedBy.length === 0))
     issue(["status"], "A published lesson must be reviewed: provenance.source ai-drafted-reviewed or authored, with reviewedBy filled in");
 });
@@ -292,6 +324,11 @@ export const GameConfig = obj({
     requires: z.array(obj({ path: Slug, level: Mastery })).default([]),
     /** What the lesson rail shows: one cell per phase, or one per phase group (journey guide's phaseGroups). */
     rail: z.enum(["phases", "groups"]).default("phases"),
+    /**
+     * Cases the player chooses between after the shared lessons, each its own run of lessons on a different
+     * worked sequence (lessons carry `track`). Any one case counts towards the path's mastery.
+     */
+    tracks: z.array(obj({ id: Slug, title: z.string().min(1).max(40), blurb: ShortText })).default([]),
   })).min(1),
   feedback: obj({
     /** Google Form link; "placeholder" shows an inactive button; omit to hide feedback. */

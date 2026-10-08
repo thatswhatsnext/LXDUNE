@@ -1,0 +1,283 @@
+# SWH path, lesson 1. Built on the SWH guide's worked sequence swh-seq-s4-spinners. Reviewed and published by Steve on 2026-10-08.
+schemaVersion: 1
+id: swh-1-spinners
+path: swh
+order: 1
+title: Slow it down
+summary: A paper spinner, a stopwatch and seven questions in place of a lab report. Learn what each SWH phase has to do.
+level: recognise
+version: 1.0.0
+status: published
+lastReviewed: 2026-10-08
+provenance:
+  source: ai-drafted-reviewed
+  authors: [Claude]
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-08
+context:
+  stages: [stage4]
+  focusAreas: [Forces]
+  disciplines: [physics]
+outcomes: [SC4-FOR-01]
+builtOn:
+  sequenceIds: [swh-seq-s4-spinners]
+  lookForIds: [swh-begin-own-question, swh-begin-kept, swh-tests-follows-question, swh-obs-separate, swh-claim-arguable, swh-reading-peers-first, swh-reflect-has-original]
+  misapplicationIds: [mis-swh-supplied-question, mis-swh-lost-beginnings]
+guideSection: sequences
+items:
+  - id: case
+    type: case
+    at: beginning-ideas
+    processing: Retrieval
+    kind: The case
+    title: What makes a falling object slow down?
+    setting:
+      who: Year 7 · Forces · Physics · five lessons
+      text: >-
+        A Year 7 class is starting forces. Instead of a demonstration and a worksheet, the teacher gives them paper
+        spinners, simple paper helicopters that twirl as they fall, and lets each student ask their own question about
+        what makes one fall slowly.
+    lead: >-
+      The routine is the Science Writing Heuristic. Students don't write a lab report. Each one answers seven questions
+      about their own investigation, from “What are my questions?” to “How have my ideas changed?”. This lesson walks
+      through all seven with this class.
+    you: You're a pre-service teacher on placement, watching the routine from the first lesson to the last.
+
+  - id: predict
+    type: predict
+    at: beginning-ideas
+    processing: Retrieval
+    kind: Predict
+    title: "A Year 7 teacher drops two things from the same height: a paper spinner, and a crumpled ball made from an identical sheet of paper. Same paper, same mass."
+    q: What happens?
+    options:
+      - text: They land together, because they weigh the same
+      - text: The ball lands first, because the air pushes back harder on the spinner
+      - text: The spinner lands first, because spinning speeds it up
+      - text: The ball lands first, because crumpling makes it heavier
+    answer: 1
+    reveal: >-
+      The ball hits the floor well before the spinner. Same mass, so the difference has to come from the air,
+      which pushes back on the spinner's wings much harder than on the small ball. Classes are usually surprised,
+      and that surprise is where students' own questions come from.
+    why: >-
+      “Air is nothing, so it can't push on anything” is one of this sequence's target conceptions. SWH asks
+      students to write ideas like this down first and keep them, so they can see later what changed their minds.
+
+  - id: concept
+    type: concept
+    at: beginning-ideas
+    processing: Retrieval
+    kind: The model
+    title: The Science Writing Heuristic
+    lead: >-
+      SWH replaces the lab report with seven questions that make a student's reasoning visible. It's a multi-lesson
+      routine of about 4–6 lessons that sits inside a unit, in three movements: in the lab, make the claim, then
+      test it against others.
+    rows:
+      - phaseId: beginning-ideas
+        does: "What are my questions? Each student writes their own, after trying a spinner."
+        move: "Teacher move: conference questions for testability, and keep them."
+      - phaseId: tests
+        does: "What did I do? Groups plan a test of the change their question named."
+        move: "Teacher move: check plans for safety and feasibility, not correctness."
+      - phaseId: observations
+        does: "What did I see? Every time, and what happened on each drop."
+        move: "Teacher move: ask for repeats and the odd drops."
+      - phaseId: claims
+        does: "What can I claim? An individual claim someone could disagree with."
+        move: "Teacher move: read each claim for whether it can be argued."
+      - phaseId: evidence
+        does: "How do I know? Why do these times support the claim?"
+        move: "Teacher move: spend your time here, one student at a time."
+      - phaseId: reading
+        does: "How do my ideas compare? Peers first, then a text on air resistance."
+        move: "Teacher move: release the reading only after groups compare."
+      - phaseId: reflection
+        does: "How have my ideas changed? Beginning questions handed back."
+        move: "Teacher move: ask about their thinking, not the topic."
+    cite: "Keys, C. W., Hand, B., Prain, V. & Collins, S. (1999). Using the Science Writing Heuristic as a tool for learning from laboratory investigations in secondary science. Journal of Research in Science Teaching, 36(10)."
+
+  - id: lf-question
+    type: lookfor
+    at: beginning-ideas
+    processing: Comprehension
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 7 · Lesson 1
+      text: >-
+        After trying her spinner a few times, Mei writes: “Would longer wings make it spin faster and fall slower,
+        because they catch more air?” The teacher asks how she'd know it was slower, and Mei adds: “Time lots of
+        drops.”
+    answer: swh-begin-own-question
+    distractors: [swh-begin-kept, swh-tests-follows-question, swh-claim-individual]
+    strong: true
+    hint: Whose question is it, and where did it come from?
+    why: >-
+      The question is Mei's, from her own spinner, and the short conference made it testable without replacing it.
+      Her reason, that wings “catch more air”, is a beginning idea worth keeping for the last lesson.
+
+  - id: spot-tests
+    type: spot
+    at: tests
+    processing: Comprehension
+    kind: Spot the phase
+    tests: tests
+    vignette:
+      who: Year 7 · Lesson 2
+      text: >-
+        Mei's group plans spinners with 6, 8, 10 and 12 cm wings, the same paper and the same paperclip, dropped from
+        the top of the stairwell five times each. The teacher asks where they'll stand to drop them safely, and
+        leaves the rest of the plan alone.
+    q: Which SWH phase is this?
+    answer: tests
+    among: [beginning-ideas, tests, observations]
+    fb:
+      beginning-ideas: The question was written in lesson 1. Now the group is deciding how to answer it.
+      tests: Yes. The method follows from their own question, and the teacher checks it for safety and feasibility without redesigning it.
+      observations: Nothing has been dropped yet. This is the plan.
+    refs:
+      lookForIds: [swh-tests-follows-question]
+
+  - id: lf-obs
+    type: lookfor
+    at: observations
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 7 · Lesson 3
+      text: >-
+        A results sheet has one column, headed “What happened”. It reads: “Longer wings were slower because they
+        catch more air. The 12 cm one was faulty.”
+    answer: swh-obs-separate
+    distractors: [swh-claim-arguable, swh-evidence-selected, swh-tests-follows-question]
+    strong: false
+    hint: Which parts did they see, and which parts did they decide?
+    why: >-
+      “Because they catch more air” and “faulty” are interpretations, not observations. The sheet has no times, and
+      no record of what the 12 cm spinner actually did. A second column for “What we think it means” keeps those
+      ideas where they can be questioned later.
+
+  - id: spot-claim
+    type: spot
+    at: claims
+    processing: Comprehension
+    kind: Spot the phase
+    tests: claims
+    vignette:
+      who: Year 7 · Lesson 4
+      text: >-
+        Mei's group timed each design five times from the top of the stairwell. Working alone, Mei writes: “Longer
+        wings made the spinner fall more slowly up to 10 cm. At 12 cm the wings flopped, it stopped spinning, and it
+        fell faster.”
+    table:
+      caption: Mei's group, 2.2 m drop, mean of five drops
+      head: [Wing length, Fall time, What happened]
+      rows:
+        - [6 cm, 1.3 s, Spun fast]
+        - [8 cm, 1.6 s, Spun]
+        - [10 cm, 1.9 s, Spun slowly]
+        - [12 cm, 1.2 s, Wings flopped; barely spun]
+    q: Which SWH phase is this?
+    answer: claims
+    among: [observations, claims, evidence]
+    fb:
+      observations: This says what Mei thinks the results show, not each time she recorded.
+      claims: Yes. An individual answer to her own question, in a form another student could disagree with.
+      evidence: The evidence comes next, when Mei picks the times that support this and says why they do.
+    refs:
+      lookForIds: [swh-claim-arguable, swh-claim-individual]
+
+  - id: spot-reading
+    type: spot
+    at: reading
+    processing: Comprehension
+    kind: Spot the phase
+    tests: reading
+    vignette:
+      who: Year 7 · Lesson 5
+      text: >-
+        Mei's group, who changed wing length, pairs with a group that added paperclips. They work out how both
+        claims can be true. Only then does the teacher hand out a short reading on air resistance and on winged
+        Banksia seeds.
+    q: Which SWH phase is this?
+    answer: reading
+    among: [evidence, reading, reflection]
+    fb:
+      evidence: Each student's evidence is already written. Now it's being set against everyone else's.
+      reading: Yes. Peers first, then the text, so the text is another voice in the argument rather than the answer.
+      reflection: That comes last, with the beginning questions handed back.
+    refs:
+      lookForIds: [swh-reading-peers-first]
+
+  - id: dx-supplied
+    type: diagnose
+    at: beginning-ideas
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A pre-service teacher's SWH · Lesson 1
+      text: >-
+        The worksheet opens with a printed box: “Question: Does wing length affect how long a spinner takes to
+        fall?” Students copy it into their books, then start on the method.
+    answer: mis-swh-supplied-question
+    distractors: [mis-swh-lost-beginnings, mis-swh-closed-practical, mis-swh-answer-key]
+    hint: What does each student have to defend later?
+    why: >-
+      Every student has the same question, so nobody has a claim of their own to defend, groups don't change
+      different things, and the final reflection has nothing personal to compare against.
+
+  - id: dx-lost
+    type: diagnose
+    at: reflection
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Another pre-service teacher's SWH · Lesson 5
+      text: >-
+        The lesson ends: “Write a paragraph on how your ideas about falling objects have changed.” Lesson 1's
+        question sheets were collected for marking a fortnight ago and haven't come back.
+    answer: mis-swh-lost-beginnings
+    distractors: [mis-swh-supplied-question, mis-swh-no-negotiation, mis-swh-evidence-recopied]
+    why: >-
+      Without their first page in front of them, students write a summary of the topic instead of an account of
+      their own change. The guide's fix is to photograph or keep the first page and hand it back for this phase.
+    refs:
+      lookForIds: [swh-reflect-has-original, swh-begin-kept]
+
+  - id: order
+    type: order
+    at: reflection
+    processing: Comprehension
+    kind: Put it in order
+    tests: sequence
+    title: Put the spinner routine in SWH order.
+    steps:
+      - text: Each student writes what they'd change to make a spinner fall slowly, and why
+        phaseId: beginning-ideas
+      - text: Groups plan a test of the change their questions named
+        phaseId: tests
+      - text: Groups time each design five times, noting odd drops
+        phaseId: observations
+      - text: Each student writes how their change affected the fall
+        phaseId: claims
+      - text: Students pick the times that support their claim and explain the odd ones
+        phaseId: evidence
+      - text: Groups compare claims, then read about air resistance and winged seeds
+        phaseId: reading
+      - text: Students reread their first questions and write what changed
+        phaseId: reflection
+
+  - id: reflect
+    type: reflect
+    at: reflection
+    processing: Metacognition
+    kind: Look back
+    title: Keep the beginnings.
+    q: Why does SWH keep each student's beginning questions until the last lesson, even the ones that turned out to be wrong?
+    model: "Example: “Because the last phase asks what changed. If I'd thought air couldn't push on anything, seeing that in my own handwriting next to my spinner times is the learning. A wrong first idea is the most useful one to keep.”"
+    recall: predict

@@ -62,7 +62,12 @@ async function openGame(file: string) {
 /** Play one lesson to its results screen, always taking the first option. */
 async function playLesson(doc: any, id: string) {
   const go = () => doc.getElementById("go").click();
-  const btn = doc.querySelector(`[data-l="${id}"]`);
+  let btn = doc.querySelector(`[data-l="${id}"]`);
+  // On a path with cases, the lesson may sit in a case that isn't chosen yet: choose it.
+  for (const c of btn ? [] : [...doc.querySelectorAll("[data-case]")].map((b: any) => b.dataset.case)) {
+    doc.querySelector(`[data-case="${c}"]`).click();
+    if ((btn = doc.querySelector(`[data-l="${id}"]`))) break;
+  }
   if (!btn || btn.disabled) throw new Error(`${id} is locked`);
   btn.click();
   go();
@@ -227,7 +232,7 @@ const cases: [string, () => void | Promise<void>][] = [
     const locked = () => selectIds.every((id) => (doc.querySelector(`[data-l="${id}"]`) as any).disabled);
     if (!locked()) throw new Error("select lessons are open before any lesson is played");
     for (const p of c.config.paths.filter((x) => x.requires.length))
-      c.lessons.filter((l) => l.path === p.id).forEach((l) => { if (!(doc.querySelector(`[data-l="${l.id}"]`) as any).disabled) throw new Error(`${l.id} is open before the ${p.id} path's requirements are met`); });
+      c.lessons.filter((l) => l.path === p.id).forEach((l) => { const b = doc.querySelector(`[data-l="${l.id}"]`) as any; if (b && !b.disabled) throw new Error(`${l.id} is open before the ${p.id} path's requirements are met`); });
     const req = c.config.paths.find((p) => p.id === "select")!.requires;
     for (const q of req) {
       const need = c.lessons.filter((l) => l.path === q.path);
@@ -299,13 +304,20 @@ const cases: [string, () => void | Promise<void>][] = [
     const rail = loadGame({ gameDir: dir });
     if (!rail.errors.some((e) => /rail: groups but its journey guide has no phaseGroups/.test(e))) throw new Error(`rail not caught: ${rail.errors.join("; ")}`);
   }],
-  ["Fieldwork: title, confidence slider, and every lesson plate on its first item only", async () => {
+  ["Fieldwork: title, confidence slider, and every lesson's plate on its first item only", async () => {
     const built = readFileSync(join(tmp, "a", "index.html"), "utf8");
     if (!built.includes("<title>Fieldwork · The Field Guide</title>")) throw new Error("the built <title> is not Fieldwork · The Field Guide");
     buildGame({ mode: "review", outDir: join(tmp, "plate") });
     const { dom, doc, errors } = await openGame(join(tmp, "plate", "game-review.html"));
     if (doc.title !== "Fieldwork · The Field Guide") throw new Error(`document title: ${doc.title}`);
-    const open = (id: string) => { (doc.querySelector(`[data-l="${id}"]`) as any).click(); (doc.getElementById("go") as any).click(); };
+    const open = (id: string) => {
+      // A lesson in a case that isn't chosen yet: choose its case first.
+      for (const c of doc.querySelector(`[data-l="${id}"]`) ? [] : [...doc.querySelectorAll("[data-case]")].map((b: any) => b.dataset.case)) {
+        (doc.querySelector(`[data-case="${c}"]`) as any).click();
+        if (doc.querySelector(`[data-l="${id}"]`)) break;
+      }
+      (doc.querySelector(`[data-l="${id}"]`) as any).click(); (doc.getElementById("go") as any).click();
+    };
     open("5e-1-willow");
     if (!doc.querySelector("#stage .plate-card svg.plate")) throw new Error("5e-1-willow: no plate on the first item");
     if (!doc.querySelector('#stage input[type=range]#conf')) throw new Error("5e-1-willow: the predict item has no confidence slider");
@@ -342,16 +354,86 @@ const cases: [string, () => void | Promise<void>][] = [
     const later: [string, any][] = [];
     for (const [id, words] of [["5e-3-outbreak", /shield badge/], ["5e-4-labels", /ring binder/], ["5e-5-build", /planning board/], ["5e-6-prac-day", /thinking wall/],
       ["adi-2-noise", /lined with a soft material/], ["adi-3-review", /swapping their reports/], ["adi-4-build", /ADI routine of eight stages/], ["adi-5-argument-day", /Two whiteboards/],
-      ["select-1-which", /Eleven question cards/], ["select-2-dial", /two calendars/], ["select-3-argue", /Models nested/]] as const) {
+      ["select-1-which", /Eleven question cards/], ["select-2-dial", /two calendars/], ["select-3-argue", /Models nested/],
+      ["swh-1-spinners", /paper spinner and a crumpled ball/], ["swh-2-bottles", /Four reusable drink bottles/], ["swh-3-bottles", /arrow runs from one notebook/],
+      ["swh-4-bottles", /planning board with seven columns/], ["swh-5-bottles", /closed folder/], ["swh-2-duckweed", /creek after rain/i],
+      ["swh-3-duckweed", /folded reading sheet/], ["swh-4-duckweed", /cups of duckweed beside it/], ["swh-5-duckweed", /folded reading on it/],
+      ["select-4-routine", /signpost at a fork/]] as const) {
       (doc.getElementById("toMap") as any).click();
       open(id);
       const svg = doc.querySelector("#stage .plate-card svg.plate");
       if (!svg || svg.querySelector("text") || !words.test(svg.getAttribute("aria-label") ?? "")) throw new Error(`${id}: no plate, or a plate with text or no description`);
       later.push([id, svg]);
+      // The plate shows on the first item only (checked where the first item is a card that advances on its own).
+      const go = doc.getElementById("go") as any;
+      if (!go.disabled && /^(Start|Got it)$/.test(go.textContent)) {
+        go.click();
+        if (doc.querySelector("#stage .plate-card")) throw new Error(`${id} shows the plate on its second item too`);
+      }
     }
+    // Every published lesson now has a plate.
+    const plated = new Set(later.map(([id]) => id).concat(["5e-1-willow", "5e-2-cells", "poe-1-yeast", "poe-2-hands", "adi-1-leaf-litter"]));
+    const bare = loadGame().lessons.filter((l) => l.status === "published" && !plated.has(l.id)).map((l) => l.id);
+    if (bare.length) throw new Error(`lessons without a plate: ${bare.join(", ")}`);
     // Every plate keeps its shapes to itself: no <use> points outside its own <defs>.
     for (const [id, svg] of [["5e-2-cells", cells], ["poe-1-yeast", yeast], ["poe-2-hands", hands], ["adi-1-leaf-litter", leaf], ...later] as const)
       (svg as any).querySelectorAll("use").forEach((u: any) => { const ref = u.getAttribute("href").slice(1); if (!(svg as any).querySelector(`[id="${ref}"]`)) throw new Error(`${id}: <use> points at #${ref}, which isn't in the plate`); });
+    if (errors.length) throw new Error(errors.join("; "));
+    dom.window.close();
+  }],
+  ["a path with cases: shared lessons, a case chooser, each case its own run; case cards and tables render", async () => {
+    // Fixture: the ADI path split into two cases. Lesson 1 shared; case a holds lessons 2–3, case b lessons 4–5 renumbered 2–3.
+    const dir = gameCopy("cases");
+    const cfg = yaml.load(readFileSync(join(dir, "game.yaml"), "utf8")) as any;
+    cfg.paths.find((p: any) => p.id === "adi").tracks = [{ id: "a", title: "Case A", blurb: "The first case." }, { id: "b", title: "Case B", blurb: "The second case." }];
+    writeFileSync(join(dir, "game.yaml"), yaml.dump(cfg));
+    const put = (f: string, edit: (l: any) => void) => { const l = rawLesson(f); edit(l); writeFileSync(join(dir, f), yaml.dump(l)); };
+    put("adi-2-noise.yaml", (l) => (l.track = "a"));
+    put("adi-3-review.yaml", (l) => (l.track = "a"));
+    put("adi-4-build.yaml", (l) => { l.track = "b"; l.order = 2; });
+    put("adi-5-argument-day.yaml", (l) => { l.track = "b"; l.order = 3; });
+    put("adi-1-leaf-litter.yaml", (l) => {
+      l.items.unshift({ id: "case", type: "case", at: "task-question", processing: "Retrieval", kind: "The case", title: "The schoolyard",
+        setting: { who: "Year 10 · Biology", text: "A class compares two sites." }, lead: "Groups set pitfall traps overnight.",
+        table: { caption: "Catch by site", head: ["Site", "Animals", "Kinds"], rows: [["Oval edge", "118", "3"], ["Leaf litter", "41", "9"]] },
+        sofar: [{ phaseId: "task-question", when: "Lesson 1", text: "The question was posed." }, { phaseId: "design-data", when: "Lesson 2", text: "Groups planned." }],
+        you: "You're on placement." });
+      l.items[1].table = { caption: "Catch by site", head: ["Site", "Animals", "Kinds"], rows: [["Oval edge", "118", "3"], ["Leaf litter", "41", "9"]] };
+    });
+    const c = loadGame({ gameDir: dir });
+    if (c.errors.length) throw new Error(c.errors.join("; "));
+    buildGame({ mode: "review", outDir: join(tmp, "cases"), content: c });
+    const { dom, doc, errors } = await openGame(join(tmp, "cases", "game-review.html"));
+    const shown = (id: string) => !!doc.querySelector(`[data-l="${id}"]`);
+    const pressed = () => (doc.querySelector('[data-case^="adi|"][aria-pressed="true"]') as any)?.dataset.case;
+    if (doc.querySelectorAll('[data-case^="adi|"]').length !== 2) throw new Error("no case chooser with two cases");
+    if (pressed() !== "adi|a" || !shown("adi-1-leaf-litter") || !shown("adi-2-noise") || shown("adi-4-build")) throw new Error("the map doesn't open on the first case with the shared lesson");
+    (doc.querySelector('[data-case="adi|b"]') as any).click();
+    if (pressed() !== "adi|b" || !shown("adi-4-build") || shown("adi-2-noise") || !shown("adi-1-leaf-litter")) throw new Error("choosing case B didn't swap the case's lessons");
+    if (JSON.parse(dom.window.localStorage.getItem("lxdune-play-v1")).tracks?.adi !== "b") throw new Error("the chosen case isn't remembered");
+    // The case card, then a results table with real table markup.
+    (doc.querySelector('[data-l="adi-1-leaf-litter"]') as any).click(); (doc.getElementById("go") as any).click();
+    if (doc.querySelectorAll("#stage .sofar li").length !== 2 || !doc.querySelector("#stage .you") || !doc.querySelector("#stage .dtable caption")) throw new Error("the case card is missing its parts");
+    if (doc.getElementById("go").textContent !== "Start") throw new Error("the case card's button doesn't say Start");
+    (doc.getElementById("go") as any).click();
+    const t = doc.querySelector("#stage .dtable table");
+    if (!t || t.querySelectorAll('thead th[scope="col"]').length !== 3 || t.querySelectorAll('tbody th[scope="row"]').length !== 2) throw new Error("the results table is missing or not marked up with scopes");
+    // A fully published copy with cases validates (the student build's numbering and track rules hold).
+    const pub = gameCopy("cases-pub");
+    cpSync(dir, pub, { recursive: true });
+    for (const f of ["adi-1-leaf-litter.yaml", "adi-2-noise.yaml", "adi-3-review.yaml", "adi-4-build.yaml", "adi-5-argument-day.yaml"]) {
+      const l = yaml.load(readFileSync(join(pub, f), "utf8")) as any;
+      l.status = "published"; l.provenance = { source: "ai-drafted-reviewed", authors: ["Claude"], reviewedBy: ["Test"], reviewedOn: "2026-10-08" };
+      writeFileSync(join(pub, f), yaml.dump(l));
+    }
+    const pc = loadGame({ gameDir: pub });
+    if (pc.errors.length) throw new Error(pc.errors.join("; "));
+    // Bad tracks are refused: an undeclared track, and a gap in one case's numbering.
+    const bad = gameCopy("cases-bad"); cpSync(dir, bad, { recursive: true });
+    const l5 = yaml.load(readFileSync(join(bad, "adi-5-argument-day.yaml"), "utf8")) as any; l5.order = 4; writeFileSync(join(bad, "adi-5-argument-day.yaml"), yaml.dump(l5));
+    const l4 = yaml.load(readFileSync(join(bad, "adi-4-build.yaml"), "utf8")) as any; l4.track = "z"; writeFileSync(join(bad, "adi-4-build.yaml"), yaml.dump(l4));
+    const be = loadGame({ gameDir: bad }).errors.join("; ");
+    if (!/track "z" is not one of path adi's tracks/.test(be) || !/track b: lesson orders must run/.test(be)) throw new Error(`bad tracks not caught: ${be}`);
     if (errors.length) throw new Error(errors.join("; "));
     dom.window.close();
   }],

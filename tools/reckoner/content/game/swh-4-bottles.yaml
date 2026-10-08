@@ -1,0 +1,189 @@
+# SWH path, lesson 4 (bottles variant). Design level: build an SWH routine from cards and read the feature report. Built on the SWH guide's worked sequence swh-seq-s5-bottles. Reviewed and published by Steve on 2026-10-08.
+schemaVersion: 1
+id: swh-4-bottles
+path: swh
+track: bottles
+order: 4
+title: "Build it: SWH"
+summary: Build a six-lesson SWH routine for a Year 10 materials unit from activity cards, then read what the guide's look-fors say about it.
+level: design
+version: 1.0.0
+status: published
+lastReviewed: 2026-10-08
+provenance:
+  source: ai-drafted-reviewed
+  authors: [Claude]
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-10-08
+context:
+  stages: [stage5]
+  focusAreas: [Materials]
+  disciplines: [chemistry]
+outcomes: [SC5-MAT-01]
+builtOn:
+  sequenceIds: [swh-seq-s5-bottles]
+  lookForIds: [swh-begin-own-question, swh-begin-kept, swh-tests-follows-question, swh-obs-separate, swh-claim-arguable, swh-claim-individual, swh-evidence-justifies, swh-evidence-selected, swh-evidence-anomalies, swh-reading-peers-first, swh-reading-not-answer-key, swh-reading-something-changes, swh-reflect-has-original, swh-reflect-about-thinking]
+  misapplicationIds: [mis-swh-supplied-question, mis-swh-evidence-recopied, mis-swh-answer-key, mis-swh-no-negotiation, mis-swh-lost-beginnings, mis-swh-closed-practical]
+guideSection: checklist
+items:
+  - id: practical
+    type: choice
+    at: beginning-ideas
+    processing: Analysis
+    kind: Choose the practical
+    tests: design
+    title: "Your routine: Year 10, six lessons inside a materials unit. Many students think there's one best material, whatever it's for."
+    q: Which practical gives SWH the most to work with?
+    options:
+      - text: Measuring the density of a steel offcut by displacement
+        fb: One right answer, so claims can't differ and the reading phase has nothing to do. The guide calls this using SWH on a closed practical.
+      - text: Following a printed method to time how fast hot water cools in the steel and glass bottles
+        fb: The method and the comparison are set, so students' own questions have nowhere to go.
+      - text: Four 750 mL bottles (stainless steel, aluminium, glass and a copolyester plastic) and the question of which one the school should choose
+        fb: Yes. Which property matters depends on the purpose, so students' questions and claims can differ, and the reading phase has a real disagreement to work on.
+      - text: Researching bottle materials online and writing a summary
+        fb: There's no practical, so there are no observations of their own to make a claim from.
+    answer: 2
+    refs:
+      misapplicationIds: [mis-swh-closed-practical]
+
+  - id: rubric
+    type: concept
+    at: beginning-ideas
+    processing: Retrieval
+    kind: Before you build
+    title: What the report will look for
+    lead: >-
+      The board checks your plan against the SWH guide's look-fors and misapplications. A card counts only in the
+      phase whose job it does, and some cards look efficient but bring a known problem with them. Leaving out the
+      reading phase, where claims meet other students, is the cut the guide warns about most.
+    rows:
+      - phaseId: beginning-ideas
+        does: Students' own questions, written down and kept.
+        move: "Watch for: a question on the board."
+      - phaseId: tests
+        does: A method that answers their question.
+        move: "Watch for: one method for everyone."
+      - phaseId: observations
+        does: What happened, apart from what it means.
+        move: "Watch for: explaining while recording."
+      - phaseId: claims
+        does: An individual claim someone could disagree with.
+        move: "Watch for: one claim per group."
+      - phaseId: evidence
+        does: Chosen data, and why it supports the claim.
+        move: "Watch for: the results table again."
+      - phaseId: reading
+        does: Peers first, then the text as another voice.
+        move: "Watch for: the text as the answer key."
+      - phaseId: reflection
+        does: Beginning ideas handed back; how thinking changed.
+        move: "Watch for: a summary of the topic."
+
+  - id: board
+    type: build
+    at: tests
+    processing: Knowledge utilisation
+    kind: Build the plan
+    tests: design
+    title: Build your SWH routine.
+    brief:
+      who: Year 10 · Materials · six lessons inside the unit
+      text: "The practical: four 750 mL bottles (steel, aluminium, glass, copolyester plastic), and the question of which one the school should choose."
+    q: Place one activity in each phase. Not every card belongs in a strong routine.
+    cards:
+      - id: bi-own
+        text: Ten minutes handling the four bottles, then each student writes what they'd need to find out before recommending one. Questions are conferenced briefly for testability and kept
+        does: beginning-ideas
+        features: [swh-begin-own-question]
+      - id: bi-board
+        text: "Write the question on the board, “Which bottle keeps water hot longest?”, and students copy it into their books"
+        does: beginning-ideas
+        flaws: [mis-swh-supplied-question]
+      - id: t-sheet
+        text: "Every group follows the same method sheet: 80 °C water in each bottle, temperature after an hour"
+        does: tests
+      - id: t-own
+        text: Groups design tests for the properties their questions named, such as cooling with hot water, mass and a contained drop test; the teacher checks each plan for safety and feasibility without redesigning it
+        does: tests
+        features: [swh-tests-follows-question]
+      - id: o-columns
+        text: Groups run their tests with repeats, recording what happened in one column and what they think it means in another. Odd trials are written down
+        does: observations
+        features: [swh-obs-separate]
+      - id: o-paragraph
+        text: Groups write up what happened as a paragraph, explaining each result as they go
+        does: observations
+      - id: c-group
+        text: Each group agrees one claim, and every member copies it into their book
+        does: claims
+      - id: c-own
+        text: Each student writes their own claim answering their own question, in a form another student could disagree with
+        does: claims
+        features: [swh-claim-arguable, swh-claim-individual]
+      - id: e-why
+        text: Students choose the data that support their claim, say why it supports it, and deal with anything that doesn't fit, such as a loose-lid trial. The teacher spends the lesson on this, student by student
+        does: evidence
+        features: [swh-evidence-justifies, swh-evidence-selected, swh-evidence-anomalies]
+      - id: e-table
+        text: Students copy their results table under the Evidence heading
+        does: evidence
+        flaws: [mis-swh-evidence-recopied]
+      - id: r-key
+        text: The textbook page goes on the board, and students check their claims against it
+        does: reading
+        flaws: [mis-swh-answer-key]
+      - id: r-peers
+        text: Groups pair up and work out why their claims differ. Then the teacher releases published density, conductivity, cost and recyclability figures, and revisions are written
+        does: reading
+        features: [swh-reading-peers-first, swh-reading-not-answer-key, swh-reading-something-changes]
+      - id: rf-summary
+        text: Students write a summary of what they learned about bottle materials
+        does: reflection
+        flaws: [mis-swh-lost-beginnings]
+      - id: rf-back
+        text: The lesson 1 question sheets are handed back. Students write what they first thought a good bottle was, what moved them, and what they hold now
+        does: reflection
+        features: [swh-reflect-has-original, swh-begin-kept, swh-reflect-about-thinking]
+    report: [swh-begin-own-question, swh-begin-kept, swh-tests-follows-question, swh-obs-separate, swh-claim-arguable, swh-claim-individual, swh-evidence-justifies, swh-evidence-selected, swh-evidence-anomalies, swh-reading-peers-first, swh-reading-not-answer-key, swh-reading-something-changes, swh-reflect-has-original, swh-reflect-about-thinking]
+    missing:
+      beginning-ideas: mis-swh-supplied-question
+      evidence: mis-swh-evidence-recopied
+      reading: mis-swh-no-negotiation
+      reflection: mis-swh-lost-beginnings
+    hint: Read each card for what students actually do, not the heading it sounds like.
+    why: >-
+      Seven headings are easy to fill. Whether it's SWH depends on whose question it is, whether evidence says why,
+      and whether claims meet other students before they meet the textbook.
+
+  - id: cut
+    type: choice
+    at: reading
+    processing: Knowledge utilisation
+    kind: Teacher move
+    tests: design
+    vignette:
+      who: Week 7 · one lesson lost
+      text: A school event takes one of your six lessons. The routine has to fit in five.
+    q: What do you cut?
+    options:
+      - text: Drop the lesson where groups compare claims and read the figures
+        fb: That's the cut the guide warns about most. Claims never meet anyone who might disagree, so they can stay vague at no cost.
+      - text: Run the practical in one lesson instead of two, with fewer repeats, and keep every phase
+        fb: Yes. Fewer repeats make narrower claims, which is itself something to discuss. The reading phase is the one that gets cut, and the guide says to protect it.
+      - text: Supply the question and the method, so lessons 1 and 2 become one
+        fb: You save a lesson but lose the students' own questions, so there's nothing of theirs to defend and nothing to reflect against.
+      - text: Skip the reflection and collect the books
+        fb: The beginning ideas never come back, so students never see their own change.
+    answer: 1
+    refs:
+      misapplicationIds: [mis-swh-no-negotiation]
+
+  - id: reflect
+    type: reflect
+    at: reflection
+    processing: Metacognition
+    kind: Look back
+    title: Your report, your routine.
+    q: Which look-for in your report would be hardest to meet on placement, and what would you plan differently because of it?
+    model: "Example: “Beginning ideas kept. Books go home and get lost, so I'd photograph every first page in lesson 1 and print them for lesson 6.”"
