@@ -304,13 +304,20 @@ const cases: [string, () => void | Promise<void>][] = [
     const rail = loadGame({ gameDir: dir });
     if (!rail.errors.some((e) => /rail: groups but its journey guide has no phaseGroups/.test(e))) throw new Error(`rail not caught: ${rail.errors.join("; ")}`);
   }],
-  ["Fieldwork: title, confidence slider, and every lesson plate on its first item only", async () => {
+  ["Fieldwork: title, confidence slider, and every lesson's plate on its first item only", async () => {
     const built = readFileSync(join(tmp, "a", "index.html"), "utf8");
     if (!built.includes("<title>Fieldwork · The Field Guide</title>")) throw new Error("the built <title> is not Fieldwork · The Field Guide");
     buildGame({ mode: "review", outDir: join(tmp, "plate") });
     const { dom, doc, errors } = await openGame(join(tmp, "plate", "game-review.html"));
     if (doc.title !== "Fieldwork · The Field Guide") throw new Error(`document title: ${doc.title}`);
-    const open = (id: string) => { (doc.querySelector(`[data-l="${id}"]`) as any).click(); (doc.getElementById("go") as any).click(); };
+    const open = (id: string) => {
+      // A lesson in a case that isn't chosen yet: choose its case first.
+      for (const c of doc.querySelector(`[data-l="${id}"]`) ? [] : [...doc.querySelectorAll("[data-case]")].map((b: any) => b.dataset.case)) {
+        (doc.querySelector(`[data-case="${c}"]`) as any).click();
+        if (doc.querySelector(`[data-l="${id}"]`)) break;
+      }
+      (doc.querySelector(`[data-l="${id}"]`) as any).click(); (doc.getElementById("go") as any).click();
+    };
     open("5e-1-willow");
     if (!doc.querySelector("#stage .plate-card svg.plate")) throw new Error("5e-1-willow: no plate on the first item");
     if (!doc.querySelector('#stage input[type=range]#conf')) throw new Error("5e-1-willow: the predict item has no confidence slider");
@@ -347,13 +354,27 @@ const cases: [string, () => void | Promise<void>][] = [
     const later: [string, any][] = [];
     for (const [id, words] of [["5e-3-outbreak", /shield badge/], ["5e-4-labels", /ring binder/], ["5e-5-build", /planning board/], ["5e-6-prac-day", /thinking wall/],
       ["adi-2-noise", /lined with a soft material/], ["adi-3-review", /swapping their reports/], ["adi-4-build", /ADI routine of eight stages/], ["adi-5-argument-day", /Two whiteboards/],
-      ["select-1-which", /Eleven question cards/], ["select-2-dial", /two calendars/], ["select-3-argue", /Models nested/]] as const) {
+      ["select-1-which", /Eleven question cards/], ["select-2-dial", /two calendars/], ["select-3-argue", /Models nested/],
+      ["swh-1-spinners", /paper spinner and a crumpled ball/], ["swh-2-bottles", /Four reusable drink bottles/], ["swh-3-bottles", /arrow runs from one notebook/],
+      ["swh-4-bottles", /planning board with seven columns/], ["swh-5-bottles", /closed folder/], ["swh-2-duckweed", /creek after rain/i],
+      ["swh-3-duckweed", /folded reading sheet/], ["swh-4-duckweed", /cups of duckweed beside it/], ["swh-5-duckweed", /folded reading on it/],
+      ["select-4-routine", /signpost at a fork/]] as const) {
       (doc.getElementById("toMap") as any).click();
       open(id);
       const svg = doc.querySelector("#stage .plate-card svg.plate");
       if (!svg || svg.querySelector("text") || !words.test(svg.getAttribute("aria-label") ?? "")) throw new Error(`${id}: no plate, or a plate with text or no description`);
       later.push([id, svg]);
+      // The plate shows on the first item only (checked where the first item is a card that advances on its own).
+      const go = doc.getElementById("go") as any;
+      if (!go.disabled && /^(Start|Got it)$/.test(go.textContent)) {
+        go.click();
+        if (doc.querySelector("#stage .plate-card")) throw new Error(`${id} shows the plate on its second item too`);
+      }
     }
+    // Every published lesson now has a plate.
+    const plated = new Set(later.map(([id]) => id).concat(["5e-1-willow", "5e-2-cells", "poe-1-yeast", "poe-2-hands", "adi-1-leaf-litter"]));
+    const bare = loadGame().lessons.filter((l) => l.status === "published" && !plated.has(l.id)).map((l) => l.id);
+    if (bare.length) throw new Error(`lessons without a plate: ${bare.join(", ")}`);
     // Every plate keeps its shapes to itself: no <use> points outside its own <defs>.
     for (const [id, svg] of [["5e-2-cells", cells], ["poe-1-yeast", yeast], ["poe-2-hands", hands], ["adi-1-leaf-litter", leaf], ...later] as const)
       (svg as any).querySelectorAll("use").forEach((u: any) => { const ref = u.getAttribute("href").slice(1); if (!(svg as any).querySelector(`[id="${ref}"]`)) throw new Error(`${id}: <use> points at #${ref}, which isn't in the plate`); });
