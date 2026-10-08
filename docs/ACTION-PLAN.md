@@ -586,7 +586,7 @@ Parked for later exploration (Steve, 2026-10-07). Depends on item 56.
 - [x] Results, all as the handoff expected: models 15, guides 6, examples 58, worked sequences 20 → 21, Stage 4 Forces lists two ready plans (`5e:seq-s4-forces`, `swh:swh-seq-s4-spinners`). Published lessons 16 → 26 (5E 6, POE 2, ADI 5, SWH 9, Choosing a model 4). Rule checks 55 (unchanged), build tests 21, game tests 22 → 23 (the review copy plays all 26 lessons to the end). Only `swh.json` and `manifest.json` change under `reckoner/data/`. Validate, test, typecheck, check:pages and check:regressions (against `origin/main`) pass; rebuilding changed nothing. The handoff reports a browser check at 360 px in light and dark
 - Adapted from the handoff: nothing. The branch already carried every source and generated change, so applying it meant verifying the branch rather than re-applying the patch
 - [x] ~~Open: plates for the ten new lessons (three options each, as for the other paths)~~ Done in item 59
-- [ ] Open: "Build it: ADI" lists the strong card first in every pair, and build cards aren't shuffled; reorder its cards to interleave, as the SWH boards do (no engine change)
+- [x] ~~Open: "Build it: ADI" lists the strong card first in every pair, and build cards aren't shuffled; reorder its cards to interleave, as the SWH boards do (no engine change)~~ Done in item 60
 - [ ] Open: choice options aren't shuffled on a first play; the new lessons vary the correct option's position by hand. A first-play shuffle would remove the need
 - [ ] Open: the Fieldwork feedback form URL is still a placeholder in `game.yaml`
 - Note: the guide's `swh-seq-s4-separation` is no longer used by Fieldwork. It stays in the guide
@@ -598,6 +598,11 @@ Parked for later exploration (Steve, 2026-10-07). Depends on item 56.
 - [x] Plate test extended (not added): it opens each lesson in its case, checks a plate that follows a self-advancing case card leaves on the next item, and fails if any published lesson has no plate
 - [x] Results, as the handoff expected: lessons with a plate 16 → 26, every published lesson. Published lessons 26, guides 6, examples 58, worked sequences 21 unchanged; no lesson, guide or methodology version changes. Rule checks 55, build tests 21, game tests 23. Only `play/index.html` changes among generated files. Validate, test, typecheck, check:pages and check:regressions (against `origin/main`) pass; rebuilding changed nothing. The handoff reports a browser check at 360 px in light and dark
 - Nothing adapted from the handoff. Closes item 58's plate open item
+
+### 60. Build it: ADI cards interleaved ✅ — 2026-10-08
+- [x] Steve's request, 2026-10-08, closing item 58's open item: build cards aren't shuffled, and `adi-4-build` listed the strong card first in every stage's pair, so the pattern showed. The cards are now interleaved as the SWH boards are: strong first for the question, argumentation and peer review; flawed or weaker first for design, tentative argument, report and revision. `rd-consolidate` is its stage's only card and stays in place
+- [x] Order only: every card's text, `does`, `features` and `flaws` are unchanged (the file's sorted lines differ only in the version). `adi-4-build` 1.0.0 → 1.0.1; `lastReviewed` and provenance are unchanged, since no content was reviewed
+- [x] Validate, test (rule checks 55, build 21, game 23), typecheck, check:pages and check:regressions (against `origin/main`) pass. Generated changes: `play/index.html` and `docs/reckoner-state.md` only
 
 ---
 

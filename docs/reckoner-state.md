@@ -16,7 +16,7 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Worked sequences | 21 |
 | Focus areas with a ready plan / examples only / empty | 16 / 0 / 0 of 16 |
 | Game lessons at /play/ (published / draft or in review) | 26 / 0 |
-| **Next action-plan item number** | **60** |
+| **Next action-plan item number** | **61** |
 
 ## Published guides
 
@@ -50,7 +50,7 @@ versions the same way as guides.
 | Under the leaf litter | `adi-1-leaf-litter` | `adi` | 1 | recognise | 1.0.1 | published | 2026-10-05 | 11 |
 | Keep the noise out | `adi-2-noise` | `adi` | 2 | explain | 1.0.0 | published | 2026-10-05 | 11 |
 | Review, then revise | `adi-3-review` | `adi` | 3 | explain | 1.0.0 | published | 2026-10-05 | 11 |
-| Build it: ADI | `adi-4-build` | `adi` | 4 | design | 1.0.0 | published | 2026-10-05 | 5 |
+| Build it: ADI | `adi-4-build` | `adi` | 4 | design | 1.0.1 | published | 2026-10-05 | 5 |
 | Argument Day | `adi-5-argument-day` | `adi` | 5 | design | 1.0.0 | published | 2026-10-05 | 4 |
 | Slow it down | `swh-1-spinners` | `swh` | 1 | recognise | 1.0.0 | published | 2026-10-08 | 12 |
 | A claim worth arguing | `swh-2-bottles` | `swh` | 2 | explain | 1.0.0 | published | 2026-10-08 | 12 |
