@@ -1,0 +1,53 @@
+{
+  "$schema": "../../../_schema/studio.schema.json",
+  "type": "unitPlan",
+  "id": "model-plan-reactions",
+  "habit": "model",
+  "version": "0.1.0",
+  "source": "ai-generated",
+  "reviewedBy": [],
+  "lastReviewed": null,
+  "published": false,
+  "authorNote": "M1 sample drafted by Claude Code, 2026-10-09, for Steve to rewrite or approve.",
+  "context": {
+    "stages": [
+      "stage-5"
+    ],
+    "focusArea": "reactions"
+  },
+  "title": "Modelling across a Reactions unit",
+  "weeks": 8,
+  "moments": [
+    {
+      "week": 1,
+      "kind": "introduce",
+      "what": "Think aloud while balancing two equations, including one where you get stuck (half an O<sub>2</sub>) and recover.",
+      "why": "Students hear the decisions — where to start, why oxygen last — and see that getting stuck is a normal part of the work."
+    },
+    {
+      "week": 2,
+      "kind": "practise",
+      "what": "Pairs balance equations, one thinking aloud, with a prompt card: Where do I start? Why? Does it check?",
+      "why": "Coaching: students rehearse the moves while you listen for which ones are missing."
+    },
+    {
+      "week": 3,
+      "kind": "practise",
+      "what": "Model again on a new kind of problem — predicting the products of a precipitation reaction — then hand straight over to pairs.",
+      "why": "Shows that narrating decisions works on unfamiliar content, not just on balancing."
+    },
+    {
+      "week": 5,
+      "kind": "fade",
+      "what": "Remove the prompt card. Students write one margin note per problem about a decision they made.",
+      "why": "The questions move from the card into students’ heads."
+    },
+    {
+      "week": 7,
+      "kind": "check",
+      "what": "Set an unfamiliar reaction type with no prompts. Listen to pairs and collect worked solutions: who checks, unprompted?",
+      "why": "Tells you whether the habit is independent, and which students need more coaching."
+    }
+  ],
+  "summary": "Model early with a real stuck point, coach with a prompt card, model once more on new content, fade the card, then check for unprompted use on an unfamiliar problem."
+}

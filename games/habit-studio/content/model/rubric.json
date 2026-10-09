@@ -1,0 +1,40 @@
+{
+  "$schema": "../../../_schema/studio.schema.json",
+  "type": "rubric",
+  "id": "model-rubric",
+  "habit": "model",
+  "version": "0.1.0",
+  "source": "ai-generated",
+  "reviewedBy": [],
+  "lastReviewed": null,
+  "published": false,
+  "authorNote": "M1 sample drafted by Claude Code, 2026-10-09, for Steve to rewrite or approve. The four levels and anchors are the heart of Station C; they should be Steve’s.",
+  "title": "Is the student steering their own thinking?",
+  "focus": "How far a student’s own talk or writing, after you’ve modelled, shows them deciding, checking and repairing — not just producing an answer.",
+  "levels": [
+    {
+      "level": 1,
+      "name": "Answer only",
+      "descriptor": "Gives the result with no visible process.",
+      "anchor": "“2, 1, 2. I just did it.”"
+    },
+    {
+      "level": 2,
+      "name": "Steps narrated",
+      "descriptor": "Describes the steps in order, but not why. The actions are there; the decisions aren’t.",
+      "anchor": "“First I did the carbons, then the hydrogens, then the oxygens.”"
+    },
+    {
+      "level": 3,
+      "name": "Decisions explained",
+      "descriptor": "Explains why a step was chosen, or names the strategy being used.",
+      "anchor": "“I left oxygen till last because it’s in both products.”"
+    },
+    {
+      "level": 4,
+      "name": "Monitoring and repair",
+      "descriptor": "Notices a problem or checks a result, says how they knew, and what they changed.",
+      "anchor": "“My oxygens came to 7, and you can’t have half an O<sub>2</sub>, so I doubled everything and counted again.”"
+    }
+  ]
+}

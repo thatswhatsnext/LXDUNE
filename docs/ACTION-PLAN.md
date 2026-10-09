@@ -624,7 +624,10 @@ Parked for later exploration (Steve, 2026-10-07). Depends on item 56.
 - [ ] Open: name the second reviewer (a practising science teacher) before M2
 - [x] Steve, 2026-10-09: fix the Coach's length cue now (spec §13.6)
 - [x] Length-cue fix: 75 wrong or partial options rewritten (correct options and feedback unchanged), Coach content 1.0.0 → 1.0.1, reviewed by Steve Grant on 2026-10-09 with no changes. Logged in `games/metacognition-coach/changes.json`; the validator gains length rules (shortest option ≥ 60% of the longest; correct option ≤ 15% longer than the longest wrong one) and fails on any unreviewed change
-- [ ] Next: M1, the Studio schema plus one sample of each content type for Model your thinking
+- [x] M1 started, 2026-10-09, on `feature/habit-studio-m1`: schema `games/_schema/studio.schema.json` (explainer, case pair, rubric, artefact, brief, unit plan, rehearsal, manifest); validator `scripts/validate-studio.js` in `npm run validate` and CI (15 deliberate breaks, each caught); the context check shared with the Coach in `scripts/lib/game-context.js`; review copy `scripts/studio-review.js`; authoring guide `games/habit-studio/AUTHORING.md`
+- [x] One sample of each content type for Model your thinking in `games/habit-studio/content/model/`, all `ai-generated` and unpublished, for Steve to rewrite or approve. The artefact carries one provisional placement marked `draft`; expert placements are Steve's and the second reviewer's
+- Adapted from the spec: (1) the Studio allows `<sub>` and `<sup>` as well as `<b>` and `<i>`, for chemical formulae; (2) a case pair's two versions must be within 20% of each other in length, so the better one isn't also the longer one (the Coach's length cue)
+- [ ] Open (M1 done when): Steve is happy with the format, from the review copy, before writing at volume
 
 ---
 

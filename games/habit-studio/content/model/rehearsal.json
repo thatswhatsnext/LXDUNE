@@ -1,0 +1,47 @@
+{
+  "$schema": "../../../_schema/studio.schema.json",
+  "type": "rehearsal",
+  "id": "model-rehearsal",
+  "habit": "model",
+  "version": "0.1.0",
+  "source": "ai-generated",
+  "reviewedBy": [],
+  "lastReviewed": null,
+  "published": false,
+  "authorNote": "M1 sample drafted by Claude Code, 2026-10-09, for Steve to rewrite or approve.",
+  "cues": [
+    {
+      "label": "Slow down at the decision",
+      "text": "Pause before each choice and say it as a question: “Where should I start?”"
+    },
+    {
+      "label": "Say the tempting wrong idea",
+      "text": "Voice the first thought your students are likely to have, then check it out loud."
+    },
+    {
+      "label": "Mark the stuck point",
+      "text": "Use a signal word students can borrow: “Hang on…” or “Wait —”."
+    },
+    {
+      "label": "Keep it short",
+      "text": "Aim for under two minutes. Cut anything that explains content rather than making a decision."
+    },
+    {
+      "label": "End with the handover",
+      "text": "Finish by giving students the question to use themselves, and what they’ll do next."
+    }
+  ],
+  "protocol": {
+    "title": "Try it on placement: model your thinking",
+    "try": "Think aloud through one problem just beyond your class’s reach, with at least one decision point and one stuck point. Then hand a similar problem to pairs to think aloud.",
+    "collect": [
+      "Two or three pairs’ talk during the handover, noted as close to word for word as you can.",
+      "Students’ worked solutions for the handover problem, with any margin notes."
+    ],
+    "afterwards": [
+      "Which of your phrases did students reuse, word for word?",
+      "Place two or three pieces of students’ work on the rubric. Which level is most common, and why?",
+      "What will you model differently next time?"
+    ]
+  }
+}
