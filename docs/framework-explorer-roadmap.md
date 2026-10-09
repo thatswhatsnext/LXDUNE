@@ -2,7 +2,7 @@
 
 **Product:** LXDUNE Framework Explorer — config-driven teaching-framework artefacts, authored as validated JSON, rendered by one shared module, pasted into Moodle as a live-served web artefact.
 **Last updated:** 2026-10-09
-**Delivery model (current):** repo-native live JS+JSON on GitHub Pages; a one-line `<script type="module">` shell pasted into a Moodle Page. No build, no server, no browser storage (one deliberate exception: the Metacognition Coach's progress, below). See `frameworks/README.md` and `games/README.md`.
+**Delivery model (current):** repo-native live JS+JSON on GitHub Pages; a one-line `<script type="module">` shell pasted into a Moodle Page. No build, no server, no browser storage. (The Metacognition Coach, below, is a separate web app with browser-only progress.) See `frameworks/README.md` and `games/README.md`.
 
 ---
 
@@ -13,7 +13,7 @@
 - 🗄️ **Metacognition — starter** — grid view (4 contexts × 9 habits = 36 cells). *Retired from the EDSE362 page 2026-10-01: superseded, the page is consolidated to one metacognition explorer (the full matrix).* Retained in the repo as a reference on-ramp: files unchanged, still validated and served. See its `CHANGELOG.md`.
 - ⏳ **Real-Moodle verification** — paste into a myLearn Page, confirm §7 theme interaction at desktop + mobile. *The last open item before the model is fully proven in situ.*
 - ⏳ **EDSE362 "Teaching frameworks" page** — HITS and the full Metacognition matrix on one page (the starter was retired from it 2026-10-01). Shells ready in `docs/EDSE362-framework-explorer-shells.html`.
-- ⏳ **Metacognition Coach** — *built 2026-10-09, renderer `coach@1.0.0`.* A practice game on the nine metacognition habits (9 habits × 7 steps), built on the explorer's habits and the curriculum vocabulary: `games/metacognition-coach/`, `moodle-blocks/metacognition-coach.js`, checked by `npm run validate`. Open: the myLearn sandbox check, and which EDSE362 page it goes on. **Storage exception:** it keeps progress (XP, streak, finished habits, review dates, drafts and commitments) in `localStorage` under `lxd-mcg-v1`, approved by Steve for this stage. Known limits: progress is per browser and device; on a shared computer the next person sees it until they reset; clearing site data erases it; in Moodle the storage belongs to the myLearn origin, so the namespaced key matters. Nothing leaves the browser. If progress needs to follow a student between devices, that is delivery-model signal 2 below.
+- ⏳ **Metacognition Coach** — *built 2026-10-09, renderer `coach@1.0.0`.* A practice game on the nine metacognition habits (9 habits × 7 steps), built on the explorer's habits and the curriculum vocabulary. **A standalone web app, not a Moodle embed** (Steve, 2026-10-09): `games/metacognition-coach/` (`index.html`, `coach.js`, `content.json`), checked by `npm run validate`. Open: how students get the link. **Storage exception:** it keeps progress (XP, streak, finished habits, review dates, drafts and commitments) in `localStorage` under `lxd-mcg-v1`, approved by Steve for this stage. Known limits: progress is per browser and device; on a shared computer the next person sees it until they reset; clearing site data erases it; the storage belongs to the `thatswhatsnext.github.io` origin, shared with the reckoner and Fieldwork, so the namespaced key matters. Nothing leaves the browser. If progress needs to follow a student between devices, that is delivery-model signal 2 below.
 
 ---
 
