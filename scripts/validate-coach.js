@@ -11,11 +11,19 @@
 //   • every habit reference resolves to the framework; every context id
 //     resolves to the vocabulary (superseded syllabuses only when acknowledged)
 //   • only <b> and <i> in content strings
+//   • no length cue in recall and scenario questions: the shortest option is at
+//     least 60% of the longest, and the correct option is never more than 15%
+//     longer than the longest wrong option
 //   • parity: every string in the approved source (docs/handoffs/mcg-content.js)
 //     survives, unchanged, in the content the page builds — run through the
-//     page's own buildGame(), so the check covers the real expansion
+//     page's own buildGame(), so the check covers the real expansion. Changes
+//     made since approval are listed in games/metacognition-coach/changes.json
+//     and applied to the source first; each one needs a reviewer
 //
-// Usage: node scripts/validate-coach.js      Exit code 0 = pass, 1 = fail.
+// Usage: node scripts/validate-coach.js [--allow-drafts]
+//   --allow-drafts  report unreviewed changes as notes, not errors (for review
+//                   copies; CI runs without it, so drafts can't ship)
+// Exit code 0 = pass, 1 = fail.
 
 import Ajv from 'ajv/dist/2020.js';
 import { readFileSync, existsSync } from 'node:fs';
@@ -27,6 +35,10 @@ import { buildGame } from '../games/metacognition-coach/coach.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const CONTENT_REL = 'games/metacognition-coach/content.json';
+const CHANGES_REL = 'games/metacognition-coach/changes.json';
+const MIN_SPREAD = 0.6; // shortest option / longest option
+const MAX_LEAD = 1.15; // correct option / longest wrong option
+const allowDrafts = process.argv.includes('--allow-drafts');
 const SCHEMA_REL = 'games/_schema/coach.schema.json';
 const SEQUENCE = ['choice/def', 'tf/spot', 'choice/recall', 'choice/scenario', 'choice/scenario', 'apply', 'commit'];
 const PHASE_OF = { plan: 'planning', monitor: 'monitoring', evaluate: 'evaluating' };
@@ -143,6 +155,15 @@ for (const u of content.units) {
       if (ds.includes(u.id)) err(where, 'a distractor is the unit’s own habit');
       if (new Set(ds).size !== ds.length) err(where, 'distractor habits repeat');
     }
+    if (s.opts && (s.kind === 'recall' || s.kind === 'scenario') && !s.fixedOrder) {
+      const len = s.opts.map((o) => o.t.replace(/<[^>]+>/g, '').length);
+      const ci = s.opts.findIndex((o) => o.correct);
+      const longestWrong = Math.max(...len.filter((_, k) => k !== ci));
+      if (Math.min(...len) < MIN_SPREAD * Math.max(...len))
+        err(where, `length cue: options run from ${Math.min(...len)} to ${Math.max(...len)} characters (shortest must be at least ${MIN_SPREAD * 100}% of the longest)`);
+      if (ci > -1 && len[ci] > MAX_LEAD * longestWrong)
+        err(where, `length cue: the correct option (${len[ci]} characters) is more than ${Math.round((MAX_LEAD - 1) * 100)}% longer than the longest wrong option (${longestWrong})`);
+    }
     if (s.opts) {
       const correct = s.opts.filter((o) => o.correct).length;
       if (correct !== 1) err(where, `${correct} correct options (expected exactly 1)`);
@@ -166,6 +187,7 @@ if (report.errors.length) {
   const sandbox = {};
   vm.runInNewContext(readFileSync(join(ROOT, SOURCE), 'utf8'), sandbox, { filename: SOURCE });
   const A = sandbox.MCG_CONTENT;
+  applyChanges(A);
   const { H, units } = buildGame(content, habits, vocab);
   const same = (where, field, a, b) => {
     if (a !== b) err(where, `parity: ${field} differs from the approved source\n      approved: ${JSON.stringify(a)}\n      built:    ${JSON.stringify(b)}`);
@@ -224,6 +246,29 @@ if (report.errors.length) {
   for (const [a, b] of ctxDiffs) note(`Stage 6 label shown from the vocabulary: "${a}" → "${b}"`);
 }
 
+
+// Apply the changes made since approval to the approved source, so parity
+// compares against approved text plus reviewed changes. Each change replaces
+// one option's text in one step, and must match exactly one option.
+function applyChanges(A) {
+  if (!existsSync(join(ROOT, CHANGES_REL))) return;
+  const { changes = [] } = readJson(CHANGES_REL);
+  let unreviewed = 0;
+  changes.forEach((ch, i) => {
+    const where = `${CHANGES_REL} change ${i + 1} (unit ${ch.unit} step ${ch.step})`;
+    if (!Array.isArray(ch.reviewedBy) || !ch.reviewedBy.length) unreviewed++;
+    const unit = A.UNITS.find((u) => u.id === ch.unit);
+    const step = unit && unit.steps[ch.step - 1];
+    const hits = step && step.opts ? step.opts.filter((o) => o.t === ch.from) : [];
+    if (hits.length !== 1) return err(where, `"from" matches ${hits.length} options in the approved source (expected exactly 1)`);
+    hits[0].t = ch.to;
+  });
+  if (unreviewed) {
+    const msg = `${unreviewed} of ${changes.length} change(s) since approval have no reviewer (reviewedBy is empty)`;
+    if (allowDrafts) note(`${msg}; allowed by --allow-drafts`);
+    else err(CHANGES_REL, `${msg}. Review them, then add the reviewer's name`);
+  } else if (changes.length) note(`${changes.length} reviewed change(s) since approval applied before the parity check`);
+}
 
 const steps = content.units.reduce((n, u) => n + u.steps.length, 0);
 finish(`${CONTENT_REL} (v${content.version}) — ${content.units.length} units, ${steps} steps, ${scenes} scenes; habits from ${fwDir}`);

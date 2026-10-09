@@ -1,0 +1,755 @@
+{
+  "$comment": "Changes to the approved content (docs/handoffs/mcg-content.js) since its approval. scripts/validate-coach.js applies them to the approved source before the parity check, and fails while any change has no reviewer.",
+  "changes": [
+    {
+      "unit": "explicit",
+      "step": 3,
+      "from": "It makes the lesson move faster.",
+      "to": "It speeds the lesson up, because students know what’s coming next.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "explicit",
+      "step": 3,
+      "from": "It means students no longer need to practise it.",
+      "to": "Once students know its name, they no longer need to practise it.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "explicit",
+      "step": 3,
+      "from": "It replaces the content learning intention.",
+      "to": "It replaces the content learning intention with a clearer skills goal.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "explicit",
+      "step": 4,
+      "from": "“Today we’re learning about the immune system.”",
+      "to": "“Today we’re learning about the immune system — how your body recognises a pathogen, and how vaccines train it to respond faster.”",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "explicit",
+      "step": 4,
+      "from": "Write the syllabus dot point on the board and read it out.",
+      "to": "Write the syllabus dot point on the board, read it aloud, and have students copy it into their books as the learning intention for today’s lesson.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "explicit",
+      "step": 4,
+      "from": "“Read the article and tell me what you think.”",
+      "to": "“Here’s a headline about a new immunity supplement. Read the article and tell me what you think — do you believe it?”",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "explicit",
+      "step": 5,
+      "from": "Collect the cards and mark them for completion.",
+      "to": "Collect the cards at the end of each lesson and mark them for completion, so students see that filling in every step counts.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "explicit",
+      "step": 5,
+      "from": "Take the cards away — they clearly aren’t helping.",
+      "to": "Take the cards away for now — if students are only ticking boxes, the card has become busywork, and it’s getting in the way of the real problem-solving you want them to do.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "explicit",
+      "step": 5,
+      "from": "Give them more practice problems so the routine sticks.",
+      "to": "Give them a longer set of practice problems with the card, so the routine becomes automatic through repetition.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "model",
+      "step": 4,
+      "from": "“It’s just the method we always use for projectiles — you’ll get used to it.”",
+      "to": "“It’s the standard method for projectiles — split the velocity into horizontal and vertical components, then use the equations of motion for each one. You’ll get used to it with practice.”",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "model",
+      "step": 4,
+      "from": "“Good question — discuss in pairs why we might split it.”",
+      "to": "“Good question — turn to your partner and discuss why we might split the motion into two parts. Then we’ll hear a few ideas before I carry on.”",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "model",
+      "step": 4,
+      "from": "“Great question!” — and carry on solving.",
+      "to": "“Great question — that’s exactly what good physicists ask!” Then carry on solving, writing each step neatly on the board.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "model",
+      "step": 5,
+      "from": "Quietly fix it and keep going, so you don’t confuse anyone.",
+      "to": "Quietly correct the division and keep going — drawing attention to your own slip mid-example could confuse students and shake their confidence in the method.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "model",
+      "step": 5,
+      "from": "Blame the calculator and quietly redo it.",
+      "to": "Say the calculator must have been in the wrong mode, then redo the calculation carefully so the class sees the correct value.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "model",
+      "step": 5,
+      "from": "Rub it out and move to the next example.",
+      "to": "Rub out the working, write the correct answer in its place, and move on to the next example before attention drifts.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "ask",
+      "step": 3,
+      "from": "“What’s the answer?”",
+      "to": "“What answer did you get, and can you read out the value you wrote down?”",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "ask",
+      "step": 3,
+      "from": "“Did everyone get that?”",
+      "to": "“Did everyone get that? Thumbs up if you’re happy to move on to the next one.”",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "ask",
+      "step": 3,
+      "from": "“Who can tell me the definition?”",
+      "to": "“Who can tell me the definition we used yesterday, and which word in it matters most for this problem?”",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "ask",
+      "step": 4,
+      "from": "“Correct! Well done.”",
+      "to": "“Correct! Well done — that’s exactly the link I was looking for. Who can add another?”",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "ask",
+      "step": 4,
+      "from": "“Not quite — what about the grass?”",
+      "to": "“Not quite — what happens to the grass if the rabbits disappear? Follow that arrow next, then tell me what changes.”",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "ask",
+      "step": 4,
+      "from": "“Check with your partner.”",
+      "to": "“Check your answer with your partner and see whether they traced the same connections.”",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "ask",
+      "step": 5,
+      "from": "Take the first hand — they’re keen.",
+      "to": "Take the first hand straight away, so the eager students’ energy carries the rest of the class.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "ask",
+      "step": 5,
+      "from": "Answer it yourself to keep the pace up.",
+      "to": "Answer it yourself, briefly, to keep the pace up and get to the practical sooner.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "ask",
+      "step": 5,
+      "from": "“Anyone else?” — then take the same two hands.",
+      "to": "“Anyone else?” — glance around the room, then take one of the same two hands.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "plan",
+      "step": 3,
+      "from": "After the task, as a marking guide.",
+      "to": "After the task, as a guide for checking their work.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "plan",
+      "step": 3,
+      "from": "Only for students who are struggling.",
+      "to": "Only for students who are struggling to get started.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "plan",
+      "step": 3,
+      "from": "Only in exam conditions.",
+      "to": "In exam conditions, where planning matters most.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "plan",
+      "step": 4,
+      "from": "Re-teach the equations of motion.",
+      "to": "Re-teach the equations of motion, with a worked example for each, so students know which formula to reach for.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "plan",
+      "step": 4,
+      "from": "Give them worked solutions to copy.",
+      "to": "Give them fully worked solutions to copy into their books, so they have a model of a well-set-out answer.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "plan",
+      "step": 4,
+      "from": "Give harder problems so they have to slow down.",
+      "to": "Give them harder, multi-step problems so they’re forced to slow down and think carefully about each quantity before they start calculating anything.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "plan",
+      "step": 5,
+      "from": "Keep providing it — it’s working.",
+      "to": "Keep providing it every practical — it’s working, and removing it risks the tangles coming back.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "plan",
+      "step": 5,
+      "from": "Remove it from the next practical without warning.",
+      "to": "Remove it from the next practical without warning, to find out whether students can now plan an investigation on their own.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "plan",
+      "step": 5,
+      "from": "Add more steps so plans are more thorough.",
+      "to": "Add more steps to the template, so students’ plans become more thorough and cover every variable.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "collab",
+      "step": 3,
+      "from": "The groups are mixed-ability.",
+      "to": "The groups are mixed-ability, so stronger students can support others.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "collab",
+      "step": 3,
+      "from": "There’s a shared group mark.",
+      "to": "There’s a shared group mark, so everyone has a stake in the result.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "collab",
+      "step": 3,
+      "from": "Roles are printed on the worksheet.",
+      "to": "Each student has a role, such as recorder or checker, printed on the sheet.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "collab",
+      "step": 4,
+      "from": "Tell them which diagram is correct.",
+      "to": "Look at both diagrams and tell them which one is correct, so neither leaves with a misconception.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "collab",
+      "step": 4,
+      "from": "Have the class vote on the right diagram.",
+      "to": "Show both diagrams to the class and have everyone vote on which one is right.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "collab",
+      "step": 4,
+      "from": "Separate them so the argument stops.",
+      "to": "Separate them for now so the argument doesn’t derail the lesson, and revisit it later.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "collab",
+      "step": 5,
+      "from": "Let it go — the product will be good.",
+      "to": "Let it go — the product will be good, and the others are still learning by watching a capable peer work.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "collab",
+      "step": 5,
+      "from": "Lower the group mark to send a message.",
+      "to": "Lower the group mark this time to send a clear message that every member is responsible for contributing, and remind the class of it next time.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "collab",
+      "step": 5,
+      "from": "Print role names on the task sheet.",
+      "to": "Print role names on the task sheet — recorder, researcher, presenter, checker — so each student has a defined job.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "evaluate",
+      "step": 3,
+      "from": "“I got 8 out of 10.”",
+      "to": "“I got 8 out of 10, which is two marks better than my last practical.”",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "evaluate",
+      "step": 3,
+      "from": "“I finished on time.”",
+      "to": "“I finished all the questions on time without needing help.”",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "evaluate",
+      "step": 3,
+      "from": "“I enjoyed this topic.”",
+      "to": "“I enjoyed this topic and want to learn more about graphs.”",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "evaluate",
+      "step": 4,
+      "from": "Afterwards, once they see whether the results make sense.",
+      "to": "Afterwards, once they see whether the results make sense, so they can judge their method against what happened.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "evaluate",
+      "step": 4,
+      "from": "Swap results and peer-mark them.",
+      "to": "Swap results with another group and peer-mark them against the expected values, so students see where they went wrong.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "evaluate",
+      "step": 4,
+      "from": "Skip it — the practical report will show what they learned.",
+      "to": "Skip it — the practical report will show what they learned, and you can give detailed feedback on that.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "evaluate",
+      "step": 5,
+      "from": "Return your marks only — the self-marks were just practice.",
+      "to": "Return your marks only — the self-marks were practice, and students need to know where they actually stand.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "evaluate",
+      "step": 5,
+      "from": "Average the two marks.",
+      "to": "Average the two marks, so students’ own judgement counts but your marking keeps the result accurate.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "evaluate",
+      "step": 5,
+      "from": "Stop self-marking — students aren’t accurate enough yet.",
+      "to": "Stop self-marking for now — students aren’t accurate enough yet, and it’s eating into lesson time.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "challenge",
+      "step": 3,
+      "from": "Right at the start, to motivate them.",
+      "to": "Right at the start of a topic, to spark motivation.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "challenge",
+      "step": 3,
+      "from": "Only in assessment tasks.",
+      "to": "In assessment tasks, where it counts most.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "challenge",
+      "step": 4,
+      "from": "Give them more graphs with outliers to practise on.",
+      "to": "Give them a fresh set of graphs with outliers, so they apply the routine until it becomes automatic.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "challenge",
+      "step": 4,
+      "from": "Tell them outliers can matter.",
+      "to": "Tell them directly that outliers can sometimes be the most important result, and give an example.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "challenge",
+      "step": 4,
+      "from": "Move on to a new topic — they’ve got it.",
+      "to": "Move on to a new topic — they’ve got the routine, and the unit plan is already behind schedule.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "challenge",
+      "step": 5,
+      "from": "Mark the predictions right or wrong.",
+      "to": "Go round and mark each prediction right or wrong, so students know where they stand.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "challenge",
+      "step": 5,
+      "from": "Give the answer straight away.",
+      "to": "Give the answer straight away while the predictions are fresh, then explain it.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "challenge",
+      "step": 5,
+      "from": "Move to the next system.",
+      "to": "Move straight on to the next system so the class keeps its momentum.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "practise",
+      "step": 3,
+      "from": "There’s no meaningful difference.",
+      "to": "There’s no meaningful difference once total time is equal.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "practise",
+      "step": 3,
+      "from": "Spacing only helps in primary school.",
+      "to": "Spacing helps younger students, but not adolescents or adults.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "practise",
+      "step": 4,
+      "from": "Give them more autosomal practice.",
+      "to": "Give them more autosomal practice, with harder ratios, until they can do it without notes.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "practise",
+      "step": 4,
+      "from": "Teach one inheritance type per lesson.",
+      "to": "Teach one inheritance type per lesson, with its own practice set, so students fully master each kind of cross before moving on.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "practise",
+      "step": 4,
+      "from": "Give them the answer key to study.",
+      "to": "Give them the answer key so they can study each worked solution before the exam.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "practise",
+      "step": 5,
+      "from": "Re-teach the particle model as a block in Year 9.",
+      "to": "Re-teach the particle model as a two-week block at the start of Year 9, with a test at the end to confirm that the model has finally stuck.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "practise",
+      "step": 5,
+      "from": "Assume they’ll pick it back up in context.",
+      "to": "Assume they’ll pick it back up in context — it will come up naturally in the chemistry and physics units anyway.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "practise",
+      "step": 5,
+      "from": "Hand out a revision worksheet.",
+      "to": "Hand out a thorough revision worksheet on the particle model for homework, and go over the answers in the next lesson.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "checkin",
+      "step": 3,
+      "from": "Students score well on the topic test.",
+      "to": "Students score well on the end-of-topic test.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "checkin",
+      "step": 3,
+      "from": "Students say they find it useful.",
+      "to": "Students say the habit is useful to them.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "checkin",
+      "step": 4,
+      "from": "A final test on evaluating sources.",
+      "to": "Set a final test where students evaluate three unfamiliar sources against the criteria.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "checkin",
+      "step": 4,
+      "from": "Ask if they enjoyed the unit.",
+      "to": "Ask students whether they enjoyed the unit and which source was most interesting to evaluate.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "checkin",
+      "step": 4,
+      "from": "Nothing — the unit’s finished.",
+      "to": "Nothing more — the unit is finished, and the habit will show up in the next unit if it stuck.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "checkin",
+      "step": 5,
+      "from": "Yes — correct definitions mean the misconception is gone.",
+      "to": "Yes — if every student can give a correct definition, the misconception about equilibrium has gone.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "checkin",
+      "step": 5,
+      "from": "Give them more definitions to learn.",
+      "to": "Give them more precise definitions to learn, such as the equal-rates condition, so their understanding deepens.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    },
+    {
+      "unit": "checkin",
+      "step": 5,
+      "from": "Move straight into exam revision.",
+      "to": "Move straight into exam revision, since the class is clearly ready for past-paper questions.",
+      "reason": "Length cue: the correct option was the longest in every recall and scenario question. Wrong option rewritten to match in length and plausibility, keeping its misconception so its feedback still fits.",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "date": "2026-10-09"
+    }
+  ]
+}
