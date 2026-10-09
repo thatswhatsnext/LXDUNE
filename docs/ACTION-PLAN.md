@@ -617,6 +617,12 @@ Parked for later exploration (Steve, 2026-10-07). Depends on item 56.
 - [ ] Open: how to secure access later. Options and a suggested path: `docs/metacognition-coach-access.md`
 - [ ] Open: the answer key (`Metacognition_Coach_answer_key.html`) is not committed, since everything on `main` is public on Pages. Decide where it lives
 
+### 62. Habit Studio pilot: deeper practice on two habits ⬜ — 2026-10-09
+- [x] Steve, 2026-10-09: the Metacognition Coach is a quick, surface-level entry; the habits need a deeper approach. The deeper layer is practice, not assessment; it lives in a web app; Steve will give serious authoring time
+- [x] Draft spec: `docs/habit-studio-pilot-spec.md`. Two habits (Model your thinking, Evaluate progress); six stations per habit (how it works, contrasting cases, reading student thinking, design a move, plan across a unit, rehearse); feedback from expert exemplars and placements, no backend or AI; about 35–50 h of authoring per habit
+- [ ] Open: Steve to review the spec and decide §13 (name, second reviewer, composites or real material, pilot cohort and ethics, build order, Coach fix timing)
+- [ ] Open: the Coach's correct option is the longest in all 26 recall and scenario questions. Rewrite the wrong options to match, and add a length-parity rule to `scripts/validate-coach.js` (spec §12)
+
 ---
 
 ## ✅ Completed
