@@ -2,19 +2,28 @@ name: Validate frameworks
 
 # The Framework Explorer validation gate (handoff §8). Fails the build on any
 # invalid framework data: schema violations, broken cross-references, unknown
-# or superseded curriculum vocabulary, or an incomplete matrix.
+# or superseded curriculum vocabulary, or an incomplete matrix. npm run validate
+# also runs the Metacognition Coach gate (scripts/validate-coach.js), which
+# checks the game against the metacognition framework and the vocabulary.
 on:
   push:
     paths:
       - 'frameworks/**'
+      - 'games/**'
       - 'scripts/validate-frameworks.js'
+      - 'scripts/validate-coach.js'
+      - 'docs/handoffs/mcg-content.js'
       - 'package.json'
       - 'package-lock.json'
       - '.github/workflows/validate-frameworks.yml'
   pull_request:
     paths:
       - 'frameworks/**'
+      - 'games/**'
       - 'scripts/validate-frameworks.js'
+      - 'scripts/validate-coach.js'
+      - 'docs/handoffs/mcg-content.js'
+      - 'package.json'
 
 jobs:
   validate:

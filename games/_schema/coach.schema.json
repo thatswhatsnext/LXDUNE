@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thatswhatsnext.github.io/LXDUNE/games/_schema/coach.schema.json",
+  "title": "LXDUNE Metacognition Coach content",
+  "description": "Schema for games/metacognition-coach/content.json. JSON Schema enforces per-file STRUCTURE only. Cross-file and sequence rules (one unit per framework habit, the seven-step sequence, exactly one correct option, feedback on every wrong or partial option, habit and vocabulary references, the <b>/<i> tag whitelist, parity with the approved source) are enforced by scripts/validate-coach.js.",
+
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "html": {
+      "description": "Constrained HTML: text with <b> and <i> only. The tag whitelist is checked by the validator.",
+      "type": "string",
+      "minLength": 1
+    },
+
+    "context": {
+      "description": "A scenario context as vocabulary ids. Rendered from the vocabulary's labels: the syllabus label (or the stages, joined by an arrow), then the focus area or module, then the note.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stages"],
+      "properties": {
+        "stages": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/id" } },
+        "syllabus": { "$ref": "#/$defs/id" },
+        "focusArea": { "$ref": "#/$defs/id" },
+        "module": { "$ref": "#/$defs/id" },
+        "note": { "type": "string", "minLength": 1 },
+        "acknowledgedSuperseded": { "type": "boolean" }
+      }
+    },
+
+    "scene": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ctx", "t"],
+      "properties": {
+        "ctx": { "$ref": "#/$defs/context" },
+        "t": { "$ref": "#/$defs/html" }
+      }
+    },
+
+    "option": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["t"],
+      "properties": {
+        "t": { "$ref": "#/$defs/html" },
+        "correct": { "const": true },
+        "partial": { "const": true },
+        "fb": { "$ref": "#/$defs/html" }
+      }
+    },
+
+    "defStep": {
+      "description": "Which description matches this habit? Stored as references: the engine builds four options from the game descriptions.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "kind", "scorable", "distractors", "good", "coach"],
+      "properties": {
+        "type": { "const": "choice" },
+        "kind": { "const": "def" },
+        "scorable": { "const": true },
+        "distractors": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["habit", "contrast"],
+            "properties": { "habit": { "$ref": "#/$defs/id" }, "contrast": { "$ref": "#/$defs/html" } }
+          }
+        },
+        "good": { "$ref": "#/$defs/html" },
+        "coach": { "$ref": "#/$defs/html" }
+      }
+    },
+
+    "spotStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "kind", "scorable", "eyebrow", "q", "scene", "answer", "good", "bad", "coach"],
+      "properties": {
+        "type": { "const": "tf" },
+        "kind": { "const": "spot" },
+        "scorable": { "const": true },
+        "eyebrow": { "$ref": "#/$defs/html" },
+        "q": { "$ref": "#/$defs/html" },
+        "scene": { "$ref": "#/$defs/scene" },
+        "answer": { "type": "boolean" },
+        "good": { "$ref": "#/$defs/html" },
+        "bad": { "$ref": "#/$defs/html" },
+        "coach": { "$ref": "#/$defs/html" }
+      }
+    },
+
+    "choiceStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "kind", "scorable", "eyebrow", "q", "opts", "good", "coach"],
+      "properties": {
+        "type": { "const": "choice" },
+        "kind": { "enum": ["recall", "scenario"] },
+        "scorable": { "const": true },
+        "eyebrow": { "$ref": "#/$defs/html" },
+        "q": { "$ref": "#/$defs/html" },
+        "sub": { "$ref": "#/$defs/html" },
+        "scene": { "$ref": "#/$defs/scene" },
+        "fixedOrder": { "const": true },
+        "opts": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/option" } },
+        "good": { "$ref": "#/$defs/html" },
+        "part": { "$ref": "#/$defs/html" },
+        "coach": { "$ref": "#/$defs/html" }
+      }
+    },
+
+    "applyStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "eyebrow", "q", "sub", "placeholder", "criteria"],
+      "properties": {
+        "type": { "const": "apply" },
+        "eyebrow": { "$ref": "#/$defs/html" },
+        "q": { "$ref": "#/$defs/html" },
+        "sub": { "$ref": "#/$defs/html" },
+        "placeholder": { "type": "string", "minLength": 1 },
+        "criteria": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "$ref": "#/$defs/html" } }
+      }
+    },
+
+    "commitStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "eyebrow", "q", "sub", "placeholder", "reflect"],
+      "properties": {
+        "type": { "const": "commit" },
+        "eyebrow": { "$ref": "#/$defs/html" },
+        "q": { "$ref": "#/$defs/html" },
+        "sub": { "$ref": "#/$defs/html" },
+        "placeholder": { "type": "string", "minLength": 1 },
+        "reflect": { "$ref": "#/$defs/html" }
+      }
+    },
+
+    "unit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "short", "intro", "steps"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "short": { "$ref": "#/$defs/html" },
+        "intro": { "$ref": "#/$defs/html" },
+        "steps": {
+          "type": "array",
+          "prefixItems": [
+            { "$ref": "#/$defs/defStep" },
+            { "$ref": "#/$defs/spotStep" },
+            { "allOf": [{ "$ref": "#/$defs/choiceStep" }, { "properties": { "kind": { "const": "recall" } } }] },
+            { "allOf": [{ "$ref": "#/$defs/choiceStep" }, { "properties": { "kind": { "const": "scenario" } }, "required": ["scene"] }] },
+            { "allOf": [{ "$ref": "#/$defs/choiceStep" }, { "properties": { "kind": { "const": "scenario" } }, "required": ["scene"] }] },
+            { "$ref": "#/$defs/applyStep" },
+            { "$ref": "#/$defs/commitStep" }
+          ],
+          "minItems": 7,
+          "maxItems": 7
+        }
+      }
+    }
+  },
+
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "version", "habitsFrom", "gameDescriptions", "units"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "const": "metacognition-coach" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "habitsFrom": { "$ref": "#/$defs/id" },
+    "source": { "type": "string" },
+    "gameDescriptions": { "type": "object", "additionalProperties": { "$ref": "#/$defs/html" } },
+    "units": { "type": "array", "items": { "$ref": "#/$defs/unit" } }
+  }
+}

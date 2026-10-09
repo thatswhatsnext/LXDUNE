@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metacognition Coach</title>
+<meta name="description" content="Practise the nine metacognitive teaching habits from the NSW Department of Education's Metacognition – a key to unlocking learning (2020), one move at a time.">
+<meta name="theme-color" content="#F2F0EA">
+<link rel="icon" href="data:,">
+<!--
+  The Metacognition Coach web app. Served from GitHub Pages at
+  https://thatswhatsnext.github.io/LXDUNE/games/metacognition-coach/
+  Locally: python3 -m http.server 8000 from the repo root, then open
+  http://localhost:8000/games/metacognition-coach/
+  ?reviewer=1 shows the reviewer toggle, which unlocks every habit (for staff).
+-->
+<style>
+  html{background:#F2F0EA;}
+  body{margin:0;background:#F2F0EA;color:#3B474F;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  #lxd-coach{min-height:100vh;border-radius:0;}
+  .noscript{max-width:640px;margin:0 auto;padding:40px 18px;font-size:16px;line-height:1.55;}
+</style>
+</head>
+<body>
+  <main id="lxd-coach"></main>
+  <noscript><p class="noscript">The Metacognition Coach needs JavaScript to run.</p></noscript>
+<script type="module">
+  import { renderCoach } from "./coach.js";
+  const q = new URLSearchParams(location.search);
+  renderCoach({ mount: "lxd-coach", allowReviewer: q.get("reviewer") === "1" });
+</script>
+</body>
+</html>
