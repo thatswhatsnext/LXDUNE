@@ -2,10 +2,10 @@
 
 **For:** Steve Grant (authoring and review), then Claude Code (build)
 **Drafted:** 2026-10-09, after the Metacognition Coach release
-**Status:** draft for Steve's review. Nothing is built yet.
+**Status:** decisions 1–5 made (Steve, 2026-10-09, §13); decision 6 open. Nothing is built yet.
 **Decisions already made (Steve, 2026-10-09):** the deeper layer is **practice, not assessment**; it
 **lives in a web app**; Steve will give **serious authoring time** to it.
-**Working name:** *Habit Studio* (to confirm, §13).
+**Name:** *Habit Studio* (Steve, 2026-10-09).
 
 ---
 
@@ -257,9 +257,8 @@ one validator joins `npm run validate`.
 
 Practice, not assessment, but the pilot needs evidence that it builds depth.
 
-- **Participants:** 6–10 pre-service teachers, volunteers, ideally EDSE362. If any results are to be
-  published, check UNE's human research ethics requirements first. Course-improvement evaluation may
-  not need full approval, but confirm.
+- **Participants:** 6–10 pre-service teachers, volunteers, ideally EDSE362. **On hold** (Steve,
+  2026-10-09): cohort and timing to be set later. No ethics approval is needed.
 - **Before and after, on transfer material** (artefacts and a brief not used in the Studio):
   - *Judgement:* place 8 new artefacts; measure agreement with experts.
   - *Design:* write a move for a new brief; two raters score it blind on the rubric.
@@ -280,7 +279,7 @@ Practice, not assessment, but the pilot needs evidence that it builds depth.
 | M3 | App build for one habit; local testing to the Coach's bar | Claude Code | All §9 checks measured |
 | M4 | Small trial with 2–3 people; fix | Steve | Usability issues fixed |
 | M5 | *Evaluate progress* content, including the cross-habit unit task | Steve (+ reviewer) | As M2 |
-| M6 | Pilot with 6–10 participants (§10) | Steve | Data collected |
+| M6 | Pilot with 6–10 participants (§10). *On hold: cohort and timing not yet set* | Steve | Data collected |
 | M7 | Decide: scale to nine habits, revise the format, or stop | Steve | Decision recorded in the action plan |
 
 Building one habit end to end (M1–M4) before writing the second avoids writing 50 hours of content for a
@@ -293,14 +292,19 @@ and quality, using plausible near-misses. That's a content review of 26 question
 to `content.json`, and the new length-parity rule added to `scripts/validate-coach.js`. Worth doing
 before more students use the Coach.
 
-## 13. Decisions for Steve
+## 13. Decisions
 
-1. **Name:** "Habit Studio", or something else?
-2. **Second reviewer** for expert placements: who? (A practising science teacher or a colleague.)
-3. **Composites or real material** for the pilot. Recommendation: composites, flagged as such (§6.1).
-4. **Pilot participants and timing:** which cohort and term; and whether ethics approval is needed.
-5. **Order:** build *Model your thinking* first (recommended), or both in parallel?
-6. **Coach length-cue fix (§12):** now, or with the Studio?
+Steve, 2026-10-09:
+
+1. **Name:** Habit Studio.
+2. **Second reviewer** for expert placements: a practising science teacher. *Person to be named
+   before M2.*
+3. **Material for the pilot:** composites, flagged as such in provenance (§6.1).
+4. **Pilot participants and timing:** on hold. No ethics approval is needed.
+5. **Order:** build *Model your thinking* first (M1–M4), then *Evaluate progress* (M5).
+6. **Coach length-cue fix (§12):** *open.* Steve asked whether to do it with the Studio. The fix is
+   independent of the Studio and the Coach is live, so Claude's recommendation is to do it now, as a
+   small separate change.
 
 ## 14. Out of scope for the pilot
 
