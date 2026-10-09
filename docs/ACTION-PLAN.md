@@ -620,7 +620,10 @@ Parked for later exploration (Steve, 2026-10-07). Depends on item 56.
 ### 62. Habit Studio pilot: deeper practice on two habits ⬜ — 2026-10-09
 - [x] Steve, 2026-10-09: the Metacognition Coach is a quick, surface-level entry; the habits need a deeper approach. The deeper layer is practice, not assessment; it lives in a web app; Steve will give serious authoring time
 - [x] Draft spec: `docs/habit-studio-pilot-spec.md`. Two habits (Model your thinking, Evaluate progress); six stations per habit (how it works, contrasting cases, reading student thinking, design a move, plan across a unit, rehearse); feedback from expert exemplars and placements, no backend or AI; about 35–50 h of authoring per habit
-- [ ] Open: Steve to review the spec and decide §13 (name, second reviewer, composites or real material, pilot cohort and ethics, build order, Coach fix timing)
+- [x] Steve's decisions, 2026-10-09 (spec §13): the name is Habit Studio; the second reviewer for expert placements is a practising science teacher; composites for the pilot; build Model your thinking first; pilot cohort and timing on hold, and no ethics approval is needed
+- [ ] Open: name the second reviewer (a practising science teacher) before M2
+- [ ] Open: when to fix the Coach's length cue, now or with the Studio (spec §13.6)
+- [ ] Next: M1, the Studio schema plus one sample of each content type for Model your thinking
 - [ ] Open: the Coach's correct option is the longest in all 26 recall and scenario questions. Rewrite the wrong options to match, and add a length-parity rule to `scripts/validate-coach.js` (spec §12)
 
 ---
