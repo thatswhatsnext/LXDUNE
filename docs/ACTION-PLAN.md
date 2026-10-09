@@ -623,7 +623,7 @@ Parked for later exploration (Steve, 2026-10-07). Depends on item 56.
 - [x] Steve's decisions, 2026-10-09 (spec §13): the name is Habit Studio; the second reviewer for expert placements is a practising science teacher; composites for the pilot; build Model your thinking first; pilot cohort and timing on hold, and no ethics approval is needed
 - [ ] Open: name the second reviewer (a practising science teacher) before M2
 - [x] Steve, 2026-10-09: fix the Coach's length cue now (spec §13.6)
-- [ ] In review: the length-cue fix on `fix/coach-length-cue`. 75 wrong or partial options rewritten (correct options and feedback unchanged), logged in `games/metacognition-coach/changes.json`; the validator gains length rules and fails until every change has a reviewer. Review copy sent to Steve privately
+- [x] Length-cue fix: 75 wrong or partial options rewritten (correct options and feedback unchanged), Coach content 1.0.0 → 1.0.1, reviewed by Steve Grant on 2026-10-09 with no changes. Logged in `games/metacognition-coach/changes.json`; the validator gains length rules (shortest option ≥ 60% of the longest; correct option ≤ 15% longer than the longest wrong one) and fails on any unreviewed change
 - [ ] Next: M1, the Studio schema plus one sample of each content type for Model your thinking
 
 ---

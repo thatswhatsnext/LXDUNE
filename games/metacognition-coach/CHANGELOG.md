@@ -1,12 +1,13 @@
 # Changelog — Metacognition Coach
 
-## v1.0.1 — draft, awaiting Steve's review
+## v1.0.1 — 2026-10-09
 
 - Length cue fixed: the correct option was the longest in every one of the 26
   recall and scenario questions, so players could score by picking the longest.
   75 wrong or partial options are rewritten to match the correct option in length
   and plausibility, each keeping its misconception so its feedback still fits.
   Correct options and all feedback are unchanged.
+- Reviewed by Steve Grant, 9 October 2026, with no changes.
 - Each rewrite is recorded in `changes.json` (from, to, reason, reviewer). The
   validator applies reviewed changes to the approved source before the parity
   check, and fails while any change has no reviewer.
