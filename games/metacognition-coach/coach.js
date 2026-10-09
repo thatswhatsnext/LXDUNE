@@ -1,41 +1,32 @@
-// moodle-blocks/metacognition-coach.js
-// "Metacognition Coach" practice game for LXDUNE. Ports the standalone prototype
-// (docs/handoffs/Metacognition_Coach.html) into the live repo pattern: content
-// lives in validated JSON under games/metacognition-coach/, and this module
-// fetches it and renders it into a Moodle page, like framework-explorer.js.
+// games/metacognition-coach/coach.js
+// "Metacognition Coach" practice game for LXDUNE: a standalone web app, served
+// from GitHub Pages at games/metacognition-coach/ (index.html is the app page).
+// Ports the prototype (docs/handoffs/Metacognition_Coach.html): content lives in
+// validated JSON beside this file, and this module fetches it and renders it.
 //
-//   <div id="lxd-coach"></div>
-//   <script type="module">
-//     import { renderCoach }
-//       from "https://thatswhatsnext.github.io/LXDUNE/moodle-blocks/metacognition-coach.js";
-//     renderCoach({ mount: "lxd-coach" });
-//   </script>
+//   import { renderCoach } from "./coach.js";
+//   renderCoach({ mount: "lxd-coach" });
 //
 // Options: mount (default "lxd-coach"), explorerUrl (default "": the "Go deeper"
 // box names the explorer without a link), allowReviewer (default false: true
-// shows a toggle that unlocks every habit, for staff pages only).
+// shows a toggle that unlocks every habit; never stored).
 //
 // One source of truth: habit names and phases come from the metacognition
 // framework (content.json's habitsFrom), and scenario contexts are vocabulary
 // ids rendered with the vocabulary's labels. Only the game's one-line habit
 // descriptions live in content.json.
 //
-// Moodle-deployment constraints (spec §8):
-//   • All markup + CSS scoped under .lxd-mcg; custom properties live on .lxd-mcg,
-//     not :root, each used with an inline fallback. No bare body/h1 selectors.
-//   • No external requests beyond this repo's JSON; inherits the theme's body font.
-//   • Ids are prefixed per mount, so two games on one page never share ids.
-//   • Scrolling targets whichever element scrolls (Boost scrolls #page), and the
-//     top bar pins below Boost's fixed navbar.
-//   • Progress is kept in localStorage under "lxd-mcg-v1" — a deliberate
-//     exception to the explorers' no-storage rule (spec §7). Every access is in
-//     try/catch; without storage the game still plays.
+// Markup and CSS are scoped under .lxd-mcg (custom properties on .lxd-mcg, each
+// used with an inline fallback) and ids are prefixed per mount, so the app page
+// owns the page-level styles. No external requests beyond this repo's JSON.
+// Progress is kept in localStorage under "lxd-mcg-v1", every access in
+// try/catch; without storage the game still plays.
 //
-// The pure helpers (vocabLabels, contextLabel, buildGame) are exported so the validator's
-// parity check runs the same expansion as the page.
+// The pure helpers (vocabLabels, contextLabel, buildGame) are exported so the
+// validator's parity check runs the same expansion as the app.
 
-const BASE = new URL('..', import.meta.url).href;
-const CONTENT_PATH = 'games/metacognition-coach/content.json';
+const CONTENT_URL = new URL('content.json', import.meta.url).href;
+const FRAMEWORKS_URL = new URL('../../frameworks/', import.meta.url).href;
 
 // Layout version, stamped as data-mcg-renderer. Separate from the content
 // version (data-mcg-version), which feeds the content hash.
@@ -174,8 +165,8 @@ export async function renderCoach({ mount = 'lxd-coach', explorerUrl = '', allow
     return;
   }
   try {
-    const content = await fetchJson(BASE + CONTENT_PATH);
-    const fwDir = `${BASE}frameworks/${content.habitsFrom}/`;
+    const content = await fetchJson(CONTENT_URL);
+    const fwDir = `${FRAMEWORKS_URL}${content.habitsFrom}/`;
     const fw = await fetchJson(`${fwDir}framework.json`);
     const [habits, vocab] = await Promise.all([
       fetchJson(new URL(fw.matrix.habits, fwDir).href),
@@ -201,40 +192,6 @@ function stampVersion(el, content, habits) {
   el.dataset.mcgContentHash = hash;
   el.dataset.mcgRenderer = RENDERER;
   el.insertAdjacentHTML('afterbegin', `<!-- Metacognition Coach · v${content.version} · ${hash} · ${RENDERER} -->`);
-}
-
-// ── scrolling (as the deep-dive view) ───────────────────────────────────────────
-const reduceMotion = () =>
-  typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-// The element that actually scrolls `el` vertically: Moodle's Boost theme may
-// scroll #page rather than the document. Moodle's .no-overflow wrapper has
-// overflow:auto but never scrolls vertically, so it is skipped.
-function scrollerOf(el) {
-  for (let e = el.parentElement; e && e !== document.body && e !== document.documentElement; e = e.parentElement) {
-    const oy = window.getComputedStyle(e).overflowY;
-    if ((oy === 'auto' || oy === 'scroll') && e.scrollHeight > e.clientHeight + 1) return e;
-  }
-  return window;
-}
-
-// Bottom edge of any fixed or sticky header across the top of the viewport
-// (Boost's navbar), ignoring the game's own elements; 0 on a plain page.
-function headerBottom(own) {
-  if (typeof document.elementsFromPoint !== 'function') return 0;
-  let bottom = 0;
-  for (const el of document.elementsFromPoint(Math.round(window.innerWidth / 2), 1)) {
-    if (own.contains(el)) continue;
-    for (let e = el; e && e !== document.body && e !== document.documentElement; e = e.parentElement) {
-      const pos = window.getComputedStyle(e).position;
-      if (pos === 'fixed' || pos === 'sticky') {
-        const r = e.getBoundingClientRect();
-        if (r.top <= 1 && r.bottom > bottom && r.height < window.innerHeight / 3) bottom = r.bottom;
-        break;
-      }
-    }
-  }
-  return Math.round(bottom);
 }
 
 // ── storage ────────────────────────────────────────────────────────────────────
@@ -348,16 +305,11 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
     if (phase) el.classList.add(`lxd-mcg-ph-${phase}`);
   }
 
-  // On a screen change, bring the game's top into view (below any fixed navbar)
-  // if it has scrolled above it, then focus the new screen's heading.
+  // On a screen change, go back to the top and focus the new screen's heading.
+  // Not on first load, so opening the app doesn't move focus.
   function arrive(focus) {
-    pin();
     if (!focus) return;
-    const top = headerBottom(el);
-    const r = el.getBoundingClientRect();
-    if (r.top < top) {
-      scrollerOf(el).scrollBy({ top: r.top - top - 8, behavior: reduceMotion() ? 'auto' : 'smooth' });
-    }
+    window.scrollTo(0, 0);
     const h = root.querySelector('[data-focus]');
     if (h) h.focus({ preventScroll: true });
   }
@@ -440,7 +392,7 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
     const d = doneUnits().length;
     const due = dueUnits();
     let h =
-      `<div class="lxd-mcg-head"><h2 class="lxd-mcg-title" tabindex="-1" data-focus>Metacognition Coach</h2>` +
+      `<div class="lxd-mcg-head"><h1 class="lxd-mcg-title" tabindex="-1" data-focus>Metacognition Coach</h1>` +
       `<p>Build the teaching habits that develop your students’ thinking — one move at a time.</p></div>` +
       `<div class="lxd-mcg-statrow">` +
       `<div class="s"><div class="v">${store.xp}</div><div class="l">XP</div></div>` +
@@ -482,7 +434,7 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
     const ids = Object.keys(store.notes).filter((id) => store.notes[id].commit);
     if (ids.length) {
       h +=
-        '<div class="lxd-mcg-log"><h3>Your classroom commitments</h3>' +
+        '<div class="lxd-mcg-log"><h2>Your classroom commitments</h2>' +
         '<p class="lsub">What you said you’d try. Each one is where the practice actually happens.</p><ul>';
       ids
         .sort((a, b) => idx(a) - idx(b))
@@ -505,10 +457,10 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
   function topbar() {
     const pct = Math.round((run.i / (run.steps.length - 1)) * 100);
     return (
-      `<div class="lxd-mcg-barslot"><div class="lxd-mcg-topbar">` +
+      `<div class="lxd-mcg-topbar">` +
       `<button type="button" class="lxd-mcg-x" data-act="exit" aria-label="Leave and return to the path">✕</button>` +
       `<div class="lxd-mcg-prog" role="progressbar" aria-label="Progress" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div>` +
-      `<span class="lxd-mcg-xp" id="${uid}-xp">${STAR}${run.xp} XP</span></div></div>`
+      `<span class="lxd-mcg-xp" id="${uid}-xp">${STAR}${run.xp} XP</span></div>`
     );
   }
   const SCREENS = {
@@ -539,7 +491,7 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
     const labels = ['Not yet', 'A little', 'Somewhat', 'Fairly', 'Very'];
     let h =
       `<div class="lxd-mcg-card">${eyebrow(`${phaseName(u.id)} · Habit ${i + 1} of ${U.length}`)}` +
-      `<h2 class="lxd-mcg-q big" tabindex="-1" data-focus>${esc(H[u.id].name)}</h2>` +
+      `<h1 class="lxd-mcg-q big" tabindex="-1" data-focus>${esc(H[u.id].name)}</h1>` +
       `<p class="lxd-mcg-sub lead">${u.intro}</p>` +
       `<div class="lxd-mcg-note" id="${uid}-calq"><b>Before you start.</b> How confident are you that you could use this habit, on purpose, in a lesson tomorrow?</div>` +
       `<div class="lxd-mcg-scale" role="group" aria-labelledby="${uid}-calq">`;
@@ -555,7 +507,7 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
     const names = run.units.map((id) => esc(H[id].name));
     let h =
       `<div class="lxd-mcg-card">${eyebrow(`Mixed review · ${n} questions`)}` +
-      `<h2 class="lxd-mcg-q big" tabindex="-1" data-focus>Mixed review</h2>` +
+      `<h1 class="lxd-mcg-q big" tabindex="-1" data-focus>Mixed review</h1>` +
       '<p class="lxd-mcg-sub lead">Questions from different habits, shuffled together. Mixing them makes you decide which habit each question is about — which is what you have to do in a real lesson.</p>' +
       `<p class="lxd-mcg-sub">Drawing on: <b>${names.join(', ')}</b>.</p>` +
       `<div class="lxd-mcg-note" id="${uid}-calq"><b>Predict first.</b> How many of the ${n} do you think you’ll get right first time?</div>` +
@@ -568,7 +520,7 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
   }
   function rChoice(scr, s) {
     let h =
-      `<div class="lxd-mcg-card">${eyebrow(s.eyebrow)}<h2 class="lxd-mcg-q" tabindex="-1" data-focus>${s.q}</h2>` +
+      `<div class="lxd-mcg-card">${eyebrow(s.eyebrow)}<h1 class="lxd-mcg-q" tabindex="-1" data-focus>${s.q}</h1>` +
       (s.sub ? `<p class="lxd-mcg-sub">${s.sub}</p>` : '') +
       scene(s) +
       '<div class="lxd-mcg-opts">';
@@ -580,13 +532,13 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
   }
   function rTF(scr, s) {
     scr.innerHTML =
-      `<div class="lxd-mcg-card">${eyebrow(s.eyebrow)}<h2 class="lxd-mcg-q" tabindex="-1" data-focus>${s.q}</h2>${scene(s)}` +
+      `<div class="lxd-mcg-card">${eyebrow(s.eyebrow)}<h1 class="lxd-mcg-q" tabindex="-1" data-focus>${s.q}</h1>${scene(s)}` +
       '<div class="lxd-mcg-tf"><button type="button" class="lxd-mcg-opt" data-tf="true"><span class="optbody">Yes, it is</span></button><button type="button" class="lxd-mcg-opt" data-tf="false"><span class="optbody">No, it isn’t</span></button></div>' +
       `<div class="lxd-mcg-fb" id="${uid}-fb" role="status"></div><div class="lxd-mcg-btnrow" id="${uid}-btnrow"></div></div>`;
   }
   function rApply(scr, s) {
     let h =
-      `<div class="lxd-mcg-card">${eyebrow(s.eyebrow)}<h2 class="lxd-mcg-q" tabindex="-1" data-focus>${s.q}</h2><p class="lxd-mcg-sub">${s.sub}</p>` +
+      `<div class="lxd-mcg-card">${eyebrow(s.eyebrow)}<h1 class="lxd-mcg-q" tabindex="-1" data-focus>${s.q}</h1><p class="lxd-mcg-sub">${s.sub}</p>` +
       `<label class="lxd-mcg-sr" for="${uid}-apta">Your draft</label><textarea class="lxd-mcg-ta" id="${uid}-apta" placeholder="${esc(s.placeholder)}">${esc(run.apply)}</textarea>` +
       '<p class="lxd-mcg-hint">Nothing here is marked — it’s yours to keep. It’s saved with your progress.</p>' +
       '<div class="lxd-mcg-checklabel">Check your own draft</div>';
@@ -601,7 +553,7 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
   }
   function rCommit(scr, s) {
     scr.innerHTML =
-      `<div class="lxd-mcg-card">${eyebrow(s.eyebrow)}<h2 class="lxd-mcg-q" tabindex="-1" data-focus>${s.q}</h2><p class="lxd-mcg-sub">${s.sub}</p>` +
+      `<div class="lxd-mcg-card">${eyebrow(s.eyebrow)}<h1 class="lxd-mcg-q" tabindex="-1" data-focus>${s.q}</h1><p class="lxd-mcg-sub">${s.sub}</p>` +
       `<label class="lxd-mcg-sr" for="${uid}-cmta">Your commitment</label><textarea class="lxd-mcg-ta" id="${uid}-cmta" placeholder="${esc(s.placeholder)}">${esc(run.commit)}</textarea>` +
       `<div class="lxd-mcg-note"><b>For afterwards.</b> ${s.reflect}</div>` +
       '<div class="lxd-mcg-btnrow"><button type="button" class="lxd-mcg-btn primary" data-act="commitnext">Finish</button></div></div>';
@@ -639,7 +591,7 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
     const when = whenText(store.done[u.id].due);
     let h =
       `<div class="lxd-mcg-done"><div class="lxd-mcg-crown">${CROWN}</div>` +
-      '<h2 class="lxd-mcg-dh" tabindex="-1" data-focus>Habit complete</h2>' +
+      '<h1 class="lxd-mcg-dh" tabindex="-1" data-focus>Habit complete</h1>' +
       `<p class="tagline">You’ve worked <b>${name}</b> through definition, recall, judgement and practice.</p>` +
       stats(run.scorable) +
       calibration(`${run.conf}/5`, run.conf * 20, `${perfLv}/5`, perfLv * 20, gapReflect(`${run.conf}/5`, `${perfLv}/5`, run.conf, perfLv));
@@ -668,7 +620,7 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
     const pct = (k) => (n ? (k / n) * 100 : 0);
     scr.innerHTML =
       `<div class="lxd-mcg-done"><div class="lxd-mcg-crown">${CROWN}</div>` +
-      '<h2 class="lxd-mcg-dh" tabindex="-1" data-focus>Review complete</h2>' +
+      '<h1 class="lxd-mcg-dh" tabindex="-1" data-focus>Review complete</h1>' +
       '<p class="tagline">Mixing the habits together is harder than practising them one at a time. That’s what makes it stick.</p>' +
       stats(n) +
       calibration(`${run.conf}/${n}`, pct(run.conf), `${run.correct}/${n}`, pct(run.correct), gapReflect(`${run.conf}/${n}`, `${run.correct}/${n}`, run.conf, run.correct)) +
@@ -831,35 +783,6 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
     if (t.dataset.tf !== undefined) return chooseTF(s, t.dataset.tf === 'true', t);
   });
 
-  // ── top bar pinning ──
-  // CSS sticky can't be used: Moodle wraps Page content in .no-overflow
-  // (overflow:auto), which stops sticky engaging, and Boost's fixed navbar covers
-  // the top of the viewport. So the bar pins just below that navbar, worked out
-  // from viewport geometry whenever anything scrolls (as the deep-dive's pills).
-  let frame = 0;
-  function pin() {
-    frame = 0;
-    const slot = root.querySelector('.lxd-mcg-barslot');
-    const bar = slot && slot.firstElementChild;
-    if (!bar || !el.isConnected) return;
-    const top = headerBottom(el);
-    const s = slot.getBoundingClientRect();
-    const box = root.getBoundingClientRect();
-    const h = bar.offsetHeight;
-    const on = s.top < top && box.bottom > top + h;
-    bar.classList.toggle('pinned', on);
-    slot.style.height = on ? `${h}px` : '';
-    bar.style.top = on ? `${top}px` : '';
-    bar.style.left = on ? `${s.left}px` : '';
-    bar.style.width = on ? `${s.width}px` : '';
-  }
-  const onScroll = () => {
-    if (!frame) frame = window.requestAnimationFrame(pin);
-  };
-  // Capture phase catches a scroll on any element, whichever one Moodle scrolls.
-  document.addEventListener('scroll', onScroll, { capture: true, passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-
   showPath('', false);
 }
 
@@ -906,7 +829,7 @@ ${P}{
 }
 ${phaseRules}
 ${P} *,${P} *::before,${P} *::after{box-sizing:border-box;}
-${P} h2,${P} h3{font-family:${SERIF};color:${v('ink')};}
+${P} h1,${P} h2,${P} h3{font-family:${SERIF};color:${v('ink')};}
 ${P} p{margin:0;}
 ${P} button,${P} textarea{font:inherit;}
 ${P} :focus-visible{outline:2.5px solid ${v('gold')};outline-offset:2px;border-radius:4px;}
@@ -916,9 +839,7 @@ ${P} .lxd-mcg-wrap{max-width:640px;margin:0 auto;padding:0 18px 32px;overflow-wr
 ${P} .lxd-mcg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 
 /* top bar */
-${P} .lxd-mcg-barslot{margin:0;}
-${P} .lxd-mcg-topbar{background:#F2F0EA;background:rgba(242,240,234,.94);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;align-items:center;gap:14px;padding:14px 0 12px;}
-${P} .lxd-mcg-topbar.pinned{position:fixed;z-index:1020;padding:14px 12px 12px;box-shadow:0 2px 6px rgba(25,40,47,.08);}
+${P} .lxd-mcg-topbar{position:sticky;top:0;z-index:10;background:#F2F0EA;background:rgba(242,240,234,.94);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;align-items:center;gap:14px;padding:14px 0 12px;}
 ${P} .lxd-mcg-x{flex:0 0 auto;width:44px;height:44px;border-radius:11px;border:1.5px solid ${v('line')};background:${v('paper')};color:${v('muted')};font-size:17px;cursor:pointer;line-height:1;padding:0;}
 ${P} .lxd-mcg-x:hover{border-color:${v('line2')};}
 ${P} .lxd-mcg-prog{flex:1;min-width:0;height:14px;background:${v('sunk')};border:1px solid ${v('line')};border-radius:999px;overflow:hidden;}
@@ -1042,7 +963,7 @@ ${P} .lxd-mcg-node .act.replay{border:1.5px solid ${v('line')};background:${v('p
 ${P} .lxd-mcg-node .act.replay:hover{border-color:${v('line2')};}
 ${P} .lxd-mcg-node .lock{flex:0 0 auto;font-size:12px;font-weight:700;color:${v('muted')};text-transform:uppercase;letter-spacing:.05em;}
 ${P} .lxd-mcg-log{margin-top:26px;background:${v('paper')};border:1px solid ${v('line')};border-radius:14px;padding:18px 20px;}
-${P} .lxd-mcg-log h3{font-size:17px;font-weight:700;line-height:1.3;margin:0 0 4px;}
+${P} .lxd-mcg-log h2{font-size:17px;font-weight:700;line-height:1.3;margin:0 0 4px;}
 ${P} .lxd-mcg-log .lsub{font-size:13px;color:${v('muted')};margin:0 0 10px;}
 ${P} .lxd-mcg-log ul,${P} .lxd-mcg-list{margin:0;padding-left:18px;}
 ${P} .lxd-mcg-log li,${P} .lxd-mcg-list li{font-size:14px;color:${v('ink')};margin-bottom:8px;}

@@ -22,7 +22,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import vm from 'node:vm';
-import { buildGame } from '../moodle-blocks/metacognition-coach.js';
+import { buildGame } from '../games/metacognition-coach/coach.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
