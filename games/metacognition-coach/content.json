@@ -1,7 +1,7 @@
 {
   "$schema": "../_schema/coach.schema.json",
   "id": "metacognition-coach",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "habitsFrom": "metacognition-nsw-science",
   "source": "docs/handoffs/mcg-content.js",
   "gameDescriptions": {
@@ -70,7 +70,7 @@
           "q": "Why does naming the thinking strategy matter?",
           "opts": [
             {
-              "t": "It makes the lesson move faster.",
+              "t": "It speeds the lesson up, because students know what’s coming next.",
               "fb": "Naming the strategy takes a little time. The payoff is elsewhere."
             },
             {
@@ -78,11 +78,11 @@
               "correct": true
             },
             {
-              "t": "It means students no longer need to practise it.",
+              "t": "Once students know its name, they no longer need to practise it.",
               "fb": "Naming isn’t a substitute for practice — it’s what makes practice recognisable as the same skill each time."
             },
             {
-              "t": "It replaces the content learning intention.",
+              "t": "It replaces the content learning intention with a clearer skills goal.",
               "fb": "It sits alongside the content intention, not instead of it."
             }
           ],
@@ -106,11 +106,11 @@
           },
           "opts": [
             {
-              "t": "“Today we’re learning about the immune system.”",
+              "t": "“Today we’re learning about the immune system — how your body recognises a pathogen, and how vaccines train it to respond faster.”",
               "fb": "This names the content and leaves the thinking invisible. Students may evaluate the article without realising that evaluating is the skill."
             },
             {
-              "t": "Write the syllabus dot point on the board and read it out.",
+              "t": "Write the syllabus dot point on the board, read it aloud, and have students copy it into their books as the learning intention for today’s lesson.",
               "fb": "The dot point names what NESA requires. It doesn’t tell students what kind of thinking to do."
             },
             {
@@ -118,7 +118,7 @@
               "correct": true
             },
             {
-              "t": "“Read the article and tell me what you think.”",
+              "t": "“Here’s a headline about a new immunity supplement. Read the article and tell me what you think — do you believe it?”",
               "partial": true,
               "fb": "A good hook, and it invites thinking — but it doesn’t name which thinking. Hook first, then name it."
             }
@@ -146,15 +146,15 @@
           },
           "opts": [
             {
-              "t": "Collect the cards and mark them for completion.",
+              "t": "Collect the cards at the end of each lesson and mark them for completion, so students see that filling in every step counts.",
               "fb": "Marking completion rewards the box-ticking you’re worried about."
             },
             {
-              "t": "Take the cards away — they clearly aren’t helping.",
+              "t": "Take the cards away for now — if students are only ticking boxes, the card has become busywork, and it’s getting in the way of the real problem-solving you want them to do.",
               "fb": "The card isn’t the problem. Students don’t yet know what it’s for."
             },
             {
-              "t": "Give them more practice problems so the routine sticks.",
+              "t": "Give them a longer set of practice problems with the card, so the routine becomes automatic through repetition.",
               "fb": "More practice of a misunderstood routine strengthens the misunderstanding."
             },
             {
@@ -277,7 +277,7 @@
           },
           "opts": [
             {
-              "t": "“It’s just the method we always use for projectiles — you’ll get used to it.”",
+              "t": "“It’s the standard method for projectiles — split the velocity into horizontal and vertical components, then use the equations of motion for each one. You’ll get used to it with practice.”",
               "fb": "This gives the rule and hides the reasoning. The student asked how you <i>decided</i>, and that stays invisible."
             },
             {
@@ -285,12 +285,12 @@
               "correct": true
             },
             {
-              "t": "“Good question — discuss in pairs why we might split it.”",
+              "t": "“Good question — turn to your partner and discuss why we might split the motion into two parts. Then we’ll hear a few ideas before I carry on.”",
               "partial": true,
               "fb": "A strong move, but it’s <b>Promote collaboration</b>. The student asked to see <i>your</i> thinking; this hands it back before showing them."
             },
             {
-              "t": "“Great question!” — and carry on solving.",
+              "t": "“Great question — that’s exactly what good physicists ask!” Then carry on solving, writing each step neatly on the board.",
               "fb": "The question is acknowledged but never answered. The reasoning stays hidden."
             }
           ],
@@ -315,7 +315,7 @@
           },
           "opts": [
             {
-              "t": "Quietly fix it and keep going, so you don’t confuse anyone.",
+              "t": "Quietly correct the division and keep going — drawing attention to your own slip mid-example could confuse students and shake their confidence in the method.",
               "fb": "Understandable — but you’ve hidden the most useful thing to model: how an expert catches and recovers from their own error."
             },
             {
@@ -323,11 +323,11 @@
               "correct": true
             },
             {
-              "t": "Blame the calculator and quietly redo it.",
+              "t": "Say the calculator must have been in the wrong mode, then redo the calculation carefully so the class sees the correct value.",
               "fb": "This models the wrong disposition — that errors are someone else’s fault and best hidden."
             },
             {
-              "t": "Rub it out and move to the next example.",
+              "t": "Rub out the working, write the correct answer in its place, and move on to the next example before attention drifts.",
               "fb": "The error disappears, and so does the chance to show self-monitoring in action."
             }
           ],
@@ -410,15 +410,15 @@
           "q": "Which question best turns a student’s attention to their own reasoning?",
           "opts": [
             {
-              "t": "“What’s the answer?”",
+              "t": "“What answer did you get, and can you read out the value you wrote down?”",
               "fb": "This asks for the product. The habit asks about the process."
             },
             {
-              "t": "“Did everyone get that?”",
+              "t": "“Did everyone get that? Thumbs up if you’re happy to move on to the next one.”",
               "fb": "A closed check that most students answer with a nod, whatever they understood."
             },
             {
-              "t": "“Who can tell me the definition?”",
+              "t": "“Who can tell me the definition we used yesterday, and which word in it matters most for this problem?”",
               "fb": "Recall of a definition — useful, but it doesn’t ask students to inspect their thinking."
             },
             {
@@ -446,7 +446,7 @@
           },
           "opts": [
             {
-              "t": "“Correct! Well done.”",
+              "t": "“Correct! Well done — that’s exactly the link I was looking for. Who can add another?”",
               "fb": "Praise closes the thinking down. The student stopped at one link and now believes that’s enough."
             },
             {
@@ -454,11 +454,11 @@
               "correct": true
             },
             {
-              "t": "“Not quite — what about the grass?”",
+              "t": "“Not quite — what happens to the grass if the rabbits disappear? Follow that arrow next, then tell me what changes.”",
               "fb": "This gives away the next step. The student follows your lead rather than inspecting their own reasoning."
             },
             {
-              "t": "“Check with your partner.”",
+              "t": "“Check your answer with your partner and see whether they traced the same connections.”",
               "partial": true,
               "fb": "Collaboration could help — but the student hasn’t yet looked at their own reasoning. Ask first, then pair."
             }
@@ -488,15 +488,15 @@
               "correct": true
             },
             {
-              "t": "Take the first hand — they’re keen.",
+              "t": "Take the first hand straight away, so the eager students’ energy carries the rest of the class.",
               "fb": "Keen students answer, and the rest learn they don’t need to think. In under a second, only fast recall gets a chance."
             },
             {
-              "t": "Answer it yourself to keep the pace up.",
+              "t": "Answer it yourself, briefly, to keep the pace up and get to the practical sooner.",
               "fb": "The thinking was yours. The question becomes a lecture."
             },
             {
-              "t": "“Anyone else?” — then take the same two hands.",
+              "t": "“Anyone else?” — glance around the room, then take one of the same two hands.",
               "fb": "Under a second of wait time, the same few students answer. The rest learn they can wait it out."
             }
           ],
@@ -583,15 +583,15 @@
               "correct": true
             },
             {
-              "t": "After the task, as a marking guide.",
+              "t": "After the task, as a guide for checking their work.",
               "fb": "That’s a checklist for evaluating. A planning scaffold has to come before."
             },
             {
-              "t": "Only for students who are struggling.",
+              "t": "Only for students who are struggling to get started.",
               "fb": "Experts plan too — silently. The scaffold makes that visible for everyone, then fades."
             },
             {
-              "t": "Only in exam conditions.",
+              "t": "In exam conditions, where planning matters most.",
               "fb": "Planning routines need rehearsal in ordinary lessons, or they won’t appear under pressure."
             }
           ],
@@ -617,7 +617,7 @@
           },
           "opts": [
             {
-              "t": "Re-teach the equations of motion.",
+              "t": "Re-teach the equations of motion, with a worked example for each, so students know which formula to reach for.",
               "fb": "They know the equations. The problem is that they start before deciding which quantities belong together."
             },
             {
@@ -625,11 +625,11 @@
               "correct": true
             },
             {
-              "t": "Give them worked solutions to copy.",
+              "t": "Give them fully worked solutions to copy into their books, so they have a model of a well-set-out answer.",
               "fb": "Copying solutions means they never practise the planning step."
             },
             {
-              "t": "Give harder problems so they have to slow down.",
+              "t": "Give them harder, multi-step problems so they’re forced to slow down and think carefully about each quantity before they start calculating anything.",
               "fb": "Harder problems without a planning routine just make the tangle worse."
             }
           ],
@@ -653,12 +653,12 @@
           },
           "opts": [
             {
-              "t": "Keep providing it — it’s working.",
+              "t": "Keep providing it every practical — it’s working, and removing it risks the tangles coming back.",
               "partial": true,
               "fb": "It works as a crutch. The goal is students who plan without it."
             },
             {
-              "t": "Remove it from the next practical without warning.",
+              "t": "Remove it from the next practical without warning, to find out whether students can now plan an investigation on their own.",
               "fb": "Removing it suddenly tests memory under stress rather than building independence."
             },
             {
@@ -666,7 +666,7 @@
               "correct": true
             },
             {
-              "t": "Add more steps so plans are more thorough.",
+              "t": "Add more steps to the template, so students’ plans become more thorough and cover every variable.",
               "fb": "A longer template means more dependence on it."
             }
           ],
@@ -750,11 +750,11 @@
           "q": "What makes group work metacognitive rather than just social?",
           "opts": [
             {
-              "t": "The groups are mixed-ability.",
+              "t": "The groups are mixed-ability, so stronger students can support others.",
               "fb": "Mixed groups can help, but the grouping itself doesn’t make anyone examine their reasoning."
             },
             {
-              "t": "There’s a shared group mark.",
+              "t": "There’s a shared group mark, so everyone has a stake in the result.",
               "fb": "Shared marks often let some students disappear. They don’t require anyone to compare reasoning."
             },
             {
@@ -762,7 +762,7 @@
               "correct": true
             },
             {
-              "t": "Roles are printed on the worksheet.",
+              "t": "Each student has a role, such as recorder or checker, printed on the sheet.",
               "fb": "Roles that are named but never taught usually change nothing."
             }
           ],
@@ -790,15 +790,15 @@
               "correct": true
             },
             {
-              "t": "Tell them which diagram is correct.",
+              "t": "Look at both diagrams and tell them which one is correct, so neither leaves with a misconception.",
               "fb": "Settling it for them ends the most useful part — each student checking their own reasoning against someone else’s."
             },
             {
-              "t": "Have the class vote on the right diagram.",
+              "t": "Show both diagrams to the class and have everyone vote on which one is right.",
               "fb": "A vote settles it by popularity, not reasoning."
             },
             {
-              "t": "Separate them so the argument stops.",
+              "t": "Separate them for now so the argument doesn’t derail the lesson, and revisit it later.",
               "fb": "The disagreement was the learning opportunity."
             }
           ],
@@ -824,15 +824,15 @@
           },
           "opts": [
             {
-              "t": "Let it go — the product will be good.",
+              "t": "Let it go — the product will be good, and the others are still learning by watching a capable peer work.",
               "fb": "The product will be good. Three students won’t have learned much."
             },
             {
-              "t": "Lower the group mark to send a message.",
+              "t": "Lower the group mark this time to send a clear message that every member is responsible for contributing, and remind the class of it next time.",
               "fb": "Punishing the group doesn’t change how the task is designed."
             },
             {
-              "t": "Print role names on the task sheet.",
+              "t": "Print role names on the task sheet — recorder, researcher, presenter, checker — so each student has a defined job.",
               "partial": true,
               "fb": "Roles help only if they’re taught and the task needs them. On their own they rarely change who does the work."
             },
@@ -922,11 +922,11 @@
           "q": "Which self-assessment line evaluates the thinking process?",
           "opts": [
             {
-              "t": "“I got 8 out of 10.”",
+              "t": "“I got 8 out of 10, which is two marks better than my last practical.”",
               "fb": "A score — an outcome, not a process."
             },
             {
-              "t": "“I finished on time.”",
+              "t": "“I finished all the questions on time without needing help.”",
               "fb": "Pace, not reasoning."
             },
             {
@@ -934,7 +934,7 @@
               "correct": true
             },
             {
-              "t": "“I enjoyed this topic.”",
+              "t": "“I enjoyed this topic and want to learn more about graphs.”",
               "fb": "Engagement matters, but this line doesn’t judge the thinking."
             }
           ],
@@ -958,7 +958,7 @@
           },
           "opts": [
             {
-              "t": "Afterwards, once they see whether the results make sense.",
+              "t": "Afterwards, once they see whether the results make sense, so they can judge their method against what happened.",
               "fb": "Once results arrive, students judge the method by whether it worked — the outcome, not the process."
             },
             {
@@ -966,11 +966,11 @@
               "correct": true
             },
             {
-              "t": "Swap results and peer-mark them.",
+              "t": "Swap results with another group and peer-mark them against the expected values, so students see where they went wrong.",
               "fb": "Peer-marking results judges outcomes, not how the method was designed."
             },
             {
-              "t": "Skip it — the practical report will show what they learned.",
+              "t": "Skip it — the practical report will show what they learned, and you can give detailed feedback on that.",
               "fb": "The report comes too late for students to change their method."
             }
           ],
@@ -996,11 +996,11 @@
           },
           "opts": [
             {
-              "t": "Return your marks only — the self-marks were just practice.",
+              "t": "Return your marks only — the self-marks were practice, and students need to know where they actually stand.",
               "fb": "The most useful information is the gap between the two marks, and this throws it away."
             },
             {
-              "t": "Average the two marks.",
+              "t": "Average the two marks, so students’ own judgement counts but your marking keeps the result accurate.",
               "fb": "Averaging hides the disagreement, and the disagreement is where the learning is."
             },
             {
@@ -1008,7 +1008,7 @@
               "correct": true
             },
             {
-              "t": "Stop self-marking — students aren’t accurate enough yet.",
+              "t": "Stop self-marking for now — students aren’t accurate enough yet, and it’s eating into lesson time.",
               "fb": "Inaccurate self-assessment is the reason to keep doing it, with feedback, until it improves."
             }
           ],
@@ -1092,11 +1092,11 @@
           "q": "According to the NSW guide, when should you challenge students?",
           "opts": [
             {
-              "t": "Right at the start, to motivate them.",
+              "t": "Right at the start of a topic, to spark motivation.",
               "fb": "Early difficulty can motivate, but the guide places challenge after students are confident."
             },
             {
-              "t": "Only in assessment tasks.",
+              "t": "In assessment tasks, where it counts most.",
               "fb": "Challenge belongs in ordinary lessons, so the assessment isn’t the first time students meet it."
             },
             {
@@ -1128,7 +1128,7 @@
           },
           "opts": [
             {
-              "t": "Give them more graphs with outliers to practise on.",
+              "t": "Give them a fresh set of graphs with outliers, so they apply the routine until it becomes automatic.",
               "fb": "More of the same confirms the routine. It doesn’t test whether they’re thinking."
             },
             {
@@ -1136,11 +1136,11 @@
               "correct": true
             },
             {
-              "t": "Tell them outliers can matter.",
+              "t": "Tell them directly that outliers can sometimes be the most important result, and give an example.",
               "fb": "Telling them is quicker, but they don’t discover that their routine has limits."
             },
             {
-              "t": "Move on to a new topic — they’ve got it.",
+              "t": "Move on to a new topic — they’ve got the routine, and the unit plan is already behind schedule.",
               "fb": "They’ve got a routine. Whether they’ve got the thinking behind it is untested."
             }
           ],
@@ -1170,15 +1170,15 @@
               "correct": true
             },
             {
-              "t": "Mark the predictions right or wrong.",
+              "t": "Go round and mark each prediction right or wrong, so students know where they stand.",
               "fb": "Right or wrong tells you about the answer. It doesn’t show which part of the reasoning is shaky."
             },
             {
-              "t": "Give the answer straight away.",
+              "t": "Give the answer straight away while the predictions are fresh, then explain it.",
               "fb": "You’d be removing the moment where students judge their own certainty."
             },
             {
-              "t": "Move to the next system.",
+              "t": "Move straight on to the next system so the class keeps its momentum.",
               "fb": "The harder task was the point. Moving on skips what it could show you."
             }
           ],
@@ -1265,7 +1265,7 @@
               "fb": "Massed practice can feel better in the moment, but it fades faster."
             },
             {
-              "t": "There’s no meaningful difference.",
+              "t": "There’s no meaningful difference once total time is equal.",
               "fb": "The difference is substantial, and consistent across studies."
             },
             {
@@ -1273,7 +1273,7 @@
               "correct": true
             },
             {
-              "t": "Spacing only helps in primary school.",
+              "t": "Spacing helps younger students, but not adolescents or adults.",
               "fb": "The spacing effect holds across ages, including adults."
             }
           ],
@@ -1299,11 +1299,11 @@
           },
           "opts": [
             {
-              "t": "Give them more autosomal practice.",
+              "t": "Give them more autosomal practice, with harder ratios, until they can do it without notes.",
               "fb": "More blocked practice strengthens a skill they already have. They’re failing at choosing which kind of cross it is."
             },
             {
-              "t": "Teach one inheritance type per lesson.",
+              "t": "Teach one inheritance type per lesson, with its own practice set, so students fully master each kind of cross before moving on.",
               "fb": "That’s still blocked. Students never have to choose between types."
             },
             {
@@ -1311,7 +1311,7 @@
               "correct": true
             },
             {
-              "t": "Give them the answer key to study.",
+              "t": "Give them the answer key so they can study each worked solution before the exam.",
               "fb": "Studying the answers skips the step they need to practise: deciding which kind of problem it is."
             }
           ],
@@ -1336,7 +1336,7 @@
           },
           "opts": [
             {
-              "t": "Re-teach the particle model as a block in Year 9.",
+              "t": "Re-teach the particle model as a two-week block at the start of Year 9, with a test at the end to confirm that the model has finally stuck.",
               "partial": true,
               "fb": "It fixes this year. Without spacing it will fade again by Year 11."
             },
@@ -1345,11 +1345,11 @@
               "correct": true
             },
             {
-              "t": "Assume they’ll pick it back up in context.",
+              "t": "Assume they’ll pick it back up in context — it will come up naturally in the chemistry and physics units anyway.",
               "fb": "The diagnostic shows they haven’t."
             },
             {
-              "t": "Hand out a revision worksheet.",
+              "t": "Hand out a thorough revision worksheet on the particle model for homework, and go over the answers in the next lesson.",
               "fb": "One worksheet is one more massed exposure. It won’t last."
             }
           ],
@@ -1441,11 +1441,11 @@
               "correct": true
             },
             {
-              "t": "Students score well on the topic test.",
+              "t": "Students score well on the end-of-topic test.",
               "fb": "Test scores show what students know. They don’t show whether students use a habit unprompted."
             },
             {
-              "t": "Students say they find it useful.",
+              "t": "Students say the habit is useful to them.",
               "fb": "Useful to know, but liking a strategy doesn’t mean students use it on their own."
             }
           ],
@@ -1469,7 +1469,7 @@
           },
           "opts": [
             {
-              "t": "A final test on evaluating sources.",
+              "t": "Set a final test where students evaluate three unfamiliar sources against the criteria.",
               "fb": "A test prompts the habit. You’ll learn whether students can use it when asked, not whether they do unprompted."
             },
             {
@@ -1477,11 +1477,11 @@
               "correct": true
             },
             {
-              "t": "Ask if they enjoyed the unit.",
+              "t": "Ask students whether they enjoyed the unit and which source was most interesting to evaluate.",
               "fb": "Enjoyment matters, but it doesn’t tell you whether students use the habit outside class."
             },
             {
-              "t": "Nothing — the unit’s finished.",
+              "t": "Nothing more — the unit is finished, and the habit will show up in the next unit if it stuck.",
               "fb": "If you don’t check, you won’t know whether the habit lasted beyond the unit."
             }
           ],
@@ -1507,15 +1507,15 @@
           },
           "opts": [
             {
-              "t": "Yes — correct definitions mean the misconception is gone.",
+              "t": "Yes — if every student can give a correct definition, the misconception about equilibrium has gone.",
               "fb": "Correct definitions can hide a misconception. Students may still picture equilibrium as a stopped reaction."
             },
             {
-              "t": "Give them more definitions to learn.",
+              "t": "Give them more precise definitions to learn, such as the equal-rates condition, so their understanding deepens.",
               "fb": "They already have the definition. The question is how they actually picture equilibrium."
             },
             {
-              "t": "Move straight into exam revision.",
+              "t": "Move straight into exam revision, since the class is clearly ready for past-paper questions.",
               "fb": "Revision may reinforce the definition while the misconception goes unchecked."
             },
             {
