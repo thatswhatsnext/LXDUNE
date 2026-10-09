@@ -34,6 +34,7 @@
   - "Go deeper" names the explorer without a link unless `explorerUrl` is set.
   - The game doesn't take focus when the page loads.
   - Every screen has one `h1`; the prototype's question screens had only an `h2`.
+  - The completion screens' panel headings are `h2`, not `h3` (axe heading-order).
   - The footer no longer says "Prototype".
   - The "You performed" bar is drawn at its displayed level (`level × 20%`), so a
     0% unit shows 1/5 at 20%, not 0%.

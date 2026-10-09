@@ -564,7 +564,7 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
     const bar = (cls, label, val, pct) =>
       `<div class="lxd-mcg-cb ${cls}"><span class="cbl">${label}</span><span class="cbtrack"><span class="cbfill" style="width:${pct}%"></span></span><span class="cbv">${val}</span></div>`;
     return (
-      '<div class="lxd-mcg-panel"><h3>Confidence, checked against performance</h3>' +
+      '<div class="lxd-mcg-panel"><h2>Confidence, checked against performance</h2>' +
       bar('pre', 'You predicted', predVal, predPct) +
       bar('perf', 'You performed', perfVal, perfPct) +
       `<div class="lxd-mcg-reflect">${reflect}</div></div>`
@@ -596,7 +596,7 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
       stats(run.scorable) +
       calibration(`${run.conf}/5`, run.conf * 20, `${perfLv}/5`, perfLv * 20, gapReflect(`${run.conf}/5`, `${perfLv}/5`, run.conf, perfLv));
     if (run.commit.trim())
-      h += `<div class="lxd-mcg-panel"><h3>Your commitment</h3><div class="lxd-mcg-quote">${esc(run.commit)}</div><p class="after">Saved on your path. Next review of this habit: <b>${when}</b>.</p></div>`;
+      h += `<div class="lxd-mcg-panel"><h2>Your commitment</h2><div class="lxd-mcg-quote">${esc(run.commit)}</div><p class="after">Saved on your path. Next review of this habit: <b>${when}</b>.</p></div>`;
     else
       h += `<div class="lxd-mcg-panel"><p>Next review of this habit: <b>${when}</b>. Spacing the reviews out is what makes the habit stick.</p></div>`;
     const explorer = explorerUrl
@@ -624,7 +624,7 @@ function mountGame(el, { H, units: U }, { explorerUrl, allowReviewer }) {
       '<p class="tagline">Mixing the habits together is harder than practising them one at a time. That’s what makes it stick.</p>' +
       stats(n) +
       calibration(`${run.conf}/${n}`, pct(run.conf), `${run.correct}/${n}`, pct(run.correct), gapReflect(`${run.conf}/${n}`, `${run.correct}/${n}`, run.conf, run.correct)) +
-      (lines ? `<div class="lxd-mcg-panel"><h3>Spaced reviews</h3><ul class="lxd-mcg-list">${lines}</ul></div>` : '') +
+      (lines ? `<div class="lxd-mcg-panel"><h2>Spaced reviews</h2><ul class="lxd-mcg-list">${lines}</ul></div>` : '') +
       '<div class="lxd-mcg-btnrow"><button type="button" class="lxd-mcg-btn ghost" data-act="exit">Back to the path</button><button type="button" class="lxd-mcg-btn primary" data-act="review">Another round</button></div></div>';
   }
 
@@ -829,7 +829,7 @@ ${P}{
 }
 ${phaseRules}
 ${P} *,${P} *::before,${P} *::after{box-sizing:border-box;}
-${P} h1,${P} h2,${P} h3{font-family:${SERIF};color:${v('ink')};}
+${P} h1,${P} h2{font-family:${SERIF};color:${v('ink')};}
 ${P} p{margin:0;}
 ${P} button,${P} textarea{font:inherit;}
 ${P} :focus-visible{outline:2.5px solid ${v('gold')};outline-offset:2px;border-radius:4px;}
@@ -986,7 +986,7 @@ ${P} .lxd-mcg-stat{flex:1;background:${v('paper')};border:1px solid ${v('line')}
 ${P} .lxd-mcg-stat .sv{font-family:${SERIF};font-size:26px;font-weight:700;color:${v('accent')};}
 ${P} .lxd-mcg-stat .sl{font-size:11.5px;color:${v('muted')};text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
 ${P} .lxd-mcg-panel{background:${v('paper')};border:1px solid ${v('line')};border-radius:14px;padding:18px 20px;text-align:left;margin-bottom:14px;}
-${P} .lxd-mcg-panel h3{font-size:16px;font-weight:700;line-height:1.3;margin:0 0 12px;}
+${P} .lxd-mcg-panel h2{font-size:16px;font-weight:700;line-height:1.3;margin:0 0 12px;}
 ${P} .lxd-mcg-panel p{font-size:14px;color:${v('body')};}
 ${P} .lxd-mcg-panel p.after{margin-top:10px;}
 ${P} .lxd-mcg-cb{display:flex;align-items:center;gap:11px;margin-bottom:10px;}
