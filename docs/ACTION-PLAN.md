@@ -622,9 +622,9 @@ Parked for later exploration (Steve, 2026-10-07). Depends on item 56.
 - [x] Draft spec: `docs/habit-studio-pilot-spec.md`. Two habits (Model your thinking, Evaluate progress); six stations per habit (how it works, contrasting cases, reading student thinking, design a move, plan across a unit, rehearse); feedback from expert exemplars and placements, no backend or AI; about 35–50 h of authoring per habit
 - [x] Steve's decisions, 2026-10-09 (spec §13): the name is Habit Studio; the second reviewer for expert placements is a practising science teacher; composites for the pilot; build Model your thinking first; pilot cohort and timing on hold, and no ethics approval is needed
 - [ ] Open: name the second reviewer (a practising science teacher) before M2
-- [ ] Open: when to fix the Coach's length cue, now or with the Studio (spec §13.6)
+- [x] Steve, 2026-10-09: fix the Coach's length cue now (spec §13.6)
+- [x] Length-cue fix: 75 wrong or partial options rewritten (correct options and feedback unchanged), Coach content 1.0.0 → 1.0.1, reviewed by Steve Grant on 2026-10-09 with no changes. Logged in `games/metacognition-coach/changes.json`; the validator gains length rules (shortest option ≥ 60% of the longest; correct option ≤ 15% longer than the longest wrong one) and fails on any unreviewed change
 - [ ] Next: M1, the Studio schema plus one sample of each content type for Model your thinking
-- [ ] Open: the Coach's correct option is the longest in all 26 recall and scenario questions. Rewrite the wrong options to match, and add a length-parity rule to `scripts/validate-coach.js` (spec §12)
 
 ---
 
