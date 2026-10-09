@@ -46,6 +46,9 @@ they reset, and clearing site data erases it. The storage belongs to the
 `thatswhatsnext.github.io` origin, which the reckoner and Fieldwork share, so the
 key is namespaced. Nothing leaves the browser.
 
+The app is public while it is a prototype; students reach it through a link on
+Moodle. Options for securing it later: `docs/metacognition-coach-access.md`.
+
 ## Checking
 
 `npm run validate` (repo root) runs `scripts/validate-coach.js` after the framework
