@@ -1,0 +1,21 @@
+{
+  "$schema": "../_schema/studio.schema.json",
+  "id": "habit-studio",
+  "version": "0.1.0",
+  "habitsFrom": "metacognition-nsw-science",
+  "habits": [
+    {
+      "habit": "model",
+      "dir": "content/model",
+      "files": {
+        "explainer": "explainer.json",
+        "cases": "cases.json",
+        "rubric": "rubric.json",
+        "artefacts": "artefacts.json",
+        "briefs": "briefs.json",
+        "unitPlan": "unit-plan.json",
+        "rehearsal": "rehearsal.json"
+      }
+    }
+  ]
+}

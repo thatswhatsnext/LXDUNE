@@ -1,0 +1,89 @@
+{
+  "$schema": "../../../_schema/studio.schema.json",
+  "items": [
+    {
+      "type": "brief",
+      "id": "model-brief-puck",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-drafted-reviewed",
+      "reviewedBy": [
+        "Steve Grant"
+      ],
+      "lastReviewed": "2026-10-10",
+      "published": false,
+      "authorNote": "M1 sample drafted by Claude Code, 2026-10-09; format and content reviewed by Steve Grant, 2026-10-10. Unpublished until the habit's full set is written (M2). Exemplars must be plausible: the flawed one should be something a capable beginning teacher would write.",
+      "context": {
+        "stages": [
+          "stage-4"
+        ],
+        "focusArea": "forces"
+      },
+      "title": "A puck on ice",
+      "moment": "The start of a lesson on balanced and unbalanced forces, before students try prediction questions on their own.",
+      "studentProfile": "Year 7. Many believe a moving object needs a force to keep it moving, and that it slows down when the force ‘runs out’. They can draw simple force arrows.",
+      "task": "Write what you’ll say as you model your thinking on this question — <i>A puck slides across smooth ice after the player stops pushing it. What happens to its speed, and why?</i> — and what students will do straight afterwards.",
+      "selfCheck": [
+        "You narrate at least one decision, not just the answer.",
+        "You voice the tempting wrong idea and show how you check it.",
+        "Your commentary is short enough for Year 7s to follow.",
+        "Students do some of the thinking aloud straight afterwards."
+      ],
+      "exemplars": [
+        {
+          "quality": "strong",
+          "text": "“I want to say it slows down because my push has run out. That’s my gut — let me check it. What forces are acting on the puck now, after the push? Gravity down, the ice pushing up. Friction? On smooth ice, almost none. So the forces are very nearly balanced, and balanced forces mean no change in motion. It keeps going at almost the same speed — only that tiny bit of friction slows it. My gut was wrong, and that question is how I caught it.” Then students get the same question about a trolley on a smooth bench and talk it through with a partner, starting with ‘What forces are acting now?’ while I listen.",
+          "annotations": [
+            {
+              "quote": "That’s my gut — let me check it.",
+              "comment": "Voices the misconception students actually hold as a tempting first thought, then marks the moment of checking."
+            },
+            {
+              "quote": "What forces are acting on the puck now, after the push?",
+              "comment": "A checking question students can reuse on any motion problem."
+            },
+            {
+              "quote": "starting with ‘What forces are acting now?’ while I listen",
+              "comment": "Hands over straight away, with the same question as the prompt, and the teacher listening in."
+            }
+          ],
+          "summary": "Voices the tempting idea, checks it with a reusable question, and hands over at once."
+        },
+        {
+          "quality": "flawed",
+          "text": "“Let’s think about this carefully. The puck is sliding on ice. What forces act on it? Gravity pulls it down, the ice pushes it up, and there’s almost no friction. So the forces are nearly balanced, and the speed stays almost the same. That’s Newton’s first law.” Then students answer five similar questions in their books.",
+          "annotations": [
+            {
+              "quote": "What forces act on it?",
+              "comment": "A good checking question, clearly modelled."
+            },
+            {
+              "quote": "So the forces are nearly balanced, and the speed stays almost the same.",
+              "comment": "Fluent and correct, but there’s no stuck point. The idea students actually hold is never voiced, so they never see it being caught."
+            },
+            {
+              "quote": "Then students answer five similar questions in their books.",
+              "comment": "No handover: students practise producing answers, not the thinking they watched."
+            }
+          ],
+          "summary": "Clear and accurate, and it models a useful question — but it’s a performance with no stuck point, and no handover."
+        },
+        {
+          "quality": "weak",
+          "text": "“Newton’s first law says an object keeps moving at a constant speed unless an unbalanced force acts on it. Ice has very little friction, so the puck keeps going. Write that down: no unbalanced force, no change in speed.” Then students copy the law and its definition.",
+          "annotations": [
+            {
+              "quote": "Newton’s first law says",
+              "comment": "Starts from the answer, so there’s no thinking left to model. This is explaining, not modelling."
+            },
+            {
+              "quote": "Write that down",
+              "comment": "The product is the focus. Students copy; they don’t decide or check anything."
+            }
+          ],
+          "summary": "Correct physics, taught as a statement to copy. Useful at another moment, but it isn’t modelling thinking."
+        }
+      ]
+    }
+  ]
+}

@@ -4,6 +4,10 @@ Practice games for LXDUNE: standalone web apps served from GitHub Pages. Content
 lives in validated JSON beside each app's module; the module fetches it and renders
 it. There is no build step.
 
+The **Habit Studio** (`games/habit-studio/`) is the depth layer beside the Coach: a
+guided studio for one habit at a time. It's in authoring (spec: `docs/habit-studio-pilot-spec.md`;
+how to write its content: `games/habit-studio/AUTHORING.md`); there is no app yet.
+
 These are separate from Fieldwork, the reckoner's game (`tools/reckoner/content/game/`,
 published to `play/`).
 

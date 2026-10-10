@@ -1,0 +1,107 @@
+{
+  "$schema": "../../../_schema/studio.schema.json",
+  "items": [
+    {
+      "type": "casePair",
+      "id": "model-case-propane",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-drafted-reviewed",
+      "reviewedBy": [
+        "Steve Grant"
+      ],
+      "lastReviewed": "2026-10-10",
+      "published": false,
+      "authorNote": "M1 sample drafted by Claude Code, 2026-10-09; format and content reviewed by Steve Grant, 2026-10-10. Unpublished until the habit's full set is written (M2). Difficulty 1: the first pair. Later pairs should move to subtler differences, such as a stuck point voiced or hidden.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-5"
+        ],
+        "focusArea": "reactions"
+      },
+      "use": "station",
+      "title": "Balancing the combustion of propane",
+      "difficulty": 1,
+      "setup": "Year 10, Reactions. Students can count atoms but balance equations by trial and error. The teacher balances the combustion of propane on the board, talking as they go.",
+      "versions": {
+        "a": [
+          {
+            "speaker": "Teacher",
+            "text": "Okay, propane burning in oxygen: C<sub>3</sub>H<sub>8</sub> plus O<sub>2</sub> gives CO<sub>2</sub> plus H<sub>2</sub>O."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Carbon first. Three carbons on the left, so I put a big 3 in front of CO<sub>2</sub>. Remember, we only ever change the big numbers in front, never the little ones inside the formula."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Hydrogen next. Eight on the left, so a 4 in front of H<sub>2</sub>O, because four times two is eight. Good — hydrogen’s sorted too."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Now oxygen. Three CO<sub>2</sub> is six oxygens, four H<sub>2</sub>O is four more, so ten altogether. Ten oxygen atoms means five O<sub>2</sub> molecules, so a 5 in front of O<sub>2</sub>."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Done: C<sub>3</sub>H<sub>8</sub> + 5O<sub>2</sub> → 3CO<sub>2</sub> + 4H<sub>2</sub>O. Copy that down neatly, and underline the big numbers so they stand out when you revise."
+          }
+        ],
+        "b": [
+          {
+            "speaker": "Teacher",
+            "text": "Okay, propane burning in oxygen: C<sub>3</sub>H<sub>8</sub> plus O<sub>2</sub> gives CO<sub>2</sub> plus H<sub>2</sub>O."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Where do I start? Oxygen turns up in both products, so if I start there I’ll be chasing it round. Carbon is only in one compound on each side — I’ll start there. Three on the left, so a 3 in front of CO<sub>2</sub>."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Hydrogen is also in just one compound on each side. Eight on the left, so a 4 in front of H<sub>2</sub>O."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "I left oxygen till last on purpose: now everything on the right is fixed, so I can count it. Six from the CO<sub>2</sub>, four from the water… ten. That’s a 5 in front of O<sub>2</sub>."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Before I say done, I count every atom again on both sides. Carbon 3 and 3, hydrogen 8 and 8, oxygen 10 and 10. Now it’s done: C<sub>3</sub>H<sub>8</sub> + 5O<sub>2</sub> → 3CO<sub>2</sub> + 4H<sub>2</sub>O."
+          }
+        ]
+      },
+      "expertPreference": "b",
+      "difference": "Version B narrates the <b>decisions</b> behind the same actions — where to start, why oxygen comes last — and checks the result before calling it done. Version A narrates only the actions.",
+      "annotation": {
+        "summary": "Both teachers write identical working. Only version B lets students hear how to decide what to write, which is what they need when the next equation looks different.",
+        "notes": [
+          {
+            "version": "a",
+            "line": 2,
+            "text": "The same action as in B, but the reason for starting with carbon is invisible. Students may conclude that you always start with carbon, or that the order doesn’t matter."
+          },
+          {
+            "version": "a",
+            "line": 5,
+            "text": "“Copy that down” puts the product at the centre. The thinking students most need was never said."
+          },
+          {
+            "version": "b",
+            "line": 2,
+            "text": "Names a strategy students can reuse on any equation — start with elements that appear in one compound on each side — and gives the reason."
+          },
+          {
+            "version": "b",
+            "line": 4,
+            "text": "Turns the order into a plan rather than a coincidence: oxygen last because by then the right-hand side is fixed."
+          },
+          {
+            "version": "b",
+            "line": 5,
+            "text": "Models checking before declaring the answer done: the monitoring move."
+          }
+        ]
+      }
+    }
+  ]
+}

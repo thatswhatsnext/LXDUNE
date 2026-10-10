@@ -1,0 +1,59 @@
+{
+  "$schema": "../../../_schema/studio.schema.json",
+  "items": [
+    {
+      "type": "artefact",
+      "id": "model-art-ethane-margin",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-drafted-reviewed",
+      "reviewedBy": [
+        "Steve Grant"
+      ],
+      "lastReviewed": "2026-10-10",
+      "published": false,
+      "authorNote": "M1 sample drafted by Claude Code, 2026-10-09; format and content reviewed by Steve Grant, 2026-10-10. Unpublished until the habit's full set is written (M2). Both reviewers placed it at level 4 independently and agreed the rationale (2026-10-10). Replace the second reviewer's stand-in label with their name before publishing.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-5"
+        ],
+        "focusArea": "reactions"
+      },
+      "use": "station",
+      "kind": "worked-solution",
+      "studentLabel": "Year 10 student",
+      "prompt": "Balance the combustion of ethane. In the margin, write the questions you asked yourself or the decisions you made as you went.",
+      "content": [
+        {
+          "speaker": "Margin note 1",
+          "text": "Start with C because it’s only in one thing each side. 2 C so 2 CO<sub>2</sub>."
+        },
+        {
+          "speaker": "Margin note 2",
+          "text": "H: 6 so 3 H<sub>2</sub>O."
+        },
+        {
+          "speaker": "Margin note 3",
+          "text": "O last like Miss said. 4 + 3 = 7 O on the right. Can’t do 3.5 O<sub>2</sub>??"
+        },
+        {
+          "speaker": "Margin note 4",
+          "text": "Stuck. Doubled everything → 2C<sub>2</sub>H<sub>6</sub> + 7O<sub>2</sub> → 4CO<sub>2</sub> + 6H<sub>2</sub>O. Counted again, all match."
+        }
+      ],
+      "placements": [
+        {
+          "by": "Steve Grant",
+          "level": 4,
+          "rationale": "Notices that 3.5 molecules is impossible, says why it’s a problem, repairs it by doubling, and recounts. “Like Miss said” shows the strategy is borrowed from the modelling rather than yet their own, but the monitoring and repair are clearly the student’s."
+        },
+        {
+          "by": "Second reviewer (practising science teacher)",
+          "level": 4,
+          "rationale": "Notices that 3.5 molecules is impossible, says why it’s a problem, repairs it by doubling, and recounts. “Like Miss said” shows the strategy is borrowed from the modelling rather than yet their own, but the monitoring and repair are clearly the student’s."
+        }
+      ]
+    }
+  ]
+}

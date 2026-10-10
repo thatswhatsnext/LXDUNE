@@ -1,0 +1,108 @@
+{
+  "$schema": "../../../_schema/studio.schema.json",
+  "type": "explainer",
+  "id": "model-explainer",
+  "habit": "model",
+  "version": "0.1.0",
+  "source": "ai-drafted-reviewed",
+  "reviewedBy": [
+    "Steve Grant"
+  ],
+  "lastReviewed": "2026-10-10",
+  "published": false,
+  "authorNote": "M1 sample drafted by Claude Code, 2026-10-09; format and content reviewed by Steve Grant, 2026-10-10. Unpublished until the habit's full set is written (M2). Check every evidence citation before publishing.",
+  "title": "Why thinking aloud works — and when it doesn’t",
+  "body": [
+    "When an experienced scientist solves a problem, most of the work happens where no one can see it. They decide what kind of problem it is, choose where to start, notice when something looks wrong, and check whether the answer makes sense. Students see the result: neat working on the board. They don’t see the decisions that produced it, so they copy the surface — the layout, the formula — and miss the thinking that made it work.",
+    "<b>Modelling your thinking</b> makes those hidden decisions audible. You solve a problem in front of the class and say out loud what you are deciding and why: “This is a balancing problem, so I’ll start with the element that appears in only one compound on each side.” The point isn’t the solution. It’s the commentary on how you are steering yourself towards it.",
+    "The most valuable moments to narrate are <b>decision points</b> and <b>stuck points</b>. A decision point is where an expert chooses between options. A stuck point is where something goes wrong — an answer that’s the wrong size, a step that doesn’t follow. Beginning students rarely see an expert get stuck, so they conclude that being stuck means they are bad at science. Hearing a teacher say “Hang on, that can’t be right — let me check” shows them that noticing and repairing errors is what good thinkers do.",
+    "Modelling gives students two things. The first is <b>language</b>: phrases such as “What kind of problem is this?” and “Does that answer make sense?” that they can borrow for their own self-talk. The second is a <b>template</b> for the sequence of moves — plan, monitor, check — that they can follow before it becomes automatic.",
+    "Modelling on its own is only the first step. In the cognitive apprenticeship model, the teacher models, then coaches students as they try it themselves, then gradually withdraws support. If students only ever watch, they learn to admire the teacher’s thinking, not to do it. Every think-aloud needs a planned handover: a similar problem where students think aloud to a partner, using the same questions, while you listen and prompt.",
+    "Think-alouds also misfire. A long, polished monologue overloads novices: they cannot follow the science and the commentary at once. Choose problems just beyond what students can do alone, keep the commentary short and focused on one or two decisions, and make sure the content itself is secure enough that students have attention to spare for the thinking."
+  ],
+  "diagram": {
+    "kind": "sequence",
+    "title": "From your thinking to theirs",
+    "steps": [
+      {
+        "label": "Model",
+        "who": "Teacher thinks aloud",
+        "text": "Narrate decisions and stuck points while solving a problem just beyond students’ reach."
+      },
+      {
+        "label": "Coach",
+        "who": "Students think aloud, teacher prompts",
+        "text": "Students solve a similar problem aloud to a partner, using the same questions; you listen and prompt."
+      },
+      {
+        "label": "Fade",
+        "who": "Students self-talk",
+        "text": "Prompts are withdrawn. Students use the questions silently, without being reminded."
+      }
+    ],
+    "alt": "A three-stage sequence. Model: the teacher thinks aloud, narrating decisions and stuck points on a problem just beyond students’ reach. Coach: students think aloud to a partner on a similar problem while the teacher prompts. Fade: prompts are withdrawn and students use the questions silently, unprompted."
+  },
+  "prompts": [
+    {
+      "id": "model-why-stuck",
+      "after": 3,
+      "prompt": "In your own words: why might narrating the moment you get stuck matter more than narrating the parts that go smoothly?",
+      "expertAnswer": "Students already see the smooth parts in worked solutions. What they never see is an expert noticing a problem and recovering from it. Narrating the stuck point shows that getting stuck is normal, and models the specific moves — sense-checking, going back a step — that students need when it happens to them."
+    },
+    {
+      "id": "model-why-handover",
+      "after": 5,
+      "prompt": "A teacher models beautifully every lesson, but students never think aloud themselves. What will students have learned by the end of term — and what won’t they have learned?",
+      "expertAnswer": "They may recognise good thinking when they hear it, and they may have picked up some phrases. But they won’t have practised steering their own thinking, so the habit won’t transfer to problems they meet alone. Modelling builds the template; coached practice and fading build the habit."
+    }
+  ],
+  "dilutions": [
+    {
+      "id": "model-answer-not-thinking",
+      "name": "Modelling the answer, not the thinking",
+      "example": "“Carbon is 3, so a 3 in front of CO<sub>2</sub>. Hydrogen is 8, so a 4 in front of water.”",
+      "whyItFails": "It narrates actions, not decisions. Students hear what to write, not how to decide what to write, so the next unfamiliar problem leaves them stuck."
+    },
+    {
+      "id": "model-too-polished",
+      "name": "A performance with no stuck point",
+      "example": "The teacher works a problem they know by heart, fluently, without a pause or a check.",
+      "whyItFails": "It shows that experts don’t get stuck — the opposite of the message. Students conclude that struggling means they aren’t good at science."
+    },
+    {
+      "id": "model-monologue",
+      "name": "The ten-minute monologue",
+      "example": "A long think-aloud covering every step of a multi-part problem while students copy the working.",
+      "whyItFails": "Novices can’t follow the science and the commentary at once. Attention goes to copying, and the thinking moves are lost."
+    },
+    {
+      "id": "model-no-handover",
+      "name": "Modelling with no handover",
+      "example": "The think-aloud ends with “Right, now do questions 1 to 10.”",
+      "whyItFails": "Students never practise the moves they watched. Without coached practice the habit stays the teacher’s, not theirs."
+    },
+    {
+      "id": "model-too-easy",
+      "name": "A problem with no real decision in it",
+      "example": "Thinking aloud through a one-step substitution into a formula students already know.",
+      "whyItFails": "There’s nothing to decide, so the commentary sounds staged. Model on problems where an expert genuinely has to choose or check."
+    }
+  ],
+  "evidence": [
+    {
+      "citation": "Collins, A., Brown, J. S., & Newman, S. E. (1989). Cognitive apprenticeship: Teaching the crafts of reading, writing, and mathematics. In L. B. Resnick (Ed.), Knowing, learning, and instruction (pp. 453–494). Erlbaum.",
+      "relevance": "Modelling, coaching and fading as a sequence for making expert thinking visible and handing it over.",
+      "verified": false
+    },
+    {
+      "citation": "Education Endowment Foundation (2018, updated 2021). Metacognition and self-regulated learning: Guidance report.",
+      "relevance": "Recommends that teachers model their own thinking to help students develop metacognitive and cognitive skills.",
+      "verified": false
+    },
+    {
+      "citation": "NSW Department of Education (2020). Metacognition – a key to unlocking learning.",
+      "relevance": "Source of the habit, “Model your thinking”, and the planning, monitoring and evaluating phases.",
+      "verified": false
+    }
+  ]
+}
