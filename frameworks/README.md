@@ -144,10 +144,20 @@ Three files, named in `framework.json`'s `matrix` manifest:
 - `contexts.json` — the columns, as a **stage → area → topic tree**: an array
   of stages `{ stage, label, sub, areas[] }`; each area
   `{ id, label, sub, acknowledgedSuperseded?, topics[] }`; each topic
-  `{ id, name, tag, type: concept|skill, sci }`. `stage` and area `id` are
-  vocab-controlled (area `id` is a focus area for Stage 4/5, a syllabus for
-  Stage 6 — set `acknowledgedSuperseded: true` on Stage 6 areas that map to a
-  superseded 2017 syllabus).
+  `{ id, name, tag, type: concept|skill, sci, focusArea?, review? }`. `stage`
+  and area `id` are vocab-controlled (area `id` is a focus area for Stage 4/5,
+  a syllabus for Stage 6 — set `acknowledgedSuperseded: true` on Stage 6 areas
+  that map to a superseded 2017 syllabus). A topic's optional `focusArea` is a
+  vocab id from the area's own syllabus.
+- **Drafts**, as in Habit Studio: a topic's optional `review` is
+  `{ source, reviewedBy, lastReviewed, published, drafted?, authorNote? }`.
+  A topic without `review` predates the field and counts as published. One
+  with `published: false` is a draft: the renderer hides it (and any area or
+  stage left empty) unless `showDrafts: true` is passed, which labels it
+  "Draft · not reviewed". The standalone page takes `?drafts=1`; the preview
+  harness has a checkbox. The validator fails a published topic unless its
+  `source` is `authored` or `ai-drafted-reviewed`, `reviewedBy` names someone
+  and `lastReviewed` is set.
 - `cells.json` — one `{ topicId, habitId, goal, script, why, evidence }` per
   **every** topic × habit pair. The gate fails on any missing pair.
 

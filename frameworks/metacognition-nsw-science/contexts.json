@@ -175,6 +175,123 @@
             "sci": "A multi-week self-directed investigation: forming a question, planning, monitoring progress, and evaluating the whole process — the ideal home for sustained metacognition."
           }
         ]
+      },
+      {
+        "id": "biology-stage6-2025",
+        "label": "Biology (2025)",
+        "sub": "Focus areas · Year 11 from 2027",
+        "topics": [
+          {
+            "id": "natural-selection-explanations",
+            "name": "Explaining natural selection",
+            "tag": "Year 11 · Evolution and ecosystems · BI-11-03",
+            "type": "concept",
+            "sci": "Variation, inheritance and selective pressure acting on a population over generations. The stubborn misconception is need-driven change, where individuals 'adapt because they had to', and students often keep it while using the right vocabulary.",
+            "focusArea": "bio25-evolution-and-ecosystems",
+            "review": {
+              "source": "ai-generated",
+              "reviewedBy": [],
+              "lastReviewed": null,
+              "published": false,
+              "drafted": "2026-10-10",
+              "authorNote": "Drafted by Claude against the NESA 2025 syllabus (checked October 2026). Check the science, the classroom scripts and the evidence citations before publishing."
+            }
+          },
+          {
+            "id": "evaluating-biotechnology",
+            "name": "Evaluating a biotechnology",
+            "tag": "Year 12 · Biotechnology · BI-12-04",
+            "type": "skill",
+            "sci": "Weighing a biotechnology, such as a gene therapy, a genetically modified crop or a release into the wild, against evidence, risks, benefits and ethical implications. Students commonly list pros and cons and stop, without reaching or defending a judgement.",
+            "focusArea": "bio25-biotechnology",
+            "review": {
+              "source": "ai-generated",
+              "reviewedBy": [],
+              "lastReviewed": null,
+              "published": false,
+              "drafted": "2026-10-10",
+              "authorNote": "Drafted by Claude against the NESA 2025 syllabus (checked October 2026). Check the science, the classroom scripts and the evidence citations before publishing."
+            }
+          }
+        ]
+      },
+      {
+        "id": "chemistry-stage6-2025",
+        "label": "Chemistry (2025)",
+        "sub": "Focus areas · Year 11 from 2028",
+        "topics": [
+          {
+            "id": "bonds-vs-intermolecular-forces",
+            "name": "Intermolecular forces vs chemical bonds",
+            "tag": "Year 11 · Properties and structure of matter · CH-11-01",
+            "type": "concept",
+            "sci": "Explaining physical properties such as boiling point from the forces between particles. The persistent misconception is that boiling water breaks the O–H bonds inside molecules, rather than overcoming the hydrogen bonds between them.",
+            "focusArea": "chem25-properties-and-structure-of-matter",
+            "review": {
+              "source": "ai-generated",
+              "reviewedBy": [],
+              "lastReviewed": null,
+              "published": false,
+              "drafted": "2026-10-10",
+              "authorNote": "Drafted by Claude against the NESA 2025 syllabus (checked October 2026). Check the science, the classroom scripts and the evidence citations before publishing."
+            }
+          },
+          {
+            "id": "limiting-reagent",
+            "name": "Limiting reagent problems",
+            "tag": "Year 11 · Quantitative chemistry · CH-11-02",
+            "type": "skill",
+            "sci": "Multi-step stoichiometry: converting masses to moles, applying the mole ratio and finding which reactant runs out first. Common errors are comparing masses instead of moles, skipping the ratio, and not sense-checking the answer against the amounts used.",
+            "focusArea": "chem25-quantitative-chemistry",
+            "review": {
+              "source": "ai-generated",
+              "reviewedBy": [],
+              "lastReviewed": null,
+              "published": false,
+              "drafted": "2026-10-10",
+              "authorNote": "Drafted by Claude against the NESA 2025 syllabus (checked October 2026). Check the science, the classroom scripts and the evidence citations before publishing."
+            }
+          }
+        ]
+      },
+      {
+        "id": "physics-stage6-2025",
+        "label": "Physics (2025)",
+        "sub": "Focus areas · Year 11 from 2027",
+        "topics": [
+          {
+            "id": "net-force-and-motion",
+            "name": "Net force and constant velocity",
+            "tag": "Year 11 · Fundamentals of mechanics · PY-11-01",
+            "type": "concept",
+            "sci": "Newton's first and second laws applied to stationary, constant-velocity and accelerating objects. The robust misconception is that motion needs a force to keep it going, so students draw a forward net force on anything that moves.",
+            "focusArea": "phys25-fundamentals-of-mechanics",
+            "review": {
+              "source": "ai-generated",
+              "reviewedBy": [],
+              "lastReviewed": null,
+              "published": false,
+              "drafted": "2026-10-10",
+              "authorNote": "Drafted by Claude against the NESA 2025 syllabus (checked October 2026). Check the science, the classroom scripts and the evidence citations before publishing."
+            }
+          },
+          {
+            "id": "measuring-g-graphically",
+            "name": "Finding g from a graph: accuracy and reliability",
+            "tag": "Year 11 · Fundamentals of mechanics · PY-11-01",
+            "type": "skill",
+            "sci": "Comparing two graphical methods of finding the acceleration due to gravity and judging the results. Students often confuse accuracy with reliability, judge a method by one value close to 9.8 m s⁻², and rarely ask what the scatter in their data tells them.",
+            "focusArea": "phys25-fundamentals-of-mechanics",
+            "review": {
+              "source": "ai-generated",
+              "reviewedBy": [],
+              "lastReviewed": null,
+              "published": false,
+              "drafted": "2026-10-10",
+              "authorNote": "Drafted by Claude against the NESA 2025 syllabus (checked October 2026). Check the science, the classroom scripts and the evidence citations before publishing."
+            }
+          }
+        ]
       }
     ]
   }

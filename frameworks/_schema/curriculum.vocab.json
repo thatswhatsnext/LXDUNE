@@ -1,10 +1,10 @@
 {
   "_meta": {
-    "description": "Controlled vocabulary for NSW science curriculum references — the single source of truth for both the Framework Explorer and the reckoner. Every stage/syllabus/focusArea/module/theme id used in a framework item MUST resolve here. Verified against NESA during authoring, July 2026 (handoff §8); Investigating Science Stage 6 (2017) modules verified against NESA, October 2026. The validator (scripts/validate-frameworks.js) fails the build on: an unknown reference; a superseded reference used without acknowledgedSuperseded:true on the item. The reckoner reads stages, focus areas, workingScientificallySkills and outcomes through tools/reckoner/src/schema/syllabus.ts; its parity test fails if they change.",
+    "description": "Controlled vocabulary for NSW science curriculum references — the single source of truth for both the Framework Explorer and the reckoner. Every stage/syllabus/focusArea/module/theme id used in a framework item MUST resolve here. Verified against NESA during authoring, July 2026 (handoff §8); Investigating Science Stage 6 (2017) modules verified against NESA, October 2026; Biology, Chemistry and Physics 11–12 (2025) focus areas and implementation dates verified against NESA, October 2026. The validator (scripts/validate-frameworks.js) fails the build on: an unknown reference; a superseded reference used without acknowledgedSuperseded:true on the item. The reckoner reads stages, focus areas, workingScientificallySkills and outcomes through tools/reckoner/src/schema/syllabus.ts; its parity test fails if they change.",
     "verifiedAt": "2026-10",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "TODO": [
-      "2025 Stage 6 syllabuses (successors) are represented as supersededBy targets only; enumerate their modules when content is authored against them (implemented 2027, first HSC 2028)."
+      "Investigating Science 11–12 is in development at NESA (October 2026): replace the in-development entry with the published syllabus and its focus areas once released."
     ]
   },
 
@@ -49,39 +49,41 @@
       "authority": "NESA",
       "activeFrom": "2018",
       "stages": ["stage-6"],
-      "supersededBy": "investigating-science-stage6-2025"
+      "supersededBy": "investigating-science-11-12"
     },
     "biology-stage6-2025": {
-      "label": "Biology Stage 6 (2025)",
+      "label": "Biology 11–12 (2025)",
       "authority": "NESA",
       "activeFrom": "2027",
       "firstHSC": "2028",
       "stages": ["stage-6"],
-      "modulesEnumerated": false
+      "note": "Organised into Year 11 and Year 12 focus areas, not modules. 10 hours of depth studies across the course, at least one in each year.",
+      "outcomesUrl": "https://curriculum.nsw.edu.au/learning-areas/science/biology-11-12-2025/outcomes"
     },
     "chemistry-stage6-2025": {
-      "label": "Chemistry Stage 6 (2025)",
+      "label": "Chemistry 11–12 (2025)",
       "authority": "NESA",
-      "activeFrom": "2027",
-      "firstHSC": "2028",
+      "activeFrom": "2028",
+      "firstHSC": "2029",
       "stages": ["stage-6"],
-      "modulesEnumerated": false
+      "note": "Organised into Year 11 and Year 12 focus areas, not modules. 10 hours of depth studies across the course, at least one in each year.",
+      "outcomesUrl": "https://curriculum.nsw.edu.au/learning-areas/science/chemistry-11-12-2025/outcomes"
     },
     "physics-stage6-2025": {
-      "label": "Physics Stage 6 (2025)",
+      "label": "Physics 11–12 (2025)",
       "authority": "NESA",
       "activeFrom": "2027",
       "firstHSC": "2028",
       "stages": ["stage-6"],
-      "modulesEnumerated": false
+      "note": "Organised into Year 11 and Year 12 focus areas, not modules. 10 hours of depth studies across the course, at least one in each year.",
+      "outcomesUrl": "https://curriculum.nsw.edu.au/learning-areas/science/physics-11-12-2025/outcomes"
     },
-    "investigating-science-stage6-2025": {
-      "label": "Investigating Science Stage 6 (2025)",
+    "investigating-science-11-12": {
+      "label": "Investigating Science 11–12 (in development)",
       "authority": "NESA",
-      "activeFrom": "2027",
-      "firstHSC": "2028",
+      "status": "in-development",
       "stages": ["stage-6"],
-      "modulesEnumerated": false
+      "note": "NESA lists the successor to the 2017 syllabus as in development, with no year or implementation date (checked October 2026). There is no 2025 Investigating Science syllabus."
     }
   },
 
@@ -106,6 +108,39 @@
         { "id": "reactions", "label": "Reactions" },
         { "id": "waves-and-motion", "label": "Waves and motion" },
         { "id": "data-science-2", "label": "Data science 2" }
+      ]
+    },
+    "biology-stage6-2025": {
+      "stage-6": [
+        { "id": "bio25-cells-as-the-basis-of-life", "label": "Cells as the basis of life", "year": 11 },
+        { "id": "bio25-cells-to-systems", "label": "Cells to systems", "year": 11 },
+        { "id": "bio25-evolution-and-ecosystems", "label": "Evolution and ecosystems", "year": 11 },
+        { "id": "bio25-heredity", "label": "Heredity", "year": 12 },
+        { "id": "bio25-diseases", "label": "Diseases", "year": 12 },
+        { "id": "bio25-biodiversity", "label": "Biodiversity", "year": 12 },
+        { "id": "bio25-biotechnology", "label": "Biotechnology", "year": 12 }
+      ]
+    },
+    "chemistry-stage6-2025": {
+      "stage-6": [
+        { "id": "chem25-properties-and-structure-of-matter", "label": "Properties and structure of matter", "year": 11 },
+        { "id": "chem25-quantitative-chemistry", "label": "Quantitative chemistry", "year": 11 },
+        { "id": "chem25-chemical-reactions", "label": "Chemical reactions", "year": 11 },
+        { "id": "chem25-equilibrium", "label": "Equilibrium", "year": 12 },
+        { "id": "chem25-acid-base-reactions", "label": "Acid–base reactions", "year": 12 },
+        { "id": "chem25-organic-chemistry", "label": "Organic chemistry", "year": 12 },
+        { "id": "chem25-applying-chemical-ideas", "label": "Applying chemical ideas", "year": 12 }
+      ]
+    },
+    "physics-stage6-2025": {
+      "stage-6": [
+        { "id": "phys25-fundamentals-of-mechanics", "label": "Fundamentals of mechanics", "year": 11 },
+        { "id": "phys25-waves", "label": "Waves", "year": 11 },
+        { "id": "phys25-electricity-and-magnetism", "label": "Electricity and magnetism", "year": 11 },
+        { "id": "phys25-advanced-mechanics", "label": "Advanced mechanics", "year": 12 },
+        { "id": "phys25-electromagnetism", "label": "Electromagnetism", "year": 12 },
+        { "id": "phys25-nature-of-light", "label": "Nature of light", "year": 12 },
+        { "id": "phys25-matter-energy-and-the-cosmos", "label": "Matter, energy and the cosmos", "year": 12 }
       ]
     }
   },

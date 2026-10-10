@@ -11,6 +11,10 @@
 //     renderFrameworkExplorer({ framework: "hits-nsw-science" });
 //   </script>
 //
+// Options: framework (required), mount (default "lxd-framework-explorer"),
+// showDrafts (default false). A matrix topic whose `review.published` is false
+// is a draft: hidden unless showDrafts is true, and then labelled as a draft.
+//
 // Moodle-deployment constraints (handoff §7) are honoured here:
 //   • All markup + CSS scoped under a single root class (.lxd-fx); custom
 //     properties live on .lxd-fx, not :root. No bare body/h1/details/footer.
@@ -60,7 +64,7 @@ function injectStyles(id, css) {
 }
 
 // ── public entry ──────────────────────────────────────────────────────────────
-export async function renderFrameworkExplorer({ framework, mount = 'lxd-framework-explorer' } = {}) {
+export async function renderFrameworkExplorer({ framework, mount = 'lxd-framework-explorer', showDrafts = false } = {}) {
   const el = typeof mount === 'string' ? document.getElementById(mount) : mount;
   if (!el) {
     console.warn(`[framework-explorer] no mount element "${mount}"`);
@@ -74,7 +78,7 @@ export async function renderFrameworkExplorer({ framework, mount = 'lxd-framewor
     const view = VIEWS[fw.viewType];
     if (!view) throw new Error(`unknown viewType "${fw.viewType}"`);
     const data = await view.load(dir, fw);
-    view.render(el, fw, data);
+    view.render(el, fw, data, { showDrafts: showDrafts === true });
     stampVersion(el, fw, data);
   } catch (e) {
     setError(el, e.message);
@@ -877,7 +881,24 @@ async function loadMatrix(dir, fw) {
   return { habits, stages, cells };
 }
 
-function renderMatrix(mount, fw, { habits, stages, cells }) {
+// A topic with review.published false is an unreviewed draft. Without showDrafts
+// it is removed, and so is any area or stage left with nothing in it, so the
+// published view is unchanged by drafts sitting in the data.
+const isDraftTopic = (t) => !!t.review && t.review.published !== true;
+function visibleStages(stages, showDrafts) {
+  if (showDrafts) return stages;
+  return stages
+    .map((st) => ({
+      ...st,
+      areas: st.areas
+        .map((a) => ({ ...a, topics: a.topics.filter((t) => !isDraftTopic(t)) }))
+        .filter((a) => a.topics.length),
+    }))
+    .filter((st) => st.areas.length);
+}
+
+function renderMatrix(mount, fw, { habits, stages: allStages, cells }, { showDrafts = false } = {}) {
+  const stages = visibleStages(allStages, showDrafts);
   injectStyles('lxd-fx-mx-styles', MATRIX_STYLES);
   mount.className = 'lxd-fx lxd-fx-mx';
   mount.innerHTML = MATRIX_SHELL(fw);
@@ -942,7 +963,8 @@ function renderMatrix(mount, fw, { habits, stages, cells }) {
       b.innerHTML =
         `<div class="lxd-fx-mx-tname">${esc(t.name)}</div>` +
         (t.tag ? `<div class="lxd-fx-mx-ttag">${esc(t.tag)}</div>` : '') +
-        `<span class="lxd-fx-mx-ttype ${typeClass}">${typeLabel}</span>`;
+        `<span class="lxd-fx-mx-ttype ${typeClass}">${typeLabel}</span>` +
+        (isDraftTopic(t) ? '<span class="lxd-fx-mx-ttype type-draft">Draft · not reviewed</span>' : '');
       b.addEventListener('click', () => {
         state.t = i;
         renderResult();
@@ -1168,6 +1190,7 @@ const MATRIX_STYLES = `
 .lxd-fx-mx .lxd-fx-mx-ttype{display:inline-block;font-size:10.5px;font-weight:600;font-family:var(--mx-mono);text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:999px;margin-top:8px;}
 .lxd-fx-mx .lxd-fx-mx-ttype.type-concept{background:#EBE7DD;color:#6E6552;}
 .lxd-fx-mx .lxd-fx-mx-ttype.type-skill{background:#E5EDEA;color:var(--mx-sci,#215E56);}
+.lxd-fx-mx .lxd-fx-mx-ttype.type-draft{background:#F5E7D5;color:#7A3F0F;margin-left:6px;}
 
 .lxd-fx-mx .lxd-fx-mx-habits{display:flex;gap:8px;flex-wrap:wrap;}
 .lxd-fx-mx .lxd-fx-mx-habit{font-size:14px;font-weight:600;color:var(--mx-ink,#182028);background:var(--mx-panel,#FFFFFF);border:1.5px solid var(--mx-border,#E1DCD1);border-radius:999px;padding:9px 16px;cursor:pointer;box-shadow:var(--mx-shadow);transition:.14s;display:flex;align-items:center;gap:8px;}

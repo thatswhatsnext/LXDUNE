@@ -630,6 +630,16 @@ Parked for later exploration (Steve, 2026-10-07). Depends on item 56.
 - [x] M1 signed off by Steve, 2026-10-10: the format works and the samples are right. All seven samples marked `ai-drafted-reviewed`, reviewed by Steve Grant; still unpublished until the full set is written. The ethane artefact is placed at level 4 independently by Steve Grant and the second reviewer (a practising science teacher), both agreeing the rationale; the second reviewer is recorded under a stand-in label, and the validator blocks publishing until it's replaced with their name
 - [ ] Next: M2, the full Model your thinking set (3 case pairs, 10–12 artefacts with two placements each, 2 briefs, spaced-return items), about 35–50 h, mostly Steve's
 
+### 63. Metacognition in Science: 2025 Stage 6 examples (drafts) ⬜ — 2026-10-10
+- [x] Steve, 2026-10-10: draft 2025 Stage 6 examples for the explorer; list the 2025 structure in the vocabulary; mark the drafts unreviewed until he signs them off
+- [x] Vocabulary 1.1.0 → 1.2.0, checked against NESA in October 2026: Biology, Chemistry and Physics 11–12 (2025) are organised into focus areas, not modules, so their 21 focus areas are listed under `focusAreas` (with `year`); Chemistry corrected to start in 2028 (first HSC 2029); syllabus labels now "Biology 11–12 (2025)" and so on, as NESA names them
+- [x] No 2025 Investigating Science syllabus exists: NESA lists Investigating Science 11–12 as in development, with no date. The placeholder `investigating-science-stage6-2025` is replaced by `investigating-science-11-12` (status `in-development`), and the 2017 syllabus now points to it
+- [x] Drafts as in Habit Studio: matrix topics gain optional `focusArea` and `review` (`source`, `reviewedBy`, `lastReviewed`, `published`). The renderer hides a topic whose `review.published` is false, and any area or stage left empty, unless `showDrafts` is set (`?drafts=1` on the standalone page, a checkbox in `frameworks/preview.html`), where drafts carry a "Draft · not reviewed" label. The validator fails a published topic that isn't reviewed, and a `focusArea` from another syllabus
+- [x] Six draft topics, 54 cells, all `ai-generated` and unpublished: Biology (2025) natural selection, evaluating a biotechnology; Chemistry (2025) intermolecular forces vs bonds, limiting reagents; Physics (2025) net force and constant velocity, finding g graphically. Outcome codes in the tags (BI-11-03, BI-12-04, CH-11-01, CH-11-02, PY-11-01), wording not quoted. Evidence citations reuse the framework's existing sources
+- [ ] Open: Steve reviews the six topics. To publish one: set `source` to `ai-drafted-reviewed`, add the reviewer to `reviewedBy`, set `lastReviewed` and `published: true`, then bump the framework's minor version and update Stage 6's `sub` line to mention the 2025 syllabuses
+- [ ] Open: no Earth and Environmental Science area in the explorer (2017 or 2025); Investigating Science waits for NESA
+- [ ] Open (found while testing, not changed here): clicking a topic card updates the result but not the card's highlight or `aria-pressed`; `renderTopics()` isn't called from the topic click handler
+
 ---
 
 ## ✅ Completed

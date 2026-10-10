@@ -16,6 +16,7 @@
   moodle-blocks/framework-explorer.js; this page renders it with no Moodle chrome.
   Locally: python3 -m http.server 8000 from the repo root, then open
   http://localhost:8000/frameworks/metacognition-nsw-science/
+  ?drafts=1 also shows unreviewed draft topics, labelled as drafts (for review).
 -->
 <style>
   html{background:#F3F1EC;}
@@ -36,7 +37,8 @@
   <noscript><p class="noscript">The Metacognition in Science Explorer needs JavaScript to run.</p></noscript>
 <script type="module">
   import { renderFrameworkExplorer } from "../../moodle-blocks/framework-explorer.js";
-  renderFrameworkExplorer({ framework: "metacognition-nsw-science", mount: "lxd-framework-explorer" });
+  const showDrafts = new URLSearchParams(location.search).get("drafts") === "1";
+  renderFrameworkExplorer({ framework: "metacognition-nsw-science", mount: "lxd-framework-explorer", showDrafts });
 </script>
 </body>
 </html>

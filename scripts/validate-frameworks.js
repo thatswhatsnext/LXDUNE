@@ -39,17 +39,25 @@ function buildVocab() {
   const v = readJson(VOCAB_PATH);
   const ids = new Set();
   const superseded = new Map(); // id -> supersededBy
+  const owner = new Map(); // focus-area or module id -> syllabus id
   for (const s of Object.keys(v.stages || {})) ids.add(s);
   for (const [id, syl] of Object.entries(v.syllabuses || {})) {
     ids.add(id);
     if (syl.supersededBy) superseded.set(id, syl.supersededBy);
   }
-  for (const areasByStage of Object.values(v.focusAreas || {}))
+  for (const [syl, areasByStage] of Object.entries(v.focusAreas || {}))
     for (const list of Object.values(areasByStage))
-      for (const fa of list) ids.add(fa.id);
-  for (const list of Object.values(v.modules || {})) for (const m of list) ids.add(m.id);
+      for (const fa of list) {
+        ids.add(fa.id);
+        owner.set(fa.id, syl);
+      }
+  for (const [syl, list] of Object.entries(v.modules || {}))
+    for (const m of list) {
+      ids.add(m.id);
+      owner.set(m.id, syl);
+    }
   for (const [k] of Object.entries(v.themes || {})) if (!k.startsWith('_')) ids.add(k);
-  return { ids, superseded };
+  return { ids, superseded, owner };
 }
 
 // ── ajv setup ──────────────────────────────────────────────────────────────────
@@ -184,6 +192,7 @@ function validateMatrixFramework(dir, name, vocab, fw) {
 
   // walk the stage → area → topic tree
   const topicIds = [];
+  let drafts = 0;
   contexts.forEach((stage) => {
     if (!validateMatrixStage(stage))
       fmtAjv(`[${stage.stage || '?'}]`, validateMatrixStage.errors).forEach((m) => err(contextsRel, m));
@@ -193,6 +202,22 @@ function validateMatrixFramework(dir, name, vocab, fw) {
       (area.topics || []).forEach((t) => {
         if (topicIds.includes(t.id)) err(contextsRel, `duplicate topic id "${t.id}"`);
         topicIds.push(t.id);
+        if (t.focusArea) {
+          checkRefs(contextsRel, { focusArea: t.focusArea }, vocab, area.acknowledgedSuperseded === true);
+          const syl = vocab.owner.get(t.focusArea);
+          if (syl && syl !== area.id && stage.stage === 'stage-6')
+            err(contextsRel, `topic "${t.id}": focusArea "${t.focusArea}" belongs to ${syl}, not ${area.id}`);
+        }
+        // Provenance, as in Habit Studio: a published topic is reviewed; drafts are hidden by the renderer.
+        if (t.review) {
+          const r = t.review;
+          if (r.published) {
+            if (!['authored', 'ai-drafted-reviewed'].includes(r.source))
+              err(contextsRel, `topic "${t.id}": published, but source is "${r.source}" (must be authored or ai-drafted-reviewed)`);
+            if (!r.reviewedBy || !r.reviewedBy.length) err(contextsRel, `topic "${t.id}": published, but reviewedBy is empty`);
+            if (!r.lastReviewed) err(contextsRel, `topic "${t.id}": published, but lastReviewed is not set`);
+          } else drafts++;
+        }
       });
     });
   });
@@ -213,7 +238,8 @@ function validateMatrixFramework(dir, name, vocab, fw) {
     for (const h of habitIds)
       if (!present.has(`${t}×${h}`)) err(name, `matrix incomplete — missing cell ${t}×${h}`);
 
-  return `${topicIds.length} topics × ${habitIds.length} habits = ${topicIds.length * habitIds.length} cells`;
+  const draftNote = drafts ? ` (${drafts} draft topic(s) hidden until reviewed)` : '';
+  return `${topicIds.length} topics × ${habitIds.length} habits = ${topicIds.length * habitIds.length} cells${draftNote}`;
 }
 
 // ── validate one grid framework (lighter flat-context matrix) ──────────────────
