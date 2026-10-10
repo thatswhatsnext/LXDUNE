@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metacognition in Science Explorer</title>
+<meta name="description" content="Classroom moves that build students' metacognition while they learn NSW science, organised by the nine teaching habits from the NSW Department of Education's Metacognition – a key to unlocking learning (2020).">
+<meta name="theme-color" content="#F3F1EC">
+<link rel="icon" href="data:,">
+<!--
+  Public page for the Metacognition in Science Explorer (framework
+  metacognition-nsw-science). Served from GitHub Pages at
+  https://thatswhatsnext.github.io/LXDUNE/frameworks/metacognition-nsw-science/
+  The Metacognition Coach's "Go deeper" box links here.
+  The same explorer is embedded on Moodle pages through
+  moodle-blocks/framework-explorer.js; this page renders it with no Moodle chrome.
+  Locally: python3 -m http.server 8000 from the repo root, then open
+  http://localhost:8000/frameworks/metacognition-nsw-science/
+-->
+<style>
+  html{background:#F3F1EC;}
+  body{margin:0;background:#F3F1EC;color:#3A454E;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .page{max-width:1200px;margin:0 auto;padding:16px 16px 60px;box-sizing:border-box;}
+  .crumb{font-size:14px;line-height:1.5;margin:0 0 16px;}
+  .crumb a{color:#215E56;font-weight:600;text-underline-offset:3px;}
+  .crumb a:focus-visible{outline:3px solid #215E56;outline-offset:2px;border-radius:4px;}
+  .noscript{max-width:640px;margin:0 auto;padding:40px 18px;font-size:16px;line-height:1.55;}
+</style>
+</head>
+<body>
+  <div class="page">
+    <p class="crumb"><a href="../../games/metacognition-coach/">Practise these habits in the Metacognition Coach</a></p>
+    <main id="lxd-framework-explorer"></main>
+  </div>
+  <noscript><p class="noscript">The Metacognition in Science Explorer needs JavaScript to run.</p></noscript>
+<script type="module">
+  import { renderFrameworkExplorer } from "../../moodle-blocks/framework-explorer.js";
+  renderFrameworkExplorer({ framework: "metacognition-nsw-science", mount: "lxd-framework-explorer" });
+</script>
+</body>
+</html>
