@@ -934,5 +934,437 @@
     "script": "By the final weeks — are you running these checks yourself, or still waiting for me to prompt them?",
     "why": "Independent self-regulation is the ultimate goal of the depth study.",
     "evidence": "Assessing metacognition in performance — NSW DoE (2020)."
+  },
+  {
+    "topicId": "natural-selection-explanations",
+    "habitId": "ask",
+    "goal": "Check whose change the explanation describes",
+    "script": "Read your explanation back. Who changed in it — one animal during its life, or the population over generations? Underline the sentence that tells me.",
+    "why": "Need-driven answers hide in phrasing. Asking students to <b>locate</b> the unit of change makes them inspect their own explanation, not just recall the content.",
+    "evidence": "Self-questioning to surface misconceptions — NSW DoE (2020)."
+  },
+  {
+    "topicId": "natural-selection-explanations",
+    "habitId": "explicit",
+    "goal": "Name the 'needed to' trap out loud",
+    "script": "Most of us slip into 'the moths turned dark because they needed to'. Today's thinking goal is catching that phrase in your own writing, not just knowing it's wrong.",
+    "why": "Naming the trap gives students a specific signal to monitor for whenever they write an explanation.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "natural-selection-explanations",
+    "habitId": "plan",
+    "goal": "Plan explanations around four non-negotiables",
+    "script": "Before you write, list the four parts your explanation must contain: variation already present, a selective pressure, differential survival and reproduction, inheritance. Tick them off as you go.",
+    "why": "A pre-writing checklist turns a vague 'explain' into a sequence students can check their own answer against.",
+    "evidence": "Planning strategies incl. checklists — NSW DoE (2020)."
+  },
+  {
+    "topicId": "natural-selection-explanations",
+    "habitId": "model",
+    "goal": "Model catching and rewriting a need-driven sentence",
+    "script": "I'll write: 'The bacteria became resistant to survive the antibiotic.' Wait — that has the bacteria choosing. Rewrite: a few were already resistant; they survived and passed it on.",
+    "why": "Hearing the teacher <b>catch</b> a plausible sentence shows what monitoring an explanation sounds like, mid-sentence.",
+    "evidence": "Think-aloud modelling — NSW DoE (2020)."
+  },
+  {
+    "topicId": "natural-selection-explanations",
+    "habitId": "challenge",
+    "goal": "Test the model on a case with no obvious 'need'",
+    "script": "Explain why DDT-resistant mosquitoes became common. Then the harder one: what might happen to resistance if spraying stops? Which part of your reasoning are you least sure of?",
+    "why": "A reversal case can't be answered with 'they needed to', so it shows whether the population-level model has replaced the old one.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "natural-selection-explanations",
+    "habitId": "evaluate",
+    "goal": "Judge a classroom model of selection, then your thinking",
+    "script": "After the beads-and-predators simulation: where did our model match real selection, and where did it mislead? Then: did it change how you picture evolution, or just give you an answer?",
+    "why": "Evaluating the model's limits and their own change in thinking keeps the focus on the <b>process</b> of understanding, not the result.",
+    "evidence": "Evaluating the process — NSW DoE (2020)."
+  },
+  {
+    "topicId": "natural-selection-explanations",
+    "habitId": "collab",
+    "goal": "Peer-audit explanations for hidden intent",
+    "script": "Swap explanations. Circle any word that gives an organism intent — 'wanted', 'needed', 'tried', 'in order to'. Then discuss whether each one changes the science.",
+    "why": "Auditing someone else's work builds the eye students need to audit their own, and the discussion exposes how their reasoning differs.",
+    "evidence": "Social metacognition — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "natural-selection-explanations",
+    "habitId": "practise",
+    "goal": "Reuse the four-part check across contexts",
+    "script": "Same four-part check for Australian marsupials, for antibiotic resistance and for a plant adapted to dry conditions. Different organism, same check.",
+    "why": "Repeating one check across varied cases makes it a habit rather than a one-lesson trick.",
+    "evidence": "Interleaving — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "natural-selection-explanations",
+    "habitId": "checkin",
+    "goal": "Check the need-driven model hasn't just gone quiet",
+    "script": "Weeks later, before the exam: write one sentence about why a species changed. Now check it. Is anything in it choosing or needing?",
+    "why": "Misconceptions resurface under time pressure; a quick self-check before assessment surfaces them while there's still time to fix them.",
+    "evidence": "Monitoring misconceptions over time — NSW DoE (2020)."
+  },
+  {
+    "topicId": "evaluating-biotechnology",
+    "habitId": "ask",
+    "goal": "Separate describing from judging",
+    "script": "Look at your paragraph on gene therapy. Which sentences describe the technology, and which make a judgement about it? If none judge, what's stopping you?",
+    "why": "The last question asks students to look at their <b>own hesitation</b>, which is where weak evaluations usually stall.",
+    "evidence": "Self-questioning; evaluating sources — NSW DoE (2020)."
+  },
+  {
+    "topicId": "evaluating-biotechnology",
+    "habitId": "explicit",
+    "goal": "Name 'evaluate' as a thinking move, not a list",
+    "script": "'Evaluate' doesn't mean pros and cons. It means deciding how good, how safe or how worthwhile something is, and showing the criteria you used. That's the thinking we're practising.",
+    "why": "Making the verb's demand explicit tells students what kind of thinking the task wants, which many can't see on their own.",
+    "evidence": "'Be explicit' about strategies, not just content — NSW DoE (2020)."
+  },
+  {
+    "topicId": "evaluating-biotechnology",
+    "habitId": "plan",
+    "goal": "Choose criteria before reading the evidence",
+    "script": "Before you read the case on releasing a genetically modified organism into the wild, write the three criteria you'll judge it on. You can add one later, but say why.",
+    "why": "Setting criteria first stops whatever is read first from deciding the conclusion, and gives the judgement a structure to check.",
+    "evidence": "Planning strategies — NSW DoE (2020)."
+  },
+  {
+    "topicId": "evaluating-biotechnology",
+    "habitId": "model",
+    "goal": "Model weighing evidence of uneven quality",
+    "script": "This trial shows a benefit, but it's small and short. This claim of risk has no data behind it. Neither settles it, so how much weight do I give each? Let me reason it out.",
+    "why": "Thinking aloud about the <b>weight</b> of evidence shows students the step most evaluations skip.",
+    "evidence": "Think-aloud; evaluating scientific data — NSW DoE resources."
+  },
+  {
+    "topicId": "evaluating-biotechnology",
+    "habitId": "challenge",
+    "goal": "Defend a judgement against new information",
+    "script": "You've judged the modified crop worthwhile. New data: its yield falls in drought years. Does your judgement change, hold, or need a condition? Show which part of your reasoning moved.",
+    "why": "Revising under new evidence tests whether the judgement rested on reasoning or on the first thing read.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "evaluating-biotechnology",
+    "habitId": "evaluate",
+    "goal": "Reflect on how the judgement was reached",
+    "script": "Look back: which criterion ended up deciding your judgement? Did you plan for it to matter that much, or did it take over as you read?",
+    "why": "Seeing which criterion dominated shows students how they actually weigh evidence, so they can plan better next time.",
+    "evidence": "Evaluating the process — NSW DoE (2020)."
+  },
+  {
+    "topicId": "evaluating-biotechnology",
+    "habitId": "collab",
+    "goal": "Compare judgements reached from the same evidence",
+    "script": "Pairs reached different verdicts on the same gene therapy case. Don't argue the verdict. Find the step where your reasoning split: was it a criterion, or a piece of evidence?",
+    "why": "Locating where reasoning diverges makes students' criteria visible to each other, and to themselves.",
+    "evidence": "Social metacognition in group work — CBE–LSE evidence guide (2021)."
+  },
+  {
+    "topicId": "evaluating-biotechnology",
+    "habitId": "practise",
+    "goal": "Reuse one evaluation frame across technologies",
+    "script": "Same frame — criteria, weight of evidence, judgement, conditions — for insulin made with recombinant DNA, a diagnostic test for an infectious disease, and artificial pollination.",
+    "why": "Applying one frame to different technologies separates the evaluation routine from any single case.",
+    "evidence": "Interleaving & distributed practice — CBE–LSE evidence guide (2021)."
+  },
+  {
+    "topicId": "evaluating-biotechnology",
+    "habitId": "checkin",
+    "goal": "Check students judge without being asked to",
+    "script": "In your next extended response, did you reach a judgement because the question demanded it, or because you now do it by default? Highlight where it happens.",
+    "why": "A judgement students reach unprompted is the sign the habit is becoming independent.",
+    "evidence": "Assessing metacognition in performance — NSW DoE (2020)."
+  },
+  {
+    "topicId": "bonds-vs-intermolecular-forces",
+    "habitId": "ask",
+    "goal": "Check what the picture says is breaking",
+    "script": "When the water boils in your diagram, what exactly comes apart — atoms from each other, or molecules from each other? Point to it.",
+    "why": "Pointing makes students commit to a <b>picture</b>, which exposes a misconception that a correct-sounding sentence can hide.",
+    "evidence": "Self-questioning to reveal misconceptions — NSW DoE (2020)."
+  },
+  {
+    "topicId": "bonds-vs-intermolecular-forces",
+    "habitId": "explicit",
+    "goal": "Name 'between or within' as the thinking check",
+    "script": "The chemistry today is intermolecular forces. The thinking skill is a check you'll use all year: is this force between particles, or within them?",
+    "why": "Naming the distinction as a reusable check makes it a strategy students can monitor, not just a fact to recall.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "bonds-vs-intermolecular-forces",
+    "habitId": "plan",
+    "goal": "Sequence a property explanation before writing",
+    "script": "Plan it in order: which particles are present, what holds them together, how strong that is, so what property follows. Then write.",
+    "why": "A fixed sequence moves students from structure to property, the step they jump over when they reason backwards from the answer.",
+    "evidence": "Planning strategies — NSW DoE (2020)."
+  },
+  {
+    "topicId": "bonds-vs-intermolecular-forces",
+    "habitId": "model",
+    "goal": "Model catching a 'bonds break' slip",
+    "script": "Ethanol boils at 78 °C because its bonds br— no. Its molecules are held together by hydrogen bonds and dispersion forces, and boiling overcomes those. The O–H bond itself stays intact.",
+    "why": "Hearing a deliberate self-correction gives students the exact moment to watch for in their own reasoning.",
+    "evidence": "Think-aloud; conceptual change — White & Frederiksen (1998)."
+  },
+  {
+    "topicId": "bonds-vs-intermolecular-forces",
+    "habitId": "challenge",
+    "goal": "Test the model on a case that breaks the pattern",
+    "script": "Silicon dioxide and carbon dioxide are both oxides of a group 14 element, with covalent bonds. Predict which melts at the higher temperature, then explain what your first instinct missed.",
+    "why": "A case where similar bonding gives very different properties forces students to check whether they're reasoning about the right force.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "bonds-vs-intermolecular-forces",
+    "habitId": "evaluate",
+    "goal": "Judge your early diagrams, not just the answer",
+    "script": "Look at the particle diagram you drew at the start of the topic. What would you redraw now, and what did you misunderstand when you drew it?",
+    "why": "Revisiting their own early representation lets students see the change in their thinking, not only in their marks.",
+    "evidence": "Evaluating understanding — NSW DoE (2020)."
+  },
+  {
+    "topicId": "bonds-vs-intermolecular-forces",
+    "habitId": "collab",
+    "goal": "Explain a boiling-point trend to a partner",
+    "script": "Explain why boiling point rises from HCl to HBr to HI, even though the bonds get less polar. Your partner stops you whenever you say a bond breaks.",
+    "why": "A partner listening for one specific error turns self-explanation into a shared monitoring task.",
+    "evidence": "Self-explanation & social metacognition — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "bonds-vs-intermolecular-forces",
+    "habitId": "practise",
+    "goal": "Run the same check across kinds of substance",
+    "script": "Same check — which particles, and what holds them together? — on the boiling points of alkanes, the melting points of group 1 and 2 chlorides, and the allotropes of carbon.",
+    "why": "Using one check on molecular, ionic and network substances shows students where it applies and how its answer changes.",
+    "evidence": "Interleaving — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "bonds-vs-intermolecular-forces",
+    "habitId": "checkin",
+    "goal": "Check the 'bonds break' idea is gone, not quiet",
+    "script": "Months on: when a molecular substance melts or boils, is any part of you still tempted to say its bonds break? Be honest — that's the useful answer.",
+    "why": "Misconceptions go underground; a direct check later in the year surfaces them in time.",
+    "evidence": "Monitoring misconceptions over time — NSW DoE (2020)."
+  },
+  {
+    "topicId": "limiting-reagent",
+    "habitId": "ask",
+    "goal": "Interrogate the comparison being made",
+    "script": "You've picked the limiting reagent. Did you compare grams, moles, or moles adjusted for the ratio? Which one actually decides what runs out?",
+    "why": "The question targets the exact step students skip, and makes them check their own method rather than the final number.",
+    "evidence": "Self-questioning; problem-solving — NSW DoE (2020)."
+  },
+  {
+    "topicId": "limiting-reagent",
+    "habitId": "explicit",
+    "goal": "Name sense-checking as part of the method",
+    "script": "Today's chemistry is limiting reagents. Today's thinking skill is the last line of every solution: does this answer make sense for the amounts I started with?",
+    "why": "Making the sense-check an explicit step stops it being an optional extra that gets dropped under time pressure.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "limiting-reagent",
+    "habitId": "plan",
+    "goal": "Map the route before calculating",
+    "script": "Before any numbers, sketch the route: mass to moles for each reactant, apply the ratio, find which runs out, then moles to mass of product. Then calculate.",
+    "why": "A route plan exposes a missing step before it becomes a wrong answer, and lets students check their progress as they go.",
+    "evidence": "Planning strategies — NSW DoE (2020)."
+  },
+  {
+    "topicId": "limiting-reagent",
+    "habitId": "model",
+    "goal": "Model getting stuck on the ratio and recovering",
+    "script": "I've got 0.50 mol of hydrogen and 0.30 mol of oxygen, so oxygen's limiting — wait. The ratio is 2 to 1. 0.30 mol of oxygen needs 0.60 mol of hydrogen, so hydrogen runs out first.",
+    "why": "The audible <b>'wait'</b> marks the moment to apply the ratio, the step most errors come from.",
+    "evidence": "Think-aloud modelling — NSW DoE (2020)."
+  },
+  {
+    "topicId": "limiting-reagent",
+    "habitId": "challenge",
+    "goal": "Transfer the method to solutions and gases",
+    "script": "Same reaction, but one reactant is a volume of solution and the other a gas at STP. Which steps of your route change, and which stay the same?",
+    "why": "Changing the form of the data tests whether students understand the route or only its most familiar version.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "limiting-reagent",
+    "habitId": "evaluate",
+    "goal": "Diagnose errors by type after marking",
+    "script": "Sort your quiz errors: concept (wrong comparison), process (skipped the ratio) or careless (arithmetic). Which type do you make most, and what will you check first next time?",
+    "why": "Classifying errors gives students a specific thing to monitor, rather than a general resolve to 'be careful'.",
+    "evidence": "Self-assessment; exam wrappers — SRL research."
+  },
+  {
+    "topicId": "limiting-reagent",
+    "habitId": "collab",
+    "goal": "Compare two routes to the same answer",
+    "script": "You and your partner both got 4.5 g, by different routes. Walk each other through yours. Which would you trust under exam pressure, and why?",
+    "why": "Comparing methods shows there's more than one valid route, and makes students judge the reliability of their own.",
+    "evidence": "Social metacognition — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "limiting-reagent",
+    "habitId": "practise",
+    "goal": "Space the routine across the term",
+    "script": "Two limiting reagent problems at the start of lessons over the next few weeks, mixed in with dilution and gas problems. Same route plan each time.",
+    "why": "Spaced, mixed practice keeps the route available and makes students choose the method, not just follow the topic heading.",
+    "evidence": "Distributed & interleaved practice — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "limiting-reagent",
+    "habitId": "checkin",
+    "goal": "Check the sense-check happens unprompted",
+    "script": "In your practical write-up, did you compare your measured yield with the theoretical yield without being told to? Show me where.",
+    "why": "Seeing the check appear in a different task shows whether it has become the student's own.",
+    "evidence": "Assessing metacognition in natural settings — NSW DoE (2020)."
+  },
+  {
+    "topicId": "net-force-and-motion",
+    "habitId": "ask",
+    "goal": "Check what the free-body diagram claims",
+    "script": "Your trolley moves at constant velocity. Add up the arrows on your free-body diagram. What does your diagram say the net force is — and is that what you believe?",
+    "why": "Asking what students <b>believe</b>, as well as what they drew, surfaces the gap between a learned rule and an intuition.",
+    "evidence": "Self-questioning to surface misconceptions — NSW DoE (2020)."
+  },
+  {
+    "topicId": "net-force-and-motion",
+    "habitId": "explicit",
+    "goal": "Name the 'motion needs a force' intuition",
+    "script": "Everyday experience says moving things need a push. Today's thinking goal is noticing when that intuition is making your physics decisions for you.",
+    "why": "Naming the intuition, rather than just correcting it, gives students something to watch for in their own reasoning.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "net-force-and-motion",
+    "habitId": "plan",
+    "goal": "Decide the acceleration before drawing forces",
+    "script": "Before you draw: is the object accelerating, yes or no? Write that first. It tells you what the net force must be before you work out the individual forces.",
+    "why": "Deciding the acceleration first puts the second law in charge, so the diagram is checked against it rather than against intuition.",
+    "evidence": "Planning strategies incl. diagrams — NSW DoE (2020)."
+  },
+  {
+    "topicId": "net-force-and-motion",
+    "habitId": "model",
+    "goal": "Model distrusting an intuition mid-problem",
+    "script": "The puck slides across the ice, so there's a force pushing it forward… hang on. What's pushing? Nothing's touching it from behind. It keeps going because almost nothing slows it.",
+    "why": "Thinking aloud through the <b>'hang on'</b> shows students how to question an intuition instead of trusting it.",
+    "evidence": "Think-aloud; confronting intuition — White & Frederiksen (1998)."
+  },
+  {
+    "topicId": "net-force-and-motion",
+    "habitId": "challenge",
+    "goal": "Predict, observe and explain with a cart",
+    "script": "Predict: once I stop pushing the cart along a low-friction track, what happens to its speed? Write your prediction and your reason. Now watch. Which part of your reason survived?",
+    "why": "Predicting before observing commits students to their intuition, so the observation can genuinely challenge it.",
+    "evidence": "Predict–Observe–Explain — White & Frederiksen (1998)."
+  },
+  {
+    "topicId": "net-force-and-motion",
+    "habitId": "evaluate",
+    "goal": "Rate confidence against accuracy",
+    "script": "Before marking, rate your confidence in each of the five force questions. Afterwards, find where you were confident and wrong. What were you relying on there?",
+    "why": "Confidence–accuracy gaps show students where intuition, not reasoning, was making the call.",
+    "evidence": "Evaluating understanding, self-testing — NSW DoE (2020)."
+  },
+  {
+    "topicId": "net-force-and-motion",
+    "habitId": "collab",
+    "goal": "Vote, explain, and change only for a reason",
+    "script": "A lift moves up at constant speed. Is the cable tension greater than, equal to or less than the lift's weight? Everyone votes, then explains. Change your vote only for a reason you can say.",
+    "why": "Voting then explaining makes each person's reasoning visible, and 'only for a reason' makes changing your mind deliberate.",
+    "evidence": "Social metacognition; conceptual change — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "net-force-and-motion",
+    "habitId": "practise",
+    "goal": "Run the 'accelerating?' check across contexts",
+    "script": "Same first question — is it accelerating? — for a car on cruise control, a box on an inclined plane, and two masses joined by a rope.",
+    "why": "Repeating the first question across contexts makes the second law the default starting point.",
+    "evidence": "Interleaving — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "net-force-and-motion",
+    "habitId": "checkin",
+    "goal": "Check the correction holds under load",
+    "script": "In the momentum topic, a question asks about a moving object. Before you answer, check: are you assuming a force keeps it moving? Note it if you caught yourself.",
+    "why": "Checking in a later, harder topic shows whether the correction holds when attention is elsewhere.",
+    "evidence": "Monitoring misconceptions over time — NSW DoE (2020)."
+  },
+  {
+    "topicId": "measuring-g-graphically",
+    "habitId": "ask",
+    "goal": "Separate 'close to 9.8' from 'a good method'",
+    "script": "Your value is 9.7 m s⁻². Does that tell you your method is reliable? What would you need to see in your data to know?",
+    "why": "The question breaks the link students make between a familiar answer and a sound method.",
+    "evidence": "Self-questioning during investigation — NSW DoE (2020)."
+  },
+  {
+    "topicId": "measuring-g-graphically",
+    "habitId": "explicit",
+    "goal": "Name accuracy and reliability as separate judgements",
+    "script": "Two judgements today, kept apart. Accuracy: how close to the accepted value. Reliability: how consistent repeated results are. You'll make both, separately, for each method.",
+    "why": "Naming the two judgements gives students a structure to check their own evaluation against.",
+    "evidence": "'Be explicit' — NSW DoE (2020)."
+  },
+  {
+    "topicId": "measuring-g-graphically",
+    "habitId": "plan",
+    "goal": "Plan how each method will be judged",
+    "script": "Before collecting data, write how you'll judge each method: what you'll compare with the accepted value, how many trials you'll run, and what spread would worry you.",
+    "why": "Planning the evaluation before the data arrive stops students judging the methods by whichever result looks best.",
+    "evidence": "Investigation planning sheet — NSW DoE science resources."
+  },
+  {
+    "topicId": "measuring-g-graphically",
+    "habitId": "model",
+    "goal": "Model reading the scatter, not just the gradient",
+    "script": "The gradient gives 9.6, which looks fine. But these three points sit well off the line, all at the same end. That's a pattern, not noise. What could cause it?",
+    "why": "Modelling attention to the <b>scatter</b> shows the question that separates a lucky value from a sound method.",
+    "evidence": "Think-aloud data interpretation — NSW DoE (2020)."
+  },
+  {
+    "topicId": "measuring-g-graphically",
+    "habitId": "challenge",
+    "goal": "Judge a result that's accurate but unreliable",
+    "script": "Group A got 9.81 from widely varying trials. Group B got 9.4 from tightly grouped trials. Which method would you trust to repeat, and what would you change in each?",
+    "why": "A deliberately mixed case makes students apply both judgements, which a single tidy result never does.",
+    "evidence": "Challenge with novel tasks — NSW DoE (2020)."
+  },
+  {
+    "topicId": "measuring-g-graphically",
+    "habitId": "evaluate",
+    "goal": "Evaluate the process, not the value",
+    "script": "In your conclusion: one sentence on the value, three on the process — what limited your reliability, what you'd change, and how you know it would help.",
+    "why": "Weighting the conclusion towards process keeps evaluation on how the investigation worked, not on whether it got the expected number.",
+    "evidence": "Evaluating the process — NSW DoE (2020)."
+  },
+  {
+    "topicId": "measuring-g-graphically",
+    "habitId": "collab",
+    "goal": "Judge another group's data blind",
+    "script": "Swap graphs with another group. Without seeing their value, judge their reliability from the graph alone. Then compare your judgement with theirs.",
+    "why": "Judging data without the answer separates the evaluation from the result, and comparing reveals different criteria.",
+    "evidence": "Social metacognition — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "measuring-g-graphically",
+    "habitId": "practise",
+    "goal": "Close every practical the same way",
+    "script": "Every practical this term ends the same way: one line on accuracy, one on reliability, one on what limited each — inclined planes, collisions, waves.",
+    "why": "A short, repeated closing routine builds the habit without adding a separate reflection task.",
+    "evidence": "Distributed practice — CBE–LSE guide (2021)."
+  },
+  {
+    "topicId": "measuring-g-graphically",
+    "habitId": "checkin",
+    "goal": "Check reliability is planned unprompted",
+    "script": "In your depth study proposal, did you plan repeat trials and a way to judge their spread without a template asking for it? Show me where.",
+    "why": "Reliability planned in a new, self-directed task is the strongest sign the habit is the student's own.",
+    "evidence": "Assessing metacognition in performance — NSW DoE (2020)."
   }
 ]

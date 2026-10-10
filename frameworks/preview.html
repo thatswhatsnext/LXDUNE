@@ -25,6 +25,7 @@
         <option value="metacognition-nsw-science">Metacognition in Science (matrix)</option>
       </select>
     </label>
+    <label><input type="checkbox" id="drafts"> Show drafts</label>
     <label>Width
       <span id="widths">
         <button data-w="mobile">mobile</button>
@@ -49,7 +50,7 @@
 
   async function render() {
     mount.textContent = 'Loading…';
-    await renderFrameworkExplorer({ framework: fwSel.value, mount });
+    await renderFrameworkExplorer({ framework: fwSel.value, mount, showDrafts: document.getElementById('drafts').checked });
     const d = mount.dataset;
     stamp.textContent = d.fxFramework
       ? `${d.fxFramework} · v${d.fxVersion} · ${d.fxContentHash}`
@@ -57,6 +58,7 @@
   }
 
   fwSel.addEventListener('change', render);
+  document.getElementById('drafts').addEventListener('change', render);
   document.getElementById('widths').addEventListener('click', (e) => {
     const w = e.target.dataset.w;
     if (!w) return;

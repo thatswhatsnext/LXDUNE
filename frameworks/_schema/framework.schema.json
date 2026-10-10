@@ -242,7 +242,27 @@
         "name": { "type": "string", "minLength": 1 },
         "tag": { "type": "string", "description": "Display tag, e.g. the focus area or 'Module 5 Heredity'." },
         "type": { "enum": ["concept", "skill"] },
-        "sci": { "type": "string", "minLength": 1 }
+        "sci": { "type": "string", "minLength": 1 },
+        "focusArea": {
+          "$ref": "#/$defs/vocabRef",
+          "description": "Optional vocab-controlled focus area or module the topic sits in. Must belong to the area's syllabus (checked by the validator)."
+        },
+        "review": { "$ref": "#/$defs/matrixReview" }
+      }
+    },
+
+    "matrixReview": {
+      "type": "object",
+      "description": "Provenance for a topic and its cells, as in Habit Studio. A topic without `review` predates this field and is treated as published. A topic is shown only when `published` is true; then its source must be authored or ai-drafted-reviewed, reviewedBy must name someone and lastReviewed must be set (checked by the validator). Drafts from chat or Claude Code are ai-generated, reviewedBy empty, published false.",
+      "additionalProperties": false,
+      "required": ["source", "reviewedBy", "published"],
+      "properties": {
+        "source": { "enum": ["authored", "ai-generated", "ai-drafted-reviewed"] },
+        "reviewedBy": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "lastReviewed": { "anyOf": [{ "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }, { "type": "null" }] },
+        "published": { "type": "boolean" },
+        "drafted": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "Date the draft was written." },
+        "authorNote": { "type": "string", "description": "For the author and reviewers only; never shown on the page." }
       }
     },
 
