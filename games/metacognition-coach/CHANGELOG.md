@@ -1,5 +1,12 @@
 # Changelog — Metacognition Coach
 
+## Page update — 2026-10-10
+
+- "Go deeper" now links to the explorer's new standalone page,
+  `frameworks/metacognition-nsw-science/`, which links back to the game.
+  `index.html` passes `explorerUrl`; content and `coach.js` are unchanged, so
+  the content version stays at v1.0.1.
+
 ## v1.0.1 — 2026-10-09
 
 - Length cue fixed: the correct option was the longest in every one of the 26

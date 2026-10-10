@@ -13,6 +13,8 @@
   Locally: python3 -m http.server 8000 from the repo root, then open
   http://localhost:8000/games/metacognition-coach/
   ?reviewer=1 shows the reviewer toggle, which unlocks every habit (for staff).
+  "Go deeper" links to the explorer page at ../../frameworks/metacognition-nsw-science/,
+  resolved against this page so it works on Pages and locally.
 -->
 <style>
   html{background:#F2F0EA;}
@@ -28,7 +30,8 @@
 <script type="module">
   import { renderCoach } from "./coach.js";
   const q = new URLSearchParams(location.search);
-  renderCoach({ mount: "lxd-coach", allowReviewer: q.get("reviewer") === "1" });
+  const explorerUrl = new URL("../../frameworks/metacognition-nsw-science/", location.href).href;
+  renderCoach({ mount: "lxd-coach", explorerUrl, allowReviewer: q.get("reviewer") === "1" });
 </script>
 </body>
 </html>
