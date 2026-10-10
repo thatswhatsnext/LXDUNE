@@ -152,6 +152,11 @@ const RULES = {
     if (x.placements.some((p) => p.by === 'draft')) note(`${where}: has a provisional "draft" placement that still needs an expert`);
     if (new Set(real.map((p) => p.by)).size !== real.length) err(where, 'two placements are by the same reviewer');
     if (x.published && real.length < 2) err(where, `published, but has ${real.length} expert placement(s) (needs 2, by different reviewers)`);
+    // A stand-in label such as "Second reviewer (practising science teacher)" until the reviewer is named.
+    for (const p of real.filter((p) => /^second reviewer/i.test(p.by))) {
+      if (x.published) err(where, `published, but a placement is by "${p.by}" — record the reviewer's name`);
+      else note(`${where}: a placement is by "${p.by}"; record the reviewer's name before publishing`);
+    }
   },
   brief(x, where) {
     const q = x.exemplars.map((e) => e.quality).sort().join(',');

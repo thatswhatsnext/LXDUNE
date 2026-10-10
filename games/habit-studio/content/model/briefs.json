@@ -6,11 +6,13 @@
       "id": "model-brief-puck",
       "habit": "model",
       "version": "0.1.0",
-      "source": "ai-generated",
-      "reviewedBy": [],
-      "lastReviewed": null,
+      "source": "ai-drafted-reviewed",
+      "reviewedBy": [
+        "Steve Grant"
+      ],
+      "lastReviewed": "2026-10-10",
       "published": false,
-      "authorNote": "M1 sample drafted by Claude Code, 2026-10-09, for Steve to rewrite or approve. Exemplars must be plausible: the flawed one should be something a capable beginning teacher would write.",
+      "authorNote": "M1 sample drafted by Claude Code, 2026-10-09; format and content reviewed by Steve Grant, 2026-10-10. Unpublished until the habit's full set is written (M2). Exemplars must be plausible: the flawed one should be something a capable beginning teacher would write.",
       "context": {
         "stages": [
           "stage-4"

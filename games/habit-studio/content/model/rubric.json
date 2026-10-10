@@ -4,11 +4,13 @@
   "id": "model-rubric",
   "habit": "model",
   "version": "0.1.0",
-  "source": "ai-generated",
-  "reviewedBy": [],
-  "lastReviewed": null,
+  "source": "ai-drafted-reviewed",
+  "reviewedBy": [
+    "Steve Grant"
+  ],
+  "lastReviewed": "2026-10-10",
   "published": false,
-  "authorNote": "M1 sample drafted by Claude Code, 2026-10-09, for Steve to rewrite or approve. The four levels and anchors are the heart of Station C; they should be Steve’s.",
+  "authorNote": "M1 sample drafted by Claude Code, 2026-10-09; format and content reviewed by Steve Grant, 2026-10-10. Unpublished until the habit's full set is written (M2). The four levels and anchors are the heart of Station C; they should be Steve’s.",
   "title": "Is the student steering their own thinking?",
   "focus": "How far a student’s own talk or writing, after you’ve modelled, shows them deciding, checking and repairing — not just producing an answer.",
   "levels": [

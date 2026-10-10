@@ -627,7 +627,8 @@ Parked for later exploration (Steve, 2026-10-07). Depends on item 56.
 - [x] M1 started, 2026-10-09, on `feature/habit-studio-m1`: schema `games/_schema/studio.schema.json` (explainer, case pair, rubric, artefact, brief, unit plan, rehearsal, manifest); validator `scripts/validate-studio.js` in `npm run validate` and CI (15 deliberate breaks, each caught); the context check shared with the Coach in `scripts/lib/game-context.js`; review copy `scripts/studio-review.js`; authoring guide `games/habit-studio/AUTHORING.md`
 - [x] One sample of each content type for Model your thinking in `games/habit-studio/content/model/`, all `ai-generated` and unpublished, for Steve to rewrite or approve. The artefact carries one provisional placement marked `draft`; expert placements are Steve's and the second reviewer's
 - Adapted from the spec: (1) the Studio allows `<sub>` and `<sup>` as well as `<b>` and `<i>`, for chemical formulae; (2) a case pair's two versions must be within 20% of each other in length, so the better one isn't also the longer one (the Coach's length cue)
-- [ ] Open (M1 done when): Steve is happy with the format, from the review copy, before writing at volume
+- [x] M1 signed off by Steve, 2026-10-10: the format works and the samples are right. All seven samples marked `ai-drafted-reviewed`, reviewed by Steve Grant; still unpublished until the full set is written. The ethane artefact is placed at level 4 independently by Steve Grant and the second reviewer (a practising science teacher), both agreeing the rationale; the second reviewer is recorded under a stand-in label, and the validator blocks publishing until it's replaced with their name
+- [ ] Next: M2, the full Model your thinking set (3 case pairs, 10–12 artefacts with two placements each, 2 briefs, spaced-return items), about 35–50 h, mostly Steve's
 
 ---
 
