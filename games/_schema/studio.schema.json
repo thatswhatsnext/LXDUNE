@@ -1,0 +1,360 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thatswhatsnext.github.io/LXDUNE/games/_schema/studio.schema.json",
+  "title": "LXDUNE Habit Studio content",
+  "description": "Schema for the Habit Studio's content: games/habit-studio/studio.json (the manifest) and one folder per habit under games/habit-studio/content/. Spec: docs/habit-studio-pilot-spec.md. JSON Schema enforces per-file STRUCTURE only. Cross-file and judgement rules (habit and vocabulary references, provenance before publishing, placements and expert splits, exemplar quality levels, annotation quotes that must appear in the text, line references in transcript notes, the unit-plan sequence, the <b>/<i> whitelist) are enforced by scripts/validate-studio.js.",
+
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "semver": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "html": {
+      "description": "Constrained HTML: text with <b> and <i> only. The tag whitelist is checked by the validator.",
+      "type": "string",
+      "minLength": 1
+    },
+    "text": { "type": "string", "minLength": 1 },
+
+    "provenance": {
+      "description": "On every item. An item is published only when `published` is true, its source is authored or ai-drafted-reviewed, and reviewedBy names at least one reviewer (checked by the validator). Drafts from chat or Claude Code are ai-generated with reviewedBy empty.",
+      "type": "object",
+      "required": ["id", "habit", "version", "source", "reviewedBy", "published"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "habit": { "$ref": "#/$defs/id" },
+        "version": { "$ref": "#/$defs/semver" },
+        "source": { "enum": ["authored", "ai-generated", "ai-drafted-reviewed"] },
+        "reviewedBy": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "lastReviewed": { "anyOf": [{ "$ref": "#/$defs/date" }, { "type": "null" }] },
+        "published": { "type": "boolean" },
+        "authorNote": { "description": "For the author and reviewers only; never shown to players.", "type": "string" }
+      }
+    },
+
+    "material": {
+      "description": "Where realistic classroom material came from. composite: constructed to be realistic, not taken from a real class. real-deidentified: from a real class, with consent, names and identifying details removed.",
+      "enum": ["composite", "real-deidentified"]
+    },
+
+    "context": {
+      "description": "A classroom context as vocabulary ids, as in the Metacognition Coach.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stages"],
+      "properties": {
+        "stages": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/id" } },
+        "syllabus": { "$ref": "#/$defs/id" },
+        "focusArea": { "$ref": "#/$defs/id" },
+        "module": { "$ref": "#/$defs/id" },
+        "note": { "type": "string", "minLength": 1 },
+        "acknowledgedSuperseded": { "type": "boolean" }
+      }
+    },
+
+    "line": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["speaker", "text"],
+      "properties": {
+        "speaker": { "description": "A role, never a real name: Teacher, Student A, Class.", "type": "string", "minLength": 1 },
+        "text": { "$ref": "#/$defs/html" }
+      }
+    },
+
+    "explainer": {
+      "description": "Station A: how the habit works. One per habit.",
+      "allOf": [{ "$ref": "#/$defs/provenance" }],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": ["type", "title", "body", "diagram", "prompts", "dilutions", "evidence"],
+      "properties": {
+        "type": { "const": "explainer" },
+        "title": { "$ref": "#/$defs/text" },
+        "body": {
+          "description": "Paragraphs of the explainer, about 600 words in all.",
+          "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/html" }
+        },
+        "diagram": {
+          "description": "Drawn by the app from data, so it stays accessible: a left-to-right sequence of stages.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "title", "steps", "alt"],
+          "properties": {
+            "kind": { "const": "sequence" },
+            "title": { "$ref": "#/$defs/text" },
+            "steps": {
+              "type": "array", "minItems": 2, "maxItems": 5,
+              "items": {
+                "type": "object", "additionalProperties": false, "required": ["label", "who", "text"],
+                "properties": { "label": { "$ref": "#/$defs/text" }, "who": { "$ref": "#/$defs/text" }, "text": { "$ref": "#/$defs/html" } }
+              }
+            },
+            "alt": { "description": "A full text equivalent of the diagram.", "$ref": "#/$defs/text" }
+          }
+        },
+        "prompts": {
+          "description": "Self-explanation prompts. The player writes an answer before the expert answer is shown.",
+          "type": "array", "minItems": 2, "maxItems": 3,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["id", "after", "prompt", "expertAnswer"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id" },
+              "after": { "description": "The body paragraph (1-based) the prompt follows.", "type": "integer", "minimum": 1 },
+              "prompt": { "$ref": "#/$defs/html" },
+              "expertAnswer": { "$ref": "#/$defs/html" }
+            }
+          }
+        },
+        "dilutions": {
+          "description": "Common ways the habit is diluted: what it looks like, and why it fails.",
+          "type": "array", "minItems": 4, "maxItems": 6,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["id", "name", "example", "whyItFails"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id" },
+              "name": { "$ref": "#/$defs/text" },
+              "example": { "$ref": "#/$defs/html" },
+              "whyItFails": { "$ref": "#/$defs/html" }
+            }
+          }
+        },
+        "evidence": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["citation", "relevance"],
+            "properties": { "citation": { "$ref": "#/$defs/text" }, "relevance": { "$ref": "#/$defs/html" }, "verified": { "description": "Set true once the citation has been checked against the source.", "type": "boolean" } }
+          }
+        }
+      }
+    },
+
+    "casePair": {
+      "description": "Station B: two short transcripts that differ in one deliberate feature.",
+      "allOf": [{ "$ref": "#/$defs/provenance" }],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": ["type", "material", "context", "title", "setup", "difficulty", "difference", "versions", "expertPreference", "annotation"],
+      "properties": {
+        "type": { "const": "casePair" },
+        "material": { "$ref": "#/$defs/material" },
+        "context": { "$ref": "#/$defs/context" },
+        "title": { "$ref": "#/$defs/text" },
+        "setup": { "description": "What the player knows before reading: the class, the lesson moment.", "$ref": "#/$defs/html" },
+        "difficulty": { "description": "1 obvious, 2 noticeable, 3 subtle. A habit's pairs move from 1 to 3.", "enum": [1, 2, 3] },
+        "use": { "description": "station (Station B) or spaced (the 3- and 10-day revisits).", "enum": ["station", "spaced"] },
+        "difference": { "description": "The one deliberate difference, revealed after the player answers.", "$ref": "#/$defs/html" },
+        "versions": {
+          "type": "object", "additionalProperties": false, "required": ["a", "b"],
+          "properties": {
+            "a": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/line" } },
+            "b": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/line" } }
+          }
+        },
+        "expertPreference": { "enum": ["a", "b"] },
+        "annotation": {
+          "type": "object", "additionalProperties": false, "required": ["summary", "notes"],
+          "properties": {
+            "summary": { "$ref": "#/$defs/html" },
+            "notes": {
+              "description": "Each note points at a line (1-based) in one version.",
+              "type": "array", "minItems": 1,
+              "items": {
+                "type": "object", "additionalProperties": false, "required": ["version", "line", "text"],
+                "properties": { "version": { "enum": ["a", "b"] }, "line": { "type": "integer", "minimum": 1 }, "text": { "$ref": "#/$defs/html" } }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "rubric": {
+      "description": "Station C: four levels of the quality of students' metacognition, with an anchor example at each level. One per habit.",
+      "allOf": [{ "$ref": "#/$defs/provenance" }],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": ["type", "title", "focus", "levels"],
+      "properties": {
+        "type": { "const": "rubric" },
+        "title": { "$ref": "#/$defs/text" },
+        "focus": { "description": "What the rubric judges, in one sentence.", "$ref": "#/$defs/html" },
+        "levels": {
+          "type": "array", "minItems": 4, "maxItems": 4,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["level", "name", "descriptor", "anchor"],
+            "properties": {
+              "level": { "enum": [1, 2, 3, 4] },
+              "name": { "$ref": "#/$defs/text" },
+              "descriptor": { "$ref": "#/$defs/html" },
+              "anchor": { "description": "A short example at this level, quoted as a student would say or write it.", "$ref": "#/$defs/html" }
+            }
+          }
+        }
+      }
+    },
+
+    "artefact": {
+      "description": "Station C: one piece of student work or talk, placed on the rubric by experts.",
+      "allOf": [{ "$ref": "#/$defs/provenance" }],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": ["type", "material", "context", "kind", "studentLabel", "prompt", "content", "placements"],
+      "properties": {
+        "type": { "const": "artefact" },
+        "material": { "$ref": "#/$defs/material" },
+        "context": { "$ref": "#/$defs/context" },
+        "kind": { "enum": ["exit-slip", "talk", "worked-solution", "confidence-vs-result", "written-reflection"] },
+        "use": { "enum": ["station", "spaced"] },
+        "studentLabel": { "description": "Never a real name, for example 'Year 9 student'.", "$ref": "#/$defs/text" },
+        "prompt": { "description": "What the student was asked or doing.", "$ref": "#/$defs/html" },
+        "content": {
+          "description": "The work itself: lines of talk or writing, in order.",
+          "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/line" }
+        },
+        "placements": {
+          "description": "Expert placements on the rubric. A published artefact needs two, by different reviewers; where they differ, the app shows 'Experts split' with both rationales.",
+          "type": "array", "minItems": 1, "maxItems": 3,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["by", "level", "rationale"],
+            "properties": {
+              "by": { "description": "The reviewer's name. 'draft' for a provisional placement that still needs an expert.", "type": "string", "minLength": 1 },
+              "level": { "enum": [1, 2, 3, 4] },
+              "rationale": { "$ref": "#/$defs/html" }
+            }
+          }
+        }
+      }
+    },
+
+    "exemplar": {
+      "type": "object", "additionalProperties": false, "required": ["quality", "text", "annotations"],
+      "properties": {
+        "quality": { "enum": ["strong", "flawed", "weak"] },
+        "text": { "$ref": "#/$defs/html" },
+        "annotations": {
+          "description": "Each annotation quotes a phrase that must appear, word for word, in the exemplar's text.",
+          "type": "array", "minItems": 2,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["quote", "comment"],
+            "properties": { "quote": { "$ref": "#/$defs/text" }, "comment": { "$ref": "#/$defs/html" } }
+          }
+        },
+        "summary": { "$ref": "#/$defs/html" }
+      }
+    },
+
+    "brief": {
+      "description": "Station D: a design brief and three annotated exemplars (strong, plausible but flawed, weak).",
+      "allOf": [{ "$ref": "#/$defs/provenance" }],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": ["type", "context", "title", "moment", "studentProfile", "task", "selfCheck", "exemplars"],
+      "properties": {
+        "type": { "const": "brief" },
+        "context": { "$ref": "#/$defs/context" },
+        "title": { "$ref": "#/$defs/text" },
+        "moment": { "description": "Where in the lesson this happens.", "$ref": "#/$defs/html" },
+        "studentProfile": { "description": "What these students can do and tend to think.", "$ref": "#/$defs/html" },
+        "task": { "description": "What the player writes.", "$ref": "#/$defs/html" },
+        "selfCheck": { "description": "Criteria the player checks their own draft against before seeing the exemplars.", "type": "array", "minItems": 3, "maxItems": 5, "items": { "$ref": "#/$defs/html" } },
+        "exemplars": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "$ref": "#/$defs/exemplar" } }
+      }
+    },
+
+    "unitPlan": {
+      "description": "Station E: an annotated expert plan for using the habit across a unit.",
+      "allOf": [{ "$ref": "#/$defs/provenance" }],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": ["type", "context", "title", "weeks", "moments", "summary"],
+      "properties": {
+        "type": { "const": "unitPlan" },
+        "context": { "$ref": "#/$defs/context" },
+        "title": { "$ref": "#/$defs/text" },
+        "weeks": { "type": "integer", "minimum": 4, "maximum": 12 },
+        "moments": {
+          "type": "array", "minItems": 4,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["week", "kind", "what", "why"],
+            "properties": {
+              "week": { "type": "integer", "minimum": 1 },
+              "kind": { "enum": ["introduce", "practise", "fade", "check"] },
+              "what": { "$ref": "#/$defs/html" },
+              "why": { "$ref": "#/$defs/html" }
+            }
+          }
+        },
+        "summary": { "$ref": "#/$defs/html" }
+      }
+    },
+
+    "rehearsal": {
+      "description": "Station F: cues for rehearsing the player's own script aloud, and a protocol to take to placement. One per habit.",
+      "allOf": [{ "$ref": "#/$defs/provenance" }],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": ["type", "cues", "protocol"],
+      "properties": {
+        "type": { "const": "rehearsal" },
+        "cues": {
+          "description": "Shown beside the player's script while they rehearse.",
+          "type": "array", "minItems": 3, "maxItems": 6,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["label", "text"],
+            "properties": { "label": { "$ref": "#/$defs/text" }, "text": { "$ref": "#/$defs/html" } }
+          }
+        },
+        "protocol": {
+          "type": "object", "additionalProperties": false, "required": ["title", "try", "collect", "afterwards"],
+          "properties": {
+            "title": { "$ref": "#/$defs/text" },
+            "try": { "$ref": "#/$defs/html" },
+            "collect": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/html" } },
+            "afterwards": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "$ref": "#/$defs/html" } }
+          }
+        }
+      }
+    },
+
+    "itemFile": {
+      "description": "A content file holding several items of one type.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["items"],
+      "properties": { "$schema": { "type": "string" }, "items": { "type": "array" } }
+    },
+
+    "manifest": {
+      "description": "games/habit-studio/studio.json: which habits the Studio has and where their content lives.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "habitsFrom", "habits"],
+      "properties": {
+        "$schema": { "type": "string" },
+        "id": { "const": "habit-studio" },
+        "version": { "$ref": "#/$defs/semver" },
+        "habitsFrom": { "$ref": "#/$defs/id" },
+        "habits": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["habit", "dir", "files"],
+            "properties": {
+              "habit": { "$ref": "#/$defs/id" },
+              "dir": { "type": "string" },
+              "files": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["explainer", "cases", "rubric", "artefacts", "briefs", "unitPlan", "rehearsal"],
+                "properties": {
+                  "explainer": { "type": "string" }, "cases": { "type": "string" }, "rubric": { "type": "string" },
+                  "artefacts": { "type": "string" }, "briefs": { "type": "string" }, "unitPlan": { "type": "string" },
+                  "rehearsal": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
 {
   "type": "module",
   "scripts": {
-    "validate": "node scripts/validate-frameworks.js && node scripts/validate-coach.js",
-    "validate:wip": "node scripts/validate-frameworks.js --allow-incomplete && node scripts/validate-coach.js --allow-drafts",
+    "validate": "node scripts/validate-frameworks.js && node scripts/validate-coach.js && node scripts/validate-studio.js",
+    "validate:wip": "node scripts/validate-frameworks.js --allow-incomplete && node scripts/validate-coach.js --allow-drafts && node scripts/validate-studio.js",
     "checklist": "node scripts/t2-checklist.js",
     "checklist-ui": "node scripts/checklist-server.js",
     "test-harness": "python3 -m http.server 8000 & sleep 1 && open http://localhost:8000/test/"
