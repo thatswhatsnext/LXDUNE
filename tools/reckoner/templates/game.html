@@ -320,6 +320,19 @@ button.go.fbk{margin-top:12px}
 .wrow .bar{display:block;height:7px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin-bottom:3px}
 .wrow .bar b{display:block;height:100%;background:var(--accent);border-radius:99px}
 .wrow span{min-width:0;font-variant-numeric:tabular-nums}
+/* The guidance dial: three switches for what the teacher gives, and a readout of the setting they make. */
+.dialhead{margin-top:16px}
+.opts.dialsw{margin-top:6px}
+.opts.dialsw .opt{align-items:center}
+.opt .sw{flex:none;position:relative;width:40px;height:24px;border-radius:99px;background:var(--surface-2);border:1.5px solid var(--line);transition:background .15s}
+.opt .sw::after{content:"";position:absolute;top:2px;left:2px;width:17px;height:17px;border-radius:50%;background:var(--muted);transition:transform .15s,background .15s}
+.opt[aria-checked="true"] .sw{background:var(--accent);border-color:var(--accent)}
+.opt[aria-checked="true"] .sw::after{transform:translateX(16px);background:var(--surface)}
+.dialread{margin-top:14px}
+.dialcells{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.dialcells div{font-family:var(--f-mono);font-size:10px;letter-spacing:.02em;text-transform:uppercase;text-align:center;padding-top:7px;border-top:4px solid var(--line);color:var(--muted);overflow-wrap:anywhere}
+.dialcells div.on{border-color:var(--pc);color:var(--pc);font-weight:500}
+.dialsay{margin:8px 0 0;font-size:15px}
 .board{display:grid;gap:10px;margin-top:14px}
 .phasebox{border:2px solid color-mix(in srgb,var(--pc) 40%,var(--line));border-radius:var(--r);padding:10px 12px;display:grid;gap:8px;background:var(--surface)}
 .phead{display:flex;align-items:center;justify-content:space-between;gap:10px}

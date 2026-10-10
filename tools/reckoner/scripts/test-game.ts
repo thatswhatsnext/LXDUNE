@@ -10,7 +10,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import yaml from "js-yaml";
 import { GameLesson } from "../src/schema/game-lesson";
-import { buildGame, buildReport, checkLesson, dimScore, fit, GAME_DIR, journeyOf, loadGame } from "./lib/game";
+import { buildGame, buildReport, checkLesson, dialElements, dialGuide, dialLevel, dimScore, fit, GAME_DIR, journeyOf, loadGame } from "./lib/game";
 import { PKG_ROOT } from "./lib/build";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -434,6 +434,63 @@ const cases: [string, () => void | Promise<void>][] = [
     const l4 = yaml.load(readFileSync(join(bad, "adi-4-build.yaml"), "utf8")) as any; l4.track = "z"; writeFileSync(join(bad, "adi-4-build.yaml"), yaml.dump(l4));
     const be = loadGame({ gameDir: bad }).errors.join("; ");
     if (!/track "z" is not one of path adi's tracks/.test(be) || !/track b: lesson orders must run/.test(be)) throw new Error(`bad tracks not caught: ${be}`);
+    if (errors.length) throw new Error(errors.join("; "));
+    dom.window.close();
+  }],
+  ["the game's dialLevel() matches the Reckoner's guidance dial in templates/app.js, for every class", () => {
+    const app = readFileSync(join(PKG_ROOT, "templates", "app.js"), "utf8");
+    const src = app.slice(app.indexOf("function dialLevel("), app.indexOf("function renderDial("));
+    const c = loadGame();
+    const g = dialGuide(c.guides)!;
+    const phases = g.phases.slice().sort((a, b) => a.order - b.order);
+    const appDial = new Function("HEUR", "dialPhase", `${src}; return dialLevel;`)(g.reckoner.dialHeuristic, (id: string) => phases.find((p) => p.id === id));
+    const opts = (id: string) => c.reckoner.dims.find((d) => d.id === id)!.options.map((o) => o[0]);
+    let n = 0;
+    for (const ready of opts("ready")) for (const conf of opts("conf")) for (const time of opts("time")) {
+      const a = { ready, conf, time }, mine = dialLevel(g, a)!, theirs = appDial(a);
+      if (mine.phaseId !== theirs.phaseId || mine.total !== theirs.total || !!mine.capped !== !!theirs.capped) throw new Error(`${JSON.stringify(a)}: game ${mine.phaseId} ${mine.total} vs Reckoner ${theirs.phaseId} ${theirs.total}`);
+      n++;
+    }
+    if (n < 36) throw new Error(`only ${n} classes compared`);
+    // Each setting gives one fewer element than the one before: confirmation all three, open none.
+    const el = dialElements(g);
+    if (phases.map((p) => el[p.id].length).join("") !== "3210") throw new Error(`settings give ${JSON.stringify(el)}`);
+  }],
+  ["a dial answer the guidance dial disagrees with, or a dial item missing a setting's feedback, is refused", () => {
+    const bad = loadGame({ gameDir: gameCopy("bad-dial", (l) => (l.items.find((i: any) => i.id === "class-y7").answer = "guided"), "select-5-set-dial.yaml") });
+    if (!bad.errors.some((e) => /the Reckoner's guidance dial gives "structured"/.test(e))) throw new Error(`not caught: ${bad.errors.join("; ")}`);
+    const fb = loadGame({ gameDir: gameCopy("bad-dial-fb", (l) => delete l.items.find((i: any) => i.type === "dial").fb.open, "loi-1-who-holds.yaml") });
+    if (!fb.errors.some((e) => /fb has no entry for setting "open"/.test(e))) throw new Error(`not caught: ${fb.errors.join("; ")}`);
+    const rail = gameCopy("bad-dial-rail");
+    const cfg = yaml.load(readFileSync(join(rail, "game.yaml"), "utf8")) as any;
+    cfg.paths.find((p: any) => p.id === "poe").rail = "dial";
+    writeFileSync(join(rail, "game.yaml"), yaml.dump(cfg));
+    if (!loadGame({ gameDir: rail }).errors.some((e) => /rail: dial but its journey guide is not a guidance dial/.test(e))) throw new Error("a dial rail on a sequence guide was accepted");
+  }],
+  ["the dial: switches set the setting, a skipped handover can't be checked, and the dial rail marks one setting", async () => {
+    buildGame({ mode: "review", outDir: join(tmp, "dial") });
+    const { dom, doc, errors } = await openGame(join(tmp, "dial", "game-review.html"));
+    const go = () => doc.getElementById("go") as any;
+    (doc.querySelector('[data-l="loi-1-who-holds"]') as any).click(); go().click();
+    // Walk to the first dial item.
+    for (let n = 0; n < 10 && !doc.querySelector(".dialsw"); n++) {
+      (doc.querySelector(".opts .opt:not([disabled])") as any)?.click(); go().click();
+      if (doc.querySelector(".dock.good, .dock.bad")) go().click();
+    }
+    if (!doc.querySelector(".dialsw")) throw new Error("no dial item reached");
+    const cells = [...doc.querySelectorAll("#rail div")];
+    if (cells.map((d: any) => d.textContent).join("|") !== "Confirmation|Structured|Guided|Open") throw new Error(`rail shows ${cells.map((d: any) => d.textContent).join(", ")}`);
+    if (doc.querySelectorAll("#rail div.now").length !== 1 || doc.querySelectorAll("#rail div.done").length) throw new Error("the dial rail should mark one setting and nothing as done");
+    const sw = [...doc.querySelectorAll(".dialsw .opt")] as any[];
+    if (sw.length !== 3 || sw.some((b) => b.getAttribute("role") !== "switch")) throw new Error("expected three switches");
+    const on = () => doc.querySelector("#dialread .dialcells div.on")?.textContent ?? null;
+    if (on() !== "Open" || go().disabled) throw new Error(`no switches should read Open and be checkable (got ${on()})`);
+    sw[2].click(); // the expected result only: a skipped handover
+    if (on() !== null || !go().disabled) throw new Error("result without method and question should not be a setting");
+    sw[0].click(); sw[1].click(); // all three: confirmation, this item's answer
+    if (on() !== "Confirmation" || sw[0].getAttribute("aria-checked") !== "true") throw new Error(`all three should read Confirmation (got ${on()})`);
+    go().click();
+    if (!doc.querySelector(".dock.good")) throw new Error("the right setting wasn't marked correct");
     if (errors.length) throw new Error(errors.join("; "));
     dom.window.close();
   }],

@@ -1,0 +1,232 @@
+# Levels of inquiry path, lesson 2. Explain level: confirmation and structured. Built on the Levels of inquiry guide's worked sequence seq-s4-reaction-time and its structured and confirmation examples. Draft for Steve's review.
+schemaVersion: 1
+id: loi-2-nothing-at-stake
+path: levels-of-inquiry
+order: 2
+title: Nothing at stake
+summary: Two teachers run the same ruler-catch practical. One sentence at the start turns one of them into a demonstration. Learn why an unknown result matters.
+level: explain
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-10
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4]
+  focusAreas: [Data science 1]
+  disciplines: [integrated]
+outcomes: [SC4-DA1-01]
+builtOn:
+  sequenceIds: [seq-s4-reaction-time]
+  phaseIds: [confirmation, structured]
+  exampleIds: [loi-structured-pos-reaction-time, loi-structured-neg-trend-given, loi-structured-neg-blanks, loi-confirm-pos-microscope]
+  lookForIds: [loi-structured-unknown, loi-structured-interpretation, loi-confirm-purpose, loi-confirm-proportion]
+  misapplicationIds: [mis-loi-hidden-answer, mis-loi-stuck]
+guideSection: phases
+items:
+  - id: case
+    type: case
+    at: structured
+    processing: Retrieval
+    kind: The case
+    title: Is your dominant hand faster?
+    setting:
+      who: Year 7 · Data science · lessons 2–3
+      text: >-
+        Two Year 7 classes in the same school run the same practical. Pairs do the ruler catch ten times with each
+        hand, convert each catch to a time, and pool their results as a class. Same question, same method, same
+        equipment.
+    lead: >-
+      The only difference is the first thing each teacher says. Ms Okafor says nothing about which hand will be
+      faster. Mr Reid opens with, “This will show that your dominant hand is faster, so let's measure how much.”
+    sofar:
+      - phaseId: confirmation
+        when: Lesson 1
+        text: Both classes learned the catch, with the method and the expected range given. The teachers checked finger position.
+    you: You're on placement, and you get to watch both classes.
+
+  - id: predict
+    type: predict
+    at: structured
+    processing: Retrieval
+    kind: Predict
+    title: In both classes, one pair's results come out with the non-dominant hand slightly faster.
+    q: In Mr Reid's class, what does that pair most likely do?
+    options:
+      - text: Report it as a surprising finding
+      - text: Repeat the catches to check
+      - text: Decide they made a mistake, and swap the two columns
+      - text: Ask the teacher what it means
+    answer: 2
+    reveal: >-
+      In the guide's account, the pair swap their columns before handing the sheet in. Once the answer has been
+      given, data that disagrees looks like an error rather than a finding. In Ms Okafor's class, a pair with the
+      same numbers writes that they're not sure there's a difference at all, and says so in their conclusion.
+    why: >-
+      “If two averages differ, there's a real difference” is one of this unit's target conceptions. A named result
+      makes it worse, because students stop looking at their own data.
+
+  - id: dial-reid
+    type: dial
+    at: confirmation
+    processing: Comprehension
+    kind: Set the dial
+    tests: dial
+    vignette:
+      who: Mr Reid's class · Lesson 2
+      text: >-
+        “This will show that your dominant hand is faster, so let's measure how much.” The method is given, pairs
+        do ten catches per hand, and the class graphs the averages.
+    q: Switch on what Mr Reid gives students. Which setting is his practical really at?
+    answer: confirmation
+    fb:
+      confirmation: He gave the result in his first sentence, so the practical has quietly dropped to confirmation. Students measure how much, not whether.
+      structured: It was planned as structured, but naming the result took away the one thing that made it an investigation.
+      guided: The method is given. Nobody designs anything.
+      open: Every part of the task is set by the teacher.
+    refs:
+      exampleIds: [loi-structured-neg-trend-given]
+
+  - id: lf-interpret
+    type: lookfor
+    at: structured
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Ms Okafor's class · Lesson 3
+      text: >-
+        Ms Okafor tells pairs to choose how to show the class data. Most draw a bar chart of the two averages; two
+        groups draw a dot plot for each hand because they want the spread visible. Each pair writes what its own
+        graph shows.
+    answer: loi-structured-interpretation
+    distractors: [loi-structured-unknown, loi-guided-design, loi-confirm-purpose]
+    strong: true
+    hint: Who decides what the data mean?
+    refs:
+      exampleIds: [loi-structured-pos-reaction-time]
+    why: >-
+      At structured level the teacher gives the question and the method, but what the data show is the students'
+      work. Choosing the representation is part of that.
+
+  - id: spread
+    type: choice
+    at: structured
+    processing: Analysis
+    kind: Teacher move
+    tests: structured
+    title: Ms Okafor's class pools its results.
+    table:
+      caption: "Class results, 12 pairs, 120 catches per hand"
+      head: [Hand, Average, Middle half of catches, Fastest to slowest]
+      rows:
+        - [Dominant, 0.19 s, 0.17–0.21 s, 0.13–0.27 s]
+        - [Non-dominant, 0.20 s, 0.18–0.22 s, 0.14–0.29 s]
+    q: The bar-chart groups say the dominant hand is faster. The dot-plot groups say they're not confident there's a difference. What do you do next?
+    options:
+      - text: Tell the dot-plot groups the averages show the dominant hand is faster, so they should change their conclusion
+        fb: That settles it for them, and teaches that a gap between two averages is always a real difference. It's the target conception this unit is meant to challenge.
+      - text: Put one bar chart and one dot plot side by side, and ask the class what each graph shows and what it hides
+        fb: Yes. The averages differ by a hundredth of a second, but the spreads overlap almost completely. Students decide how confident to be, which is the interpretation structured level leaves to them.
+      - text: Mark the dot plots wrong, because the question asked which hand is faster
+        fb: The dot plots answer the question more honestly than the bar charts. Marking them wrong rewards the pairs who looked least at their data.
+      - text: Move on. Both kinds of graph are acceptable
+        fb: Both are acceptable, but the disagreement between them is the best thing that happened all lesson. Moving on wastes it.
+    answer: 1
+    refs:
+      lookForIds: [loi-structured-interpretation]
+
+  - id: dx-blanks
+    type: diagnose
+    at: structured
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A pre-service teacher's worksheet · Year 9 Chemistry
+      text: >-
+        Students are given the method for timing a reaction at four temperatures. The worksheet ends: “This shows
+        that as temperature increases, the rate of reaction ______.”
+    answer: mis-loi-hidden-answer
+    distractors: [mis-loi-stuck, mis-loi-fake-guided, mis-loi-ladder]
+    hint: Who did the interpreting?
+    refs:
+      exampleIds: [loi-structured-neg-blanks]
+      lookForIds: [loi-structured-interpretation]
+    why: >-
+      The blank gives the conclusion away, so the task claims to be an investigation while nothing is at stake.
+      The fix is the same as for Mr Reid: withhold the outcome, and have students predict first.
+
+  - id: dx-stuck
+    type: diagnose
+    at: confirmation
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A Year 8 term plan
+      text: >-
+        Nine practicals across the term. In eight, students follow a method to show what was taught the lesson
+        before, and the expected result is on the sheet. Nobody plans a test or decides what data mean until Year 9.
+    answer: mis-loi-stuck
+    distractors: [mis-loi-hidden-answer, mis-loi-ladder, mis-loi-no-checkpoint]
+    refs:
+      lookForIds: [loi-confirm-proportion]
+    why: >-
+      Any one of these practicals might be fine. A whole term of them means students never plan, decide or
+      interpret. The guide's fix is to plan the progression across the unit and the stage, not lesson by lesson.
+
+  - id: when-confirm
+    type: choice
+    at: confirmation
+    processing: Comprehension
+    kind: When is it right?
+    tests: confirmation
+    title: Confirmation isn't always a mistake.
+    q: Which of these is the best use of a confirmation practical?
+    options:
+      - text: Showing that a leaf kept in the dark makes no starch, after a lesson on photosynthesis
+        fb: The concept was taught yesterday, so the practical only verifies it. The guide uses this as its example of confirmation done badly.
+      - text: Learning to prepare an onion-skin slide and focus a microscope, knowing what the cells should look like
+        fb: Yes. The skill is the target, so it's right to give the expected result. The teacher's attention goes on technique.
+      - text: Checking that the dominant hand is faster, with the result named first
+        fb: That's Mr Reid's practical. The question is a content question with a genuinely unknown answer, so naming it wastes it.
+      - text: Any practical where time is short
+        fb: Short practicals can still keep the result unknown. Lack of time is a reason for structured, not confirmation.
+    answer: 1
+    refs:
+      exampleIds: [loi-confirm-pos-microscope]
+      lookForIds: [loi-confirm-purpose]
+
+  - id: dial-micro
+    type: dial
+    at: confirmation
+    processing: Comprehension
+    kind: Set the dial
+    tests: dial
+    vignette:
+      who: Year 7 · Cells and classification
+      text: >-
+        Students follow a printed procedure to prepare and focus an onion slide. They've been told they should see
+        rectangular cells with visible walls. The teacher checks slide preparation and focusing at every bench.
+    q: Switch on what the teacher gives students. Which setting is this?
+    answer: confirmation
+    fb:
+      confirmation: Everything is given, and rightly. The learning target is the technique, and the practical is short.
+      structured: Students are told what they'll see, so the result isn't unknown. That's fine here, since the point is the microscope.
+      guided: The procedure is printed. Nobody designs a method.
+      open: Students choose nothing here, and that's the point. It's a technique lesson.
+    refs:
+      exampleIds: [loi-confirm-pos-microscope]
+
+  - id: reflect
+    type: reflect
+    at: structured
+    processing: Metacognition
+    kind: Look back
+    title: One sentence.
+    q: Mr Reid's first sentence turned an investigation into a demonstration. Write the first two sentences you'd say to open the same practical.
+    model: "Example: “Some people think one hand is faster than the other. Before you catch a single ruler, write down which hand you think will win, and by how much.”"
+    recall: predict

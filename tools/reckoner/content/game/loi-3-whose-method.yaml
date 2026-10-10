@@ -1,0 +1,257 @@
+# Levels of inquiry path, lesson 3. Explain level: guided and open. Built on the Levels of inquiry guide's worked sequence seq-s4-reaction-time and its guided and open examples. Draft for Steve's review.
+schemaVersion: 1
+id: loi-3-whose-method
+path: levels-of-inquiry
+order: 3
+title: Whose method is it?
+summary: Hand over the method, then the question. Learn what a plan conference is for, and how to tell guided inquiry from a form with boxes.
+level: explain
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-10
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4]
+  focusAreas: [Data science 1]
+  disciplines: [integrated]
+outcomes: [SC4-DA1-01]
+builtOn:
+  sequenceIds: [seq-s4-reaction-time]
+  phaseIds: [guided, open]
+  exampleIds: [loi-guided-pos-germination, loi-guided-neg-funnel, loi-open-pos-depthstudy]
+  lookForIds: [loi-guided-design, loi-guided-checkpoint, loi-open-question, loi-open-readiness]
+  misapplicationIds: [mis-loi-fake-guided, mis-loi-no-checkpoint]
+guideSection: phases
+items:
+  - id: case
+    type: case
+    at: guided
+    processing: Retrieval
+    kind: The case
+    title: Does practice make you faster?
+    setting:
+      who: Year 7 · Data science · lessons 4–6
+      text: >-
+        The class now asks whether practice improves reaction time, and whether they can predict someone's time
+        after thirty catches. Each group plots time against catch number in a spreadsheet, fits a trend line, uses
+        it to predict the next five catches, then does them.
+    lead: >-
+      For the first time, the teacher doesn't hand over a method. Groups decide how many catches, how long to rest
+      and how to record. Then, in lessons 7–10, they'll choose the question too.
+    sofar:
+      - phaseId: confirmation
+        when: Lesson 1
+        text: The catch, with the method and the expected range given.
+      - phaseId: structured
+        when: Lessons 2–3
+        text: “Is your dominant hand faster?” Method given; the class decided what the data showed.
+    you: You're on placement, and your supervisor has asked you to run the plan conferences.
+
+  - id: predict
+    type: predict
+    at: guided
+    processing: Retrieval
+    kind: Predict
+    title: "Two Year 7 classes do the practice investigation. Class A gets a planning sheet that names the variable, thirty catches and the results table. Class B gets the question and the equipment, and a five-minute plan conference per group."
+    q: Which class is more likely to be able to design a fair test of their own by the end of the term?
+    options:
+      - text: Class A, because every group's method is sound
+      - text: Class B, because they practise making design decisions
+      - text: No difference, because both classes collect the same data
+    answer: 1
+    reveal: >-
+      Class B. Class A's groups copy a design into boxes, so they practise transcription, not design. Class B's
+      methods differ, some are weaker, and the conference is where groups learn why. The guide calls Class A's
+      version guided inquiry in name only.
+    why: >-
+      A planning sheet feels like support. Whether it is depends on whether it leaves the decisions to students.
+
+  - id: dial-sheet
+    type: dial
+    at: structured
+    processing: Comprehension
+    kind: Set the dial
+    tests: dial
+    vignette:
+      who: Class A · Lesson 4
+      text: >-
+        The planning sheet reads: “Independent variable: catch number. Number of catches: 30. Rest between rounds:
+        1 minute. Record in the table below.” Groups fill in their names and start.
+    q: The lesson plan says “guided inquiry”. Switch on what the teacher actually gives. Which setting is it?
+    answer: structured
+    fb:
+      confirmation: The result isn't given. Groups still don't know whether practice helps, or how much.
+      structured: The sheet gives the method as well as the question, so it's structured with a planning sheet on top. Nothing is wrong with structured, but students aren't designing.
+      guided: The lesson plan says guided, but the sheet makes every design decision. Students transcribe a method instead of making one.
+      open: The question and the method are both set.
+    refs:
+      exampleIds: [loi-guided-neg-funnel]
+      misapplicationIds: [mis-loi-fake-guided]
+
+  - id: lf-conference
+    type: lookfor
+    at: guided
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Class B · Lesson 4 · a plan conference
+      text: >-
+        The teacher reads a group's plan and asks two questions: “Your first five catches will be slow while you
+        warm up. How will you keep that from hiding the effect of practice? And how long will you rest between
+        rounds?” The group adds a warm-up round and a two-minute rest.
+    answer: loi-guided-checkpoint
+    distractors: [loi-guided-design, loi-structured-interpretation, loi-open-question]
+    strong: true
+    hint: When is this happening, and what is the teacher checking?
+    why: >-
+      The conference comes before collection and asks about reliability, not whether the plan matches the
+      teacher's own. The group's method is still theirs.
+
+  - id: conference
+    type: multi
+    at: guided
+    processing: Analysis
+    kind: The plan conference
+    tests: guided
+    title: Five minutes with each group before they start.
+    q: Which of these belong in a plan conference at guided level? Select every one that does.
+    options:
+      - text: “How many catches will you do, and why that many?”
+        ok: true
+        fb: Yes. Reliability is the group's decision, and the conference asks them to justify it.
+      - text: “Who's catching, and has everyone agreed to be tested?”
+        ok: true
+        fb: Yes. This is data about students. Consent, and the option to be the tester instead, belong in the plan.
+      - text: “Here's a better method. Use this one instead.”
+        ok: false
+        fb: That redesigns the plan for them, and the practical drops to structured.
+      - text: “How will you keep the rest between rounds the same?”
+        ok: true
+        fb: Yes. A controlled-variable question that leaves the design with the group.
+      - text: “Is your prediction going to be right?”
+        ok: false
+        fb: Nobody knows yet, including you. Predictions are recorded, not checked.
+    refs:
+      lookForIds: [loi-guided-checkpoint, loi-guided-design]
+
+  - id: trend
+    type: choice
+    at: guided
+    processing: Analysis
+    kind: Teacher move
+    tests: guided
+    title: Priya's group fitted a trend line to their first 25 catches and predicted the next five.
+    table:
+      caption: Priya's group, average of each block of five catches
+      head: [Catches, Average time]
+      rows:
+        - [1–5, 0.26 s]
+        - [6–10, 0.23 s]
+        - [11–15, 0.21 s]
+        - [16–20, 0.20 s]
+        - [21–25, 0.20 s]
+        - [26–30 predicted, 0.18 s]
+        - [26–30 measured, 0.20 s]
+    q: Priya says, “Our prediction was wrong, so our line was wrong.” What do you ask?
+    options:
+      - text: “Change your prediction to 0.20 s so it matches.”
+        fb: That turns the prediction into a description of data they already have. Testing against new data is what makes it a prediction.
+      - text: “Look at the last three blocks. What was happening to your times, and what does a straight line assume?”
+        fb: Yes. Their times levelled off after twenty catches, and a straight line assumes they keep improving. Priya's group now has something real to write about the limits of their model.
+      - text: “It was close enough, so the line is fine.”
+        fb: It might be, but you've answered for them. The interesting question is why the line overshot.
+      - text: “Everyone's reaction time is different, so you can't predict it.”
+        fb: The data say otherwise. Times did fall with practice. The question is the shape of that fall.
+    answer: 1
+
+  - id: dx-checkpoint
+    type: diagnose
+    at: guided
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: Another class · Lesson 4
+      text: >-
+        Groups write plans and start straight away while the teacher sets up the spreadsheet. Twenty minutes in, she
+        finds one group spinning a classmate on a chair first, to see if dizziness slows the catch.
+    answer: mis-loi-no-checkpoint
+    distractors: [mis-loi-fake-guided, mis-loi-ladder, mis-loi-stuck]
+    hint: What should have happened before anyone started?
+    why: >-
+      Handing over the design isn't handing over responsibility for safety and feasibility. A short conference on
+      every plan, before collection, catches this before it happens.
+    refs:
+      lookForIds: [loi-guided-checkpoint]
+
+  - id: lf-open-question
+    type: lookfor
+    at: open
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 7 · Lesson 7 · a question conference
+      text: >-
+        A group wants to know “Does music make you smarter?” The teacher asks what part of that they could measure
+        with a ruler in two lessons. They settle on: “Do people catch faster in silence or with music playing?”
+    answer: loi-open-question
+    distractors: [loi-open-readiness, loi-guided-checkpoint, loi-structured-unknown]
+    strong: true
+    why: >-
+      The question is still the group's, and now it can be answered with the time and equipment they have. That's
+      what the question conference is for.
+
+  - id: lf-readiness
+    type: lookfor
+    at: open
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Year 10 · Environmental sustainability
+      text: >-
+        After a guided investigation sampling invertebrates on the school oval, students pose their own question
+        about a local site and run a four-lesson depth study, with checkpoints on the plan, the data and the draft.
+    answer: loi-open-readiness
+    distractors: [loi-open-question, loi-guided-design, loi-confirm-proportion]
+    strong: true
+    hint: What did these students do just before this?
+    refs:
+      exampleIds: [loi-open-pos-depthstudy]
+    why: >-
+      Open level follows success at guided with the same content and techniques. The reaction-time unit does the
+      same on a smaller scale: six lessons with the catch before students choose a question about it.
+
+  - id: groups
+    type: choice
+    at: guided
+    processing: Knowledge utilisation
+    kind: Teacher move
+    tests: guided
+    title: At the plan conferences, four groups have sound plans. Two groups can't yet say what they'd keep the same between rounds.
+    q: What do you do?
+    options:
+      - text: Hold the whole class at guided for another cycle
+        fb: The four ready groups lose a lesson they don't need.
+      - text: Give the two groups a structured version with a method sheet, and let the other four design their own
+        fb: Yes. The guide says the level can differ per group in the same lesson. The two groups get the support they need without capping everyone else.
+      - text: Move everyone to open as planned. The two groups will learn by doing
+        fb: Open needs design routines in place. Those two groups would spend lesson 7 deciding what to do.
+      - text: Fix the two groups' plans for them and let them start
+        fb: Their plans work, but they've learned nothing about design, and their method isn't theirs.
+    answer: 1
+
+  - id: reflect
+    type: reflect
+    at: guided
+    processing: Metacognition
+    kind: Look back
+    title: A form with boxes.
+    q: Think of a planning sheet you've seen or used. Which boxes made a design decision for students, and what would you change so it supports them without deciding for them?
+    model: "Example: “It had ‘Number of trials: 3’ printed in. I'd change it to ‘How many trials will you do, and why?’, with a hint about checking whether results agree.”"
+    recall: predict

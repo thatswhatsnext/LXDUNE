@@ -1,0 +1,201 @@
+# Choosing a model, lesson 5. Levels of inquiry joins as a dial set inside the chosen model. Dial answers are checked against the Reckoner's own guidance dial (the Levels of inquiry guide's dialHeuristic) at build time. Draft for Steve's review.
+schemaVersion: 1
+id: select-5-set-dial
+path: select
+order: 5
+title: Set the dial
+summary: Choosing the model is half the decision. Set the guidance dial for four classes, find the one answer that caps it, and place it inside the model.
+level: select
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-10
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4, stage5]
+  focusAreas: [Data science 1, Living systems, Environmental sustainability, Forces]
+  disciplines: [integrated, biology, physics]
+requires:
+  - path: levels-of-inquiry
+    level: explain
+builtOn: {}
+items:
+  - id: predict
+    type: predict
+    at: engage
+    processing: Retrieval
+    kind: Predict
+    title: "A confident teacher, a Year 7 class who are new to inquiry, and a whole term for a depth study."
+    q: Where does the Reckoner's guidance dial start this class?
+    options:
+      - text: Confirmation
+      - text: Structured
+      - text: Guided
+      - text: Open
+    answer: 1
+    reveal: >-
+      Structured. Confidence and a long timescale would put this class at guided, but the dial has one cap: with
+      novices it never goes above structured, however much time or confidence there is. Open-ended work uses up a
+      novice's working memory on managing the task.
+    why: >-
+      The dial suggests a starting point, not a ceiling for the year. A class that succeeds at structured can move
+      up, on the evidence.
+
+  - id: class-y9
+    type: dial
+    at: explore
+    processing: Analysis
+    kind: Set the dial
+    tests: dial
+    vignette:
+      who: Year 9 · Living systems
+      text: >-
+        A Year 9 class who have designed a few fair tests before, a teacher who's moderately confident running
+        open-ended work, and a 6–15 lesson unit on what affects seed germination.
+    profile:
+      ready: developing
+      conf: mod
+      time: unit
+    q: Switch on what you'd give students, to start where the Reckoner's guidance dial would.
+    answer: guided
+    fb:
+      confirmation: The dial never suggests confirmation for a content investigation. That setting is for technique.
+      structured: A safe start, but this class has designed tests before and there's a whole unit. The dial gives each answer a point, for 3 of 6.
+      guided: Developing learners, moderate confidence and a unit each score one point, for 3 of 6. Give the question; groups design the method.
+      open: Open needs more readiness, confidence or time than this class has. The dial puts 3 of 6 at guided.
+
+  - id: class-y10
+    type: dial
+    at: explore
+    processing: Analysis
+    kind: Set the dial
+    tests: dial
+    vignette:
+      who: Year 10 · Environmental sustainability
+      text: >-
+        Experienced inquirers who ran guided investigations all last year, a confident teacher, and a term-long
+        depth study on a local creek.
+    profile:
+      ready: experienced
+      conf: high
+      time: depth
+    q: Switch on what you'd give students, to start where the Reckoner's guidance dial would.
+    answer: open
+    fb:
+      confirmation: The dial never suggests confirmation for a content investigation.
+      structured: This class has succeeded at guided already. Holding them at structured gives them less to do than they can.
+      guided: Reasonable, but every answer scores the maximum. The dial suggests open, with a question conference.
+      open: All three answers score 2, for 6 of 6. Students pose the question, after succeeding at guided with similar content.
+
+  - id: class-y7
+    type: dial
+    at: explore
+    processing: Analysis
+    kind: Set the dial
+    tests: dial
+    vignette:
+      who: Year 7 · Data science
+      text: >-
+        A Year 7 class in their first term of high school science, a teacher who's confident running open-ended
+        work, and a 6–15 lesson unit on reaction time.
+    profile:
+      ready: novice
+      conf: high
+      time: unit
+    q: Switch on what you'd give students, to start where the Reckoner's guidance dial would.
+    answer: structured
+    fb:
+      confirmation: The dial never suggests confirmation for a content investigation, though a technique lesson can open the unit.
+      structured: The score is 3 of 6, which would be guided, but the novice cap holds it at structured. Give the question and the method; keep the result unknown.
+      guided: The score says guided, but these are novices, and the dial caps novices at structured.
+      open: Open with novices is the ladder misapplication. The cap stops the dial going above structured.
+
+  - id: class-y8
+    type: dial
+    at: explore
+    processing: Analysis
+    kind: Set the dial
+    tests: dial
+    vignette:
+      who: Year 8 · Forces
+      text: >-
+        A Year 8 class who have done a couple of fair tests, a teacher still building confidence with open-ended
+        work, and one lesson on what slows a falling object.
+    profile:
+      ready: developing
+      conf: low
+      time: lesson
+    q: Switch on what you'd give students, to start where the Reckoner's guidance dial would.
+    answer: structured
+    fb:
+      confirmation: Even in one lesson, the result can stay unknown. Confirmation is for technique.
+      structured: Developing learners score 1; low confidence and one lesson score 0. A total of 1 sits at structured.
+      guided: One lesson can't hold a plan conference, a data run and a revision. The dial puts a score of 1 at structured.
+      open: Open needs time for false starts, and this class has one lesson.
+
+  - id: cap
+    type: choice
+    at: explain
+    processing: Analysis
+    kind: Move the dial
+    tests: dial
+    title: The Year 9 germination class starts at guided.
+    q: Which single change would move the dial down to structured?
+    options:
+      - text: The teacher is still building confidence
+        fb: Confidence drops by a point, to 2 of 6. That's still guided.
+      - text: The class are novices
+        fb: Yes. Readiness drops by a point, to 2 of 6, which is still guided on the score. But novices are capped at structured, and readiness is the only answer with a cap.
+      - text: It's 2–5 lessons instead of a unit
+        fb: Time drops by a point, to 2 of 6. That's still guided.
+      - text: It's a term-long depth study instead of a unit
+        fb: Time goes up a point, to 4 of 6. That's still guided.
+    answer: 1
+    why: >-
+      Guidance helps most when students know least. That's the strongest evidence behind the dial, which is why
+      readiness can override the score.
+
+  - id: never-confirm
+    type: choice
+    at: explain
+    processing: Comprehension
+    kind: Why?
+    tests: dial
+    title: The guidance dial never suggests confirmation.
+    q: Why not?
+    options:
+      - text: Confirmation is always poor teaching
+        fb: It isn't. It's the right setting for learning a technique.
+      - text: The dial suggests a setting for a content investigation, and confirmation is for technique rather than content
+        fb: Yes. When the point is a skill, like focusing a microscope, you choose confirmation yourself. The dial is for investigations where there's something to find out.
+      - text: Confirmation takes too long
+        fb: Confirmation practicals are usually the shortest kind.
+      - text: Students can't predict at confirmation
+        fb: They can, but there's nothing to predict. The result is given.
+    answer: 1
+
+  - id: nest
+    type: nest
+    at: elaborate
+    processing: Knowledge utilisation
+    kind: Nest it
+    tests: nesting
+    model: levels-of-inquiry
+    host: 5e
+    answer: explore
+    q: Your Year 9 class is running a 5E sequence on germination, and you've set the dial to guided. Where does the dial do its work inside 5E?
+    why: >-
+      The dial isn't a model of its own. It sets how much of the Explore investigation you specify, so the same 5E
+      sequence can run at structured with one class and guided with another.
+
+  - id: reflect
+    type: reflect
+    at: evaluate
+    processing: Metacognition
+    kind: Look back
+    title: Your own class.
+    q: Think of a class you've taught or observed. Where would you set the dial for their next practical, and what would you need to see before moving it up?
+    model: "Example: “Structured. They're Year 8 and haven't designed a test yet. Before guided, I'd want to see most groups predict, collect and say what their data show without me filling in the conclusion.”"
+    recall: predict

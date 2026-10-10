@@ -28,6 +28,13 @@ paths:
     requires:
       - path: poe
         level: explain
+  - id: levels-of-inquiry
+    title: Levels of inquiry path
+    blurb: Not a model but a dial you set inside one. How much of the question, the method and the answer do you hand over, to these students, now? Higher isn't better.
+    rail: dial
+    requires:
+      - path: 5e
+        level: explain
   - id: select
     kind: select
     title: Choosing a model

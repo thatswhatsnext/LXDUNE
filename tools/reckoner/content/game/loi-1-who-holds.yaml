@@ -1,0 +1,247 @@
+# Levels of inquiry path, lesson 1. Built on the Levels of inquiry guide's worked sequence seq-s4-reaction-time and its level examples. Draft for Steve's review.
+schemaVersion: 1
+id: loi-1-who-holds
+path: levels-of-inquiry
+order: 1
+title: Who holds the question?
+summary: A ruler, a catch and ten lessons of a Year 7 unit. Read each practical for what the teacher gives students, and set the dial.
+level: recognise
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-10
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4]
+  focusAreas: [Data science 1]
+  disciplines: [integrated]
+outcomes: [SC4-DA1-01]
+builtOn:
+  sequenceIds: [seq-s4-reaction-time]
+  phaseIds: [confirmation, structured, guided, open]
+  exampleIds: [loi-structured-pos-reaction-time, loi-confirm-neg-verify, loi-open-neg-cold]
+  lookForIds: [loi-structured-unknown, loi-confirm-purpose, loi-open-readiness]
+  misapplicationIds: [mis-loi-ladder]
+guideSection: sequences
+items:
+  - id: case
+    type: case
+    at: confirmation
+    processing: Retrieval
+    kind: The case
+    title: How fast can you react?
+    setting:
+      who: Year 7 · Data science · ten lessons
+      text: >-
+        A Year 7 class is starting a short data science unit. One student holds a 30 cm ruler above a partner's open
+        hand and lets go without warning; the partner catches it as fast as they can. How far the ruler falls tells
+        you how long they took to react.
+    lead: >-
+      The same ruler catch runs through all ten lessons. What changes is how much the teacher hands students:
+      the question, the method, the expected result, or none of them. Those choices are the levels of inquiry.
+      This lesson reads each practical in the unit for what the teacher gives.
+    you: You're a pre-service teacher on placement, planning the unit with your supervising teacher.
+
+  - id: predict
+    type: predict
+    at: guided
+    processing: Retrieval
+    kind: Predict
+    title: "A colleague says the best practicals are open ones: students choose the question and design the method themselves."
+    q: For a Year 7 class meeting new content, which kind of practical tends to produce the most learning?
+    options:
+      - text: Open. Students choose the question and the method
+      - text: Guided. The teacher gives the question; students design the method
+      - text: Confirmation. Students follow a method to check a result they already know
+      - text: It makes no difference
+    answer: 1
+    reveal: >-
+      Guided. Meta-analyses find guided inquiry beats both unguided discovery and practicals that verify a known
+      result. Open inquiry with novices uses up their working memory on deciding what to do, so less science is
+      learned. Higher isn't better. The skill is choosing the setting that makes these students think hardest
+      about the science.
+    why: >-
+      “Treating the levels as a ladder” is the guide's first misapplication. It's tempting because open inquiry
+      looks like the most scientific kind of teaching.
+
+  - id: concept
+    type: concept
+    at: structured
+    processing: Retrieval
+    kind: The dial
+    title: Levels of inquiry
+    lead: >-
+      Levels of inquiry isn't a teaching model with phases to run. It's a dial you set inside a model, for example
+      in the Explore phase of a 5E sequence. Each setting is defined by what the teacher gives students. Each
+      step up hands over one more thing: first the expected result, then the method, then the question.
+    rows:
+      - phaseId: confirmation
+        does: "Gives: the question, the method and the expected result."
+        move: "Use it for technique, when the skill is the point."
+      - phaseId: structured
+        does: "Gives: the question and the method. The result is unknown."
+        move: "Students predict first, then interpret their own data."
+      - phaseId: guided
+        does: "Gives: the question. Students design the method."
+        move: "Conference every plan before collection."
+      - phaseId: open
+        does: "Gives: none of the three. Students pose the question too."
+        move: "Best after success at guided with this content."
+    cite: "Banchi, H., & Bell, R. (2008). The many levels of inquiry. Science and Children, 46(2), 26–29."
+
+  - id: dial-catch
+    type: dial
+    at: confirmation
+    processing: Comprehension
+    kind: Set the dial
+    tests: dial
+    vignette:
+      who: Year 7 · Lesson 1
+      text: >-
+        The teacher demonstrates the catch: thumb and finger level with the zero mark, release without warning,
+        ten catches each. Students convert each distance to a time with a supplied graph, and the teacher says
+        most people land between 0.15 and 0.25 seconds. She walks round checking finger position.
+    q: Switch on what the teacher gives students. Which setting is this?
+    answer: confirmation
+    fb:
+      confirmation: Question, method and expected range are all given, because the point of this lesson is the technique. Later data is only worth modelling if the catches are done the same way.
+      structured: The expected range is given before anyone catches, so the result isn't unknown. That makes it confirmation, which is right here because the target is technique.
+      guided: Nobody designs a method. The teacher demonstrates it.
+      open: Students don't choose anything here. Every part of the task is set.
+    refs:
+      lookForIds: [loi-confirm-purpose]
+
+  - id: dial-hands
+    type: dial
+    at: structured
+    processing: Comprehension
+    kind: Set the dial
+    tests: dial
+    vignette:
+      who: Year 7 · Lessons 2–3
+      text: >-
+        “Is your dominant hand faster?” The method is the same catch, ten times per hand. The teacher doesn't say
+        which hand will win or by how much. Pairs write a prediction, pool twenty results each as a class, then
+        choose how to graph the data and write what it shows.
+    q: Switch on what the teacher gives students. Which setting is this?
+    answer: structured
+    fb:
+      confirmation: The teacher never says which hand is faster, so the result is still unknown to students.
+      structured: Question and method are given because the technique is fiddly, but the result stays unknown. Predicting, graphing and interpreting are the students' work.
+      guided: The method is given. Students don't design it.
+      open: The teacher sets the question here.
+    refs:
+      exampleIds: [loi-structured-pos-reaction-time]
+
+  - id: dial-practice
+    type: dial
+    at: guided
+    processing: Comprehension
+    kind: Set the dial
+    tests: dial
+    vignette:
+      who: Year 7 · Lessons 4–6
+      text: >-
+        “Does practice improve reaction time, and can we predict a score after thirty catches?” Each group decides
+        how many catches to do, how long to rest between rounds and how to record. The teacher meets every group
+        to talk through its plan before anyone starts.
+    q: Switch on what the teacher gives students. Which setting is this?
+    answer: guided
+    fb:
+      confirmation: Nothing about the result is given. Groups don't even share a method.
+      structured: The method isn't supplied. Groups design it, so their plans can differ.
+      guided: The question is set; the design is each group's. The plan conference checks safety and reliability without handing them a method.
+      open: The teacher still sets the question.
+
+  - id: dial-own
+    type: dial
+    at: open
+    processing: Comprehension
+    kind: Set the dial
+    tests: dial
+    vignette:
+      who: Year 7 · Lessons 7–10
+      text: >-
+        Each group poses its own question about reaction time, such as a sound cue against a light cue, or catching
+        with and without a distraction. The teacher talks each question through for whether it can be answered,
+        then groups plan, collect and report.
+    q: Switch on what the teacher gives students. Which setting is this?
+    answer: open
+    fb:
+      confirmation: Students choose the question, the method and what they expect.
+      structured: Groups choose both the question and the method.
+      guided: The question belongs to each group. The teacher's conference shapes it but doesn't set it.
+      open: The question is the group's own, after six lessons of catches at lower settings. That's why it can work in Year 7.
+
+  - id: lf-unknown
+    type: lookfor
+    at: structured
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: Another Year 7 class · Lesson 2
+      text: >-
+        Before anyone catches, the class's predictions are on the board: eleven pairs think the dominant hand will
+        be faster, six think there'll be no difference, and two think the other hand will win.
+    answer: loi-structured-unknown
+    distractors: [loi-structured-interpretation, loi-confirm-purpose, loi-guided-design]
+    strong: true
+    hint: What do the varied predictions tell you about what students already know?
+    why: >-
+      If every pair predicted the same thing, the answer would already be known and the practical would be checking
+      it, not investigating it.
+
+  - id: lf-verify
+    type: lookfor
+    at: confirmation
+    processing: Analysis
+    kind: Match the look-for
+    tests: lookfor
+    vignette:
+      who: A Year 7 practical
+      text: >-
+        After a lesson on photosynthesis, students follow a procedure to show that a leaf kept in the dark makes no
+        starch. The conclusion is already printed at the bottom of the worksheet.
+    answer: loi-confirm-purpose
+    distractors: [loi-confirm-proportion, loi-structured-interpretation, loi-open-readiness]
+    strong: false
+    hint: What is this practical for?
+    refs:
+      exampleIds: [loi-confirm-neg-verify]
+    why: >-
+      Confirmation is the right setting when the point is a technique. Here the point is a concept students were
+      told yesterday, so nothing is at stake and students follow steps without thinking.
+
+  - id: dx-ladder
+    type: diagnose
+    at: open
+    processing: Analysis
+    kind: Diagnose the plan
+    tests: misapplication
+    vignette:
+      who: A pre-service teacher's plan · Year 7, week 2
+      text: >-
+        “Investigate anything you like about dissolving.” There's been no shared practical yet, no lesson on fair
+        tests, and no conference on questions. Most groups spend the lesson deciding what to do.
+    answer: mis-loi-ladder
+    distractors: [mis-loi-stuck, mis-loi-fake-guided, mis-loi-hidden-answer]
+    hint: What hasn't this class done yet?
+    refs:
+      exampleIds: [loi-open-neg-cold]
+      lookForIds: [loi-open-readiness]
+    why: >-
+      Open inquiry as a first encounter with new content. In the reaction-time unit, students reached open only
+      after a technique lesson, a structured practical and a guided design with the same catch.
+
+  - id: reflect
+    type: reflect
+    at: open
+    processing: Metacognition
+    kind: Look back
+    title: Higher isn't better.
+    q: Think of a practical you did at school. Which of the question, the method and the result were you given, and what did that let you learn?
+    model: "Example: “We were given all three for the flame test, which was fine because learning to hold the wire loop in the flame was the point. But we never designed a test until Year 11, and I had no idea how many trials to do.”"
+    recall: predict

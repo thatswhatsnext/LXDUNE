@@ -1,0 +1,175 @@
+# Levels of inquiry path, lesson 4. Design level: build a ten-lesson progression from cards and read the feature report. Built on the Levels of inquiry guide's worked sequence seq-s4-reaction-time. Draft for Steve's review.
+schemaVersion: 1
+id: loi-4-build
+path: levels-of-inquiry
+order: 4
+title: "Build it: the progression"
+summary: Build the reaction-time unit's progression from activity and check cards, one setting at a time, then read what the guide's look-fors say about it.
+level: design
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-10
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4]
+  focusAreas: [Data science 1]
+  disciplines: [integrated]
+outcomes: [SC4-DA1-01]
+builtOn:
+  sequenceIds: [seq-s4-reaction-time]
+  phaseIds: [confirmation, structured, guided, open]
+  lookForIds: [loi-confirm-purpose, loi-confirm-proportion, loi-structured-unknown, loi-structured-interpretation, loi-guided-design, loi-guided-checkpoint, loi-open-question, loi-open-readiness]
+  misapplicationIds: [mis-loi-ladder, mis-loi-stuck, mis-loi-fake-guided, mis-loi-hidden-answer, mis-loi-no-checkpoint]
+guideSection: checklist
+items:
+  - id: rubric
+    type: concept
+    at: confirmation
+    processing: Retrieval
+    kind: Before you build
+    title: What the report will look for
+    lead: >-
+      Your unit is ten lessons of Year 7 data science, all built on the ruler catch. Place one activity at each
+      setting, and spread the check cards where they're needed. A card counts only at the setting whose job it
+      does, and some cards look efficient but bring a known problem with them.
+    rows:
+      - phaseId: confirmation
+        does: Technique, with everything given. Short.
+        move: "Watch for: a concept being verified."
+      - phaseId: structured
+        does: Question and method given; the result unknown.
+        move: "Watch for: the answer named first."
+      - phaseId: guided
+        does: Question given; groups design the method.
+        move: "Watch for: a form that designs it for them."
+      - phaseId: open
+        does: Students pose the question too.
+        move: "Watch for: open as the first thing they do."
+
+  - id: board
+    type: build
+    at: guided
+    processing: Knowledge utilisation
+    kind: Build the plan
+    tests: design
+    title: Build your progression.
+    brief:
+      who: Year 7 · Data science · ten lessons
+      text: "The context: the ruler catch, and the question of whether data can describe, model and predict something as variable as reaction time."
+    q: Place one activity at each setting, and check cards where they'll catch problems. Not every card belongs in a strong progression.
+    cards:
+      - id: c-catch
+        text: "Lesson 1: the catch, demonstrated, with the method and the expected range given. Ten catches each, converted to times with a supplied graph"
+        does: confirmation
+        features: [loi-confirm-purpose, loi-confirm-proportion]
+      - id: c-verify
+        text: "Lesson 1: a printed procedure to show that reaction time improves with practice, with the conclusion at the bottom of the sheet"
+        does: confirmation
+        flaws: [mis-loi-stuck]
+      - id: s-named
+        text: "Lessons 2–3: “This will show that your dominant hand is faster, so let's measure how much.” Pairs graph the two averages"
+        does: structured
+        flaws: [mis-loi-hidden-answer]
+      - id: s-hands
+        text: "Lessons 2–3: “Is your dominant hand faster?” Method given, no result named. Pairs predict, pool their catches, choose how to graph them and write what they show"
+        does: structured
+        features: [loi-structured-unknown, loi-structured-interpretation]
+      - id: g-sheet
+        text: "Lessons 4–6: does practice help? A planning sheet names the variable, thirty catches, one-minute rests and the results table"
+        does: guided
+        flaws: [mis-loi-fake-guided]
+      - id: g-design
+        text: "Lessons 4–6: does practice help, and can you predict catch 30? Groups decide catches, rests and recording, so methods differ; they fit a trend line and test it on new catches"
+        does: guided
+        features: [loi-guided-design]
+      - id: o-cold
+        text: "Lesson 2: “Investigate anything you like about reaction time.” Groups start planning straight away"
+        does: open
+        flaws: [mis-loi-ladder]
+      - id: o-own
+        text: "Lessons 7–10: each group poses its own question about the catch, such as sound against light cues, then plans, collects, models and reports"
+        does: open
+        features: [loi-open-question, loi-open-readiness]
+      - id: k-technique
+        kind: check
+        text: "Technique observed against a checklist"
+      - id: k-predict
+        kind: check
+        text: "Predictions written before any catches"
+      - id: k-plan
+        kind: check
+        text: "A plan conference with every group on catches, rests and consent, before collection"
+      - id: k-question
+        kind: check
+        text: "A question conference on feasibility and ethics before work starts"
+    report: [loi-confirm-purpose, loi-confirm-proportion, loi-structured-unknown, loi-structured-interpretation, loi-guided-design, loi-guided-checkpoint, loi-open-question, loi-open-readiness]
+    missing:
+      guided: mis-loi-ladder
+    formative:
+      lookFor: loi-guided-checkpoint
+      flag: mis-loi-no-checkpoint
+      minPhases: 3
+    hint: Read each card for what students decide, not the setting it sounds like.
+    why: >-
+      Each setting hands over one more thing, and the same catch runs throughout, so the climb in independence
+      isn't also a climb in content. That's the progression the guide's worked sequence builds.
+
+  - id: move-up
+    type: choice
+    at: guided
+    processing: Knowledge utilisation
+    kind: Teacher move
+    tests: design
+    vignette:
+      who: Lesson 6 · plan conferences for the next round
+      text: >-
+        Your progression says lessons 7–10 are open. At the conferences, most groups still can't say how they'd keep
+        warm-up and rest the same between rounds, and their trend lines are fitted to noisy data.
+    q: What do you do with lessons 7–10?
+    options:
+      - text: Go to open as planned. The timetable is set and the report is due
+        fb: Open inquiry with design routines that aren't in place yet. The guide warns against treating the progression as a fixed timetable.
+      - text: Run another guided cycle with a new question about the catch, then decide about open on what the conferences show
+        fb: Yes. Move up on evidence, not on schedule. A second guided cycle builds the controls students will need when the question is theirs too.
+      - text: Drop back to confirmation and demonstrate the right method
+        fb: That hands back everything, including the design decisions they're halfway to making.
+      - text: Give everyone the same method sheet and call it open
+        fb: That's the planning-sheet problem again, with a new label.
+    answer: 1
+    refs:
+      lookForIds: [loi-open-readiness]
+
+  - id: cut
+    type: choice
+    at: structured
+    processing: Knowledge utilisation
+    kind: Teacher move
+    tests: design
+    vignette:
+      who: Week 5 · two lessons lost
+      text: Swimming carnival and a school photo day take two of your ten lessons. The unit has to fit in eight.
+    q: What do you cut?
+    options:
+      - text: Skip the structured practical and go from the technique lesson straight to guided design
+        fb: Students would design a method before they've seen how much catches vary. The structured lessons are where spread becomes visible.
+      - text: Skip guided and go from the dominant-hand practical straight to open
+        fb: Two handovers at once, method and question together. That's the ladder misapplication with less time to recover.
+      - text: Keep every setting, and shorten the open investigation to two lessons with questions that reuse the same catch
+        fb: Yes. Each setting still hands over one thing. Questions that reuse the catch keep the open lessons feasible in less time.
+      - text: Drop the technique lesson, since students can learn the catch as they go
+        fb: Then every later lesson's data is noisier. Technique is taught at confirmation level because it's the actual target there.
+    answer: 2
+    refs:
+      misapplicationIds: [mis-loi-ladder]
+
+  - id: reflect
+    type: reflect
+    at: guided
+    processing: Metacognition
+    kind: Look back
+    title: Your report, your progression.
+    q: Which look-for in your report would be hardest to meet on a real placement, and what would you plan differently because of it?
+    model: "Example: “Plan conferences with every group. Six groups at five minutes each is half a lesson, so I'd give the class a worked example of a strong plan to check against while they wait.”"

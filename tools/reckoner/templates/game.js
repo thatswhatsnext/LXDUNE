@@ -679,13 +679,15 @@ function hud(){
   const n = total(); $("#count").textContent = `${Math.min(n, doneCount() + (S.done ? 0 : 1))} / ${n}`;
   const at = S.done ? "done" : cur && cur.at;
   /* A grouped rail (ADI) shows the stage groups; the phase tag on each item names the stage itself. */
-  const grouped = pathOf(S.lesson.path).rail === "groups";
+  const grouped = pathOf(S.lesson.path).rail === "groups", dialRail = pathOf(S.lesson.path).rail === "dial";
   const cells = grouped ? JG().groups.map(g => ({id:g.id, name:g.name, col:jp(JG().phases.find(p => p.group === g.id).id)}))
                         : JG().phases.map(p => ({id:p.id, name:p.name, col:jp(p.id)}));
   const nowId = grouped ? (groupOf(J(), at) || {}).id : at, idx = cells.findIndex(c => c.id === nowId);
   $("#rail").style.gridTemplateColumns = `repeat(${cells.length},1fr)`;
-  $("#rail").innerHTML = cells.map((c,i) => `<div style="--pc:${c.col}" class="${at === "done" || i < idx ? "done" : i === idx ? "now" : ""}">${esc(c.name)}</div>`).join("");
-  $("#railnote").textContent = S.done ? "Lesson complete. Your own journey ran through every phase."
+  /* A dial rail marks only the setting the item is about: the settings are not steps to climb. */
+  $("#rail").innerHTML = cells.map((c,i) => `<div style="--pc:${c.col}" class="${dialRail ? (i === idx ? "now" : "") : at === "done" || i < idx ? "done" : i === idx ? "now" : ""}">${esc(c.name)}</div>`).join("");
+  $("#railnote").textContent = dialRail ? (S.done ? "Lesson complete." : S.phase === "warm" ? "Warm-up: items you missed in an earlier lesson, once more." : S.phase === "review" ? "Review round: items you missed come back once, with the options shuffled." : "Four settings, not a ladder. The bar shows which setting this item is about.")
+    : S.done ? "Lesson complete. Your own journey ran through every phase."
     : S.phase === "warm" ? "Warm-up: items you missed in an earlier lesson, once more."
     : S.phase === "review" ? "Review round: items you missed come back once, with the options shuffled."
     : `This lesson is itself ${article(JG().name)} ${JG().name} sequence. The bar shows where you are in it.`;
@@ -696,7 +698,7 @@ function hud(){
 function phaseTag(it){
   if (it.at && GLYPH.includes(it.at)) return `<p class="phtag" style="--pc:var(--${it.at})">${icon("i-" + it.at)}${esc(jn(it.at))} · ${esc(it.kind)}</p>`;
   /* Phases without a glyph (ADI's stages): the stage name in its group colour, no icon. */
-  if (it.at && JG().groups.length && JG().phases.some(p => p.id === it.at)) return `<p class="phtag" style="--pc:${jp(it.at)}">${esc(jn(it.at))} · ${esc(it.kind)}</p>`;
+  if (it.at && (JG().groups.length || pathOf(S.lesson.path).rail === "dial") && JG().phases.some(p => p.id === it.at)) return `<p class="phtag" style="--pc:${jp(it.at)}">${esc(jn(it.at))} · ${esc(it.kind)}</p>`;
   return `<p class="phtag plain">${esc(it.kind)}</p>`;
 }
 /* The lesson's plate, on its first item only. */
@@ -710,6 +712,27 @@ function verdict(el, ok){
 }
 /* A spot item offers every phase, or only those it names in `among`, in the guide's order. */
 const spotPhases = it => JG().phases.filter(p => !it.among || it.among.includes(p.id));
+/* ---------- the guidance dial ---------- */
+/* The dial guide (Levels of inquiry): the guide that carries dial data. Its settings in order, what each
+ * gives students, and the setting a set of switches makes (null when a handover is skipped). */
+const DIALG = () => Object.keys(D.guides).map(G).find(g => g.dial);
+const DIAL_EL = [["question","The question"],["method","The method"],["result","The expected result"]];
+function dialFrom(on){
+  const g = DIALG(), want = DIAL_EL.filter(([k]) => on.has(k)).map(([k]) => k);
+  const hit = g.phases.find(p => { const e = g.dial.elements[p.id]; return e.length === want.length && e.every(x => want.includes(x)); });
+  return hit ? hit.id : null;
+}
+const dialOn = () => new Set([...multi].map(i => DIAL_EL[i][0]));
+function dialRead(){
+  const g = DIALG(), lvl = dialFrom(dialOn());
+  const el = $("#dialread"); if (!el) return lvl;
+  el.innerHTML = `<div class="dialcells" role="img" aria-label="${lvl ? `Setting: ${esc(phaseName(dialId(), lvl))}` : "Not one of the settings"}">${g.phases.map(p => `<div class="${p.id === lvl ? "on" : ""}" style="--pc:${pc(dialId(), p.id)}">${esc(p.name)}</div>`).join("")}</div>
+    <p class="dialsay" aria-live="polite">${lvl ? `<b>${esc(g.phases.find(p => p.id === lvl).name)}.</b> ${esc(g.dial.jobs[lvl])}`
+      : "Not one of the settings. Each step up hands over the expected result first, then the method, then the question."}</p>`;
+  return lvl;
+}
+const dialId = () => Object.keys(D.guides).find(id => D.guides[id].dial);
+
 /* A results table: real <table> markup with a caption, so screen readers announce rows and headings. */
 function tableHTML(t){
   return `<div class="dtable"><table><caption>${esc(t.caption)}</caption><thead><tr>${t.head.map(c => `<th scope="col">${esc(c)}</th>`).join("")}</tr></thead>
@@ -729,6 +752,7 @@ function options(it){
   if (it.type === "nest") return G(it.host).phases.map(p => ({t:p.name, ph:p.id}));
   if (it.type === "select") return it._stage === 2 ? it.reasons.map(x => ({t:x.text, ok:x.ok, dim:x.dim})) : it.candidates.map(c => ({t:it.names[c], c}));
   if (it.type === "flip") return it.changeLabels.map(c => ({t:c.text}));
+  if (it.type === "dial") return DIAL_EL.map(([el, t]) => ({t, el}));
   if (it.type === "lookfor"){
     const lf = JG().lookFors;
     return [it.answer, ...it.distractors].map(id => ({t:lf[id].question, lf:id, ph:lf[id].phaseId}));
@@ -754,7 +778,7 @@ function render(){
   if (cur.type === "select" && !cur._stage) cur._stage = 1;
   const reshuffle = S.plays > 0 || S.phase === "review" || cur._warm;
   let opts = options(cur).map((o,i) => ({...o, i}));
-  if (!["spot","nest"].includes(cur.type) && (reshuffle || cur.type === "lookfor" || cur.type === "diagnose")) opts = shuffle(opts);
+  if (!["spot","nest","dial"].includes(cur.type) && (reshuffle || cur.type === "lookfor" || cur.type === "diagnose")) opts = shuffle(opts);
   cur._view = opts;
   const chip = S.phase === "warm" ? `<span class="chip warn">Warm-up</span>` : S.phase === "review" ? `<span class="chip warn">Review</span>` : "";
   let h = `<section class="card" style="--pc:${jp(cur.at)}">${plateHTML(cur)}
@@ -763,6 +787,7 @@ function render(){
   if (cur.title) h += `<h2>${esc(cur.title)}</h2>`;
   if (cur.vignette) h += `<div class="vignette"><span class="who">${esc(cur.vignette.who)}</span>${esc(cur.vignette.text)}</div>`;
   if (cur.scenario) h += `<div class="vignette"><span class="who">${esc(cur.scenario.who)}</span>${esc(cur.scenario.text)}</div>${profileHTML(cur)}`;
+  if (cur.type === "dial" && cur.weighing) h += profileHTML(cur);
   if (cur.type === "case") h += caseHTML(cur);
   if (cur.table && cur.type !== "case") h += tableHTML(cur.table);
   if (cur.type === "select") h += cur._stage === 1 ? `<p class="q">${esc(cur.q || `Which model does ${NAMES.reckonerMid} recommend for this class?`)}</p>` : `<p class="q">You chose <b>${esc(cur.names[cur.candidates[cur._pick]])}</b>. Why? Select every reason that holds for this class.</p>`;
@@ -777,6 +802,11 @@ function render(){
     const gid = cur.type === "nest" ? cur.host : J();
     h += `<div class="opts ${grid ? "phases" : ""}" role="${isMulti(cur) ? "group" : "radiogroup"}">${opts.map((o,n) =>
       `<button class="opt" type="button" data-i="${o.i}" ${o.ph && grid ? `style="--pc:${pc(gid, o.ph)}"` : ""} role="${isMulti(cur) ? "checkbox" : "radio"}" aria-checked="false">${grid ? "" : `<span class="k">${n + 1}</span>`}<span class="t">${cur.type === "lookfor" ? `<span class="lfq">${esc(jn(o.ph))} look-for</span>` : ""}${esc(o.t)}<span class="ofb" hidden></span></span></button>`).join("")}</div>`;
+  }
+  if (cur.type === "dial"){
+    h += `<p class="kind dialhead">The teacher gives students</p><div class="opts dialsw" role="group" aria-label="What the teacher gives students">${opts.map((o,n) =>
+      `<button class="opt" type="button" data-i="${o.i}" role="switch" aria-checked="false"><span class="sw" aria-hidden="true"></span><span class="t">${esc(o.t)}<span class="ofb" hidden></span></span></button>`).join("")}</div>
+      <div class="dialread" id="dialread"></div>`;
   }
   if (cur.type === "predict") h += `<div class="slider"><label for="conf">How confident are you? <output id="confout">${S.conf}%</output></label><input type="range" id="conf" min="0" max="100" step="10" value="${S.conf}" style="--fill:${S.conf}%"><small><span>Pure guess</span><span>Certain</span></small></div>`;
   if (cur.type === "order"){ pool = shuffle(cur.steps.map((o,i) => ({...o, i}))); h += `<div class="slots" id="slots"></div><div class="pool" id="pool"></div>`; }
@@ -794,7 +824,8 @@ function render(){
   if (cur.type === "concept" || cur.type === "case"){ go.textContent = cur.type === "case" ? "Start" : "Got it"; go.disabled = false; keys.textContent = "Enter to continue"; }
   else if (cur.type === "reflect"){ go.textContent = "Finish lesson"; go.disabled = false; keys.textContent = "Not marked. Writing it is the point.";
     $("#refl").addEventListener("input", e => S.reflection = e.target.value); }
-  else { go.textContent = cur.type === "select" && cur._stage === 1 ? "Next: give your reasons" : "Check"; go.disabled = true; keys.textContent = cur.type === "order" ? "Tap activities in order" : `Keys: 1–${opts.length} to choose, Enter to check`; }
+  else { go.textContent = cur.type === "select" && cur._stage === 1 ? "Next: give your reasons" : "Check"; go.disabled = true; keys.textContent = cur.type === "order" ? "Tap activities in order" : cur.type === "dial" ? "Keys: 1–3 to switch, Enter to check" : `Keys: 1–${opts.length} to choose, Enter to check`; }
+  if (cur.type === "dial") go.disabled = !dialRead();
   stage.querySelectorAll(".opt[data-i]").forEach(b => b.addEventListener("click", () => choose(+b.dataset.i)));
   if (cur.type === "predict"){ const r = $("#conf"); r.addEventListener("input", () => { S.conf = +r.value; $("#confout").textContent = S.conf + "%"; r.style.setProperty("--fill", S.conf + "%"); }); }
   if (cur.type === "order") drawOrder();
@@ -807,13 +838,13 @@ function choose(i){
     const on = isMulti(cur) ? multi.has(+b.dataset.i) : +b.dataset.i === sel;
     b.classList.toggle("sel", on); b.setAttribute("aria-checked", on);
   });
-  go.disabled = isMulti(cur) ? multi.size === 0 : sel == null;
+  go.disabled = cur.type === "dial" ? !dialRead() : isMulti(cur) ? multi.size === 0 : sel == null;
 }
 
 const cap = t => t.charAt(0).toUpperCase() + t.slice(1);
 /* Short model names for narrow columns: "Predict–Observe–Explain" becomes "POE". */
 const short = m => G(m).name.length > 12 ? m.toUpperCase() : G(m).name;
-const isMulti = it => it.type === "multi" || (it.type === "select" && it._stage === 2);
+const isMulti = it => it.type === "multi" || it.type === "dial" || (it.type === "select" && it._stage === 2);
 /* The class, in the reckoner's own words: one chip per answered question. */
 function profileHTML(it){
   return `<div class="chips" style="margin-top:10px">${it.weighing.rows.map(r => `<span class="chip">${esc(cap(r.label))}: ${esc(r.value)}</span>`).join("")}</div>`;
@@ -903,6 +934,25 @@ function check(){
       const lf = JG().lookFors[cur.answer];
       body = `<p><b>${cur.strong ? "Strong evidence" : "Weak evidence"} for this look-for:</b> ${esc(cur.strong ? lf.strong : lf.weak)}</p>`;
       if (!ok){ const wrong = JG().lookFors[opts[sel].lf]; body += `<p>The one you chose is about something else. Strong evidence for it would be: ${esc(wrong.strong.charAt(0).toLowerCase() + wrong.strong.slice(1))}</p>`; }
+    }
+  }
+  if (cur.type === "dial"){
+    const got = dialFrom(dialOn()), g = DIALG(), want = g.dial.elements[cur.answer];
+    ok = got === cur.answer;
+    stage.querySelectorAll(".opt[data-i]").forEach(b => {
+      const i = +b.dataset.i, should = want.includes(DIAL_EL[i][0]); b.disabled = true;
+      if (multi.has(i) === should) return;
+      b.classList.add("wrong"); verdict(b, false);
+      const f = b.querySelector(".ofb"); f.textContent = should ? "The teacher gives this at this setting." : "At this setting, students work this out themselves."; f.hidden = false;
+    });
+    const nm = id => g.phases.find(p => p.id === id).name;
+    body = `<p><b>${esc(nm(cur.answer))}.</b> ${esc(cur.fb[cur.answer])}</p>${ok ? "" : `<p>You set it to ${esc(nm(got))}. ${esc(cur.fb[got])}</p>`}`;
+    if (cur.weighing){
+      const w = cur.weighing;
+      stage.querySelector("section").insertAdjacentHTML("beforeend", `<details class="why" open><summary>How ${esc(NAMES.reckonerMid)}'s guidance dial sets this class</summary>
+        <div class="weigh">${w.rows.map(r => `<div class="wrow"><span>${esc(cap(r.label))}<small>${esc(r.value)}</small></span><span>${r.points} of 2</span></div>`).join("")}
+        <div class="wrow wtot"><span>Score</span><span>${w.total} of ${w.max}</span></div></div>
+        ${w.capped ? `<p class="note"><b>Capped.</b> ${esc(w.capped)}</p>` : ""}<p class="note">${esc(w.caveat)}</p></details>`);
     }
   }
   if (cur.type === "multi"){
@@ -1096,7 +1146,7 @@ function renderSim(){
 }
 
 /* ---------- results ---------- */
-const SKILL = {design:"Designing a sequence", sim:"Teaching decisions", sequence:"Sequencing", diagnosis:"Diagnosing plans", misapplication:"Diagnosing plans", lookfor:"Using look-fors", engage:"Reading student ideas", select:"Choosing a model", flip:"Reading the dial", nesting:"Nesting models", prediction:"Prediction prompts"};
+const SKILL = {design:"Designing a sequence", sim:"Teaching decisions", sequence:"Sequencing", diagnosis:"Diagnosing plans", misapplication:"Diagnosing plans", lookfor:"Using look-fors", engage:"Reading student ideas", select:"Choosing a model", flip:"Reading the dial", dial:"Setting the dial", nesting:"Nesting models", prediction:"Prediction prompts"};
 function summary(){
   cur = null;
   const l = S.lesson, r = rec(l.id), res = Object.entries(S.results), right = res.filter(([,v]) => v.ok).length;

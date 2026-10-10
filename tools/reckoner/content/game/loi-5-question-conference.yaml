@@ -1,0 +1,267 @@
+# Levels of inquiry path, lesson 5. Design level: Question Conference, a branching simulation of lessons 7–10 of the Levels of inquiry guide's worked sequence seq-s4-reaction-time. Draft for Steve's review.
+schemaVersion: 1
+id: loi-5-question-conference
+path: levels-of-inquiry
+order: 5
+title: Question Conference
+summary: Run the open lessons with a simulated Year 7 class. Every move decides whether the question stays theirs, and whether their data get read for what they show.
+level: design
+version: 0.1.0
+status: draft
+lastReviewed: 2026-10-10
+provenance:
+  source: ai-generated
+  authors: [Claude]
+  reviewedBy: []
+context:
+  stages: [stage4]
+  focusAreas: [Data science 1]
+  disciplines: [integrated]
+outcomes: [SC4-DA1-01]
+builtOn:
+  sequenceIds: [seq-s4-reaction-time]
+  phaseIds: [open]
+  lookForIds: [loi-open-question, loi-open-readiness, loi-guided-checkpoint, loi-structured-interpretation]
+  misapplicationIds: [mis-loi-no-checkpoint]
+guideSection: sequences
+items:
+  - id: briefing
+    type: concept
+    at: open
+    processing: Retrieval
+    kind: How Question Conference works
+    title: Four lessons, four decisions
+    lead: >-
+      You're on placement with a Year 7 class in the last four lessons of the reaction-time unit. They've learned
+      the catch, tested which hand is faster, and designed their own practice investigations. Now each group
+      chooses its own question. At four moments you decide what to do, and your choices decide which ideas
+      surface, which stay hidden and which get challenged.
+    rows:
+      - phaseId: open
+        does: "Lesson 7: question conference."
+        move: "Narrow it with them. Don't replace it."
+      - phaseId: open
+        does: "Lesson 7: plan check."
+        move: "Ask about reliability, not correctness."
+      - phaseId: open
+        does: "Lesson 9: the data."
+        move: "Leave the interpreting to them."
+      - phaseId: open
+        does: "Lesson 10: the report."
+        move: "A prediction, and how sure they are."
+
+  - id: sim
+    type: sim
+    at: open
+    processing: Knowledge utilisation
+    kind: Question Conference
+    tests: sim
+    cast:
+      who: Year 7 · Data science
+      text: 26 students in six groups. Each group has done the catch more than a hundred times since lesson 1.
+    sequenceId: seq-s4-reaction-time
+    start: question
+    nodes:
+      - id: question
+        phase: open
+        when: Lesson 7 · question conference
+        situation: >-
+          Jordan's group wants to test whether an energy drink makes people faster. Your school's risk assessment
+          for this unit rules out any question involving food or drink.
+        said:
+          who: Jordan
+          text: “Energy drinks make you faster, everyone knows. We'll test Sam before and after one.”
+          conception: 0
+        choices:
+          - text: Say food and drink are off the table, then ask what they really want to know about what speeds people up, and help them find a version they can test with the ruler
+            next: plan
+            good: true
+            lookFor: loi-open-question
+            surface: [0]
+            debrief: >-
+              They want to know whether being “switched on” makes you faster. After a few minutes they land on:
+              “Do people catch faster when they're expecting it, with a countdown, than without?” It's still their
+              question, and it's safe and testable. Their plan to test one person once is now on the page, where
+              you can work with it.
+          - text: Rule it out and give them sound against light cues instead, since you know that works
+            next: plan-given
+            good: false
+            lookFor: loi-open-question
+            hide: [0]
+            debrief: >-
+              The question is safe and testable, but it's yours. The group's own idea, that one test of one person
+              tells you something, never gets said out loud.
+
+      - id: plan
+        phase: open
+        when: Lesson 7 · plan check
+        situation: Jordan's group plans one catch each with a countdown and one without.
+        said:
+          who: Sam
+          text: “One catch each is enough. We'll see straight away which is faster.”
+          conception: 0
+        choices:
+          - text: Ask them to look at their lesson 2 catches. How much did one person's times vary? What does that mean for one catch each?
+            next: data
+            good: true
+            lookFor: loi-open-readiness
+            challenge: [0]
+            debrief: >-
+              Their own lesson 2 times ranged from 0.15 to 0.27 seconds for the same hand. They change to ten
+              catches each, alternating countdown and no countdown so practice doesn't favour one. They used the
+              same idea in lessons 4–6, and now they're applying it without being told.
+          - text: Write ten catches each on their plan so the data will be reliable
+            next: data-thin
+            good: false
+            lookFor: loi-guided-checkpoint
+            hide: [0]
+            debrief: >-
+              The data will be better, but you've redesigned the plan. Sam still thinks one catch tells you
+              someone's reaction time, and the plan's reliability is yours, not theirs.
+
+      - id: plan-given
+        phase: open
+        when: Lesson 7 · plan check
+        situation: The group plans one catch with a light cue and one with a sound cue for each person. Nobody seems very interested.
+        said:
+          who: Sam
+          text: “One catch each is enough. It's not our question anyway.”
+          conception: 0
+        choices:
+          - text: Ask how much their lesson 2 catches varied, and what that means for one catch each
+            next: data
+            good: true
+            lookFor: loi-open-readiness
+            challenge: [0]
+            debrief: >-
+              They raise it to ten catches each, which helps. The question still isn't theirs, so the report will
+              have less of them in it.
+          - text: Approve it. One catch each is quick, and time is short
+            next: data-thin
+            good: false
+            lookFor: loi-guided-checkpoint
+            debrief: The plan goes ahead with a sample of one catch per person. Lesson 9 will have very little to say.
+
+      - id: data
+        phase: open
+        when: Lesson 9 · the data
+        situation: >-
+          The group's results are in. With a countdown, the average is 0.20 seconds; without one, 0.21 seconds. Their
+          dot plot shows the two sets of catches overlapping almost completely.
+        said:
+          who: Jordan
+          text: “The countdown made us faster by a hundredth of a second. So it works.”
+          conception: 1
+        choices:
+          - text: Ask them to put their dot plot next to the averages and write how confident they are that there's a real difference
+            next: report
+            good: true
+            lookFor: loi-structured-interpretation
+            challenge: [1]
+            debrief: >-
+              Looking at the overlap, they decide a hundredth of a second could just be the spread. They write that
+              they can't be sure, and that they'd need many more catches to tell. That's a more honest conclusion
+              than most adults reach.
+          - text: Tell them it's a good result, and to write it up
+            next: report
+            good: false
+            lookFor: loi-structured-interpretation
+            hide: [1]
+            debrief: The difference between two averages goes into the report as a finding. Nobody looks at the spread.
+
+      - id: data-thin
+        phase: open
+        when: Lesson 9 · the data
+        situation: >-
+          With one catch per person, the group has six numbers in each column. The averages differ by two
+          hundredths of a second, and two people were faster the “slow” way.
+        said:
+          who: Jordan
+          text: “Ours were faster, so it works.”
+          conception: 1
+        choices:
+          - text: Ask what the two people who were faster the other way tell them, and how many catches they'd need to be sure
+            next: report
+            good: true
+            lookFor: loi-structured-interpretation
+            challenge: [1]
+            debrief: >-
+              They see that six catches can't settle it, and write that a bigger sample is the first thing they'd
+              change. You've recovered something, though the plan check was the better moment for it.
+          - text: Tell them it's a good result, and to write it up
+            next: report
+            good: false
+            lookFor: loi-structured-interpretation
+            hide: [1]
+            debrief: A difference built on six catches goes into the report as a finding.
+
+      - id: report
+        phase: open
+        when: Lesson 10 · the report
+        situation: The group's report ends with their graph and the sentence “Our graph shows the answer.”
+        said:
+          who: Sam
+          text: “The graph shows it, so that's our conclusion.”
+          conception: 2
+        choices:
+          - text: Ask them to write what the graph shows and what it can't, then make one prediction their data support and say how sure they are
+            next: end
+            good: true
+            lookFor: loi-structured-interpretation
+            challenge: [2]
+            debrief: >-
+              They write: “With a countdown, we predict the next ten catches will average about 0.20 seconds, but we
+              aren't confident the countdown made the difference.” A graph read for what it shows, and a prediction
+              with its uncertainty attached. That's where the unit was heading.
+          - text: Accept the report. The graph is clear and neatly labelled
+            next: end
+            good: false
+            lookFor: loi-structured-interpretation
+            hide: [2]
+            debrief: The graph is neat, but nobody has said what it shows. The idea that a graph is the answer leaves the unit untouched.
+
+    endings:
+      - minGood: 4
+        title: Their question, their reading
+        text: >-
+          The question stayed theirs, the plan used what they'd learned at guided level, and the data were read
+          for what they could and couldn't show. That's open inquiry working as the guide describes: it comes after
+          success at the lower settings, and the conferences keep it feasible.
+      - minGood: 2
+        title: Some decisions stayed with the students
+        text: >-
+          Parts of the open lessons did their job. Look at the decisions where you supplied the question, the
+          method or the conclusion. Those are the moments to plan a sentence for.
+      - minGood: 0
+        title: Open in name only
+        text: >-
+          The group finished an investigation, but you made the decisions that mattered. The guide's look-fors for
+          open inquiry and the plan check are the place to start.
+
+  - id: takeaway
+    type: choice
+    at: open
+    processing: Analysis
+    kind: What made the difference?
+    tests: sim
+    title: In every run, one kind of move did the most damage.
+    q: Which?
+    options:
+      - text: Ruling out the energy-drink question
+        fb: That was necessary. What mattered was what came next, and whether the new question was still theirs.
+      - text: Making a decision that the guide hands to students at that setting, such as the question, the reliability or the conclusion
+        fb: Yes. Every weak path started with you deciding something the group was ready to decide. Each one hid an idea the unit was meant to challenge.
+      - text: Asking them to look back at their lesson 2 catches
+        fb: That was a strong move. Their own earlier data did the persuading.
+      - text: Asking how confident they were
+        fb: That was a strong move. Confidence, and what it rests on, is part of interpreting data.
+    answer: 1
+
+  - id: reflect
+    type: reflect
+    at: open
+    processing: Metacognition
+    kind: Look back
+    title: Your question conference.
+    q: Which decision would be hardest for you on a real placement, and what will you say in that moment?
+    model: "Example: “Not handing Jordan's group a better question. I'll have one ready to ask instead: ‘What do you really want to know about what makes people faster?’”"

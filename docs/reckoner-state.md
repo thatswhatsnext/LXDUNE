@@ -15,7 +15,7 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Examples across published guides | 58 (29 positive, 29 negative) |
 | Worked sequences | 21 |
 | Focus areas with a ready plan / examples only / empty | 16 / 0 / 0 of 16 |
-| Game lessons at /play/ (published / draft or in review) | 26 / 0 |
+| Game lessons at /play/ (published / draft or in review) | 26 / 6 |
 | **Next action-plan item number** | **63** |
 
 ## Published guides
@@ -61,10 +61,16 @@ versions the same way as guides.
 | Build it: SWH | `swh-4-duckweed` | `swh` | 4 | design | 1.0.0 | published | 2026-10-08 | 5 |
 | Negotiation Day | `swh-5-bottles` | `swh` | 5 | design | 1.0.0 | published | 2026-10-08 | 4 |
 | Negotiation Day | `swh-5-duckweed` | `swh` | 5 | design | 1.0.0 | published | 2026-10-08 | 4 |
+| Who holds the question? | `loi-1-who-holds` | `levels-of-inquiry` | 1 | recognise | 0.1.0 | draft | 2026-10-10 | 11 |
+| Nothing at stake | `loi-2-nothing-at-stake` | `levels-of-inquiry` | 2 | explain | 0.1.0 | draft | 2026-10-10 | 10 |
+| Whose method is it? | `loi-3-whose-method` | `levels-of-inquiry` | 3 | explain | 0.1.0 | draft | 2026-10-10 | 11 |
+| Build it: the progression | `loi-4-build` | `levels-of-inquiry` | 4 | design | 0.1.0 | draft | 2026-10-10 | 5 |
+| Question Conference | `loi-5-question-conference` | `levels-of-inquiry` | 5 | design | 0.1.0 | draft | 2026-10-10 | 4 |
 | Which model, and why? | `select-1-which` | `select` | 1 | select | 1.0.0 | published | 2026-10-03 | 8 |
 | When the dial moves | `select-2-dial` | `select` | 2 | select | 1.0.0 | published | 2026-10-03 | 7 |
 | Argue it out | `select-3-argue` | `select` | 3 | select | 1.0.2 | published | 2026-10-05 | 7 |
 | Which routine? | `select-4-routine` | `select` | 4 | select | 1.0.0 | published | 2026-10-08 | 7 |
+| Set the dial | `select-5-set-dial` | `select` | 5 | select | 0.1.0 | draft | 2026-10-10 | 9 |
 
 ## Models without a guide
 

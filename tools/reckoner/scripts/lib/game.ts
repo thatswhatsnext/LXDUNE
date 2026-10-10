@@ -73,6 +73,7 @@ export function loadGame(opts: { gameDir?: string; guidesDir?: string } = {}): G
       p.models.forEach((m) => !guides.has(m) && errors.push(`game.yaml: path "${p.id}" model "${m}" has no guide`));
       p.requires.forEach((r) => !config!.paths.some((x) => x.id === r.path) && errors.push(`game.yaml: path "${p.id}" requires unknown path "${r.path}"`));
       if (p.rail === "groups" && !guides.get(journeyOf(p))?.phaseGroups.length) errors.push(`game.yaml: path "${p.id}" has rail: groups but its journey guide has no phaseGroups`);
+      if (p.rail === "dial" && guides.get(journeyOf(p))?.sequence.shape !== "dial") errors.push(`game.yaml: path "${p.id}" has rail: dial but its journey guide is not a guidance dial`);
     }
     for (const l of lessons) {
       const path = config.paths.find((p) => p.id === l.path);
@@ -187,6 +188,64 @@ export function nestingRecord(model: string, host: string, guides: Map<string, M
   return h ? { phaseId: h.phaseId, how: h.how } : undefined;
 }
 
+/* ------------------------------------------------------------------ */
+/* The guidance dial as answer key                                     */
+/* ------------------------------------------------------------------ */
+
+/** What a teacher can give students, in the order a dial setting stops handing it over: the question last. */
+export const DIAL_ELEMENTS = ["question", "method", "result"] as const;
+type DialProfile = { ready: string; conf: string; time: string };
+
+/** The guidance-dial guide (Levels of inquiry): the one guide whose sequence is a dial. */
+export function dialGuide(guides: Map<string, ModelGuide>) {
+  return [...guides.values()].find((g) => g.sequence.shape === "dial");
+}
+
+/**
+ * What each setting gives students, from the dial guide's phase order: the first (confirmation) gives all
+ * three, and each step up hands over one more, the expected result first and the question last.
+ */
+export function dialElements(g: ModelGuide): Record<string, string[]> {
+  const n = DIAL_ELEMENTS.length;
+  return Object.fromEntries(ordered(g).map((p, i) => [p.id, DIAL_ELEMENTS.slice(0, n - i)]));
+}
+
+/** A straight port of dialLevel() in templates/app.js; test-game.ts checks the two agree. */
+export function dialLevel(g: ModelGuide, a: Record<string, string>) {
+  const h = g.reckoner.dialHeuristic;
+  if (!h) return null;
+  const used = h.factors.filter((f) => a[f.dimension]);
+  if (used.length < h.factors.length) return null;
+  const total = used.reduce((n, f) => n + ((f.points as Record<string, number>)[a[f.dimension]] ?? 0), 0);
+  let phaseId = h.thresholds.find((t) => total <= t.maxPoints)?.phaseId || h.thresholds[h.thresholds.length - 1].phaseId;
+  const order = (id: string) => g.phases.find((p) => p.id === id)?.order ?? 0;
+  let capped: (typeof h.caps)[number] | null = null;
+  h.caps.forEach((c) => {
+    if (a[c.dimension] === c.option && order(phaseId) > order(c.maxPhaseId)) { phaseId = c.maxPhaseId; capped = c; }
+  });
+  return { phaseId, total, capped: capped as (typeof h.caps)[number] | null, used };
+}
+
+type DialItem = Extract<GameLesson["items"][number], { type: "dial" }>;
+function checkDial(l: GameLesson, it: DialItem, guides: Map<string, ModelGuide>, r: Reckoner): Issues {
+  const out: Issues = [];
+  const where = `${l.id} item ${it.id}`;
+  const g = dialGuide(guides);
+  if (!g) return [`${where}: no guidance-dial guide is published`];
+  if (g.phases.length !== DIAL_ELEMENTS.length + 1) return [`${where}: the ${g.id} guide needs ${DIAL_ELEMENTS.length + 1} settings for the dial's three switches`];
+  const levels = g.phases.map((p) => p.id);
+  if (!levels.includes(it.answer)) out.push(`${where}: "${it.answer}" is not a setting of ${g.id}`);
+  levels.forEach((id) => !(id in it.fb) && out.push(`${where}: fb has no entry for setting "${id}"`));
+  Object.keys(it.fb).forEach((k) => !levels.includes(k) && out.push(`${where}: fb gives "${k}", which is not a setting of ${g.id}`));
+  if (it.profile) {
+    const bad = checkProfile(it.profile, r.dims, `${where} profile`);
+    if (bad.length) return [...out, ...bad];
+    const k = dialLevel(g, it.profile)!;
+    if (k.phaseId !== it.answer) out.push(`${where}: answer is "${it.answer}" but the Reckoner's guidance dial gives "${k.phaseId}" (score ${k.total} of 6${k.capped ? ", capped" : ""})`);
+  }
+  return out;
+}
+
 /** Every id a lesson uses must exist in its guide; spot items must give feedback for every phase; select, flip and nest items must agree with the reckoner and the guides. */
 export function checkLesson(l: GameLesson, g: ModelGuide, ctx?: { guides: Map<string, ModelGuide>; reckoner: Reckoner }): Issues {
   const out: Issues = [];
@@ -237,6 +296,7 @@ export function checkLesson(l: GameLesson, g: ModelGuide, ctx?: { guides: Map<st
     if (it.type === "sim") out.push(...checkSim(l, it, g));
     if (!ctx) continue;
     const { guides, reckoner: r } = ctx;
+    if (it.type === "dial") out.push(...checkDial(l, it, guides, r));
     if (it.type === "select" || it.type === "flip") {
       const singles = it.candidates.flatMap((c) => c.split("+"));
       const missing = singles.filter((m) => !r.profiles.has(m));
@@ -408,6 +468,9 @@ export function gameData(c: GameContent, includeDrafts: boolean) {
   const used = new Set<string>();
   c.config.paths.forEach((p) => { used.add(journeyOf(p)); if (p.kind === "guide") used.add(p.id); p.models.forEach((m) => used.add(m)); });
   shown.forEach((l) => l.items.forEach((it) => { if (it.type === "nest") { used.add(it.host); used.add(it.model); } if (it.type === "select" || it.type === "flip") it.candidates.forEach((x) => x.split("+").forEach((m) => used.add(m))); }));
+  const dg = dialGuide(c.guides);
+  const dialUsed = !!dg && (used.has(dg.id) || shown.some((l) => l.items.some((it) => it.type === "dial")));
+  if (dialUsed) used.add(dg!.id);
   const guides = Object.fromEntries([...used].sort().map((id) => {
     const g = c.guides.get(id)!;
     return [id, {
@@ -416,6 +479,8 @@ export function gameData(c: GameContent, includeDrafts: boolean) {
       groups: g.phaseGroups.map((gr) => ({ id: gr.id, name: gr.name })),
       misapplications: Object.fromEntries(g.misapplications.map((m) => [m.id, { name: m.name, looksLike: m.looksLike, why: m.whyItUndermines, fix: m.fix }])),
       lookFors: Object.fromEntries(g.phases.flatMap((p) => p.lookFors.map((x) => [x.id, { phaseId: p.id, question: x.question, strong: x.strongEvidence, weak: x.weakEvidence }]))),
+      // The dial guide also carries each setting's job and what it gives students, for the dial item.
+      ...(dialUsed && id === dg!.id ? { dial: { elements: dialElements(g), jobs: Object.fromEntries(g.phases.map((p) => [p.id, p.job])) } } : {}),
     }];
   }));
   const name = (cand: string) => {
@@ -454,6 +519,17 @@ export function gameData(c: GameContent, includeDrafts: boolean) {
       };
     }
     if (it.type === "nest") return { ...it, how: nestingRecord(it.model, it.host, c.guides)!.how };
+    if (it.type === "dial" && it.profile) {
+      // The Reckoner's guidance dial for this class: each answer's points, the total and any cap.
+      const k = dialLevel(dg!, it.profile)!;
+      return {
+        ...it,
+        weighing: {
+          rows: k.used.map((f) => { const d = r.dims.find((x) => x.id === f.dimension)!; return { dim: d.id, label: d.short, value: optLabel(d, it.profile![f.dimension as keyof DialProfile]), points: (f.points as Record<string, number>)[it.profile![f.dimension as keyof DialProfile]] }; }),
+          total: k.total, max: k.used.length * 2, capped: k.capped ? k.capped.rationale : null, caveat: dg!.reckoner.dialHeuristic!.caveat,
+        },
+      };
+    }
     if (it.type === "sim") {
       const g = c.guides.get(journeyOf(c.config.paths.find((p) => p.id === l.path)!))!;
       return { ...it, conceptions: g.workedSequences.find((x) => x.id === it.sequenceId)!.targetConceptions };
