@@ -945,6 +945,12 @@ function renderMatrix(mount, fw, { habits, stages, cells }) {
         `<span class="lxd-fx-mx-ttype ${typeClass}">${typeLabel}</span>`;
       b.addEventListener('click', () => {
         state.t = i;
+        // Move the highlight and aria-pressed in place (not a re-render), so
+        // keyboard focus stays on the card just chosen.
+        grid.querySelectorAll('.lxd-fx-mx-topic').forEach((el, j) => {
+          el.classList.toggle('on', j === i);
+          el.setAttribute('aria-pressed', String(j === i));
+        });
         renderResult();
         closeScan();
       });
