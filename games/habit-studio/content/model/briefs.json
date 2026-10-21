@@ -84,6 +84,92 @@
           "summary": "Correct physics, taught as a statement to copy. Useful at another moment, but it isn’t modelling thinking."
         }
       ]
+    },
+    {
+      "type": "brief",
+      "id": "model-brief-pedigree",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. The flawed exemplar is the draft Steve asked for. The spec reserves the strong exemplar for Steve: the strong and weak versions here are provisional, drafted only so the brief validates.",
+      "context": {
+        "stages": [
+          "stage-5"
+        ],
+        "focusArea": "genetics-and-evolutionary-change"
+      },
+      "title": "Reading a pedigree",
+      "moment": "The first lesson on pedigrees. Students have just learned to complete Punnett squares.",
+      "studentProfile": "Year 10. Confident with Punnett squares, but when reading a pedigree they guess the pattern of inheritance from how often the trait appears, rather than reasoning from who is affected.",
+      "task": "Write what you’ll say as you model your thinking on a pedigree where two unaffected parents have an affected daughter — <i>is the trait dominant or recessive, and is it autosomal or X-linked?</i> — and what students will do straight afterwards.",
+      "selfCheck": [
+        "You narrate at least one decision, not just the conclusion.",
+        "You voice a tempting wrong idea and show how you check it.",
+        "Your commentary is short enough to follow on first hearing.",
+        "Students think aloud on a pedigree of their own straight afterwards."
+      ],
+      "exemplars": [
+        {
+          "quality": "strong",
+          "text": "“Two unaffected parents, affected daughter. My first instinct is to count how many people have it — but that won’t tell me the pattern. Better question: could it be dominant? If it were, at least one parent would have to show it. Neither does, so it’s recessive. Next: could it be on the X? A daughter with an X-linked recessive trait needs an affected father, and he isn’t affected. So it’s autosomal recessive.” Then pairs take the next pedigree, one partner thinking aloud with two questions on the board — ‘Could it be dominant?’ and ‘Could it be on the X?’ — while I listen in.",
+          "annotations": [
+            {
+              "quote": "My first instinct is to count how many people have it",
+              "comment": "Voices the guessing habit these students actually have, then replaces it."
+            },
+            {
+              "quote": "Could it be on the X?",
+              "comment": "Each step is a question students can reuse on any pedigree."
+            },
+            {
+              "quote": "one partner thinking aloud with two questions on the board",
+              "comment": "Hands over at once, with the same questions as prompts."
+            }
+          ],
+          "summary": "Provisional (Steve to write). One pedigree, a voiced wrong instinct, reusable questions, and an immediate handover."
+        },
+        {
+          "quality": "flawed",
+          "text": "“I’ll think out loud. Two unaffected parents, affected daughter. My first thought is dominant, because it’s showing up — hang on, if it were dominant, one parent would have to show it. Neither does, so it’s recessive. Is it on the X? If it were X-linked recessive, the daughter would need an affected father, and he isn’t. So it’s autosomal recessive.” I then talk through the next two pedigrees the same way, a few minutes each, before students do the worksheet’s remaining pedigrees on their own.",
+          "annotations": [
+            {
+              "quote": "My first thought is dominant, because it’s showing up — hang on",
+              "comment": "A genuine stuck point, with a tempting idea voiced and caught: the strongest part."
+            },
+            {
+              "quote": "If it were X-linked recessive, the daughter would need an affected father",
+              "comment": "Reasoning students can borrow, framed as a check."
+            },
+            {
+              "quote": "I then talk through the next two pedigrees the same way",
+              "comment": "Three think-alouds in a row: the monologue. By the third, students are copying conclusions rather than following decisions."
+            },
+            {
+              "quote": "before students do the worksheet’s remaining pedigrees on their own",
+              "comment": "Silent, individual practice: students never think aloud themselves."
+            }
+          ],
+          "summary": "The first pedigree is modelled well. Then it becomes a monologue, and there’s no handover."
+        },
+        {
+          "quality": "weak",
+          "text": "“Here are the rules for pedigrees. If two unaffected parents have an affected child, the trait is recessive. If an affected daughter has an unaffected father, the trait isn’t X-linked recessive. Copy these rules into your books, then use them on the worksheet.”",
+          "annotations": [
+            {
+              "quote": "Here are the rules for pedigrees.",
+              "comment": "Starts from conclusions. There’s no thinking left to model."
+            },
+            {
+              "quote": "Copy these rules into your books",
+              "comment": "Students apply rules they haven’t reasoned through, so they can’t adapt when a pedigree doesn’t fit."
+            }
+          ],
+          "summary": "Provisional. Accurate rules, taught to be copied: explaining, not modelling thinking."
+        }
+      ]
     }
   ]
 }

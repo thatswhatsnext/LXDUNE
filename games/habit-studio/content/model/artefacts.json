@@ -54,6 +54,550 @@
           "rationale": "Notices that 3.5 molecules is impossible, says why it’s a problem, repairs it by doubling, and recounts. “Like Miss said” shows the strategy is borrowed from the modelling rather than yet their own, but the monitoring and repair are clearly the student’s."
         }
       ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-sled-reflection",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 1; the placement is provisional until Steve and the second reviewer place it independently. Deliberately long and accurate, to test whether players mistake good science for visible thinking.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-4"
+        ],
+        "focusArea": "forces"
+      },
+      "use": "station",
+      "kind": "written-reflection",
+      "studentLabel": "Year 7 student",
+      "prompt": "After the teacher thought aloud through a trolley problem: <i>A sled is pulled across snow at a steady speed. Are the forces on it balanced?</i> Explain how you worked out your answer.",
+      "content": [
+        {
+          "speaker": "Student",
+          "text": "The forces on the sled are balanced because it is moving at a steady speed. If the forces were unbalanced it would speed up or slow down. The pull forwards is the same size as the friction backwards, so they cancel out. This is Newton’s first law: an object keeps moving at a constant velocity unless an unbalanced force acts on it. So the answer is yes, the forces are balanced."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 1,
+          "rationale": "Correct, well-expressed science, but it explains the physics rather than how the student worked it out. There is no decision, check or strategy in it: the answer and its justification, nothing about their own thinking."
+        }
+      ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-energy-exitslip",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 1; the placement is provisional until Steve and the second reviewer place it independently.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-5"
+        ],
+        "focusArea": "energy"
+      },
+      "use": "station",
+      "kind": "exit-slip",
+      "studentLabel": "Year 9 student",
+      "prompt": "Exit slip: <i>How did you decide which energy-transfer diagram was right?</i>",
+      "content": [
+        {
+          "speaker": "Student",
+          "text": "B. It just looked right."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 1,
+          "rationale": "Gives the answer and a feeling, with no process at all."
+        }
+      ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-graph-pair",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 1; the placement is provisional until Steve and the second reviewer place it independently.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-4"
+        ],
+        "focusArea": "data-science-1"
+      },
+      "use": "station",
+      "kind": "talk",
+      "studentLabel": "Two Year 8 students",
+      "prompt": "Pairs, after the teacher modelled describing a trend: one partner thinks aloud while describing the trend in a graph of water temperature over 10 minutes of heating; the other listens.",
+      "content": [
+        {
+          "speaker": "Student A",
+          "text": "So the line goes up."
+        },
+        {
+          "speaker": "Student B",
+          "text": "Yeah, so it increases."
+        },
+        {
+          "speaker": "Student A",
+          "text": "Okay, write ‘it increases’. Done."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 1,
+          "rationale": "The thinking-aloud partner states the answer and stops. Nothing about how they read the graph, what they looked at, or whether the trend is steady."
+        }
+      ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-wave-margin",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 2; the placement is provisional until Steve and the second reviewer place it independently.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-5"
+        ],
+        "focusArea": "waves-and-motion"
+      },
+      "use": "station",
+      "kind": "worked-solution",
+      "studentLabel": "Year 10 student",
+      "prompt": "<i>A wave has a frequency of 5 Hz and a wavelength of 2 m. What is its speed?</i> Write notes in the margin as you work, as the teacher did.",
+      "content": [
+        {
+          "speaker": "Margin note 1",
+          "text": "Wrote down f = 5 Hz and λ = 2 m."
+        },
+        {
+          "speaker": "Margin note 2",
+          "text": "Wrote the formula v = fλ."
+        },
+        {
+          "speaker": "Margin note 3",
+          "text": "Put the numbers in: 5 × 2 = 10."
+        },
+        {
+          "speaker": "Margin note 4",
+          "text": "Answer 10 m/s. Units are m/s."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 2,
+          "rationale": "A clear sequence of steps, in order, but no reasons: why this formula, or whether 10 m/s is sensible. The actions are visible; the decisions aren’t."
+        }
+      ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-salt-sand",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 2; the placement is provisional until Steve and the second reviewer place it independently. Deliberately near the 2/3 boundary: “so the salt is left” is a purpose. A useful case for “Experts split”.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-4"
+        ],
+        "focusArea": "solutions-and-mixtures"
+      },
+      "use": "station",
+      "kind": "talk",
+      "studentLabel": "Year 7 student",
+      "prompt": "Thinking aloud to a partner: <i>How would you separate a mixture of salt and sand?</i>",
+      "content": [
+        {
+          "speaker": "Student",
+          "text": "First I’m going to add water. Then I’ll stir it. Then I’ll filter it."
+        },
+        {
+          "speaker": "Student",
+          "text": "Then I’ll heat the water bit so the salt is left."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 2,
+          "rationale": "Steps in a sensible order. “So the salt is left” gives the purpose of the last step only; there is no reason for adding water or filtering, so it reads as a remembered procedure rather than decisions."
+        }
+      ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-vaccine-exitslip",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 2; the placement is provisional until Steve and the second reviewer place it independently.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-5"
+        ],
+        "focusArea": "disease"
+      },
+      "use": "station",
+      "kind": "exit-slip",
+      "studentLabel": "Year 9 student",
+      "prompt": "Exit slip: <i>How did you work out which line on the graph showed the vaccinated group?</i>",
+      "content": [
+        {
+          "speaker": "Student",
+          "text": "I looked at the two lines, then I looked at the key, then I picked the lower one."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 2,
+          "rationale": "Narrates what they looked at, in order, but not why the lower line must be the vaccinated group."
+        }
+      ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-foodweb-reflection",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 3; the placement is provisional until Steve and the second reviewer place it independently.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-4"
+        ],
+        "focusArea": "living-systems"
+      },
+      "use": "station",
+      "kind": "written-reflection",
+      "studentLabel": "Year 8 student",
+      "prompt": "After the teacher modelled building a food web from a species list, students built their own and wrote how they went about it.",
+      "content": [
+        {
+          "speaker": "Student",
+          "text": "I started with the producers because everything else depends on them, so if I get those right the arrows make sense. Then I followed each arrow towards what eats it, because the arrows show where the energy goes."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 3,
+          "rationale": "Explains why they started with producers and what the arrows mean: a strategy with reasons. There’s no checking or noticing a problem, so it stops short of level 4."
+        }
+      ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-projectile-talk",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 3; the placement is provisional until Steve and the second reviewer place it independently. Deliberately short, to show that level 3 isn’t about length.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-6"
+        ],
+        "syllabus": "physics-stage6-2017",
+        "module": "phys-m5",
+        "acknowledgedSuperseded": true
+      },
+      "use": "station",
+      "kind": "talk",
+      "studentLabel": "Year 11 student",
+      "prompt": "Thinking aloud at the start of a projectile problem: a ball kicked at 20 m/s at 30° above the horizontal.",
+      "content": [
+        {
+          "speaker": "Student",
+          "text": "I’m splitting it into horizontal and vertical first, because the vertical part tells me the time in the air, and I need the time for everything else."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 3,
+          "rationale": "Short, but it names the strategy and the reason for doing it first. A decision explained, with no monitoring yet."
+        }
+      ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-efficiency-margin",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 4; the placement is provisional until Steve and the second reviewer place it independently. Deliberately short, to show that level 4 isn’t about length.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-5"
+        ],
+        "focusArea": "energy"
+      },
+      "use": "station",
+      "kind": "worked-solution",
+      "studentLabel": "Year 9 student",
+      "prompt": "<i>A motor uses 100 J of electrical energy and does 80 J of useful work. What is its efficiency?</i> Margin notes as you work.",
+      "content": [
+        {
+          "speaker": "Margin note 1",
+          "text": "Got 125%. Can’t be over 100% — I must have the input and output the wrong way round."
+        },
+        {
+          "speaker": "Margin note 2",
+          "text": "Swapped: 80 ÷ 100 = 80%."
+        },
+        {
+          "speaker": "Margin note 3",
+          "text": "Makes sense, some energy is lost as heat and sound."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 4,
+          "rationale": "Notices an impossible result, says why it’s impossible, repairs it, and checks the new answer against what they know. Three lines, all monitoring and repair."
+        }
+      ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-punnett-talk",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 4; the placement is provisional until Steve and the second reviewer place it independently.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-5"
+        ],
+        "focusArea": "genetics-and-evolutionary-change"
+      },
+      "use": "station",
+      "kind": "talk",
+      "studentLabel": "Year 10 student",
+      "prompt": "Thinking aloud to a partner: <i>Two parents are both heterozygous for eye colour (Bb). Brown (B) is dominant to blue (b). What fraction of their children would you expect to have blue eyes?</i>",
+      "content": [
+        {
+          "speaker": "Student",
+          "text": "Bb times Bb. Punnett square: BB, Bb, Bb, bb."
+        },
+        {
+          "speaker": "Student",
+          "text": "So three in four have blue eyes — wait, no. B is brown and it’s dominant, so anything with a B is brown."
+        },
+        {
+          "speaker": "Student",
+          "text": "That’s BB and both Bb’s: three brown. Only bb is blue. So one in four blue."
+        },
+        {
+          "speaker": "Student",
+          "text": "I nearly mixed up which letter was which. Checked against the key: B is brown. Yes, one in four."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 4,
+          "rationale": "Catches their own error mid-sentence, says what they’d confused, corrects it, and checks against the key."
+        }
+      ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-netforce-exitslip",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 1; the placement is provisional until Steve and the second reviewer place it independently.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-4"
+        ],
+        "focusArea": "forces"
+      },
+      "use": "spaced",
+      "kind": "exit-slip",
+      "studentLabel": "Year 7 student",
+      "prompt": "Exit slip: <i>How did you work out the net force on the box?</i>",
+      "content": [
+        {
+          "speaker": "Student",
+          "text": "It was 20 N to the right. I got it right."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 1,
+          "rationale": "Answer and outcome only."
+        }
+      ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-balancing-talk",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 2; the placement is provisional until Steve and the second reviewer place it independently.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-5"
+        ],
+        "focusArea": "reactions"
+      },
+      "use": "spaced",
+      "kind": "talk",
+      "studentLabel": "Year 10 student",
+      "prompt": "Thinking aloud while balancing the reaction of hydrogen with oxygen to make water.",
+      "content": [
+        {
+          "speaker": "Student",
+          "text": "First I counted the hydrogens. Then I put a 2 in front of the H<sub>2</sub>O. Then I did the oxygens and put a 2 in front of the H<sub>2</sub>."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 2,
+          "rationale": "Steps in order, with no reasons and no check."
+        }
+      ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-quadrat-reflection",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 3; the placement is provisional until Steve and the second reviewer place it independently.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-4"
+        ],
+        "focusArea": "living-systems"
+      },
+      "use": "spaced",
+      "kind": "written-reflection",
+      "studentLabel": "Year 8 student",
+      "prompt": "After sampling the school oval with quadrats, students wrote how they decided where to put them.",
+      "content": [
+        {
+          "speaker": "Student",
+          "text": "I put the quadrats in random places, not where the most flowers were, because otherwise my count would be too high for the whole oval."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 3,
+          "rationale": "A decision with its reason. No sign of checking the result."
+        }
+      ]
+    },
+    {
+      "type": "artefact",
+      "id": "model-art-wavelength-margin",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "authorNote": "M2 draft by Claude Code, 2026-10-20, for Steve to rewrite. Drafted to sit at level 4; the placement is provisional until Steve and the second reviewer place it independently.",
+      "material": "composite",
+      "context": {
+        "stages": [
+          "stage-5"
+        ],
+        "focusArea": "waves-and-motion"
+      },
+      "use": "spaced",
+      "kind": "worked-solution",
+      "studentLabel": "Year 10 student",
+      "prompt": "<i>A sound wave has a frequency of 1000 Hz and travels at 340 m/s. What is its wavelength?</i> Margin notes as you work.",
+      "content": [
+        {
+          "speaker": "Margin note 1",
+          "text": "1000 ÷ 340 = 2.9 m."
+        },
+        {
+          "speaker": "Margin note 2",
+          "text": "Hang on — the units. Hz divided by m/s doesn’t give metres. I divided the wrong way."
+        },
+        {
+          "speaker": "Margin note 3",
+          "text": "λ = v ÷ f = 340 ÷ 1000 = 0.34 m. Metres, and about the size of a ruler, which seems fine for a sound."
+        }
+      ],
+      "placements": [
+        {
+          "by": "draft",
+          "level": 4,
+          "rationale": "Notices the error through the units, says how they knew, repairs it, and sense-checks the size of the answer."
+        }
+      ]
     }
   ]
 }
