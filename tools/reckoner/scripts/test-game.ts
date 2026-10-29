@@ -12,6 +12,7 @@ import yaml from "js-yaml";
 import { GameLesson } from "../src/schema/game-lesson";
 import { buildGame, buildReport, checkLesson, dimScore, fit, GAME_DIR, journeyOf, loadGame } from "./lib/game";
 import { PKG_ROOT } from "./lib/build";
+import { ASSET_DIR, loadAssets } from "./lib/assets";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { JSDOM, VirtualConsole, requestInterceptor } = require("jsdom");
@@ -263,7 +264,7 @@ const cases: [string, () => void | Promise<void>][] = [
     if (errors.length) throw new Error(errors.join("; "));
   }],
   ["a grouped rail shows stage groups, and a spot item offers only the stages it names", async () => {
-    buildGame({ mode: "review", outDir: join(tmp, "grouped") });
+    buildGame({ mode: "review", outDir: join(tmp, "grouped"), images: "link" });
     const { dom, doc, errors } = await openGame(join(tmp, "grouped", "game-review.html"));
     const c = loadGame();
     const path = c.config.paths.find((p) => p.rail === "groups");
@@ -304,10 +305,11 @@ const cases: [string, () => void | Promise<void>][] = [
     const rail = loadGame({ gameDir: dir });
     if (!rail.errors.some((e) => /rail: groups but its journey guide has no phaseGroups/.test(e))) throw new Error(`rail not caught: ${rail.errors.join("; ")}`);
   }],
-  ["Fieldwork: title, confidence slider, and every lesson's plate on its first item only", async () => {
+  ["Fieldwork: title, confidence slider, and every lesson's illustration on its first item only", async () => {
     const built = readFileSync(join(tmp, "a", "index.html"), "utf8");
     if (!built.includes("<title>Fieldwork · The Field Guide</title>")) throw new Error("the built <title> is not Fieldwork · The Field Guide");
-    buildGame({ mode: "review", outDir: join(tmp, "plate") });
+    // Linked images keep the page small enough for jsdom; the embedded review copy is checked as text below.
+    buildGame({ mode: "review", outDir: join(tmp, "plate"), images: "link" });
     const { dom, doc, errors } = await openGame(join(tmp, "plate", "game-review.html"));
     if (doc.title !== "Fieldwork · The Field Guide") throw new Error(`document title: ${doc.title}`);
     const open = (id: string) => {
@@ -319,7 +321,10 @@ const cases: [string, () => void | Promise<void>][] = [
       (doc.querySelector(`[data-l="${id}"]`) as any).click(); (doc.getElementById("go") as any).click();
     };
     open("5e-1-willow");
-    if (!doc.querySelector("#stage .plate-card svg.plate")) throw new Error("5e-1-willow: no plate on the first item");
+    if (!doc.querySelector("#stage .plate-card img.plate")) throw new Error("5e-1-willow: no illustration on the first item");
+    // The willow's quantities are real text under the picture, not pixels.
+    const labels = [...doc.querySelectorAll("#stage .plate-labels span")].map((x: any) => x.textContent).join(" | ");
+    if (labels !== "Year 0 · 2 kg | Year 5 · 77 kg") throw new Error(`5e-1-willow labels: ${labels}`);
     if (!doc.querySelector('#stage input[type=range]#conf')) throw new Error("5e-1-willow: the predict item has no confidence slider");
     const tag = doc.querySelector("#stage .phtag")?.textContent ?? "";
     if (!/Engage · Predict/i.test(tag)) throw new Error(`phase tag: ${tag}`);
@@ -328,58 +333,84 @@ const cases: [string, () => void | Promise<void>][] = [
     (doc.querySelector(".opts .opt") as any).click(); (doc.getElementById("go") as any).click();
     if (!doc.querySelector(".opts .opt .vd")) throw new Error("a marked option has no text verdict");
     (doc.getElementById("go") as any).click();
-    if (doc.querySelector("#stage .plate-card")) throw new Error("the plate shows on the second item too");
-    (doc.getElementById("toMap") as any).click();
-    open("5e-2-cells");
-    if (!doc.querySelector('#stage input[type=range]#conf')) throw new Error("5e-2-cells: no confidence slider");
-    const cells = doc.querySelector("#stage .plate-card svg.plate");
-    if (!cells || cells.querySelector("text") || !/microscope/.test(cells.getAttribute("aria-label") ?? "")) throw new Error("5e-2-cells: no plate, or a plate with text or no description");
-    (doc.getElementById("toMap") as any).click();
-    open("adi-1-leaf-litter");
-    const leaf = doc.querySelector("#stage .plate-card svg.plate");
-    if (!leaf) throw new Error("adi-1-leaf-litter: no plate on the first item");
-    if (leaf.querySelector("text")) throw new Error("adi-1-leaf-litter: the plate should carry no text or numbers");
-    if (!/pitfall traps/.test(leaf.getAttribute("aria-label") ?? "")) throw new Error("adi-1-leaf-litter: the plate has no description");
-    (doc.querySelector(".opts .opt") as any).click(); (doc.getElementById("go") as any).click(); (doc.getElementById("go") as any).click();
-    if (doc.querySelector("#stage .plate-card")) throw new Error("adi-1-leaf-litter shows the plate on its second item too");
-    (doc.getElementById("toMap") as any).click();
-    open("poe-1-yeast");
-    const yeast = doc.querySelector("#stage .plate-card svg.plate");
-    if (!yeast || yeast.querySelector("text") || !/limp balloons/.test(yeast.getAttribute("aria-label") ?? "")) throw new Error("poe-1-yeast: no plate, or a plate with text or no description");
-    (doc.getElementById("toMap") as any).click();
-    open("poe-2-hands");
-    const hands = doc.querySelector("#stage .plate-card svg.plate");
-    if (!hands || hands.querySelector("text") || !/UV torch/.test(hands.getAttribute("aria-label") ?? "")) throw new Error("poe-2-hands: no plate, or a plate with text or no description");
-    // The later 5E, ADI and Choosing a model lessons: each opens with a described plate and no text.
-    const later: [string, any][] = [];
-    for (const [id, words] of [["5e-3-outbreak", /shield badge/], ["5e-4-labels", /ring binder/], ["5e-5-build", /planning board/], ["5e-6-prac-day", /thinking wall/],
-      ["adi-2-noise", /lined with a soft material/], ["adi-3-review", /swapping their reports/], ["adi-4-build", /ADI routine of eight stages/], ["adi-5-argument-day", /Two whiteboards/],
-      ["select-1-which", /Eleven question cards/], ["select-2-dial", /two calendars/], ["select-3-argue", /Models nested/],
-      ["swh-1-spinners", /paper spinner and a crumpled ball/], ["swh-2-bottles", /Four reusable drink bottles/], ["swh-3-bottles", /arrow runs from one notebook/],
-      ["swh-4-bottles", /planning board with seven columns/], ["swh-5-bottles", /closed folder/], ["swh-2-duckweed", /creek after rain/i],
-      ["swh-3-duckweed", /folded reading sheet/], ["swh-4-duckweed", /cups of duckweed beside it/], ["swh-5-duckweed", /folded reading on it/],
-      ["select-4-routine", /signpost at a fork/]] as const) {
+    if (doc.querySelector("#stage .plate-card")) throw new Error("the illustration shows on the second item too");
+    if (!doc.querySelector('#stage input[type=range]#conf') && doc.querySelector("#stage .plate-labels")) throw new Error("willow labels outlived the picture");
+    // Every opening illustration in assets.json: on its lesson's first item, with its approved alt text and
+    // intrinsic size, and gone once the first item is answered (checked where the first item advances on its own).
+    const { assets } = loadGame();
+    for (const a of assets.lessons.filter((x) => x.placement === "opening")) {
       (doc.getElementById("toMap") as any).click();
-      open(id);
-      const svg = doc.querySelector("#stage .plate-card svg.plate");
-      if (!svg || svg.querySelector("text") || !words.test(svg.getAttribute("aria-label") ?? "")) throw new Error(`${id}: no plate, or a plate with text or no description`);
-      later.push([id, svg]);
-      // The plate shows on the first item only (checked where the first item is a card that advances on its own).
+      open(a.lesson);
+      const imgs = doc.querySelectorAll("#stage .plate-card img.plate");
+      const img = imgs[0] as any;
+      if (imgs.length !== 1) throw new Error(`${a.lesson}: ${imgs.length} illustrations on the first item`);
+      if (img.getAttribute("alt") !== a.alt) throw new Error(`${a.lesson}: alt text is not the approved description`);
+      if (img.getAttribute("width") !== String(a.width) || img.getAttribute("height") !== String(a.height)) throw new Error(`${a.lesson}: no intrinsic size`);
+      if (!img.getAttribute("src").startsWith(`img/${a.id}.webp?v=`)) throw new Error(`${a.lesson}: src is ${img.getAttribute("src")}`);
       const go = doc.getElementById("go") as any;
       if (!go.disabled && /^(Start|Got it)$/.test(go.textContent)) {
         go.click();
-        if (doc.querySelector("#stage .plate-card")) throw new Error(`${id} shows the plate on its second item too`);
+        if (doc.querySelector("#stage .plate-card")) throw new Error(`${a.lesson} shows the illustration on its second item too`);
       }
     }
-    // Every published lesson now has a plate.
-    const plated = new Set(later.map(([id]) => id).concat(["5e-1-willow", "5e-2-cells", "poe-1-yeast", "poe-2-hands", "adi-1-leaf-litter"]));
-    const bare = loadGame().lessons.filter((l) => l.status === "published" && !plated.has(l.id)).map((l) => l.id);
-    if (bare.length) throw new Error(`lessons without a plate: ${bare.join(", ")}`);
-    // Every plate keeps its shapes to itself: no <use> points outside its own <defs>.
-    for (const [id, svg] of [["5e-2-cells", cells], ["poe-1-yeast", yeast], ["poe-2-hands", hands], ["adi-1-leaf-litter", leaf], ...later] as const)
-      (svg as any).querySelectorAll("use").forEach((u: any) => { const ref = u.getAttribute("href").slice(1); if (!(svg as any).querySelector(`[id="${ref}"]`)) throw new Error(`${id}: <use> points at #${ref}, which isn't in the plate`); });
+    // Every published lesson has exactly one illustration, and no drawn SVG plate survives.
+    const pictured = new Set(assets.lessons.map((a) => a.lesson));
+    const bare = loadGame().lessons.filter((l) => l.status === "published" && !pictured.has(l.id)).map((l) => l.id);
+    if (bare.length) throw new Error(`lessons without an illustration: ${bare.join(", ")}`);
+    if (readFileSync(join(PKG_ROOT, "templates", "game.js"), "utf8").includes('<svg class="plate"')) throw new Error("templates/game.js still holds a drawn SVG plate");
     if (errors.length) throw new Error(errors.join("; "));
     dom.window.close();
+  }],
+  ["select-3-argue: the nesting picture never opens the lesson and shows only after the nest item is answered", async () => {
+    const { assets } = loadGame();
+    const pic = assets.lessons.find((a) => a.lesson === "select-3-argue")!;
+    if (pic.placement !== "after-attempt" || pic.afterItem !== "nest") throw new Error("select-3-argue's picture is not placed after the nest item");
+    const { dom, doc, errors } = await openGame(join(tmp, "plate", "game-review.html"));
+    const shown = () => [...doc.querySelectorAll("#stage img")].some((i: any) => i.getAttribute("alt") === pic.alt);
+    const go = () => (doc.getElementById("go") as any).click();
+    (doc.querySelector('[data-l="select-3-argue"]') as any).click(); go();
+    if (doc.querySelector("#stage .plate-card")) throw new Error("select-3-argue opens with an illustration");
+    let seen = false;
+    for (let step = 0; step < 60 && !doc.querySelector(".sum-head"); step++) {
+      const nest = /Where in the ADI routine would a POE fit/.test(doc.querySelector("#stage .q")?.textContent ?? "") && !doc.querySelector(".dock.good, .dock.bad");
+      if (shown() && !seen) throw new Error(`the nesting picture shows before the nest item is answered (step ${step})`);
+      const opt = doc.querySelector(".opts .opt:not([disabled])") as any;
+      if (opt) opt.click();
+      go();
+      if (nest) {
+        if (!doc.querySelector(".dock.good, .dock.bad")) throw new Error("the nest item was not checked");
+        const fig = doc.querySelector("#stage .plate-card.after img") as any;
+        if (!fig || fig.getAttribute("alt") !== pic.alt || fig.getAttribute("loading") !== "lazy") throw new Error("no lazy-loaded nesting picture after the nest item was answered");
+        seen = true;
+      }
+      if (doc.querySelector(".dock.good, .dock.bad")) go();
+    }
+    if (!seen) throw new Error("never reached the nest item");
+    if (errors.length) throw new Error(errors.join("; "));
+    dom.window.close();
+  }],
+  ["the site build links illustrations from img/ by relative path, copies only those, and refuses a changed image", () => {
+    const html = readFileSync(join(tmp, "a", "index.html"), "utf8");
+    const data = JSON.parse(html.match(/window\.GAME_DATA = (.*?);<\/script>/)![1]);
+    const srcs = [...Object.values(data.plates), ...Object.values(data.afterPlates)].map((p: any) => p.src as string);
+    const { assets } = loadGame();
+    if (srcs.length !== assets.lessons.length) throw new Error(`${srcs.length} images in the build, ${assets.lessons.length} in assets.json`);
+    for (const s of srcs) if (!/^img\/[\w-]+\.webp\?v=[0-9a-f]{12}$/.test(s)) throw new Error(`not a relative hashed path: ${s}`);
+    const files = readdirSync(join(tmp, "a", "img")).sort();
+    if (files.join() !== assets.lessons.map((a) => `${a.id}.webp`).sort().join()) throw new Error(`img/ holds ${files.join(", ")}`);
+    if (html.includes("data:image/webp")) throw new Error("the site build embeds images; it should link them");
+    if (!/<link rel="icon" type="image\/svg\+xml" href="data:image\/svg\+xml,/.test(html)) throw new Error("no favicon");
+    // The review copy is one file that opens offline: every image embedded, nothing linked from img/.
+    const r = buildGame({ mode: "review", outDir: join(tmp, "embedded") });
+    const review = readFileSync(join(tmp, "embedded", r.file), "utf8");
+    const embedded = review.match(/"src":"data:image\/webp;base64,/g)?.length ?? 0;
+    if (embedded !== assets.lessons.length || review.includes('"src":"img/')) throw new Error(`the review copy embeds ${embedded} of ${assets.lessons.length} images`);
+    // A swapped or re-exported image fails the build.
+    const dir = join(tmp, "assets-bad");
+    cpSync(ASSET_DIR, dir, { recursive: true });
+    writeFileSync(join(dir, "lessons", "poe-1-yeast.webp"), readFileSync(join(dir, "lessons", "poe-2-hands.webp")));
+    try { loadAssets(dir); throw new Error("a changed image was accepted"); }
+    catch (e) { if (!/poe-1-yeast\.webp: SHA-256 does not match/.test((e as Error).message)) throw e; }
   }],
   ["a path with cases: shared lessons, a case chooser, each case its own run; case cards and tables render", async () => {
     // Fixture: the ADI path split into two cases. Lesson 1 shared; case a holds lessons 2–3, case b lessons 4–5 renumbered 2–3.
@@ -402,7 +433,7 @@ const cases: [string, () => void | Promise<void>][] = [
     });
     const c = loadGame({ gameDir: dir });
     if (c.errors.length) throw new Error(c.errors.join("; "));
-    buildGame({ mode: "review", outDir: join(tmp, "cases"), content: c });
+    buildGame({ mode: "review", outDir: join(tmp, "cases"), content: c, images: "link" });
     const { dom, doc, errors } = await openGame(join(tmp, "cases", "game-review.html"));
     const shown = (id: string) => !!doc.querySelector(`[data-l="${id}"]`);
     const pressed = () => (doc.querySelector('[data-case^="adi|"][aria-pressed="true"]') as any)?.dataset.case;
@@ -438,7 +469,7 @@ const cases: [string, () => void | Promise<void>][] = [
     dom.window.close();
   }],
   ["the review copy plays every lesson to the end in jsdom", async () => {
-    buildGame({ mode: "review", outDir: join(tmp, "review") });
+    buildGame({ mode: "review", outDir: join(tmp, "review"), images: "link" });
     const { dom, doc, errors } = await openGame(join(tmp, "review", "game-review.html"));
     const w = dom.window;
     for (const l of loadGame().lessons) {

@@ -13,6 +13,7 @@ import { pathToFileURL } from "node:url";
 import yaml from "js-yaml";
 import { buildSite, PKG_ROOT } from "./lib/build";
 import { mirror } from "./lib/mirror";
+import { loadAssets } from "./lib/assets";
 
 // jsdom ships without bundled types; only a few calls are used here.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -113,10 +114,40 @@ const cases: [string, () => void | Promise<void>][] = [
     if (JSON.stringify(Object.keys(a)) !== JSON.stringify(Object.keys(b))) throw new Error("file lists differ");
     for (const f of Object.keys(a)) if (a[f] !== b[f]) throw new Error(`${f} differs between builds`);
   }],
-  ["the site build writes one data file per published guide, plus the shell", () => {
+  ["the site build writes one data file per published guide, plus the shell and its hero image", () => {
     const files = Object.keys(read(join(tmp, "a"))).sort();
-    const want = ["app.js", "data/manifest.json", ...guideIds.map((id) => `data/guides/${id}.json`), "index.html"].sort();
+    const want = ["app.js", "data/manifest.json", ...guideIds.map((id) => `data/guides/${id}.json`), "img/5e-1-willow.webp", "index.html"].sort();
     if (JSON.stringify(files) !== JSON.stringify(want)) throw new Error(`got ${files.join(", ")}`);
+  }],
+  ["the home hero is the approved willow: linked by relative path on the site, embedded in single files, quantities as text", () => {
+    const assets = loadAssets();
+    const willow = assets.lessons.find((l) => l.lesson === "5e-1-willow")!;
+    const site = readFileSync(join(tmp, "a", "index.html"), "utf8");
+    const tag = site.match(/<img class="plate" [^>]*>/)?.[0] ?? "";
+    if (!tag.includes(`src="img/5e-1-willow.webp?v=${willow.sha256.slice(0, 12)}"`)) throw new Error(`hero src: ${tag}`);
+    if (!tag.includes(`width="${willow.width}" height="${willow.height}"`) || !tag.includes(`alt="${willow.alt}"`)) throw new Error(`hero size or alt: ${tag}`);
+    if (!readFileSync(join(tmp, "a", "img", "5e-1-willow.webp")).equals(readFileSync(join(assets.dir, willow.file)))) throw new Error("img/5e-1-willow.webp is not the approved file");
+    if (!site.includes('<p class="plate-labels"><span>Year 0 · 2 kg</span><span>Year 5 · 77 kg</span></p>')) throw new Error("the willow quantities are not real text under the hero");
+    if (site.includes("<svg class=\"plate\"")) throw new Error("the drawn willow plate survived");
+    buildSite({ mode: "single", outDir: join(tmp, "hero-single"), log: quiet });
+    const single = readFileSync(join(tmp, "hero-single", "index.html"), "utf8");
+    if (!/<img class="plate" src="data:image\/webp;base64,/.test(single) || existsSync(join(tmp, "hero-single", "img"))) throw new Error("the single file does not embed its hero");
+  }],
+  ["the brand marks are the approved family A marks, and every page has the favicon", () => {
+    const assets = loadAssets();
+    const inner = (id: string) => readFileSync(join(assets.dir, `brand/${id}.svg`), "utf8").match(/<svg [^>]*>(.*)<\/svg>/s)![1];
+    for (const t of ["app.html", "game.html"]) {
+      const html = readFileSync(join(PKG_ROOT, "templates", t), "utf8");
+      for (const [sym, file] of [["i-fieldguide", "field-guide"], ["i-fieldwork", "fieldwork"], ["i-reckoner", "reckoner"]]) {
+        const m = html.match(new RegExp(`<symbol id="${sym}" viewBox="0 0 64 64"[^>]*>(.*?)</symbol>`, "s"));
+        if (!m || m[1] !== inner(file)) throw new Error(`${t}: #${sym} is not brand/${file}.svg`);
+      }
+    }
+    const site = readFileSync(join(tmp, "a", "index.html"), "utf8");
+    const icon = `<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,${encodeURIComponent(readFileSync(join(assets.dir, "brand/favicon.svg"), "utf8").trim())}">`;
+    if (!site.includes(icon)) throw new Error("the reckoner page has no favicon");
+    // The header mark is decoration: the link around it carries the name.
+    if (!/<span class="brand-mark"><svg class="i" aria-hidden="true"><use href="#i-fieldguide"\/><\/svg><\/span>/.test(site)) throw new Error("the header mark is not hidden from screen readers");
   }],
   ["a draft guide never reaches the site or single-file build", () => {
     const guidesDir = join(tmp, "guides-draft");
