@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#F3F6F4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111917" media="(prefers-color-scheme: dark)">
+<!--__FAVICON__-->
 <title>Fieldwork · The Field Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +14,7 @@
 /* Layout: one narrow lesson column, game HUD on top, a 5E phase rail showing where the learner's own lesson sits, and a fixed check/feedback bar at the bottom */
 :root{
   --bg:#F3F6F4; --surface:#FFFFFF; --surface-2:#E9EEEB; --ink:#16211F; --muted:#5A6B68; --line:#D7DEDA; --line-soft:#E6EBE8;
-  --accent:#1D6B56; --on-accent:#FFFFFF; --micro:#96601A;
+  --brand-ink:#124B3C; --accent:#1D6B56; --on-accent:#FFFFFF; --micro:#96601A;
   --good:#1f7446; --good-bg:#dff2e6; --bad:#ad3d2b; --bad-bg:#fae6e1;
   --engage:#b06e0c; --explore:#0d7c6f; --explain:#2a5cad; --elaborate:#7046ad; --evaluate:#ad4166;
   --plate-sun:#F2C76B; --plate-ray:#D9A62E; --plate-canopy:#DFEDE7; --plate-branch:#1D6B56; --plate-leaf:#2E8A6E;
@@ -27,7 +28,7 @@
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#111917; --surface:#19231F; --surface-2:#131C19; --ink:#E6EDE9; --muted:#9CADA8; --line:#2C3A35; --line-soft:#232F2B;
-  --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
+  --brand-ink:#6FC0A3; --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
   --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
   --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
   --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6; --plate-uv:#A88BEA;
@@ -36,7 +37,7 @@
   color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#111917; --surface:#19231F; --surface-2:#131C19; --ink:#E6EDE9; --muted:#9CADA8; --line:#2C3A35; --line-soft:#232F2B;
-  --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
+  --brand-ink:#6FC0A3; --accent:#6FC0A3; --on-accent:#0D1714; --micro:#DFA85C;
   --plate-sun:#C9A04A; --plate-ray:#A88128; --plate-canopy:#1B322A; --plate-branch:#6FC0A3; --plate-leaf:#4FA586;
   --plate-trunk:#B08C68; --plate-soil:#8C6B4B; --plate-tub:#5873AE; --plate-rim:#45609A; --plate-drop:#7FB4E4;
   --plate-grey:#A3AFB5; --plate-rust:#D98A63; --plate-sugar:#E3E9E6; --plate-uv:#A88BEA;
@@ -234,8 +235,8 @@ button.go.fbk{margin-top:12px}
 .top{display:flex;align-items:center;flex-wrap:wrap;gap:4px 12px;min-height:44px}
 .top .grow{flex:1}
 .brand{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:600;font-size:19px}
-.brand-mark{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--accent);color:var(--on-accent)}
-.brand-mark .i{width:18px;height:18px}
+.brand-mark{display:grid;place-items:center;width:34px;height:34px;color:var(--brand-ink)}
+.brand-mark .i{width:34px;height:34px}
 .top .back{display:inline-flex;align-items:center;gap:2px;min-height:44px;border:0;background:none;color:var(--accent);font-weight:600;font-size:15px;cursor:pointer;padding:0 4px;text-decoration:none;border-radius:8px}
 .top .back .i{width:18px;height:18px}
 /* HUD heading: where you are, and how far */
@@ -246,37 +247,11 @@ button.go.fbk{margin-top:12px}
 .phtag{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;margin:0 0 6px;color:color-mix(in srgb,var(--pc) 70%,var(--ink));background:color-mix(in srgb,var(--pc) 14%,var(--surface))}
 .phtag .i{width:16px;height:16px;color:var(--pc)}
 .phtag.plain{color:var(--muted);background:var(--surface-2)}
-/* lesson plate on graph paper */
+/* lesson illustration on graph paper: the whole frame at its own ratio, never cropped */
 .plate-card{background-color:var(--surface);background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);background-size:18px 18px;border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 14px}
-.pl-sun{fill:var(--plate-sun)} .pl-ray{stroke:var(--plate-ray)} .pl-canopy{fill:var(--plate-canopy)}
-.pl-trunk{stroke:var(--plate-trunk)} .pl-branch{stroke:var(--plate-branch)} .pl-leaf{fill:var(--plate-leaf)}
-.pl-tub{fill:var(--plate-tub)} .pl-rim{fill:var(--plate-rim)} .pl-soil{stroke:var(--plate-soil)}
-.pl-drop{fill:var(--plate-drop)} .pl-label{font:11px var(--mono);fill:var(--muted)}
-.pl-q{font:600 40px var(--serif);fill:var(--micro)} .plate{width:100%;height:auto;display:block}
-/* leaf litter plate (adi-1-leaf-litter): ground, litter, traps and the invertebrates, each kind its own shape and colour */
-.ll-soil{fill:var(--plate-soil);fill-opacity:.22} .ll-ground{stroke:var(--plate-soil)} .ll-grass{stroke:var(--plate-leaf)} .ll-bark{fill:var(--plate-trunk)}
-.ll-litter-a{fill:var(--plate-leaf);fill-opacity:.85} .ll-litter-b{fill:var(--plate-ray);fill-opacity:.85} .ll-litter-c{fill:var(--plate-soil)}
-.ll-cup{fill:var(--plate-canopy);stroke:var(--plate-rim)} .ll-seg{stroke:var(--plate-canopy)}
-.ll-ant{fill:var(--plate-trunk);stroke:var(--plate-trunk)} .ll-beetle{fill:var(--plate-branch);stroke:var(--plate-branch)}
-.ll-slater{fill:var(--plate-grey);stroke:var(--plate-grey)} .ll-spider{fill:var(--plate-rust);stroke:var(--plate-rust)}
-.ll-centipede{fill:var(--plate-ray);stroke:var(--plate-ray)} .ll-springtail{fill:var(--plate-tub);stroke:var(--plate-tub)}
-/* cells and yeast plates (5e-2-cells, poe-1-yeast): bench, glassware, specimens */
-.pv-bench{fill:var(--plate-soil);fill-opacity:.22} .pv-bench-edge{stroke:var(--plate-soil)} .pv-metal{fill:var(--plate-grey)} .pv-dark-s{stroke:var(--plate-rim)}
-.pv-dark{fill:var(--plate-rim)} .pv-glass{fill:var(--plate-canopy);fill-opacity:.55;stroke:var(--plate-rim)} .pv-water{fill:var(--plate-drop);fill-opacity:.45} .pv-seed{fill:var(--plate-ray)}
-.pv-seed-line{stroke:var(--plate-soil)} .pv-cap{fill:var(--plate-soil)} .pv-stem{fill:var(--plate-canopy);stroke:var(--plate-soil)} .pv-gill{stroke:var(--plate-soil)}
-.pv-yeast{fill:var(--plate-sun)} .pv-yeast-s{stroke:var(--plate-ray)} .pv-crystal-a{fill:var(--plate-canopy);stroke:var(--plate-rim)} .pv-crystal-b{fill:var(--plate-drop);fill-opacity:.35;stroke:var(--plate-rim)}
-.pv-sugar{fill:var(--plate-sugar);stroke:var(--plate-rim)} .pv-balloon-a{fill:var(--plate-rust)} .pv-balloon-b{fill:var(--plate-leaf)} .pv-balloon-c{fill:var(--plate-tub)}
-.pv-ruler{fill:var(--plate-sun);fill-opacity:.6;stroke:var(--plate-ray)} .pv-string{stroke:var(--plate-trunk)} .pv-face{fill:var(--surface);stroke:var(--plate-rim)}
-/* clean hands plate (poe-2-hands): hands in outline, lotion glow, UV light, the four methods */
-.pv-skin-o{fill:var(--plate-rim);stroke:var(--plate-rim)} .pv-skin{fill:var(--plate-canopy)} .pv-uv{fill:var(--plate-uv)} .pv-glow{fill:var(--plate-sun)}
-.pv-halo{fill:var(--plate-sun);fill-opacity:.35} .pv-soap{fill:var(--plate-leaf)} .pv-gel{fill:var(--plate-drop);fill-opacity:.3;stroke:var(--plate-rim)} .pv-towel{fill:var(--plate-sugar);stroke:var(--plate-rim)}
-.pv-drop{fill:var(--plate-drop)}
-/* 5E plates (5e-3-outbreak, 5e-4-labels, 5e-5-build, 5e-6-prac-day): people, paper, desks, boards, phase-coloured tabs and columns */
-.pv-paper{fill:var(--plate-sugar);stroke:var(--plate-rim)} .pv-line{stroke:var(--plate-grey);stroke-opacity:.6} .pv-desk{fill:var(--plate-soil);fill-opacity:.35;stroke:var(--plate-soil)} .pv-board{fill:var(--plate-sugar);stroke:var(--plate-grey)}
-.pv-shield{fill:var(--plate-leaf)} .pv-leaf{fill:var(--plate-leaf)} .pv-soil{fill:var(--plate-soil)} .pv-pot{fill:var(--plate-rust)}
-.pv-card{fill:var(--plate-sugar);stroke:var(--plate-rim)} .pv-ph-engage{fill:var(--engage)} .pv-ph-explore{fill:var(--explore)} .pv-ph-explain{fill:var(--explain)}
-.pv-ph-elaborate{fill:var(--elaborate)} .pv-ph-evaluate{fill:var(--evaluate)} .pv-ph-engage-s{stroke:var(--engage)} .pv-ph-explore-s{stroke:var(--explore)}
-.pv-ph-explain-s{stroke:var(--explain)} .pv-ph-elaborate-s{stroke:var(--elaborate)} .pv-ph-evaluate-s{stroke:var(--evaluate)}
+.plate-card.after{margin:16px 0 0}
+.plate{width:100%;height:auto;display:block;border-radius:6px;background:var(--line-soft)}
+.plate-labels{display:flex;justify-content:space-between;gap:8px;margin:6px 0 0;font:500 12.5px var(--f-mono);color:var(--ink)}
 /* privacy line under the dock's controls on lesson screens */
 .privacy{flex-basis:100%;display:flex;align-items:center;gap:6px;margin:0;font-size:12.5px;color:var(--muted)}
 .privacy .i{width:14px;height:14px}
@@ -348,15 +323,17 @@ button.go.fbk{margin-top:12px}
 </head>
 <body>
 <!-- Field Guide icon sprite. 24 px grid, 1.75 stroke, round caps and joins, stroke = currentColor.
+     The three brand marks (i-fieldguide, i-fieldwork, i-reckoner) are the approved family A marks from
+     assets/field-guide/brand/ on their own 64 px grid; test-build.ts checks they match those files.
      Paste this block once, straight after <body>, in tools/reckoner/templates/app.html and game.html.
      Use an icon with: <svg class="i" aria-hidden="true"><use href="#i-reckoner"/></svg>
      Icon-only controls also need an aria-label on the control itself. -->
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <!-- Brand and the four parts of the Field Guide -->
-  <symbol id="i-fieldguide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-8-1.5V18c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V4.5c-3-.5-6 0-8 1.5z"/><path d="M12 6v13.5"/><path d="M15 14.5c0-3 1.4-5 3.4-5.6 0 3-1.4 5-3.4 5.6z"/></symbol>
+  <symbol id="i-fieldguide" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 17C24 11 14 11 6 14v36c9-3 18-2 26 4 8-6 17-7 26-4V14c-8-3-18-3-26 3Z"/><path d="M32 17v37"/><path d="M39 36c0-10 5-17 13-19 0 10-5 17-13 19Z" fill="#62958D" stroke="none"/></symbol>
   <symbol id="i-familytree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="2"/><circle cx="5.5" cy="19.5" r="2"/><circle cx="12" cy="19.5" r="2"/><circle cx="18.5" cy="19.5" r="2"/><path d="M12 6.5v11M12 12H5.5v5.5M12 12h6.5v5.5"/></symbol>
-  <symbol id="i-fieldwork" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="15.5" r="3.8"/><circle cx="17" cy="15.5" r="3.8"/><path d="M10.8 15.5h2.4"/><path d="M3.6 13.5L6.5 5h3.2l1.1 7M20.4 13.5L17.5 5h-3.2l-1.1 7"/></symbol>
-  <symbol id="i-reckoner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.4"/></symbol>
+  <symbol id="i-fieldwork" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m10 32 6-19h10l4 20m24-1-6-19H38l-4 20"/><circle cx="19" cy="40" r="12"/><circle cx="45" cy="40" r="12"/><path d="M31 39h2"/><circle cx="19" cy="40" r="5" fill="#62958D" stroke="none"/><circle cx="45" cy="40" r="5" fill="#62958D" stroke="none"/></symbol>
+  <symbol id="i-reckoner" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="13" width="21" height="38" rx="4"/><rect x="36" y="13" width="21" height="38" rx="4"/><path d="M13 24h9m20 0h9M13 32h9m20 0h9"/><path d="m24 56 8 5 8-5" stroke="#62958D"/></symbol>
   <symbol id="i-guides" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 10h7M8.5 14h7M8.5 18h4"/></symbol>
 
   <!-- Reckoner tools (one per tab) -->

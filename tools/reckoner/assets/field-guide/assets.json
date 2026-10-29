@@ -1,0 +1,313 @@
+{
+  "kit": "Field Guide Visual Asset Kit v1.0",
+  "approved": "2026-10-29",
+  "lessons": [
+    {
+      "id": "5e-1-willow",
+      "lesson": "5e-1-willow",
+      "placement": "opening",
+      "file": "lessons/5e-1-willow.webp",
+      "width": 1701,
+      "height": 925,
+      "alt": "A willow tree grows in a large tub of soil in a quiet outdoor setting.",
+      "sha256": "80c194bbb7ef4b53a03a005e0ed87a0066e09805dd800ba4e4d0e2734cc9a5ac",
+      "labels": [
+        "Year 0 · 2 kg",
+        "Year 5 · 77 kg"
+      ]
+    },
+    {
+      "id": "5e-2-cells",
+      "lesson": "5e-2-cells",
+      "placement": "opening",
+      "file": "lessons/5e-2-cells.webp",
+      "width": 1700,
+      "height": 925,
+      "alt": "A microscope beside a wheat grain, mushroom, dried yeast granules and salt crystal, shown as whole specimens.",
+      "sha256": "57c09aa664df12c14ca23ce7805269abff73997a283eab1f79f5ef84669d6dcc"
+    },
+    {
+      "id": "5e-3-outbreak",
+      "lesson": "5e-3-outbreak",
+      "placement": "opening",
+      "file": "lessons/5e-3-outbreak.webp",
+      "width": 1695,
+      "height": 928,
+      "alt": "Fifteen cartoon students linked in an irregular exchange network, five wearing shield badges.",
+      "sha256": "843074b98980d866de884c61dc39f4f4cf9b5421b262039a08fe00f5d23436de"
+    },
+    {
+      "id": "5e-4-labels",
+      "lesson": "5e-4-labels",
+      "placement": "opening",
+      "file": "lessons/5e-4-labels.webp",
+      "width": 1695,
+      "height": 928,
+      "alt": "An open binder with repeated lecture diagrams, ochre tab at outer left and four remaining tabs down outer right, beside a spare-tab sheet.",
+      "sha256": "6fe6c4e2a4a1b0ddd9cca83852c63b4905a5da16a96a5146d94701a8659a266d"
+    },
+    {
+      "id": "5e-5-build",
+      "lesson": "5e-5-build",
+      "placement": "opening",
+      "file": "lessons/5e-5-build.webp",
+      "width": 1672,
+      "height": 941,
+      "alt": "A planning board with five columns, one in each 5E phase colour. A few activity cards are already placed, one card is on its way into a column, and a seedling in a pot sits beside the board",
+      "sha256": "f55a7c11d4b8e29e6ff13c4d0073797be4a0acd2edcd49130533a70662aa8f1f"
+    },
+    {
+      "id": "5e-6-prac-day",
+      "lesson": "5e-6-prac-day",
+      "placement": "opening",
+      "file": "lessons/5e-6-prac-day.webp",
+      "width": 1695,
+      "height": 928,
+      "alt": "Year 7 students discuss and record ideas in a science classroom with a microscope.",
+      "sha256": "93724e487b1741de4a836f91939faac3f368ebea5887223b94ba4f3a4820b7ba"
+    },
+    {
+      "id": "adi-1-leaf-litter",
+      "lesson": "adi-1-leaf-litter",
+      "placement": "opening",
+      "file": "lessons/adi-1-leaf-litter.webp",
+      "width": 1701,
+      "height": 924,
+      "alt": "Two schoolyard sampling habitats, a mown oval edge and leaf litter beneath a gum tree, each with a flush pitfall trap.",
+      "sha256": "a33206ec5da95e9512dc48d82e47fa67dc2eec85db95705203e3dbbaa3cfc342"
+    },
+    {
+      "id": "adi-2-noise",
+      "lesson": "adi-2-noise",
+      "placement": "opening",
+      "file": "lessons/adi-2-noise.webp",
+      "width": 1698,
+      "height": 926,
+      "alt": "A small speaker sits inside an open demonstration box with a phone outside, beside samples of lining materials.",
+      "sha256": "40cb8451fe58f56171603a6a7db236272f3174310fb18e76674f12cfbb55e632"
+    },
+    {
+      "id": "adi-3-review",
+      "lesson": "adi-3-review",
+      "placement": "opening",
+      "file": "lessons/adi-3-review.webp",
+      "width": 1695,
+      "height": 928,
+      "alt": "Year 10 students independently draft their reports at an accessible classroom desk.",
+      "sha256": "ac4137c0f1e6b38a36a6c9fb2d1fcf712983dd5c4cebf2c6ca01bf8e855d7ebd"
+    },
+    {
+      "id": "adi-4-build",
+      "lesson": "adi-4-build",
+      "placement": "opening",
+      "file": "lessons/adi-4-build.webp",
+      "width": 1672,
+      "height": 941,
+      "alt": "A unit drawn as a long band in the five 5E phase colours, with an ADI routine of eight stages, in its three group colours, sitting inside the unit's Explore and Explain stretch, and a speaker in a lined box on the bench",
+      "sha256": "09c3f6b913e14193134d63e7628f3cf1fb3f3c0d7b9f1d7bb1a49c134b925916"
+    },
+    {
+      "id": "adi-5-argument-day",
+      "lesson": "adi-5-argument-day",
+      "placement": "opening",
+      "file": "lessons/adi-5-argument-day.webp",
+      "width": 1695,
+      "height": 928,
+      "alt": "Four Year 10 students discuss their work around an accessible science desk while a teacher listens. A wheelchair user participates in the discussion.",
+      "sha256": "f3e84ea08b802eb35d511f6d05f84cfe30f45d7552330b93425b791ae6fa1c85"
+    },
+    {
+      "id": "poe-1-yeast",
+      "lesson": "poe-1-yeast",
+      "placement": "opening",
+      "file": "lessons/poe-1-yeast.webp",
+      "width": 1701,
+      "height": 924,
+      "alt": "Three conical flasks each have an equally deflated balloon over the neck. Measuring equipment rests beside them.",
+      "sha256": "5a623ed2773a883a5c34b18b011c6f7b6865af423e12360406eaa4c360d1f785"
+    },
+    {
+      "id": "poe-2-hands",
+      "lesson": "poe-2-hands",
+      "placement": "opening",
+      "file": "lessons/poe-2-hands.webp",
+      "width": 1699,
+      "height": 926,
+      "alt": "Hands coated with fluorescent demonstration lotion are inspected under a UV torch, with four cleaning options nearby.",
+      "sha256": "2b9cd23833fc9a9c772e917e91e61b3c6a6e8237ab133869c5c8acb6ec9c7110"
+    },
+    {
+      "id": "select-1-which",
+      "lesson": "select-1-which",
+      "placement": "opening",
+      "file": "lessons/select-1-which.webp",
+      "width": 1700,
+      "height": 925,
+      "alt": "Eleven question cards, one for each of the Reckoner's questions, each with its own small picture, and an arrow leading from them to the 5E and POE tokens",
+      "sha256": "db271608e96a255eb5cd4f52f464b4b5f9e3be20e197a2ac5047e513848bb051"
+    },
+    {
+      "id": "select-2-dial",
+      "lesson": "select-2-dial",
+      "placement": "opening",
+      "file": "lessons/select-2-dial.webp",
+      "width": 1694,
+      "height": 929,
+      "alt": "The yeast flask from the earlier lesson, and two calendars: one with a single lesson marked, the other with a whole unit of lessons marked",
+      "sha256": "0a023e3e5667d39ff4f52dcc9ce0dddbf9aee99ca7f74d45d6ad408b17782fc7"
+    },
+    {
+      "id": "select-3-argue",
+      "lesson": "select-3-argue",
+      "placement": "after-attempt",
+      "afterItem": "nest",
+      "file": "lessons/select-3-argue.webp",
+      "width": 1672,
+      "height": 941,
+      "alt": "Models nested inside each other: a unit in the five 5E colours, an ADI routine inside its Explore and Explain stretch, and a POE inside the ADI routine's first stage",
+      "sha256": "c759024029974843aa9b2dcb73c742126427efa3f3bee76d08efa87661b450a6"
+    },
+    {
+      "id": "select-4-routine",
+      "lesson": "select-4-routine",
+      "placement": "opening",
+      "file": "lessons/select-4-routine.webp",
+      "width": 1701,
+      "height": 924,
+      "alt": "A blank signpost stands at a fork between two equally inviting paths.",
+      "sha256": "7a48142b4c6133937f46e1bf0e054256593e828e49db133dc489159629fa467f"
+    },
+    {
+      "id": "swh-1-spinners",
+      "lesson": "swh-1-spinners",
+      "placement": "opening",
+      "file": "lessons/swh-1-spinners.webp",
+      "width": 1702,
+      "height": 924,
+      "alt": "A paper helicopter and a crumpled paper ball are held ready for simultaneous release at the same height.",
+      "sha256": "84f08ecf29d6baeecadef00950d35a66d8962f5ce84597aad7f68eebe1679938"
+    },
+    {
+      "id": "swh-2-bottles",
+      "lesson": "swh-2-bottles",
+      "placement": "opening",
+      "file": "lessons/swh-2-bottles.webp",
+      "width": 1701,
+      "height": 924,
+      "alt": "Four intact reusable drink bottles: stainless steel, aluminium, glass and plastic.",
+      "sha256": "f6d35c25b910fd43a2365ae425deec4d060e2b3e3a6f2bec04d7777a9f43c58a"
+    },
+    {
+      "id": "swh-2-duckweed",
+      "lesson": "swh-2-duckweed",
+      "placement": "opening",
+      "file": "lessons/swh-2-duckweed.webp",
+      "width": 1701,
+      "height": 925,
+      "alt": "Rainwater runs from a roadside drain into a creek beside gardens; small duckweed patches float near the bank.",
+      "sha256": "27d44fd5f604b5345127e3f8e0bebb824e9f70eb124ca84ef643215db9decf92"
+    },
+    {
+      "id": "swh-3-bottles",
+      "lesson": "swh-3-bottles",
+      "placement": "opening",
+      "file": "lessons/swh-3-bottles.webp",
+      "width": 1672,
+      "height": 941,
+      "alt": "A row of four bottles on a shelf, with two notebooks below; an arrow runs from one notebook up to the steel bottle and from the other notebook up to the plastic bottle",
+      "sha256": "0186901171f13b053a6e4a75b75df1b1f80b27c559a1eec43240c725a919c4b5"
+    },
+    {
+      "id": "swh-3-duckweed",
+      "lesson": "swh-3-duckweed",
+      "placement": "opening",
+      "file": "lessons/swh-3-duckweed.webp",
+      "width": 1694,
+      "height": 928,
+      "alt": "Year 9 students discuss and record their ideas beside cups of duckweed.",
+      "sha256": "8df7eeaf5f2a3d57e125b9d1c1c6c7fd5ef2499213e1d5a2ebab3c5f40f3ec31"
+    },
+    {
+      "id": "swh-4-bottles",
+      "lesson": "swh-4-bottles",
+      "placement": "opening",
+      "file": "lessons/swh-4-bottles.webp",
+      "width": 1672,
+      "height": 941,
+      "alt": "A planning board with seven columns, their headers in three colours for the three stages of the routine, a few cards placed and one card on its way in, with four drink bottles standing beside it",
+      "sha256": "8ff8460628856da5c879f501db53eb8016b827552ffebf77e304f7434c007bf3"
+    },
+    {
+      "id": "swh-4-duckweed",
+      "lesson": "swh-4-duckweed",
+      "placement": "opening",
+      "file": "lessons/swh-4-duckweed.webp",
+      "width": 1695,
+      "height": 928,
+      "alt": "A planning board with seven columns, their headers in three colours for the three stages of the routine, a few cards placed and one card on its way in, with cups of duckweed beside it",
+      "sha256": "0544f09c9aed65104d0d79cc9dfa4286761f055574ba8480a9cc5218a3f0ffc5"
+    },
+    {
+      "id": "swh-5-bottles",
+      "lesson": "swh-5-bottles",
+      "placement": "opening",
+      "file": "lessons/swh-5-bottles.webp",
+      "width": 1695,
+      "height": 928,
+      "alt": "Year 10 students discuss their investigation with a teacher nearby and steel and plastic bottles on the desk.",
+      "sha256": "23ae38bea35e7a10834bf02a584a3f7bf290ea16aca176158a5e8a526aceece2"
+    },
+    {
+      "id": "swh-5-duckweed",
+      "lesson": "swh-5-duckweed",
+      "placement": "opening",
+      "file": "lessons/swh-5-duckweed.webp",
+      "width": 1695,
+      "height": 928,
+      "alt": "Year 9 students discuss and record their ideas about duckweed; red-haired Student 01 records at the right bench while the teacher listens.",
+      "sha256": "3c8c777aedca8e6734e7f8930c44e0749d2fd66fc23c0fbdff8968d5354d5ef7"
+    }
+  ],
+  "brand": [
+    {
+      "id": "A-field-guide",
+      "file": "brand/field-guide.svg",
+      "sha256": "dd6bddf91b03f354057f58cef719d24cd78b49bc11d6c2c3c9bd7273bd196d5b"
+    },
+    {
+      "id": "A-fieldwork",
+      "file": "brand/fieldwork.svg",
+      "sha256": "36ff3c7f4d1adcfade2b191db2271fd25c19add6a4902c75554de07594a47dca"
+    },
+    {
+      "id": "A-reckoner",
+      "file": "brand/reckoner.svg",
+      "sha256": "76f210f345f19626ec707604e8b53c184eca5619f4024636e72e02dac7818b9a"
+    },
+    {
+      "id": "favicon",
+      "file": "brand/favicon.svg",
+      "sha256": "dd6bddf91b03f354057f58cef719d24cd78b49bc11d6c2c3c9bd7273bd196d5b"
+    }
+  ],
+  "reference": [
+    {
+      "id": "model-nesting",
+      "file": "reference/model-nesting.svg",
+      "deployed": false,
+      "sha256": "b5f97feb26c0c4c9a7ca35fa46c7e73800c015feb39dbd7a157866aed2b976e3"
+    },
+    {
+      "id": "specimen-reference",
+      "file": "reference/specimen-reference.svg",
+      "deployed": false,
+      "sha256": "b03ede4169c11adca883efe7d015b598924d2b4fec7761737633f930956a4875"
+    },
+    {
+      "id": "sampling-reference",
+      "file": "reference/sampling-reference.svg",
+      "deployed": false,
+      "sha256": "075e2ee7945b38472c2eedd94a868dcd5925599bbd8d157cffcf7633eeffbb8c"
+    }
+  ]
+}
