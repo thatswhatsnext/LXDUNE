@@ -1,8 +1,8 @@
 /**
  * The game at /play/: load and check the lessons in content/game, and build the page.
  *
- *   site    play/index.html: one self-contained file with published lessons only.
- *   review  dist/review/game-review.html: every lesson, drafts included, with a review banner.
+ *   site    play/index.html: one file with published lessons only, and play/img/ for its lesson illustrations.
+ *   review  dist/review/game-review.html: every lesson, drafts included, with a review banner; images embedded.
  *
  * Lessons point into their path's guide by id. checkLesson() resolves every reference against the
  * guide and the build copies the look-for wording the page needs, so the page never needs the guide
@@ -14,6 +14,7 @@ import yaml from "js-yaml";
 import { GameConfig, GameLesson, MASTERY } from "../../src/schema/game-lesson";
 import type { ModelGuide } from "../../src/schema/model-guide";
 import { loadGuides, PKG_ROOT } from "./build";
+import { Assets, faviconLink, imageSource, loadAssets } from "./assets";
 
 export const GAME_DIR = join(PKG_ROOT, "content", "game");
 
@@ -27,6 +28,7 @@ export interface GameContent {
   lessons: GameLesson[];
   guides: Map<string, ModelGuide>;
   reckoner: Reckoner;
+  assets: Assets;
   errors: Issues;
 }
 
@@ -99,9 +101,19 @@ export function loadGame(opts: { gameDir?: string; guidesDir?: string } = {}): G
       new Set(p.tracks.map((t) => t.id)).size !== p.tracks.length && errors.push(`game.yaml: path "${p.id}" has a repeated track id`);
     }
   }
+  // Lesson illustrations: each names a lesson that exists; an after-attempt picture names an item of that
+  // lesson other than its first, so it can only appear once that item has been answered.
+  let assets: Assets = { lessons: [], brand: [], reference: [], dir: "" };
+  try { assets = loadAssets(); } catch (e) { errors.push((e as Error).message); }
+  for (const a of assets.lessons) {
+    const l = lessons.find((x) => x.id === a.lesson);
+    if (!l) { errors.push(`assets.json: image ${a.id} is for lesson "${a.lesson}", which does not exist`); continue; }
+    if (a.placement === "after-attempt" && (!l.items.some((it) => it.id === a.afterItem) || l.items[0].id === a.afterItem))
+      errors.push(`assets.json: image ${a.id} shows after item "${a.afterItem}", which is not a later item of ${l.id}`);
+  }
   const pathIndex = (id: string) => config?.paths.findIndex((p) => p.id === id) ?? 0;
   lessons.sort((a, b) => pathIndex(a.path) - pathIndex(b.path) || a.order - b.order);
-  return { config: config!, lessons, guides, reckoner, errors: [...new Set(errors)] };
+  return { config: config!, lessons, guides, reckoner, assets, errors: [...new Set(errors)] };
 }
 
 /** The guide whose phases make a path's lesson rail. */
@@ -402,7 +414,7 @@ function checkSim(l: GameLesson, it: SimItem, g: ModelGuide): Issues {
 }
 
 /** What the page receives: lessons, the guide wording they show, and the reckoner's weighing for select and flip items. */
-export function gameData(c: GameContent, includeDrafts: boolean) {
+export function gameData(c: GameContent, includeDrafts: boolean, image: ReturnType<typeof imageSource> = imageSource(c.assets, "embed")) {
   const shown = c.lessons.filter((l) => includeDrafts || l.status === "published");
   const r = c.reckoner;
   const used = new Set<string>();
@@ -470,6 +482,9 @@ export function gameData(c: GameContent, includeDrafts: boolean) {
       guide: p.kind === "guide" ? p.id : null,
       upcoming: c.lessons.filter((l) => l.path === p.id && !shown.includes(l)).length,
     })),
+    /** Lesson illustrations for the lessons shown: opening ones by lesson id, after-attempt ones by "lesson/item". */
+    plates: Object.fromEntries(c.assets.lessons.filter((a) => a.placement === "opening" && shown.some((l) => l.id === a.lesson)).map((a) => [a.lesson, image(a)])),
+    afterPlates: Object.fromEntries(c.assets.lessons.filter((a) => a.placement === "after-attempt" && shown.some((l) => l.id === a.lesson)).map((a) => [`${a.lesson}/${a.afterItem}`, image(a)])),
     lessons: shown.map((l) => ({
       id: l.id, path: l.path, track: l.track ?? null, order: l.order, title: l.title, summary: l.summary, level: l.level,
       version: l.version, status: l.status, guideSection: l.guideSection ?? null, requires: l.requires, items: items(l),
@@ -480,19 +495,22 @@ export function gameData(c: GameContent, includeDrafts: boolean) {
 /** JSON safe inside an inline <script>. */
 const inlineJson = (v: unknown) => JSON.stringify(v).replace(/</g, "\\u003c");
 
-export function buildGame(opts: { mode: "site" | "review"; outDir: string; content?: GameContent; templatesDir?: string }) {
+/** images: how lesson illustrations reach the page. Defaults to link for the site and embed for review copies. */
+export function buildGame(opts: { mode: "site" | "review"; outDir: string; content?: GameContent; templatesDir?: string; images?: "link" | "embed" }) {
   const c = opts.content ?? loadGame();
   if (c.errors.length) throw new Error(`Game content has ${c.errors.length} error(s):\n  ${c.errors.join("\n  ")}`);
   const templatesDir = opts.templatesDir ?? join(PKG_ROOT, "templates");
   const review = opts.mode === "review";
-  const data = { ...gameData(c, review), review };
+  // The site links images from play/img/ (the page is otherwise one file); the review copy embeds them so it opens offline.
+  const data = { ...gameData(c, review, imageSource(c.assets, opts.images ?? (review ? "embed" : "link"), opts.outDir)), review };
   const html = readFileSync(join(templatesDir, "game.html"), "utf8");
   const js = readFileSync(join(templatesDir, "game.js"), "utf8");
-  if (!html.includes("<!--__GAME__-->")) throw new Error("templates/game.html is missing <!--__GAME__-->");
+  for (const mark of ["<!--__GAME__-->", "<!--__FAVICON__-->"])
+    if (!html.includes(mark)) throw new Error(`templates/game.html is missing ${mark}`);
   const boot = `<script>window.GAME_DATA = ${inlineJson(data)};</script>\n<script>\n${js.replace(/<\/script/gi, "<\\/script")}</script>`;
   const name = review ? "game-review.html" : "index.html";
   const p = join(opts.outDir, name);
   mkdirSync(dirname(p), { recursive: true });
-  writeFileSync(p, html.replace("<!--__GAME__-->", boot));
+  writeFileSync(p, html.replace("<!--__FAVICON__-->", faviconLink(c.assets)).replace("<!--__GAME__-->", () => boot));
   return { file: name, lessons: data.lessons.map((l) => `${l.id} v${l.version}${l.status === "published" ? "" : ` [${l.status}]`}`) };
 }
