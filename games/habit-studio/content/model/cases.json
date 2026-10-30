@@ -102,6 +102,303 @@
           }
         ]
       }
+    },
+    {
+      "type": "casePair",
+      "id": "model-case-trolley-speed",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "material": "composite",
+      "authorNote": "M2 draft by Claude Code, 2026-10-30, for Steve to rewrite. Difficulty 2: both teachers hit the same slip and fix it; only B says how they noticed. Check the focus area: motion is filed under Waves and motion (Stage 5) here.",
+      "context": {
+        "stages": [
+          "stage-5"
+        ],
+        "focusArea": "waves-and-motion"
+      },
+      "use": "station",
+      "title": "Calculating the speed of a trolley",
+      "difficulty": 2,
+      "setup": "Year 9, motion. Students can rearrange speed = distance ÷ time but rarely ask whether an answer makes sense. The teacher works a light-gate result on the board, talking as they go.",
+      "versions": {
+        "a": [
+          {
+            "speaker": "Teacher",
+            "text": "Right: the trolley rolled 120 centimetres down the ramp, and the light gates say it took 0.80 seconds."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Speed is distance over time, so 120 divided by 0.80. That gives 150."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Oops, hang on, let me fix that. Distance should be in metres, so 120 centimetres becomes 1.20 metres. Cross that out and start the line again."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "1.20 divided by 0.80 is 1.5. So the trolley’s speed is 1.5 metres per second."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Write the formula first, then the numbers with their units, then the answer with its unit. Set it out like that every time and the marker can follow you."
+          }
+        ],
+        "b": [
+          {
+            "speaker": "Teacher",
+            "text": "Right: the trolley rolled 120 centimetres down the ramp, and the light gates say it took 0.80 seconds."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Speed is distance over time, so 120 divided by 0.80. That gives 150."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "150 metres per second? That’s over 500 kilometres an hour, faster than a racing car. A trolley on a desk ramp can’t do that, so something’s wrong."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Check the units. Time is in seconds, but distance is in centimetres. 120 centimetres is 1.20 metres, and 1.20 divided by 0.80 is 1.5."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "1.5 metres per second is about walking pace. That’s believable for a trolley, so now I’ll trust it."
+          }
+        ]
+      },
+      "expertPreference": "b",
+      "difference": "Both teachers make the same unit slip and fix it. Only version B says <b>how they noticed</b>: the answer was impossible for a trolley. B then checks that the corrected answer is believable.",
+      "annotation": {
+        "summary": "The working ends up identical. Version A repairs the error silently, so students see that experts fix mistakes but not how they catch them. Version B shows the check that catches it, which students can use on their own answers.",
+        "notes": [
+          {
+            "version": "a",
+            "line": 3,
+            "text": "The repair happens, but “let me fix that” hides the trigger. Students can’t copy a check they never heard."
+          },
+          {
+            "version": "a",
+            "line": 5,
+            "text": "Good advice on layout, but it’s about presenting the answer, not about judging it."
+          },
+          {
+            "version": "b",
+            "line": 3,
+            "text": "Names the check: compare the answer with what is physically possible. That works on any calculation."
+          },
+          {
+            "version": "b",
+            "line": 4,
+            "text": "Goes from “something’s wrong” to a likely cause (units) instead of starting again blindly."
+          },
+          {
+            "version": "b",
+            "line": 5,
+            "text": "Checks the repaired answer the same way before trusting it."
+          }
+        ]
+      }
+    },
+    {
+      "type": "casePair",
+      "id": "model-case-kinematics-choice",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "material": "composite",
+      "authorNote": "M2 draft by Claude Code, 2026-10-30, for Steve to rewrite. Difficulty 3: both teachers give reasons, so capable players may disagree. A’s cue-rules (‘from rest’ means u = 0) are genuinely useful for novices; the expert preference rests on B’s procedure transferring when the wording changes. Arithmetic checked: 0.5 × 2.5 × 6.0² = 45 m.",
+      "context": {
+        "stages": [
+          "stage-6"
+        ],
+        "syllabus": "physics-stage6-2017",
+        "module": "phys-m1",
+        "acknowledgedSuperseded": true
+      },
+      "use": "station",
+      "title": "Choosing an equation of motion",
+      "difficulty": 3,
+      "setup": "Year 11 Physics, kinematics. Students know the equations of motion but often grab the first one that has the right letters in it. The teacher works a problem on the board.",
+      "versions": {
+        "a": [
+          {
+            "speaker": "Teacher",
+            "text": "A car accelerates uniformly from rest at 2.5 metres per second squared for 6.0 seconds. How far does it travel?"
+          },
+          {
+            "speaker": "Teacher",
+            "text": "First, a rule worth remembering: whenever a question says “from rest”, write u equals zero straight away. Put it at the top of your working, under the question, so you don’t lose it."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "The question asks “how far”, so we want s. When you’re given time and acceleration and asked for distance, use s equals ut plus a half a t squared."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Substitute: zero times 6.0, plus a half times 2.5 times 6.0 squared. Six squared is 36, half of 2.5 is 1.25, and 1.25 times 36 is 45."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "So s is 45 metres. Formula, substitution, answer with units, always in that order. Box the final answer, and keep the units on every line, not just at the end."
+          }
+        ],
+        "b": [
+          {
+            "speaker": "Teacher",
+            "text": "A car accelerates uniformly from rest at 2.5 metres per second squared for 6.0 seconds. How far does it travel?"
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Before I pick an equation, I list what I know. “From rest” tells me u is zero; a is 2.5, t is 6.0, and “how far” means I want s."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Now I want the equation that links exactly u, a, t and s, with nothing I don’t know. s equals ut plus a half a t squared has all four and no v, so that’s the one."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Substitute: zero times 6.0, plus a half times 2.5 times 6.0 squared. Six squared is 36, half of 2.5 is 1.25, and 1.25 times 36 is 45."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "So s is 45 metres. I could have found v first and gone the long way, but my list showed I didn’t need it."
+          }
+        ]
+      },
+      "expertPreference": "b",
+      "difference": "Both versions give reasons. Version A’s are <b>rules tied to the wording</b> (“from rest”, “how far”). Version B’s are a <b>procedure for choosing</b>: list the knowns and the unknown, then find the equation that links exactly those.",
+      "annotation": {
+        "summary": "Both choices are right, and both are explained. A’s rules work while questions are worded this way. B’s procedure still works when the wording changes or the unknown is different, because it shows how the choice is made, not just which choice to make.",
+        "notes": [
+          {
+            "version": "a",
+            "line": 2,
+            "text": "A useful tip, and many teachers give it. It’s a cue to spot, though, not a way of deciding."
+          },
+          {
+            "version": "a",
+            "line": 3,
+            "text": "Gives a reason, but the reason is a pattern match: given these, use that. A student who meets a question asking for v has nothing to go on."
+          },
+          {
+            "version": "b",
+            "line": 2,
+            "text": "Makes the inventory explicit before choosing. That’s the step students skip when they grab an equation."
+          },
+          {
+            "version": "b",
+            "line": 3,
+            "text": "Names the selection rule: the equation must contain exactly the knowns and the unknown."
+          },
+          {
+            "version": "b",
+            "line": 5,
+            "text": "Shows that a different route was possible and why it wasn’t needed: the plan, not just the path."
+          }
+        ]
+      }
+    },
+    {
+      "type": "casePair",
+      "id": "model-case-co2-graph",
+      "habit": "model",
+      "version": "0.1.0",
+      "source": "ai-generated",
+      "reviewedBy": [],
+      "lastReviewed": null,
+      "published": false,
+      "material": "composite",
+      "authorNote": "M2 draft by Claude Code, 2026-10-30, for Steve to rewrite. Spaced-return pair, difficulty 2: a new context for the same habit. Values are rounded from the Mauna Loa record (about 317 ppm in 1960, about 414 ppm in 2020).",
+      "context": {
+        "stages": [
+          "stage-5"
+        ],
+        "focusArea": "data-science-2"
+      },
+      "use": "spaced",
+      "title": "Describing a carbon dioxide graph",
+      "difficulty": 2,
+      "setup": "Year 9, data science. When students describe a graph they read the line and stop there. The teacher shows a graph of atmospheric carbon dioxide measured at Mauna Loa from 1960 to 2020 and describes it aloud.",
+      "versions": {
+        "a": [
+          {
+            "speaker": "Teacher",
+            "text": "This graph shows carbon dioxide in the atmosphere, measured at Mauna Loa in Hawaii, from 1960 to 2020."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Look at the line: it goes up the whole way. It starts at about 315 and finishes at about 415, so that’s an increase of about 100. That’s a big jump."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "See the little zigzags? They repeat every year. That’s the seasons: northern plants take in carbon dioxide as they grow, and release it as leaves decay in autumn and winter."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "So the overall trend is a steady rise, with a yearly wiggle on top. Describe the trend first, then the pattern on top of it."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "In a test, use words like “trend” and “increase”, and quote numbers from the graph to back them up."
+          }
+        ],
+        "b": [
+          {
+            "speaker": "Teacher",
+            "text": "This graph shows carbon dioxide in the atmosphere, measured at Mauna Loa in Hawaii, from 1960 to 2020."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "Before I read the line, I read the axes. Years along the bottom. Up the side, parts per million, and it starts at 300, not zero."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "That matters: when the scale doesn’t start at zero, changes look bigger than they are. So I’ll work it out instead of trusting my eye: about 315 to about 415, up 100, roughly a third more."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "The zigzags repeat every year. That’s the seasons: northern plants take in carbon dioxide as they grow, and release it as leaves decay in autumn and winter."
+          },
+          {
+            "speaker": "Teacher",
+            "text": "So: a rise of about a third in sixty years, with a yearly wiggle on top."
+          }
+        ]
+      },
+      "expertPreference": "b",
+      "difference": "Version B <b>reads the axes before the line</b>, notices the scale doesn’t start at zero, and says why that changes how big the rise looks. Version A goes straight to the line and judges the rise by eye.",
+      "annotation": {
+        "summary": "Both describe the same trend and the same seasonal pattern. Only version B models the check that decides how much to trust a first impression of a graph.",
+        "notes": [
+          {
+            "version": "a",
+            "line": 2,
+            "text": "“A big jump” is a judgement made by eye, and the scale that shaped it was never looked at."
+          },
+          {
+            "version": "a",
+            "line": 4,
+            "text": "A sound structure for a description, but it’s a recipe for writing about a graph, not a way of reading one."
+          },
+          {
+            "version": "b",
+            "line": 2,
+            "text": "Names a habit students can reuse: read the axes and units before the line."
+          },
+          {
+            "version": "b",
+            "line": 3,
+            "text": "Says why the scale matters, then replaces the eyeball judgement with a calculation."
+          }
+        ]
+      }
     }
   ]
 }

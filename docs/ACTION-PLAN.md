@@ -631,7 +631,8 @@ Parked for later exploration (Steve, 2026-10-07). Depends on item 56.
 - [ ] In progress: M2, the full Model your thinking set (3 case pairs, 10–12 artefacts with two placements each, 2 briefs, spaced-return items), about 35–50 h, mostly Steve's
 - [x] M2 drafts by Claude Code, 2026-10-20 (Steve's request: the student work and the flawed examples): 14 artefacts, 10 for Station C (the set is now 11, by provisional level 3/3/2/3) and 4 for spaced return (one per level), across nine contexts and five kinds; and brief 2, "Reading a pedigree" (Stage 5 genetics), whose flawed exemplar shows the monologue dilution. All `ai-generated`, unpublished; placements are provisional `draft` ones. The brief's strong and weak exemplars are provisional too: the spec reserves the strong exemplar for Steve
 - [x] Steve, 2026-10-30: the Studio stays a separate app from the Coach, linked from the Coach's completion screen for the pilot habits and from Moodle; it is built in M3 (spec §9)
-- [ ] Open (M2): Steve rewrites the drafts; Steve and the second reviewer place every artefact independently; Steve writes case pairs 2 and 3 (subtler differences) and the spaced-return case pair
+- [x] M2 drafts, 2026-10-30: case pairs 2 (`model-case-trolley-speed`, difficulty 2) and 3 (`model-case-kinematics-choice`, difficulty 3) and the spaced-return pair (`model-case-co2-graph`), drafted by Claude Code for Steve to rewrite (`ai-generated`, unpublished). `scripts/studio-review.js --placement` makes a blind placement sheet: the rubric and the 14 artefacts still needing placements, shuffled, with no placements or notes, and a CSV download per reviewer
+- [ ] Open (M2): Steve rewrites the drafts (14 artefacts, the pedigree brief, the three new case pairs); Steve and the second reviewer place every artefact independently with the placement sheet; name the second reviewer
 
 ---
 

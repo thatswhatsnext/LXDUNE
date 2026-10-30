@@ -70,7 +70,9 @@ they write.
 - Include some that are genuinely hard to place. Where reviewers disagree, that's useful: the app shows
   “Experts split” with both rationales.
 - **Placements:** two experts place each artefact independently, without seeing each other's placement
-  first. `by` is the reviewer's name; a provisional placement from a draft is `"by": "draft"` and must be
+  first. `node scripts/studio-review.js model ~/Documents/LXDUNE-private/placement-sheet.html --placement`
+  makes a blind sheet for this: the rubric and every artefact still needing placements, shuffled, with no
+  placements or notes. Each reviewer fills it in and downloads a CSV of id, level and reason. `by` is the reviewer's name; a provisional placement from a draft is `"by": "draft"` and must be
   replaced before publishing.
 
 ## Station D: briefs (`briefs.json`, 2 per habit)
