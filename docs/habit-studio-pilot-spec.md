@@ -239,7 +239,7 @@ one validator joins `npm run validate`.
 
 ## 9. The app
 
-- **A separate app,** `games/habit-studio/`, linked from the Coach's completion screen for the two pilot
+- **A separate app** (confirmed by Steve, 2026-10-30: the stations don't go inside the Coach), `games/habit-studio/`, built in M3, linked from the Coach's completion screen for the two pilot
   habits ("Go deeper in the Studio") and from Moodle. It shares the Coach's visual language and
   accessibility bar but not its game mechanics: no XP, no streak. Progress is shown as stations done and
   a judgement-agreement score.
