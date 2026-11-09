@@ -31,6 +31,8 @@ so neither is copied here.
 
 **Address:** <https://thatswhatsnext.github.io/LXDUNE/games/metacognition-coach/>
 (once on `main`). Add `?reviewer=1` for a toggle that unlocks every habit, for staff.
+`index.html` sets `explorerUrl` to the explorer's standalone page,
+`frameworks/metacognition-nsw-science/`, resolved against its own address.
 
 `index.html` calls `renderCoach()` from `coach.js`:
 

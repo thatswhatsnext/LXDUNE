@@ -94,7 +94,7 @@ function artefact(x, n) {
     .join('');
   const levels = new Set(x.placements.filter((p) => p.by !== 'draft').map((p) => p.level));
   return (
-    `${prov(x)}<h3>Artefact ${n}: ${esc(x.studentLabel)}, ${esc(x.kind.replace(/-/g, ' '))}</h3>${ctx(x.context)}<p><b>Task:</b> ${x.prompt}</p>${lines(x.content)}` +
+    `${prov(x)}<h3>Artefact ${n}: ${esc(x.studentLabel)}, ${esc(x.kind.replace(/-/g, ' '))}${x.use === 'spaced' ? ' <span class="diff">held back for the spaced revisits</span>' : ''}</h3>${ctx(x.context)}<p><b>Task:</b> ${x.prompt}</p>${lines(x.content)}` +
     `<div class="answerbox">The player places this on levels 1–4 and gives a one-line reason.</div>` +
     reveal(levels.size > 1 ? 'Expert placements — experts split' : 'Expert placements', `<ul>${pl}</ul>`)
   );

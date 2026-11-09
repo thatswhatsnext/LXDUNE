@@ -7,9 +7,9 @@
  * "guide coming soon" marker until a guide is written for them.
  *
  * Three outputs:
- *   site    index.html (shell) + app.js + data/manifest.json + data/guides/<id>.json.
+ *   site    index.html (shell) + app.js + data/manifest.json + data/guides/<id>.json + img/ (the hero).
  *           What GitHub Pages serves. One guide edit changes one data file.
- *   single  One self-contained HTML file with the data and code inline, for offline use.
+ *   single  One self-contained HTML file with the data, code and hero image inline, for offline use.
  *   review  A single file that also includes draft and in-review guides, with a
  *           "review copy" banner. Never publish a review build to students.
  *
@@ -26,6 +26,7 @@ import { Methodology } from "../../src/schema/methodology";
 import { Families } from "../../src/schema/families";
 import { FIT_DIMENSIONS, FIT_DIMENSION_KEYS } from "../../src/schema/fit-dimensions";
 import { FOCUS_AREAS } from "../../src/schema/syllabus";
+import { faviconLink, imageSource, imgTag, loadAssets } from "./assets";
 
 export const PKG_ROOT = join(__dirname, "..", "..");
 
@@ -153,7 +154,8 @@ export function buildSite(opts: BuildOptions): BuildResult {
 
   const template = readFileSync(join(templatesDir, "app.html"), "utf8");
   const appJs = readFileSync(join(templatesDir, "app.js"), "utf8");
-  if (!template.includes("<!--__BOOT__-->")) throw new Error("templates/app.html is missing <!--__BOOT__-->");
+  for (const mark of ["<!--__BOOT__-->", "<!--__FAVICON__-->", "<!--__HERO__-->"])
+    if (!template.includes(mark)) throw new Error(`templates/app.html is missing ${mark}`);
 
   // Review copies accumulate (one file per guide sent out); site and single builds start clean.
   if (!review) rmSync(opts.outDir, { recursive: true, force: true });
@@ -164,6 +166,14 @@ export function buildSite(opts: BuildOptions): BuildResult {
     writeFileSync(p, body);
     files.push(rel);
   };
+
+  // The home hero is the approved willow illustration: linked from img/ on the site, embedded in single files.
+  const assets = loadAssets();
+  const willow = assets.lessons.find((l) => l.lesson === "5e-1-willow")!;
+  const hero = imageSource(assets, opts.mode === "site" ? "link" : "embed", opts.outDir)(willow);
+  if (opts.mode === "site") files.push(`img/${willow.id}.webp`);
+  const page = (boot: string) =>
+    template.replace("<!--__FAVICON__-->", faviconLink(assets)).replace("<!--__HERO__-->", imgTag(hero, ' fetchpriority="high"')).replace("<!--__BOOT__-->", boot);
 
   if (opts.mode === "site") {
     const guideFiles = guides.map((g) => {
@@ -177,7 +187,7 @@ export function buildSite(opts: BuildOptions): BuildResult {
     guideFiles.forEach(({ g, body }) => write(`data/guides/${g.id}.json`, body));
     write("data/manifest.json", JSON.stringify(manifest, null, 2) + "\n");
     write("app.js", appJs);
-    write("index.html", template.replace("<!--__BOOT__-->", siteBoot(hash(appJs))));
+    write("index.html", page(siteBoot(hash(appJs))));
   } else {
     const data: Record<string, unknown> = { ...shared, guides };
     if (review) {
@@ -190,7 +200,7 @@ export function buildSite(opts: BuildOptions): BuildResult {
     const openAt = review && opts.reviewId ? `if(!location.hash)location.hash=${JSON.stringify("#/guide/" + opts.reviewId)};` : "";
     const boot = `<script>window.RECKONER_DATA = ${inlineJson(data)};${openAt}</script>\n<script>\n${appJs.replace(/<\/script/gi, "<\\/script")}</script>`;
     const name = review ? `${opts.reviewId ?? "all-guides"}-review.html` : "index.html";
-    write(name, template.replace("<!--__BOOT__-->", boot));
+    write(name, page(boot));
   }
 
   return {

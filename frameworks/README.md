@@ -45,6 +45,16 @@ element for `data-fx-framework`, `data-fx-version`, and `data-fx-content-hash`
 (also emitted as an HTML comment), so any deployed page is traceable to an exact
 framework version + content fingerprint.
 
+## Standalone pages
+
+A framework can also have its own public page outside Moodle: an `index.html`
+in its folder that renders it with no preview chrome. The validator reads only
+the JSON, so the page sits alongside the data.
+
+| Framework | Address (once on `main`) | Linked from |
+|---|---|---|
+| `metacognition-nsw-science` | <https://thatswhatsnext.github.io/LXDUNE/frameworks/metacognition-nsw-science/> | The Metacognition Coach's "Go deeper" box |
+
 ## Testing / previewing
 
 **Locally (before it's live on GitHub Pages).** Start the repo's static server
