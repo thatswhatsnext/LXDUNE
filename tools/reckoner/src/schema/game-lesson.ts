@@ -212,6 +212,23 @@ const Sim = obj({
   endings: z.array(obj({ minGood: z.number().int().min(0), title: ShortText, text: Text })).min(2).max(4),
 });
 
+/**
+ * The guidance dial: three switches for what the teacher gives students (the question, the method, the
+ * expected result), which set a level of the dial guide (Levels of inquiry). Handing over runs result, then
+ * method, then question, so only four settings are levels; any other combination is refused on the page.
+ * `answer` is the level the item is after; `fb` explains every level. With a `profile` (learner readiness,
+ * facilitation confidence, timescale), the Reckoner's own guidance dial is the answer key: the build scores
+ * it with the guide's dialHeuristic and refuses an authored answer that disagrees.
+ */
+const Dial = obj({
+  ...base,
+  type: z.literal("dial"),
+  vignette: Vignette,
+  answer: Slug,
+  fb: z.record(Slug, Text),
+  profile: obj({ ready: z.string(), conf: z.string(), time: z.string() }).optional(),
+});
+
 /** A teaching card: the model named and connected. Unscored. */
 const Concept = obj({
   ...base,
@@ -240,7 +257,7 @@ const Case = obj({
 /** Look back: recalls the lesson's prediction, asks for a written move, shows a model answer. Unscored. */
 const Reflect = obj({ ...base, type: z.literal("reflect"), title: Text, q: Text, model: Text, recall: Slug.optional() });
 
-export const GameItem = z.discriminatedUnion("type", [Predict, Choice, Spot, Multi, Order, LookFor, Diagnose, Select, Flip, Nest, Build, Sim, Concept, Case, Reflect]);
+export const GameItem = z.discriminatedUnion("type", [Predict, Choice, Spot, Multi, Order, LookFor, Diagnose, Select, Flip, Nest, Build, Sim, Concept, Case, Reflect, Dial]);
 export type GameItem = z.infer<typeof GameItem>;
 
 export const GameLesson = obj({
@@ -322,8 +339,11 @@ export const GameConfig = obj({
     models: z.array(Slug).default([]),
     /** The path unlocks once each named path reaches this mastery level. */
     requires: z.array(obj({ path: Slug, level: Mastery })).default([]),
-    /** What the lesson rail shows: one cell per phase, or one per phase group (journey guide's phaseGroups). */
-    rail: z.enum(["phases", "groups"]).default("phases"),
+    /**
+     * What the lesson rail shows: one cell per phase, one per phase group (journey guide's phaseGroups), or
+     * a dial: one cell per setting with only the current one marked, since the settings are not a sequence.
+     */
+    rail: z.enum(["phases", "groups", "dial"]).default("phases"),
     /**
      * Cases the player chooses between after the shared lessons, each its own run of lessons on a different
      * worked sequence (lessons carry `track`). Any one case counts towards the path's mastery.
