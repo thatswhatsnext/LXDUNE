@@ -7,13 +7,13 @@ name: Levels of inquiry
 originators: Banchi & Bell (2008), after Herron (1971)
 version: 1.2.0
 status: published
-lastReviewed: 2026-09-30
+lastReviewed: 2026-11-10
 syllabus: NSW Science 7–10 Syllabus (2023)
 provenance:
   source: ai-drafted-reviewed
   authors: ["Claude, drafted for S. Grant"]
   reviewedBy: ["Steve Grant"]
-  reviewedOn: 2026-09-21
+  reviewedOn: 2026-11-10
 
 reckoner:
   scale: dial
