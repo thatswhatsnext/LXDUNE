@@ -1,4 +1,4 @@
-# Levels of inquiry path, lesson 1. Built on the Levels of inquiry guide's worked sequence seq-s4-reaction-time and its level examples. Draft for Steve's review.
+# Levels of inquiry path, lesson 1. Built on the Levels of inquiry guide's worked sequence seq-s4-reaction-time and its level examples. Reviewed and published by Steve on 2026-11-10.
 schemaVersion: 1
 id: loi-1-who-holds
 path: levels-of-inquiry
@@ -6,13 +6,14 @@ order: 1
 title: Who holds the question?
 summary: A ruler, a catch and ten lessons of a Year 7 unit. Read each practical for what the teacher gives students, and set the dial.
 level: recognise
-version: 0.1.0
-status: draft
-lastReviewed: 2026-10-10
+version: 1.0.0
+status: published
+lastReviewed: 2026-11-10
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-11-10
 context:
   stages: [stage4]
   focusAreas: [Data science 1]

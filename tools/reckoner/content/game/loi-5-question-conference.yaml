@@ -1,4 +1,4 @@
-# Levels of inquiry path, lesson 5. Design level: Question Conference, a branching simulation of lessons 7–10 of the Levels of inquiry guide's worked sequence seq-s4-reaction-time. Draft for Steve's review.
+# Levels of inquiry path, lesson 5. Design level: Question Conference, a branching simulation of lessons 7–10 of the Levels of inquiry guide's worked sequence seq-s4-reaction-time. Reviewed and published by Steve on 2026-11-10.
 schemaVersion: 1
 id: loi-5-question-conference
 path: levels-of-inquiry
@@ -6,13 +6,14 @@ order: 5
 title: Question Conference
 summary: Run the open lessons with a simulated Year 7 class. Every move decides whether the question stays theirs, and whether their data get read for what they show.
 level: design
-version: 0.1.0
-status: draft
-lastReviewed: 2026-10-10
+version: 1.0.0
+status: published
+lastReviewed: 2026-11-10
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-11-10
 context:
   stages: [stage4]
   focusAreas: [Data science 1]

@@ -1,4 +1,4 @@
-# Levels of inquiry path, lesson 2. Explain level: confirmation and structured. Built on the Levels of inquiry guide's worked sequence seq-s4-reaction-time and its structured and confirmation examples. Draft for Steve's review.
+# Levels of inquiry path, lesson 2. Explain level: confirmation and structured. Built on the Levels of inquiry guide's worked sequence seq-s4-reaction-time and its structured and confirmation examples. Reviewed and published by Steve on 2026-11-10.
 schemaVersion: 1
 id: loi-2-nothing-at-stake
 path: levels-of-inquiry
@@ -6,13 +6,14 @@ order: 2
 title: Nothing at stake
 summary: Two teachers run the same ruler-catch practical. One sentence at the start turns one of them into a demonstration. Learn why an unknown result matters.
 level: explain
-version: 0.1.0
-status: draft
-lastReviewed: 2026-10-10
+version: 1.0.0
+status: published
+lastReviewed: 2026-11-10
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-11-10
 context:
   stages: [stage4]
   focusAreas: [Data science 1]

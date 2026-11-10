@@ -1,4 +1,4 @@
-# Levels of inquiry path, lesson 3. Explain level: guided and open. Built on the Levels of inquiry guide's worked sequence seq-s4-reaction-time and its guided and open examples. Draft for Steve's review.
+# Levels of inquiry path, lesson 3. Explain level: guided and open. Built on the Levels of inquiry guide's worked sequence seq-s4-reaction-time and its guided and open examples. Reviewed and published by Steve on 2026-11-10.
 schemaVersion: 1
 id: loi-3-whose-method
 path: levels-of-inquiry
@@ -6,13 +6,14 @@ order: 3
 title: Whose method is it?
 summary: Hand over the method, then the question. Learn what a plan conference is for, and how to tell guided inquiry from a form with boxes.
 level: explain
-version: 0.1.0
-status: draft
-lastReviewed: 2026-10-10
+version: 1.0.0
+status: published
+lastReviewed: 2026-11-10
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-11-10
 context:
   stages: [stage4]
   focusAreas: [Data science 1]

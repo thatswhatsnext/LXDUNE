@@ -1,4 +1,4 @@
-# Levels of inquiry path, lesson 4. Design level: build a ten-lesson progression from cards and read the feature report. Built on the Levels of inquiry guide's worked sequence seq-s4-reaction-time. Draft for Steve's review.
+# Levels of inquiry path, lesson 4. Design level: build a ten-lesson progression from cards and read the feature report. Built on the Levels of inquiry guide's worked sequence seq-s4-reaction-time. Reviewed and published by Steve on 2026-11-10.
 schemaVersion: 1
 id: loi-4-build
 path: levels-of-inquiry
@@ -6,13 +6,14 @@ order: 4
 title: "Build it: the progression"
 summary: Build the reaction-time unit's progression from activity and check cards, one setting at a time, then read what the guide's look-fors say about it.
 level: design
-version: 0.1.0
-status: draft
-lastReviewed: 2026-10-10
+version: 1.0.0
+status: published
+lastReviewed: 2026-11-10
 provenance:
-  source: ai-generated
+  source: ai-drafted-reviewed
   authors: [Claude]
-  reviewedBy: []
+  reviewedBy: [Steve Grant]
+  reviewedOn: 2026-11-10
 context:
   stages: [stage4]
   focusAreas: [Data science 1]
