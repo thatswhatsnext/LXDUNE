@@ -15,7 +15,7 @@ fails if it is out of date. Read it before drafting reckoner content or a handof
 | Examples across published guides | 58 (29 positive, 29 negative) |
 | Worked sequences | 21 |
 | Focus areas with a ready plan / examples only / empty | 16 / 0 / 0 of 16 |
-| Game lessons at /play/ (published / draft or in review) | 26 / 6 |
+| Game lessons at /play/ (published / draft or in review) | 32 / 0 |
 | **Next action-plan item number** | **63** |
 
 ## Published guides
@@ -28,7 +28,7 @@ no bump for a cross-reference (nesting) line only.
 | 5E | `5e` | Unit architecture | 1.2.0 | 2026-09-30 | 5 | 14 | `seq-s4-forces`, `seq-s4-cells`, `seq-s5-disease`, `seq-s4-elements`, `seq-s5-rates`, `seq-s5-motion` |
 | 7E | `7e` | Unit architecture | 1.1.0 | 2026-09-30 | 7 in 3 groups | 6 | `7e-seq-s5-energy`, `7e-seq-s4-moon`, `7e-seq-s5-evolution` |
 | Argument-Driven Inquiry | `adi` | Multi-lesson routine | 1.2.0 | 2026-09-30 | 8 in 3 groups | 8 | `seq-s5-microhabitats`, `seq-s5-sound` |
-| Levels of inquiry | `levels-of-inquiry` | Guidance dial | 1.2.0 | 2026-09-30 | 4 | 10 | `seq-s4-progression`, `seq-s4-reaction-time` |
+| Levels of inquiry | `levels-of-inquiry` | Guidance dial | 1.2.0 | 2026-11-10 | 4 | 10 | `seq-s4-progression`, `seq-s4-reaction-time` |
 | Predict–Observe–Explain | `poe` | Single lesson | 1.3.0 | 2026-09-30 | 3 | 12 | `ep-s4-yeast`, `ep-s5-handwashing`, `ep-s4-steel-wool`, `ep-s4-freeze-thaw` |
 | Science Writing Heuristic | `swh` | Multi-lesson routine | 1.3.0 | 2026-10-08 | 7 in 3 groups | 8 | `swh-seq-s5-bottles`, `swh-seq-s4-separation`, `swh-seq-s5-duckweed`, `swh-seq-s4-spinners` |
 
@@ -61,16 +61,16 @@ versions the same way as guides.
 | Build it: SWH | `swh-4-duckweed` | `swh` | 4 | design | 1.0.0 | published | 2026-10-08 | 5 |
 | Negotiation Day | `swh-5-bottles` | `swh` | 5 | design | 1.0.0 | published | 2026-10-08 | 4 |
 | Negotiation Day | `swh-5-duckweed` | `swh` | 5 | design | 1.0.0 | published | 2026-10-08 | 4 |
-| Who holds the question? | `loi-1-who-holds` | `levels-of-inquiry` | 1 | recognise | 0.1.0 | draft | 2026-10-10 | 11 |
-| Nothing at stake | `loi-2-nothing-at-stake` | `levels-of-inquiry` | 2 | explain | 0.1.0 | draft | 2026-10-10 | 10 |
-| Whose method is it? | `loi-3-whose-method` | `levels-of-inquiry` | 3 | explain | 0.1.0 | draft | 2026-10-10 | 11 |
-| Build it: the progression | `loi-4-build` | `levels-of-inquiry` | 4 | design | 0.1.0 | draft | 2026-10-10 | 5 |
-| Question Conference | `loi-5-question-conference` | `levels-of-inquiry` | 5 | design | 0.1.0 | draft | 2026-10-10 | 4 |
+| Who holds the question? | `loi-1-who-holds` | `levels-of-inquiry` | 1 | recognise | 1.0.0 | published | 2026-11-10 | 11 |
+| Nothing at stake | `loi-2-nothing-at-stake` | `levels-of-inquiry` | 2 | explain | 1.0.0 | published | 2026-11-10 | 10 |
+| Whose method is it? | `loi-3-whose-method` | `levels-of-inquiry` | 3 | explain | 1.0.0 | published | 2026-11-10 | 11 |
+| Build it: the progression | `loi-4-build` | `levels-of-inquiry` | 4 | design | 1.0.0 | published | 2026-11-10 | 5 |
+| Question Conference | `loi-5-question-conference` | `levels-of-inquiry` | 5 | design | 1.0.0 | published | 2026-11-10 | 4 |
 | Which model, and why? | `select-1-which` | `select` | 1 | select | 1.0.0 | published | 2026-10-03 | 8 |
 | When the dial moves | `select-2-dial` | `select` | 2 | select | 1.0.0 | published | 2026-10-03 | 7 |
 | Argue it out | `select-3-argue` | `select` | 3 | select | 1.0.2 | published | 2026-10-05 | 7 |
 | Which routine? | `select-4-routine` | `select` | 4 | select | 1.0.0 | published | 2026-10-08 | 7 |
-| Set the dial | `select-5-set-dial` | `select` | 5 | select | 0.1.0 | draft | 2026-10-10 | 9 |
+| Set the dial | `select-5-set-dial` | `select` | 5 | select | 1.0.0 | published | 2026-11-10 | 9 |
 
 ## Models without a guide
 

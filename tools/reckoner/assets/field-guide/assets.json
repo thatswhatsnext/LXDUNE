@@ -178,6 +178,66 @@
       "sha256": "7a48142b4c6133937f46e1bf0e054256593e828e49db133dc489159629fa467f"
     },
     {
+      "id": "loi-1-who-holds",
+      "lesson": "loi-1-who-holds",
+      "placement": "opening",
+      "file": "lessons/loi-1-who-holds.webp",
+      "width": 1703,
+      "height": 923,
+      "alt": "An overhead view of a timber bench with an open blue binder, a ruler and ten blank cream slips arranged loosely beside the binder.",
+      "sha256": "fee75d4c2ebec45bb0fa571286efda51a572fbaca677f142e89accde1bbd717f"
+    },
+    {
+      "id": "loi-2-nothing-at-stake",
+      "lesson": "loi-2-nothing-at-stake",
+      "placement": "opening",
+      "file": "lessons/loi-2-nothing-at-stake.webp",
+      "width": 1703,
+      "height": 923,
+      "alt": "Two side-by-side classroom panels show pairs of pupils preparing a ruler catch at matching benches. In both, the pupil on the right holds the top of a vertical ruler and the pupil on the left holds an open hand near its lower end. Both benches have blank notebooks and loose cards.",
+      "sha256": "feadd44080e17989db29b7723dc390b92a4c787c3affa74b9d2b131b579f8860"
+    },
+    {
+      "id": "loi-3-whose-method",
+      "lesson": "loi-3-whose-method",
+      "placement": "opening",
+      "file": "lessons/loi-3-whose-method.webp",
+      "width": 1703,
+      "height": 923,
+      "alt": "Three pupils and a teacher gather at a shared science bench. The pupils look across the bench at one another. A closed blue notebook and a ruler lie within reach at the centre.",
+      "sha256": "32774a9b8fc7efcb4ef13f50ac41d901d0ee44a45717a9242b063d6d90d0c77c"
+    },
+    {
+      "id": "loi-4-build",
+      "lesson": "loi-4-build",
+      "placement": "opening",
+      "file": "lessons/loi-4-build.webp",
+      "width": 1703,
+      "height": 924,
+      "alt": "An open blue ring planner with blank pages sits on a timber desk. A fan of blank cards and a separate stack lie beside it, with a ruler across the front.",
+      "sha256": "8397fb191782d22b2d895dfb34d7e6304c70294cbd7c4bc92f736356feb77762"
+    },
+    {
+      "id": "loi-5-question-conference",
+      "lesson": "loi-5-question-conference",
+      "placement": "opening",
+      "file": "lessons/loi-5-question-conference.webp",
+      "width": 1703,
+      "height": 924,
+      "alt": "A teacher and four pupils gather at one science bench, with the teacher seated at the centre. The pupils look towards one another and the teacher. Blank notebooks and a ruler lie on the bench.",
+      "sha256": "9dbf63290e8214f14c848df4f0af2192c1cb663ee1688ebc6f5398862dbb3e9e"
+    },
+    {
+      "id": "select-5-set-dial",
+      "lesson": "select-5-set-dial",
+      "placement": "opening",
+      "file": "lessons/select-5-set-dial.webp",
+      "width": 1703,
+      "height": 924,
+      "alt": "A blank desk calendar, a closed green notebook and a circular dial face rest on a timber desk. The dial has four equal marks and an empty hub.",
+      "sha256": "4e8f5eef1ee4fca717555097e910ce32d195f576b6296cfc23648fc3b57d01ef"
+    },
+    {
       "id": "swh-1-spinners",
       "lesson": "swh-1-spinners",
       "placement": "opening",
